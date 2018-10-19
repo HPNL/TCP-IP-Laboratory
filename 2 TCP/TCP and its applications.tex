@@ -1,0 +1,272 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices} 
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
+
+\newcommand{\titleText}{TCP and its Applications \\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+	%	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+	\begin{minipage}{0.48\textwidth} \begin{flushleft}
+			\includegraphics[height=64pt,width=64pt]{img/logo.png}
+	\end{flushleft}\end{minipage}
+	\begin{minipage}{0.48\textwidth} \begin{flushright}
+			\includegraphics[height=64pt]{img/eng-logo.png}
+	\end{flushright}\end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+	\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+	\huge University of Tehran\\
+	\LARGE \FR{دانشگاه تهران}\\
+	\\
+	\LARGE School of Electrical and Computer Engineering\\
+	\FR{دانشکده مهندسی برق و کامپیوتر}\\
+	\\
+	\Large Computer Network Lab\\
+	\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+	\\
+	\\
+	\\
+	\normalfont
+	Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+	\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+	\\
+	\normalsize
+	Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+	\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+	\\
+	\normalsize
+	Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+	\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
+	\\
+	\normalsize
+	Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+	\href{mailto:khordadi@ut.ac.ir}{khordadi@ut.ac.ir}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}			% Remove header underlines
+\renewcommand{\footrulewidth}{1pt}				% Remove footer underlines
+\setlength{\headheight}{13.6pt}
+ 
+
+\begin{document}
+\selectlanguage{english}
+
+%\vspace*{-1.5cm}
+\maketitle
+
+%\tableofcontents
+
+\pagebreak
+%Arabic \AR{\allah}
+%Persian \FR{فروشگاه}
+%Arabic \foreignlanguage{arabic}{كحض}
+%Persian \foreignlanguage{farsi}{فروشگاه}
+
+
+
+%	يعود تاريخ علوم الحاسوب إلى 
+%\chapter
+%\section
+%\subsubsection
+%\subsection
+%\section
+%\chapter
+%\part
+%\caption
+%\end{otherlanguage}
+
+\section*{Telnet terminal}
+	Execute following commands: \\
+	\begin{itemize}
+		\item [h2>] \textbf{/etc/init.d/xinetd restart}
+		\item [h1>] \textbf{wireshark \&}
+		\item [h1>] \textbf{telnet} \textit{10.0.0.2}
+	\end{itemize}
+	\subsection*{Report}
+	\begin{enumerate}
+		\item Explain TCP connection establishment and termination using the wireshark output.
+		\item What were the announced MSS values for the two hosts? \\
+		What happens if there is an intermediate network that has an MTU less than the MSS of each host? \\
+		See if the \texttt{DF} flag was set in wireshark output.
+	\end{enumerate}
+    
+
+    %\pagebreak
+\section*{TCP vs UDP}
+	Use \textbf{socket}\footnote{Basic command is sock use alternative socket (linked to sock)} to send a UDP datagram to \texttt{h2}: \\
+	\begin{itemize}
+		\item [h2>] \textbf{socket -u -s 8888}
+		\item [h1>] \textbf{wireshark \&}
+		\item [h1>] \textbf{socket -u -i -n1} \textit{10.0.0.2} \textbf{8888}
+	\end{itemize}
+    \underline{Save} the \textbf{wireshark} output for your lab report. \\
+	Restart the above \textbf{wireshark} command, execute \textbf{socket} in the TCP mode: \\
+	\begin{itemize}
+		\item [h2>] \textbf{socket -s 8888}
+		\item [h1>] \textbf{wireshark \&} \\
+		\item [h1>] \textbf{socket -i -n1} \textit{10.0.0.2} \textbf{8888} \\
+	\end{itemize}
+    \underline{Save} the \textbf{wireshark} output for your lab report.
+    \subsection*{Report}
+    Explain what happened in both the UDP and TCP cases.
+    When a client requests a non-existing server (e.g. \textit{10.0.0.3}), how do UDP and TCP handle this request, respectively?
+
+    %\pagebreak
+\section*{MSS and MTU}
+    Issue following commands:
+    \begin{itemize}
+        \item [h1>] \textbf{wireshark \&}
+        \item [h1>] \textbf{telnet} \textit{10.0.0.2}
+    \end{itemize}
+    After logging in to the host, type \texttt{date} and press the \texttt{Enter} key. \\
+    Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \textbf{telnet} window very rapidly. \\
+    \underline{Save} the \textbf{wireshark} output for your lab report.
+    \subsection*{Report}
+    Answer the following questions, based upon the \textbf{wireshark} output saved in the above exercise.
+    \begin{enumerate}
+        \item What is a delayed acknowledgement?
+        What is it used for?
+        \item Can you see any delayed acknowledgements in your \textbf{wireshark} output? \\
+        If yes, explain the reason.
+        Mark some of the lines with delayed acknowledgements, and submit the \textbf{wireshark} output with your report. \\
+        Explain how the delayed ACK timer operates from your \textbf{wireshark} output. \\
+        If you don’t see any delayed acknowledgements, explain the reason why none was observed.
+        \item What is the \textbf{Nagle} algorithm used for? \\
+        From your \textbf{wireshark} output, can you tell whether the Nagle algorithm is enabled or not?
+        Give the reason for your answer.
+        From your \textbf{wireshark} output for when you typed very rapidly, can you see any segment that contains more than one character going from your workstation to the remote machine?
+    \end{enumerate}
+
+    %\pagebreak
+\section*{Exercise 4}
+    Issue following commands:
+    \begin{itemize}
+        \item [h2>] \textbf{wireshark \&}
+        \item [h2>] \textbf{socket -i -s 7777}
+        \item [h1>] \textbf{socket -i -n16} \textit{10.0.0.2} \textbf{7777}
+    \end{itemize}
+    Do the same experiment three times. \\
+    \underline{Save} all the \textbf{wireshark} outputs for your lab report.
+    \subsection*{Report}
+    Using one of three \textbf{wireshark} outputs, explain the operation of TCP in terms of data segments and their acknowledgements. Does the number of data segments differ from that of their acknowledgements? \\
+    Compare all the \textbf{wireshark} outputs you saved.
+    Discuss any differences among them, in terms of data segments and their acknowledgements.
+    \subsection*{Report}
+    From the \textbf{wireshark} output, how many different TCP flags can you see? Enumerate the flags and explain their meanings. \\
+    How many different TCP options can you see?
+    Explain their meanings.
+
+    %\pagebreak
+\section*{Link Up and Down}
+    Issue following commands:
+    \begin{itemize}
+    	\item [\texttt{h2>}] \textbf{socket -s 8888}
+    	\item [\texttt{h1>}] \textbf{wireshark \&}
+    	\item [\texttt{h1>}] \textbf{socket -i -n1000000} \textit{10.0.0.2} \textbf{8888}
+    \end{itemize}
+    While the sender is injecting data segments into the network, disconnect the cable connecting the sender to the hub for about ten seconds. \\
+    After observing several retransmissions, reconnect the cable:
+    \begin{itemize}
+        \item [\texttt{mininet>}] \textbf{link s1 h2 down}
+        \item [-] after ten seconds...
+        \item [\texttt{mininet>}] \textbf{link s1 h2 up}
+    \end{itemize}
+    When all the data segments are sent, save the \textbf{wireshark} output for the lab report.
+    \subsection*{Report}
+    Submit the \textbf{wireshark} output saved in this exercise. \\
+    From the \textbf{wireshark} output, identify when the cable was disconnected. \\
+    Describe how the retransmission timer changes after sending each retransmitted packet, during the period when the cable was disconnected. \\
+    Explain how the number of data segments that the sender transmits at once (before getting an ACK) changes after the connection is reestablished.
+
+    %\pagebreak
+\section*{Fragmentation}
+    Execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous chapter, \\
+    \begin{itemize}
+        \item [\texttt{h2>}] \textbf{wireshark \&}
+        \item [\texttt{h2>}] \textbf{socket -s 8888} 
+        \item [\texttt{h1>}] \textbf{socket -i -n1 -w}\textit{n} \textit{10.0.0.2} \textbf{8888} 
+    \end{itemize}
+    Let \textit{n} be larger than the maximum UDP datagram size we found in previous chapter. \\
+    As an example, you may use n = 70080.
+    \subsection*{Report}
+    Did you observe any IP fragmentation? \\
+    If IP fragmentation did not occur this time, how do you explain this compared to what you observed in previous chapter for UDP packets?
+
+\section*{Keepalive parameter}
+    Execute \textbf{sysctl -A | grep keepalive} to display the default values of the TCP kernel parameters that are related to the TCP keepalive timer. \\
+    \subsection*{Report}
+    Answer the above questions.
+	\begin{enumerate}
+		\item What is the default value of the TCP keepalive timer?
+		\item What is the maximum number of TCP keepalive probes a host can send?
+    \end{enumerate}
+
+\section*{Linux TCP/IP kernel parameter}
+    Study the manual page of \textbf{\texttt{/sbin/sysctl}}.
+    Examine the default values of some TCP/IP configuration parameters that you might be interested in.
+    Examine the configuration files in the \texttt{/proc/sys/net/ipv4} directory.
+    \subsection*{Report}
+    Explain what is \textbf{sysctl} command for? \\
+    Explain two arbitrary TCP/IP configuration parameters.
+    What is their default values? \\
+    Name two arbitrary file in the \texttt{/proc/sys/net/ipv4} directory.
+	What is their content?
+	
+\end{document}
