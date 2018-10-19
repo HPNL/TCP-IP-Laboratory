@@ -1,0 +1,292 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices} 
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
+
+\newcommand{\titleText}{UDP and its Applications \\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+	%	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+	\begin{minipage}{0.48\textwidth} \begin{flushleft}
+			\includegraphics[height=64pt,width=64pt]{img/logo.png}
+	\end{flushleft}\end{minipage}
+	\begin{minipage}{0.48\textwidth} \begin{flushright}
+			\includegraphics[height=64pt]{img/eng-logo.png}
+	\end{flushright}\end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+	\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+	\huge University of Tehran\\
+	\LARGE \FR{دانشگاه تهران}\\
+	\\
+	\LARGE School of Electrical and Computer Engineering\\
+	\FR{دانشکده مهندسی برق و کامپیوتر}\\
+	\\
+	\Large Computer Network Lab\\
+	\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+	\\
+	\\
+	\\
+	\normalfont
+	Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+	\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+	\\
+	\normalsize
+	Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+	\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+	\\
+	\normalsize
+	Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+	\href{mailto:sina\char`_kashipazha@ut.ac.ir}{sina\char`_kashipazha@ut.ac.ir}\\
+	\\
+	\normalsize
+	Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+	\href{mailto:khordadi@ut.ac.ir}{khordadi@ut.ac.ir}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr} 
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}			% Remove header underlines
+\renewcommand{\footrulewidth}{1pt}				% Remove footer underlines
+\setlength{\headheight}{13.6pt}
+ 
+
+\begin{document}
+\selectlanguage{english}
+
+%\vspace*{-1.5cm}
+\maketitle
+
+%\tableofcontents
+
+\pagebreak
+%Arabic \AR{\allah}
+%Persian \FR{فروشگاه}
+%Arabic \foreignlanguage{arabic}{كحض}
+%Persian \foreignlanguage{farsi}{فروشگاه}
+
+
+
+%	يعود تاريخ علوم الحاسوب إلى 
+%\chapter
+%\section
+%\subsubsection
+%\subsection
+%\section
+%\chapter
+%\part
+%\caption
+%\end{otherlanguage}
+
+\section{Echo Service}
+Use the following commands in \texttt{h1} and \texttt{h2} to observe the basic operation of \textbf{socket}\footnote{Basic command is sock use alternative socket (linked to sock)} and echo service. \\
+\begin{itemize}
+	\item [h2>] \textbf{/etc/init.d/xinetd restart}
+	\item [h1>] \textbf{socket -u \textit{10.0.0.2} echo}
+	\item [h1>]type any text in socket and press enter
+\end{itemize}
+\begin{lstlisting}[language=bash]
+\end{lstlisting}
+
+\subsection*{Report}
+Explain the operation of each command.
+
+\section{Socket Server}
+Use following command to run a server and send packet to serever.
+\begin{itemize}
+	\item [h2>] \textbf{socket -u -s 5555}
+	\item [h1>] \textbf{socket -u -i -n3 -w2048 \textit{10.0.0.2} 5555}
+\end{itemize}
+
+\subsection*{Report}
+Explain the operation of each command.\\
+Show packet in wireshark. What you see in transmitted packet?\\
+What is different between packet in client and server?\\
+What is different between generated packet and sended packet?
+
+%\pagebreak
+\section{socket -h}
+Study various options associated with the \textbf{socket} program.
+A brief list of options can be displayed by typing \textbf{socket}.
+\subsection*{Report}
+Explain 5 of them.
+
+%\pagebreak
+\section{Segment size}
+While running \textbf{wireshark} on \texttt{h1}, execute the following command with different values of size (i.e., the size of the datagram). \\
+\begin{itemize}
+	\item [h2>] \textbf{socket -u -s 5555}
+	\item [h1>] \textbf{socket -u -i -n1 -w\$\{size\} \textit{10.0.0.2} 5555}
+\end{itemize}
+The \textbf{-u} option is used to send UDP datagrams rather than TCP segments. \\
+Increase \textit{size} (i.e., the size of the datagram) until fragmentation occurs. \\
+Use \textbf{netstat -in} to find out the MTU of the Ethernet interface.
+
+\subsection*{Report}
+What is the maximum value of \textit{size} for which the UDP datagram can be sent without IP fragmentation?
+Justify your answer with the \textbf{netstat} output.
+
+%\pagebreak
+\section{Datagram size}
+Capture the data packets generated by the following command \textbf{wireshark} on \texttt{h1}. \\
+
+\begin{itemize}
+	\item [h2>] \textbf{socket -u -s 5555}
+	\item [h1>] \textbf{socket -u -i -n1 -w10000 \textit{10.0.0.2} 5555}
+\end{itemize}
+\underline{Save} the \textbf{wireshark} output for the lab report.
+\subsection*{Report}
+Explain the \textbf{wireshark} output in terms of the IP header fields that are used in fragmentation. \\
+When IP fragmentation occurs, only the first fragment has the UDP header.
+How do you verify this fact from the \textbf{wireshark} output?
+
+%\pagebreak
+%\section{FTP and TFTP}
+%While running \textbf{wireshark} on \texttt{h1}, execute the following command with different values of size, \\
+%\centerline{\textbf{socket -u -i -n1 -w\textit{size}} \textit{10.0.0.2} \textbf{echo}} \\
+%in order to find out the maximum size of a UDP datagram that the system can send or receive, even when fragmentation is allowed.
+%\subsection*{Report}
+%What is the maximum size of user data in a UDP datagram that the system can send or receive, even when fragmentation is allowed?
+
+
+%    %\pagebreak
+%    \section*{Exercises with FTP and TFTP}
+%    We will study the performance of FTP and TFTP for file transfer between two machines.
+%    By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP. \\
+%    Two files (\texttt{large.dum} and \texttt{small.dum}) with random contents are stored in the \texttt{/home/LAB} directory and in the \texttt{/tftpboot} directory of each workstation in the lab.
+%    We will use the \texttt{get} command to retrieve files from a remote host.
+%    When FTP is used, you need to change directory to \texttt{/home/mininet/} by \textbf{cd} \texttt{/home/LAB} before retrieving the file.
+%    If you don’t know how to use \textbf{tftp}, refer to its manual page.
+
+
+
+%\pagebreak
+\section{TFTP and FTP}
+In order to compare the transfer rates of FTP and TFTP, we will retrieve a large file from a remote server using FTP and TFTP, respectively.\\
+First run ftp and tftp service. Run \textbf{wireshark} on \texttt{h1} and see ftp and tftp packets. \\
+\begin{itemize}
+	\item [h2>] \textbf{/etc/init.d/xinetd restart} \# start tftp server
+	\item [h2>] \textbf{ls /etc/xinetd.d/} \# see services in xinetd
+	\item [h2>] \textbf{vsftpd \& }\# start ftp server
+	\item [h2>] create file in \textbf{/tftpboot/\{small.dum, med.dum, larg.dum\}}
+	\item [h2>] create file in \textbf{/home/mininet/\{small.dum, med.dum, larg.dum\}}
+	\item [-]
+	\item [h1>] \textbf{tftp 10.0.0.2}
+	\item [h1>] tftp> \textbf{get \{\$filename\}}
+	\item [h1>] tftp> \textbf{quit}
+	\item [-]
+	\item [h1>] \textbf{ftp 10.0.0.2} \# Enter user and password -> \textbf{mininet}
+	\item [h1>] tftp> \textbf{ls}
+	\item [h1>] tftp> \textbf{get \$\{filename\}}
+	\item [h1>] tftp> \textbf{quit}
+\end{itemize}
+\textit{Create \textbf{small.dum} with \textbf{10kB}, \textbf{med.dum} with \textbf{1MB} and \textbf{larg.dum} with \textbf{50MB}} \\
+Also, from the \textbf{ftp} window, record the transfer rate (time) displayed. \\
+Restart the above \textbf{wireshark} session.
+\subsection*{Report}
+For first \textbf{wireshark} session identify the starting and ending time of actual data transfer.
+Don’t include the time spent establishing the TCP connection.
+Calculate the time spent for data transfer. \\
+Compare the time with the value displayed in \textbf{ftp} window.
+Are they consistent?
+If there exists any significant difference, what might be the reason? \\
+Now, from the second session, carefully determine the starting and ending time of data transfer for the \textbf{tftp} program. \\
+Compare the time with the value displayed in \textbf{tftp} window.
+Are they consistent?
+If there exists any significant difference, what might be the reason? \\
+By comparing the actual data transfer times of \textbf{ftp} and \textbf{tftp}, which of these two is faster, and why?
+
+%\pagebreak
+\section{TFTP Analysis}
+Capture the packets that are exchanged during a \textbf{tftp} session for the \linebreak \texttt{/tftpboot/small.dum} file between \texttt{h1} and \texttt{h2}, using \textbf{wireshark} \\
+Observe the protocol in action.
+Analyze various types of TFTP messages.
+\subsection*{Report}
+\begin{enumerate}
+	\item List all the different types of packets exchanged during the \textbf{tftp} session. \\
+	Why does the server’s port number change?
+	\item In most cases, \textbf{tftp} service is restricted.\footnote{This is not the case in our lab, where we deliberately enabled the TFTP service and use it as a tool to study the UDP protocol.}
+	Why is \textbf{tftp} service not generally available to users?
+	\item With \textbf{tftp}, which uses UDP, we transferred a file larger than the maximum UDP datagram size.
+	How do you explain this?
+\end{enumerate}
+
+%\pagebreak
+\section{FTP Small file}
+Repeat the above experiment, but use \textbf{ftp}.
+Capture a trace of the packets exchanged when downloading the \texttt{/home/mininet/small.dum} file using \textbf{ftp}. \\
+Examine the port numbers used.
+\subsection*{Report}
+\begin{enumerate}
+	\item How many well-known port numbers were used?
+	Which machine used the well-known port numbers?
+	What were the other machine’s port numbers?
+	\item As can be seen from the \textbf{wireshark} output, FTP involves two different connections, \texttt{ftp-control} and \texttt{ftp-data}.
+	Why are two different connections used, instead of one connection?
+\end{enumerate}
+
+%\pagebreak
+\section{FTP Debug}
+Run \textbf{ftp} in \texttt{h1} using the debug mode: \textbf{ftp -d} \textit{10.0.0.2}. \\
+After logging into the remote host, type \textbf{dir} \texttt{/home/mininet/small.dum} in the \textbf{ftp} window. \\
+Then type \textbf{quit} to terminate the \textbf{ftp} session, and save the \textbf{ftp} window output.
+\subsection*{Report}
+Submit what you saved in this exercise, explaining each line of the output.
+Explain how the \texttt{PORT} command works.
+Which connection, the control connection or the data connection, did the server send the response (the \texttt{LIST} output) on?
+
+\end{document}
