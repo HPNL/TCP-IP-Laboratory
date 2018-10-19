@@ -1,7 +1,9 @@
-TCP/IP Labratorary manual
+# TCP/IP Laboratory manual
+
+## Chapters
 
 * Linux and Simulator
-** mininet
+  * Mininet
 * UDP
 * TCP
 * Routing (Static & Dynamic)
