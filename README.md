@@ -6,8 +6,10 @@
   * Mininet
 * UDP
 * TCP
-* Routing (Static & Dynamic)
 * NAT
 * VLan
+* Routing (Static & Dynamic)
+* AS Routing
 * Security
+* Firewall
 * SDN and routing rule
