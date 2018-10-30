@@ -47,10 +47,10 @@
 \begin{center}
 	%	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 	\begin{minipage}{0.48\textwidth} \begin{flushleft}
-			\includegraphics[height=64pt,width=64pt]{img/logo.png}
+			\includegraphics[height=64pt,width=64pt]{../img/logo.png}
 	\end{flushleft}\end{minipage}
 	\begin{minipage}{0.48\textwidth} \begin{flushright}
-			\includegraphics[height=64pt]{img/eng-logo.png}
+			\includegraphics[height=64pt]{../img/eng-logo.png}
 	\end{flushright}\end{minipage}
 \end{center}
 \vspace*{-64pt}
@@ -138,7 +138,9 @@
     Enter \texttt{mininet} as password.\\
     Run mininet with default topology:
     \begin{itemize}
+    	\setlength{\itemindent}{30pt}
         \item [mininet>] \textbf{sudo mn}
+        \item [hint:] you can add link delay to see network process and have better experience. command: \textbf{sudo mn $\cdots$ --link tc,delay=10ms}  
     \end{itemize}
 
 \section*{Telnet terminal}
@@ -153,7 +155,8 @@
 		\item Explain TCP connection establishment and termination using the wireshark output.
 		\item What were the announced MSS values for the two hosts? \\
 		\item What happens if there is an intermediate network that has an MTU less than the MSS of each host? \\
-		See if the \texttt{DF} flag was set in wireshark output.
+		See if the \texttt{DF} flag was set in wireshark output.\\
+		\textit{you can change interface \textbf{MTU} with} \textbf{sudo ifconfig \$ETH mtu 1400}
 	\end{enumerate}
     
 
@@ -165,7 +168,7 @@
 		\item [h1>] \textbf{wireshark \&}
 		\item [h1>] \textbf{socket -u -i -n1} \textit{10.0.0.2} \textbf{8888}
 	\end{itemize}
-    \underline{Save} the \textbf{wireshark} output for your lab report. \\
+    \underline{Save}\footnote{Take snapshot and save image} the \textbf{wireshark} output for your lab report. \\
 	Restart the above \textbf{wireshark} command, execute \textbf{socket} in the TCP mode: \\
 	\begin{itemize}
 		\item [h2>] \textbf{socket -s 8888}
@@ -184,11 +187,12 @@
 \section*{MSS and MTU}
     Issue following commands:
     \begin{itemize}
+    	\item [h2>] \textbf{/etc/init.d/xinetd restart}
         \item [h1>] \textbf{wireshark \&}
         \item [h1>] \textbf{telnet} \textit{10.0.0.2}
     \end{itemize}
     After logging in to the host, type \texttt{date} and press the \texttt{Enter} key. \\
-    Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \textbf{telnet} window very rapidly. \\
+    Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \textbf{telnet} window very rapidly\footnote{for example hold "A" key or write "qwertyuiop" in telnet window.}. \\
     \underline{Save} the \textbf{wireshark} output for your lab report.
     \subsection*{Report}
     Answer the following questions, based upon the \textbf{wireshark} output saved in the above exercise.
@@ -233,7 +237,7 @@
     \begin{itemize}
     	\item [\texttt{h2>}] \textbf{socket -s 8888}
     	\item [\texttt{h1>}] \textbf{wireshark \&}
-        \item [\texttt{h1>}] \textbf{socket -i -n1000000} \textit{10.0.0.2} \textbf{8888}
+        \item [\texttt{h1>}] \textbf{socket -i -n100000} \textit{10.0.0.2} \textbf{8888}
     \end{itemize}
     While the sender is injecting data segments into the network, disconnect the cable connecting the sender to the hub for about ten seconds. \\
     After observing several retransmissions, reconnect the cable:
@@ -249,7 +253,7 @@
         \item Submit the \textbf{wireshark} output saved in this exercise.
         \item From the \textbf{wireshark} output, identify when the cable was disconnected.
         \item Describe how the retransmission timer changes after sending each retransmitted packet, during the period when the cable was disconnected.
-        \item Explain how the number of data segments that the sender transmits at once (before getting an ACK) changes after the connection is reestablished.
+        \item Explain how the number of data segments that the sender transmits at once (before getting an ACK) changes after the connection is reestablished\footnote{\href{http://www.ccs-labs.org/teaching/rn/animations/gbn_sr/}{TCP Window visualizer}}.
     \end{enumerate}
     
     %\pagebreak
