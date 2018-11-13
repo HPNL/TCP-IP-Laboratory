@@ -178,97 +178,57 @@ Execute Wireshark on h1 and h2. Then, execute traceroute 10.0.3.10 on h1 to find
 
 
 \section{RIP exercises}
-    Create new project in Cisco Packet Tracer and configure topology in Figure \ref{fig:topology} by using 2960 switches and PC (Laptops) in toolbar.
+    In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the Global Configuration mode.\\
+    \begin{itemize}
+    	\setlength{\itemindent}{60pt}
+    	\item [Router(config) \#] \textbf{router riprouter rip}
+    	\item [Router(config) \#]  network network number
+    \end{itemize}
+     where network number could be 128.238.0.0. To remove the network, use:
+     \begin{itemize}
+     	\setlength{\itemindent}{60pt}
+     	\item [Router(config) \#] no network network number
+     \end{itemize}
+ 
+ To shutdown the RIP process, use:
+ \begin{itemize}
+	\setlength{\itemindent}{60pt}
+	\item [Router(config) \#] no router rip
+\end{itemize}
 
-(Use 2960 switch instead of bridge and set of two laptops and one switch instead of each LAN)\\
-your configuration must be similar to the Figure \ref{fig:topology} in packet tracer.
+Consider \ref{fig:topo} as our network topology for this section. Since the IP
+address of ethernet1 in router4 is the only interface which is different from the initial configuration in Appendix B, we will reboot all the four routers to restore their default configurations, and change the IP address on the ethernet1 in router4 only. Since our workstations started routed at boot-up time, no further action is needed to run RIP on the workstations.
+Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in Fig. 4.11. Also, make sure that your workstation has no other routing entries than your own subnet and your loopback interface. For how to remove an entry from the host routing table, see Section 4.3.
+Run the RIP process in each router. To avoid confusion, each router should be configured by only one person.
+After starting RIP in all the routers, test connections to other hosts by pinging them. Once you can successfully reach all the hosts, run the following command to capture the RIP messages sent on your subnet:
+tcpdump -x -s 100 -c 4 -w exe2.out udp port 520.
+Save the routing table in your workstation. Note the number of hops needed to reach
+destinations other than in your own subnet.
+Run ethereal -r exe2.out \& to load the packet trace recorded by the above tcpdump command. Mark and print two different RIP messages captured in your subnet (see Exercise 6 of Chapter 1). Exchange the printed RIP messages with students in other groups. You need eight different RIP messages for your lab report.
+
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Explain why you can only get two different RIP messages in your subnet. Was a RIP packet forwarded by the routers? Why?
+	\item Draw the format of one of the saved RIP response packets from your sub- net, including the IP and UDP headers and the RIP message (see Figs 0.13, 0.14, and 4.4). Identify each field, and express their values in decimal format. \\
+	For the other seven RIP response packets collected, explain the contents of
+the RIP messages only, excluding IP and UDP headers.
+	\item Draw the distance tables and the routing tables in the routers based on Fig. 4.11, assuming that number of hops is used as the metric. Verify the routing tables using the RIP messages you captured.
+\end{itemize}
+
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Compare this time with the previous value in the spanning tree experiment. Explain why it takes this time for RIP to react to the route change. Refer to Section 4.2.4 for RIP operation and default timer values.
+\end{itemize}
 
 \begin{figure}[H]
 	\centering
-    \includegraphics[height=100pt]{img/fig2.png}
+    \includegraphics[height=300pt]{img/fig4.png}
     \caption{Implemented Topology in CPT}
+    \label{fig:Topo}
 \end{figure}
 
-\subsection{Configuring IP address}
-	Click  on each laptop and select Config tab then select the FastEthernet0 on the left vertical bar. set IP address for each laptop in 192.168.56.101 to 192.168.56.110 range. \\
-
-	\begin{center}
-        \includegraphics[height=200pt]{img/fig3.png}
-    \end{center}
-    
-    \textbf{Ping} a laptop in LAN D by a laptop in LAN A.
-
-\subsection*{How to Ping}
-
-click on source laptop and select Desktop tab then select command prompt. You can ping destination laptop by its ip. 
-\subsection*{Report}
-	\begin{enumerate}
-		\item show the ping result in your report.
-		\item all Cisco command (not required to save graphical image. only report switch or router command)
-	\end{enumerate}
-    
-
-    %\pagebreak
-\subsection{Disabling Spanning-Tree Protocol}
-	Click on each switch in your topology and select CLI(Command Line Interface) tab. Enter following commands for disabling STP.
-    \begin{itemize}
-        \setlength{\itemindent}{50pt}
-		\item [Switch>] \textbf{enable}
-		\item [Switch\#] \textbf{configure terminal}
-		\item [Switch(config)\#] \textbf{no spanning-tree vlan 1-4096}
-	\end{itemize}
-
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Repeat ping process from different source and show the ping result and explain the difference.
-
-    \end{enumerate}
-    
-    %\pagebreak
-\subsection{CLI help}
-    Open a random router’s CLI and navigate through User EXEC, Privileged EXEC, Global Configuration and Interface Configuration Modes. In each mode, type ? to display a list of available commands and study these commands.
-
-\subsubsection*{Report}
- Save the output of CLI when you type “?” in each mode and describe one command.
-    
-
-    %\pagebreak
-\subsection{IP configuration}
-    Configure the IP addresses of your workstation and the bridge interfaces as shown in Table 1 and Table 2.\\
-
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=\textwidth]{img/table1.png}
-        \caption{Table 1: Host IP addresses}
-        \label{tbl:table1}
-        \includegraphics[width=0.6\textwidth]{img/table2.png}
-        \caption{Table 2: Router IP addresses}
-        \label{tbl:table2}
-    \end{figure}
-
-    ping two random hosts and capture ping packet.		
-
-    \subsection*{Report}
-    \begin{enumerate}
-        \item What are the IP and MAC addresses of a packet that went from Host1 to the bridge? 
-        \item What are the IP and MAC addresses of a packet that went from the router to Host2?
-        \item Answer the same questions, but for the echo reply that was returned from Host2.
-    \end{enumerate}
-
-    %\pagebreak
-    
-    
-        
-% \pagebreak
-\subsection{Topology Configuration}
-   In following Exercise we will use Figure \ref{fig:bridge-ex} as our network topology.You need to change the IP addresses of the bridge interfaces, as well as that of hosts.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{img/fig4.png}
-    \caption{Bridge experiment network}
-    \label{fig:bridge-ex}
-\end{figure}
 
 
 \end{document}
