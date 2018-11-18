@@ -88,6 +88,10 @@ Sina Kashi pazha - \FR{سینا کاشی پزها}\\
 \href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
 \\
 \normalsize
+Mohammad Ali Shahsavand - \FR{محمد علی شاهسوند}\\
+\href{mailto:mashahsavand@ut.ac.ir}{mashahsavand@ut.ac.ir}\\
+\\
+\normalsize
 Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
 \href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
 }
@@ -136,7 +140,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     %\caption
     %\end{otherlanguage}
 
-    \section*{HTTP exercises 1}
+    \section{HTTP Server}
     Study the Apache server configuration file (see Section 8.2.3).
     Examine the various configuration directives used and the corresponding settings. \\
     Start the Apache server on your host.
@@ -147,12 +151,12 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     \begin{enumerate}
         \item How many httpd processes were started?
         Which one was the master server, and which ones were the child servers?
-        Justify your answer using the httpd.conf file. \\
+        Justify your answer using the \texttt{httpd.conf} file. \\
         \item What is the purpose of initiating multiple httpd processes? \\
     \end{enumerate}
 
     %\pagebreak
-    \section*{HTTP exercises 2}
+    \section*{HTTP Request}
     Execute \textbf{wireshark} to capture packets between your host and a remote host. \\
     Login to the remote host’s web server: \textbf{telnet} \texttt{10.0.0.2} \textbf{80}. \\
     In the login console, type the following HTTP request line by line: \\
@@ -173,7 +177,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     \end{enumerate}
 
     %\pagebreak
-    \section*{HTTP exercises 3}
+    \section*{HTTP Keep-Alive}
     By default, Apache server supports persistent connections. Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file to make sure it is turned on, as \texttt{KeepAlive} on. \\
     Execute \textbf{wireshark} to capture packets between your host and a remote host. \\
     Start \texttt{Mozilla} on your host. Go to menu \texttt{Edit/Preferences/Advanced/HTTP Networking}, and uncheck the Enable \texttt{Keep-Alive} checkbox to disable persistent connections. \\
@@ -193,7 +197,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     \end{enumerate}
 
     %\pagebreak
-    \section*{HTTP exercises 4}
+    \section*{HTTP Submit}
     Execute \textbf{wireshark} to capture packets between your host and a remote host. \\
     Use \texttt{Mozilla} to download the \texttt{http://remote host/try2.htm} file, which is an \texttt{HTML} form, from the remote host. \\
     Fill a text string, e.g., the name of the host being used, into the text field in the form and click the submit button in the form. \\
@@ -208,7 +212,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
 
 
     %\pagebreak
-    \section*{DHCP exercises 1 \footnote{For the exercises in this section, we use the same network setting as the one used in the previous exercises.}}
+    \section*{DHCP \footnote{For the exercises in this section, we use the same network setting as the one used in the previous section.}}
     In this exercise, we use \texttt{guchi} as the DHCP server, with a configuration file shown in Table 8.3. Do the following.
     \begin{enumerate}
         \item Start the DHCP server on \texttt{guchi} in the foreground and working in the debugging mode: \textbf{/usr/sbin/dhcpd -d -f}.
@@ -381,6 +385,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
         If yes, explain how this can be done.
     \end{enumerate}
 
+\iffalse
     \section*{Socket programming exercises 1}
     Examine the UDP socket programs \texttt{/home/guest/UDPserver.c} and \texttt{/home/guest/UDPclient.c} to learn how to write a UDP socket program.
     Compile the C programs using \texttt{gcc -o UDPserver UDPserver.c -lnsl} and \texttt{gcc -o UDPclient UDPclient.c -lnsl}. \\
@@ -412,6 +417,6 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
         \item Also your program needs to parse the server responses (some examples are given in Table 5.2) to find out the status of the previous FTP command.
         \item The FTP data connection should be established using the \textbf{PORT} command (see Chapter 5).
     \end{itemize}
-
+\fi
 
 \end{document}
