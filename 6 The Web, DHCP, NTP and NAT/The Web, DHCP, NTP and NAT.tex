@@ -37,7 +37,7 @@
 
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
 
-\newcommand{\titleText}{TCP and its Applications \\ Laboratory Manual}
+\newcommand{\titleText}{The Web, DHCP, NTP and NAT \\ Laboratory Manual}
 
 \title{
 \normalsize In the name of Allah\\
@@ -151,14 +151,14 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Examine the various configuration directives used and the corresponding settings. \\
     Start the Apache server on your host.
     In order to check if the server is working properly, you may start a \texttt{Mozilla} web browser to download the test page at \texttt{http://localhost/}.
-    Then, execute \textbf{pgrep httpd} to list the process IDs of the \textbf{httpd} processes started.
+    Then, execute \textbf{pgrep apache2} to list the process IDs of the \textbf{apache2} processes started.
     Save the output and the configuration file for the lab report.
     \subsection*{Report}
     \begin{enumerate}
-        \item How many httpd processes were started?
+        \item How many apache2 processes were started?
         Which one was the master server, and which ones were the child servers?
-        Justify your answer using the \texttt{httpd.conf} file.
-        \item What is the purpose of initiating multiple httpd processes?
+        Justify your answer using the \texttt{apache2.conf} file.
+        \item What is the purpose of initiating multiple apache2 processes?
     \end{enumerate}
 
     %\pagebreak
@@ -227,49 +227,55 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     In this exercise, we use \texttt{guchi} as the DHCP server, with a configuration file shown in Table 8.3. Do the following.
     \begin{enumerate}
         \item Install DHCP Server: \texttt{\$sudo apt-get install isc-dhcp-server}\footnote{\href{https://help.ubuntu.com/community/isc-dhcp-server}{ubuntu->isc-dhcp-server} or \href{https://www.tecmint.com/install-dhcp-server-in-ubuntu-debian/}{extera}}
-        \item Start the DHCP server on \texttt{guchi} in the foreground and working in the debugging mode: \textbf{/usr/sbin/dhcpd -d -f}.
+        \item Run mininet with 4 hosts \texttt{sudo mn --topo linear,4}
+        \item Set MAC address of h4 in dhcpd.conf for static IP assignment
+        \item Set ip in \textbf{h1}: \texttt{ifconfig h1-eth0 128.238.66.1 netmask 255.255.255.0}
+        \item Start the DHCP server on \texttt{h1} in the foreground and working in the debugging mode: \textbf{dhcpd -d -f}.
         \item Execute \textbf{wireshark} to capture the DHCP messages in the network segment.
-        \item Then do the following to enable DHCP for the Ethernet interface on \texttt{shakti}. \\
-        Go to the system menu: \texttt{System Settings/Network}. In the \texttt{Network Configuration} dialog, choose the \texttt{Device} tab, and click on the \texttt{eth0} item. Next,click the Edit button to bring up the \texttt{Ethernet Device} dialog. In this dialog, check \texttt{Automatically obtain IP address settings with} and select \texttt{dhcp} from the following drop list. When the configuration is done, save the new configuration and then execute \textbf{/etc/init.d/network restart} to load the new configuration. \\
-        When \texttt{shakti} is successfully reconfigured, execute \textbf{ifconfig -a} to display its network interface configurations and execute \textbf{netstat -rn} to display its routing table.
+        \item Then do the following to enable DHCP for the Ethernet interface on \texttt{h2}. \\
+        Run on \textbf{h2}: \texttt{ifconfig eth0 0}\\
+        And run \texttt{dhclient eth0}\\
+        Run \texttt{ifconfig} to see new ip\\
         Save the outputs for the lab report.
-        \item Then, repeat 3 for \texttt{vayu}.
-        \item Repeat 3 for agni.
-        \item Repeat 3 for apah.
+        % Go to the system menu: \texttt{System Settings/Network}. In the \texttt{Network Configuration} dialog, choose the \texttt{Device} tab, and click on the \texttt{eth0} item. Next,click the Edit button to bring up the \texttt{Ethernet Device} dialog. In this dialog, check \texttt{Automatically obtain IP address settings with} and select \texttt{dhcp} from the following drop list. When the configuration is done, save the new configuration and then execute \textbf{/etc/init.d/network restart} to load the new configuration. \\
+        % When \texttt{shakti} is successfully reconfigured, execute \textbf{ifconfig -a} to display its network interface configurations and execute \textbf{netstat -rn} to display its routing table.
+        \item Then, repeat 3 for \texttt{h3}.
+        \item Repeat 3 for h4.
+        \item Repeat 3 for h5.
     \end{enumerate}
     Terminate \textbf{wireshark}.Print out the DHCP messages for the lab report. \\
     Save the DHCP server output on \texttt{guchi} for the lab report.
 
     \subsection*{Table 8.3: A DHCP server configuration file}
     \begin{verbatim}
-        default-lease-time 600;
-        max-lease-time 7200;
-        option subnet-mask 255.255.255.0;
-        option broadcast-address 128.238.66.255;
-        option routers 128.238.66.1;
-        #option domain-name-servers 128.238.2.38, 128.238.3.21;
-        #option domain-name "netlab.ut.ac.ir";
+    default-lease-time 600;
+    max-lease-time 7200;
+    option subnet-mask 255.255.255.0;
+    option broadcast-address 128.238.66.255;
+    option routers 128.238.66.1;
+    #option domain-name-servers 128.238.2.38, 128.238.3.21;
+    #option domain-name "netlab.ut.ac.ir";
 
-        subnet 128.238.66.0 netmask 255.255.255.0 {
-            range 128.238.66.111 128.238.66.112;
-        }
+    subnet 128.238.66.0 netmask 255.255.255.0 {
+        range 128.238.66.111 128.238.66.112;
+    }
 
-        host apah {
-            hardware ethernet 08:00:20:79:e9:9f;
-            fixed-address 128.238.66.110;
-        }
+    host h4 {
+        hardware ethernet 08:00:20:79:e9:9f;
+        fixed-address 128.238.66.110;
+    }
     \end{verbatim}
 
     \subsection*{Report}
     \begin{enumerate}
         \item Compare the DHCP operation captured by \textbf{wireshark} and that shown by the DHCP server output.
         Explain how DHCP works.
-        \item Did \texttt{shakti} and \texttt{vayu} successfully obtain a set of new parameters?
+        \item Did \texttt{h2} and \texttt{h3} successfully obtain a set of new parameters?
         Compare the ifconfig and netstat output with the parameters carried in the corresponding DHCP messages.
         \item Answer the above question for agni.
         Explain why agni failed.
-        \item Answer the above question for apah.
-        Explain why apah succeeded.
+        \item Answer the above question for h4.
+        Explain why h4 succeeded.
     \end{enumerate}
 
     %\pagebreak
@@ -325,6 +331,13 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     \end{enumerate}
 
     \section*{NAT}
+    
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/fig1.png}
+        \caption{\textbf{Figure 8.7.} The network configuration for the NAT exercises.}
+        \label{fig:8.7}
+    \end{figure}
     \section{NAT}
     Connect the hosts and Router 1 as shown in Fig.
     8.7.\footnote{For the exercises in this section, we use a network setting as shown in Fig. 8.7. The lower subnet is a private network where the hosts are assigned with the Class A addresses with the 10.0.0.0/8 prefix. The upper subnet represents the Internet. The hosts, i.e., shakti and vayu are assigned with public IP addresses. Router 1 is used as the stub router, which performs address or port translation for the private network.} Then set the IP address and the network mask of your host as shown in the figure.
@@ -385,13 +398,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
         If not, why?
         If yes, explain how this can be done.
     \end{enumerate}
-    
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.9\textwidth]{img/fig1.png}
-        \caption{\textbf{Figure 8.7.} The network configuration for the NAT exercises.}
-        \label{fig:8.7}
-    \end{figure}
+
     \subsection*{NAT Router Configuration in Fig. 8.7}
     \begin{verbatim}
         ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
@@ -491,6 +498,8 @@ Assuming your public interface is eth1 and local interface is eth0
     \texttt{iptables -A OUTPUT -j ACCEPT}
 \end{enumerate}
 
+You can use following example for see linux NAT in MiniNet:\\
+\href{http://csie.nqu.edu.tw/smallko/sdn/mininet-operations.htm}{http://csie.nqu.edu.tw/smallko/sdn/mininet-operations.htm}
 
 
 \end{document}
