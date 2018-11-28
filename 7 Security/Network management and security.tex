@@ -1,0 +1,219 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices} 
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
+
+\newcommand{\titleText}{Network management and security \\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushleft}
+            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushright}
+            \includegraphics[height=64pt]{../img/eng-logo.png}
+        \end{flushright}
+    \end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+\huge University of Tehran\\
+\LARGE \FR{دانشگاه تهران}\\
+\\
+\LARGE School of Electrical and Computer Engineering\\
+\FR{دانشکده مهندسی برق و کامپیوتر}\\
+\\
+\Large Computer Network Lab\\
+\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+\\
+\\
+\\
+\normalfont
+Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+\\
+\normalsize
+Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+\\
+\normalsize
+Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
+\\
+\normalsize
+Mohammad Ali Shahsavand - \FR{محمد علی شاهسوند}\\
+\href{mailto:mashahsavand@ut.ac.ir}{mashahsavand@ut.ac.ir}\\
+\\
+\normalsize
+Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}            % Remove header underlines
+\renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+\begin{document}
+    \selectlanguage{english}
+
+    %\vspace*{-1.5cm}
+    \maketitle
+
+    %\tableofcontents
+
+    \pagebreak
+    %Arabic \AR{\allah}
+    %Persian \FR{فروشگاه}
+    %Arabic \foreignlanguage{arabic}{كحض}
+    %Persian \foreignlanguage{farsi}{فروشگاه}
+
+    %\chapter
+    %\section
+    %\subsubsection
+    %\subsection
+    %\section
+    %\chapter
+    %\part
+    %\caption
+    %\end{otherlanguage}
+\begin{otherlanguage}{farsi}
+    \section*{مقدمه}
+    \par
+    امنيت ارتباطات یکی از مهم‌ترین مسائل حال حاضر شبکه‌های ارتباطی است. در این آزمایش بنا داریم مواردی از لو رفتن رمز عبور و استفاده از  \textLR{iptables} برای جلوگيری از دسترسی ناخواسته به هاست‌ها را بگيريم. \par
+در کنار این موارد آشنایی کوتاهی با پروتکل \textLR{ftp} و \textLR{tftp} خواهيم داشت. از این دو پروتکل برای انتقال فایل استفاده می‌شود. پروتکل \textLR{tftp} انتقال فایل را با استفاده از پروتکل \textLR{UDP} انجام می‌دهد و خود به مدیريت ارسال و دریافت درست بسته‌ها می‌پردازد، استفاده از آن ساده‌تر، سرعت آن کند‌تر و پياده‌سازی آن نسبت به \textLR{ftp} راحت‌تر است. در مقابل پروتکل \textLR{ftp} از پروتکل \textLR{TCP} استفاده می‌کند و نيازی نيست پروتکل \textLR{ftp} خود را درگير این مسائل کند. از هر دوی این پروتکل‌ها به دليل فقدان امنيت استفاده نمی‌شود.
+
+\end{otherlanguage}
+\section{iptables}
+
+\begin{otherlanguage}{farsi}
+    \subsection{گام اول}
+در این گام قصد داریم به کمک \textLR{iptables} یک فایروال روی یکی از هاست‌ها درست کنيم و بسته‌های ورودی و خروجی به آن را بررسی کنيم. برای شروع توپولوژی پيش‌فرض \textLR{mininet} را اجرا کرده و دستور زیر را روی \textLR{\textbf{h1}}  اجرا کنيد.
+\end{otherlanguage}
+\begin{verbatim}
+    iptables -A INPUT -v -p TCP --dport 23 -j DROP
+\end{verbatim}
+\begin{otherlanguage}{farsi}
+با اجرای دستور \textLR{\textbf{iptables -L -v}} می‌توانيد اضافه شدن قاعده‌ی بالا به جدول فيلترها را ببينيد. روی \textLR{h1} و \textLR{h2} \textLR{wireshark} را اجرا کنيد و سپس از \textLR{h2} به {h1}، \textLR{telnet} بزنيد.  (دستور \textLR{telnet 10.0.0.1} را روی \textLR{h2} اجرا کنيد)
+\begin{itemize}
+    \item آیا با اجرای دستور \textLR{telnet} روی \textLR{h2} پاسخی از \textLR{h1} دریافت می‌کنيد؟
+    \item با استفاده از خروجی‌ \textLR{wireshark}، الگوريتم باز ارسال \textLR{exponential} backoff را توضيح دهيد.
+\end{itemize}
+
+
+\subsection{گام دوم}
+با استفاده از دستور زیر قاعده‌ای که در گام قبلی ساختيم را حذف کنيد.
+
+\begin{otherlanguage}{english}
+    \begin{verbatim}
+        iptables -D INPUT -v -p TCP –dport 23 -j DROP
+    \end{verbatim}
+\end{otherlanguage}
+با استفاده از دستور زیر قاعده‌ی جدیدی که بسته‌ها را به جای \textLR{DROP}، \textLR{REJECT} می‌کند، اضافه کنيد.
+\begin{otherlanguage}{english}
+    \begin{verbatim}
+        iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
+    \end{verbatim}
+\end{otherlanguage}
+تفاوت \textLR{DROP} و \textLR{REJECT} را توضيح دهيد.
+\end{otherlanguage}
+
+\section{ftp \FR{و} tftp}
+\begin{otherlanguage}{farsi}
+\subsection{گام اول}
+
+ftp و tftp ابزارهایی برای جابجایی فایل‌ها بين‌ هاست‌ها است. در این گام می‌خواهيم عملکرد و سرعت آن‌ها را بررسی کنيم. برای شروع توپولوژی پيش‌فرض mininet را اجرا کرده و با دستور زیر سرویس xinetd را روی هاست h1، restart کنيد. 
+ 	/etc/init.d/xinetd restart
+ابتدا یک فایل در حدود ۱۰۰ مگ با استفاده از دستورهای زیر بسازید.
+ 	socket -s 5555 > mahdiz.big # run on h1
+ 	 socket -i -n102400 -w1024 10.0.0.1 5555 # run on h2
+این فایل را در پوشه‌ی /tftpboot/ کپی کنيد.
+با اجرای دستور tftp 10.0.0.1 روی h2 وارد کنسول tftp شده، سپس با دستور get mahdiz.big فایل ۱۰۰ مگی را دانلود کرده و با دستور quit از کنسول tftp خارج شويد.
+ 	با استفاده از خروجی wireshark با دقت سرعت انتقال فایل توسط ftp و tftp را بدست آورید. (زمان handshak TCP را کم کنيد) و با مقداری زمان خروجی ftp یا tftp مقایسه کنيد. (ftp در گام سوم آمده است)
+ 	کدام‌یک از این دو پروتکل سریع‌تر است؟ چرا؟
+گام دوم
+همانند گام قبل یک فایل یک مگی درست کنيد (mahdiz.small) و آن را با tftp روی h1 دانلود کنيد.
+ 	انواع بسته‌های tftp که استفاده شده است را مشخص کنيد.
+ 	چرا سرویس tftp به طور معمول در دسترس نيست؟
+ 	در آزمایش‌های قبل حداکثر اندازه‌ای که می‌توانيم با یک بسته‌ی UDP جابجا کنيم را بدست آوردیم. سایز فایلی که با tftp جابجا کردیم بيش‌تر از این مقدار بود. این مسئله چگونه مديريت می‌شود؟
+گام سوم
+اکنون می‌خواهيم به کمک ftp فایل mahdiz.small را دانلود کنيم. دستور زیر را روی h2 اجرا کنيد تا یک ftp سرور روی آن اجرا شود.
+ 	/usr/sbin/vsftpd
+با اجرای دستور ftp 10.0.0.2 روی h1 به سرور ftp متصل شويد و با دستور get mahdiz.small فایل mahdiz.small را دريافت کنيد.
+
+
+ 	چه تعداد پورت well-number برای این اتصال استفاده شده است؟ چه ماشينی از پورت  well-number استفاده کرده است؟ پورت‌های ماشين دیگر چيست؟
+ 	با توجه به پورت‌ها می‌بينيم که ftp از دو اتصال مجزای ftp-control و ftp-data استفاده می‌کند. علت چيست؟
+گام چهارم
+گام قبل را تکرار کنيد، با این تفاوت که هنگام اجرای دستور ftp آرگومان -d را هم به آن پاس داده و پس از وارد شدن به سرور ftp دستور ls را نيز وارد کنيد.
+ 	عکس خروجی‌گرفته شده را ارسال کنيد و هر خط آن را توضيح دهيد.
+ 	با استفاده از خروجی wireshark مشخص کنيد که از کدام اتصال ftp برای اجرای دستور LIST استفاده می‌شود؟
+گام پنجم
+در این بخش می‌خواهيم امنيت ارسال و دریافت توسط ftp را برسی کنيم. قبل از هر چيز دستور زیر را در پوشه‌ی ~/pox اجرا کنيد.
+ 	python pox.py opeenflow.of_01 --address=127.0.0.1 --port=6337 forwarding.hub
+ در قدم بعد یک توپولوژي با یک سوييچ و سه هاست ساخته ، آن را به کنترلر pox متصل و سپس روی هاست h1  مانند آنچه در گام سوم گفته شد یک ftp سرور راه اندازی کنيد.
+ 	با استفاده از خروجی wireshark اینترفيس h3-eth0 رمز عبور h2 را بدست آورید.
+\end{otherlanguage}
+
+
+
+\end{document}
