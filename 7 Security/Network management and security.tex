@@ -122,98 +122,110 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     %\tableofcontents
 
     \pagebreak
-    %Arabic \AR{\allah}
-    %Persian \FR{فروشگاه}
-    %Arabic \foreignlanguage{arabic}{كحض}
-    %Persian \foreignlanguage{farsi}{فروشگاه}
 
-    %\chapter
-    %\section
-    %\subsubsection
-    %\subsection
-    %\section
-    %\chapter
-    %\part
-    %\caption
-    %\end{otherlanguage}
-\begin{otherlanguage}{farsi}
-    \section*{مقدمه}
-    \par
-    امنيت ارتباطات یکی از مهم‌ترین مسائل حال حاضر شبکه‌های ارتباطی است. در این آزمایش بنا داریم مواردی از لو رفتن رمز عبور و استفاده از  \textLR{iptables} برای جلوگيری از دسترسی ناخواسته به هاست‌ها را بگيريم. \par
-در کنار این موارد آشنایی کوتاهی با پروتکل \textLR{ftp} و \textLR{tftp} خواهيم داشت. از این دو پروتکل برای انتقال فایل استفاده می‌شود. پروتکل \textLR{tftp} انتقال فایل را با استفاده از پروتکل \textLR{UDP} انجام می‌دهد و خود به مدیريت ارسال و دریافت درست بسته‌ها می‌پردازد، استفاده از آن ساده‌تر، سرعت آن کند‌تر و پياده‌سازی آن نسبت به \textLR{ftp} راحت‌تر است. در مقابل پروتکل \textLR{ftp} از پروتکل \textLR{TCP} استفاده می‌کند و نيازی نيست پروتکل \textLR{ftp} خود را درگير این مسائل کند. از هر دوی این پروتکل‌ها به دليل فقدان امنيت استفاده نمی‌شود.
+\section{Exercises on secure applications}
+\subsection{Excercise One}
+In this excercise we will study security vulnerability of ftp and telnet protocol . To do so, wi will create mininet topology with single hub\footnote{hub forwards incoming packets to all of its ports, which means it always floods packets} connected to three hosts then we will connect from h1 to h2 through ftp and telnet connection and capture h1 password on h3. Let's do it.
 
-\end{otherlanguage}
-\section{iptables}
-
-\begin{otherlanguage}{farsi}
-    \subsection{گام اول}
-در این گام قصد داریم به کمک \textLR{iptables} یک فایروال روی یکی از هاست‌ها درست کنيم و بسته‌های ورودی و خروجی به آن را بررسی کنيم. برای شروع توپولوژی پيش‌فرض \textLR{mininet} را اجرا کرده و دستور زیر را روی \textLR{\textbf{h1}}  اجرا کنيد.
-\end{otherlanguage}
-\begin{verbatim}
-    iptables -A INPUT -v -p TCP --dport 23 -j DROP
-\end{verbatim}
-\begin{otherlanguage}{farsi}
-با اجرای دستور \textLR{\textbf{iptables -L -v}} می‌توانيد اضافه شدن قاعده‌ی بالا به جدول فيلترها را ببينيد. روی \textLR{h1} و \textLR{h2} \textLR{wireshark} را اجرا کنيد و سپس از \textLR{h2} به {h1}، \textLR{telnet} بزنيد.  (دستور \textLR{telnet 10.0.0.1} را روی \textLR{h2} اجرا کنيد)
 \begin{itemize}
-    \item آیا با اجرای دستور \textLR{telnet} روی \textLR{h2} پاسخی از \textLR{h1} دریافت می‌کنيد؟
-    \item با استفاده از خروجی‌ \textLR{wireshark}، الگوريتم باز ارسال \textLR{exponential} backoff را توضيح دهيد.
+	\setlength{\itemindent}{10pt}
+	\item Start pox controller with below command to force mininet switches act like hub.
+	\begin{enumerate}
+		\setlength{\itemindent}{10pt}
+		\item [\$]  python pox.py opeenflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6337 forwarding.hub
+	\end{enumerate}
+	\item Run below command to start mininet with one single switch and three hosts and connect it to pox controller.
+	\begin{enumerate}
+		\setlength{\itemindent}{10pt}
+		\item [\$]  sudo mn {-}{-}topo single,3 {-}{-}controller remote,ip=127.0.0.1,port=6633
+	\end{enumerate}
+	\item start ftp server on h2 with :
+	\begin{enumerate}
+		\setlength{\itemindent}{10pt}
+		\item [\#] /usr/sbin/vsftpd  
+	\end{enumerate}
+	\item Run \textbf{wireshark \&} on h3
+	\item Login to h2 ftp from h1
+	\item Capture h1 password on wireshark output
+	
 \end{itemize}
 
+Repeat the above experiment, but use telnet to connect from h1 to h2 and capture h1 password on h3. \footnote{Don't foget to restart xinetd with `/etc/init.d/xinetd restart` on h2 to start telnet server. }
 
-\subsection{گام دوم}
-با استفاده از دستور زیر قاعده‌ای که در گام قبلی ساختيم را حذف کنيد.
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Can you see the login ID and the password in the FTP experiment? Submit the two packets you captured.
+	\item Can you see the login ID and the password in the TELNET experiment? Submit the packets you captured.
+	\item What is the difference between FTP and TELNET in their transmission of user ID’s and passwords? Which one is more secure?
+\end{itemize}
 
-\begin{otherlanguage}{english}
-    \begin{verbatim}
-        iptables -D INPUT -v -p TCP –dport 23 -j DROP
-    \end{verbatim}
-\end{otherlanguage}
-با استفاده از دستور زیر قاعده‌ی جدیدی که بسته‌ها را به جای \textLR{DROP}، \textLR{REJECT} می‌کند، اضافه کنيد.
-\begin{otherlanguage}{english}
-    \begin{verbatim}
-        iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
-    \end{verbatim}
-\end{otherlanguage}
-تفاوت \textLR{DROP} و \textLR{REJECT} را توضيح دهيد.
-\end{otherlanguage}
-
-\section{ftp \FR{و} tftp}
-\begin{otherlanguage}{farsi}
-\subsection{گام اول}
-
-ftp و tftp ابزارهایی برای جابجایی فایل‌ها بين‌ هاست‌ها است. در این گام می‌خواهيم عملکرد و سرعت آن‌ها را بررسی کنيم. برای شروع توپولوژی پيش‌فرض mininet را اجرا کرده و با دستور زیر سرویس xinetd را روی هاست h1، restart کنيد. 
- 	/etc/init.d/xinetd restart
-ابتدا یک فایل در حدود ۱۰۰ مگ با استفاده از دستورهای زیر بسازید.
- 	socket -s 5555 > mahdiz.big # run on h1
- 	 socket -i -n102400 -w1024 10.0.0.1 5555 # run on h2
-این فایل را در پوشه‌ی /tftpboot/ کپی کنيد.
-با اجرای دستور tftp 10.0.0.1 روی h2 وارد کنسول tftp شده، سپس با دستور get mahdiz.big فایل ۱۰۰ مگی را دانلود کرده و با دستور quit از کنسول tftp خارج شويد.
- 	با استفاده از خروجی wireshark با دقت سرعت انتقال فایل توسط ftp و tftp را بدست آورید. (زمان handshak TCP را کم کنيد) و با مقداری زمان خروجی ftp یا tftp مقایسه کنيد. (ftp در گام سوم آمده است)
- 	کدام‌یک از این دو پروتکل سریع‌تر است؟ چرا؟
-گام دوم
-همانند گام قبل یک فایل یک مگی درست کنيد (mahdiz.small) و آن را با tftp روی h1 دانلود کنيد.
- 	انواع بسته‌های tftp که استفاده شده است را مشخص کنيد.
- 	چرا سرویس tftp به طور معمول در دسترس نيست؟
- 	در آزمایش‌های قبل حداکثر اندازه‌ای که می‌توانيم با یک بسته‌ی UDP جابجا کنيم را بدست آوردیم. سایز فایلی که با tftp جابجا کردیم بيش‌تر از این مقدار بود. این مسئله چگونه مديريت می‌شود؟
-گام سوم
-اکنون می‌خواهيم به کمک ftp فایل mahdiz.small را دانلود کنيم. دستور زیر را روی h2 اجرا کنيد تا یک ftp سرور روی آن اجرا شود.
- 	/usr/sbin/vsftpd
-با اجرای دستور ftp 10.0.0.2 روی h1 به سرور ftp متصل شويد و با دستور get mahdiz.small فایل mahdiz.small را دريافت کنيد.
+\subsection{Excercise Two}
 
 
- 	چه تعداد پورت well-number برای این اتصال استفاده شده است؟ چه ماشينی از پورت  well-number استفاده کرده است؟ پورت‌های ماشين دیگر چيست؟
- 	با توجه به پورت‌ها می‌بينيم که ftp از دو اتصال مجزای ftp-control و ftp-data استفاده می‌کند. علت چيست؟
-گام چهارم
-گام قبل را تکرار کنيد، با این تفاوت که هنگام اجرای دستور ftp آرگومان -d را هم به آن پاس داده و پس از وارد شدن به سرور ftp دستور ls را نيز وارد کنيد.
- 	عکس خروجی‌گرفته شده را ارسال کنيد و هر خط آن را توضيح دهيد.
- 	با استفاده از خروجی wireshark مشخص کنيد که از کدام اتصال ftp برای اجرای دستور LIST استفاده می‌شود؟
-گام پنجم
-در این بخش می‌خواهيم امنيت ارسال و دریافت توسط ftp را برسی کنيم. قبل از هر چيز دستور زیر را در پوشه‌ی ~/pox اجرا کنيد.
- 	python pox.py opeenflow.of_01 --address=127.0.0.1 --port=6337 forwarding.hub
- در قدم بعد یک توپولوژي با یک سوييچ و سه هاست ساخته ، آن را به کنترلر pox متصل و سپس روی هاست h1  مانند آنچه در گام سوم گفته شد یک ftp سرور راه اندازی کنيد.
- 	با استفاده از خروجی wireshark اینترفيس h3-eth0 رمز عبور h2 را بدست آورید.
-\end{otherlanguage}
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item In each experiment, can you extract the password from the tcpdump output? Can you read the IP, TCP, SSH headers? Can you read the TCP data?
+	\item What is the client protocol (and version) used in both cases?
+	\item What is the port number used by the ssh server? What is the port number used by the sftp server? Justify your answer using the wireshark output and the /etc/services file.
+\end{itemize}
 
+    \pagebreak
+
+\section{Exercises on Firewalls and Iptables}
+\subsection*{Excercise Three}
+Start mininet with default topology and Execute iptables -L -v on h1 and h2 to list the existing rules in the filter table. Save the output for the lab report.\\
+\\
+ Append a rule to the end of the INPUT chain, by executing
+
+\begin{itemize}
+	\setlength{\itemindent}{10pt}
+	\item [h2>] \textbf{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
+\end{itemize}
+
+\setlength{\parindent}{0pt}
+on h2. Run iptables -L -v again on both hosts to display the filter table. Save the output.\\
+
+
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Start telnet server on h2 with `/etc/init.d/xinetd restart`.
+	\item Capture packets on both hosts with wireshark
+	\item Try to login with telnet from h1 to h2
+\end{itemize}
+
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Can you telnet to the host from the remote machine?
+	\item From the wireshark output, how many retries did telnet make? Explain the exponential backoff algorithm of TCP timeout and retransmission.
+\end{itemize}
+
+\subsection*{Excercise Four}
+Keep previous mininet running and delete the rule created in the last exercise on h2, by:
+
+\begin{itemize}
+	\setlength{\itemindent}{10pt}
+	\item [h2>] \textbf{iptables -D INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
+\end{itemize}
+
+\setlength{\parindent}{0pt}
+Then, append a new rule to the INPUT chain:
+
+\begin{itemize}
+	\setlength{\itemindent}{10pt}
+	\item [h2>] \textbf{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j REJECT {-}{-}reject-with tcp-reset} 
+\end{itemize}
+
+\setlength{\parindent}{0pt}
+Execute \textbf{iptables -L -v} to display the new rule. On both machines in your topology, restart wireshark output, and then telnet from h1 to h2. Save the wireshark output for the lab report.
+
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Explain the difference between the wireshark outputs of this exercise and the previous exercise. How many attempts did TCP make this time?
+\end{itemize}
 
 
 \end{document}
