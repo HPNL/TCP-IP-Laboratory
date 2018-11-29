@@ -14,6 +14,7 @@
 \usepackage{color}
 \usepackage{float}
 \usepackage{sidecap}
+\usepackage[normalem]{ulem}
 %\sidecaptionvpos{figure}{c}
 \usepackage{anysize}
 \marginsize{2cm}{2cm}{2cm}{2cm}
@@ -146,6 +147,10 @@ In this excercise we will study security vulnerability of ftp and telnet protoco
 	\end{enumerate}
 	\item Run \textbf{wireshark \&} on h3
 	\item Login to h2 ftp from h1
+		\begin{enumerate}
+		\setlength{\itemindent}{10pt}
+		\item [h1>] ftp mininet@10.0.0.2
+	\end{enumerate}
 	\item Capture h1 password on wireshark output
 	
 \end{itemize}
@@ -161,7 +166,26 @@ Repeat the above experiment, but use telnet to connect from h1 to h2 and capture
 \end{itemize}
 
 \subsection{Excercise Two}
+Run previous mininet topology and connect it to pox controller but rather than using ftp and telnet use ssh and sftp as described in below steps.
 
+\begin{itemize}
+	\setlength{\itemindent}{10pt}
+	\item \sout{start ftp server on h2 with}  restart ssh service on h2 to enable ssh and sftp service on it with:
+	\begin{enumerate}
+		\setlength{\itemindent}{10pt}
+		\item [h2>] service ssh restart
+	\end{enumerate}
+	\item Run \textbf{wireshark \&} on h3
+	\item Login to h2 sftp from h1 by:
+	\begin{enumerate}
+		\setlength{\itemindent}{10pt}
+		\item [h1>] sftp mininet@10.0.0.2
+	\end{enumerate}
+	\item Capture packets on wireshark output
+	
+\end{itemize}
+
+Repeat the above experiment, but use ssh and save the wireshark output for lab report.
 
 \subsubsection*{ Lab Report}
 \begin{itemize}
