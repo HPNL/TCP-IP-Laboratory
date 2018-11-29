@@ -143,7 +143,7 @@ In this excercise we will study security vulnerability of ftp and telnet protoco
 	\item start ftp server on h2 with :
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [\#] /usr/sbin/vsftpd  
+		\item [h2>] /usr/sbin/vsftpd  
 	\end{enumerate}
 	\item Run \textbf{wireshark \&} on h3
 	\item Login to h2 ftp from h1
@@ -174,6 +174,7 @@ Run previous mininet topology and connect it to pox controller but rather than u
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
 		\item [h2>] service ssh restart
+		\item [h2>] /usr/lib/openssl/sftp-server
 	\end{enumerate}
 	\item Run \textbf{wireshark \&} on h3
 	\item Login to h2 sftp from h1 by:
