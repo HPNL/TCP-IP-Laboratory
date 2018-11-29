@@ -227,5 +227,42 @@ Execute \textbf{iptables -L -v} to display the new rule. On both machines in you
 	\item Explain the difference between the wireshark outputs of this exercise and the previous exercise. How many attempts did TCP make this time?
 \end{itemize}
 
+\pagebreak
+
+\section{Exercises on secure Apache server}
+In the exercises in this section you don't need to create mininet topology, run command on your ubuntu terminal.
+\subsection*{Excercise Four}
+Run man openssl to study the OpenSSL command line tool.
+Create a new private key for the Apache server, using:
+
+\begin{itemize}
+	\setlength{\itemindent}{10pt}
+	\item [] \textbf{openssl genrsa 1024 > /etc/httpd/conf/ssl.key/server.key} 
+\end{itemize}
+
+To create a self-signed certificate, go to the /etc/httpd/conf directory, and execute: make testcert. \\
+
+Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \textbf{/etc/httpd/conf/ssl.crt/server.crt}. \\
+
+Save the make output for the lab report.
+
+\subsection*{Excercise Five}
+Restart the Apache server to load the new key and the new certification: \textbf{/etc/rc.d/init.d/httpd restart}.\\
+
+Execute wirshark on your host  to capture the packets between your host and a remote host. On your host, start the Mozilla web browser. After typing in the URL https://<your host IP>, a dialog window titled “Website Certified by an Unknown Authority” will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue. \\
+
+Click the “Advance” button. Then a “Certificate Viewer” window pops up, displaying detailed information about the received certificate. Examine the certificate and confirm it's exception. Save the pictures for the lab report. \\
+
+Use wireahark output and examine the operation of SSL.
+
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item What is the port number used by the secure Apache server?
+	\item Compare the general information of the received certificate with the make output saved in the last exercise. Are they consistent?
+	\item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
+	\item What is the Certificate Signature Algorithm used to generate and distribute this certificate?
+	\item When was the certificate signed? When will it expire?
+\end{itemize}
 
 \end{document}
