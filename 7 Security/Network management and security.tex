@@ -124,145 +124,145 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
 
     \pagebreak
 
-\section{Exercises on secure applications}
-\subsection{Excercise One}
+\section*{Exercises on secure applications}
+\section{Man in the Middle}
 In this excercise we will study security vulnerability of ftp and telnet protocol . To do so, wi will create mininet topology with single hub\footnote{hub forwards incoming packets to all of its ports, which means it always floods packets} connected to three hosts then we will connect from h1 to h2 through ftp and telnet connection and capture h1 password on h3. Let's do it.
 
-\begin{itemize}
+\begin{enumerate}
 	\setlength{\itemindent}{10pt}
 	\item Start pox controller with below command to force mininet switches act like hub.
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [\$]  python pox.py opeenflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6337 forwarding.hub
+		\item [\$]  \texttt{python pox.py opeenflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6337 forwarding.hub}
 	\end{enumerate}
 	\item Run below command to start mininet with one single switch and three hosts and connect it to pox controller.
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [\$]  sudo mn {-}{-}topo single,3 {-}{-}controller remote,ip=127.0.0.1,port=6633
+		\item [\$]  \texttt{sudo mn {-}{-}topo single,3 {-}{-}controller remote,ip=127.0.0.1,port=6633}
 	\end{enumerate}
-	\item start ftp server on h2 with :
+	\item start ftp server on h2 with:
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [h2>] /usr/sbin/vsftpd  
+		\item [h2>] \texttt{/usr/sbin/vsftpd}
 	\end{enumerate}
-	\item Run \textbf{wireshark \&} on h3
-	\item Login to h2 ftp from h1
+	\item Run \textbf{\texttt{wireshark \&}} on h3
+	\item Login to h2 and then run ftp from h1
 		\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [h1>] ftp mininet@10.0.0.2
+		\item [h1>] \texttt{ftp mininet@10.0.0.2}
 	\end{enumerate}
 	\item Capture h1 password on wireshark output
 	
-\end{itemize}
+\end{enumerate}
 
-Repeat the above experiment, but use telnet to connect from h1 to h2 and capture h1 password on h3. \footnote{Don't foget to restart xinetd with `/etc/init.d/xinetd restart` on h2 to start telnet server. }
+Repeat the above experiment, but use telnet to connect from h1 to h2 and capture h1 password on h3. \footnote{Don't foget to restart xinetd with \texttt{`/etc/init.d/xinetd restart`} on h2 to start telnet server. }
 
-\subsubsection*{ Lab Report}
-\begin{itemize}
+\subsection*{Lab Report}
+\begin{enumerate}
 	\setlength{\itemindent}{0pt}
-	\item Can you see the login ID and the password in the FTP experiment? Submit the two packets you captured.
-	\item Can you see the login ID and the password in the TELNET experiment? Submit the packets you captured.
-	\item What is the difference between FTP and TELNET in their transmission of user ID’s and passwords? Which one is more secure?
-\end{itemize}
+	\item Can you see the login ID and the password in the \texttt{FTP} experiment? Submit the two packets you captured.
+	\item Can you see the login ID and the password in the \texttt{TELNET} experiment? Submit the packets you captured.
+	\item What is the difference between \texttt{FTP} and \texttt{TELNET} in their transmission of user ID’s and passwords? Which one is more secure?
+\end{enumerate}
 
-\subsection{Excercise Two}
-Run previous mininet topology and connect it to pox controller but rather than using ftp and telnet use ssh and sftp as described in below steps.
+\section{Secure Transfer}
+Run previous mininet topology and connect it to pox controller but rather than using ftp and telnet use ssh and \texttt{sftp} as described in below steps.
 
-\begin{itemize}
+\begin{enumerate}
 	\setlength{\itemindent}{10pt}
-	\item \sout{start ftp server on h2 with}  restart ssh service on h2 to enable ssh and sftp service on it with:
+	\item Do step 1 and 2 frome previous section
+	\item restart ssh service on h2 to enable \texttt{ssh} and \texttt{sftp} service on it with:
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [h2>] service ssh restart
-		\item [h2>] /usr/lib/openssl/sftp-server
+		\item [h2>] \texttt{service ssh restart}
+		\item [h2>] \texttt{/usr/lib/openssl/sftp-server}
 	\end{enumerate}
-	\item Run \textbf{wireshark \&} on h3
-	\item Login to h2 sftp from h1 by:
+	\item Run \texttt{wireshark \&} on h3
+	\item Login to h2 \texttt{sftp} from h1 by:
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [h1>] sftp mininet@10.0.0.2
+		\item [h1>] \texttt{sftp mininet@10.0.0.2}
 	\end{enumerate}
 	\item Capture packets on wireshark output
 	
-\end{itemize}
+\end{enumerate}
 
 Repeat the above experiment, but use ssh and save the wireshark output for lab report.
 
-\subsubsection*{ Lab Report}
-\begin{itemize}
+\subsection*{Lab Report}
+\begin{enumerate}
 	\setlength{\itemindent}{0pt}
-	\item In each experiment, can you extract the password from the tcpdump output? Can you read the IP, TCP, SSH headers? Can you read the TCP data?
+	\item In each experiment, can you extract the password from the tcpdump output? Can you read the \texttt{IP, TCP, SSH} headers? Can you read the TCP data?
 	\item What is the client protocol (and version) used in both cases?
-	\item What is the port number used by the ssh server? What is the port number used by the sftp server? Justify your answer using the wireshark output and the /etc/services file.
-\end{itemize}
+	\item What is the port number used by the \texttt{ssh} server? What is the port number used by the \texttt{sftp} server? Justify your answer using the wireshark output and the \texttt{/etc/services} file.
+\end{enumerate}
 
-    \pagebreak
 
-\section{Exercises on Firewalls and Iptables}
-\subsection*{Excercise Three}
-Start mininet with default topology and Execute iptables -L -v on h1 and h2 to list the existing rules in the filter table. Save the output for the lab report.\\
+\section*{Exercises on Firewalls and Iptables}
+\section{Firewall basic}
+Start mininet with default topology and Execute \texttt{iptables -L -v} on h1 and h2 to list the existing rules in the filter table. Save the output for the lab report.\\
 \\
- Append a rule to the end of the INPUT chain, by executing
+ Append a rule to the end of the \texttt{INPUT} chain, by executing
 
 \begin{itemize}
 	\setlength{\itemindent}{10pt}
-	\item [h2>] \textbf{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
+	\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
 \end{itemize}
 
 \setlength{\parindent}{0pt}
 on h2. Run iptables -L -v again on both hosts to display the filter table. Save the output.\\
 
 
-\begin{itemize}
+\begin{enumerate}
 	\setlength{\itemindent}{0pt}
-	\item Start telnet server on h2 with `/etc/init.d/xinetd restart`.
+	\item Start telnet server on h2 with \texttt{`/etc/init.d/xinetd restart`}.
 	\item Capture packets on both hosts with wireshark
 	\item Try to login with telnet from h1 to h2
-\end{itemize}
+\end{enumerate}
 
-\subsubsection*{ Lab Report}
-\begin{itemize}
+\subsection{Lab Report}
+\begin{enumerate}
 	\setlength{\itemindent}{0pt}
 	\item Can you telnet to the host from the remote machine?
-	\item From the wireshark output, how many retries did telnet make? Explain the exponential backoff algorithm of TCP timeout and retransmission.
-\end{itemize}
+	\item From the wireshark output, how many retries did \texttt{telnet} make? Explain the exponential \texttt{backoff} algorithm of \texttt{TCP} timeout and retransmission.
+\end{enumerate}
 
-\subsection*{Excercise Four}
+\section{Excercise Four}
 Keep previous mininet running and delete the rule created in the last exercise on h2, by:
 
 \begin{itemize}
 	\setlength{\itemindent}{10pt}
-	\item [h2>] \textbf{iptables -D INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
+	\item [h2>] \texttt{iptables -D INPUT -v -p TCP {-}{-}dport 23 -j DROP}
 \end{itemize}
 
 \setlength{\parindent}{0pt}
-Then, append a new rule to the INPUT chain:
+Then, append a new rule to the \texttt{INPUT} chain:
 
 \begin{itemize}
 	\setlength{\itemindent}{10pt}
-	\item [h2>] \textbf{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j REJECT {-}{-}reject-with tcp-reset} 
+	\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j REJECT {-}{-}reject-with tcp-reset} 
 \end{itemize}
 
 \setlength{\parindent}{0pt}
 Execute \textbf{iptables -L -v} to display the new rule. On both machines in your topology, restart wireshark output, and then telnet from h1 to h2. Save the wireshark output for the lab report.
 
-\subsubsection*{ Lab Report}
-\begin{itemize}
+\subsection{Lab Report}
+\begin{enumerate}
 	\setlength{\itemindent}{0pt}
-	\item Explain the difference between the wireshark outputs of this exercise and the previous exercise. How many attempts did TCP make this time?
-\end{itemize}
+	\item Explain the difference between the wireshark outputs of this exercise and the previous exercise. How many attempts did \texttt{TCP} make this time?
+\end{enumerate}
 
 \pagebreak
 
-\section{Exercises on secure Apache server}
+\section*{Exercises on secure Apache server}
 In the exercises in this section you don't need to create mininet topology, run command on your ubuntu terminal.
-\subsection*{Excercise Four}
+\section{Raw HTTP}
 Run man openssl to study the OpenSSL command line tool.
 Create a new private key for the Apache server, using:
 
 \begin{itemize}
 	\setlength{\itemindent}{10pt}
-	\item [] \textbf{openssl genrsa 1024 > /etc/httpd/conf/ssl.key/server.key} 
+	\item [] \texttt{openssl genrsa 1024 > /etc/httpd/conf/ssl.key/server.key} 
 \end{itemize}
 
 To create a self-signed certificate, go to the /etc/httpd/conf directory, and execute: make testcert. \\
@@ -271,7 +271,7 @@ Then you will be asked a number of questions, regarding the location, affiliatio
 
 Save the make output for the lab report.
 
-\subsection*{Excercise Five}
+\section{Secure HTTP}
 Restart the Apache server to load the new key and the new certification: \textbf{/etc/rc.d/init.d/httpd restart}.\\
 
 Execute wirshark on your host  to capture the packets between your host and a remote host. On your host, start the Mozilla web browser. After typing in the URL https://<your host IP>, a dialog window titled “Website Certified by an Unknown Authority” will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue. \\
@@ -280,14 +280,14 @@ Click the “Advance” button. Then a “Certificate Viewer” window pops up, 
 
 Use wireahark output and examine the operation of SSL.
 
-\subsubsection*{ Lab Report}
-\begin{itemize}
+\subsection*{Lab Report}
+\begin{enumerate}
 	\setlength{\itemindent}{0pt}
 	\item What is the port number used by the secure Apache server?
 	\item Compare the general information of the received certificate with the make output saved in the last exercise. Are they consistent?
 	\item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
 	\item What is the Certificate Signature Algorithm used to generate and distribute this certificate?
 	\item When was the certificate signed? When will it expire?
-\end{itemize}
+\end{enumerate}
 
 \end{document}
