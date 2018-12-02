@@ -41,60 +41,60 @@
 \newcommand{\titleText}{Network management and security \\ Laboratory Manual}
 
 \title{
-\normalsize In the name of Allah\\
-\vspace{10pt}
-\LARGE\FR{بسم \allah الرحمن الرحیم}
-\vspace{10pt}
-\begin{center}
-    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-    \begin{minipage}{0.48\textwidth}
-        \begin{flushleft}
-            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
-        \end{flushleft}
-    \end{minipage}
-    \begin{minipage}{0.48\textwidth}
-        \begin{flushright}
-            \includegraphics[height=64pt]{../img/eng-logo.png}
-        \end{flushright}
-    \end{minipage}
-\end{center}
-\vspace*{-64pt}
-%	\horrule{0.5pt} \\[0.4cm]
-\huge \titleText\\
-\vspace{40pt}
-%	\horrule{2pt} \\[0.5cm]
+	\normalsize In the name of Allah\\
+	\vspace{10pt}
+	\LARGE\FR{بسم \allah الرحمن الرحیم}
+	\vspace{10pt}
+	\begin{center}
+		%	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+		\begin{minipage}{0.48\textwidth}
+			\begin{flushleft}
+				\includegraphics[height=64pt,width=64pt]{../img/logo.png}
+			\end{flushleft}
+		\end{minipage}
+		\begin{minipage}{0.48\textwidth}
+			\begin{flushright}
+				\includegraphics[height=64pt]{../img/eng-logo.png}
+			\end{flushright}
+		\end{minipage}
+	\end{center}
+	\vspace*{-64pt}
+	%	\horrule{0.5pt} \\[0.4cm]
+	\huge \titleText\\
+	\vspace{40pt}
+	%	\horrule{2pt} \\[0.5cm]
 }
 \author{
-\huge University of Tehran\\
-\LARGE \FR{دانشگاه تهران}\\
-\\
-\LARGE School of Electrical and Computer Engineering\\
-\FR{دانشکده مهندسی برق و کامپیوتر}\\
-\\
-\Large Computer Network Lab\\
-\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
-\\
-\\
-\\
-\normalfont
-Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
-\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
-\\
-\normalsize
-Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
-\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
-\\
-\normalsize
-Sina Kashi pazha - \FR{سینا کاشی پزها}\\
-\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
-\\
-\normalsize
-Mohammad Ali Shahsavand - \FR{محمد علی شاهسوند}\\
-\href{mailto:mashahsavand@ut.ac.ir}{mashahsavand@ut.ac.ir}\\
-\\
-\normalsize
-Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
-\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
+	\huge University of Tehran\\
+	\LARGE \FR{دانشگاه تهران}\\
+	\\
+	\LARGE School of Electrical and Computer Engineering\\
+	\FR{دانشکده مهندسی برق و کامپیوتر}\\
+	\\
+	\Large Computer Network Lab\\
+	\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+	\\
+	\\
+	\\
+	\normalfont
+	Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+	\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+	\\
+	\normalsize
+	Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+	\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+	\\
+	\normalsize
+	Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+	\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
+	\\
+	\normalsize
+	Mohammad Ali Shahsavand - \FR{محمد علی شاهسوند}\\
+	\href{mailto:mashahsavand@ut.ac.ir}{mashahsavand@ut.ac.ir}\\
+	\\
+	\normalsize
+	Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+	\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
 }
 
 \date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
@@ -115,179 +115,258 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
 
 
 \begin{document}
-    \selectlanguage{english}
-
-    %\vspace*{-1.5cm}
-    \maketitle
-
-    %\tableofcontents
-
-    \pagebreak
-
-\section*{Exercises on secure applications}
-\section{Man in the Middle}
-In this excercise we will study security vulnerability of ftp and telnet protocol . To do so, wi will create mininet topology with single hub\footnote{hub forwards incoming packets to all of its ports, which means it always floods packets} connected to three hosts then we will connect from h1 to h2 through ftp and telnet connection and capture h1 password on h3. Let's do it.
-
-\begin{enumerate}
-	\setlength{\itemindent}{10pt}
-	\item Start pox controller with below command to force mininet switches act like hub.
+	\selectlanguage{english}
+	
+	%\vspace*{-1.5cm}
+	\maketitle
+	
+	%\tableofcontents
+	
+	\pagebreak
+	
+	\section*{Exercises on secure applications}
+	\section{Man in the Middle}
+	In this excercise we will study security vulnerability of ftp and telnet protocol . To do so, wi will create mininet topology with single hub\footnote{hub forwards incoming packets to all of its ports, which means it always floods packets} connected to three hosts then we will connect from h1 to h2 through ftp and telnet connection and capture h1 password on h3. Let's do it.
+	
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [\$]  \texttt{python pox.py opeenflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6337 forwarding.hub}
-	\end{enumerate}
-	\item Run below command to start mininet with one single switch and three hosts and connect it to pox controller.
-	\begin{enumerate}
-		\setlength{\itemindent}{10pt}
-		\item [\$]  \texttt{sudo mn {-}{-}topo single,3 {-}{-}controller remote,ip=127.0.0.1,port=6633}
-	\end{enumerate}
-	\item start ftp server on h2 with:
-	\begin{enumerate}
-		\setlength{\itemindent}{10pt}
-		\item [h2>] \texttt{/usr/sbin/vsftpd}
-	\end{enumerate}
-	\item Run \textbf{\texttt{wireshark \&}} on h3
-	\item Login to h2 and then run ftp from h1
+		\item Start pox controller with below command to force mininet switches act like hub.
 		\begin{enumerate}
-		\setlength{\itemindent}{10pt}
-		\item [h1>] \texttt{ftp mininet@10.0.0.2}
+			\setlength{\itemindent}{10pt}
+			\item [\$]  \texttt{python pox.py opeenflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6337 forwarding.hub}
+		\end{enumerate}
+		\item Run below command to start mininet with one single switch and three hosts and connect it to pox controller.
+		\begin{enumerate}
+			\setlength{\itemindent}{10pt}
+			\item [\$]  \texttt{sudo mn {-}{-}topo single,3 {-}{-}controller remote,ip=127.0.0.1,port=6633}
+		\end{enumerate}
+		\item start ftp server on h2 with:
+		\begin{enumerate}
+			\setlength{\itemindent}{10pt}
+			\item [h2>] \texttt{/usr/sbin/vsftpd}
+		\end{enumerate}
+		\item Run \textbf{\texttt{wireshark \&}} on h3
+		\item Login to h2 and then run ftp from h1
+		\begin{enumerate}
+			\setlength{\itemindent}{10pt}
+			\item [h1>] \texttt{ftp mininet@10.0.0.2}
+		\end{enumerate}
+		\item Capture h1 password on wireshark output
+		
 	\end{enumerate}
-	\item Capture h1 password on wireshark output
 	
-\end{enumerate}
-
-Repeat the above experiment, but use telnet to connect from h1 to h2 and capture h1 password on h3. \footnote{Don't foget to restart xinetd with \texttt{`/etc/init.d/xinetd restart`} on h2 to start telnet server. }
-
-\subsection*{Lab Report}
-\begin{enumerate}
-	\setlength{\itemindent}{0pt}
-	\item Can you see the login ID and the password in the \texttt{FTP} experiment? Submit the two packets you captured.
-	\item Can you see the login ID and the password in the \texttt{TELNET} experiment? Submit the packets you captured.
-	\item What is the difference between \texttt{FTP} and \texttt{TELNET} in their transmission of user ID’s and passwords? Which one is more secure?
-\end{enumerate}
-
-\section{Secure Transfer}
-Run previous mininet topology and connect it to pox controller but rather than using ftp and telnet use ssh and \texttt{sftp} as described in below steps.
-
-\begin{enumerate}
-	\setlength{\itemindent}{10pt}
-	\item Do step 1 and 2 frome previous section
-	\item restart ssh service on h2 to enable \texttt{ssh} and \texttt{sftp} service on it with:
+	Repeat the above experiment, but use telnet to connect from h1 to h2 and capture h1 password on h3. \footnote{Don't foget to restart xinetd with \texttt{`/etc/init.d/xinetd restart`} on h2 to start telnet server. }
+	
+	\subsection*{Lab Report}
+	\begin{enumerate}
+		\setlength{\itemindent}{0pt}
+		\item Can you see the login ID and the password in the \texttt{FTP} experiment? Submit the two packets you captured.
+		\item Can you see the login ID and the password in the \texttt{TELNET} experiment? Submit the packets you captured.
+		\item What is the difference between \texttt{FTP} and \texttt{TELNET} in their transmission of user ID’s and passwords? Which one is more secure?
+	\end{enumerate}
+	
+	\section{Secure Transfer}
+	Run previous mininet topology and connect it to pox controller but rather than using ftp and telnet use ssh and \texttt{sftp} as described in below steps.
+	
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
-		\item [h2>] \texttt{service ssh restart}
-		\item [h2>] \texttt{/usr/lib/openssl/sftp-server}
+		\item Do step 1 and 2 frome previous section
+		\item restart ssh service on h2 to enable \texttt{ssh} and \texttt{sftp} service on it with:
+		\begin{enumerate}
+			\setlength{\itemindent}{10pt}
+			\item [h2>] \texttt{service ssh restart}
+			\item [h2>] \texttt{/usr/lib/openssl/sftp-server}
+		\end{enumerate}
+		\item Run \texttt{wireshark \&} on h3
+		\item Login to h2 \texttt{sftp} from h1 by:
+		\begin{enumerate}
+			\setlength{\itemindent}{10pt}
+			\item [h1>] \texttt{sftp mininet@10.0.0.2}
+		\end{enumerate}
+		\item Capture packets on wireshark output
+		
 	\end{enumerate}
-	\item Run \texttt{wireshark \&} on h3
-	\item Login to h2 \texttt{sftp} from h1 by:
-	\begin{enumerate}
-		\setlength{\itemindent}{10pt}
-		\item [h1>] \texttt{sftp mininet@10.0.0.2}
-	\end{enumerate}
-	\item Capture packets on wireshark output
 	
-\end{enumerate}
-
-Repeat the above experiment, but use ssh and save the wireshark output for lab report.
-
-\subsection*{Lab Report}
-\begin{enumerate}
-	\setlength{\itemindent}{0pt}
-	\item In each experiment, can you extract the password from the tcpdump output? Can you read the \texttt{IP, TCP, SSH} headers? Can you read the TCP data?
-	\item What is the client protocol (and version) used in both cases?
-	\item What is the port number used by the \texttt{ssh} server? What is the port number used by the \texttt{sftp} server? Justify your answer using the wireshark output and the \texttt{/etc/services} file.
-\end{enumerate}
-
-
-\section*{Exercises on Firewalls and Iptables}
-\section{Firewall basic}
-Start mininet with default topology and Execute \texttt{iptables -L -v} on h1 and h2 to list the existing rules in the filter table. Save the output for the lab report.\\
-\\
- Append a rule to the end of the \texttt{INPUT} chain, by executing
-
-\begin{itemize}
-	\setlength{\itemindent}{10pt}
-	\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
-\end{itemize}
-
-\setlength{\parindent}{0pt}
-on h2. Run iptables -L -v again on both hosts to display the filter table. Save the output.\\
-
-
-\begin{enumerate}
-	\setlength{\itemindent}{0pt}
-	\item Start telnet server on h2 with \texttt{`/etc/init.d/xinetd restart`}.
-	\item Capture packets on both hosts with wireshark
-	\item Try to login with telnet from h1 to h2
-\end{enumerate}
-
-\subsection{Lab Report}
-\begin{enumerate}
-	\setlength{\itemindent}{0pt}
-	\item Can you telnet to the host from the remote machine?
-	\item From the wireshark output, how many retries did \texttt{telnet} make? Explain the exponential \texttt{backoff} algorithm of \texttt{TCP} timeout and retransmission.
-\end{enumerate}
-
-\section{Excercise Four}
-Keep previous mininet running and delete the rule created in the last exercise on h2, by:
-
-\begin{itemize}
-	\setlength{\itemindent}{10pt}
-	\item [h2>] \texttt{iptables -D INPUT -v -p TCP {-}{-}dport 23 -j DROP}
-\end{itemize}
-
-\setlength{\parindent}{0pt}
-Then, append a new rule to the \texttt{INPUT} chain:
-
-\begin{itemize}
-	\setlength{\itemindent}{10pt}
-	\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j REJECT {-}{-}reject-with tcp-reset} 
-\end{itemize}
-
-\setlength{\parindent}{0pt}
-Execute \textbf{iptables -L -v} to display the new rule. On both machines in your topology, restart wireshark output, and then telnet from h1 to h2. Save the wireshark output for the lab report.
-
-\subsection{Lab Report}
-\begin{enumerate}
-	\setlength{\itemindent}{0pt}
-	\item Explain the difference between the wireshark outputs of this exercise and the previous exercise. How many attempts did \texttt{TCP} make this time?
-\end{enumerate}
-
-\pagebreak
-
-\section*{Exercises on secure Apache server}
-In the exercises in this section you don't need to create mininet topology, run command on your ubuntu terminal.
-\section{Raw HTTP}
-Run man openssl to study the OpenSSL command line tool.
-Create a new private key for the Apache server, using:
-
-\begin{itemize}
-	\setlength{\itemindent}{10pt}
-	\item [] \texttt{openssl genrsa 1024 > /etc/httpd/conf/ssl.key/server.key} 
-\end{itemize}
-
-To create a self-signed certificate, go to the /etc/httpd/conf directory, and execute: make testcert. \\
-
-Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \textbf{/etc/httpd/conf/ssl.crt/server.crt}. \\
-
-Save the make output for the lab report.
-
-\section{Secure HTTP}
-Restart the Apache server to load the new key and the new certification: \textbf{/etc/rc.d/init.d/httpd restart}.\\
-
-Execute wirshark on your host  to capture the packets between your host and a remote host. On your host, start the Mozilla web browser. After typing in the URL https://<your host IP>, a dialog window titled “Website Certified by an Unknown Authority” will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue. \\
-
-Click the “Advance” button. Then a “Certificate Viewer” window pops up, displaying detailed information about the received certificate. Examine the certificate and confirm it's exception. Save the pictures for the lab report. \\
-
-Use wireahark output and examine the operation of SSL.
-
-\subsection*{Lab Report}
-\begin{enumerate}
-	\setlength{\itemindent}{0pt}
-	\item What is the port number used by the secure Apache server?
-	\item Compare the general information of the received certificate with the make output saved in the last exercise. Are they consistent?
-	\item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
-	\item What is the Certificate Signature Algorithm used to generate and distribute this certificate?
-	\item When was the certificate signed? When will it expire?
-\end{enumerate}
-
+	Repeat the above experiment, but use ssh and save the wireshark output for lab report.
+	
+	\subsection*{Lab Report}
+	\begin{enumerate}
+		\setlength{\itemindent}{0pt}
+		\item In each experiment, can you extract the password from the tcpdump output? Can you read the \texttt{IP, TCP, SSH} headers? Can you read the TCP data?
+		\item What is the client protocol (and version) used in both cases?
+		\item What is the port number used by the \texttt{ssh} server? What is the port number used by the \texttt{sftp} server? Justify your answer using the wireshark output and the \texttt{/etc/services} file.
+	\end{enumerate}
+	
+	
+	\section*{Exercises on Firewalls and Iptables}
+	\section{Firewall basic}
+	Start mininet with default topology and Execute \texttt{iptables -L -v} on h1 and h2 to list the existing rules in the filter table. Save the output for the lab report.\\
+	\\
+	Append a rule to the end of the \texttt{INPUT} chain, by executing
+	
+	\begin{itemize}
+		\setlength{\itemindent}{10pt}
+		\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
+	\end{itemize}
+	
+	\setlength{\parindent}{0pt}
+	on h2. Run iptables -L -v again on both hosts to display the filter table. Save the output.\\
+	
+	
+	\begin{enumerate}
+		\setlength{\itemindent}{0pt}
+		\item Start telnet server on h2 with \texttt{`/etc/init.d/xinetd restart`}.
+		\item Capture packets on both hosts with wireshark
+		\item Try to login with telnet from h1 to h2
+	\end{enumerate}
+	
+	\subsection{Lab Report}
+	\begin{enumerate}
+		\setlength{\itemindent}{0pt}
+		\item Can you telnet to the host from the remote machine?
+		\item From the wireshark output, how many retries did \texttt{telnet} make? Explain the exponential \texttt{backoff} algorithm of \texttt{TCP} timeout and retransmission.
+	\end{enumerate}
+	
+	\section{Excercise Four}
+	Keep previous mininet running and delete the rule created in the last exercise on h2, by:
+	
+	\begin{itemize}
+		\setlength{\itemindent}{10pt}
+		\item [h2>] \texttt{iptables -D INPUT -v -p TCP {-}{-}dport 23 -j DROP}
+	\end{itemize}
+	
+	\setlength{\parindent}{0pt}
+	Then, append a new rule to the \texttt{INPUT} chain:
+	
+	\begin{itemize}
+		\setlength{\itemindent}{10pt}
+		\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j REJECT {-}{-}reject-with tcp-reset} 
+	\end{itemize}
+	
+	\setlength{\parindent}{0pt}
+	Execute \textbf{iptables -L -v} to display the new rule. On both machines in your topology, restart wireshark output, and then telnet from h1 to h2. Save the wireshark output for the lab report.
+	
+	\subsection{Lab Report}
+	\begin{enumerate}
+		\setlength{\itemindent}{0pt}
+		\item Explain the difference between the wireshark outputs of this exercise and the previous exercise. How many attempts did \texttt{TCP} make this time?
+	\end{enumerate}
+	
+	\pagebreak
+	
+	\section*{Exercises on secure Apache server}
+	In the exercises in this section you don't need to create mininet topology, run command on your ubuntu terminal.
+	\section{Raw HTTP}
+	Create two files, \texttt{index.html} and \texttt{success.html}, in \texttt{/var/www/html} directory: \\
+	\textbf{\$ sudo nano index.html}
+	\begin{verbatim}
+	<!-- index.html --> 
+	<!DOCTYPE html>
+	<html>
+	<body>
+	<form action="/success.html"  method="POST">
+	Username:<br>
+	<input type="text" value="a.a.khordadi">
+	<br>
+	Password:<br>
+	<input type="password" value="1234">
+	<br><br>
+	<input type="submit" value="Submit">
+	</form>
+	</body>
+	</html>
+	\end{verbatim}
+	\textbf{\$ sudo nano success.html}
+	\begin{verbatim}
+	<!-- success.html --> 
+	<!DOCTYPE html>
+	<html>
+	<body>
+	<h2>Goog Job!</h2>
+	<a href="/">back to login form!</a>
+	</body>
+	</html>
+	\end{verbatim}
+	
+	Now open your browser and enter your VM's IP address in URL bar and submit the login form:\\
+	\texttt{http://172.18.133.XX} \\
+	Save \textbf{wireshark} output for your lab report.
+	\section{Secure HTTP}
+	\subsection{Activate the SSL Module}
+	Enable the module by typing: \\
+	\textbf{\$ sudo a2enmod ssl} \\
+	After you have enabled SSL, you'll have to restart the web server for the change to be recognized: \\
+	\textbf{\$ sudo service apache2 restart} \\
+	With that, our web server is now able to handle SSL if we configure it to do so. \\
+	\subsection{Create a Self-Signed SSL Certificate}
+	Let's start off by creating a subdirectory within Apache's configuration hierarchy to place the certificate files that we will be making:\\
+	\textbf{\$ sudo mkdir /etc/apache2/ssl} \\
+	Now that we have a location to place our key and certificate, we can create them both in one step by typing: \\
+	\textbf{\$ sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/apache2/ssl/apache.key -out /etc/apache2/ssl/apache.crt} \\
+	Let's go over exactly what this means. \\
+	\begin{itemize}
+		\item \textbf{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
+		\item \textbf{req}: This specifies a subcommand for X.509 certificate signing request (CSR) management. X.509 is a public key infrastructure standard that SSL adheres to for its key and certificate managment. Since we are wanting to create a new X.509 certificate, this is what we want.
+		\item \textbf{-x509}: This option specifies that we want to make a self-signed certificate file instead of generating a certificate request.
+		\item \textbf{-nodes}: This option tells OpenSSL that we do not wish to secure our key file with a passphrase. Having a password protected key file would get in the way of Apache starting automatically as we would have to enter the password every time the service restarts.
+		\item \textbf{-days 365}: This specifies that the certificate we are creating will be valid for one year.
+		\item \textbf{-newkey rsa:2048}: This option will create the certificate request and a new private key at the same time. This is necessary since we didn't create a private key in advance. The rsa:2048 tells OpenSSL to generate an RSA key that is 2048 bits long.
+		\item \textbf{-keyout}: This parameter names the output file for the private key file that is being created.
+		\item \textbf{-out}: This option names the output file for the certificate that we are generating.	
+	\end{itemize}
+	When you hit \texttt{ENTER}, you will be asked a number of questions. \\
+	The questions portion looks something like this: \\
+	
+	\begin{verbatim}
+	Country Name (2 letter code) [AU]:IR 
+	State or Province Name (full name) [Some-State]:Tehran 
+	Locality Name (eg, city) []:Tehran 
+	Organization Name (eg, company) [Internet Widgits Pty Ltd]:University of Tehran 
+	Organizational Unit Name (eg, section) []:ECE Department 
+	Common Name (e.g. server FQDN or YOUR name) []:ece.ut.ac.ir 
+	Email Address []:a.a.khordadi@ut.ac.ir 
+	\end{verbatim}
+	The key and certificate will be created and placed in your \texttt{/etc/apache2/ssl} directory.
+	\subsection{Configure Apache to Use SSL}
+	Open the file with root privileges now:\\
+	\textbf{\$ sudo nano /etc/apache2/sites-available/default-ssl.conf} \\
+	You should make some changes to it. \\
+	In the end, it will look something like this. The entries in red were modified from the original file: \\
+	\begin{verbatim}
+	<IfModule mod_ssl.c>
+	<VirtualHost _default_:443>
+	ServerAdmin admin@example.com
+	ServerName ece.ut.ac.ir 
+	DocumentRoot /var/www/html
+	...
+	SSLCertificateFile /etc/apache2/ssl/apache.crt
+	SSLCertificateKeyFile /etc/apache2/ssl/apache.key
+	...
+	</VirtualHost>
+	</IfModule>
+	\end{verbatim}
+	Save and exit the file when you are finished.
+	\subsection{Activate the SSL}
+	Now that we have configured our SSL-enabled server, we need to enable it. \\
+	We can do this by typing: \\
+	\textbf{\$ sudo a2ensite default-ssl.conf} \\
+	We then need to restart Apache to load our new file:\\
+	\textbf{\$ sudo service apache2 restart} \\
+	This should enable your server, which will serve encrypted content using the SSL certificate you created.
+	\subsection{Test your Setup}
+	Now that you have everything prepared, you can test your configuration by visiting your server's IP address after specifying the https:// protocol: \\
+	\texttt{https://172.18.133.XX} \\
+	Now submit the login form.
+	Use \textbf{wireahark} output and examine the operation of SSL.
+	
+	\subsection*{Lab Report}
+	\begin{enumerate}
+		\setlength{\itemindent}{0pt}
+		\item What is the port number used by the secure Apache server?
+		\item Compare the general information of the received certificate with the make output saved in the last exercise. Are they consistent?
+		\item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
+		\item What is the Certificate Signature Algorithm used to generate and distribute this certificate?
+		\item When was the certificate signed? When will it expire?
+	\end{enumerate}
+	
 \end{document}
