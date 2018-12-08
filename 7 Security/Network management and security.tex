@@ -133,7 +133,7 @@
 		\item Start pox controller with below command to force mininet switches act like hub.
 		\begin{enumerate}
 			\setlength{\itemindent}{10pt}
-			\item [\$]  \texttt{python pox.py opeenflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6337 forwarding.hub}
+			\item [\$]  \texttt{python pox.py openflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6333 forwarding.hub}
 		\end{enumerate}
 		\item Run below command to start mininet with one single switch and three hosts and connect it to pox controller.
 		\begin{enumerate}
@@ -149,7 +149,7 @@
 		\item Login to h2 and then run ftp from h1
 		\begin{enumerate}
 			\setlength{\itemindent}{10pt}
-			\item [h1>] \texttt{ftp mininet@10.0.0.2}
+			\item [h1>] \texttt{ftp 10.0.0.2}
 		\end{enumerate}
 		\item Download 1 file (like configuration)
 		\item Capture h1 password on wireshark output
@@ -182,7 +182,7 @@
 		\item Login to h2 \texttt{sftp} from h1 by:
 		\begin{enumerate}
 			\setlength{\itemindent}{10pt}
-			\item [h1>] \texttt{sftp mininet@10.0.0.2}
+			\item [h1>] \texttt{sftp 10.0.0.2}
 		\end{enumerate}
 		\item Download 1 file (like configuration)
 		\item Capture packets on wireshark output
@@ -268,10 +268,10 @@
 	<body>
 	<form action="/success.html"  method="POST">
 	Username:<br>
-	<input type="text" value="user">
+	<input type="text" name="user" value="user">
 	<br>
 	Password:<br>
-	<input type="password" value="1234">
+	<input type="password" name="pass" value="1234">
 	<br><br>
 	<input type="submit" value="Submit">
 	</form>
@@ -333,7 +333,7 @@
 	Open the file with root privileges now:\\
 	\textbf{\$ sudo nano /etc/apache2/sites-available/default-ssl.conf} \\
 	You should make some changes to it. \\
-	In the end, it will look something like this. The entries in red were modified from the original file: \\
+	In the end, it will look something like this. The entries \texttt{SSLCertificateFile} and \texttt{SSLCertificateKeyFile}  were modified from the original file: \\
 	\begin{verbatim}
 	<IfModule mod_ssl.c>
 	<VirtualHost _default_:443>
