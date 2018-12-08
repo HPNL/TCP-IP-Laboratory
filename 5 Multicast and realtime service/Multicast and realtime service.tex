@@ -1,0 +1,316 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices}
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
+
+\newcommand{\titleText}{Multicast and realtime service \\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushleft}
+            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushright}
+            \includegraphics[height=64pt]{../img/eng-logo.png}
+        \end{flushright}
+    \end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+\huge University of Tehran\\
+\LARGE \FR{دانشگاه تهران}\\
+\\
+\LARGE School of Electrical and Computer Engineering\\
+\FR{دانشکده مهندسی برق و کامپیوتر}\\
+\\
+\Large Computer Network Lab\\
+\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+\\
+\\
+\\
+\normalfont
+Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+\\
+\normalsize
+Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+\\
+\normalsize
+Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
+\\
+\normalsize
+Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}            % Remove header underlines
+\renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+\begin{document}
+    \selectlanguage{english}
+
+    \maketitle
+
+    \pagebreak
+
+    \section*{Simple multicast exercises}
+    For all the exercises in this section, the network topology is given in Fig.
+    1.3, where all the hosts are connected to a single network segment using their default IP addresses, i.e.\  from 128.238.66.100 to 128.238.66.107.
+
+    \section{ Exercise 1}
+    Execute \textbf{netstat -rn} to display the routing table of your host.
+    If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by: \\
+    \textbf{route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0}\footnote{This command can be appended to the \texttt{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
+    Each time when the network interface is brought down and up again by the \textbf{ifconfig} command, you may need to run the \textbf{route} command to re-insert the multicast routing entry.} \\
+    Save the new routing table.
+    \subsection*{Report}
+    Submit the routing table you saved.
+
+    \section{ Exercise 2}
+    Execute \textbf{netstat -g} to show the multicast group memberships for all the interfaces in your host.
+    \subsection*{Report}
+    How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
+
+    \section{ Exercise 3}
+    Execute \textbf{ping 224.0.0.1}.
+    Examine the \textbf{ping} output to see which hosts reply. \\
+    Ping a broadcast address using \textbf{ping -b 128.238.66.255}.
+    Examine the \textbf{ping} output to see which hosts reply. \\
+    \subsection*{Report}
+    Which hosts replied when the multicast address was pinged?
+    Which hosts replied when the broadcast address was pinged? \\
+    In each case, was there a reply from your host?
+
+
+    \section{ Exercise 4}
+    Execute \textbf{wireshark} to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame. \\
+    To generate an Ethernet unicast frame, run \textbf{sock -i -u -n1} \texttt{remote-host} \textbf{echo}. \\
+    Execute \textbf{sock -i -u -n1 230.11.111.10 2000} to generate an Ethernet multicast frame. \\
+    Generate another Ethernet multicast frame, but with a different group address of 232.139.111.10. \\
+    To generate an Ethernet broadcast frame, you may \textbf{ping} a remote host that has no entry in the ARP table of you host.
+    Recall that the ARP request is broadcast. \\
+    Save the frames captured for the lab report.
+    \subsection*{Report}
+    Compare the source and destination MAC addresses of the frames you captured. \\
+    Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
+    For the two multicast frames captured, do they have the same destination MAC address?
+    Why?
+
+    \section{ Exercise 5}
+    Start the multicast client \textbf{netspy} on all the hosts, by executing: \\
+    \textbf{netspy 224.111.111.111 1500} \\
+    Then, start the multicast sender \textbf{netspyd} on \texttt{shakti}, by executing: \\
+    \textbf{netspyd 224.111.111.111 1500 1} \\
+    Execute \textbf{wireshark} on every host to capture multicast IP datagrams. \\
+    Login to \texttt{shakti} from a remote machine, e.g.\  \texttt{kenchi}, using \textbf{telnet} or \textbf{ssh}. \\
+    Save the captured multicast datagram sent by \textbf{netspyd} and exit the \textbf{telnet} (or \textbf{ssh}) session.
+    \subsection*{Report}
+    From the \textbf{tcpdump} output, how many messages are sent by \textbf{netspyd} when a new user logged in to \texttt{shakti}?
+    From the \textbf{netspy} outputs on all the hosts, how many copies of the message are received in total? \\
+    Did \texttt{shakti}, where the multicast sender, \textbf{netspyd}, was running, receive the multicast datagram?
+    Why?
+    If yes, through which interface did \texttt{shakti} receive this datagram?
+
+    \section{ Exercise 6}
+    Keep the \textbf{netspy} and the \textbf{wireshark} programs running.
+    Execute \textbf{ping 224.111.111.111} from \texttt{kenchi}.
+    Examine the \textbf{wireshark} and \textbf{ping} outputs to see which hosts replied.
+    To avoid confusion, students should do this exercise by turns.
+    Terminate the \textbf{netspy} programs on several hosts, e.g.\  \texttt{shakti}, \texttt{vayu}, and \texttt{fenchi}.
+    Execute the \textbf{ping} command again.
+    Also, examine the \textbf{tcpdump} and the \textbf{ping} outputs to see which hosts replied.
+
+    \section*{IGMP exercises}
+    In the following exercises, students are divided into two groups, Group A and Group B, each with four hosts and one router.
+    The network topology of each group is given in Fig.
+    7.13, and the corresponding host IP addresses and router IP addresses are given in Table 7.2 and Table 7.3, respectively.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/table7-2.png}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/figure7-13.png}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/table7-3.png}
+    \end{figure}
+    \section{ Exercise 7}
+    Connect the hosts and the route in your group as shown in Fig. 7.13. Set the IP address of your host as given in Table 7.2. Note that the IP addresses of the router interfaces are the same as their default IP addresses.
+    Login to the router and run \textbf{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
+    Then, enable the PIM protocol on each interface, by running \textbf{ip pim dense-mode} in the \textit{Interface Configuration} mode.\footnote{As usual,each router should be configured by one person to avoid confusion.} Now the router is enabled to do multicast routing using PIM. \\
+    Login to the router, execute \textbf{show ip igmp interface} and \textbf{show ip igmp group} in the \textit{Privileged EXEC} mode.
+    Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
+
+    \section{ Exercise 8}
+    Start \textbf{netspy} on all the hosts, by using: \\
+    \textbf{netspy 224.111.111.111 1500} \\
+    Start \textbf{netspy} on \texttt{host1} (\texttt{shakti} in Group A and \texttt{yachi} in Group B), by using: \\
+    \textbf{netspyd 224.111.111.111 1500 16} \\
+    Login to the router.
+    Run \textbf{show ip igmp interface} and \textbf{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records. \\
+    Try if you can \textbf{ping} a host on the other side of the router.
+    Login to \texttt{host1} from \texttt{host2} in your group, then logout.
+    See if the multicast messages sent by \textbf{netspyd} reach the other side of the router.
+    \subsection*{Report}
+    Can you ping a host on the other side of the router?
+    Will the router forward a multicast IP datagram to the other side?
+    Justify your answers.
+
+    \section{ Exercise 9}
+    Execute \textbf{wireshark} in one console to capture IGMP messages.
+    At the same time, execute \textbf{wireshark} in another console to monitor the capture process.
+    When you see three or more IGMP queries in the second \textbf{wireshark} output, terminate both \textbf{wireshark} programs. \\
+    Analyze the IGMP messages you captured.
+    Print and save two different IGMP messages. \\
+    Repeat the above experiment.
+    Terminate \textbf{netspy} on \texttt{host2} and \texttt{host4}.
+    Terminate the \textbf{wireshark} programs and analyze the IGMP leave message you captured.
+    \subsection*{Report}
+    What is the value of the Time-to-Live (TTL) field for the IGMP messages?
+    Why do we not set the TTL to a larger number? \\
+    What is the default frequency at which the router sends IGMP queries?
+
+    \section{ Exercise 10}
+    Login to the router.
+    See if you can make a router interface (e.g., Ethernet0) join a multicast group of 224.0.0.2, using:
+    \textbf{ip igmp join-group 224.0.0.2}
+    \subsection*{Report}
+    Explain why the above command fails.
+
+    \section*{Multicast routing exercises}
+    For the rest of the exercises in this chapter, the network topology is given in Fig. 7.14. The exercises will be jointly performed by all the students. The IP addresses of the hosts and router interfaces are given in Fig. 7.14.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/figure7-14.png}
+    \end{figure}
+    \section{ Exercise 11}
+    Connect the hosts and routers as illustrated in Figure 7.14.
+    Configure the IP addresses of the hosts and router interfaces as given in the figure.
+    Note that most of the router interfaces use their default IP addresses, only the Ethernet0 interface of Router4 needs to be changed to 128.238.63.4. \\
+    Enable PIM multicast routing in all the routers (see Exercise 7). \\
+    Run \textbf{wireshark} on all the hosts. \\
+    Execute \textbf{netspy 224.111.111.111 1500} on \texttt{shakti, agni, apah, fenchi}, and \texttt{kenchi}.
+    Execute \textbf{netspyd 224.111.111.111 1500 16} on \texttt{yachi}.
+    To generate multicast traffic, you can login (by \textbf{telnet} or \textbf{ssh}) to or logout of \texttt{yachi}.
+    Each time when the login user set of \texttt{yachi} changes, \textbf{netspyd} on \texttt{yachi} will send a multicast datagram to group 224.111.111.111, to report the change in its login users. \\
+    Can you see the \textbf{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet in the \textbf{wireshark} output? \\
+    Terminate the \textbf{netspy} program on \texttt{kenchi} (or \texttt{shakti}).
+    Can you see the \textbf{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet?
+    \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
+    In this case, the membership record in the router expires in 120 seconds.
+    During this interval, the router still forwards multicast datagram through the port.} \\
+    Save one of the PIM routing packets.
+    You may use \textbf{wireshark} output to analyze it.
+    What is the destination IP address used in this PIM routing packet?
+    \subsection*{Report}
+    Answer the above questions.
+
+    \section{ Exercise 12}
+    In this exercise, try the \textbf{mstat} Cisco IOS command to find the multicast tree from a source.
+    The \textbf{mstat} command is executable in the \textit{Privileged EXEC} mode.
+    You can always type “?” to get help on the syntax of the command.
+
+
+    \section{ Exercise 13}
+    Keep \textbf{netspy} running on all the hosts.
+    Ping the multicast group address from yachi, using: \\
+    \textbf{ping 224.111.111.111 -t} \textit{n} \\
+    The parameter \textit{n} is the TTL to be set to the multicast datagrams sent by ping.
+    Try different values of \textit{n}, e.g.\  1, 2, 3, and 16.
+    See how far a multicast datagram can travel with different TTL values. \\
+    Now, login to \texttt{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \texttt{Ethernet0} interface to 32, using: \\
+    \textbf{ip multicast ttl-threshold 32}
+    \footnote{The syntax of this command may be different for different versions of CiscoIOS. You may use“?” to get help.} \\
+    Run the \textbf{ping} command with \textit{n} = 16 again.
+    Can you see the multicast datagrams in the 128.238.61.0 and 128.238.62.0 subnet?
+    Try \textit{n} = 33.
+    Answer the same question.
+    \subsection*{Report}
+    Answer the above questions. \\
+    What is the use of the TTL threshold in the router interface?
+
+    \section*{Multicast video streaming exercise}
+    In the following exercise, we use \textbf{jmstudio} for video streaming.
+    The routers and hosts have the same configurations as in Fig. 7.14.
+
+    \section{ Exercise 14}
+    Start \textbf{jmstudio} on all the hosts, by using \textbf{jmstudio \&}. \\
+    On \texttt{shakti}, go to the \textbf{jmstudio} menu: \texttt{File/Transmit ....} In the “RTP Transmit” dialog, \\ chose file \texttt{/home/guest/video/Hurr-Lili-Trailer.mpeg}.
+    Then click the “next” button.
+    In the next window, click the “next” button again.
+    In the following window, specify the multicast group address to be 224.123.111.101, with port number 22224 and TTL 33.
+    Then click the “Finish” button.
+    Now the \textbf{jmstudio} on \texttt{shakti} is transmitting the video clip using RTP/RTSP/UDP/IP to the multicast group 224.123.111.101 on port 22224. \\
+    On all other hosts, go to the jmstudio menu: \texttt{File/Open RTP Session....} In the following “Open RTP Session” dialog, specify the same group address, port number and TTL as that used in \texttt{shakti}.
+    Now you should see the received video is displayed on the screen. \\
+    Execute \textbf{wireshark} in one console to capture the multicast datagrams.
+    In another console, execute \textbf{wireshark} to monitor the capture process.
+    When you see some RTCP packets in the second \textbf{wireshark} output, terminate both \textbf{wireshark} programs. \\
+    Analyze the header format of a RTP data packet and a RTCP Sender (or Receiver) Report packet.
+
+\end{document}
