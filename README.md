@@ -4,6 +4,7 @@
 
 * Linux and Simulator
   * Mininet
+  * GNS3
 * UDP
 * TCP
 * NAT
@@ -13,3 +14,5 @@
 * Security
 * Firewall
 * SDN and routing rule
+* Multicast
+* Socket Programming
