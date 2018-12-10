@@ -1,0 +1,175 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices} 
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
+
+\newcommand{\titleText}{OSPF and Socket Programming\\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushleft}
+            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushright}
+            \includegraphics[height=64pt]{../img/eng-logo.png}
+        \end{flushright}
+    \end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+\huge University of Tehran\\
+\LARGE \FR{دانشگاه تهران}\\
+\\
+\LARGE School of Electrical and Computer Engineering\\
+\FR{دانشکده مهندسی برق و کامپیوتر}\\
+\\
+\Large Computer Network Lab\\
+\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+\\
+\\
+\\
+\normalfont
+Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+\\
+\normalsize
+Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+\\
+\normalsize
+Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
+\\
+\normalsize
+Mohammad Ali Shahsavand - \FR{محمد علی شاهسوند}\\
+\href{mailto:mashahsavand@ut.ac.ir}{mashahsavand@ut.ac.ir}\\
+\\
+\normalsize
+Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}            % Remove header underlines
+\renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+\begin{document}
+    \selectlanguage{english}
+
+    %\vspace*{-1.5cm}
+    \maketitle
+
+    %\tableofcontents
+
+    \pagebreak
+    %Arabic \AR{\allah}
+    %Persian \FR{فروشگاه}
+    %Arabic \foreignlanguage{arabic}{كحض}
+    %Persian \foreignlanguage{farsi}{فروشگاه}
+
+
+
+    %\chapter
+    %\section
+    %\subsubsection
+    %\subsection
+    %\section
+    %\chapter
+    %\part
+    %\caption
+    %\end{otherlanguage}
+
+    
+    \section*{Socket programming exercises 1}
+    Examine the UDP socket programs \texttt{/home/guest/UDPserver.c} and \texttt{/home/guest/UDPclient.c} to learn how to write a UDP socket program.
+    Compile the C programs using \texttt{gcc -o UDPserver UDPserver.c -lnsl} and \texttt{gcc -o UDPclient UDPclient.c -lnsl}. \\
+    Start \textbf{wireshark} to capture packets from or to a remote host. \\
+    On the remote host, start the UDP server by \textbf{UDPserver server\_port}.
+    Then, start the UDP client on your host by \textbf{UDPclient remote\_host server\_port a\_message}.
+    You may execute the UDP client program on other hosts to connect to the same UDP server.
+    Terminate \textbf{wireshark}, examine its output and compare the output with the UDP server and client outputs.
+    Repeat the above experiments, but now use the \texttt{TCPserver.c} and \texttt{TCPclient.c}.
+
+    \section*{Socket programming exercises 2}
+    Execute \textbf{man setsockopt} to display the various socket options and how to set them.
+    Examine the \textbf{netspy} and \textbf{netspyd} source code in Appendix C.2 to see how to create a multicast socket and how to set the TTL value for the packets.
+
+    \section*{Socket programming exercises 3}
+    This is an optional exercise on socket programming.
+    Or, it can be assigned as a take-home project for extra credits.
+    Note that familiarity with C programming is required.
+    \subsection*{PROBLEM}
+    Examine the message exchanges of FTP. Write a FTP client program which takes a file name as input, and upload the file to a standard FTP server on a remote machine.
+    \subsection*{HINTS}
+    \begin{itemize}
+        \item First you need to set up the control connection to Port 21 of the remote machine, using a TCP socket.
+        \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in Table 5.1.
+        \item You can first run \textbf{telnet remote\_host 21}, then type \textbf{help} to list all the FTP commands.
+        Also, you can try the commands out in the \textbf{telnet} window, e.g.\  use \textbf{USER guest} to send the user ID and \textbf{PASS guest1} to send the password to the FTP server.
+        To terminate the \textbf{telnet} session, type \textbf{QUIT}.
+        \item In your program, these messages should be sent to the FTP server by calling the \textbf{send()} function of the local TCP socket.
+        \item Also your program needs to parse the server responses (some examples are given in Table 5.2) to find out the status of the previous FTP command.
+        \item The FTP data connection should be established using the \textbf{PORT} command (see Chapter 5).
+    \end{itemize}
+
+\end{document}
