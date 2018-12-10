@@ -6,6 +6,7 @@
 /*                                        */
 /* 7/17/2003                              */
 /******************************************/
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -19,7 +20,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <netdb.h>
+
 #define MAX_LOGIN 256
+
 int main(int argc, char *argv[])
 {
     int sd, i;
