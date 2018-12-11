@@ -148,7 +148,7 @@ Use what you learned in previouse exercise and create figure \ref{fig:linearRout
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[height=30pt]{img/fig2.png}
+	\includegraphics[height=30pt]{img/fig1.png}
 	\caption{Mininet Topology}
 	\label{fig:linearRouters}
 \end{figure}
@@ -164,7 +164,16 @@ In this section we are loading switch flows from another files and axamining it'
 	\item Execute \textbf{sh ovs-ofctl add-flows s1 tables.txt} on mininet console.
 	\item Ping each host from other hosts.
 	\item Capture ICMP packets on each host and observe network behavior.
+	\item Modify tables.txt to drop packets between h1 and h2.
 \end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=300pt]{img/fig2.png}
+	\caption{Multi Table Scenario}
+	\label{fig:MultiTableScenario}
+\end{figure}
+
 
 \subsubsection*{ Lab Report}
 \begin{itemize}

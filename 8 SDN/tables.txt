@@ -1,0 +1,16 @@
+table=0,ip,nw_src=10.0.0.0/24,nw_dst=10.0.0.0/24,actions=resubmit(,1)
+table=0,arp,nw_src=10.0.0.0/24,nw_dst=10.0.0.0/24,actions=resubmit(,1)
+table=0,icmp,nw_src=10.0.0.1,nw_dst=30.0.0.3,actions=resubmit(,1)
+table=0,tcp,nw_src=10.0.0.1,nw_dst=30.0.0.3,tp_dst=80,actions=resubmit(,1)
+table=0,ip,nw_src=30.0.0.3,actions=resubmit(,1)
+table=0,priority=0,actions=drop
+
+table=1,ip,nw_src=10.0.0.1,nw_dst=30.0.0.3,actions=mod_nw_src=5.5.5.5,resubmit(,2)
+table=1,ip,nw_src=30.0.0.3,nw_dst=5.5.5.5,actions=mod_nw_dst=10.0.0.1,resubmit(,2)
+table=1,priority=0,actions=resubmit(,2)
+
+table=2,ip,nw_dst=10.0.0.1,actions=mod_dl_dst=00:00:00:00:00:01,output:1
+table=2,ip,nw_dst=10.0.0.2,actions=mod_dl_dst=00:00:00:00:00:02,output:2
+table=2,ip,nw_dst=30.0.0.3,actions=mod_dl_dst=00:00:00:00:00:03,output:3
+priority=0,table=2,arp,nw_dst=10.0.0.1,actions=output:1
+priority=0,table=2,arp,nw_dst=10.0.0.2,actions=output:2
