@@ -1,0 +1,184 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+\usepackage[normalem]{ulem}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices} 
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
+
+\newcommand{\titleText}{Network management and security \\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushleft}
+            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushright}
+            \includegraphics[height=64pt]{../img/eng-logo.png}
+        \end{flushright}
+    \end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+\huge University of Tehran\\
+\LARGE \FR{دانشگاه تهران}\\
+\\
+\LARGE School of Electrical and Computer Engineering\\
+\FR{دانشکده مهندسی برق و کامپیوتر}\\
+\\
+\Large Computer Network Lab\\
+\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+\\
+\\
+\\
+\normalfont
+Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+\\
+\normalsize
+Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+\\
+\normalsize
+Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
+\\
+\normalsize
+Mohammad Ali Shahsavand - \FR{محمد علی شاهسوند}\\
+\href{mailto:mashahsavand@ut.ac.ir}{mashahsavand@ut.ac.ir}\\
+\\
+\normalsize
+Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}            % Remove header underlines
+\renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+\begin{document}
+    \selectlanguage{english}
+
+    %\vspace*{-1.5cm}
+    \maketitle
+
+    %\tableofcontents
+
+    \pagebreak
+
+\section{SDN Introduction}
+\subsection{Excercise One}
+Remember previouse lab \footnote{Lab 4 routing} where you are using host rather than router to emulate some routing functionality. In this experiment we want to implement same functionality with SDN switches. To warm up our hands we will start by simple scenario:
+
+\begin{itemize}
+	\setlength{\itemindent}{10pt}
+	\item Open switch.py and read it's codes carfully.
+	\item Run this code with \textbf{sudo python switch.py}
+	\item Ping h2 from h1.
+	\item Capture OpenFlow hello packet on \textbf{lo} interface. (Filter wireshark output with \textbf{of} filter)
+\end{itemize}
+
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Expain line 21 to 26 of switch.py.
+	\item Read \href{http://flowgrammable.org/sdn/openflow/state-machine/}{this link} and explain switch handshak with controller. What is xid of your packets. Justify your answer with captured packets. \textbf{Don't copy and paste text from refrence in your lab report}.
+\end{itemize}
+
+\subsection{Excercise Two}
+Use what you learned in previouse exercise and create figure \ref{fig:linearRouters} topology. Configure switches in this topology where ??? we can ping each host from each host. Show your final result to instructors.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=30pt]{img/fig1.png}
+	\caption{Mininet Topology}
+	\label{fig:linearRouters}
+\end{figure}
+
+
+\section{Exercises with multitables flows}
+\subsection*{Excercise Three}
+In this section we are loading switch flows from another files and axamining it's functionality.
+
+\begin{itemize}
+	\setlength{\itemindent}{10pt}
+	\item Execute \textbf{sudo python topo.py} 
+	\item Execute \textbf{sh ovs-ofctl add-flows s1 tables.txt} on mininet console.
+	\item Ping each host from other hosts.
+	\item Capture ICMP packets on each host and observe network behavior.
+	\item Modify tables.txt to drop packets between h1 and h2.
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=300pt]{img/fig2.png}
+	\caption{Multi Table Scenario}
+	\label{fig:MultiTableScenario}
+\end{figure}
+
+
+\subsubsection*{ Lab Report}
+\begin{itemize}
+	\setlength{\itemindent}{0pt}
+	\item Can you explain switch behavior? Justify your answer with wireshark output and tables.txt file.
+\end{itemize}
+
+\end{document}
