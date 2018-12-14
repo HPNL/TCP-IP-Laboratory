@@ -125,7 +125,7 @@
 	\pagebreak
 	
 	\section*{Exercises on secure applications}
-	\section{Man in the Middle}
+	\section{Hacking}
 	In this excercise we will study security vulnerability of ftp and telnet protocol . To do so, wi will create mininet topology with single hub\footnote{hub forwards incoming packets to all of its ports, which means it always floods packets} connected to three hosts then we will connect from h1 to h2 through ftp and telnet connection and capture h1 password on h3. Let's do it.
 	
 	\begin{enumerate}
@@ -133,12 +133,12 @@
 		\item Start pox controller with below command to force mininet switches act like hub.
 		\begin{enumerate}
 			\setlength{\itemindent}{10pt}
-			\item [\$]  \texttt{python pox.py openflow.of\_01 {-}{-}address=127.0.0.1 {-}{-}port=6333 forwarding.hub}
+			\item [\$]  \texttt{python pox.py openflow.of\_01 -{}-address=127.0.0.1 -{}-port=6333 forwarding.hub}
 		\end{enumerate}
 		\item Run below command to start mininet with one single switch and three hosts and connect it to pox controller.
 		\begin{enumerate}
 			\setlength{\itemindent}{10pt}
-			\item [\$]  \texttt{sudo mn {-}{-}topo single,3 {-}{-}controller remote,ip=127.0.0.1,port=6633}
+			\item [\$]  \texttt{sudo mn -{}-topo single,3 -{}-controller remote,ip=127.0.0.1,port=6633}
 		\end{enumerate}
 		\item start ftp server on h2 with:
 		\begin{enumerate}
@@ -208,7 +208,7 @@
 	
 	\begin{itemize}
 		\setlength{\itemindent}{10pt}
-		\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j DROP} 
+		\item [h2>] \texttt{iptables -A INPUT -v -p TCP -{}-dport 23 -j DROP} 
 	\end{itemize}
 	
 	\setlength{\parindent}{0pt}
@@ -234,7 +234,7 @@
 	
 	\begin{itemize}
 		\setlength{\itemindent}{10pt}
-		\item [h2>] \texttt{iptables -D INPUT -v -p TCP {-}{-}dport 23 -j DROP}
+		\item [h2>] \texttt{iptables -D INPUT -v -p TCP -{}-dport 23 -j DROP}
 	\end{itemize}
 	
 	\setlength{\parindent}{0pt}
@@ -242,7 +242,7 @@
 	
 	\begin{itemize}
 		\setlength{\itemindent}{10pt}
-		\item [h2>] \texttt{iptables -A INPUT -v -p TCP {-}{-}dport 23 -j REJECT {-}{-}reject-with tcp-reset} 
+		\item [h2>] \texttt{iptables -A INPUT -v -p TCP -{}-dport 23 -j REJECT -{}-reject-with tcp-reset} 
 	\end{itemize}
 	
 	\setlength{\parindent}{0pt}
