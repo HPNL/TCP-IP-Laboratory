@@ -118,48 +118,54 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
 
     \section*{Simple multicast exercises}
     For all the exercises in this section, the network topology is given in Fig.
-    1.3, where all the hosts are connected to a single network segment using their default IP addresses, i.e.\  from 128.238.66.100 to 128.238.66.107.
-
-    \section{ Exercise 1}
+    \ref{fig:fig13}\footnote{1.3 in Reference}, where all the hosts are connected to a single network segment using their default IP addresses, i.e.\  from 128.238.66.100 to 128.238.66.107.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.6\textwidth]{./img/table1-2.jpg}
+        \includegraphics[width=0.8\textwidth]{./img/figure1-3.jpg}
+        \caption{A single segment network}
+        \label{fig:fig13}
+    \end{figure}
+    \section{Linux multicast routing table}
     Execute \textbf{netstat -rn} to display the routing table of your host.
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by: \\
     \textbf{route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0}\footnote{This command can be appended to the \texttt{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
     Each time when the network interface is brought down and up again by the \textbf{ifconfig} command, you may need to run the \textbf{route} command to re-insert the multicast routing entry.} \\
     Save the new routing table.
-    \subsection*{Report}
+    \subsection*{Lab Report}
     Submit the routing table you saved.
 
-    \section{ Exercise 2}
+    \section{Multicast Membership}
     Execute \textbf{netstat -g} to show the multicast group memberships for all the interfaces in your host.
-    \subsection*{Report}
+    \subsection*{Lab Report}
     How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
 
-    \section{ Exercise 3}
+    \section{Multicast Ping}
     Execute \textbf{ping 224.0.0.1}.
     Examine the \textbf{ping} output to see which hosts reply. \\
     Ping a broadcast address using \textbf{ping -b 128.238.66.255}.
     Examine the \textbf{ping} output to see which hosts reply. \\
-    \subsection*{Report}
+    \subsection*{Lab Report}
     Which hosts replied when the multicast address was pinged?
     Which hosts replied when the broadcast address was pinged? \\
     In each case, was there a reply from your host?
 
-
-    \section{ Exercise 4}
+    \section{Multicast vs Unicast}
     Execute \textbf{wireshark} to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame. \\
-    To generate an Ethernet unicast frame, run \textbf{sock -i -u -n1} \texttt{remote-host} \textbf{echo}. \\
-    Execute \textbf{sock -i -u -n1 230.11.111.10 2000} to generate an Ethernet multicast frame. \\
-    Generate another Ethernet multicast frame, but with a different group address of 232.139.111.10. \\
+    To generate an Ethernet unicast frame, run \textbf{socket -i -u -n1} \textit{remote-host} \textbf{echo}. \\
+    Execute \textbf{socket -i -u -n1 230.11.111.10 2000} to generate an Ethernet multicast frame. \\
+    Generate another Ethernet multicast frame, but with a different group address of \texttt{232.139.111.10}. \\
     To generate an Ethernet broadcast frame, you may \textbf{ping} a remote host that has no entry in the ARP table of you host.
     Recall that the ARP request is broadcast. \\
     Save the frames captured for the lab report.
-    \subsection*{Report}
+
+    \subsection*{Lab Report}
     Compare the source and destination MAC addresses of the frames you captured. \\
     Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
     For the two multicast frames captured, do they have the same destination MAC address?
     Why?
 
-    \section{ Exercise 5}
+    \section{Simple UDP Multicast client and server}
     Start the multicast client \textbf{netspy} on all the hosts, by executing: \\
     \textbf{netspy 224.111.111.111 1500} \\
     Then, start the multicast sender \textbf{netspyd} on \texttt{shakti}, by executing: \\
@@ -167,14 +173,15 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Execute \textbf{wireshark} on every host to capture multicast IP datagrams. \\
     Login to \texttt{shakti} from a remote machine, e.g.\  \texttt{kenchi}, using \textbf{telnet} or \textbf{ssh}. \\
     Save the captured multicast datagram sent by \textbf{netspyd} and exit the \textbf{telnet} (or \textbf{ssh}) session.
-    \subsection*{Report}
+
+    \subsection*{Lab Report}
     From the \textbf{tcpdump} output, how many messages are sent by \textbf{netspyd} when a new user logged in to \texttt{shakti}?
     From the \textbf{netspy} outputs on all the hosts, how many copies of the message are received in total? \\
     Did \texttt{shakti}, where the multicast sender, \textbf{netspyd}, was running, receive the multicast datagram?
     Why?
     If yes, through which interface did \texttt{shakti} receive this datagram?
 
-    \section{ Exercise 6}
+    \section{ping Replay}
     Keep the \textbf{netspy} and the \textbf{wireshark} programs running.
     Execute \textbf{ping 224.111.111.111} from \texttt{kenchi}.
     Examine the \textbf{wireshark} and \textbf{ping} outputs to see which hosts replied.
@@ -190,23 +197,26 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/table7-2.png}
+        \label{tbl:7.2}
     \end{figure}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/figure7-13.png}
+        \label{fig:7.13}
     \end{figure}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/table7-3.png}
+        \label{tbl:7.3}
     \end{figure}
-    \section{ Exercise 7}
+    \section{Configuring Router}
     Connect the hosts and the route in your group as shown in Fig. 7.13. Set the IP address of your host as given in Table 7.2. Note that the IP addresses of the router interfaces are the same as their default IP addresses.
     Login to the router and run \textbf{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
     Then, enable the PIM protocol on each interface, by running \textbf{ip pim dense-mode} in the \textit{Interface Configuration} mode.\footnote{As usual,each router should be configured by one person to avoid confusion.} Now the router is enabled to do multicast routing using PIM. \\
     Login to the router, execute \textbf{show ip igmp interface} and \textbf{show ip igmp group} in the \textit{Privileged EXEC} mode.
     Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
 
-    \section{ Exercise 8}
+    \section{Multicast Message}
     Start \textbf{netspy} on all the hosts, by using: \\
     \textbf{netspy 224.111.111.111 1500} \\
     Start \textbf{netspy} on \texttt{host1} (\texttt{shakti} in Group A and \texttt{yachi} in Group B), by using: \\
@@ -216,12 +226,12 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Try if you can \textbf{ping} a host on the other side of the router.
     Login to \texttt{host1} from \texttt{host2} in your group, then logout.
     See if the multicast messages sent by \textbf{netspyd} reach the other side of the router.
-    \subsection*{Report}
+    \subsection*{Lab Report}
     Can you ping a host on the other side of the router?
     Will the router forward a multicast IP datagram to the other side?
     Justify your answers.
 
-    \section{ Exercise 9}
+    \section{IGMP Types}
     Execute \textbf{wireshark} in one console to capture IGMP messages.
     At the same time, execute \textbf{wireshark} in another console to monitor the capture process.
     When you see three or more IGMP queries in the second \textbf{wireshark} output, terminate both \textbf{wireshark} programs. \\
@@ -230,16 +240,16 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Repeat the above experiment.
     Terminate \textbf{netspy} on \texttt{host2} and \texttt{host4}.
     Terminate the \textbf{wireshark} programs and analyze the IGMP leave message you captured.
-    \subsection*{Report}
+    \subsection*{Lab Report}
     What is the value of the Time-to-Live (TTL) field for the IGMP messages?
     Why do we not set the TTL to a larger number? \\
     What is the default frequency at which the router sends IGMP queries?
 
-    \section{ Exercise 10}
+    \section{Router Join To Multicast-Group}
     Login to the router.
     See if you can make a router interface (e.g., Ethernet0) join a multicast group of 224.0.0.2, using:
     \textbf{ip igmp join-group 224.0.0.2}
-    \subsection*{Report}
+    \subsection*{Lab Report}
     Explain why the above command fails.
 
     \section*{Multicast routing exercises}
@@ -247,8 +257,9 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/figure7-14.png}
+        \label{fig:7.14}
     \end{figure}
-    \section{ Exercise 11}
+    \section{Multicast Multi-Hub}
     Connect the hosts and routers as illustrated in Figure 7.14.
     Configure the IP addresses of the hosts and router interfaces as given in the figure.
     Note that most of the router interfaces use their default IP addresses, only the Ethernet0 interface of Router4 needs to be changed to 128.238.63.4. \\
@@ -267,16 +278,16 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Save one of the PIM routing packets.
     You may use \textbf{wireshark} output to analyze it.
     What is the destination IP address used in this PIM routing packet?
-    \subsection*{Report}
+    \subsection*{Lab Report}
     Answer the above questions.
 
-    \section{ Exercise 12}
+    \section{Multicast Router Status}
     In this exercise, try the \textbf{mstat} Cisco IOS command to find the multicast tree from a source.
     The \textbf{mstat} command is executable in the \textit{Privileged EXEC} mode.
     You can always type “?” to get help on the syntax of the command.
 
 
-    \section{ Exercise 13}
+    \section{Multicast TTL}
     Keep \textbf{netspy} running on all the hosts.
     Ping the multicast group address from yachi, using: \\
     \textbf{ping 224.111.111.111 -t} \textit{n} \\
@@ -290,7 +301,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Can you see the multicast datagrams in the 128.238.61.0 and 128.238.62.0 subnet?
     Try \textit{n} = 33.
     Answer the same question.
-    \subsection*{Report}
+    \subsection*{Lab Report}
     Answer the above questions. \\
     What is the use of the TTL threshold in the router interface?
 
@@ -298,19 +309,60 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     In the following exercise, we use \textbf{jmstudio} for video streaming.
     The routers and hosts have the same configurations as in Fig. 7.14.
 
-    \section{ Exercise 14}
-    Start \textbf{jmstudio} on all the hosts, by using \textbf{jmstudio \&}. \\
-    On \texttt{shakti}, go to the \textbf{jmstudio} menu: \texttt{File/Transmit ....} In the “RTP Transmit” dialog, \\ chose file \texttt{/home/guest/video/Hurr-Lili-Trailer.mpeg}.
+    \section{Multicast Real-Time Video}
+    Start \textbf{vlc} on all the hosts, by using \textbf{vlc \&}. \\
+    On \texttt{shakti}, go to the \textbf{vlc} menu: \texttt{Media/Stream \ldots }. Chose video file \texttt{~/aaaaaaaaaaaaaaaa.mpeg} and press “stream” button. In “Stream output” add “RTP /MPEG Transport Stream” dialog.
     Then click the “next” button.
-    In the next window, click the “next” button again.
-    In the following window, specify the multicast group address to be 224.123.111.101, with port number 22224 and TTL 33.
+    In the next window, specify the multicast group address to be \textbf{224.123.111.101}, with port number \textbf{22224} %and TTL 33.
     Then click the “Finish” button.
-    Now the \textbf{jmstudio} on \texttt{shakti} is transmitting the video clip using RTP/RTSP/UDP/IP to the multicast group 224.123.111.101 on port 22224. \\
-    On all other hosts, go to the jmstudio menu: \texttt{File/Open RTP Session....} In the following “Open RTP Session” dialog, specify the same group address, port number and TTL as that used in \texttt{shakti}.
+    Now the \textbf{vlc} on \texttt{shakti} is transmitting the video clip using \texttt{RTP/RTSP/UDP/IP} to the multicast group \textbf{224.123.111.101} on port \textbf{22224}. \\
+    On all other hosts, go to the \textbf{vlc} menu: \texttt{Media/Open Network Stream \ldots.} In the following “Open RTP Session” dialog, specify the same group address, port number as that used in \texttt{shakti}.%and TTL
     Now you should see the received video is displayed on the screen. \\
     Execute \textbf{wireshark} in one console to capture the multicast datagrams.
     In another console, execute \textbf{wireshark} to monitor the capture process.
-    When you see some RTCP packets in the second \textbf{wireshark} output, terminate both \textbf{wireshark} programs. \\
-    Analyze the header format of a RTP data packet and a RTCP Sender (or Receiver) Report packet.
+    When you see some \texttt{RTCP} packets in the second \textbf{wireshark} output, terminate both \textbf{wireshark} programs. \\
+    Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
+
+
+    \appendix
+\section*{Appendices}
+\addcontentsline{toc}{section}{Appendices}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+
+\subsection{Configuring a multicast router}
+\textit{The \textbf{no} form of this command cancels the group membership}
+\subsubsection{Configuring IGMP}
+\begin{itemize}
+    \item ip igmp join-group group-address
+    \item no ip igmp join-group group-address
+    \item ip igmp query-interval \textit{new-value-in-seconds}
+    \item no ip igmp query-interval
+    \item show ip igmp groups: \textit{Displays the multicast groups in the attached
+    networks.}
+    \item show ip igmp interface: \textit{Displays multicast related information on a
+    router interface.}
+    \item debug ip igmp: \textit{Displays IGMP packets received and transmitted.}
+\end{itemize}
+
+\subsubsection{Configuring multicast routing}
+\begin{itemize}
+    \item ip multicast-routing
+    \item no ip multicast-routing
+    \item ip pim [dense-mode | sparse-mode | dense-sparse-mode].
+    \item show ip mroute: \textit{Displays the multicast routing table.}
+    \item show ip mroute summary: \textit{Displays a one-line summary for each entry in the multicast routing table.}
+    \item show ip mroute count: \textit{Displays multicast statistics.}
+    \item show ip dvmrp route: \textit{Displays the DVMRP routing table.}
+    \item show ip pim neighbor: \textit{Lists PIM neighbors discovered by the router.}
+    \item show ip pim interface: \textit{Displays router interface configurations.}
+\end{itemize}
+
+\subsubsection{Cisco IOS multicast diagnostic tools}
+\begin{itemize}
+    \item mtrace
+    \item mrinfo
+    \item mstat
+    \item ping
+\end{itemize}
 
 \end{document}
