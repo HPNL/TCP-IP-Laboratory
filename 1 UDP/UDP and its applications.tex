@@ -171,7 +171,7 @@ Explain 5 of them.
 
 %\pagebreak
 \section{Segment size}
-While running \textbf{wireshark} on \texttt{h1}, execute the following command with different values of size (i.e., the size of the datagram). \\
+While running \textbf{wireshark} on \texttt{h2}, execute the following command with different values of size (i.e., the size of the datagram). \\
 \begin{itemize}
 	\item [h2>] \textbf{socket -u -s 5555}
 	\item [h1>] \textbf{socket -u -i -n1 -w\$\{size\} \textit{10.0.0.2} 5555}
@@ -261,8 +261,7 @@ Observe the protocol in action.
 Analyze various types of TFTP messages.
 \subsection*{Report}
 \begin{enumerate}
-	\item List all the different types of packets exchanged during the \textbf{tftp} session. \\
-	Why does the server’s port number change?
+	\item List all the different types of packets exchanged during the \textbf{tftp} session.
 	\item In most cases, \textbf{tftp} service is restricted.\footnote{This is not the case in our lab, where we deliberately enabled the TFTP service and use it as a tool to study the UDP protocol.}
 	Why is \textbf{tftp} service not generally available to users?
 	\item With \textbf{tftp}, which uses UDP, we transferred a file larger than the maximum UDP datagram size.
