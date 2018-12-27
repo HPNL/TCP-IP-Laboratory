@@ -1,0 +1,229 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices} 
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
+
+\newcommand{\titleText}{The Web, DHCP, NTP and NAT \\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushleft}
+            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushright}
+            \includegraphics[height=64pt]{../img/eng-logo.png}
+        \end{flushright}
+    \end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+\huge University of Tehran\\
+\LARGE \FR{دانشگاه تهران}\\
+\\
+\LARGE School of Electrical and Computer Engineering\\
+\FR{دانشکده مهندسی برق و کامپیوتر}\\
+\\
+\Large Computer Network Lab\\
+\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+\\
+\\
+\\
+\normalfont
+Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+\\
+\normalsize
+Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+\\
+\normalsize
+Sina Kashi pazha - \FR{سینا کاشی پزها}\\
+\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
+\\
+\normalsize
+Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
+\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}            % Remove header underlines
+\renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+\begin{document}
+    \selectlanguage{english}
+
+    %\vspace*{-1.5cm}
+    \maketitle
+
+    %\tableofcontents
+
+    \pagebreak
+    %Arabic \AR{\allah}
+    %Persian \FR{فروشگاه}
+    %Arabic \foreignlanguage{arabic}{كحض}
+    %Persian \foreignlanguage{farsi}{فروشگاه}
+
+
+
+    %	يعود تاريخ علوم الحاسوب إلى
+    %\chapter
+    %\section
+    %\subsubsection
+    %\subsection
+    %\section
+    %\chapter
+    %\part
+    %\caption
+    %\end{otherlanguage}
+
+
+
+
+    \section{Exercise 1}
+    Run \textbf{ps -e} to list the processes running in \texttt{h1}.
+    After starting a new process by running \textbf{telnet} in another command window, execute \textbf{ps -e} again in a third window to see if there is any change in its output. \\
+    Find the process id of the \textbf{telnet} process you started, by: \\
+    \centerline{\textbf{ps -e | grep telnet}} \\
+    Then use \textbf{kill} \textit{process-id-of-telnet} to terminate the \textbf{telnet} process.
+    \subsection*{Report}
+    What is Internet service daemon (inetd)? \\
+    Is \textbf{inetd} started in your system?
+    Why? \\
+    Is \textbf{xinetd} started in your system? What is its PID? \\
+
+    %\pagebreak
+    \section{Exercise 2}
+    Display the file \texttt{/etc/services} on \texttt{h1} screen, using: \\
+    \centerline{\textbf{more} \texttt{/etc/services}} \\
+    Then in another console, use the redirect operator to redirect the \textbf{more} output to
+    a file using \textbf{more} \texttt{/etc/services > ser-more}. Compare the file \texttt{ser-more} with the original \textbf{more} output in the other command window. \\
+    Copy \texttt{/etc/services} file to a local file named \texttt{ser-cp} in your working directory,
+    using \textbf{cp} \texttt{/etc/services ser-cp}. Compare files \texttt{ser-more} and \texttt{ser-cp}, using \textbf{cmp} \texttt{ser-more ser-cp}. Are these two files identical?\\
+    Concatenate these two files using \textbf{cat} \texttt{ser-more ser-cp > ser-cat}. \\
+    Display the file sizes using \textbf{ls -l} \texttt{ser*}. Save the output. What are the sizes of files \texttt{ser-more}, \texttt{ser-cp}, and \texttt{ser-cat}?
+
+    %\pagebreak
+    \section{Exercise 3}
+    Read the \textbf{man} pages for the following programs:
+    \begin{enumerate}
+        \item arp
+        \item arping
+        \item ifconfig
+        \item tcpdump
+        \item ping
+        \item netstat
+        \item route
+        \item wireshark
+    \end{enumerate}
+    Study the different options associated with each command.
+    Throughout this lab you will use these commands rather extensively.
+    \subsection*{Report}
+    Explain the above commands briefly.
+    Two or three sentences per command would be adequate.
+
+
+    %\pagebreak
+    \section{Exercise 4}
+    In this exercise, we will use \textbf{tcpdump} to capture a packet containing the link, IP, and TCP headers and use ethereal to analyze this packet. \\
+    First, run \textbf{tcpdump -enx -w} \texttt{dump.out} in \texttt{h1}.
+    You will not see any \textbf{tcpdump} output, since the \textbf{-w} option is used to write the output to the \texttt{dump.out} file. \\
+    Then, you may want to run \textbf{telnet} \texttt{10.0.0.2} to generate some TCP traffic.\footnote{Remember to run \textbf{\texttt{/etc/init.d/xinetd} restart} in \texttt{h2} to start telnet server on it.}
+    After you login to \texttt{h2}, terminate the \textbf{telnet} session and terminate the \textbf{tcpdump} program.
+    Next, you will use \textbf{wireshark} to open the packet trace captured by \textbf{tcpdump} and analyze the captured packets.
+    To do this, run \textbf{wireshark} \texttt{dump.out \&}.
+    The \textbf{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \textbf{tcpdump} will be displayed.
+    Select any one of the packets that contain the link, IP, and TCP headers.
+    \subsection*{Report}
+    What is the value of the \texttt{protocol} field in the IP header of the packet you saved?
+    What is the use of the \texttt{protocol} field? \\
+    What is the value of the \texttt{frame type} field in an Ethernet frame carrying an IP datagram?
+
+
+    \section{Exercise 5}
+    This time we will run wireshark to capture an ARP request and an ARP reply in real-time. Simply run \textbf{wireshark \&} in \texttt{h1} and select the interface and start capturing.
+    If there is no arp requests and replies in the network, generate some using \textbf{arping} \textit{10.0.0.2}. \\
+    Now you should see several ARP replies in the arping output.
+    \subsection*{Report}
+    What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively? \\
+    What is the use of the \texttt{frame type} field? \\
+
+    \section{Exercise 6}
+    In \texttt{h1} run \textbf{wireshark \&} and select an interface to capture packets between hosts. \\
+    Execute a TCP utility, telnet for example, in another command window: \\
+    \textbf{telnet} \textit{10.0.0.2}
+    \subsection*{Report}
+    What are the port numbers used by the \texttt{h1} (local machine) and \texttt{h2} (remote machine)? \\
+    Which machine’s port number matches the port number listed for \textbf{telnet} in the \texttt{/etc/services} file? \\
+
+    \section{Exercise 7}
+    In \texttt{h1} run \textbf{wireshark \&} and select an interface to capture packets between hosts. \\
+    Then, \textbf{telnet} to the \texttt{h2} from a second command window by typing \textbf{telnet} \textit{10.0.0.2}.
+    Again issue the same \textbf{telnet} \textit{10.0.0.2} command from a third command window.
+    Now you are opening two \textbf{telnet} sessions to \texttt{h2} simultaneously, from two different command windows. \\
+    Check the port numbers being used on both sides of the two connections from the output in the \textbf{wireshark} window. \\
+    \subsection*{Report}
+    When you have two \textbf{telnet} sessions with your machine, what port number is used on the \texttt{h2} (remote machine)? \\
+    Are both sessions connected to the same port number on the \texttt{h2} (remote machine)? \\
+    What port numbers are used in \texttt{h1} (local machine) for the first and second \textbf{telnet}, respectively? \\
+    Explain briefly what a \texttt{socket} is. \\
+\end{document}
