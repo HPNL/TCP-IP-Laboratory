@@ -42,7 +42,7 @@
 \title{
 \normalsize In the name of Allah\\
 \vspace{10pt}
-\LARGE\FR{بسم \allah الرحمن الرحیم}
+\LARGE\FR{بسم \allah\  الرحمن الرحیم}
 \vspace{10pt}
 \begin{center}
     %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -83,13 +83,10 @@ Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
 Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
 \href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
 \\
-\normalsize
-Sina Kashi pazha - \FR{سینا کاشی پزها}\\
-\href{mailto:sina\_kashipazha@ut.ac.ir}{sina\_kashipazha@ut.ac.ir}\\
-\\
-\normalsize
-Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
-\href{mailto:a.a.khordadi@ut.ac.ir}{a.a.khordadi@ut.ac.ir}
+\normalsize \href{mailto:m.borhani@ut.ac.ir}{Muhammad Borhani} - \FR{محمد برهانی}\\
+\normalsize \href{mailto:a.a.khordadi@ut.ac.ir}{Amirahmad Khordadi} - \FR{امیر احمد خردادی}\\
+\normalsize \href{mailto:sina\_kashipazha@ut.ac.ir}{Sina Kashi pazha} - \FR{سینا کاشی پزها}\\
+\normalsize \href{mailto:mashahsavand@ut.ac.ir}{Mohammad Ali Shahsavand} - \FR{محمد علی شاهسوند}
 }
 
 \date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
@@ -108,6 +105,8 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
 \renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
 \setlength{\headheight}{13.6pt}
 
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
 \begin{document}
     \selectlanguage{english}
@@ -137,9 +136,55 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     %\end{otherlanguage}
 
 
+\section*{Systems configuration}
+Launch GNS3 and make a network as below. You can use "\textbf{ifconfig \texttt{eth0} 192.168.0.1 netmask 255.255.255.0}" to set ip.
+\begin{table}[H]
+    \caption{The IP addresses of the hosts}
+    \vspace{5pt}
+    \centering
+    \begin{tabular}{ l c r }
+        \hline \hline
+        Host & IP Address & Subnet Mask \\
+        \hline 
+        h0 (shakti) & 128.238.66.100 & 255.255.255.0 \\
+        h1 (vayu) & 128.238.66.101 & 255.255.255.0 \\
+        h2 (agni) & 128.238.66.102 & 255.255.255.0 \\
+        h3 (apah) & 128.238.66.103 & 255.255.255.0 \\
+        h4 (yachi) & 128.238.66.104 & 255.255.255.0 \\
+        h5 (fenchi) & 128.238.66.105 & 255.255.255.0 \\
+        h6 (kenchi) & 128.238.66.106 & 255.255.255.0 \\
+        h7 (guchi) & 128.238.66.107 & 255.255.255.0 \\
+        \hline \hline
+        \end{tabular}
+\end{table}
 
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[font=\sf]
+        \node[draw] (s) at (0,0){Core Switch};
+        \node[draw,circle] (h0) at (0,2){h0};
+        \node[draw,circle] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+        \node[draw,circle] (h2) at (2,0){h2};
+        \node[draw,circle] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+        \node[draw,circle] (h4) at (-2,0){h4};
+        \node[draw,circle] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+        \node[draw,circle] (h6) at (0,-2){h6};
+        \node[draw,circle] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+    
+        \draw[thick] (h0) -- (s);
+        \draw[thick] (h1) -- (s);
+        \draw[thick] (h2) -- (s);
+        \draw[thick] (h3) -- (s);
+        \draw[thick] (h4) -- (s);
+        \draw[thick] (h5) -- (s);
+        \draw[thick] (h6) -- (s);
+        \draw[thick] (h7) -- (s);
+       
+    \end{tikzpicture}
+    \caption{A single segment network}        
+\end{figure}
 
-    \section{Exercise 1}
+    \section{Telnet service}
     Run \textbf{ps -e} to list the processes running in \texttt{h1}.
     After starting a new process by running \textbf{telnet} in another command window, execute \textbf{ps -e} again in a third window to see if there is any change in its output. \\
     Find the process id of the \textbf{telnet} process you started, by: \\
@@ -152,7 +197,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Is \textbf{xinetd} started in your system? What is its PID? \\
 
     %\pagebreak
-    \section{Exercise 2}
+    \section{Default network services}
     Display the file \texttt{/etc/services} on \texttt{h1} screen, using: \\
     \centerline{\textbf{more} \texttt{/etc/services}} \\
     Then in another console, use the redirect operator to redirect the \textbf{more} output to
@@ -160,11 +205,12 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     Copy \texttt{/etc/services} file to a local file named \texttt{ser-cp} in your working directory,
     using \textbf{cp} \texttt{/etc/services ser-cp}. Compare files \texttt{ser-more} and \texttt{ser-cp}, using \textbf{cmp} \texttt{ser-more ser-cp}. Are these two files identical?\\
     Concatenate these two files using \textbf{cat} \texttt{ser-more ser-cp > ser-cat}. \\
-    Display the file sizes using \textbf{ls -l} \texttt{ser*}. Save the output. What are the sizes of files \texttt{ser-more}, \texttt{ser-cp}, and \texttt{ser-cat}?
+    Display the file sizes using \textbf{ls -l ser*}. Save the output. What are the sizes of files \texttt{ser-more}, \texttt{ser-cp}, and \texttt{ser-cat}?
 
     %\pagebreak
-    \section{Exercise 3}
+    \section{Network command manual}
     Read the \textbf{man} pages for the following programs:
+\begin{multicols}{3}
     \begin{enumerate}
         \item arp
         \item arping
@@ -174,16 +220,17 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
         \item netstat
         \item route
         \item wireshark
+        \item iptables
     \end{enumerate}
+\end{multicols}
     Study the different options associated with each command.
     Throughout this lab you will use these commands rather extensively.
     \subsection*{Report}
     Explain the above commands briefly.
     Two or three sentences per command would be adequate.
 
-
     %\pagebreak
-    \section{Exercise 4}
+    \section{Packet capturing}
     In this exercise, we will use \textbf{tcpdump} to capture a packet containing the link, IP, and TCP headers and use ethereal to analyze this packet. \\
     First, run \textbf{tcpdump -enx -w} \texttt{dump.out} in \texttt{h1}.
     You will not see any \textbf{tcpdump} output, since the \textbf{-w} option is used to write the output to the \texttt{dump.out} file. \\
@@ -199,7 +246,7 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     What is the value of the \texttt{frame type} field in an Ethernet frame carrying an IP datagram?
 
 
-    \section{Exercise 5}
+    \section{ARPing}
     This time we will run wireshark to capture an ARP request and an ARP reply in real-time. Simply run \textbf{wireshark \&} in \texttt{h1} and select the interface and start capturing.
     If there is no arp requests and replies in the network, generate some using \textbf{arping} \textit{10.0.0.2}. \\
     Now you should see several ARP replies in the arping output.
@@ -207,15 +254,39 @@ Amirahmad Khordadi - \FR{امیر احمد خردادی}\\
     What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively? \\
     What is the use of the \texttt{frame type} field? \\
 
-    \section{Exercise 6}
+    \section{Packet filtering}
+    Using the \textbf{tcpdump} utility, capture any packet on the LAN and see the output format
+for different command-line options. Study the various expressions for selecting
+which packets to be dumped.\\
+For this experiment, use the \textbf{man} page for \textbf{tcpdump} to find out the options and
+expressions that can be used.\\
+If there is no traffic on the network, you may generate traffic with some applications
+(e.g. \textbf{telnet}, \textbf{ping}, etc.).\\
+\subsection*{Report}
+Explain briefly the purposes of the following \textbf{tcpdump} expressions. If using wireshark, use next list
+\begin{itemize}
+    \item \textbf{tcpdump udp port 520}
+    \item \textbf{tcpdump -x -s 120 ip proto 89}
+    \item \textbf{tcpdump -x -s 70 host \texttt{ip\_addr1} and (\texttt{ip\_addr2} or \texttt{ip\_addr3})}
+    \item \textbf{tcpdump -x -s 70 host \texttt{ip\_addr1} and not \texttt{ip\_addr2}}
+\end{itemize}
+If you ar using \textbf{wireshark} explain the following filter.
+\begin{itemize}
+    \item \textbf{udp.port == 520}
+    \item \textbf{ip.proto == 89}
+    \item \textbf{ip.addr == \texttt{ip\_addr1} and (ip.addr == \texttt{ip\_addr2} or ip.addr == \texttt{ip\_addr3})}
+    \item \textbf{ip.addr == \texttt{ip\_addr1} and not ip.addr \texttt{ip\_addr2}}
+\end{itemize}
+
+\section{Connection port}
     In \texttt{h1} run \textbf{wireshark \&} and select an interface to capture packets between hosts. \\
-    Execute a TCP utility, telnet for example, in another command window: \\
+    Execute a TCP utility, \textbf{telnet} for example, in another command window: \\
     \textbf{telnet} \textit{10.0.0.2}
     \subsection*{Report}
     What are the port numbers used by the \texttt{h1} (local machine) and \texttt{h2} (remote machine)? \\
     Which machine’s port number matches the port number listed for \textbf{telnet} in the \texttt{/etc/services} file? \\
 
-    \section{Exercise 7}
+    \section{Random port}
     In \texttt{h1} run \textbf{wireshark \&} and select an interface to capture packets between hosts. \\
     Then, \textbf{telnet} to the \texttt{h2} from a second command window by typing \textbf{telnet} \textit{10.0.0.2}.
     Again issue the same \textbf{telnet} \textit{10.0.0.2} command from a third command window.
