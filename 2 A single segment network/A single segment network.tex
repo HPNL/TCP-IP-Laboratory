@@ -1,0 +1,335 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{arabtex}
+\usepackage[OT1,T1,LFE,LAE]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[arabic,english,farsi]{babel}
+\usepackage{amsmath,amsfonts} % Math packages
+\usepackage{amssymb}
+%\usepackage{cmap}
+
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage[caption=false]{subfig}
+\usepackage{color}
+\usepackage{float}
+\usepackage{sidecap}
+%\sidecaptionvpos{figure}{c}
+\usepackage{anysize}
+\marginsize{2cm}{2cm}{2cm}{2cm}
+
+\usepackage{listings}
+
+\usepackage{appendix}
+%\renewcommand{\appendixname}{Apéndices}
+%\renewcommand{\appendixtocname}{Apéndices}
+%\renewcommand{\appendixpagename}{Apéndices}
+
+\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+%\usepackage{hyperref}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
+
+\newcommand{\titleText}{A single segment network \\ Laboratory Manual}
+
+\title{
+\normalsize In the name of Allah\\
+\vspace{10pt}
+\LARGE\FR{بسم \allah\  الرحمن الرحیم}
+\vspace{10pt}
+\begin{center}
+    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushleft}
+            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
+        \end{flushleft}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \begin{flushright}
+            \includegraphics[height=64pt]{../img/eng-logo.png}
+        \end{flushright}
+    \end{minipage}
+\end{center}
+\vspace*{-64pt}
+%	\horrule{0.5pt} \\[0.4cm]
+\huge \titleText\\
+\vspace{40pt}
+%	\horrule{2pt} \\[0.5cm]
+}
+\author{
+\huge University of Tehran\\
+\LARGE \FR{دانشگاه تهران}\\
+\\
+\LARGE School of Electrical and Computer Engineering\\
+\FR{دانشکده مهندسی برق و کامپیوتر}\\
+\\
+\Large Computer Network Lab\\
+\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+\\
+\\
+\\
+\normalfont
+Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
+\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+\\
+\normalsize
+Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
+\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+\\
+\normalsize \href{mailto:m.borhani@ut.ac.ir}{Muhammad Borhani} - \FR{محمد برهانی}\\
+\normalsize \href{mailto:a.a.khordadi@ut.ac.ir}{Amirahmad Khordadi} - \FR{امیر احمد خردادی}\\
+\normalsize \href{mailto:sina\_kashipazha@ut.ac.ir}{Sina Kashi pazha} - \FR{سینا کاشی پزها}\\
+\normalsize \href{mailto:mashahsavand@ut.ac.ir}{Mohammad Ali Shahsavand} - \FR{محمد علی شاهسوند}
+}
+
+\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+%\pagestyle{fancyplain}
+\fancyhf{}
+\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
+\fancyhead[R]{\footnotesize \titleText}
+\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
+\renewcommand{\footrulewidth}{0.8pt}
+\renewcommand{\headrulewidth}{1pt}            % Remove header underlines
+\renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+
+\begin{document}
+    \selectlanguage{english}
+
+    %\vspace*{-1.5cm}
+    \maketitle
+
+    %\tableofcontents
+
+    \pagebreak
+    %Arabic \AR{\allah}
+    %Persian \FR{فروشگاه}
+    %Arabic \foreignlanguage{arabic}{كحض}
+    %Persian \foreignlanguage{farsi}{فروشگاه}
+
+
+
+    %	يعود تاريخ علوم الحاسوب إلى
+    %\chapter
+    %\section
+    %\subsubsection
+    %\subsection
+    %\section
+    %\chapter
+    %\part
+    %\caption
+    %\end{otherlanguage}
+
+
+    \section*{Network interface exercises}
+    The following exercises use the single segment network topology shown in Fig. 1.3.
+
+    \section{ Exercise 1}
+    Use the \textbf{ifconfig -a} command to display information about the network interfaces on your host.
+    Find the IP address and the net mask of your machine.
+    \subsection*{Report}
+    How many interfaces does the host have?
+    List all the interfaces found, give their names, and explain their functions briefly. \\
+    What are the MTUs of the interfaces on your host? \\
+    Is network subnetted?
+    What is the reasoning for your answer? What the experimental are the reasons for subnetting?
+
+
+    \section{ Exercise 2}
+    While \textbf{tcpdump host} \textit{your-host} is running in one command window, run \textbf{ping 127.0.0.1} from another command window.
+    \subsection*{Report}
+    From the \textbf{ping} output, is the 127.0.0.1 interface on?
+    Can you see any ICMP message sent from your host in the \textbf{tcpdump} output?
+    Why?
+
+
+    \section{ Exercise 3}
+    By using \textbf{netstat -in} command, collect the statistics from all the hosts on the network.
+    Since we use the same login name and password, we can \textbf{telnet} to other workstations and run \textbf{netstat -in} there. \footnote{After you are done with a remote host, you should exit the \textbf{telnet} session before you \textbf{telnet} to another remote host.
+    Recursive \textbf{telnet} will generate unnecessary data in the \textbf{tcpdump} output and cause confusion.} \\
+    Save the \textbf{netstat -in} outputs. \\
+    If you don’t see a significant amount of output packets in the \textbf{netstat} output, the machine was probably restarted recently. You may do this experiment later, or use the following \textbf{sock} command to generate some network traffic: \\
+    \textbf{sock -u -i -n200} \textit{remote-host} \textbf{echo}
+    \subsection*{Report}
+    Calculate the average collision rate over all the hosts for the set of statistics you collected in this exercise.
+
+    \section*{ARP exercises}
+    In the following experiment, we shall examine the host ARP table and the ARP operation, including two interesting cases: proxy ARP and gratuitous ARP. You may need to ask the lab instructor for the MAC addresses of the host and router interfaces, and record these MAC addresses in Table A.1 and Table A.2 in the appendix.
+    You need these MAC addresses for the exercises and lab report.
+
+    \section{ Exercise 4}
+    Use \textbf{arp -a} to see the entire ARP table.
+    Observe that all the IP addresses displayed are on the same subnet. \\
+    If you find that all the remote hosts are in your host’s ARP table, you need to delete a remote host (not your workstation) from the table, using, \\
+    \textbf{arp -d} \textit{remote-host}. \footnote{If you deleted your workstation’s IP address from the ARP table by mistake, you must add the entry back in the table. See the \textbf{arp} manual page to add.
+    Note that, in order for your workstation to reply to the ARP requests, the ARP entry of your workstation must have the \textbf{P} flag in the ARP table.} \\
+    Save the ARP table for your lab report. \\
+    While \textbf{tcpdump -enx -w exe2.out} is running, \textbf{ping} a remote host that has no entry in your host ARP table.
+    Then terminate the \textbf{tcpdump} program. \\
+    Next, run \textbf{wireshark -r exe2.out\&} to load the \textbf{tcpdump} trace file. \\
+    Observe the first few lines of the packet trace to see how ARP is used to resolve an IP address. \\
+    Run \textbf{arp -a} to see a new line added in your host’s ARP table.
+    Save the new ARP table for your lab report. \\
+    Mark the ARP request packet and the ARP reply packet in the \textbf{wireshark} window.
+    Then go to menu \texttt{File/Print \ldots} to print the marked packets for your lab report (See Exercise 6 of Chapter 1). \\
+    \subsection*{Report}
+    From the saved \textbf{tcpdump} output, explain how ARP operates.
+    Draw the format of a captured, ARP request and reply including each field and the value. \\
+    Your report should include the answers for the following questions.
+    \begin{itemize}
+        \item What is the target IP address in the ARP request?
+        \item At the MAC layer, what is the destination Ethernet address of the frame carrying the ARP request?
+        \item What is the \texttt{frame} type field in the Ethernet frame?
+        \item Who sends the ARP reply?
+    \end{itemize}
+
+    \section{ Exercise 5}
+    While \textbf{tcpdump host} \textit{your-host} is running to capture traffic from your machine, execute \textbf{telnet 128.238.66.200}.
+    Note there is no host with this IP address in the current configuration of the lab network. \\
+    Save the \textbf{tcpdump} output of the first few packets for the lab report. \\
+    After getting the necessary output, terminate the \textbf{telnet} session.
+    \subsection*{Report}
+    From the saved \textbf{tcpdump} output, describe how the ARP timeout and retransmission were performed.
+    How many attemps were made to resolve a non-existing IP address?
+
+    \section{ Exercise 6}
+    The network topology for this proxy ARP exercise is shown in Fig. 2.9. We will divide the group into two subnets interconnected by a router. The IP addresses and network masks for the hosts are also given in Fig. 2.9. Change the IP address and network mask of your host accordingly (see Section 2.3.2). The IP addresses and network masks of the \texttt{Router4} interfaces are the same as their default settings.
+    Note that the network mask of the hosts in the 128.238.65.0 network is 255.255.0.0. \\
+    Next we will enable the proxy ARP function on the ethernet1 interface of \texttt{Router4}. \\
+    \begin{enumerate}
+        \item \textbf{telnet} to \texttt{Router4} from \texttt{shakti}: \textbf{telnet 128.238.64.4}.
+        The login password is \texttt{el537}. \footnote{Check with your lab instructor for the password of the router you are using, which may be different from \texttt{el537}.}
+        \item Log in to the router, type \textbf{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter3.} The password is again \texttt{el537}.
+        \item Enter the \textit{Global Configuration} mode by typing \textbf{config term}.
+        \item Then type the following lines:
+        \begin{itemize}
+            \item \textbf{interface ethernet 1}\footnote{The name of the router interfaces may be different for various routers.
+            You can find the names by typing \textbf{write term} in the \textit{Privilege EXEC} mode.}
+            \item \textbf{ip proxy-arp}
+            \item \texttt{Ctrl-Z}
+        \end{itemize}
+        \item Type \textbf{exit} to terminate the \textbf{telnet} session.
+    \end{enumerate}
+    Now \texttt{Router4}’s \texttt{ethernet1} interface can perform proxy ARP for the hosts in the 128.238.64.0 subnet. \\
+    Run \textbf{tcpdump -enx} on all the hosts. \\
+    Then let the hosts in the 128.238.65.0 subnet send UDP datagrams to the hosts in the 128.238.64.0 subnet.
+    For example, on \texttt{guchi} type: \\
+    \textbf{sock -i -u -n1 -w1000} \textit{Host-in-64.0-subnet} \textbf{echo} \\
+    When you are done with all the hosts in the 128.238.64.0 subnet, save the tcpdump output for the lab report. \\
+    Run \textbf{arp -a} to display the new ARP table in your host.
+    Save the ARP table for your lab report. \\
+    After the lab instructor restores the network into a single subnet (see Fig. 1.3), change the IP address and network mask of your host’s interface back to their default values as in Fig. 1.3. \\
+    Exchange your data saved in this exercise with a student working in the other subnet. \\
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/figure2-9.png}
+    \end{figure}
+    \subsection*{Report}
+    Explain the operation of proxy ARP. \\
+    Why can a host in the 128.238.65.0 subnet reach a host in the 128.238.64.0 subnet, even though they have different subnet IDs? \\
+    What are the MAC addresses corresponding to hosts in the 128.238.64.0 subnet, in the ARP table of a host in the 128.238.65.0 subnet? \\
+    Give one advantage and one disadvantage of using proxy ARP.
+
+    \section{ Exercise 7}
+    This exercise will be performed by all the students together.
+    While \textbf{tcpdump -ex -w exe7.out} is running on all the hosts, reboot host \texttt{guchi}. \\
+    After \texttt{guchi} is started, terminate \textbf{tcpdump} and run \textbf{wireshark -r exe7.out \&} to load the \textbf{tcpdump} trace.
+    Print the the gratuitous ARP request for your lab report.
+    \subsection*{Report}
+    What is the purpose of gratuitous ARP? \\
+    List the sender IP address, target IP address, sender MAC address, and target MAC address of the gratuitous ARP you saved.
+
+
+    \section*{Exercise with ICMP and Ping}
+    \section{ Exercise 8}
+    Use \textbf{ping -sv} \textit{remote-host} to test whether the remote host is reachable, while running: \textbf{tcpdump -enx host} \textit{your-host} \textbf{and} \textit{remote-host}.
+    Save the \textbf{tcpdump} and \textbf{ping} output for the future study on \textbf{ping}.
+    \subsection*{Report}
+    What ICMP messages are used by \textbf{ping}?
+
+    \section{ Exercise 9}
+    While running \textbf{tcpdump -x -s 70 host} \textit{your-host} \textbf{and} \textit{remote-host}, execute the following \textbf{sock} command to send a UDP datagram to the remote host: \textbf{sock -i -u -n1 -w1000} \textit{remote-host} \textbf{88888}. \\
+    Save the \textbf{tcpdump} output for the lab report.
+    \subsection*{Report}
+    Study the saved ICMP port unreachable error message (see Fig. 2.7).
+    Why are the first 8 bytes of the original IP datagram payload included in the ICMP message?
+
+    \section{ Exercise 10}
+    While \textbf{tcpdump} is running to capture the ICMP messages, \textbf{ping} a host with IP address 128.238.60.100. Save the \textbf{ping} output.
+    \subsection*{Report}
+    Can you see any traffic sent on the network? Why? Explain what happened from the \textbf{ping} output. \\
+    List the different ICMP messages you captured in Exercises 8, 9, and 10 (if any). Give the values of the type and code fields.
+
+    \section*{Exercises with IP address and subnet mask}
+    In this section, we will observe what happens when the same IP address is assigned to two different hosts.
+    We will also set an incorrect subnet mask for hosts and see what are the consequences.
+    For the next two exercises, we split the current single segment network into two segments, Group A and Group B as shown in Table 2.3, so that they will not interfere with each other.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/table2-3.png}
+    \end{figure}
+    \section{ Exercise 11}
+    Change the IP address of your workstation as shown in Table 2.3. \\
+    Delete the entries for all hosts other than your own workstation from your workstation’s ARP table. \\
+    Run \textbf{tcpdump -enx} on all the hosts.
+    Then, do the following three experiments. \\
+    \begin{enumerate}
+        \item Execute \textbf{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g. \texttt{shakti} –> \texttt{agni} in Group A and \texttt{yachi} –> \texttt{kenchi} in Group B). \\
+        Now, from the other host with the duplicate IP address, execute \textbf{telnet} command to the same host (\texttt{vayu} –> \texttt{agni} or \texttt{fenchi} –> \texttt{kenchi}). \\
+        Observe what happens and save the \textbf{tcpdump} output and the ARP tables in all the hosts in your group.
+        \item Execute \textbf{telnet 128.238.66.100} (or \textbf{128.238.66.104}) from \texttt{agni} (or \texttt{kenchi}).
+        Which host provides the telnet connection?
+        Why?
+        \item Execute \textbf{telnet 128.238.66.100} (or \textbf{128.238.66.104})from \texttt{apah} (or \texttt{guchi}). Which host is connected to \texttt{apah} (or \texttt{guchi})? Why?
+    \end{enumerate}
+    \subsection*{Report}
+    Explain what happened in the first case and why.
+    Answer the questions for the second and third cases.
+
+    \section{Exercise 12}
+    Change the host IP addresses and the subnet masks as shown in Table 2.4. Since we still have two separate segments, Groups A and B can do the exercise independently.
+    Note that two hosts in each group (\texttt{shakti} and \texttt{apah} in Group A, or \texttt{yachi} and \texttt{guchi} in Group B) are assigned an incorrect subnet mask. \\
+    Capture the packets with \textbf{tcpdump -e} for the following cases. \\
+    \begin{enumerate}
+        \item When \texttt{shakti} (\texttt{yachi}) \textbf{ping}s one of the hosts that have the correct subnet mask.
+        \item When \texttt{apah} (\texttt{guchi}) \textbf{ping}s one of the hosts that have the correct subnet mask. \\ Now, copy the output displayed from the \textbf{ping} window in \texttt{apah} (\texttt{guchi}).
+        Share the saved output message with other students.
+        \item When a host with the correct subnet mask \textbf{ping}s \texttt{shakti} (\texttt{yachi}).
+        \item When a host with the correct subnet mask \textbf{ping}s \texttt{apah} (\texttt{guchi}).
+    \end{enumerate}
+    To avoid confusion, only one machine in each group should generate traffic in each case.
+    Clearly, this exercise has to be performed as a team.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.9\textwidth]{img/table2-4.png}
+    \end{figure}
+    \subsection*{Report}
+    Explain what happened in each case according to the \textbf{tcpdump} outputs saved.
+    Explain why \texttt{apah} (or \texttt{guchi} in Group B) could not be reached from other hosts, whereas \texttt{shakti} (or \texttt{yachi} in Group B), which has the same incorrect subnet mask, could communicate with the other hosts.
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
