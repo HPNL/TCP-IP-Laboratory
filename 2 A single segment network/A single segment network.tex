@@ -219,10 +219,10 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
 
 
 \section{Network statistics}
-    By using \textbf{netstat -in} command, collect the statistics from all the hosts on the network.
-    Since we use the same login name and password, we can \textbf{telnet} to other workstations and run \textbf{netstat -in} there. \footnote{After you are done with a remote host, you should exit the \textbf{telnet} session before you \textbf{telnet} to another remote host.
+    By using \textbf{netstat -ie}\footnote{Can use \textbf{ifconfig} instead} command, collect the statistics from all the hosts on the network.
+    Since we use the same login name and password, we can \textbf{telnet} to other workstations and run \textbf{netstat -ie} there. \footnote{After you are done with a remote host, you should exit the \textbf{telnet} session before you \textbf{telnet} to another remote host.
     Recursive \textbf{telnet} will generate unnecessary data in the \textbf{tcpdump} output and cause confusion.} \\
-    Save the \textbf{netstat -in} outputs. \\
+    Save the \textbf{netstat -ie} outputs. \\
     If you don’t see a significant amount of output packets in the \textbf{netstat} output, the machine was probably restarted recently. You may do this experiment later, or use the following \textbf{sock} command to generate some network traffic: \\
     \centerline{\textbf{socket -u -i -n200} \textit{remote-host} \textbf{echo}}
     \subsection*{Report}
