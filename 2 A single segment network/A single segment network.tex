@@ -270,20 +270,27 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
 \section{ARP proxy}
     The network topology for this proxy ARP exercise is shown in Fig. 2.9. We will divide the group into two subnets interconnected by a router. The IP addresses and network masks for the hosts are also given in Fig. 2.9. Change the IP address and network mask of your host accordingly (see Section 2.3.2). The IP addresses and network masks of the \texttt{Router4} interfaces are the same as their default settings.
     Note that the network mask of the hosts in the 128.238.65.0 network is 255.255.0.0. \\
+    Set ip of each network by following command ind \texttt{hosts}:\\
+    \begin{enumerate}
+        \item \texttt{ifconfig eth0 x.x.x.x/mask}
+        \item \texttt{route add default gw x.x.x.x}
+    \end{enumerate}
     Next we will enable the proxy ARP function on the ethernet1 interface of \texttt{Router4}. \\
     \begin{enumerate}
-        \item \textbf{telnet} to \texttt{Router4} from \texttt{shakti}: \textbf{telnet 128.238.64.4}. (\textit{Right click on the Router and open console on GNS3})
-        The login password is \texttt{el537}. \footnote{Check with your lab instructor for the password of the router you are using, which may be different from \texttt{el537}.}
-        \item Log in to the router, type \textbf{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter3.} The password is again \texttt{el537}.
+        \item \textbf{telnet} to \texttt{Router4} \textbf{telnet 128.238.64.4}. (\textit{\# Right click on the Router and open console on GNS3})
+        \item Log in to the router, type \textbf{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter3.}
         \item Enter the \textit{Global Configuration} mode by typing \textbf{config term}.
-        \item Then type the following lines:
+        \item Then type the following lines for each interfaces:
         \begin{itemize}
-            \item \textbf{interface ethernet 1}\footnote{The name of the router interfaces may be different for various routers.
+            \item \textbf{interface f0/0} \textit{\# f0/1 for another}\footnote{The name of the router interfaces may be different for various routers.
             You can find the names by typing \textbf{write term} in the \textit{Privilege EXEC} mode.}
+            \item \textbf{ip addr x.x.x.x 255.255.255.0}
+            \item \textbf{no shut}
             \item \textbf{ip proxy-arp}
             \item \texttt{Ctrl-Z}
+            \item \textbf{wr}
         \end{itemize}
-        \item Type \textbf{exit} to terminate the \textbf{telnet} session.
+        % \item Type \textbf{exit} to terminate the \textbf{telnet} session.
     \end{enumerate}
     Now \texttt{Router4}’s \texttt{ethernet1} interface can perform proxy ARP for the hosts in the 128.238.64.0 subnet. \\
     Run \textbf{tcpdump -enx} on all the hosts. \\
@@ -308,7 +315,7 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
 \section{ARP reboot timeout}
     While \textbf{tcpdump -ex -w exe7.out} (or run \textbf{wireshark}) is running on all the hosts, reboot host \texttt{guchi}. \\
     After \texttt{guchi} is started, terminate \textbf{tcpdump} and run \textbf{wireshark -r exe7.out \&} to load the \textbf{tcpdump} trace.
-    Print the the gratuitous ARP request for your lab report.
+    Print the gratuitous ARP request for your lab report.
     \subsection*{Report}
     What is the purpose of gratuitous ARP? \\
     List the sender IP address, target IP address, sender MAC address, and target MAC address of the gratuitous ARP you saved.
