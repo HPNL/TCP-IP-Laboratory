@@ -242,7 +242,7 @@ Launch GNS3 and make a network as below. You can use "\textbf{ifconfig \texttt{e
 
     %\pagebreak
     \section{Packet capturing}
-    In this exercise, we will use \textbf{tcpdump} to capture a packet containing the link, IP, and TCP headers and use ethereal to analyze this packet. \\
+    In this exercise, we will use \textbf{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \textbf{wireshark} to analyze this packet. \\
     First, run \textbf{tcpdump -enx -w} \texttt{dump.out} in \texttt{h1}.
     You will not see any \textbf{tcpdump} output, since the \textbf{-w} option is used to write the output to the \texttt{dump.out} file. \\
     Then, you may want to run \textbf{telnet} \texttt{10.0.0.2} to generate some TCP traffic.\footnote{Remember to run \textbf{\texttt{/etc/init.d/xinetd} restart} in \texttt{h2} to start telnet server on it.}
