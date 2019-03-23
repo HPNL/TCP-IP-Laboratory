@@ -1,0 +1,36 @@
+Thu May 27 17:18:11 PDT 2010
+
+- A 64-bit type conversion that caused certain gcc versions to abort
+  the build has been fixed in write.c.  Thanks to Phil Howard for
+  pointing this out.
+
+- Version bumped to 0.3.2.
+
+Thu Jun 19 14:26:19 PDT 2008
+
+- Added RPM spec file by San Dodd.
+
+- Added README.solaris8 which points out ways to get sock to build
+  on that platform.
+
+- Version bumped to 0.3.1.
+
+Thu Sep  6 12:08:28 PDT 2007
+
+- Minor clarification to err_quit() calls in void buffers(int sockfd),
+  to indicate that the program has in fact encountered an error.
+
+Tue Mar 20 10:38:13 PDT 2007
+
+- Fixed build on recent GCCs by moving the declaration of sigio_func
+  in sockopts.c to the beginning of the file.
+
+- Fixed build to work on FreeBSD and OpenBSD.
+
+- Fixed indentation to consistently use tabs again, added indentation
+  string at head of files.
+
+- Fixed pointer signedness warnings in sockopts.c.
+
+- Removed temporary files, fixed build configuration setup to pass
+  make distcheck.
