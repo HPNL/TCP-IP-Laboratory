@@ -136,38 +136,52 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
     %\end{otherlanguage}
 
 
-    \section*{Exercises on Cisco IOS}
-    The students in the lab should divide themselves into four groups for the first four exercises. Each group uses two workstations, a bridge, and two hubs, which are required to be connected as shown in Fig. 3.7, Table 3.2 and Table 3.3.
+\section*{Exercises on Cisco IOS}
+    Each group in the lab uses two workstations, a bridge, and two hubs, which are required to be connected as shown in Fig. 3.7, Table 3.2 and Table 3.3.
 
-    \section{ Exercise 1}
+\section{Network setup}
     In this exercise we build the connection to the router. \\
     Identify the cable from your workstation and the cable from your router interface (see Fig. 3.7, Table 3.2 and Table 3.3).
     Plug these two cables into your hub.
     In this case, you have built a LAN segment with a \textit{star} topology.
     Your partner should build a star LAN segment on the other side of the router. \\
-    \begin{figure}[H]
+    \begin{table}[H]
+        \caption{Router and Host IP addresses for Fig. 3.7}
+        \vspace{5pt}
         \centering
-        \includegraphics[width=0.9\textwidth]{img/table3-2.png}
-    \end{figure}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.9\textwidth]{img/table3-3.png}
-    \end{figure}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.9\textwidth]{img/figure3-7.png}
-    \end{figure}
-    After running \textbf{tcpdump -enx} on both workstations, turn on the router. Capture the
-    gratuitous ARP sent by the router. \\
-    Change the IP address of your workstation to be in the same subnet as the router.
-    You can choose any valid host id for your host. \\
-    \textbf{ping} the router interface to test the connection to the router.
-    \subsection*{Report}
-    Submit the gratuitous ARP sent by the router. What is the default IP address of the router interface? \\
+        \large
+        \begin{tabular}{ *7l }
+            \hline \hline
+                & \multicolumn{2}{c}{Router} & \multicolumn{2}{c}{HOST\_A} & \multicolumn{2}{c}{HOST\_B} \\
+            & eth0 & eth1 & Name & Ip Address & Name & IP Address \\
+            \hline 
+            1 & 128.238.61.1/24 & 128.238.61.2/24 & h0(shakti) & 128.238.66.100/24 & h1 (vayu) & 128.238.66.101/24 \\
+            2 & 128.238.62.2/24 & 128.238.62.3/24 & h2(agni) & 128.238.66.102/24 & h3 (apah) & 128.238.66.103/24 \\
+            3 & 128.238.63.3/24 & 128.238.63.4/24 & h4(yachi) & 128.238.66.104/24 & h5 (fenchi) & 128.238.66.105/24 \\
+            4 & 128.238.64.4/24 & 128.238.64.5/24 & h6(kenchi) & 128.238.66.106/24 & h7 (guchi) & 128.238.66.107/24 \\
+            \hline \hline
+            \end{tabular}
+    \end{table}
 
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[font=\sf]
+            \node[draw] (h1) at (-2,-2){HOST\_A};
+            \node[draw,circle] (hub2) at (-2,0){Hub 2};
+            \node[draw,circle] (router) at (0,0){\shortstack{Router\\as\\Brdige}};
+            \node[draw,circle] (hub1) at (2,0){Hub 1};
+            \node[draw] (h0) at (2,-2){HOST\_B};
+        
+            \draw[thick] (h0) -- (hub1);
+            \draw[thick] (h1) -- (hub2);
+            \draw[thick] (hub1) -- (router);
+            \draw[thick] (hub2) -- (router);
+        \end{tikzpicture}
+        \caption{\textbf{Figure 3.7.} Using a transparent bridge.}        
+    \end{figure}
 
-    \section{ Exercise 2}
-    Telnet to your router. When prompted for a login password, type \texttt{el537}.
+\section{IOS Console}
+    Open Router Console (Use telnet tow router in physical devices).
     You should now be in the \textit{User EXEC} mode. \\
     Type \textbf{help} to learn how to use the online help.
     Study Fig. 3.6. Navigate through the \textit{User EXEC}, \textit{Privileged EXEC}, \textit{Global Configuration}, and \textit{Interface Configuration} modes. In each mode, type \textbf{?} to display a list of available commands and study these commands. \\
@@ -178,7 +192,7 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
     Submit the Cisco IOS banner you saved.
     Identify the release of the Cisco IOS software in the router.
 
-    \section*{A simple bridge experiment}
+\section*{A simple bridge experiment}
     Figure 3.7 shows a simple case of the use of bridges, which consists of two network segments connected by a bridge.
     With this simple topology, we can easily capture initial BPDUs before each bridge is engaged in the spanning tree calculation. \\
     Configure transparent bridging as in Fig.
@@ -188,9 +202,24 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
     You need to again change the IP address of your workstation to be in the same subnet as the bridge interface. See Section 3.3.3.} as well as set the bridge group and enable the spanning tree algorithm (see the previous section on bridge configuration).
     Do the following experiments.
 
-    \section{ Exercise 3}
+\section{Bridge packet}
     Configure the IP addresses of your workstation and the bridge interfaces as shown in Fig. 3.7, Table 3.2 and Table 3.3.
     To avoid confusion, each bridge should be configured by only one person. \\
+    Config Cisco Router as transparent Bridge:
+    \begin{enumerate}
+        \item \texttt{config term}
+        \item \texttt{no ip routing}
+        \item \texttt{bridge 1 protocol ieee} \textit{for STP protocol}
+        \item \texttt{int f0/0}
+        \item \texttt{ip addr 128.238.61.1 255.255.255.0}
+        \item \texttt{bridge-group 1}
+        \item \texttt{no shut}
+        \item \texttt{int f0/1}
+        \item \texttt{ip addr 128.238.61.2 255.255.255.0}
+        \item \texttt{bridge-group 1}
+        \item \texttt{no shut}
+        \item \texttt{Ctrl+Z}
+    \end{enumerate}
     Run \textbf{tcpdump -en ip proto 1} on your machine, and your partner’s machine. Send \textbf{ping} messages to your partner’s machine: \textbf{ping -sv} \textit{remote-machine}.
     After receiving the tenth echo reply, quit the \textbf{ping} process, and save the \textbf{tcpdump} outputs from both machines. \\
     During this exercise, don’t run \textbf{ping} programs at the same time. For clean results, do your experiments in turn.
@@ -203,32 +232,33 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
     Show all the steps and submit the \textbf{tcpdump} outputs with your report.
 
 
-    \section{ Exercise 4}
+    \section{STP->BPDU packet}
     Run \textbf{tcpdump -e -c 5 ether multicast} on your workstation to capture 5 BPDUs messages generated by the bridge.
     Save the BPDUs for the lab report. \\
     You need to collect all the different BPDUs from other students in your lab.
-    At this time, however, just save your BPDU in the \texttt{guest} home directory (which is \texttt{/home/guest/})as \textit{“name of your host.ex4”} since there is no network connections to hosts in the other groups.
-    In our next exercise, after we put all the workstations in one network as shown in Fig. 3.8, you can collect BPDUs from other workstations using \textbf{ftp}. \\
-    You should collect eight different BPDUs in this exercise.
+    At this time, save your BPDU capture output. 
+    In our next step,  you get BPDUs from other gropu. \\
+    You should collect eight different BPDUs in this exercise for all group.
     These BPDUs will be helpful when studying the spanning tree algorithm later in this chapter.
 
     \subsection*{Report}
     How frequently (in seconds) does a bridge sends its BPDUs? \\
     Submit the eight different BPDUs you saved.
-    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may ask the lab instructor for the physical addresses of network interfaces, and record them in Table A.1 and Table A.2. You need the MAC addresses to help analyze the BPDUs.}.
+    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may check the physical addresses of network interfaces. You need the MAC addresses to help analyze the BPDUs.}.
 
-    \section*{Spanning tree exercises}
+\section*{Spanning tree exercises}
     In this section, we will use Fig. 3.8 as our network topology.
-    You need to change the IP addresses of the bridge interfaces, as well as that of your workstation. Refer to Section 3.3.4 on how to configure a transparent bridge.
+    You need to change the IP addresses of the bridge interfaces, as well as that of your workstation. Refer to Section      on how to configure a transparent bridge.
     Also see Section 3.3.3 on how to handle a frozen telnet session after you change the bridge IP address. \\
     Upon being started, a transparent bridge learns the network topology by analyzing source addresses of incoming frames from all attached networks.
     The next exercise shows the process by which a transparent bridge builds its filtering database.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/figure3-8.png}
+        \caption{\textbf{Figure 3.8.} Bridge experiment network.}
     \end{figure}
 
-    \section{ Exercise 5}
+\section{Multi bridge path}
     After configuring the network in Fig. 3.8, login to the bridge. \\
     Get to the \textit{Privileged EXEC} mode. Type \textbf{show bridge} to see the entries in the bridge forwarding database. \\
     Whenever you \textbf{ping} or \textbf{telnet} from your workstation to a host that is not in the table, observe how the filtering database in the bridge is expanded. \\
@@ -236,7 +266,7 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
     \subsection*{Report}
     From the output of \textbf{show bridge}, identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.
 
-    \section{ Exercise 6}
+\section{STP process}
     Using \textbf{tcpdump -ex ether multicast}, capture the BPDU packet flowing on your network segment. \\
     \textbf{Telnet} to the hosts in the other three LAN segments and execute the above \textbf{tcpdump} command in the \textbf{telnet} window to collect BPDUs sent there. \\
     Login to each bridge to collect the \textbf{show bridge} outputs.
@@ -249,9 +279,10 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
     Don’t just assume that \texttt{Bridge1} has the highest priority for the root bridge.
     Draw the spanning tree based upon your data (eight initial BPDUs). \\
     Write the final BPDUs you collected using the three-tuple format: \textit{{root ID, root path cost, bridge ID}}. \\
-    Once you have the spanning tree, justify it using the four final BPDUs collected in this exercise and/or the output of the \textbf{show bridge} command. \\
-    \section{ Exercise 7}
-    This exercise is performed by all the students together.
+    Once you have the spanning tree, justify it using the four final BPDUs collected in this exercise and/or the output of the \textbf{show bridge} command.
+
+
+\section{STP over topology dynamics}
     First, send \textbf{ping} messages from \texttt{apah} to \texttt{yachi}, while \textbf{tcpdump} is running.
     Let the two programs run during this exercise. \\
     Then, disconnect the cable from the \texttt{ethernet0} port of \texttt{Bridge2} from the hub, and type the \textbf{time} command on \texttt{apah} or \texttt{yachi} to get the current time. \\
@@ -261,10 +292,19 @@ Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
     \subsection*{Report}
     Draw the new tree formed after the cable was disconnected, based on the BPDUs you collected in this exercise. Specify the state of each bridge port.
 
-
     \section*{Exercise on the Cisco IOS web browser UI}
-    \section{ Exercise 8}
-    You can also configure a router using the web browser UI. To enable the web server, login to the router and execute \textbf{ip http server} in the \textit{Global Configuration} mode. \\
+\section{Cisco IOS HTTP rest API}
+    You can also configure a router using the web browser UI. To enable the web server, login to the router and config as below  in the \textit{Global Configuration} mode. \\
+    \begin{verbatim}
+        R1(config)#aaa new-model
+        R1(config)#aaa authentication login default local
+        R1(config)#aaa authorization exec default local
+        R1(config)#username test secret test
+        R1(config)#username netlab privilege 15 password netlab
+        R1(config)#ip http server
+        R1(config)#ip http secure-server
+        R1(config)#ip http authentication local
+    \end{verbatim}
     Next, start a web browser (e.g., \texttt{Mozilla} in Linux, or \texttt{Hotjava} in Solaris) in your host, and enter the IP address of the router interface. When prompted, enter \texttt{el537} for password, and leave the \texttt{User Name} field blank. Then you can browse the router configuration web pages and configure the router there.
 
 \end{document}
