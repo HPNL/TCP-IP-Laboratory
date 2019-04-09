@@ -54,14 +54,13 @@ fgcolor=#ffffff' \
 \n\
 cd\n\
 export SHELL=/bin/bash\n\
-start-firefox &\n\
+\x23start-firefox &\n\
 jwm' \
         > /etc/init.sh && chmod +x /etc/init.sh
 
-VOLUME [ "/root" ]
-CMD [ "/etc/init.sh" ]
-
+# Disable root check for vlc
 RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
 
 WORKDIR /root/
-
+VOLUME [ "/root" ]
+CMD [ "/etc/init.sh" ]

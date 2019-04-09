@@ -6,6 +6,6 @@ service tftp
     wait            = yes
     user            = nobody
     server          = /usr/sbin/in.tftpd
-    server_args     = /tftpboot
+    server_args     = /home/netlab
     disable         = no
 }

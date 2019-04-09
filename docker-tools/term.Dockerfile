@@ -31,24 +31,24 @@ RUN set -ex \
         sudo bash-completion isc-dhcp-client telnetd telnet tcpdump ftp openssh-client wget iputils-ping netcat screen  xinetd less man-db arping iproute openssh-server ftp vsftpd nano vim iptables ntp ntpdate tftpd tftp rdate isc-dhcp-server \
     && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb
 
-VOLUME [ "/root" ]
-CMD [ "sh", "-c", "cd; exec bash -i" ]
-
-#WORKDIR /root/
-
-# enable xinetd service
-RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && sed -i 's/= yes/= no/g' /etc/xinetd.d/echo
-
 # add netlab user
-RUN useradd -m netlab -s /bin/bash && adduser netlab sudo && echo "netlab:netlab" | chpasswd netlab && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN useradd -m netlab -s /bin/bash && \
+    adduser netlab sudo && echo "netlab:netlab" | chpasswd netlab && \
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-# CMD /bin/bash
+# enable xinetd and vsftp service
+RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
+    sed -i 's/= yes/= no/g' /etc/xinetd.d/echo && \
+    su netlab -c 'cd; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 50M larg.dum'
+
 # config system
-COPY telnet tftp /etc/xinetd.d/
+COPY telnet tftp vsftp /etc/xinetd.d/
 COPY bashrc /root/.bashrc
+COPY bashrc /home/netlab/.bashrc
 
 # copy program file
 COPY netspy netspyd netspydd TCPserver UDPclient UDPserver TCPclient socket /usr/local/bin/
 
-#CMD sudo service xinetd start && /bin/bash
-ENTRYPOINT echo Salam && sudo service xinetd start &>/dev/null && sudo dhclient eth0 & /bin/bash -i
+# start service and bash
+VOLUME [ "/root" ]
+CMD [ "sh", "-c", "echo Salam; service xinetd start; cd; exec bash -i" ]
