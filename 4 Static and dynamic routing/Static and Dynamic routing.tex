@@ -90,6 +90,8 @@
 \renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
 \setlength{\headheight}{13.6pt}
 
+\usepackage{tikz}
+\usetikzlibrary{calc}
 
 \begin{document}
     \selectlanguage{english}
@@ -100,30 +102,58 @@
 
     \pagebreak
 
-    \section*{A Simple Router Experiment}
+\section*{A Simple Router Experiment}
     As in the previous lab, we will divide the students into four groups, each with two workstations, a router, and two hubs, which are to be connected as shown in Figure 4.10.
     The IP addresses of the routers and hosts are given in Table 4.2 and Table 4.3, respectively.
+    \begin{table}[H]
+        \caption{\textbf{Table 4.2 and 4.3} Router and Host IP addresses for Fig. 4.10}
+        \vspace{5pt}
+        \centering
+        \large
+        \begin{tabular}{ *7l }
+            \hline \hline
+                & \multicolumn{2}{c}{Router} & \multicolumn{2}{c}{HOST\_A} & \multicolumn{2}{c}{HOST\_B} \\
+            & eth0 & eth1 & Name & Ip Address & Name & IP Address \\
+            \hline 
+            1 & 128.238.61.1/24 & 128.238.62.1/24 & h0(shakti) & 128.238.61.101/24 & h1(vayu) & 128.238.62.101/24 \\
+            2 & 128.238.62.2/24 & 128.238.63.2/24 & h2(agni) & 128.238.62.102/24 & h3(apah) & 128.238.63.102/24 \\
+            3 & 128.238.63.3/24 & 128.238.64.3/24 & h4(yachi) & 128.238.63.103/24 & h5(fenchi) & 128.238.64.103/24 \\
+            4 & 128.238.64.4/24 & 128.238.65.4/24 & h6(kenchi) & 128.238.64.104/24 & h7(guchi) & 128.238.65.104/24 \\
+            \hline \hline
+            \end{tabular}
+    \end{table}
+
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth]{img/table4-2.png}
-    \end{figure}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.9\textwidth]{img/table4-3.png}
-    \end{figure}
-    \begin{figure}[H]
-        \centering
-        \includegraphics[width=0.9\textwidth]{img/figure4-10.png}
+        \begin{tikzpicture}[font=\sf]
+            \node[draw] (h1) at (-2,-2){HOST\_A};
+            \node[draw,circle] (hub2) at (-2,0){Switch 2};
+            \node[draw,rounded corners] (router) at (0,0){\shortstack{Router as\\Brdige}};
+            \node[draw,circle] (hub1) at (2,0){Switch 1};
+            \node[draw] (h0) at (2,-2){HOST\_B};
+        
+            \draw[thick] (h0) -- (hub1);
+            \draw[thick] (h1) -- (hub2);
+            \draw[thick] (hub1) -- (router);
+            \draw[thick] (hub2) -- (router);
+        \end{tikzpicture}
+        \caption{\textbf{Figure 3.7.} Using a transparent bridge.}        
     \end{figure}
 
-    \section{Exercise 1}
-    Configure the IP addresses of your workstations and the router as shown in Figure 4.10, Table 4.2 and Table 4.3. \\
+\section{Simple Routing}
+    Configure the IP addresses of your workstations and the router as shown in Figure 4.10, Table 4.2 and Table 4.3 (select one of row in table). \\
     Initially your host’s routing table has no entry for the subnet on the other side of the router.
     In order to be connected, you need to add a routing entry for the other subnet in the routing table of your workstation (see section 4.3.1). \\
-    Run \textbf{tcpdump -en} on your machine, and \textbf{tcpdump -en} on your partner’s machine in the other subnet simultaneously: \\
-    \textbf{tcpdump -en host} \textit{remote-host} and \textit{your-machine} \\
-    Send \textbf{ping} messages continuously to your partner’s machine: \\
-    \textbf{ping -sv} \textit{remote-host} \\
+    \, \textit{like: }\texttt{ip route add 192.168.1.0/24 dev eth0} \textit{or} \texttt{ip route add 192.168.1.0/24 via 192.168.1.1} \\
+    \, \textit{like: } \texttt{route add -net 192.168.1.0/24 dev eth0} \textit{or} \texttt{route add -net 192.168.1.0/24 gw 192.168.1.1 dev eth0}\\
+    Run \textbf{tcpdump -en} on your machine, and \textbf{tcpdump -en} on your partner’s machine in the other subnet simultaneously:
+    \begin{itemize}
+        \item [\#] \textbf{tcpdump -en host} \textit{remote-host} and \textit{your-machine}
+    \end{itemize}
+    Send \textbf{ping} messages continuously to other machine:
+    \begin{itemize}
+        \item [\#] \textbf{ping -sv} \textit{remote-host}
+    \end{itemize}
     After receiving the tenth echo reply, quit \textbf{ping} and save the \textbf{tcpdump} outputs from both machines.
     Also, copy the \textbf{ping} output. \\
     During this exercise, don’t run the \textbf{ping} program at the same time.
@@ -144,22 +174,27 @@
     \end{itemize}
 
 
-
-    \section*{RIP exercises}
-    In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode. \\
-    \texttt{Router(config)\#} \textbf{router rip} \\
-    \texttt{Router(config)\#} \textbf{network} \textit{network-number}, \\
-    where \textit{network-number} could be 128.238.0.0. To remove the network, use: \\
-    \texttt{Router(config)\#} \textbf{no network} \textit{network-number}, \\
-    To shutdown the RIP process, use: \\
-    \texttt{Router(config)\#} \textbf{no router rip} \\
+\section*{RIP exercises}
+    In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode.
+    \begin{itemize}
+        \item \texttt{Router(config)\#} \textbf{router rip}
+        \item \texttt{Router(config)\#} \textbf{network} \textit{network-number}
+    \end{itemize}
+    where \textit{network-number} could be 128.238.0.0. To remove the network, use:
+    \begin{itemize}
+        \item \texttt{Router(config)\#} \textbf{no network} \textit{network-number},
+    \end{itemize}
+    To shutdown the RIP process, use:
+    \begin{itemize}
+        \item \texttt{Router(config)\#} \textbf{no router rip}
+    \end{itemize}
     Consider Figure 4.11 as our network topology for this section.
     Since the IP address of ethernet1 in router4 is the only interface which is different from the initial configuration in Appendix B, we will reboot all the four routers to restore their default configurations, and change the IP address on the ethernet1 in router4 only. Since our workstations started \textbf{routed} at boot-up time, no further action is needed to run RIP on the workstations. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/figure4-11.png}
     \end{figure}
-    \section{Exercise 2}
+\section{RIP messages}
     Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in Figure 4.11.
     Also, make sure that your workstation has no other routing entries than your own subnet and your loopback interface.
     For how to remove an entry from the host routing table, see Section 4.3. \\
@@ -167,10 +202,9 @@
     To avoid confusion, each router should be configured by only one person. \\
     After starting RIP in all the routers, test connections to other hosts by pinging them.
     Once you can successfully reach all the hosts, run the following command to capture the RIP messages sent on your subnet: \\
-    \textbf{tcpdump -x -s 100 -c 4 -w exe2.out udp port 520} \\
-    Save the routing table in your workstation.
+    \textbf{tcpdump -x -s 100 -c 4 udp port 520} or run \textbf{wireshark} on link \\
+    Save the routing table in your workstation (\texttt{sh ip route}).
     Note the number of hops needed to reach destinations other than in your own subnet. \\
-    Run \textbf{wireshark exe2.out \&} to load the packet trace recorded by the above \textbf{tcpdump} command.
     Mark and print two different RIP messages captured in your subnet (see Exercise 6 of Chapter 1).
     Exchange the printed RIP messages with students in other groups.
     You need eight different RIP messages for your lab report.
@@ -190,14 +224,13 @@
     \end{itemize}
 
 
-
-    \section{Exercise 3}
+\section{RIP recover on link failure}
     In this exercise we will examine how RIP responds to link failures.
     Send \textbf{ping} message continuously from \texttt{apah} to \texttt{yachi} and start \textbf{tcpdump} on \texttt{apah}.
     Let the two programs run during this exercise. \\
-    Disconnect the cable from the \texttt{ethernet0} port of \texttt{router2} from the hub in the 128.238.62.0 subnet, and type the \textbf{time} command to get the current time. \\
+    Disconnect the cable from the \texttt{ethernet0} port of \texttt{router2} from the hub in the 128.238.62.0 subnet (you can use \texttt{shut} for interface in the router interface configuration state), and type the \textbf{date} command to get the current time. \\
     Observe the \textbf{ping} and \textbf{tcpdump} windows.
-    When the connection is re-established, type the \textbf{time}  command again.
+    When the connection is re-established, type the \textbf{date}  command again.
     See how much time RIP takes to alter the routing table in your workstation to the new topology. \\
     Once you can successfully reach other hosts, connect the cable to the original position.
     Again, measure the time that RIP takes to change your routing table.
@@ -210,8 +243,8 @@
     \end{itemize}
 
 
-    \section*{Routing experiments with ICMP}
-    \section{Exercise 4}
+\section*{Routing experiments with ICMP}
+\section{ICMP redirect}
     Eliminate the routing entries for subnets other than your own and the loopback interface.
     Save the routing table for your lab report. \\
     Create a default routing entry using one of the routers directly connected to your workstation. \\
@@ -227,7 +260,7 @@
     \end{itemize}
 
 
-    \section*{OSPF exercise}
+\section*{OSPF exercise}
     In order to enable OSPF in the routers, you need to create an OSPF routing process first.
     Then, define the range of IP addresses to be associated with the routing process and assign area IDs for these IP addresses, using the following commands: \\
     \texttt{Router(config)\#} \textbf{router ospf} \textit{process-id}, \\
@@ -249,7 +282,7 @@
         \includegraphics[width=0.9\textwidth]{img/figure4-13.png}
     \end{figure}
 
-    \section{Exercise 5}
+\section{OSPF messages}
     After connecting the cables properly, change the host IP addresses as given in Figure 4.13 You need to remove the default route added in Exercise 4 from the host routing table.
     Note that the router interfaces are set as Fig. 4.13 by default. \\
     Run the following command to capture any OSPF packets: \\
@@ -278,18 +311,16 @@
         \item Submit the routing tables you collected from the routers.
     \end{itemize}
 
-    \section*{Static routing experiment}
+\section*{Static routing experiment}
     In this experiment, we reuse the network as shown in Figure 4.13.
-
-    \section{Exercise 6}
+\section{Static routing}
     After checking the wiring, as shown in Figure 4.13, reboot the routers to restore their initial settings.
     Check the IP addresses of the workstations as shown in Figure 4.13. \\
     Remove all the routing entries other than your own subnet and the loopback interface from your host routing table.
     Save the output of \textbf{netstat -rn} before building your workstation’s routing table. \\
     Examine Figure 4.13 and build your host’s static routing table manually. \\
-    \textbf{Telnet} to a router that is directly connected to your workstation, and save its routing table before building any route.
+    Open console of the routers and save its routing table before building any route.
     Save the routing table of the other router if you have one more router connected directly.
-    You may not be able to \textbf{telnet} to a router that is not directly connected.
     In this case, copy the initial routing table of these routers from students in other subnets later. \\
     Now configure the routing table in each router.
     See Section 4.3 for commands and syntax on manipulating router routing tables.
@@ -301,10 +332,8 @@
     Submit the routing tables saved in this exercise.
 
 
-    \section*{Traceroute experiment}
-    In this exercise, we use the same network and configuration of the previous exercises, and use \textbf{traceroute} to find a multi-hop path.
-
-    \section{Exercise 7}
+\section*{Traceroute experiment}
+\section{Traceroute multi-hup path}
     Execute \textbf{tcpdump -enx -s 100 host} \textit{your-host} \textbf{and} \textit{remote-host} on your host, where \textit{remote-host} is a workstation at least two hops away. \\
     Then, execute \textbf{traceroute} \textit{remote-host} to find the route from your host to the remote host. \\
     Save the output of both \textbf{traceroute} and \textbf{tcpdump}.
