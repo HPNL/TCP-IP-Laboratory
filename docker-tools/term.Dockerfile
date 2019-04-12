@@ -27,8 +27,10 @@ RUN set -ex \
 # install remaining tools
 #
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-        net-tools tcpdump telnet traceroute curl iperf3 knot-host openssh-client mtr-tiny socat nano vim-tiny \
-        sudo bash-completion isc-dhcp-client telnetd telnet tcpdump ftp openssh-client wget iputils-ping netcat screen  xinetd less man-db arping iproute openssh-server ftp vsftpd nano vim iptables ntp ntpdate tftpd tftp rdate isc-dhcp-server \
+        sudo bash-completion screen less man-db  curl wget socat knot-host mtr-tiny nano vim-tiny \
+        net-tools iperf3 traceroute tcpdump isc-dhcp-client isc-dhcp-server icmpush iputils-ping \
+        netcat arping iproute openssh-client openssh-server iptables \
+        xinetd telnetd telnet ftp vsftpd tftpd tftp rdate snmp snmpd ntp ntpdate \
     && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb
 
 # add netlab user
