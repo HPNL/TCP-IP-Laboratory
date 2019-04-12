@@ -262,14 +262,16 @@
 
 \section*{OSPF exercise}
     In order to enable OSPF in the routers, you need to create an OSPF routing process first.
-    Then, define the range of IP addresses to be associated with the routing process and assign area IDs for these IP addresses, using the following commands: \\
-    \texttt{Router(config)\#} \textbf{router ospf} \textit{process-id}, \\
-    \texttt{Router(config)\#} \textbf{network} \textit{address wildcard-mask} \textbf{area} \textit{area-id} \\
+    Then, define the range of IP addresses to be associated with the routing process and assign area IDs for these IP addresses, using the following commands:
+    \begin{itemize}
+        \item [] \texttt{Router(config)\#} \textbf{router ospf} \textit{process-id},
+        \item [] \texttt{Router(config)\#} \textbf{network} \textit{address wildcard-mask} \textbf{area} \textit{area-id}
+    \end{itemize}
     \textit{Process-id} is a numeric value local to the router.
-    It does not have to match \textit{process-id}s on other routers.
-    \textit{address} is the network address of the interface on which the OSPF process runs (128.238.0.0 in our case).
+    It does not have to match \textit{process-id}s on other routers.\\
+    \textit{address} is the network address of the interface on which the OSPF process runs (128.238.0.0 in our case).\\
     \textit{wildcard-mask} helps reduce the number of configuration commands.
-    0 is a match and 1 is a “don’t care” bit (0.0.255.255 in our case).
+    0 is a match and 1 is a “don’t care” bit (0.0.255.255 in our case).\\
     \textit{area-id} is the number of the area that the interfaces belong to (see Figure 4.7).
     It can be any integer between 0 and $2^{32} - 1$ or can have an IP address form.
     Note that 0 is reserved for the backbone. \\
@@ -289,8 +291,8 @@
     \textbf{tcpdump -x -s 120 ip proto 89} \\
     Login to a directly connected router and start the OSPF process.
     Set the argument \textit{area-id} to 1 for all the routers. \\
-    The workstations in our lab run \textbf{routed} (which uses RIP).
-    The routing daemon supporting OSPF, \textbf{gated}, is not installed.
+    % The workstations in our lab run \textbf{routed} (which uses RIP).
+    % The routing daemon supporting OSPF, \textbf{gated}, is not installed.
     In order to reach the routers and hosts in the other subnets, you need to add a default router in your host’s routing table. \\
     Examine the routing table in each router (see Section 4.3).
     When the routing table gets an entry for the network that is not directly connected, kill the \textbf{tcpdump} process and save the \textbf{tcpdump} output. \\
@@ -325,6 +327,9 @@
     Now configure the routing table in each router.
     See Section 4.3 for commands and syntax on manipulating router routing tables.
     Note that each router should be configured by one person only. \\
+    \begin{itemize}
+        \item \textbf{ip route} \textit{}
+    \end{itemize}
     Use \textbf{ping} to test the connections.
     When you can reach all other subnets successfully,\footnote{Even when the routing table in your workstation and all the routers are configured perfectly, you may not be able to \textbf{ping} a remote host, if the routing table in the remote host is incorrect.
     When you can get \textbf{ping} reply messages from all the interfaces of the routers successfully, your work is done for this exercise.} save the routing tables in your workstation and all the routers for the lab report.
