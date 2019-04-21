@@ -71,7 +71,6 @@
     \normalsize \href{mailto:m.borhani@ut.ac.ir}{Muhammad Borhani} - \FR{محمد برهانی}\\
 	\normalsize \href{mailto:a.a.khordadi@ut.ac.ir}{Amirahmad Khordadi} - \FR{امیر احمد خردادی}\\
 	\normalsize \href{mailto:sina\_kashipazha@ut.ac.ir}{Sina Kashi pazha} - \FR{سینا کاشی پزها}\\
-	\normalsize \href{mailto:mashahsavand@ut.ac.ir}{Mohammad Ali Shahsavand} - \FR{محمد علی شاهسوند}
 }
 
 \date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
@@ -112,13 +111,13 @@
         \large
         \begin{tabular}{ *7l }
             \hline \hline
-                & \multicolumn{2}{c}{Router} & \multicolumn{2}{c}{HOST\_A} & \multicolumn{2}{c}{HOST\_B} \\
-            & eth0 & eth1 & Name & Ip Address & Name & IP Address \\
+            \multicolumn{2}{c}{Router} & \multicolumn{2}{c}{HOST\_A} & \multicolumn{2}{c}{HOST\_B} \\
+            eth0 & eth1 & Name & Ip Address & Name & IP Address \\
             \hline 
-            1 & 128.238.61.1/24 & 128.238.62.1/24 & h0(shakti) & 128.238.61.101/24 & h1(vayu) & 128.238.62.101/24 \\
-            2 & 128.238.62.2/24 & 128.238.63.2/24 & h2(agni) & 128.238.62.102/24 & h3(apah) & 128.238.63.102/24 \\
-            3 & 128.238.63.3/24 & 128.238.64.3/24 & h4(yachi) & 128.238.63.103/24 & h5(fenchi) & 128.238.64.103/24 \\
-            4 & 128.238.64.4/24 & 128.238.65.4/24 & h6(kenchi) & 128.238.64.104/24 & h7(guchi) & 128.238.65.104/24 \\
+            128.238.61.1/24 & 128.238.62.1/24 & h0(shakti) & 128.238.61.101/24 & h1(vayu) & 128.238.62.101/24 \\
+            % 2 & 128.238.62.2/24 & 128.238.63.2/24 & h2(agni) & 128.238.62.102/24 & h3(apah) & 128.238.63.102/24 \\
+            % 3 & 128.238.63.3/24 & 128.238.64.3/24 & h4(yachi) & 128.238.63.103/24 & h5(fenchi) & 128.238.64.103/24 \\
+            % 4 & 128.238.64.4/24 & 128.238.65.4/24 & h6(kenchi) & 128.238.64.104/24 & h7(guchi) & 128.238.65.104/24 \\
             \hline \hline
             \end{tabular}
     \end{table}
@@ -128,7 +127,7 @@
         \begin{tikzpicture}[font=\sf]
             \node[draw] (h1) at (-2,-2){HOST\_A};
             \node[draw,circle] (hub2) at (-2,0){Switch 2};
-            \node[draw,rounded corners] (router) at (0,0){\shortstack{Router as\\Brdige}};
+            \node[draw,rounded corners] (router) at (0,0){\shortstack{Router}};
             \node[draw,circle] (hub1) at (2,0){Switch 1};
             \node[draw] (h0) at (2,-2){HOST\_B};
         
@@ -137,15 +136,15 @@
             \draw[thick] (hub1) -- (router);
             \draw[thick] (hub2) -- (router);
         \end{tikzpicture}
-        \caption{\textbf{Figure 3.7.} Using a transparent bridge.}        
+        \caption{\textbf{Figure 4.10.} Simple router experiment.}        
     \end{figure}
 
 \section{Simple Routing}
     Configure the IP addresses of your workstations and the router as shown in Figure 4.10, Table 4.2 and Table 4.3 (select one of row in table). \\
     Initially your host’s routing table has no entry for the subnet on the other side of the router.
     In order to be connected, you need to add a routing entry for the other subnet in the routing table of your workstation (see section 4.3.1). \\
-    \, \textit{like: }\texttt{ip route add 192.168.1.0/24 dev eth0} \textit{or} \texttt{ip route add 192.168.1.0/24 via 192.168.1.1} \\
-    \, \textit{like: } \texttt{route add -net 192.168.1.0/24 dev eth0} \textit{or} \texttt{route add -net 192.168.1.0/24 gw 192.168.1.1 dev eth0}\\
+    \, \textit{like: }\texttt{ip route add 192.168.1.0/24 [dev eth0|via 192.168.1.1]} \\
+    \, \textit{like: }\texttt{route add -net 192.168.1.0/24 [gw 192.168.1.1] dev eth0}\\
     Run \textbf{tcpdump -en} on your machine, and \textbf{tcpdump -en} on your partner’s machine in the other subnet simultaneously:
     \begin{itemize}
         \item [\#] \textbf{tcpdump -en host} \textit{remote-host} and \textit{your-machine}
@@ -189,7 +188,8 @@
         \item \texttt{Router(config)\#} \textbf{no router rip}
     \end{itemize}
     Consider Figure 4.11 as our network topology for this section.
-    Since the IP address of ethernet1 in router4 is the only interface which is different from the initial configuration in Appendix B, we will reboot all the four routers to restore their default configurations, and change the IP address on the ethernet1 in router4 only. Since our workstations started \textbf{routed} at boot-up time, no further action is needed to run RIP on the workstations. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
+    % Since the IP address of ethernet1 in router4 is the only interface which is different from the initial configuration in Appendix B, we will reboot all the four routers to restore their default configurations, and change the IP address on the ethernet1 in router4 only. Since our workstations started \textbf{routed} at boot-up time, no further action is needed to run RIP on the workstations. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
+    Configure network router and workstation’s as Figure 4.11. Since our workstation’s don’t have \textbf{routed} package, you need to add route for subnet \texttt{128.238.0.0/16} to each workstation.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/figure4-11.png}
