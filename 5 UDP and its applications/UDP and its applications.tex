@@ -104,7 +104,7 @@
 %\tableofcontents
 
 \pagebreak
-\section*{Using the sock program}
+\section*{Using the socket program}
 	In this lab, you will not need to a router, only two workstations and one hub to connect two host together.
 	\begin{table}[H]
         \caption{Host IP addresses for Fig. 5.0}
@@ -151,7 +151,7 @@
 
 \section{socket -h}
 	Study various options associated with the \textbf{socket} program.
-	A brief list of options can be displayed by typing \textbf{socket}. More detailed discussion on sock can be found in
+	A brief list of options can be displayed by typing \textbf{socket}. More detailed discussion on socket can be found in
 	Appendix C of [5] in the reference book.
 
 \section{Segment size}
@@ -194,7 +194,7 @@
 
 
 \section*{Path MTU discovery exercise}
-	Connect the routers and the workstations as shown in \autoref{fig:5.5} (Fig 5.5) Change the IP
+	Connect the routers and the workstations as shown in \autoref{fig:5.2} (Fig 5.2) Change the IP
 	addresses of your workstation accordingly. Note that the router IP addresses are
 	the same as their default.\\
 	Open console of  each router, enable \textbf{RIP} routing (see Section 4.6 of reference book).\\
@@ -205,18 +205,44 @@
 	\end{itemize}
 	Test connectivity by \textbf{ping}ing hosts in the other subnets. After you can reach the
 	hosts in the other subnets, run \textbf{tcpdump -nx} on your workstation.\\
-	Start a UDP sock server on \textit{remote\_host}, using \textbf{sock -u -s 5555}.
-	Then run the sock client from \textit{local\_host}:
+	Start a UDP socket server on \textit{remote\_host}, using \textbf{socket -u -s 5555}.
+	Then run the socket client from \textit{local\_host}:
 	\begin{itemize}
-		\item \textbf{sock -i -u -n10 -w1200 -p5 \textit{remote\_host} 5555}
+		\item \textbf{socket -i -u -n10 -w1200 -p5 \textit{remote\_host} 5555}
 	\end{itemize}
 
-	\begin{figure}[H]
-		\centering
-		\includegraphics[width=0.9\textwidth]{img/figure5-5.jpg}
-		\caption{\textbf{Figure 5.5.} The network setup for Exercise 6}
-		\label{fig:5.5}
-	\end{figure}
+	\begin{table}[H]
+        \caption{\textbf{Table 5.2} Router and Host IP addresses for \autoref{fig:5.2}}
+        \vspace{5pt}
+        \centering
+        \large
+        \begin{tabular}{ *7l }
+            \hline \hline
+            \multicolumn{2}{c}{Router} & \multicolumn{2}{c}{HOST\_A} & \multicolumn{2}{c}{HOST\_B} \\
+            eth0 & eth1 & Name & Ip Address & Name & IP Address \\
+            \hline 
+            128.238.61.1/24 & 128.238.62.1/24 & h0(shakti) & 128.238.61.101/24 & h1(vayu) & 128.238.62.101/24 \\
+            \hline \hline
+            \end{tabular}
+    \end{table}
+
+    \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}[font=\sf]
+            \node[draw] (h1) at (-2,-2){HOST\_A};
+            \node[draw,circle] (hub2) at (-2,0){Switch 2};
+            \node[draw,rounded corners] (router) at (0,0){\shortstack{Router}};
+            \node[draw,circle] (hub1) at (2,0){Switch 1};
+            \node[draw] (h0) at (2,-2){HOST\_B};
+        
+            \draw[thick] (h0) -- (hub1);
+            \draw[thick] (h1) -- (hub2);
+            \draw[thick] (hub1) -- (router);
+            \draw[thick] (hub2) -- (router);
+        \end{tikzpicture}
+        \caption{\textbf{Figure 5.2.} The network setup for Exercise 6 like Simple Routing section in previous chapter}
+		\label{fig:5.2}
+    \end{figure}
 
 	Observe the DF bit of the first datagram and that of the following datagrams. Save the \textbf{tcpdump} output for your lab report.\\
 
@@ -244,7 +270,7 @@
 		\item \textbf{tcpdump host \textit{local\_host} and \textit{remote\_host > output1}}
 	\end{itemize}
 	Here we use the redirect operator, \texttt{>}, to save the \textbf{tcpdump} output into a text file called \textit{output1}.
-	\begin{itemize}			
+	\begin{itemize}		
 		\item \textbf{ls /etc/xinetd.d/} \# see services in xinetd
 		\item \textbf{tftp \textit{hsot}}
 		\item tftp> \textbf{get \{\$filename\}}
