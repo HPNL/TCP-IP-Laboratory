@@ -27,7 +27,7 @@ RUN set -ex \
 # install remaining tools
 #
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-        sudo bash-completion screen less man-db  curl wget socat knot-host mtr-tiny nano vim-tiny \
+        sudo bash-completion screen less man-db  curl wget socat knot-host mtr-tiny nano vim \
         net-tools iperf3 traceroute tcpdump isc-dhcp-client isc-dhcp-server icmpush iputils-ping \
         netcat arping iproute openssh-client openssh-server iptables \
         xinetd telnetd telnet ftp vsftpd tftpd tftp rdate snmp snmpd ntp ntpdate \
@@ -41,6 +41,8 @@ RUN useradd -m netlab -s /bin/bash && \
 # enable xinetd and vsftp service
 RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
     sed -i 's/= yes/= no/g' /etc/xinetd.d/echo && \
+    mkdir -p /var/run/vsftpd/empty && \
+    sed -i 's/listen_ipv6=YES/listen_ipv6=NO/' /etc/vsftpd.conf && \
     su netlab -c 'cd; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 50M larg.dum'
 
 # config system

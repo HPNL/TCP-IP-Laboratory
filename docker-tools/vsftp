@@ -1,10 +1,12 @@
 service ftp
 {
-        socket_type             = stream
-        wait                    = no
-        user                    = root
-        server                  = /usr/sbin/vsftpd
-        log_on_success  += HOST DURATION
-        log_on_failure  += HOST
-        disable                 = no
+    socket_type     = stream
+    wait            = no
+    user            = root
+    server          = /usr/sbin/vsftpd
+    server_args     = /etc/vsftpd.conf
+    log_on_success  += HOST DURATION
+    log_on_failure  += HOST
+    nice            = 10
+    disable         = no
 }

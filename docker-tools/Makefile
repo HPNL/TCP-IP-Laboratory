@@ -48,7 +48,7 @@ netlab-term: netspy socket TCPserver UDPserver TCPclient UDPclient
 netlab-gui: netlab-term
 	docker build -t ut/netlab/gui -f gui.Dockerfile .
 dockers-push:
-	docker commit utnetlab/term
-	docker commit utnetlab/gui
+	docker commit ut/netlab/term
+	docker commit ut/netlab/gui
 	docker push $(docker_registery)/ut/netlab/term
 	docker push $(docker_registery)/ut/netlab/gui
