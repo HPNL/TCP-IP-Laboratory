@@ -127,7 +127,7 @@
     \underline{Save} the \textbf{tcpdump} or \textbf{wireshark} output for your lab report. \\
 	Restart the above \textbf{tcpdump} command, execute \textbf{socket} in the TCP mode:
 	\begin{itemize}
-		\item [h1>] \textbf{socket -i -n1} \textit{host} \textbf{8888}
+		\item \textbf{socket -i -n1} \textit{host} \textbf{8888}
 	\end{itemize}
     \underline{Save} the \textbf{tcpdump} output for your lab report.
     \subsection*{Report}
@@ -136,11 +136,11 @@
     \end{enumerate}
 
 \section*{Exercise on TCP interactive data flow}
-\section{MSS and MTU}
-While tcpdump is capturing the traffic between your machine and a remote machine, issue following commands:
+\section{Interactive data flow}
+While \textbf{tcpdump} is capturing the traffic between your machine and a remote machine, issue following commands:
     \begin{itemize}
-        \item [h1>] \textbf{tcpdump -nv} or run \textbf{wireshark}
-        \item [h1>] \textbf{telnet} \textit{host}
+        \item \textbf{tcpdump -n} or run \textbf{wireshark}
+        \item \textbf{telnet} \textit{host}
     \end{itemize}
     After logging in to the host, type \texttt{date} and press the \texttt{Enter} key. \\
     Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \textbf{telnet} window very rapidly\footnote{for example hold "A" key or write "qwertyuiop" in telnet window.}. \\
@@ -156,8 +156,7 @@ While tcpdump is capturing the traffic between your machine and a remote machine
         Explain how the delayed ACK timer operates from your \textbf{tcpdump} output. \\
         If you don’t see any delayed acknowledgements, explain the reason why none was observed.
         \item What is the \textbf{Nagle}\footnote{Nagle Algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.} algorithm used for? \\
-        From your \textbf{tcpdump} output, can you tell whether the Nagle algorithm is enabled or not?
-        Give the reason for your answer.
+        From your \textbf{tcpdump} output, can you tell whether the Nagle algorithm is enabled or not? Give the reason for your answer.\\
         From your \textbf{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your workstation to the remote machine?
     \end{enumerate}
 
@@ -206,9 +205,9 @@ While tcpdump is capturing the traffic between your machine and a remote machine
     After observing several retransmissions, reconnect the cable:
     \begin{itemize}
     	\setlength{\itemindent}{30pt}
-        \item \textbf{ip link eth0 down} or \textbf{ifconfig eth0 down}
+        \item \textbf{ip link set eth0 down} or \textbf{ifconfig eth0 down}
         \item [-] after ten seconds...
-        \item \textbf{ip link eth0 up} or \textbf{ifconfig eth0 up}
+        \item \textbf{ip link set eth0 up} or \textbf{ifconfig eth0 up}
     \end{itemize}
     When all the data segments are sent, save the \textbf{tcpdump} output for the lab report.
     \subsection*{Report}
