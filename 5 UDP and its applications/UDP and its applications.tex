@@ -139,7 +139,7 @@
     \end{figure}
 
 \section{Socket operation}
-	Use the following commands in \texttt{h1} and \texttt{h2} to observe the basic operation of \textbf{socket}\footnote{Basic command is sock use alternative socket (rename of sock)} and echo service.
+	Use the following commands in \texttt{h0} and \texttt{h0} to observe the basic operation of \textbf{socket}\footnote{Basic command is sock use alternative socket (rename of sock)} and echo service.
 	\begin{itemize}
 		\item \textbf{socket [-u] \textit{host} echo}\footnote{type any text in socket and press enter}
 		\item \textbf{socket -s 5555}
@@ -155,9 +155,9 @@
 	Appendix C of [5] in the reference book.
 
 \section{Segment size}
-	While running \textbf{tcpdump src host \textit{your host}} on \texttt{h2}, execute the following command with different values of size (i.e., the size of the datagram). \\
+	While running \textbf{tcpdump -nv} on \textit{your\_host} or \textit{remote\_host}, execute the following command with different values of size (i.e., the size of the datagram). \\
 	\begin{itemize}
-		\item \textbf{socket -u -i -n1 -w\textit{size} \textit{host} echo}
+		\item \textbf{socket -u -i -n1 -w\textit{size} \textit{remote-host} echo}
 	\end{itemize}
 	The \textbf{-u} option is used to send UDP datagrams rather than TCP segments. \\
 	Increase \textit{size} (i.e., the size of the datagram) until fragmentation occurs. \\
@@ -254,26 +254,26 @@
 	\end{itemize}
 
 \section*{Exercises with FTP and TFTP}
-   We will study the performance of FTP and TFTP for file transfer between two machines.
-   By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP. \\
-   Two files (\texttt{large.dum} and \texttt{small.dum}) with random contents are stored in the \texttt{/home/netlab} directory and in the \texttt{/home/netlab}\footnote{}{We change original path (/tftpboot) to /home/netlab to be same as ftp user path.} directory of each workstation in the lab.
-   We will use the \texttt{get} command to retrieve files from a remote host.
-   When FTP is used, you need to change directory to \texttt{/home/netlab/} by \textbf{cd} \texttt{/home/netlab} before retrieving the file.
-   If you don’t know how to use \textbf{tftp}, refer to its manual page.
+	Use first network topology for this exercise.\\
+	We will study the performance of FTP and TFTP for file transfer between two machines.
+	By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP. \\
+	Three files (\texttt{large.dum}, \texttt{med.dum} and \texttt{small.dum}) with random contents are stored in the \texttt{/home/netlab} directory and in the \texttt{/home/netlab}\footnote{}{We change original path (/tftpboot) to /home/netlab to be same as ftp user path.} directory of each workstation in the lab.
+	We will use the \texttt{get} command to retrieve files from a remote host.
+	When FTP is used, you need to change directory to \texttt{/home/netlab/} by \textbf{cd} \texttt{/home/netlab} before retrieving the file.
+	If you don’t know how to use \textbf{tftp}, refer to its manual page.
 
 
-%\pagebreak
 \section{TFTP and FTP}
 	In order to compare the transfer rates of FTP and TFTP, we will retrieve a large file from a remote server using FTP and TFTP, respectively.\\
 	First run First run the following \textbf{tcpdump} command:
 	\begin{itemize}
-		\item \textbf{tcpdump host \textit{local\_host} and \textit{remote\_host > output1}}
+		\item \textbf{tcpdump host \textit{local\_host} and \textit{remote\_host}}
 	\end{itemize}
-	Here we use the redirect operator, \texttt{>}, to save the \textbf{tcpdump} output into a text file called \textit{output1}.
+	% Here we use the redirect operator, \texttt{>}, to save the \textbf{tcpdump} output into a text file called \textit{output1}.
 	\begin{itemize}		
 		\item \textbf{ls /etc/xinetd.d/} \# see services in xinetd
 		\item \textbf{tftp \textit{hsot}}
-		\item tftp> \textbf{get \{\$filename\}}
+		\item tftp> \textbf{get \{\$filename\}} \textit{\# small,med,large}
 		\item tftp> \textbf{quit}
 		\item \textbf{ftp \textit{hsot}} \# Enter user and password -> \textbf{netlab}
 		\item tftp> \textbf{ls}
@@ -285,7 +285,7 @@
 	Restart the above \textbf{tcpdump} session.
 
 	\subsection*{Report}
-	Examining the saved \textbf{tcpdump} output file, output1.. Identify the starting and ending time of actual data transfer.
+	Examining the saved \textbf{tcpdump} output. Identify the starting and ending time of actual data transfer.
 	Don’t include the time spent establishing the TCP connection.
 	Calculate the time spent for data transfer. \\
 	Compare the time with the value displayed in \textbf{ftp} window.
@@ -299,11 +299,11 @@
 
 %\pagebreak
 \section{TFTP Analysis}
-	Capture the packets that are exchanged during a \textbf{tftp} session for the \linebreak \texttt{/home/netlab/small.dum} file between \texttt{h1} and \texttt{h2}, using:
+	Capture the packets that are exchanged during a \textbf{tftp} session for the \linebreak \texttt{/home/netlab/small.dum} file between \texttt{h0} and \texttt{h1}, using:
 	\begin{itemize}
-		\item \textbf{tcpdump -x host \textit{your\_host} and \textit{remote\_host > output3}}
+		\item \textbf{tcpdump -x host \textit{your\_host} and \textit{remote\_host}}
 	\end{itemize}
-	Observe the protocol in action.	Analyze various types of TFTP messages. Save \texttt{output3} for the lab report.
+	Observe the protocol in action.	Analyze various types of TFTP messages. Save \textbf{tcpdump} output for the lab report.
 	\subsection*{Report}
 	\begin{enumerate}
 		\item List all the different types of packets exchanged during the \textbf{tftp} session. Compare them with the TFTP message format in Fig. 5.3.\\ Why does the server’s port number change?
@@ -315,7 +315,7 @@
 
 %\pagebreak
 \section{FTP Small file}
-	Repeat the above experiment, but use \textbf{ftp} and change the output file name to \texttt{output4}.
+	Repeat the above experiment, but use \textbf{ftp}.
 	Capture a trace of the packets exchanged when downloading the \texttt{/home/netlab/small.dum} file using \textbf{ftp}. \\
 	Examine the port numbers used.
 	\subsection*{Report}
@@ -323,7 +323,7 @@
 		\item How many well-known port numbers were used?
 		Which machine used the well-known port numbers?
 		What were the other machine’s port numbers?
-		\item As can be seen from the \textbf{wireshark} output, FTP involves two different connections, \texttt{ftp-control} and \texttt{ftp-data}.
+		\item As can be seen from the \textbf{tcpdump} output, FTP involves two different connections, \texttt{ftp-control} and \texttt{ftp-data}.
 		Why are two different connections used, instead of one connection?
 	\end{enumerate}
 
