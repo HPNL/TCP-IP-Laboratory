@@ -41,15 +41,15 @@ tcpdump -vnex -s 100 -c 8 udp port 520
 
 ```bash
 config term
-router rip
-network 128.238.0.0
-int f0/0
-ip addr 128.238.61.1 255.255.255.0
-no shut
-int f0/1
-ip addr 128.238.62.1 255.255.255.0
-no shut
-end
+    router rip
+        network 128.238.0.0
+    int f0/0
+        ip addr 128.238.61.1 255.255.255.0
+        no shut
+    int f0/1
+        ip addr 128.238.62.1 255.255.255.0
+        no shut
+    end
 ```
 
 ## R2

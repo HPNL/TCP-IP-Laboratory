@@ -42,16 +42,16 @@ tcpdump -x -s 120 ip proto 89
 
 ```shell
 config term
-int f0/0
-ip addr 128.238.62.2 255.255.255.0
-no shut
-int f0/1
-ip addr 128.238.63.2 255.255.255.0
-no shut
-exit
-router ospf 2
-network 128.238.0.0 0.0.255.255 area 1
-end
+    int f0/0
+        ip addr 128.238.62.2 255.255.255.0
+        no shut
+    int f0/1
+        ip addr 128.238.63.2 255.255.255.0
+        no shut
+        exit
+    router ospf 2
+        network 128.238.0.0 0.0.255.255 area 1
+    end
 ```
 
 ## R3
