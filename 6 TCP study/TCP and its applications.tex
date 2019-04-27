@@ -127,7 +127,7 @@
     \underline{Save} the \textbf{tcpdump} or \textbf{wireshark} output for your lab report. \\
 	Restart the above \textbf{tcpdump} command, execute \textbf{socket} in the TCP mode:
 	\begin{itemize}
-		\item [h1>] \textbf{socket -i -n1} \textit{host} \textbf{8888}
+		\item \textbf{socket -i -n1} \textit{host} \textbf{8888}
 	\end{itemize}
     \underline{Save} the \textbf{tcpdump} output for your lab report.
     \subsection*{Report}
@@ -139,8 +139,8 @@
 \section{MSS and MTU}
 While tcpdump is capturing the traffic between your machine and a remote machine, issue following commands:
     \begin{itemize}
-        \item [h1>] \textbf{tcpdump -nv} or run \textbf{wireshark}
-        \item [h1>] \textbf{telnet} \textit{host}
+        \item \textbf{tcpdump -nv} or run \textbf{wireshark}
+        \item \textbf{telnet} \textit{host}
     \end{itemize}
     After logging in to the host, type \texttt{date} and press the \texttt{Enter} key. \\
     Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \textbf{telnet} window very rapidly\footnote{for example hold "A" key or write "qwertyuiop" in telnet window.}. \\
