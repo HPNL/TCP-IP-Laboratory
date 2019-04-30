@@ -43,7 +43,7 @@ RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
     sed -i 's/= yes/= no/g' /etc/xinetd.d/echo && \
     mkdir -p /var/run/vsftpd/empty && \
     sed -i 's/listen_ipv6=YES/listen_ipv6=NO/' /etc/vsftpd.conf && \
-    su netlab -c 'cd; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 50M larg.dum'
+    su netlab -c 'cd; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 20M larg.dum'
 
 # config system
 COPY telnet tftp vsftp /etc/xinetd.d/
@@ -54,5 +54,6 @@ COPY bashrc /home/netlab/.bashrc
 COPY netspy netspyd netspydd TCPserver UDPclient UDPserver TCPclient socket /usr/local/bin/
 
 # start service and bash
+WORKDIR /root/
 VOLUME [ "/root" ]
 CMD [ "sh", "-c", "echo Salam; service xinetd start; cd; exec bash -i" ]

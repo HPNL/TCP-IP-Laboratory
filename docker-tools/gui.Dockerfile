@@ -61,6 +61,6 @@ jwm' \
 # Disable root check for vlc
 RUN sed -i 's/geteuid/getppid/' /usr/bin/vlc
 
-WORKDIR /root/
-VOLUME [ "/root" ]
+COPY group.mp4 /home/netlab/
+
 CMD [ "/etc/init.sh" ]
