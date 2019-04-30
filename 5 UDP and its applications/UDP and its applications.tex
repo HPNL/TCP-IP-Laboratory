@@ -105,9 +105,11 @@
 
 \pagebreak
 \section*{Using the socket program}
-	In this lab, you will not need to a router, only two workstations and one hub to connect two host together.
+\label{sec:schema}
+	In this lab, you will not need to a router, only two workstations and one hub to connect two host together as show in \autoref{fig:5.0} and \autoref{tbl:5.0}.
 	\begin{table}[H]
-        \caption{Host IP addresses for Fig. 5.0}
+		\caption{Host IP addresses for Fig. 5.0}
+		\label{tbl:5.0}
         \vspace{5pt}
         \centering
         \large
@@ -135,7 +137,8 @@
             \draw[thick] (2,0) -- (hub);
             \draw[thick] (-2,0) -- (hub);
         \end{tikzpicture}
-        \caption{\textbf{Figure 5.0.} Simple router experiment.}        
+		\caption{\textbf{Figure 5.0.} Simple router experiment.}        
+		\label{fig:5.0}
     \end{figure}
 
 \section{Socket operation}
@@ -197,7 +200,7 @@
 	Connect the routers and the workstations as shown in \autoref{fig:5.2} (Fig 5.2) Change the IP
 	addresses of your workstation accordingly. Note that the router IP addresses are
 	the same as their default.\\
-	Open console of  each router, enable \textbf{RIP} routing (see Section 4.6 of reference book).\\
+	% Open console of  each router, enable \textbf{RIP} routing (see Section 4.6 of reference book).\\
 	Change the \textbf{MTU} of the \texttt{ethernet1} interfaces of \texttt{Router4} to 500
 	bytes.
 	\begin{itemize}
@@ -254,7 +257,7 @@
 	\end{itemize}
 
 \section*{Exercises with FTP and TFTP}
-	Use first network topology for this exercise.\\
+	Use first network (section \nameref{sec:schema}) topology for this exercise.\\
 	We will study the performance of FTP and TFTP for file transfer between two machines.
 	By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP. \\
 	Three files (\texttt{large.dum}, \texttt{med.dum} and \texttt{small.dum}) with random contents are stored in the \texttt{/home/netlab} directory and in the \texttt{/home/netlab}\footnote{}{We change original path (/tftpboot) to /home/netlab to be same as ftp user path.} directory of each workstation in the lab.
