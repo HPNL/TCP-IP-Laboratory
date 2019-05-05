@@ -199,6 +199,7 @@ While \textbf{tcpdump} is capturing the traffic between your machine and a remot
     \end{itemize}
     Then, execute the following command on your host,
     \begin{itemize}
+        \item \textit{add link delay in simulator}\footnote{In gns3, \textbf{right click} on link, select \textbf{Packet Filter} and set link \textbf{delay} to \texttt{10 ms}}
         \item \textbf{socket -i -n200} \textit{host} \textbf{8888}
     \end{itemize}
     While the sender is injecting data segments into the network, disconnect the cable connecting the sender to the hub for about ten seconds. \\
@@ -206,7 +207,7 @@ While \textbf{tcpdump} is capturing the traffic between your machine and a remot
     \begin{itemize}
     	\setlength{\itemindent}{30pt}
         \item \textbf{ip link set eth0 down} or \textbf{ifconfig eth0 down}
-        \item [-] after ten seconds...
+        \item [-] after seconds...
         \item \textbf{ip link set eth0 up} or \textbf{ifconfig eth0 up}
     \end{itemize}
     When all the data segments are sent, save the \textbf{tcpdump} output for the lab report.
