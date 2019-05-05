@@ -33,6 +33,10 @@ RUN set -ex \
         xinetd telnetd telnet ftp vsftpd tftpd tftp rdate snmp snmpd ntp ntpdate \
     && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb
 
+# not found package
+# * iputils for rdisc service
+# * quagga for rip service
+
 # add netlab user
 RUN useradd -m netlab -s /bin/bash && \
     adduser netlab sudo && echo "netlab:netlab" | chpasswd netlab && \
