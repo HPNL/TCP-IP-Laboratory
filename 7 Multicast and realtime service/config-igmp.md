@@ -1,12 +1,12 @@
 # Hosts
 
-# H1
+## H1
 
 ```bash
 # 7
 ifconfig eth0 128.238.63.101/24
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
-route add -net 128.238.63.0/24 dev eth0
+route add -net 128.238.64.0/24 dev eth0
 # 8
 netspy 224.111.111.111 1500 &
 netspyd 224.111.111.111 1500 16
@@ -15,7 +15,7 @@ ping 128.238.63.102
 ping 128.238.64.103
 ```
 
-# H2
+## H2
 
 ```bash
 # 7
@@ -31,7 +31,7 @@ tcpdump ip multicast
 pkill netspy
 ```
 
-# H3
+## H3
 
 ```bash
 # 7
@@ -45,7 +45,7 @@ netspy 224.111.111.111 1500 &
 tcpdump ip multicast
 ```
 
-# H4
+## H4
 
 ```bash
 # 7
@@ -59,7 +59,7 @@ pkill netspy
 
 # Router
 
-# R1
+## R1
 
 ```bash
 # 7

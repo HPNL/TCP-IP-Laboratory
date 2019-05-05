@@ -164,6 +164,7 @@
     \end{minipage}
 
 \section{Linux multicast routing table}
+\label{sec:linux-multicast-routing}
     Execute \textbf{netstat -rn} to display the routing table of your host.
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by: \\
     \textbf{route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0}\footnote{This command can be appended to the \texttt{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
@@ -289,6 +290,7 @@
     \end{figure}
 
 \section{Configuring Router}
+\label{sec:config-router}
     Connect the hosts and the route in your group as shown in Fig. 7.13. Set the IP address of your host as given in Table 7.2. Note that the IP addresses of the router interfaces are the same as their default IP addresses.
     Login to the router and run \textbf{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
     Then, enable the PIM protocol on each interface, by running \textbf{ip pim dense-mode} in the \textit{Interface Configuration} mode.\footnote{As usual,each router should be configured by one person to avoid confusion.} Now the router is enabled to do multicast routing using PIM. \\
@@ -296,6 +298,7 @@
     Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
 
 \section{Multicast Message}
+    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
     Start \textbf{netspy} on all the hosts, by using: \\
     \textbf{netspy 224.111.111.111 1500} \\
     Start \textbf{netspy} on \texttt{host1} (\texttt{shakti}, by using: \\
@@ -344,7 +347,8 @@
     Connect the hosts and routers as illustrated in Figure 7.14.
     Configure the IP addresses of the hosts and router interfaces as given in the figure.\\
     % Note that most of the router interfaces use their default IP addresses, only the Ethernet0 interface of Router4 needs to be changed to 128.238.63.4. \\
-    Enable PIM multicast routing in all the routers (see Exercise 7). \\
+    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
+    Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}). \\
     Run \textbf{tcpdump ip multicast} or \textbf{wireshark} on all the hosts. \\
     Execute \textbf{netspy 224.111.111.111 1500} on \texttt{shakti, agni, apah, fenchi}, and \texttt{kenchi}.
     Execute \textbf{netspyd 224.111.111.111 1500 16} on \texttt{yachi}.
@@ -362,10 +366,11 @@
     \subsection*{Report}
     Answer the above questions.
 
-\section{Multicast Router Status}
+\section{Multicast tree}
     In this exercise, try the \textbf{mstat} Cisco IOS command to find the multicast tree from a source.
     The \textbf{mstat} command is executable in the \textit{Privileged EXEC} mode.
-    You can always type “?” to get help on the syntax of the command.
+    You can always type “?” to get help on the syntax of the command.\\
+    \textit{generate multicast packet when execute command for specific source}
 
 \section{Multicast TTL}
     Keep \textbf{netspy} running on all the hosts.
