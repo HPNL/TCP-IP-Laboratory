@@ -166,9 +166,10 @@
 \section{Linux multicast routing table}
 \label{sec:linux-multicast-routing}
     Execute \textbf{netstat -rn} to display the routing table of your host.
-    If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by: \\
-    \textbf{route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0}\footnote{This command can be appended to the \texttt{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
-    Each time when the network interface is brought down and up again by the \textbf{ifconfig} command, you may need to run the \textbf{route} command to re-insert the multicast routing entry.} \\
+    If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
+    \begin{itemize}
+        \item [] \textbf{route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0}\footnote{This command can be appended to the \texttt{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps. Each time when the network interface is brought down and up again by the \textbf{ifconfig} command, you may need to run the \textbf{route} command to re-insert the multicast routing entry.}
+    \end{itemize}
     Save the new routing table.
     \subsection*{Report}
     Submit the routing table you saved.
@@ -183,7 +184,7 @@
     Examine the \textbf{ping} output to see which hosts reply. \\
     Ping a broadcast address using \textbf{ping -b 128.238.66.255}.
     Examine the \textbf{ping} output to see which hosts reply. \\
-    % You can enable broadcast ping replay by: \textit{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
+    You can enable broadcast ping replay by: \textit{echo 0 > /proc/sys/net/ipv4/icmp\_echo\_ignore\_broadcasts}.
     \subsection*{Report}
     Which hosts replied when the multicast address was pinged?
     Which hosts replied when the broadcast address was pinged? \\
@@ -205,11 +206,15 @@
     Why?
 
 \section{Simple UDP Multicast client and server}
-    Start the multicast client \textbf{netspy} on all the hosts, by executing: \\
-    \textbf{netspy 224.111.111.111 1500} \\
-    Then, start the multicast sender \textbf{netspyd} on \texttt{shakti}, by executing: \\
-    \textbf{netspyd 224.111.111.111 1500 1} \\
-    Execute \textbf{wireshark} on every host to capture multicast IP datagrams. \\
+    Start the multicast client \textbf{netspy} on all the hosts, by executing:
+    \begin{itemize}
+        \item [] \textbf{netspy 224.111.111.111 1500}
+    \end{itemize}
+    Then, start the multicast sender \textbf{netspyd} on \texttt{shakti}, by executing:
+    \begin{itemize}
+        \item [] \textbf{netspyd 224.111.111.111 1500 1}
+    \end{itemize}
+    Execute \textbf{tcpdump ip multicast} or \textbf{wireshark} on every host to capture multicast IP datagrams. \\
     Login to \texttt{shakti} from a remote machine, e.g.\  \texttt{kenchi}, using \textbf{telnet} or \textbf{ssh} (need to start ssh service). \\
     Save the captured multicast datagram sent by \textbf{netspyd} and exit the \textbf{telnet} (or \textbf{ssh}) session.
 
@@ -221,6 +226,7 @@
     If yes, through which interface did \texttt{shakti} receive this datagram?
 
 \section{ping Replay}
+    Enable broadcast ping replay by: \textit{echo 0 > /proc/sys/net/ipv4/icmp\_echo\_ignore\_broadcasts} on all hosts.
     Keep the \textbf{netspy} and the \textbf{tcpdump} programs running.
     Execute \textbf{ping 224.111.111.111} from \texttt{kenchi}.
     Examine the \textbf{tcpdump} and \textbf{ping} outputs to see which hosts replied.
@@ -230,9 +236,7 @@
     Also, examine the \textbf{tcpdump} and the \textbf{ping} outputs to see which hosts replied.
 
 \section*{IGMP exercises}
-    In the following exercises, students are divided into two groups, Group A and Group B, each with four hosts and one router.
-    The network topology of each group is given in Fig.
-    7.13, and the corresponding host IP addresses and router IP addresses are given in Table 7.2 and Table 7.3, respectively.
+    In the following exercises, use four hosts and one router. The network topology is given in Fig. 7.13, and the corresponding host IP addresses and router IP addresses are given in Table 7.2 and Table 7.3, respectively.
 
     \begin{table}[H]
 		\caption{\textbf{Table 7.2.} Hosts IP addresses for Fig. 7.13}
@@ -299,24 +303,28 @@
 
 \section{Multicast Message}
     Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
-    Start \textbf{netspy} on all the hosts, by using: \\
-    \textbf{netspy 224.111.111.111 1500} \\
-    Start \textbf{netspy} on \texttt{host1} (\texttt{shakti}, by using: \\
-    \textbf{netspyd 224.111.111.111 1500 16} \\
+    Start \textbf{netspy} on all the hosts, by using:
+    \begin{itemize}
+        \item [] \textbf{netspy 224.111.111.111 1500}
+    \end{itemize}
+    Start \textbf{netspy} on \texttt{host1} (\texttt{shakti}, by using:
+    \begin{itemize}
+        \item [] \textbf{netspyd 224.111.111.111 1500 16}
+    \end{itemize}
     Login to the router.
     Run \textbf{show ip igmp interface} and \textbf{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records. \\
     Try if you can \textbf{ping} a host on the other side of the router.
     Login to \texttt{host1} from \texttt{host2} in your group, then logout.
     See if the multicast messages sent by \textbf{netspyd} reach the other side of the router.\\
-    Add route to your host and try ping again. Now, login to \texttt{host1} from \texttt{host2} in your group, then logout.
+    Add \texttt{route} for other subnet to your host and try \textbf{ping} again. Now, login to \texttt{host1} from \texttt{host2} in your group, then logout.
     \subsection*{Report}
     Can you ping a host on the other side of the router?
     Will the router forward a multicast IP datagram to the other side?
     Justify your answers.
 
 \section{IGMP Types}
-    Execute \textbf{tcpdump ip multicast} or \textbf{wireshark} in one console to capture IGMP messages.
-    At the same time, execute \textbf{tcpdump ip multicast} or \textbf{wireshark} in another console to monitor the capture process.
+    Execute \textbf{tcpdump ip multicast -v} or \textbf{wireshark} in one console to capture IGMP messages.
+    At the same time, execute \textbf{tcpdump ip multicast -v} in another console to monitor the capture process.
     When you see three or more IGMP queries in the second \textbf{tcpdump} output, terminate both \textbf{tcpdump} programs. \\
     Analyze the IGMP messages you captured.
     Print and save two different IGMP messages. \\
@@ -331,7 +339,9 @@
 \section{Router Join To Multicast-Group}
     Login to the router.
     See if you can make a router interface (e.g., Ethernet0) join a multicast group of 224.0.0.2, using:
-    \textbf{ip igmp join-group 224.0.0.2}
+    \begin{itemize}
+        \item [] \textbf{ip igmp join-group 224.0.0.2}
+    \end{itemize}
     \subsection*{Report}
     Explain why the above command fails.
 
