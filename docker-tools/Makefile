@@ -14,7 +14,7 @@ clean-docker:
 	docker rmi ut/netlab/ipgui
 	docker rmi ut/netlab/ipterm
 
-all: netspy TCPclient TCPserver UDPclient UDPserver socket netlab-term netlab-gui
+all: netspy TCPclient TCPserver UDPclient UDPserver socket netlab-term netlab-gui netlab-http
 
 netspy:
 	$(CC) netspydd.c -o netspydd
@@ -47,6 +47,8 @@ netlab-term: netspy socket TCPserver UDPserver TCPclient UDPclient
 	docker build -t ut/netlab/term -f term.Dockerfile .
 netlab-gui: netlab-term
 	docker build -t ut/netlab/gui -f gui.Dockerfile .
+netlab-http:
+	docker build -t ut/netlab/http-server -f http/http.Dockerfile ./http/
 dockers-push:
 	docker commit ut/netlab/term
 	docker commit ut/netlab/gui

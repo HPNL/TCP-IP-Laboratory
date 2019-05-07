@@ -27,9 +27,9 @@ RUN set -ex \
 # install remaining tools
 #
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-        sudo bash-completion screen less man-db  curl wget socat knot-host mtr-tiny nano vim \
+        sudo htop bash-completion screen less man-db  curl wget socat knot-host mtr-tiny nano vim \
         net-tools iperf3 traceroute tcpdump isc-dhcp-client isc-dhcp-server icmpush iputils-ping \
-        netcat arping iproute openssh-client openssh-server iptables \
+        netcat arping iproute iproute2 openssh-client openssh-server iptables \
         xinetd telnetd telnet ftp vsftpd tftpd tftp rdate snmp snmpd ntp ntpdate \
     && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb
 
@@ -50,7 +50,7 @@ RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
     su netlab -c 'cd; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 20M larg.dum'
 
 # config system
-COPY telnet tftp vsftp /etc/xinetd.d/
+COPY xinetd.d/telnet xinetd.d/tftp xinetd.d/vsftp /etc/xinetd.d/
 COPY bashrc /root/.bashrc
 COPY bashrc /home/netlab/.bashrc
 
