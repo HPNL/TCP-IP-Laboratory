@@ -112,7 +112,7 @@
 	
 	\section*{Exercises on secure applications}
 	\section{Hacking}
-	In this excercise we will study security vulnerability of ftp and telnet protocol . To do so, wi will create mininet topology with single hub\footnote{hub forwards incoming packets to all of its ports, which means it always floods packets} connected to three hosts then we will connect from h1 to h2 through ftp and telnet connection and capture h1 password on h3. Let's do it.
+	In this exercise we will study security vulnerability of ftp and telnet protocol . To do so, wi will create mininet topology with single hub\footnote{hub forwards incoming packets to all of its ports, which means it always floods packets} connected to three hosts then we will connect from h1 to h2 through ftp and telnet connection and capture h1 password on h3. Let's do it.
 	
 	\begin{enumerate}
 		\setlength{\itemindent}{10pt}
@@ -144,7 +144,7 @@
 	
 	Repeat the above experiment, but use telnet to connect from h1 to h2 and capture h1 password on h3. \footnote{Don't foget to restart xinetd with \texttt{`/etc/init.d/xinetd restart`} on h2 to start telnet server. }
 	
-	\subsection*{Lab Report}
+	\subsection*{Report}
 	\begin{enumerate}
 		\setlength{\itemindent}{0pt}
 		\item Can you see the login ID and the password in the \texttt{FTP} experiment? Submit the two packets you captured.
@@ -177,7 +177,7 @@
 	
 	Repeat the above experiment, but use ssh and save the wireshark output for lab report.
 	
-	\subsection*{Lab Report}
+	\subsection*{Report}
 	\begin{enumerate}
 		\setlength{\itemindent}{0pt}
 		\item In each experiment, can you extract the password from the tcpdump output? Can you read the \texttt{IP, TCP, SSH} headers? Can you read the \texttt{TCP} data?
@@ -347,7 +347,7 @@
 	Now submit the login form.
 	Use \textbf{wireahark} output and examine the operation of SSL.
 	
-	\subsection*{Lab Report}
+	\subsection*{Report}
 	\begin{enumerate}
 		\setlength{\itemindent}{0pt}
 		\item What is the port number used by the secure Apache server?

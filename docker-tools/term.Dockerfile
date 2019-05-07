@@ -36,6 +36,7 @@ RUN set -ex \
 # not found package
 # * iputils for rdisc service
 # * quagga for rip service
+# * mrouted
 # lynx w3m
 
 # add netlab user
