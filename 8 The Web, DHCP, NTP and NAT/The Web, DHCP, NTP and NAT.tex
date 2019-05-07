@@ -79,7 +79,6 @@
     \normalsize \href{mailto:m.borhani@ut.ac.ir}{Muhammad Borhani} - \FR{محمد برهانی}\\
 	\normalsize \href{mailto:a.a.khordadi@ut.ac.ir}{Amirahmad Khordadi} - \FR{امیر احمد خردادی}\\
 	\normalsize \href{mailto:sina\_kashipazha@ut.ac.ir}{Sina Kashi pazha} - \FR{سینا کاشی پزها}\\
-	\normalsize \href{mailto:mashahsavand@ut.ac.ir}{Mohammad Ali Shahsavand} - \FR{محمد علی شاهسوند}
 }
 
 \date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
@@ -98,63 +97,40 @@
 \renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
 \setlength{\headheight}{13.6pt}
 
+\usepackage{tikz}
 
 \begin{document}
     \selectlanguage{english}
 
-    %\vspace*{-1.5cm}
     \maketitle
 
-    %\tableofcontents
-
     \pagebreak
-    %Arabic \AR{\allah}
-    %Persian \FR{فروشگاه}
-    %Arabic \foreignlanguage{arabic}{كحض}
-    %Persian \foreignlanguage{farsi}{فروشگاه}
 
+\section*{HTTP exercises}
+    For the exercises in this section, the network topology is simple with two hosts are connected to a single network segment with IP addresses, i.e., from 128.238.66.100 to 128.238.66.101. Add first host from \texttt{http-server} and another from \texttt{gui}.
 
-
-    %	يعود تاريخ علوم الحاسوب إلى
-    %\chapter
-    %\section
-    %\subsubsection
-    %\subsection
-    %\section
-    %\chapter
-    %\part
-    %\caption
-    %\end{otherlanguage}
-
-    \section*{HTTP}
-    Requirement:
-    \begin{enumerate}
-        \item Apache\footnote{\texttt{sudo apt-get install apache2 apache2-utils}} or Nginx\footnote{\texttt{sudo apt-get install nginx}} web service
-        \item curl
-    \end{enumerate}
-    \section{HTTP Server}
+\section{HTTP Server}
     Config your Apache server configuration file\footnote{\texttt{/etc/apache2/apache2.conf}} (see Section 8.2.3 Ref Book).
     Examine the various configuration directives used and the corresponding settings. \\
     Start the Apache server on your host.
-    In order to check if the server is working properly, you may start a \texttt{Mozilla} web browser to download the test page at \texttt{http://localhost/}.
-    Then, execute \textbf{pgrep apache2} to list the process IDs of the \textbf{apache2} processes started.
+    In order to check if the server is working properly, you may start a \texttt{Mozilla} web browser to download the test page at \texttt{http://remote\_host/}.\\
+    Then, execute \textbf{pgrep apache2} to list the process IDs of the \textbf{apache2} processes started.\footnote{By \texttt{a2enmod mpm\_prefork} you can enable Multi-Processing Module and change default spare process (config file: \texttt{/etc/apache2/mods-available/mpm\_prefork.conf})}
     Save the output and the configuration file for the lab report.
     \subsection*{Report}
     \begin{enumerate}
         \item How many apache2 processes were started?
-        Which one was the master server, and which ones were the child servers?
+        Which one was the master server, and which ones were the child servers? (\texttt{use \textbf{htop} to see process hierarchy})
         Justify your answer using the \texttt{apache2.conf} file.
         \item What is the purpose of initiating multiple apache2 processes?
     \end{enumerate}
 
-    %\pagebreak
-    \section{HTTP Request}
+\section{HTTP Request}
     Execute \textbf{wireshark} to capture packets between your host and a remote host. \\
-    Login to the remote host’s web server: \textbf{telnet} \texttt{10.0.0.2} \textbf{80}. \\
+    Login to the remote host’s web server: \textbf{telnet} \texttt{remote\_host} \textbf{80}. \\
     In the login console, type the following HTTP request line by line:
     \begin{verbatim}
-        GET /usage/index.html HTTP/1.0
-        From: guest@your host
+        GET /index.html HTTP/1.0
+        From: netlab@your_host
         User-Agent: HTTPTool/1.0
     \end{verbatim}
     Note that you need to type the \texttt{Return} key to input the last line, which is blank.
@@ -168,20 +144,18 @@
         \item Submit the HTTP request and response, including the start-lines and all the headers.
     \end{enumerate}
 
-    %\pagebreak
-    \section{HTTP Keep-Alive}
-    By default, Apache server supports persistent connections. Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file to make sure it is turned on, as \texttt{KeepAlive} on. \\
-    Execute \textbf{wireshark} to capture packets between your host and a remote host. \\
-    Start \texttt{Mozilla} on your host. Go to menu \texttt{Edit/Preferences/Advanced/HTTP Networking}, and uncheck the Enable \texttt{Keep-Alive} checkbox to disable persistent connections. \\
-    Enter the URL \texttt{http://10.0.0.2/try1.html}, to download the HTML file consisting a line of text, an embedded picture, and a hyperlink.
-    Use \textbf{wireshark} and print the HTTP requests and responses for the lab report.
+    
+\section{HTTP Keep-Alive}
+    By default, Apache server supports persistent connections. Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file \footnote{/etc/apache2/apache2.conf} to make sure it is turned on, as \texttt{KeepAlive On}. \\
+    Execute \textbf{tcpdump host \textit{your\_host} and \textit{remote\_host}} or run \textbf{wireshark} to capture packets between your host and a remote host. \\
+    
+    Enter the URL \texttt{http://remote-host/try1.html}, to download the HTML file consisting a line of text, an embedded picture, and a hyperlink.\\
 
-    \begin{itemize}
-        \item \textit{You can use \textbf{curl -v http://www.google.com http://www.google.com} to get multiple query in one command.}
-    \end{itemize}
-
-    Restart the \textbf{wireshark} program. Goto \texttt{Mozilla} menu \texttt{Edit/Preferences/Advanced/HTTP Networking}, and enable persistent connections by checking Enable \texttt{Keep-Alive}. \\
-    Use \texttt{Mozilla} to reload the \texttt{try1.html} file. \\
+    Disable Apache server persistent connections by change value of \texttt{KeepAlive} option to \textbf{Off} and restart \texttt{apache2} service\footnote{service apache2 restart}.\\
+    
+    Use \textbf{tcpdump host \textit{your\_host} and \textit{remote\_host}} or run \textbf{wireshark} and print the HTTP requests and responses for the lab report.
+    
+    Use \texttt{Mozilla} to reload the \texttt{try1.html} file (use: \textbf{Ctrl+F5} to ignore cache).\\
     Use \textbf{wireshark} and print the HTTP requests and responses for the lab report.
 
     \subsection*{Report}
@@ -193,13 +167,12 @@
         \item What is the purpose of using persistent connections?
     \end{enumerate}
 
-    %\pagebreak
-    \section{HTTP Submit}
+\section{HTTP Submit}
     Execute \textbf{wireshark} to capture packets between your host and a remote host. \\
     Use \texttt{Mozilla} to download the \texttt{http://remote\_host/try2.htm} file, which is an \texttt{HTML} form, from the remote host. \\
     Fill a text string, e.g., the name of the host being used, into the text field in the form and click the submit button in the form. \\
     When the server response is received, terminate \textbf{wireshark}. \\
-    Examine how CGI works, and identify the data string sent to the server.
+    Examine how LAMP (for php) [CGI (for perl)] works, and identify the data string sent to the server.
     Save the HTTP request containing the data string for lab report.
 
     \subsection*{Report}
@@ -207,32 +180,88 @@
         \item Submit the data string sent to the server.
     \end{enumerate}
 
+\section*{DHCP exercises}
+    For the exercises in this section, the network topology is given in Fig. 1.3, where all the hosts are connected to a single network segment using their default IP addresses, i.e., from 128.238.66.100 to 128.238.66.107.
 
-    %\pagebreak
-    \section*{DHCP}
-    In this exercise, we use \texttt{guchi} as the DHCP server, with a configuration file shown in Table 8.3. Do the following.
+    \begin{center}
+        %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+        \begin{minipage}{0.48\textwidth}
+            \begin{flushleft}
+                \begin{table}[H]
+                    \caption{The IP addresses of the hosts}
+                    \vspace{5pt}
+                    \centering
+                    \large
+                    \begin{tabular}{ l l l }
+                        \hline \hline
+                        Host & IP Address & Subnet Mask \\
+                        \hline 
+                        h0 (shakti) & 128.238.66.100 & 255.255.255.0 \\
+                        h1 (vayu) & 128.238.66.101 & 255.255.255.0 \\
+                        h2 (agni) & 128.238.66.102 & 255.255.255.0 \\
+                        h3 (apah) & 128.238.66.103 & 255.255.255.0 \\
+                        h4 (yachi) & 128.238.66.104 & 255.255.255.0 \\
+                        h5 (fenchi) & 128.238.66.105 & 255.255.255.0 \\
+                        h6 (kenchi) & 128.238.66.106 & 255.255.255.0 \\
+                        h7 (guchi) & 128.238.66.107 & 255.255.255.0 \\
+                        \hline \hline
+                        \end{tabular}
+                \end{table}
+            \end{flushleft}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+            \begin{flushright}
+                \begin{figure}[H]
+                    \centering
+                    \begin{tikzpicture}[font=\sf]
+                        \node[draw] (s) at (0,0){Core Switch};
+                        \node[draw,circle] (h0) at (0,2){h0};
+                        \node[draw,circle] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+                        \node[draw,circle] (h2) at (2,0){h2};
+                        \node[draw,circle] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+                        \node[draw,circle] (h4) at (-2,0){h4};
+                        \node[draw,circle] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+                        \node[draw,circle] (h6) at (0,-2){h6};
+                        \node[draw,circle] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+                    
+                        \draw[thick] (h0) -- (s);
+                        \draw[thick] (h1) -- (s);
+                        \draw[thick] (h2) -- (s);
+                        \draw[thick] (h3) -- (s);
+                        \draw[thick] (h4) -- (s);
+                        \draw[thick] (h5) -- (s);
+                        \draw[thick] (h6) -- (s);
+                        \draw[thick] (h7) -- (s);
+                    \end{tikzpicture}
+                    \caption{A single segment network}        
+                \end{figure}
+            \end{flushright}
+        \end{minipage}
+    \end{center}
+
+\section{DHCP server}
+    In this exercise, we use \texttt{h1} as the DHCP server, with a configuration file\footnote{\texttt{/etc/dhcp/dhcpd.conf}} shown in Table 8.3. Do the following.
+
     \begin{enumerate}
-        \item Install DHCP Server: \texttt{\$sudo apt-get install isc-dhcp-server}\footnote{\href{https://help.ubuntu.com/community/isc-dhcp-server}{ubuntu->isc-dhcp-server} or \href{https://www.tecmint.com/install-dhcp-server-in-ubuntu-debian/}{extera}}
-        \item Run mininet with 4 hosts \texttt{sudo mn --topo linear,4}
-        \item Set MAC address of h4 in dhcpd.conf for static IP assignment
-        \item Set ip in \textbf{h1}: \texttt{ifconfig h1-eth0 128.238.66.1 netmask 255.255.255.0}
-        \item Start the DHCP server on \texttt{h1} in the foreground and working in the debugging mode: \textbf{dhcpd -d -f}.
-        \item Execute \textbf{wireshark} to capture the DHCP messages in the network segment.
+        \item Change MAC address of \texttt{h5} in server configuration file (Table 8.3) by your \texttt{h5} MAC address and save to \texttt{dhcpd.conf}.
+        \item Set ip of \texttt{h1} to \texttt{128.238.66.100}
+        \item Start the DHCP server on \texttt{h1} in the foreground and working in the debugging mode: \textbf{dhcpd -d -f}\footnote{default }.
+        \item Execute \textbf{tcpdump -exn -nn -s 100} or \textbf{wireshark} to capture the DHCP messages in the network segment.
         \item Then do the following to enable DHCP for the Ethernet interface on \texttt{h2}. \\
-        Run on \textbf{h2}: \texttt{ifconfig eth0 0}\\
+        Run on \textbf{h2}: \texttt{ifconfig eth0 0} to clear ip of \texttt{eth0}\\
         And run \texttt{dhclient eth0}\\
-        Run \texttt{ifconfig} to see new ip\\
+        When shakti is successfully reconfigured, execute \textbf{ifconfig -a} or \textbf{ip a} to display its
+        network interface configurations and execute \textbf{netstat -rn} or \textbf{ip r} to display its routing table.\\
         Save the outputs for the lab report.
-        % Go to the system menu: \texttt{System Settings/Network}. In the \texttt{Network Configuration} dialog, choose the \texttt{Device} tab, and click on the \texttt{eth0} item. Next,click the Edit button to bring up the \texttt{Ethernet Device} dialog. In this dialog, check \texttt{Automatically obtain IP address settings with} and select \texttt{dhcp} from the following drop list. When the configuration is done, save the new configuration and then execute \textbf{/etc/init.d/network restart} to load the new configuration. \\
-        % When \texttt{shakti} is successfully reconfigured, execute \textbf{ifconfig -a} to display its network interface configurations and execute \textbf{netstat -rn} to display its routing table.
         \item Then, repeat 3 for \texttt{h3}.
-        \item Repeat 3 for h4.
-        \item Repeat 3 for h5.
+        \item Repeat 3 for \texttt{h4}.
+        \item Repeat 3 for \texttt{h5}.
     \end{enumerate}
-    Terminate \textbf{wireshark}.Print out the DHCP messages for the lab report. \\
-    Save the DHCP server output on \texttt{guchi} for the lab report.
+    Terminate \textbf{wireshark}. Print out the DHCP messages for the lab report. \\
+    Save the DHCP server output on \texttt{h1} for the lab report.
 
     \subsection*{Table 8.3: A DHCP server configuration file}
+    \texttt{/etc/dhcp/dhcpd.conf}
     \begin{verbatim}
     default-lease-time 600;
     max-lease-time 7200;
@@ -246,7 +275,7 @@
         range 128.238.66.111 128.238.66.112;
     }
 
-    host h4 {
+    host h5 {
         hardware ethernet 08:00:20:79:e9:9f;
         fixed-address 128.238.66.110;
     }
@@ -258,15 +287,16 @@
         Explain how DHCP works.
         \item Did \texttt{h2} and \texttt{h3} successfully obtain a set of new parameters?
         Compare the ifconfig and netstat output with the parameters carried in the corresponding DHCP messages.
-        \item Answer the above question for agni.
-        Explain why agni failed.
-        \item Answer the above question for h4.
-        Explain why h4 succeeded.
+        \item Answer the above question for \texttt{h4}.
+        Explain why \texttt{h4} failed.
+        \item Answer the above question for \texttt{h5}.
+        Explain why \texttt{h5} succeeded.
     \end{enumerate}
 
-    %\pagebreak
-    \section*{NTP}
-    \section{NTP Local Date}
+\section*{NTP exercises}
+    Before proceeding to the next exercise, reboot the hosts and set network topology is given in Fig. 1.3.
+
+\section{NTP Local Date}
     Execute \textbf{date} to display the system time of your host. Display the manual page of \textbf{date}, and study its options and usages.
     Try the following \textbf{date} commands: \\
     \begin{lstlisting}[language=bash,
@@ -286,8 +316,8 @@
         Explain the use of the commands.
     \end{enumerate}
 
-    \section{NTP Remote Date}
-    While \textbf{wireshark} is running, execute \textbf{rdate -p} \textit{remote\_host} to display the system time of the remote machine.
+\section{Remote Date}
+    While \textbf{tcpdump -n -nn -ex host \textit{your\_host} and \textit{remote\_host}} or \textbf{wireshark} is running, execute \textbf{rdate -p} \textit{remote\_host} to display the system time of the remote machine.
     Repeat the above \textbf{rdate} command, but use the \textbf{-u} option.
     Save the \textbf{wireshark} outputs for the lab report.
 
@@ -299,15 +329,15 @@
         \item What TCP header options were used?
     \end{enumerate}
 
-    \section{NTP Sync}
-    In this exercise, we start the NTP server daemon on \texttt{shakti} and use NTP to
-    synchronize all the other hosts to \texttt{shakti}.
-    Study the NTP configuration file \texttt{/etc/ntp.conf} in \texttt{shakti} and in your host.
-    If you are using another machine, you can telnet to shakti and display the \texttt{/etc/ntp.conf} file in the telnet window.
-    Start the NTP server on \texttt{shakti} by: \textbf{/etc/init.d/ntpd start}.
-    To determine the status of the NTP server, use \textbf{/etc/init.d/ntpd status}.
-    Use \textbf{wireshark} to capture packets between your host and \texttt{shakti}.
-    Execute \textbf{ntpdate -d -v 128.238.66.100} to synchronize your host to \texttt{shakti}.
+\section{NTP Sync}
+    In this exercise, we start the NTP server daemon on \texttt{h1} and use NTP to
+    synchronize all the other hosts to \texttt{h1}.
+    Study the NTP configuration file \texttt{/etc/ntp.conf} in \texttt{h1} and in your host.
+    If you are using another machine, you can telnet to \texttt{h1} and display the \texttt{/etc/ntp.conf} file in the telnet window.
+    Start the NTP server on \texttt{h1} by: \textbf{service ntp start}.
+    To determine the status of the NTP server, use \textbf{service ntp status}.
+    Use \textbf{tcpdump -ex -n -nn host \textit{your\_host} and \textit{h1}} or \textbf{wireshark} to capture packets between your host and \texttt{h1}.
+    Execute \textbf{ntpdate -d -v 128.238.66.100} to synchronize your host to \texttt{h1}.
     Study the output of this command.
     Save the \textbf{ntpdate} and the \textbf{wireshark} outputs for the lab report.
     \subsection*{Report}
@@ -316,15 +346,29 @@
         Justify your answer using the \textbf{wireshark} output.
     \end{enumerate}
 
-    \section*{NAT}
-    
+\section{NTP server}
+    Keep the NTP server running on \texttt{h1}. Execute \textbf{tcpdump -exn -nn host \textit{your\_host} and \textit{128.238.66.100}} or \textbf{wireshark} to capture the NTP messages between \texttt{your\_host} and \texttt{h1}.\\
+    Config \texttt{/etc/ntp.conf} in \texttt{your\_host} and add \textbf{server 128.238.66.103} to config file.\\
+    Start the NTP clients on your host, by \textbf{service ntp start}.\\
+    Wait for several minutes. Then terminate the \textbf{tcpdump} program. Analyze the captured NTP packets. Print one of the NTP packets for the lab report.\\
+    Execute \textbf{ntptrace} to show the client/server relation of NTP.\\
+
+    \subsection*{Report}
+    \begin{enumerate}
+        \item Submit the NTP packet captured. List the fields and their values.
+        \item What was the rate at which NTP queries were sent by the client?
+        \item Which stratum was your host in? Which stratum was the NTP server in?
+    \end{enumerate}
+
+\section*{NAT exercises}
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/fig1.png}
         \caption{\textbf{Figure 8.7.} The network configuration for the NAT exercises.}
         \label{fig:8.7}
     \end{figure}
-    \section{NAT}
+
+\section{NAT}
     Connect the hosts and Router 1 as shown in Fig.
     8.7.\footnote{For the exercises in this section, we use a network setting as shown in Fig. 8.7. The lower subnet is a private network where the hosts are assigned with the Class A addresses with the 10.0.0.0/8 prefix. The upper subnet represents the Internet. The hosts, i.e., shakti and vayu are assigned with public IP addresses. Router 1 is used as the stub router, which performs address or port translation for the private network.} Then set the IP address and the network mask of your host as shown in the figure.
     In addition, you need to add a default route in your host’s routing table, using the router interface on your subnet as the default router.
@@ -339,7 +383,7 @@
         Why?
     \end{enumerate}
 
-    \section*{NAT Visibility}
+\section{NAT Visibility}
     Keep the login session to the router running. Execute \textbf{wireshark} on all the hosts. \\
     Before any host in the private network send any packets out, ping an inside host (e.g., \texttt{fenchi}) from an outside host (e.g., \textbf{vayu}). You may try to ping 10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104. Can you ping these IP addresses? \\
     Let an inside host send packets to an outside host, e.g., from \texttt{fenchi}, execute ping 128.238.61.100. Can you ping \texttt{fenchi} from an outside host now? Why? Which IP address should be used in the ping command in order to ping \texttt{fenchi}? \\
@@ -354,8 +398,7 @@
         \item In addition to the IP address, what else was changed in the ICMP query packet?
     \end{enumerate}
 
-
-    \section*{NAT Table}
+\section{NAT Table}
     Keep the login session to the router running. Execute \textbf{wireshark} to capture ICMP messages. \\
     Execute \textbf{socket -i -u -n1 128.238.61.101 8888} on \texttt{agni} to generate an ICMP port unreachable error. \\
     Print the ICMP error message for the lab report. \\
@@ -368,19 +411,19 @@
         Explain how ICMP error was handled by the NAT router.
     \end{enumerate}
 
-    \section*{NAT with PAT}
+\section{NAT and PAT}
     Reboot the router to restore its default configuration.
     Then, configure the router to use PAT, as given in Table 8.6. Now all the hosts in the private network use the same IP address 128.238.61.1. However, note that there is a static translation that maps guchi’s port 80 to 128.238.61.1 port 80. \\
-    Execute \textbf{wireshark} on all the hosts. \\
+    Execute \textbf{tcpdump} on all the hosts. \\
     Generate traffic between the inside and outside hosts.
-    Examine the \textbf{wireshark} output to see how PAT works.
-    Start the Apache web server on \texttt{guchi}. Also, start the web browser \texttt{Mozilla} on an outside host (e.g., \texttt{shakti}), and enter the URL \texttt{http://128.238.61.1}. Save the \textbf{wireshark} output.
+    Examine the \textbf{tcpdump} output to see how PAT works.\\
+    Start the Apache web server on \texttt{guchi}. Also, start the web browser \texttt{Mozilla} on an outside host (e.g., \texttt{shakti}), and enter the URL \texttt{http://128.238.61.1}. Save the \textbf{wireshark} output.\\
     Use \textbf{show ip nat translations} to display and then save the translation table.
     Exchange the data you saved with a student in the other subnet.
     \subsection*{Report}
     \begin{enumerate}
         \item From the \textbf{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
-        With PAT, can you have two web servers in the private network?
+        \item With PAT, can you have two web servers in the private network?
         If not, why?
         If yes, explain how this can be done.
     \end{enumerate}
@@ -421,22 +464,22 @@
         access-list 8 permit 10.0.0.0 0.0.0.255
     \end{verbatim}
 
-\iffalse
-    \section*{Socket programming exercises 1}
-    Examine the UDP socket programs \texttt{/home/guest/UDPserver.c} and \texttt{/home/guest/UDPclient.c} to learn how to write a UDP socket program.
+\section*{Socket programming exercises}
+\section{Socket programming}
+    Examine the UDP socket programs \texttt{/home/netlab/UDPserver.c} and \texttt{/home/netlab/UDPclient.c} to learn how to write a UDP socket program.
     Compile the C programs using \texttt{gcc -o UDPserver UDPserver.c -lnsl} and \texttt{gcc -o UDPclient UDPclient.c -lnsl}. \\
-    Start \textbf{wireshark} to capture packets from or to a remote host. \\
+    Start \textbf{tcpdump host \textit{remote\_host}} \textbf{wireshark} to capture packets from or to a remote host. \\
     On the remote host, start the UDP server by \textbf{UDPserver server\_port}.
     Then, start the UDP client on your host by \textbf{UDPclient remote\_host server\_port a\_message}.
-    You may execute the UDP client program on other hosts to connect to the same UDP server.
-    Terminate \textbf{wireshark}, examine its output and compare the output with the UDP server and client outputs.
+    You may execute the UDP client program on other hosts to connect to the same UDP server.\\
+    Terminate \textbf{tcpdump}, examine its output and compare the output with the UDP server and client outputs.\\
     Repeat the above experiments, but now use the \texttt{TCPserver.c} and \texttt{TCPclient.c}.
 
-    \section*{Socket programming exercises 2}
-    Execute \textbf{man setsockopt} to display the various socket options and how to set them.
+\section{Socket options}
+    Execute \textbf{man setsockopt} to display the various socket options and how to set them.\\
     Examine the \textbf{netspy} and \textbf{netspyd} source code in Appendix C.2 to see how to create a multicast socket and how to set the TTL value for the packets.
 
-    \section*{Socket programming exercises 3}
+\section{FTP Socket programming}
     This is an optional exercise on socket programming.
     Or, it can be assigned as a take-home project for extra credits.
     Note that familiarity with C programming is required.
@@ -447,15 +490,12 @@
         \item First you need to set up the control connection to Port 21 of the remote machine, using a TCP socket.
         \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in Table 5.1.
         \item You can first run \textbf{telnet remote\_host 21}, then type \textbf{help} to list all the FTP commands.
-        Also, you can try the commands out in the \textbf{telnet} window, e.g.\  use \textbf{USER guest} to send the user ID and \textbf{PASS guest1} to send the password to the FTP server.
+        Also, you can try the commands out in the \textbf{telnet} window, e.g.\  use \textbf{USER netlab} to send the user ID and \textbf{PASS netlab} to send the password to the FTP server.
         To terminate the \textbf{telnet} session, type \textbf{QUIT}.
         \item In your program, these messages should be sent to the FTP server by calling the \textbf{send()} function of the local TCP socket.
         \item Also your program needs to parse the server responses (some examples are given in Table 5.2) to find out the status of the previous FTP command.
         \item The FTP data connection should be established using the \textbf{PORT} command (see Chapter 5).
     \end{itemize}
-\fi
-
-% \pagebreak
 
 \appendix
 \section*{Appendices}
@@ -469,23 +509,5 @@
     \caption{The DHCP message format}
 \end{figure}
 Reference: TCP/IP Essential
-\subsection{Linux Nat}
-Assuming your public interface is eth1 and local interface is eth0
-\begin{enumerate}
-    \item Enable forwarding on the box with\\
-    \texttt{echo 1 > /proc/sys/net/ipv4/ip\_forward}
-    \item Set natting the natting rule with\\
-    \texttt{iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE}
-    \item Accept traffic from eth0:\\
-    \texttt{iptables -A INPUT -i eth0 -j ACCEPT}
-    \item Allow established connections from the public interface.\\
-    \texttt{iptables -A INPUT -i eth1 -m state --state ESTABLISHED,RELATED -j ACCEPT}
-    \item Allow outgoing connections:\\
-    \texttt{iptables -A OUTPUT -j ACCEPT}
-\end{enumerate}
-
-You can use following example for see linux NAT in MiniNet:\\
-\href{http://csie.nqu.edu.tw/smallko/sdn/mininet-operations.htm}{http://csie.nqu.edu.tw/smallko/sdn/mininet-operations.htm}
-
 
 \end{document}

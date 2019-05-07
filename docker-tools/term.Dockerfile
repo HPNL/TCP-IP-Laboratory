@@ -36,11 +36,13 @@ RUN set -ex \
 # not found package
 # * iputils for rdisc service
 # * quagga for rip service
+# lynx w3m
 
 # add netlab user
 RUN useradd -m netlab -s /bin/bash && \
     adduser netlab sudo && echo "netlab:netlab" | chpasswd netlab && \
-    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+    echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    mkdir /home/netlab/code
 
 # enable xinetd and vsftp service
 RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
@@ -56,6 +58,7 @@ COPY bashrc /home/netlab/.bashrc
 
 # copy program file
 COPY netspy netspyd netspydd TCPserver UDPclient UDPserver TCPclient socket /usr/local/bin/
+COPY netspy.c netspyd.c TCPserver.c UDPclient.c UDPserver.c TCPclient.c /home/netlab/code/
 
 # start service and bash
 WORKDIR /root/
