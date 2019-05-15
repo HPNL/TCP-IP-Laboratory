@@ -31,6 +31,7 @@ RUN set -ex \
         net-tools iperf3 traceroute tcpdump isc-dhcp-client isc-dhcp-server icmpush iputils-ping \
         netcat arping iproute iproute2 openssh-client openssh-server iptables \
         xinetd telnetd telnet ftp vsftpd tftpd tftp rdate snmp snmpd ntp ntpdate \
+        apache2 perl php5 libapache2-mod-php5 openssl \
     && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb
 
 # not found package
@@ -48,9 +49,18 @@ RUN useradd -m netlab -s /bin/bash && \
 # enable xinetd and vsftp service
 RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
     sed -i 's/= yes/= no/g' /etc/xinetd.d/echo && \
+    sed -i 's/^mibs :/#mibs :/' /etc/snmp/snmp.conf && \
     mkdir -p /var/run/vsftpd/empty && \
     sed -i 's/listen_ipv6=YES/listen_ipv6=NO/' /etc/vsftpd.conf && \
     su netlab -c 'cd; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 20M larg.dum'
+
+# config apache2
+RUN mkdir /etc/apache2/ssl/ && \
+    a2enmod ssl && \
+    a2ensite default-ssl.conf && \
+    sed -i 's/SSLCertificateFile.*pem$/SSLCertificateFile  \/etc\/apache2\/ssl\/server.crt/; s/SSLCertificateKeyFile.*key$/SSLCertificateKeyFile \/etc\/apache2\/ssl\/server.key/;' /etc/apache2/sites-available/default-ssl.conf
+COPY http/hello.pl http/hello.php http/index.html http/try1.html http/try2.html http/logo.png /var/www/html/
+COPY http/server.key http/server.crt /etc/apache2/ssl/
 
 # config system
 COPY xinetd.d/telnet xinetd.d/tftp xinetd.d/vsftp /etc/xinetd.d/
@@ -60,8 +70,9 @@ COPY bashrc /home/netlab/.bashrc
 # copy program file
 COPY netspy netspyd netspydd TCPserver UDPclient UDPserver TCPclient socket /usr/local/bin/
 COPY netspy.c netspyd.c TCPserver.c UDPclient.c UDPserver.c TCPclient.c /home/netlab/code/
+COPY mibs/* /usr/share/snmp/mibs/
 
 # start service and bash
 WORKDIR /root/
-VOLUME [ "/root" ]
+# VOLUME [ "/root" ]
 CMD [ "sh", "-c", "echo Salam; service xinetd start; cd; exec bash -i" ]
