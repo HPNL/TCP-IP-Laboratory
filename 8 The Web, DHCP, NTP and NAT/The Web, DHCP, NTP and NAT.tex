@@ -133,7 +133,7 @@
         From: netlab@your_host
         User-Agent: HTTPTool/1.0
     \end{verbatim}
-    Note that you need to type the \texttt{Return} key to input the last line, which is blank.
+    Note that you need to press the \texttt{Return} key to input the last line, which is blank.
     When the \textbf{telnet} process is terminated, save the output for your lab report. \\
     Terminate \textbf{wireshark} and analyze the captured HTTP packets.
     Print and save the HTTP request and response. \\
@@ -475,7 +475,7 @@
 \section*{Socket programming exercises}
 \section{Socket programming}
     Examine the UDP socket programs \texttt{/home/netlab/code/UDPserver.c} and \texttt{/home/netlab/code/UDPclient.c} to learn how to write a UDP socket program.
-    Compile the C programs using \texttt{gcc -o UDPserver UDPserver.c -lnsl} and \texttt{gcc -o UDPclient UDPclient.c -lnsl}. \\
+    You can compile the C programs by using \texttt{gcc -o UDPserver UDPserver.c -lnsl} and \texttt{gcc -o UDPclient UDPclient.c -lnsl}. Compile output available at \texttt{/usr/local/bin/} directory.\\
     Start \textbf{tcpdump host \textit{remote\_host}} \textbf{wireshark} to capture packets from or to a remote host. \\
     On the remote host, start the UDP server by \textbf{UDPserver server\_port}.
     Then, start the UDP client on your host by \textbf{UDPclient remote\_host server\_port a\_message}.
@@ -487,16 +487,14 @@
     Execute \textbf{man setsockopt} to display the various socket options and how to set them.\\
     Examine the \textbf{netspy} and \textbf{netspyd} source code in Appendix C.2 to see how to create a multicast socket and how to set the TTL value for the packets.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Explain the various options you could set on socket.
-        \item Explain the difference between a socket and multicast socket.
-    \end{enumerate}
+    % \subsection*{Report}
+    % \begin{enumerate}
+    %     \item Explain the various options you could set on socket.
+    %     \item Explain the difference between a socket and multicast socket.
+    % \end{enumerate}
 
 \section{FTP Socket programming}
-    This is an optional exercise on socket programming.
-    Or, it can be assigned as a take-home project for extra credits.
-    Note that familiarity with C (or C++) programming is required.
+    This is an optional exercise on socket programming. Or, it can be assigned as a take-home project for extra credits. Note that familiarity with C (or C++) programming is required.
 
     \subsection*{Problem}
     Examine the message exchanges of FTP. Write a FTP client program which takes a file name as input, and upload the file to a standard FTP server on a remote machine.
