@@ -332,14 +332,14 @@
     \end{enumerate}
 
 \section{NTP Sync}
-    In this exercise, we start the NTP server daemon on \texttt{h1} and use NTP to
-    synchronize all the other hosts to \texttt{h1}.
-    Study the NTP configuration file \texttt{/etc/ntp.conf} in \texttt{h1} and in your host.
-    If you are using another machine, you can telnet to \texttt{h1} and display the \texttt{/etc/ntp.conf} file in the telnet window.
-    Start the NTP server on \texttt{h1} by: \textbf{service ntp start}.
+    In this exercise, we start the NTP server daemon on \texttt{h0} and use NTP to
+    synchronize all the other hosts to \texttt{h0}.
+    Study the NTP configuration file \texttt{/etc/ntp.conf} in \texttt{h0} and in your host.
+    If you are using another machine, you can telnet to \texttt{h0} and display the \texttt{/etc/ntp.conf} file in the telnet window.
+    Start the NTP server on \texttt{h0} by: \textbf{service ntp start}.
     To determine the status of the NTP server, use \textbf{service ntp status}.
-    Use \textbf{tcpdump -ex -n -nn host \textit{your\_host} and \textit{h1}} or \textbf{wireshark} to capture packets between your host and \texttt{h1}.
-    Execute \textbf{ntpdate -d -v 128.238.66.100} to synchronize your host to \texttt{h1}.
+    Use \textbf{tcpdump -ex -n -nn host \textit{your\_host} and \textit{h0}} or \textbf{wireshark} to capture packets between your host and \texttt{h0}.
+    Execute \textbf{ntpdate -d -v 128.238.66.100} to synchronize other host to \texttt{h0}.
     Study the output of this command.
     Save the \textbf{ntpdate} and the \textbf{wireshark} outputs for the lab report.
     \subsection*{Report}
@@ -349,8 +349,8 @@
     \end{enumerate}
 
 \section{NTP server}
-    Keep the NTP server running on \texttt{h1}. Execute \textbf{tcpdump -exn -nn host \textit{your\_host} and \textit{128.238.66.100}} or \textbf{wireshark} to capture the NTP messages between \texttt{your\_host} and \texttt{h1}.\\
-    Config \texttt{/etc/ntp.conf} in \texttt{your\_host} and add \textbf{server 128.238.66.103} to config file.\\
+    Keep the NTP server running on \texttt{h0}. Execute \textbf{tcpdump -exn -nn host \textit{your\_host} and \textit{128.238.66.100}} or \textbf{wireshark} to capture the NTP messages between \texttt{your\_host} and \texttt{h0}.\\
+    Config \texttt{/etc/ntp.conf} in \texttt{other\_host} and add \textbf{server 128.238.66.100} to config file.\\
     Start the NTP clients on your host, by \textbf{service ntp start}.\\
     Wait for several minutes. Then terminate the \textbf{tcpdump} program. Analyze the captured NTP packets. Print one of the NTP packets for the lab report.\\
     Execute \textbf{ntptrace} to show the client/server relation of NTP.\\
