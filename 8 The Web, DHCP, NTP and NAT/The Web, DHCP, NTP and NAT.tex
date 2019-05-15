@@ -110,9 +110,8 @@
     For the exercises in this section, the network topology is simple with two hosts are connected to a single network segment with IP addresses, i.e., from 128.238.66.100 to 128.238.66.101. Add first host from \texttt{http-server} and another hsot from \texttt{gui}.
 
 \section{HTTP Server}
-    Config your Apache server configuration file\footnote{\texttt{/etc/apache2/apache2.conf}} (see Section 8.2.3 Ref Book).
-    Examine the various configuration directives used and the corresponding settings. \\
-    Start the Apache server on your host.
+    Examine the various configuration directives used and the corresponding settings\footnote{\texttt{/etc/apache2/apache2.conf}}. \\
+    Start the Apache server on your host by: \textbf{service apache2 start}.
     In order to check if the server is working properly, you may start a \texttt{Mozilla} web browser to download the test page at \texttt{http://remote\_host/}.\\
     Then, execute \textbf{pgrep apache2} to list the process IDs of the \textbf{apache2} processes started.\footnote{By \texttt{a2enmod mpm\_prefork} you can enable Multi-Processing Module and change default spare process (config file: \texttt{/etc/apache2/mods-available/mpm\_prefork.conf})}
     Save the output and the configuration file for the lab report.
