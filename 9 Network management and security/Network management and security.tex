@@ -253,7 +253,7 @@
 	Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \texttt{/etc/apache2/ssl/server.crt}\\
 	You can generate private key and self-signed certificate whit one command by:
 	\begin{itemize}
-		\item \textbf{openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}\footnote{You can use simple command as: `\texttt{make-ssl-cert generate-default-snakeoil --force-overwrite}' without editing default apache ssl config}\\
+		\item \textbf{openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}\footnote{You can use simple command as: \texttt{make-ssl-cert generate-default-snakeoil -{}-force-overwrite} without editing default apache ssl config}\\
 		Let's go over exactly what this means.\\
 		\begin{itemize}
 			\item \textbf{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
@@ -299,4 +299,35 @@
 		\item When was the certificate signed? When will it expire?
 	\end{enumerate}
 
+\section*{Exercises on auditing and intrusion detection}
+	Start \textbf{Apache} service and brwose several page in the \texttt{Mozilla}. Open random url that not exist on the web server to generate log for apache. Browse again page as \texttt{secure http}.
+
+\section{Trace Log}
+	Go to \textbf{Log} folder at \texttt{/var/log/} to examine the log files in your host. If a log (e.g., the \texttt{Apache Access Log}) is too long, use \textbf{grep \texttt{keyword}} (e.g., \texttt{GET}) in the “console” to display those log entries containing the keyword. Enter the keyword “failed” to display logged failures.\\
+	See other log file.
+
+\section{Log Analyzer}
+	Linux uses a utility called \texttt{Webalizer} to analyze the web server log files. \texttt{Webalizer} reads the \texttt{Apache} log files and creates a set of web reports on server statistics. Another utility is \texttt{goaccess} that analyze various access type and list it.\\
+	To analyze local log use this commands:
+	\begin{itemize}
+		\item \textbf{webalizer}
+		\item \textbf{goaccess -f access.log -a > /var/www/html/report.html}
+	\end{itemize}
+	To view the reports of the \texttt{webalizer}, start \texttt{Mozilla} and enter the URL \texttt{http://remote\_host/usage/index.html}. Examine the web statistics displayed in the browser. Also click on the month links in the Summary by Month table to see the statistics of each month.\\
+	To view the report of the \texttt{goaccess}, start \texttt{Mozilla} and enter the URL \texttt{http://remote\_host/report.html}. Examine the web statistics displayed in the browser. Also click on the side panel to see other section.
+
+	\subsection*{Report}
+	\begin{itemize}
+		\item List the most frequently visited pages at the local Apache server and 		the remote Apache server during the most recent month, respectively.
+		\item List the web pages that have the most number of bytes transferred by the local and the remote server during the most recent month, respectively.
+	\end{itemize}
+
+\section{System status}
+	Execute \textbf{netstat -l} to display the listening sockets in your host.\\
+	Execute \textbf{service -{}-status-all} to list the services in the \texttt{/etc/init.d/} and \texttt{/etc/init/} directories and their status. Save the output for the lab report.
+	
+	\subsection*{Report}
+	\begin{itemize}
+		\item Is the \textbf{rlogin, ssh, apache2} services enabled in your host?
+	\end{itemize}
 \end{document}
