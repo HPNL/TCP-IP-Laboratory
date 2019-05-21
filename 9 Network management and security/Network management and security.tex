@@ -142,7 +142,6 @@
 \section{SNMP list objects}
 	Use \textbf{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.\\
 	Use \textbf{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.\\
-	Run from another hsot \textbf{telnet \textit{remote\_host} echo} (use \texttt{ctrl+]} to terminate \textbf{telnet}) and try egain to run \textbf{snmpwalk -v 2c -c guest localhost tcp}. Try to run \textbf{snmpwalk -v 2c -c guest \textit{remote\_host} tcp}.\\
 	You may run \textbf{man snmpwalk} to find out the meanings of the options used in the commands. Compare the outputs with the MIB files you saved in the previous exercise. Also compare the outputs of the first command with that of \textbf{ifconfig -a}.\\
 	Retry the \textbf{snmpwalk} commands, but change guest to public. Can you display the MIBs this time?
 	
@@ -152,8 +151,9 @@
 		\item Why did the snmpwalk command with a community name public fail?
 	\end{enumerate}
 
-\section{SNMP get remote object}
+\section{SNMP remote access}
 	Execute \textbf{tcpdump udp port 161} or \textbf{wireshark} to capture SNMP messages.\\
+	Run from another hsot \textbf{telnet \textit{remote\_host} echo} (use \texttt{ctrl+]} to terminate \textbf{telnet}) and try egain to run \textbf{snmpwalk -v 2c -c guest localhost tcp}. Try to run \textbf{snmpwalk -v 2c -c guest \textit{remote\_host} tcp}.\\
 	Execute \textbf{snmpget -v 2c -c guest \textit{remote\_host} IF-MIB::ifMtu.1} to get the MIB object \texttt{IF-MIB::ifMTU.1} from a remote machine.\\
 	Save the \textbf{snmpget} output and terminate \textbf{tcpdump}.\\
 	Use \textbf{wireshark} to analyze the format of the captured SNMP Get and Response messages. Print the messages for the lab report.
