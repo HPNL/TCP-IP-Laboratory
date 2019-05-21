@@ -56,11 +56,12 @@ fi
 log "Add GNS3 to the ubridge group"
 usermod -aG ubridge gns3
 
-log "Install docker"
-if [ ! -f "/usr/bin/docker" ]
-then
-  curl -sSL https://get.docker.com | bash
-fi
+# log "Install docker"
+# if [ ! -f "/usr/bin/docker" ]
+# then
+#   curl -sSL https://get.docker.com | bash
+# fi
+apt-get install -y docker.io docker-compose docker
 
 log "Add GNS3 to the docker group"
 usermod -aG docker gns3
