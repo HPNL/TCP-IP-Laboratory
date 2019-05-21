@@ -61,7 +61,7 @@ usermod -aG ubridge gns3
 # then
 #   curl -sSL https://get.docker.com | bash
 # fi
-apt-get install -y docker.io docker-compose docker
+apt-get install -y docker.io docker-compose
 
 log "Add GNS3 to the docker group"
 usermod -aG docker gns3
