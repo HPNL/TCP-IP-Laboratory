@@ -9,9 +9,11 @@ RUN set -ex \
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
         htop bash-completion less man-db curl wget nano vim \
         net-tools tcpdump isc-dhcp-client iputils-ping openssl \
-        netcat iproute iproute2 apache2 perl php5 libapache2-mod-php5 \
+        netcat iproute iproute2 apache2 webalizer goaccess perl php5 libapache2-mod-php5 \
     && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb \
     # Enable ssl for apache
+    && mkdir /var/www/html/usage \
+    # && sed -i 's/access\.log\.1/access\.log/; s/^OutputDir.*/OutputDir \/var\/www\/html\/usage/;' /etc/webalizer/webalizer.conf \
     && mkdir /etc/apache2/ssl/ \
     && a2enmod ssl \
     && a2ensite default-ssl.conf \
@@ -20,6 +22,8 @@ RUN set -ex \
 
 COPY hello.pl hello.php index.html try1.html try2.html logo.png /var/www/html/
 COPY server.key server.crt /etc/apache2/ssl/
+COPY http/webalizer.conf /etc/webalizer/
+COPY http/goaccess.conf /etc/
 
 # start service and bash
 WORKDIR /root/

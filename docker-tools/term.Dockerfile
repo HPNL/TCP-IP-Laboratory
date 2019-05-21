@@ -31,7 +31,7 @@ RUN set -ex \
         net-tools iperf3 traceroute tcpdump isc-dhcp-client isc-dhcp-server icmpush iputils-ping \
         netcat arping iproute iproute2 openssh-client openssh-server iptables \
         xinetd telnetd telnet ftp vsftpd tftpd tftp rdate snmp snmpd ntp ntpdate \
-        apache2 perl php5 libapache2-mod-php5 openssl \
+        apache2 webalizer goaccess perl php5 libapache2-mod-php5 openssl \
     && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb
 
 # not found package
@@ -61,6 +61,8 @@ RUN mkdir /etc/apache2/ssl/ && \
     sed -i 's/SSLCertificateFile.*pem$/SSLCertificateFile  \/etc\/apache2\/ssl\/server.crt/; s/SSLCertificateKeyFile.*key$/SSLCertificateKeyFile \/etc\/apache2\/ssl\/server.key/;' /etc/apache2/sites-available/default-ssl.conf
 COPY http/hello.pl http/hello.php http/index.html http/try1.html http/try2.html http/logo.png /var/www/html/
 COPY http/server.key http/server.crt /etc/apache2/ssl/
+COPY http/webalizer.conf /etc/webalizer/
+COPY http/goaccess.conf /etc/
 
 # config system
 COPY xinetd.d/telnet xinetd.d/tftp xinetd.d/vsftp /etc/xinetd.d/
