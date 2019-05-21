@@ -56,6 +56,7 @@ RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
 
 # config apache2
 RUN mkdir /etc/apache2/ssl/ && \
+    mkdir /var/www/html/usage && \
     a2enmod ssl && \
     a2ensite default-ssl.conf && \
     sed -i 's/SSLCertificateFile.*pem$/SSLCertificateFile  \/etc\/apache2\/ssl\/server.crt/; s/SSLCertificateKeyFile.*key$/SSLCertificateKeyFile \/etc\/apache2\/ssl\/server.key/;' /etc/apache2/sites-available/default-ssl.conf
@@ -70,8 +71,8 @@ COPY bashrc /root/.bashrc
 COPY bashrc /home/netlab/.bashrc
 
 # copy program file
-COPY netspy netspyd netspydd TCPserver UDPclient UDPserver TCPclient socket /usr/local/bin/
-COPY netspy.c netspyd.c TCPserver.c UDPclient.c UDPserver.c TCPclient.c /home/netlab/code/
+COPY netspy netspyd netspydd socket /usr/local/bin/
+COPY netspy.c netspyd.c TCPserver.c UDPclient.c UDPserver.c TCPclient.c TCPserver UDPclient UDPserver TCPclient /home/netlab/code/
 COPY mibs/* /usr/share/snmp/mibs/
 
 # start service and bash
