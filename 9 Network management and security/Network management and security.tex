@@ -143,7 +143,7 @@
 	Use \textbf{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.\\
 	Use \textbf{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.\\
 	You may run \textbf{man snmpwalk} to find out the meanings of the options used in the commands. Compare the outputs with the MIB files you saved in the previous exercise. Also compare the outputs of the first command with that of \textbf{ifconfig -a}.\\
-	Retry the \textbf{snmpwalk} commands, but change guest to public. Can you display the MIBs this time?
+	Retry the \textbf{snmpwalk} commands, but change \texttt{guest} to \texttt{public}. Can you display the MIBs this time?
 	
 	\subsection*{Report}
 	\begin{enumerate}
@@ -153,7 +153,8 @@
 
 \section{SNMP remote access}
 	Execute \textbf{tcpdump udp port 161} or \textbf{wireshark} to capture SNMP messages.\\
-	Run from another hsot \textbf{telnet \textit{remote\_host} echo} (use \texttt{ctrl+]} to terminate \textbf{telnet}) and try egain to run \textbf{snmpwalk -v 2c -c guest localhost tcp}. Try to run \textbf{snmpwalk -v 2c -c guest \textit{remote\_host} tcp}.\\
+	Run from \texttt{h1} host \textbf{telnet \textit{h0} echo} (use \texttt{ctrl+]} to terminate \textbf{telnet} and then \texttt{quit}) and try again to run \textbf{snmpwalk -v 2c -c guest localhost tcp}.\\
+	Try to run \textbf{snmpwalk -v 2c -c guest \textit{h0} tcp} from \texttt{h2}.\\
 	Execute \textbf{snmpget -v 2c -c guest \textit{remote\_host} IF-MIB::ifMtu.1} to get the MIB object \texttt{IF-MIB::ifMTU.1} from a remote machine.\\
 	Save the \textbf{snmpget} output and terminate \textbf{tcpdump}.\\
 	Use \textbf{wireshark} to analyze the format of the captured SNMP Get and Response messages. Print the messages for the lab report.
@@ -169,7 +170,7 @@
 	
 \section{Plain Transfer}
 	Execute \textbf{tcpdump -enX -s 100} or \textbf{wireshark} to capture packets between your machine and a remote machine.\\
-	Execute \textbf{ftp} remote machine. When prompted, type “1111” for the login ID, and “2222” for the login password. Then terminate \textbf{tcpdump} and \textbf{ftp}.\\
+	Execute \textbf{ftp \textit{remote\_machine}} . When prompted, type “1111” for the login ID, and “2222” for the login password. Then terminate \textbf{tcpdump} and \textbf{ftp}.\\
 	Use \textbf{wireshark} to analyze and print the packets that carry the login ID and the password for the lab report.\\
 	Repeat the above experiment, but use \textbf{telnet} and the \textbf{wireshark} to analyze and print output.
 
@@ -209,7 +210,7 @@
 	
 	\setlength{\parindent}{0pt}
 	Run \textbf{iptables -L -v} again on both hosts to display the filter table. Save the output.\\
-	On both machines, execute \textbf{tcpdump host \textit{your\_host} and \textit{remote\_host}}. Then, \textbf{telnet} to the host where the rule is set from the remote machine. Save the tcpdump output for the lab report.
+	On both machines, execute \textbf{tcpdump}. Then, \textbf{telnet} to the host where the rule is set from the remote machine. Save the tcpdump output for the lab report.
 
 	\subsection*{Report}
 	\begin{enumerate}
@@ -238,7 +239,7 @@
 	\end{enumerate}
 
 \section*{Exercises on secure Apache server}
-	In the exercises in this section, using two workstations from \texttt{http-server} and \texttt{gui} hosts.
+	In the exercises in this section, using two workstations from \texttt{term} and \texttt{gui} hosts. Run \textbf{apache2} service on \texttt{server}
 
 \section{Generate Certificate}
 	Run \textbf{man openssl} to study the OpenSSL command line tool.\\
@@ -248,7 +249,7 @@
 	\end{itemize}
 	To create a self-signed certificate, go to the \texttt{/etc/apache2/ssl/} directory, and execute:
 	\begin{itemize}
-		\item \textbf{openssl req -new -key /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}
+		\item \textbf{openssl req -new -x509 -days 365 -key /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}
 	\end{itemize}
 	Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \texttt{/etc/apache2/ssl/server.crt}\\
 	You can generate private key and self-signed certificate whit one command by:
@@ -303,7 +304,7 @@
 	Start \textbf{Apache} service and brwose several page in the \texttt{Mozilla}. Open random url that not exist on the web server to generate log for apache. Browse again page as \texttt{secure http}.
 
 \section{Trace Log}
-	Go to \textbf{Log} folder at \texttt{/var/log/} to examine the log files in your host. If a log (e.g., the \texttt{Apache Access Log}) is too long, use \textbf{grep \texttt{keyword}} (e.g., \texttt{GET}) in the “console” to display those log entries containing the keyword. Enter the keyword “failed” to display logged failures.\\
+	Go to \textbf{Log} folder at \texttt{/var/log/} to examine the log files in your host. If a log (e.g., the \texttt{Apache Access Log} at \texttt{/var/log/apache2/access.log}) is too long, use \textbf{grep \texttt{keyword} access.log} (e.g., \texttt{GET}) in the “console” to display those log entries containing the keyword. Enter the keyword “failed” to display logged failures.\\
 	See other log file.
 
 \section{Log Analyzer}
@@ -311,9 +312,12 @@
 	To analyze local log use this commands:
 	\begin{itemize}
 		\item \textbf{webalizer}
-		\item \textbf{goaccess -f access.log -a > /var/www/html/report.html}
 	\end{itemize}
 	To view the reports of the \texttt{webalizer}, start \texttt{Mozilla} and enter the URL \texttt{http://remote\_host/usage/index.html}. Examine the web statistics displayed in the browser. Also click on the month links in the Summary by Month table to see the statistics of each month.\\
+	To analyze local log use this commands:
+	\begin{itemize}
+		\item \textbf{goaccess -a > /var/www/html/report.html}
+	\end{itemize}
 	To view the report of the \texttt{goaccess}, start \texttt{Mozilla} and enter the URL \texttt{http://remote\_host/report.html}. Examine the web statistics displayed in the browser. Also click on the side panel to see other section.
 
 	\subsection*{Report}
