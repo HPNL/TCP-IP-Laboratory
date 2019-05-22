@@ -27,6 +27,7 @@
 %\renewcommand{\appendixpagename}{Apéndices} 
 
 \usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
+\usepackage{url}
 %\usepackage{hyperref}
 
 \usepackage{framed,verbatim}
@@ -116,11 +117,11 @@
 
 \section*{SNMP exercises}
 	For the exercises in this section, the network topology is given in Fig. 1.3, where all the hosts are connected in a single network segment using their IP addresses, i.e., from 128.238.66.100 to 128.238.66.102.\\
-	Before the lab, the lab instructor should:
+	Before the lab, you should:
 	\begin{enumerate}
 		\item Backup the original \textbf{snmpd} configuration file:\\
 		\, \textbf{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}.
-		\item Create a simple configuration file \texttt{/etc/snmp/snmpd.conf} with a single line defining a read-only community guest:
+		\item Create a simple configuration file \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community guest:
 	\end{enumerate}
 	\begin{grayverbatim}
 		rocommunity guest
@@ -128,22 +129,22 @@
 
 \section{SNMP service and MIB struct}
 	Use \textbf{pgrep snmpd} to check if \textbf{snmpd} is started. Try to stop and then start the SNMP agent daemon using \textbf{service snmpd start|stop}.\\
-	Study the \textbf{snmpd} configuration file \texttt{/etc/snmp/snmpd.conf}. Also study the default configuration file \texttt{/etc/snmp/snmpd.conf.save}. This file is well commented. Read the comments and study the configuration options.\\
-	Study the MIB files in the \texttt{/usr/share/snmp/mibs} directory. Examine the Interface MIB \texttt{IF-MIB.txt} and the TCP MIB \texttt{TCP-MIB.txt} to see the MIB objects and data types. Save these two files for the lab report.
+	Study the \textbf{snmpd} configuration file \path{/etc/snmp/snmpd.conf}. Also study the default configuration file \path{/etc/snmp/snmpd.conf.save}. This file is well commented. Read the comments and study the configuration options.\\
+	Study the MIB files in the \path{/usr/share/snmp/mibs} directory. Examine the Interface MIB \path{IF-MIB.txt} and the TCP MIB \path{TCP-MIB.txt} to see the MIB objects and data types. Save these two files for the lab report.
 
 	\subsection*{Report}
 	\begin{enumerate}
 		\item What is the community name used in this lab? What is the use of the
 		community name?
-		\item What is the data type for the MIB object \texttt{ifMtu.2}? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
-		\item What is the data type and definition of \texttt{tcpRtoAlgorithm}? What values are allowed for \texttt{tcpRtoAlgorithm}? What is the definition of \texttt{tcpMaxConn}?
+		\item What is the data type for the MIB object \path{ifMtu.2}? What is the definition of the MIB object \path{ifPhysAddress} and \path{ifInOctets}?
+		\item What is the data type and definition of \path{tcpRtoAlgorithm}? What values are allowed for \path{tcpRtoAlgorithm}? What is the definition of \path{tcpMaxConn}?
 	\end{enumerate}
 
 \section{SNMP list objects}
 	Use \textbf{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.\\
 	Use \textbf{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.\\
 	You may run \textbf{man snmpwalk} to find out the meanings of the options used in the commands. Compare the outputs with the MIB files you saved in the previous exercise. Also compare the outputs of the first command with that of \textbf{ifconfig -a}.\\
-	Retry the \textbf{snmpwalk} commands, but change \texttt{guest} to \texttt{public}. Can you display the MIBs this time?
+	Retry the \textbf{snmpwalk} commands, but change \path{guest} to \path{public}. Can you display the MIBs this time?
 	
 	\subsection*{Report}
 	\begin{enumerate}
@@ -153,16 +154,16 @@
 
 \section{SNMP remote access}
 	Execute \textbf{tcpdump udp port 161} or \textbf{wireshark} to capture SNMP messages.\\
-	Run from \texttt{h1} host \textbf{telnet \textit{h0} echo} (use \texttt{ctrl+]} to terminate \textbf{telnet} and then \texttt{quit}) and try again to run \textbf{snmpwalk -v 2c -c guest localhost tcp}.\\
-	Try to run \textbf{snmpwalk -v 2c -c guest \textit{h0} tcp} from \texttt{h2}.\\
-	Execute \textbf{snmpget -v 2c -c guest \textit{remote\_host} IF-MIB::ifMtu.1} to get the MIB object \texttt{IF-MIB::ifMTU.1} from a remote machine.\\
+	Run from \path{h1} host \textbf{telnet \textit{h0} echo} (use \path{ctrl+]} to terminate \textbf{telnet} and then \path{quit}) and while telnet is running, try again to run \textbf{snmpwalk -v 2c -c guest localhost tcp} on \path{h0}.\\
+	Try to run \textbf{snmpwalk -v 2c -c guest \textit{h0} tcp} from \path{h2}.\\
+	Execute \textbf{snmpget -v 2c -c guest \textit{remote\_host} IF-MIB::ifMtu.1} to get the MIB object \path{IF-MIB::ifMTU.1} from a remote machine.\\
 	Save the \textbf{snmpget} output and terminate \textbf{tcpdump}.\\
 	Use \textbf{wireshark} to analyze the format of the captured SNMP Get and Response messages. Print the messages for the lab report.
 	
 	\subsection*{Report}
 	\begin{enumerate}
 		\item What is the port number used by the SNMP agent?
-		\item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.2}? What was the value returned? Justify the answer using Fig. 9.3 and the \textbf{ifconfig} output.
+		\item What are the full text-based and numerical object ID’s of the MIB object \path{interface.ifMTU.2}? What was the value returned? Justify the answer using Fig. 9.3 and the \textbf{ifconfig} output.
 		\item Draw the format of one of the SNMP messages saved, including the name and value of each field.
 	\end{enumerate}
 
@@ -194,7 +195,7 @@
 	\begin{enumerate}
 		\item In each experiment, can you extract the password from the \textbf{tcpdump} output? Can you read the IP, TCP, SSH headers? Can you read the TCP data?
 		\item What is the client protocol (and version) used in both cases?
-		\item What is the port number used by the \textbf{ssh} server? What is the port number used by the sftp server? Justify your answer using the \textbf{tcpdump} output and the \texttt{/etc/services} file.
+		\item What is the port number used by the \textbf{ssh} server? What is the port number used by the sftp server? Justify your answer using the \textbf{tcpdump} output and the \path{/etc/services} file.
 	\end{enumerate}
 
 \section*{Exercises on Firewalls and Iptables}
@@ -202,7 +203,7 @@
 
 \section{Firewall basic}
 	Execute \textbf{iptables -L -v} to list the existing rules in the filter table. Save the output for the lab report.\\
-	Append a rule to the end of the \texttt{INPUT} chain, by executing
+	Append a rule to the end of the \path{INPUT} chain, by executing
 	\begin{itemize}
 		\setlength{\itemindent}{10pt}
 		\item \textbf{iptables -A INPUT -v -p TCP -{}-dport 23 -j DROP} 
@@ -224,7 +225,7 @@
 		\item \textbf{iptables -D INPUT -v -p TCP -{}-dport 23 -j DROP}
 	\end{itemize}
 	
-	Then, append a new rule to the \texttt{INPUT} chain:	
+	Then, append a new rule to the \path{INPUT} chain:	
 	\begin{itemize}
 		\item \textbf{iptables -A INPUT -v -p TCP -{}-dport 23 -j REJECT -{}-reject-with tcp-reset} 
 	\end{itemize}
@@ -235,11 +236,11 @@
 	\subsection{Report}
 	\begin{enumerate}
 		\setlength{\itemindent}{0pt}
-		\item Explain the difference between the \textbf{tcpdump} outputs of this exercise and the previous exercise. How many attempts did \texttt{TCP} make this time?
+		\item Explain the difference between the \textbf{tcpdump} outputs of this exercise and the previous exercise. How many attempts did \path{TCP} make this time?
 	\end{enumerate}
 
 \section*{Exercises on secure Apache server}
-	In the exercises in this section, using two workstations from \texttt{term} and \texttt{gui} hosts. Run \textbf{apache2} service on \texttt{server}
+	In the exercises in this section, using two workstations from \path{term} and \path{gui} hosts. Run \textbf{apache2} service on \path{server}
 
 \section{Generate Certificate}
 	Run \textbf{man openssl} to study the OpenSSL command line tool.\\
@@ -247,14 +248,14 @@
 	\begin{itemize}
 		\item \textbf{openssl genrsa 1024 > /etc/apache2/ssl/server.key}
 	\end{itemize}
-	To create a self-signed certificate, go to the \texttt{/etc/apache2/ssl/} directory, and execute:
+	To create a self-signed certificate, go to the \path{/etc/apache2/ssl/} directory, and execute:
 	\begin{itemize}
 		\item \textbf{openssl req -new -x509 -days 365 -key /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}
 	\end{itemize}
-	Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \texttt{/etc/apache2/ssl/server.crt}\\
+	Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \path{/etc/apache2/ssl/server.crt}\\
 	You can generate private key and self-signed certificate whit one command by:
 	\begin{itemize}
-		\item \textbf{openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}\footnote{You can use simple command as: \texttt{make-ssl-cert generate-default-snakeoil -{}-force-overwrite} without editing default apache ssl config}\\
+		\item \textbf{openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}\footnote{You can use simple command as: \path{make-ssl-cert generate-default-snakeoil -{}-force-overwrite} without editing default apache ssl config}\\
 		Let's go over exactly what this means.\\
 		\begin{itemize}
 			\item \textbf{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
@@ -284,7 +285,7 @@
 \section{HTTPS handshake and request}
 	Restart the Apache server to load the new key and the new certification: \textbf{service apache2 restart}.\\
 	Execute \textbf{wireshark} to capture the packets between your host and a remote host.\\
-	On the remote host, start the \texttt{Mozilla} web browser. After typing in the URL \texttt{https://your\_host}, a dialog window titled “Website Certified by an Unknown Authority” will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue.\\
+	On the remote host, start the \path{Mozilla} web browser. After typing in the URL \path{https://your\_host}, a dialog window titled “Connection is not not secure” or “Website Certified by an Unknown Authority” will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue. Add "Certificate" to exceptions and continue browsing.\\
 	Click the “View Certificate” button. Then a “Certificate Viewer” window pops up, displaying detailed information about the received certificate. Examine the certificate and dump the window into a picture if necessary. Save the pictures for the lab report.\\
 	Click the “Continue” button in the “Website Certified by an Unknown Authority” dialog window to accept the certificate. Then terminate \textbf{wireshark} and Mozilla.\\
 	Use \textbf{wireshark} to examine the operation of SSL.
@@ -296,29 +297,29 @@
 		\item What is the port number used by the secure Apache server?
 		\item Compare the general information of the received certificate with the \textbf{openssl} output saved in the previous exercise. Are they consistent?
 		\item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
-		\item What is the \texttt{Certificate Signature Algorithm} used to generate and distribute this certificate?
+		\item What is the \path{Certificate Signature Algorithm} used to generate and distribute this certificate?
 		\item When was the certificate signed? When will it expire?
 	\end{enumerate}
 
 \section*{Exercises on auditing and intrusion detection}
-	Start \textbf{Apache} service and brwose several page in the \texttt{Mozilla}. Open random url that not exist on the web server to generate log for apache. Browse again page as \texttt{secure http}.
+	Start \textbf{Apache} service and brwose several page in the \path{Mozilla}. Open random url that not exist on the web server to generate log for apache. Browse again page as \path{secure http}.
 
 \section{Trace Log}
-	Go to \textbf{Log} folder at \texttt{/var/log/} to examine the log files in your host. If a log (e.g., the \texttt{Apache Access Log} at \texttt{/var/log/apache2/access.log}) is too long, use \textbf{grep \texttt{keyword} access.log} (e.g., \texttt{GET}) in the “console” to display those log entries containing the keyword. Enter the keyword “failed” to display logged failures.\\
+	Go to \textbf{Log} folder at \path{/var/log/} to examine the log files in your host. If a log (e.g., the \path{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \textbf{grep \path{keyword} access.log} (e.g., \path{GET}) in the “console” to display those log entries containing the keyword. Enter the keyword “failed” to display logged failures.\\
 	See other log file.
 
 \section{Log Analyzer}
-	Linux uses a utility called \texttt{Webalizer} to analyze the web server log files. \texttt{Webalizer} reads the \texttt{Apache} log files and creates a set of web reports on server statistics. Another utility is \texttt{goaccess} that analyze various access type and list it.\\
+	Linux uses a utility called \path{Webalizer} to analyze the web server log files. \path{Webalizer} reads the \path{Apache} log files and creates a set of web reports on server statistics. Another utility is \path{goaccess} that analyze various access type and list it.\\
 	To analyze local log use this commands:
 	\begin{itemize}
 		\item \textbf{webalizer}
 	\end{itemize}
-	To view the reports of the \texttt{webalizer}, start \texttt{Mozilla} and enter the URL \texttt{http://remote\_host/usage/index.html}. Examine the web statistics displayed in the browser. Also click on the month links in the Summary by Month table to see the statistics of each month.\\
+	To view the reports of the \path{webalizer}, start \path{Mozilla} and enter the URL \path{http://remote\_host/usage/index.html}. Examine the web statistics displayed in the browser. Also click on the month links in the Summary by Month table to see the statistics of each month.\\
 	To analyze local log use this commands:
 	\begin{itemize}
 		\item \textbf{goaccess -a > /var/www/html/report.html}
 	\end{itemize}
-	To view the report of the \texttt{goaccess}, start \texttt{Mozilla} and enter the URL \texttt{http://remote\_host/report.html}. Examine the web statistics displayed in the browser. Also click on the side panel to see other section.
+	To view the report of the \path{goaccess}, start \path{Mozilla} and enter the URL \path{http://remote\_host/report.html}. Examine the web statistics displayed in the browser. Also click on the side panel to see other section.
 
 	\subsection*{Report}
 	\begin{itemize}
@@ -328,7 +329,7 @@
 
 \section{System status}
 	Execute \textbf{netstat -l} to display the listening sockets in your host.\\
-	Execute \textbf{service -{}-status-all} to list the services in the \texttt{/etc/init.d/} and \texttt{/etc/init/} directories and their status. Save the output for the lab report.
+	Execute \textbf{service -{}-status-all} to list the services in the \path{/etc/init.d/} and \path{/etc/init/} directories and their status. Save the output for the lab report.
 	
 	\subsection*{Report}
 	\begin{itemize}
