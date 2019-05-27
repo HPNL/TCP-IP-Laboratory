@@ -233,7 +233,7 @@
 	Execute \textbf{iptables -L -v} to display the new rule.\\
 	On both machines in your topology, restart \textbf{tcpdump}, and then \textbf{telnet} to the host where the rule is set from the remote machine. Save the wireshark output for the lab report.
 	
-	\subsection{Report}
+	\subsection*{Report}
 	\begin{enumerate}
 		\setlength{\itemindent}{0pt}
 		\item Explain the difference between the \textbf{tcpdump} outputs of this exercise and the previous exercise. How many attempts did \path{TCP} make this time?
@@ -255,7 +255,7 @@
 	Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \path{/etc/apache2/ssl/server.crt}\\
 	You can generate private key and self-signed certificate whit one command by:
 	\begin{itemize}
-		\item \textbf{openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}\footnote{You can use simple command as: \path{make-ssl-cert generate-default-snakeoil -{}-force-overwrite} without editing default apache ssl config}\\
+		\item \textbf{openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}\footnote{You can use simple command as: \path{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config}\\
 		Let's go over exactly what this means.\\
 		\begin{itemize}
 			\item \textbf{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
@@ -323,8 +323,8 @@
 
 	\subsection*{Report}
 	\begin{itemize}
-		\item List the most frequently visited pages at the local Apache server and 		the remote Apache server during the most recent month, respectively.
-		\item List the web pages that have the most number of bytes transferred by the local and the remote server during the most recent month, respectively.
+		\item List the most frequently visited pages at the local Apache server during the most recent month, respectively.
+		\item List the web pages that have the most number of bytes transferred by the local during the most recent month, respectively.
 	\end{itemize}
 
 \section{System status}
