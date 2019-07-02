@@ -5,6 +5,7 @@
 * Linux and Simulator
   * Mininet
   * GNS3
+* Introduction to network peripheral
 * UDP
 * TCP
 * NAT
@@ -20,8 +21,19 @@
 
 ## ToDo
 
-* Add prebuild projects requirement with ip and hosts map
-
+* Add pre-build projects requirement with ip and hosts map
+* rename hosts
+* replace image with schematic figure
+* remap IP hosts to simplest network domain
+* split and revise report
+* add reference to book (commands & ...)
+* update network tools
+  * base linux
+  * socket
+  * linux routing service
+  * router discovery
+  * ...
+* CI
 
 # Appendix
 
