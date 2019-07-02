@@ -33,7 +33,7 @@
   * linux routing service
   * router discovery
   * ...
-* CI
+* CI (generate pdf to github release)
 
 # Appendix
 
