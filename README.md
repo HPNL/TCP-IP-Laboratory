@@ -21,19 +21,19 @@
 
 ## ToDo
 
-* Add pre-build projects requirement with ip and hosts map
-* rename hosts
-* replace image with schematic figure
-* remap IP hosts to simplest network domain
-* split and revise report
-* add reference to book (commands & ...)
-* update network tools
-  * base linux
-  * socket
-  * linux routing service
-  * router discovery
-  * ...
-* CI (generate pdf to github release)
+* [ ] Add pre-build projects requirement with ip and hosts map
+* [ ] rename hosts
+* [ ] replace image with schematic figure
+* [ ] remap IP hosts to simplest network domain
+* [ ] split and revise report
+* [ ] add reference to book (commands & ...)
+* [ ] update network tools
+  * [ ] base linux
+  * [ ] socket
+  * [ ] linux routing service
+  * [ ] router discovery
+  * [ ] ...
+* [ ] CI (generate pdf to github release)
 
 # Appendix
 
