@@ -106,22 +106,17 @@
           {\LARGE University of Tehran}\\
           {\Large\FR{دانشگاه تهران}}\\
           \vskip 1.5em%
-          % \\
           {\Large School of Electrical and Computer Engineering}\\
           \FR{دانشکده‌ی مهندسی برق و کامپیوتر}\\
           \vskip 1.5em%
-          % \\
           {\Large Computer Network Lab}\\
           \FR{آزمایشگاه شبکه‌های کامپیوتری}\\
-          % \\
-          % \\
-          % \\
           \vskip 3em%
           \normalfont
           \normalsize
-          % \begin{tabular}[t]{c}%
+          \begin{tabular}[t]{c}%
           \@author
-          % \end{tabular}
+          \end{tabular}
         }
       \par}%
       \vskip 1.5em%
@@ -145,6 +140,7 @@
 }
 \renewcommand{\maketitle}{\maketitlepage}
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
+\newcommand{\mail}[1]{\href{mailto:#1?subject=[CNL]\%20}{#1}}
 
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
