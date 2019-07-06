@@ -1,7 +1,7 @@
 # TCP/IP Laboratory manual
 
 [![GitHub release](https://img.shields.io/github/release/amirhakh/TCP-IP-Laboratory.svg?style=flat-square)](https://github.com/amirhakh/TCP-IP-Laboratory/releases/latest)
-[![Travis (.com)](https://img.shields.io/travis/amirhakh/TCP-IP-Laboratory.svg?style=flat-square)](https://travis-ci.com/amirhakh/TCP-IP-Laboratory)
+[![Travis (.com) branch](https://img.shields.io/travis/com/amirhakh/TCP-IP-Laboratory/master.svg?style=flat-square)](https://travis-ci.com/amirhakh/TCP-IP-Laboratory)
 
 
 ## Chapters
