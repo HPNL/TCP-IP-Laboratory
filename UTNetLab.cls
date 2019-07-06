@@ -83,12 +83,12 @@
         %   \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
         \begin{minipage}{0.48\textwidth}
             \begin{flushleft}
-                \includegraphics[height=64pt,width=64pt]{../img/logo.png}
+                \includegraphics[height=64pt,width=64pt]{../img/ut}
             \end{flushleft}
         \end{minipage}
         \begin{minipage}{0.48\textwidth}
             \begin{flushright}
-                \includegraphics[height=64pt]{../img/eng-logo.png}
+                \includegraphics[height=64pt]{../img/fanni}
             \end{flushright}
         \end{minipage}
     \end{center}
