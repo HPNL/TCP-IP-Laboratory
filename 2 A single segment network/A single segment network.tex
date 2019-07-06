@@ -1,122 +1,22 @@
-\documentclass[10pt,a4paper]{article}
-\usepackage{arabtex}
-\usepackage[OT1,T1,LFE,LAE]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[arabic,english,farsi]{babel}
-\usepackage{amsmath,amsfonts} % Math packages
-\usepackage{amssymb}
-%\usepackage{cmap}
+\documentclass{../UTNetLab}
 
-\usepackage{multicol}
-
-\usepackage{graphicx}
-\usepackage[caption=false]{subfig}
-\usepackage{color}
-\usepackage{float}
-\usepackage{sidecap}
-%\sidecaptionvpos{figure}{c}
-\usepackage{anysize}
-\marginsize{2cm}{2cm}{2cm}{2cm}
-
-\usepackage{listings}
-
-\usepackage{appendix}
-%\renewcommand{\appendixname}{Apéndices}
-%\renewcommand{\appendixtocname}{Apéndices}
-%\renewcommand{\appendixpagename}{Apéndices}
-
-\usepackage[colorlinks=true,plainpages=true,citecolor=blue,linkcolor=blue,urlcolor=cyan]{hyperref}
-%\usepackage{hyperref}
-
-
-%%% Equation and float numbering
-\numberwithin{equation}{section}
-\numberwithin{figure}{section}
-\numberwithin{table}{section}
-
-
-\newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
-
-\newcommand{\titleText}{A single segment network \\ Laboratory Manual}
-
-\title{
-\normalsize In the name of Allah\\
-\vspace{10pt}
-\LARGE\FR{بسم \allah\  الرحمن الرحیم}
-\vspace{10pt}
-\begin{center}
-    %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-    \begin{minipage}{0.48\textwidth}
-        \begin{flushleft}
-            \includegraphics[height=64pt,width=64pt]{../img/logo.png}
-        \end{flushleft}
-    \end{minipage}
-    \begin{minipage}{0.48\textwidth}
-        \begin{flushright}
-            \includegraphics[height=64pt]{../img/eng-logo.png}
-        \end{flushright}
-    \end{minipage}
-\end{center}
-\vspace*{-64pt}
-%	\horrule{0.5pt} \\[0.4cm]
-\huge \titleText\\
-\vspace{40pt}
-%	\horrule{2pt} \\[0.5cm]
+\title{A Single Segment Network}
+\authorshort{A. Khonsari, A. HajiAliKhamseh'i, M. Borhani, A. Khordadi, S. KashiPazha}
+\author{%
+    Dr. Ahmad Khonsari - \FR{دکتر احمد خونساری}\\
+    \href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
+    \vskip 1.5em%
+    Amir Haji Ali Khamseh'i - \FR{امیر حاجی‌علی‌خمسه‌ء}\\
+    \href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
+    \vskip 1.5em%
+    \href{mailto:m.borhani@ut.ac.ir}{Muhammad Borhani} - \FR{محمد برهانی}\\
+    \href{mailto:a.a.khordadi@ut.ac.ir}{Amirahmad Khordadi} - \FR{امیراحمد خردادی}\\
+    \href{mailto:sina\_kashipazha@ut.ac.ir}{Sina Kashi pazha} - \FR{سینا کاشی‌پزها}
 }
-\author{
-\huge University of Tehran\\
-\LARGE \FR{دانشگاه تهران}\\
-\\
-\LARGE School of Electrical and Computer Engineering\\
-\FR{دانشکده مهندسی برق و کامپیوتر}\\
-\\
-\Large Computer Network Lab\\
-\FR{آزمایشگاه شبکه‌های کامپیوتری}\\
-\\
-\\
-\\
-\normalfont
-Dr. Ahmad Khonsari - \FR{احمد خونساری}\\
-\href{mailto:a_khonsari@ut.ac.ir}{a\_khonsari@ut.ac.ir}\\
-\\
-\normalsize
-Amir Haji Ali Khamseh'i - \FR{امیر حاجی علی خمسه‌ء}\\
-\href{mailto:khamse@ut.ac.ir}{khamse@ut.ac.ir}\\
-\\
-\normalsize \href{mailto:m.borhani@ut.ac.ir}{Muhammad Borhani} - \FR{محمد برهانی}\\
-\normalsize \href{mailto:a.a.khordadi@ut.ac.ir}{Amirahmad Khordadi} - \FR{امیر احمد خردادی}\\
-\normalsize \href{mailto:sina\_kashipazha@ut.ac.ir}{Sina Kashi pazha} - \FR{سینا کاشی پزها}
-}
-
-\date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-%\pagestyle{fancyplain}
-\fancyhf{}
-\fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
-\fancyhead[R]{\footnotesize \titleText}
-\fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده مهندسی برق و کامپیوتر}}
-\fancyfoot[C]{\thepage}
-\fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
-\renewcommand{\footrulewidth}{0.8pt}
-\renewcommand{\headrulewidth}{1pt}            % Remove header underlines
-\renewcommand{\footrulewidth}{1pt}                % Remove footer underlines
-\setlength{\headheight}{13.6pt}
-
-\usepackage{tikz}
-\usetikzlibrary{calc}
-\renewcommand{\arraystretch}{1.2}
 
 \begin{document}
     \selectlanguage{english}
-
     \maketitle
-
-    \pagebreak
-
-    \setlength{\parindent}{2em}
-    \setlength{\parskip}{0.5em}
 
 \section*{Network interface exercises}
     The following exercises use the single segment network topology shown in Fig. 1.3.
