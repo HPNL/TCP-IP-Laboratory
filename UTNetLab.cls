@@ -60,7 +60,7 @@
     \newenvironment{grayverbatim}%
        {\snugshade\verbatim}%
        {\endverbatim\endsnugshade}
-    \date{\vspace{30pt}\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+    \date{\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
 
     % \setmonofont{Courier New}
     \tolerance=5000
@@ -74,10 +74,9 @@
   \null\vfil
   % \vskip 60\p@
   \begin{center}%
-    {\LARGE {
-    \normalsize In the name of Allah\\
-    \vspace{10pt}
-    \LARGE\FR{بسم \allah\  الرحمن الرحیم}
+    {\LARGE {%
+    {\normalsize{}In the name of Allah}\\
+    \normalsize\FR{بسم \allah\  الرحمن الرحیم}\\
     \vspace{10pt}
     \begin{center}
         %   \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -95,7 +94,7 @@
     \vspace*{-64pt}
     %   \horrule{0.5pt} \\[0.4cm]
     \huge \@title\\
-    Laboratory Manual\\
+    \LARGE Laboratory Manual\\
     \vspace{40pt}
     %   \horrule{2pt} \\[0.5cm]
     } \par}%
@@ -103,15 +102,15 @@
     {\large
      \lineskip .75em%
         {
-          {\LARGE University of Tehran}\\
+          {\LARGE University of Tehran\\}
+          {\Large School of Electrical and Computer Engineering\\}
+          % \vskip 1.5em%
           {\Large\FR{دانشگاه تهران}}\\
-          \vskip 1.5em%
-          {\Large School of Electrical and Computer Engineering}\\
-          \FR{دانشکده‌ی مهندسی برق و کامپیوتر}\\
-          \vskip 1.5em%
-          {\Large Computer Network Lab}\\
-          \FR{آزمایشگاه شبکه‌های کامپیوتری}\\
+          \FR{دانشکده‌ی مهندسی برق و کامپیوتر}
           \vskip 3em%
+          {\Large Computer Network Lab\\}
+          \FR{آزمایشگاه شبکه‌های کامپیوتری\\}
+          \vskip 1.5em%
           \normalfont
           \normalsize
           \begin{tabular}[t]{c}%
@@ -119,8 +118,8 @@
           \end{tabular}
         }
       \par}%
-      \vskip 1.5em%
-    {\large \@date \par}%
+      \vskip 3em%
+    {\small \@date \par}%
   \end{center}\par
   \@thanks
   \vfil\null
