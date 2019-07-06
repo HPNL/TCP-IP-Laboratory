@@ -14,6 +14,7 @@
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{float}
 \RequirePackage{sidecap}
+\RequirePackage{textcomp}
 \RequirePackage{listings}
 \RequirePackage{fancyhdr}
 \RequirePackage{tikz}
@@ -53,8 +54,13 @@
     \setlength{\headheight}{13.6pt}
     \newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
     \renewcommand{\arraystretch}{1.2}
-    % \setlength{\parindent}{2em}
+    \setlength{\parindent}{0pt}
     % \setlength{\parskip}{0.5em}
+    \renewcommand{\footnoterule}{%
+      \kern -3pt
+      \hrule width 0.3\textwidth height 0.3pt
+      \kern 2pt
+    }
 
     \definecolor{shadecolor}{rgb}{.9, .9, .9}
     \newenvironment{grayverbatim}%
@@ -64,6 +70,53 @@
 
     % \setmonofont{Courier New}
     \tolerance=5000
+
+    \lstdefinelanguage{bash-ext}{%
+      language=bash,
+      morekeywords={
+        grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail,
+        tcpdump, wireshark, arp, arping, ping, iptables, xinetd, date, time, ftp, tftp,
+        sock, socket, sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh,
+        goaccess, webalizer, vlc, firefox,
+      },
+    }
+    \lstdefinelanguage{generic}{
+      alsoletter={-},
+    }
+    \lstdefinelanguage{conf}{
+      language=generic,
+      comment=[l]{\#},
+    }
+    \lstdefinelanguage{cisco}{
+        alsoletter={-},
+    }
+    \lstdefinelanguage{HTTP}{
+        alsoletter={-},
+        alsoother={@},
+    }
+    \lstset{
+        language=bash-ext,
+        alsoletter={-},
+        columns=flexible,
+        basicstyle=\small\ttfamily,
+        keywordstyle=\bfseries\color{Blue},
+        keywordstyle={[2]\bfseries\color{Cyan}},
+        keywordstyle={[3]\bfseries\color{Olive}},
+        stringstyle=\color{TealBlue},
+        commentstyle=\itshape\color{Orange},
+        identifierstyle=\color{Black},
+        numbers=none,
+        numberstyle=\scriptsize,
+        captionpos=b,
+        breaklines=true,
+        breakatwhitespace=true,
+        showstringspaces=false,
+        tabsize=4,
+        emphstyle=\itshape,
+        escapechar=@,
+        fontadjust=true,
+        upquote=true,
+    }
 }
 
 \newcommand{\maketitlepage}{%

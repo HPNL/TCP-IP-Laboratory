@@ -38,64 +38,78 @@
 	\maketitle
 
 \section*{SNMP exercises}
-	For the exercises in this section, the network topology is given in Fig. 1.3, where all the hosts are connected in a single network segment using their IP addresses, i.e., from 128.238.66.100 to 128.238.66.102.\\
+	For the exercises in this section, the network topology is given in Fig. 1.3, where all the hosts are connected in a single network segment using their IP addresses, i.e., from 128.238.66.100 to 128.238.66.102.
+
 	Before the lab, you should:
 	\begin{enumerate}
-		\item Backup the original \textbf{snmpd} configuration file:\\
-		\, \textbf{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}.
+		\item Backup the original \lstinline{snmpd} configuration file:
+		\lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}.
 		\item Create a simple configuration file \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community guest:
+		\begin{lstlisting}[language={conf}]
+rocommunity guest
+		\end{lstlisting}
 	\end{enumerate}
-	\begin{grayverbatim}
-		rocommunity guest
-	\end{grayverbatim}
 
 \section{SNMP service and MIB struct}
-	Use \textbf{pgrep snmpd} to check if \textbf{snmpd} is started. Try to stop and then start the SNMP agent daemon using \textbf{service snmpd start|stop}.\\
-	Study the \textbf{snmpd} configuration file \path{/etc/snmp/snmpd.conf}. Also study the default configuration file \path{/etc/snmp/snmpd.conf.save}. This file is well commented. Read the comments and study the configuration options.\\
+	Use \lstinline{pgrep snmpd} to check if \lstinline{snmpd} is started. Try to stop and then start the SNMP agent daemon using \lstinline{service snmpd start|stop}.
+
+	Study the \lstinline{snmpd} configuration file \path{/etc/snmp/snmpd.conf}. Also study the default configuration file \path{/etc/snmp/snmpd.conf.save}. This file is well commented. Read the comments and study the configuration options.
+
 	Study the MIB files in the \path{/usr/share/snmp/mibs} directory. Examine the Interface MIB \path{IF-MIB.txt} and the TCP MIB \path{TCP-MIB.txt} to see the MIB objects and data types. Save these two files for the lab report.
 
 	\subsection*{Report}
 	\begin{enumerate}
 		\item What is the community name used in this lab? What is the use of the
 		community name?
-		\item What is the data type for the MIB object \path{ifMtu.2}? What is the definition of the MIB object \path{ifPhysAddress} and \path{ifInOctets}?
-		\item What is the data type and definition of \path{tcpRtoAlgorithm}? What values are allowed for \path{tcpRtoAlgorithm}? What is the definition of \path{tcpMaxConn}?
+		\item What is the data type for the MIB object \texttt{ifMtu.2}? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
+		\item What is the data type and definition of \texttt{tcpRtoAlgorithm}? What values are allowed for \texttt{tcpRtoAlgorithm}? What is the definition of \texttt{tcpMaxConn}?
 	\end{enumerate}
 
 \section{SNMP list objects}
-	Use \textbf{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.\\
-	Use \textbf{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.\\
-	You may run \textbf{man snmpwalk} to find out the meanings of the options used in the commands. Compare the outputs with the MIB files you saved in the previous exercise. Also compare the outputs of the first command with that of \textbf{ifconfig -a}.\\
-	Retry the \textbf{snmpwalk} commands, but change \path{guest} to \path{public}. Can you display the MIBs this time?
+	Use \lstinline{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
+
+	Use \lstinline{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
+
+	You may run \lstinline{man snmpwalk} to find out the meanings of the options used in the commands. Compare the outputs with the MIB files you saved in the previous exercise. Also compare the outputs of the first command with that of \lstinline{ifconfig -a}.
+
+	Retry the \lstinline{snmpwalk} commands, but change \lstinline{guest} to \lstinline{public}. Can you display the MIBs this time?
 	
 	\subsection*{Report}
 	\begin{enumerate}
-		\item What is the MTU of the Ethernet interface? What is the MTU of the loopback interface? Justify your answer with the \textbf{snmpwalk} output and the \textbf{ifconfig} output.
+		\item What is the MTU of the Ethernet interface? What is the MTU of the loopback interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
 		\item Why did the snmpwalk command with a community name public fail?
 	\end{enumerate}
 
 \section{SNMP remote access}
-	Execute \textbf{tcpdump udp port 161} or \textbf{wireshark} to capture SNMP messages.\\
-	Run from \path{h1} host \textbf{telnet \textit{h0} echo} (use \path{ctrl+]} to terminate \textbf{telnet} and then \path{quit}) and while telnet is running, try again to run \textbf{snmpwalk -v 2c -c guest localhost tcp} on \path{h0}.\\
-	Try to run \textbf{snmpwalk -v 2c -c guest \textit{h0} tcp} from \path{h2}.\\
-	Execute \textbf{snmpget -v 2c -c guest \textit{remote\_host} IF-MIB::ifMtu.1} to get the MIB object \path{IF-MIB::ifMTU.1} from a remote machine.\\
-	Save the \textbf{snmpget} output and terminate \textbf{tcpdump}.\\
-	Use \textbf{wireshark} to analyze the format of the captured SNMP Get and Response messages. Print the messages for the lab report.
+	Execute \lstinline{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
+
+	Run from \textit{h1} host \lstinline[emph={h0}]{telnet h0 echo} (use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}) and while telnet is running, try again to run \lstinline{snmpwalk -v 2c -c guest localhost tcp} on \textit{h0}.
+
+	Try to run \lstinline[emph={h0}]{snmpwalk -v 2c -c guest h0 tcp} from \textit{h2}.
+
+	Execute \lstinline[emph={your-host, remote-host}]{snmpget -v 2c -c guest remote-host IF-MIB::ifMtu.1} to get the MIB object \texttt{IF-MIB::ifMTU.1} from a remote machine.
+
+	Save the \lstinline{snmpget} output and terminate \lstinline{tcpdump}.
+
+	Use \lstinline{wireshark} to analyze the format of the captured SNMP Get and Response messages. Print the messages for the lab report.
 	
 	\subsection*{Report}
 	\begin{enumerate}
 		\item What is the port number used by the SNMP agent?
-		\item What are the full text-based and numerical object ID’s of the MIB object \path{interface.ifMTU.2}? What was the value returned? Justify the answer using Fig. 9.3 and the \textbf{ifconfig} output.
+		\item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.2}? What was the value returned? Justify the answer using Fig. 9.3 and the \lstinline{ifconfig} output.
 		\item Draw the format of one of the SNMP messages saved, including the name and value of each field.
 	\end{enumerate}
 
 \section*{Exercises on secure applications}
 	
 \section{Plain Transfer}
-	Execute \textbf{tcpdump -enX -s 100} or \textbf{wireshark} to capture packets between your machine and a remote machine.\\
-	Execute \textbf{ftp \textit{remote\_machine}} . When prompted, type “1111” for the login ID, and “2222” for the login password. Then terminate \textbf{tcpdump} and \textbf{ftp}.\\
-	Use \textbf{wireshark} to analyze and print the packets that carry the login ID and the password for the lab report.\\
-	Repeat the above experiment, but use \textbf{telnet} and the \textbf{wireshark} to analyze and print output.
+	Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} to capture packets between your machine and a remote machine.
+
+	Execute \lstinline[emph={remote-host}]{ftp remote-host} . When prompted, type \textit{1111} for the login ID, and \textit{2222} for the login password. Then terminate \lstinline{tcpdump} and \lstinline{ftp}.
+
+	Use \lstinline{wireshark} to analyze and print the packets that carry the login ID and the password for the lab report.
+
+	Repeat the above experiment, but use \lstinline{telnet} and the \lstinline{wireshark} to analyze and print output.
 
 	\subsection*{Report}
 	\begin{enumerate}
@@ -105,143 +119,164 @@
 	\end{enumerate}
 
 \section{Secure Transfer}
-	Start \textbf{ssh} service on target machine by \textbf{service ssh start}.\\
+	Start \lstinline{ssh} service on target machine by \lstinline{service ssh start}.
+
 		In this exercise, students pair up to work together using two workstations.
 	
-	Execute \textbf{tcpdump -enX -s 100} or \textbf{wireshark} host your host and remote host to capture packets between your machine and a remote machine.\\
-	Execute \textbf{sftp \textit{remote\_machine}}. When prompted, type “yes” to continue the connection and “1111” for the login password. Then terminate \textbf{tcpdump}.\\
-	Use \textbf{wireshark} to analyze and print one or two \textbf{SSH} packets for the lab report.\\
-	Repeat the above experiment, but use \textbf{ssh} and the \textbf{wireshark} to analyze and print output.\\
+	Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} host your host and remote host to capture packets between your machine and a remote machine.
+
+	Execute \lstinline[emph={your-host, remote-host}]{sftp remote-host}. When prompted, type \textit{yes} to continue the connection and \textit{1111} for the login password. Then terminate \lstinline{tcpdump}.
+
+	Use \lstinline{wireshark} to analyze and print one or two \lstinline{SSH} packets for the lab report.
+
+	Repeat the above experiment, but use \lstinline{ssh} and the \lstinline{wireshark} to analyze and print output.
+
 
 	\subsection*{Report}
 	\begin{enumerate}
-		\item In each experiment, can you extract the password from the \textbf{tcpdump} output? Can you read the IP, TCP, SSH headers? Can you read the TCP data?
+		\item In each experiment, can you extract the password from the \lstinline{tcpdump} output? Can you read the IP, TCP, SSH headers? Can you read the TCP data?
 		\item What is the client protocol (and version) used in both cases?
-		\item What is the port number used by the \textbf{ssh} server? What is the port number used by the sftp server? Justify your answer using the \textbf{tcpdump} output and the \path{/etc/services} file.
+		\item What is the port number used by the \lstinline{ssh} server? What is the port number used by the sftp server? Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
 	\end{enumerate}
 
 \section*{Exercises on Firewalls and Iptables}
 	In this exercise using two workstations.
 
 \section{Firewall basic}
-	Execute \textbf{iptables -L -v} to list the existing rules in the filter table. Save the output for the lab report.\\
-	Append a rule to the end of the \path{INPUT} chain, by executing
-	\begin{itemize}
-		\setlength{\itemindent}{10pt}
-		\item \textbf{iptables -A INPUT -v -p TCP -{}-dport 23 -j DROP} 
-	\end{itemize}
+	Execute \lstinline{iptables -L -v} to list the existing rules in the filter table. Save the output for the lab report.
+
+	Append a rule to the end of the \texttt{INPUT} chain, by executing
+	\begin{lstlisting}
+iptables -A INPUT -v -p TCP -{}-dport 23 -j DROP
+	\end{lstlisting}
 	
-	\setlength{\parindent}{0pt}
-	Run \textbf{iptables -L -v} again on both hosts to display the filter table. Save the output.\\
-	On both machines, execute \textbf{tcpdump}. Then, \textbf{telnet} to the host where the rule is set from the remote machine. Save the tcpdump output for the lab report.
+	Run \lstinline{iptables -L -v} again on both hosts to display the filter table. Save the output.
+
+	On both machines, execute \lstinline{tcpdump}. Then, \lstinline{telnet} to the host where the rule is set from the remote machine. Save the tcpdump output for the lab report.
 
 	\subsection*{Report}
 	\begin{enumerate}
-		\item Can you \textbf{telnet} to the host from the remote machine?
-		\item From the \textbf{tcpdump} output, how many retries did \textbf{telnet} make? Explain the exponential backoff algorithm of TCP timeout and retransmission.
+		\item Can you \lstinline{telnet} to the host from the remote machine?
+		\item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential backoff algorithm of TCP timeout and retransmission.
 	\end{enumerate}
 	
 \section{Firewall Action}
 	Delete the rule created in the last exercise, by:	
-	\begin{itemize}
-		\item \textbf{iptables -D INPUT -v -p TCP -{}-dport 23 -j DROP}
-	\end{itemize}
+	\begin{lstlisting}
+iptables -D INPUT -v -p TCP -{}-dport 23 -j DROP
+	\end{lstlisting}
 	
-	Then, append a new rule to the \path{INPUT} chain:	
-	\begin{itemize}
-		\item \textbf{iptables -A INPUT -v -p TCP -{}-dport 23 -j REJECT -{}-reject-with tcp-reset} 
-	\end{itemize}
+	Then, append a new rule to the \texttt{INPUT} chain:	
+	\begin{lstlisting}
+iptables -A INPUT -v -p TCP -{}-dport 23 -j REJECT -{}-reject-with tcp-reset
+	\end{lstlisting}
 	
-	Execute \textbf{iptables -L -v} to display the new rule.\\
-	On both machines in your topology, restart \textbf{tcpdump}, and then \textbf{telnet} to the host where the rule is set from the remote machine. Save the wireshark output for the lab report.
+	Execute \lstinline{iptables -L -v} to display the new rule.
+
+	On both machines in your topology, restart \lstinline{tcpdump}, and then \lstinline{telnet} to the host where the rule is set from the remote machine. Save the wireshark output for the lab report.
 	
 	\subsection*{Report}
 	\begin{enumerate}
 		\setlength{\itemindent}{0pt}
-		\item Explain the difference between the \textbf{tcpdump} outputs of this exercise and the previous exercise. How many attempts did \path{TCP} make this time?
+		\item Explain the difference between the \lstinline{tcpdump} outputs of this exercise and the previous exercise. How many attempts did {TCP} make this time?
 	\end{enumerate}
 
 \section*{Exercises on secure Apache server}
-	In the exercises in this section, using two workstations from \path{term} and \path{gui} hosts. Run \textbf{apache2} service on \path{server}
+	In the exercises in this section, using two workstations from \textit{term} and \textit{gui} hosts. Run \lstinline{apache2} service on \textit{server}
 
 \section{Generate Certificate}
-	Run \textbf{man openssl} to study the OpenSSL command line tool.\\
+	Run \lstinline{man openssl} to study the OpenSSL command line tool.
+
 	Create a new private key for the Apache server, using:
-	\begin{itemize}
-		\item \textbf{openssl genrsa 1024 > /etc/apache2/ssl/server.key}
-	\end{itemize}
+	\begin{lstlisting}
+openssl genrsa 1024 > /etc/apache2/ssl/server.key
+	\end{lstlisting}
 	To create a self-signed certificate, go to the \path{/etc/apache2/ssl/} directory, and execute:
-	\begin{itemize}
-		\item \textbf{openssl req -new -x509 -days 365 -key /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}
-	\end{itemize}
-	Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \path{/etc/apache2/ssl/server.crt}\\
+	\begin{lstlisting}
+openssl req -new -x509 -days 365 -key /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt
+	\end{lstlisting}
+	Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \path{/etc/apache2/ssl/server.crt}
+
 	You can generate private key and self-signed certificate whit one command by:
-	\begin{itemize}
-		\item \textbf{openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt}\footnote{You can use simple command as: \path{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config}\\
-		Let's go over exactly what this means.\\
+	\footnote{You can use simple command as \lstinline{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config.}
+	\begin{lstlisting}
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt
+	\end{lstlisting}
+
+		Let's go over exactly what this means.
+
 		\begin{itemize}
-			\item \textbf{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
-			\item \textbf{req}: This specifies a subcommand for X.509 certificate signing request (CSR) management. X.509 is a public key infrastructure standard that SSL adheres to for its key and certificate managment. Since we are wanting to create a new X.509 certificate, this is what we want.
-			\item \textbf{-x509}: This option specifies that we want to make a self-signed certificate file instead of generating a certificate request.
-			\item \textbf{-nodes}: This option tells OpenSSL that we do not wish to secure our key file with a passphrase. Having a password protected key file would get in the way of Apache starting automatically as we would have to enter the password every time the service restarts.
-			\item \textbf{-days 365}: This specifies that the certificate we are creating will be valid for one year.
-			\item \textbf{-newkey rsa:1024}: This option will create the certificate request and a new private key at the same time. This is necessary since we didn't create a private key in advance. The rsa:1024 tells OpenSSL to generate an RSA key that is 1024 bits long.
-			\item \textbf{-keyout}: This parameter names the output file for the private key file that is being created.
-			\item \textbf{-out}: This option names the output file for the certificate that we are generating.	
+			\item \lstinline{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
+			\item \lstinline{req}: This specifies a subcommand for X.509 certificate signing request (CSR) management. X.509 is a public key infrastructure standard that SSL adheres to for its key and certificate managment. Since we are wanting to create a new X.509 certificate, this is what we want.
+			\item \lstinline{-x509}: This option specifies that we want to make a self-signed certificate file instead of generating a certificate request.
+			\item \lstinline{-nodes}: This option tells OpenSSL that we do not wish to secure our key file with a passphrase. Having a password protected key file would get in the way of Apache starting automatically as we would have to enter the password every time the service restarts.
+			\item \lstinline{-days 365}: This specifies that the certificate we are creating will be valid for one year.
+			\item \lstinline{-newkey rsa:1024}: This option will create the certificate request and a new private key at the same time. This is necessary since we didn't create a private key in advance. The rsa:1024 tells OpenSSL to generate an RSA key that is 1024 bits long.
+			\item \lstinline{-keyout}: This parameter names the output file for the private key file that is being created.
+			\item \lstinline{-out}: This option names the output file for the certificate that we are generating.	
 		\end{itemize}
-	\end{itemize}
 
 	The questions portion looks something like this:
+	{\small
 	\begin{verbatim}
-	Country Name (2 letter code) [AU]:IR 
-	State or Province Name (full name) [Some-State]:Tehran 
-	Locality Name (eg, city) []:Tehran 
-	Organization Name (eg, company) [Internet Widgits Pty Ltd]:University of Tehran 
-	Organizational Unit Name (eg, section) []:ECE Department 
-	Common Name (e.g. server FQDN or YOUR name) []:ece.ut.ac.ir 
-	Email Address []:netlab@ut.ac.ir 
-	\end{verbatim}
+Country Name (2 letter code) [AU]:IR 
+State or Province Name (full name) [Some-State]:Tehran 
+Locality Name (eg, city) []:Tehran 
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:University of Tehran 
+Organizational Unit Name (eg, section) []:ECE Department 
+Common Name (e.g. server FQDN or YOUR name) []:ece.ut.ac.ir 
+Email Address []:netlab@ut.ac.ir 
+	\end{verbatim}}
 
 	Save the output for the lab report.
 
 \section{HTTPS handshake and request}
-	Restart the Apache server to load the new key and the new certification: \textbf{service apache2 restart}.\\
-	Execute \textbf{wireshark} to capture the packets between your host and a remote host.\\
-	On the remote host, start the \path{Mozilla} web browser. After typing in the URL \path{https://your\_host}, a dialog window titled “Connection is not not secure” or “Website Certified by an Unknown Authority” will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue. Add "Certificate" to exceptions and continue browsing.\\
-	Click the “View Certificate” button. Then a “Certificate Viewer” window pops up, displaying detailed information about the received certificate. Examine the certificate and dump the window into a picture if necessary. Save the pictures for the lab report.\\
-	Click the “Continue” button in the “Website Certified by an Unknown Authority” dialog window to accept the certificate. Then terminate \textbf{wireshark} and Mozilla.\\
-	Use \textbf{wireshark} to examine the operation of SSL.
+	Restart the Apache server to load the new key and the new certification: \lstinline{service apache2 restart}.
+
+	Execute \lstinline{wireshark} to capture the packets between your host and a remote host.
+
+	On the remote host, start the \textit{Mozilla} web browser. After typing in the URL \url{https://your-host}, a dialog window titled \textit{Connection is not not secure} or \textit{Website Certified by an Unknown Authority} will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue. Add "Certificate" to exceptions and continue browsing.
+
+	Click the \textit{View Certificate} button. Then a \textit{Certificate Viewer} window pops up, displaying detailed information about the received certificate. Examine the certificate and dump the window into a picture if necessary. Save the pictures for the lab report.
+
+	Click the \textit{Continue} button in the \textit{Website Certified by an Unknown Authority} dialog window to accept the certificate. Then terminate \lstinline{wireshark} and Mozilla.
+
+	Use \lstinline{wireshark} to examine the operation of SSL.
 	
 	
 	\subsection*{Report}
 	\begin{enumerate}
-		\setlength{\itemindent}{0pt}
 		\item What is the port number used by the secure Apache server?
-		\item Compare the general information of the received certificate with the \textbf{openssl} output saved in the previous exercise. Are they consistent?
+		\item Compare the general information of the received certificate with the \lstinline{openssl} output saved in the previous exercise. Are they consistent?
 		\item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
-		\item What is the \path{Certificate Signature Algorithm} used to generate and distribute this certificate?
+		\item What is the \textit{Certificate Signature Algorithm} used to generate and distribute this certificate?
 		\item When was the certificate signed? When will it expire?
 	\end{enumerate}
 
 \section*{Exercises on auditing and intrusion detection}
-	Start \textbf{Apache} service and brwose several page in the \path{Mozilla}. Open random url that not exist on the web server to generate log for apache. Browse again page as \path{secure http}.
+	Start \lstinline{apache2} service and brwose several page in the \textit{Mozilla}. Open random URL that not exist on the web server to generate log for apache. Browse again page as \path{secure http}.
 
 \section{Trace Log}
-	Go to \textbf{Log} folder at \path{/var/log/} to examine the log files in your host. If a log (e.g., the \path{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \textbf{grep \path{keyword} access.log} (e.g., \path{GET}) in the “console” to display those log entries containing the keyword. Enter the keyword “failed” to display logged failures.\\
-	See other log file.
+	Go to \path{log} folder at \path{/var/log/} to examine the log files in your host. If a log (e.g. the \textit{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \lstinline[emph={keyword}]{grep keyword access.log} (e.g. \texttt{GET}) in the {console} to display those log entries containing the keyword. Enter the keyword \texttt{failed} to display logged failures.
+
+	See other log files.
 
 \section{Log Analyzer}
-	Linux uses a utility called \path{Webalizer} to analyze the web server log files. \path{Webalizer} reads the \path{Apache} log files and creates a set of web reports on server statistics. Another utility is \path{goaccess} that analyze various access type and list it.\\
+	Linux uses a utility called \lstinline{webalizer} to analyze the web server log files. \lstinline{Webalizer} reads the \lstinline{apache2} log files and creates a set of web reports on server statistics. Another utility is \lstinline{goaccess} that analyze various access type and list it.
+
 	To analyze local log use this commands:
-	\begin{itemize}
-		\item \textbf{webalizer}
-	\end{itemize}
-	To view the reports of the \path{webalizer}, start \path{Mozilla} and enter the URL \path{http://remote\_host/usage/index.html}. Examine the web statistics displayed in the browser. Also click on the month links in the Summary by Month table to see the statistics of each month.\\
+	\begin{lstlisting}
+webalizer
+	\end{lstlisting}
+	
+	To view the reports of the \lstinline{webalizer}, start \textit{Mozilla} and enter the URL \url{http://remote-host/usage/index.html}. Examine the web statistics displayed in the browser. Also click on the month links in the Summary by Month table to see the statistics of each month.
+
 	To analyze local log use this commands:
-	\begin{itemize}
-		\item \textbf{goaccess -a > /var/www/html/report.html}
-	\end{itemize}
-	To view the report of the \path{goaccess}, start \path{Mozilla} and enter the URL \path{http://remote\_host/report.html}. Examine the web statistics displayed in the browser. Also click on the side panel to see other section.
+	\begin{lstlisting}
+goaccess -a > /var/www/html/report.html
+	\end{lstlisting}
+	
+	To view the report of the \lstinline{goaccess}, start \textit{Mozilla} and enter the URL \url{http://remote-host/report.html}. Examine the web statistics displayed in the browser. Also click on the side panel to see other section.
 
 	\subsection*{Report}
 	\begin{itemize}
@@ -250,11 +285,12 @@
 	\end{itemize}
 
 \section{System status}
-	Execute \textbf{netstat -l} to display the listening sockets in your host.\\
-	Execute \textbf{service -{}-status-all} to list the services in the \path{/etc/init.d/} and \path{/etc/init/} directories and their status. Save the output for the lab report.
+	Execute \lstinline{netstat -l} to display the listening sockets in your host.
+
+	Execute \lstinline{service --status-all} to list the services in the \path{/etc/init.d/} and \path{/etc/init/} directories and their status. Save the output for the lab report.
 	
 	\subsection*{Report}
 	\begin{itemize}
-		\item Is the \textbf{rlogin, ssh, apache2} services enabled in your host?
+		\item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled in your host?
 	\end{itemize}
 \end{document}

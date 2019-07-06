@@ -96,32 +96,42 @@
     \end{center}
 
 \section{Network interfaces}
-    Use the \textbf{ifconfig -a} command to display information about the network interfaces on your host.
+    Use the \lstinline{ifconfig -a} command to display information about the network interfaces on your host.
     Find the IP address and the net mask of your machine.
     \subsection*{Report}
 
     How many interfaces does the host have?
-    List all the interfaces found, give their names, and explain their functions briefly. \\
-    What are the MTUs of the interfaces on your host? \\
+    List all the interfaces found, give their names, and explain their functions briefly.
+
+    What are the MTUs of the interfaces on your host?
+
     Is network subnetted?
     What is the reasoning for your answer? What the experimental are the reasons for subnetting?
 
 
 \section{Local host dump}
-    While \textbf{tcpdump host} \textit{your-host} is running in one command window, run \textbf{ping 127.0.0.1} from another command window.
+    While \lstinline[emph={your-host}]{tcpdump host your-host} is running in one command window, run \lstinline{ping 127.0.0.1} from another command window.
+    
     \subsection*{Report}
-    From the \textbf{ping} output, is the 127.0.0.1 interface on?
-    Can you see any ICMP message sent from your host in the \textbf{tcpdump} output?
+    From the \lstinline{ping} output, is the 127.0.0.1 interface on?
+    Can you see any ICMP message sent from your host in the \lstinline{tcpdump} output?
     Why?
 
 
 \section{Network statistics}
-    By using \textbf{netstat -ie}\footnote{Can use \textbf{ifconfig} instead} command, collect the statistics from all the hosts on the network.
-    Since we use the same login name and password, we can \textbf{telnet} to other workstations and run \textbf{netstat -ie} there. \footnote{After you are done with a remote host, you should exit the \textbf{telnet} session before you \textbf{telnet} to another remote host.
-    Recursive \textbf{telnet} will generate unnecessary data in the \textbf{tcpdump} output and cause confusion.} \\
-    Save the \textbf{netstat -ie} outputs. \\
-    If you don’t see a significant amount of output packets in the \textbf{netstat} output, the machine was probably restarted recently. You may do this experiment later, or use the following \textbf{sock} command to generate some network traffic: \\
-    \centerline{\textbf{socket -u -i -n200} \textit{remote-host} \textbf{echo}}
+    By using \lstinline{netstat -ie}\footnote{You can use \lstinline{ifconfig} instead.} command, collect the statistics from all the hosts on the network.
+    Since we use the same login name and password, we can \lstinline{telnet} to other workstations and run \lstinline{netstat -ie} there.\footnote{%
+    After you are done with a remote host, you should exit the \lstinline{telnet} session before you \lstinline{telnet} to another remote host.
+    Recursive \lstinline{telnet} will generate unnecessary data in the \lstinline{tcpdump} output and cause confusion.
+    }
+
+    Save the \lstinline{netstat -ie} outputs.
+
+    If you don’t see a significant amount of output packets in the \lstinline{netstat} output, the machine was probably restarted recently. You may do this experiment later, or use the following \lstinline{socket} command to generate some network traffic:
+    \begin{lstlisting}[emph={remote-host}]
+socket -u -i -n200 remote-host echo
+    \end{lstlisting}
+    
     \subsection*{Report}
     Calculate the average collision rate over all the hosts for the set of statistics you collected in this exercise.
 
@@ -130,23 +140,35 @@
     You need these MAC addresses for the exercises and lab report.
 
 \section{ARP table}
-    Use \textbf{arp -a} to see the entire ARP table.
-    Observe that all the IP addresses displayed are on the same subnet. \\
-    If you find that all the remote hosts are in your host’s ARP table, you need to delete a remote host (not your workstation) from the table, using, \\
-    \textbf{arp -d} \textit{remote-host}. \footnote{If you deleted your workstation’s IP address from the ARP table by mistake, you must add the entry back in the table. See the \textbf{arp} manual page to add.
-    Note that, in order for your workstation to reply to the ARP requests, the ARP entry of your workstation must have the \textbf{P} flag in the ARP table.} \\
-    Save the ARP table for your lab report. \\
-    While \textbf{tcpdump -en \# -x for see hex dump} is running, \textbf{ping} a remote host that has no entry in your host ARP table.
-    Then terminate the \textbf{tcpdump} program. \\
-    You can run \textbf{wireshark \&} to capture network. \\
-    Observe the first few lines of the packet trace to see how ARP is used to resolve an IP address. \\
-    Run \textbf{arp -a} to see a new line added in your host’s ARP table.
-    Save the new ARP table for your lab report. \\
-    Mark the ARP request packet and the ARP reply packet in the \textbf{wireshark} window.
-    Then go to menu \texttt{File/Print \ldots} to print the marked packets for your lab report (See Exercise 6 of Chapter 1). \\
+    Use \lstinline{arp -a} to see the entire ARP table.
+    Observe that all the IP addresses displayed are on the same subnet.
+
+    If you find that all the remote hosts are in your host’s ARP table, you need to delete a remote host (not your workstation) from the table, using:
+    \footnote{If you deleted your workstation’s IP address from the ARP table by mistake, you must add the entry back in the table. See the \lstinline{arp} manual page to add.
+    Note that, in order for your workstation to reply to the ARP requests, the ARP entry of your workstation must have the \lstinline{P} flag in the ARP table.}
+    \begin{lstlisting}[emph={remote-host}]
+arp -d remote-host
+    \end{lstlisting}
+
+    Save the ARP table for your lab report.
+
+    While \lstinline{tcpdump -en}\footnote{You can add \lstinline{-x} flag to see hex dump.} is running, \lstinline{ping} a remote host that has no entry in your host ARP table.
+    Then terminate the \lstinline{tcpdump} program.
+
+    You can run \lstinline{wireshark &} to capture network.
+
+    Observe the first few lines of the packet trace to see how ARP is used to resolve an IP address.
+
+    Run \lstinline{arp -a} to see a new line added in your host’s ARP table.
+    Save the new ARP table for your lab report.
+
+    Mark the ARP request packet and the ARP reply packet in the \lstinline{wireshark} window.
+    Then go to menu \textit{File/Print\ldots} to print the marked packets for your lab report (See Exercise 6 of Chapter 1).
+
     \subsection*{Report}
-    From the saved \textbf{tcpdump} output, explain how ARP operates.
-    Draw the format of a captured, ARP request and reply including each field and the value. \\
+    From the saved \lstinline{tcpdump} output, explain how ARP operates.
+    Draw the format of a captured, ARP request and reply including each field and the value.
+
     Your report should include the answers for the following questions.
     \begin{itemize}
         \item What is the target IP address in the ARP request?
@@ -156,86 +178,114 @@
     \end{itemize}
 
 \section{ARP timeout}
-    While \textbf{tcpdump host} \textit{your-host} is running to capture traffic from your machine, execute \textbf{telnet 128.238.66.200}.
-    Note there is no host with this IP address in the current configuration of the lab network. \\
-    Save the \textbf{tcpdump} output of the first few packets for the lab report. \\
-    After getting the necessary output, terminate the \textbf{telnet} session.
+    While \lstinline[emph={your-host}]{tcpdump host your-host} is running to capture traffic from your machine, execute \lstinline{telnet 128.238.66.200}.
+    Note there is no host with this IP address in the current configuration of the lab network.
+
+    Save the \lstinline{tcpdump} output of the first few packets for the lab report.
+
+    After getting the necessary output, terminate the \lstinline{telnet} session.
+
     \subsection*{Report}
-    From the saved \textbf{tcpdump} output, describe how the ARP timeout and retransmission were performed.
+    From the saved \lstinline{tcpdump} output, describe how the ARP timeout and retransmission were performed.
     How many attemps were made to resolve a non-existing IP address?
 
 \section{ARP proxy}
-    The network topology for this proxy ARP exercise is shown in Fig. 2.9. We will divide the group into two subnets interconnected by a router. The IP addresses and network masks for the hosts are also given in Fig. 2.9. Change the IP address and network mask of your host accordingly (see Section 2.3.2). The IP addresses and network masks of the \texttt{Router4} interfaces are the same as their default settings.
-    Note that the network mask of the hosts in the 128.238.65.0 network is 255.255.0.0. \\
-    Set ip of each network by following command ind \texttt{hosts}:\\
+    The network topology for this proxy ARP exercise is shown in Fig. 2.9. We will divide the group into two subnets interconnected by a router. The IP addresses and network masks for the hosts are also given in Fig. 2.9. Change the IP address and network mask of your host accordingly (see Section 2.3.2). The IP addresses and network masks of the \textit{Router4} interfaces are the same as their default settings.
+    Note that the network mask of the hosts in the 128.238.65.0 network is 255.255.0.0.
+
+    Set ip of each network by running the following command in the hosts:
     \begin{enumerate}
-        \item \texttt{ifconfig eth0 x.x.x.x/mask}
-        \item \texttt{route add default gw x.x.x.x}
+        \item \lstinline[emph={x.x.x.x}]{ifconfig eth0 x.x.x.x/mask}
+        \item \lstinline[emph={x.x.x.x}]{route add default gw x.x.x.x}
     \end{enumerate}
-    Next we will enable the proxy ARP function on the ethernet1 interface of \texttt{Router4}. \\
+    Next we will enable the proxy ARP function on the ethernet1 interface of \textit{Router4}.
     \begin{enumerate}
-        \item \textbf{telnet} to \texttt{Router4} \textbf{telnet 128.238.64.4}. (\textit{\# Right click on the Router and open console on GNS3})
-        \item Log in to the router, type \textbf{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter3.}
-        \item Enter the \textit{Global Configuration} mode by typing \textbf{config term}.
+        \item \lstinline{telnet} to \textit{Router4}. (Use \lstinline{telnet 128.238.64.4}, or right click on the Router and open console on GNS3.)
+        \item Log in to the router, type \lstinline[language={cisco}]{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter~3.}
+        \item Enter the \textit{Global Configuration} mode by typing \lstinline[language={cisco}]{config term}.
         \item Then type the following lines for each interfaces:
         \begin{itemize}
-            \item \textbf{interface f0/0} \textit{\# f0/1 for another}\footnote{The name of the router interfaces may be different for various routers.
-            You can find the names by typing \textbf{write term} in the \textit{Privilege EXEC} mode.}
-            \item \textbf{ip addr x.x.x.x 255.255.255.0}
-            \item \textbf{no shut}
-            \item \textbf{ip proxy-arp}
+            \item \lstinline[language={cisco}]{interface f0/0 # f0/1 for another}\footnote{The name of the router interfaces may be different for various routers.
+            You can find the names by typing \lstinline[language={cisco}]{write term} in the \textit{Privilege EXEC} mode.}
+            \item \lstinline[language={cisco}]{ip addr x.x.x.x 255.255.255.0}
+            \item \lstinline[language={cisco}]{no shut}
+            \item \lstinline[language={cisco}]{ip proxy-arp}
             \item \texttt{Ctrl-Z}
-            \item \textbf{wr}
+            \item \lstinline[language={cisco}]{wr}
         \end{itemize}
-        % \item Type \textbf{exit} to terminate the \textbf{telnet} session.
+        % \item Type \lstinline[language={cisco}]{exit} to terminate the \lstinline{telnet} session.
     \end{enumerate}
-    Now \texttt{Router4}’s \texttt{ethernet1} interface can perform proxy ARP for the hosts in the 128.238.64.0 subnet. \\
-    Run \textbf{tcpdump -enx} on all the hosts. \\
+    
+    Now \textit{Router4}’s \textit{ethernet1} interface can perform proxy ARP for the hosts in the 128.238.64.0 subnet.
+
+    Run \lstinline{tcpdump -enx} on all the hosts.
+
     Then let the hosts in the 128.238.65.0 subnet send UDP datagrams to the hosts in the 128.238.64.0 subnet.
-    For example, on \texttt{guchi} type: \\
-    \textbf{socket -i -u -n1 -w1000} \textit{Host-in-64.0-subnet} \textbf{echo} \\
-    When you are done with all the hosts in the 128.238.64.0 subnet, save the tcpdump output for the lab report. \\
-    Run \textbf{arp -a} to display the new ARP table in your host.
-    Save the ARP table for your lab report. \\
-    After the lab instructor restores the network into a single subnet (see Fig. 1.3), change the IP address and network mask of your host’s interface back to their default values as in Fig. 1.3. \\
-    Exchange your data saved in this exercise with a student working in the other subnet. \\
+    For example, on \textit{guchi} type:
+    \begin{lstlisting}[emph={host-in-64-0-subnet}]
+socket -i -u -n1 -w1000 host-in-64-0-subnet echo
+    \end{lstlisting}
+
+    When you are done with all the hosts in the 128.238.64.0 subnet, save the tcpdump output for the lab report.
+
+    Run \lstinline{arp -a} to display the new ARP table in your host.
+    Save the ARP table for your lab report.
+
+    After the lab instructor restores the network into a single subnet (see Fig. 1.3), change the IP address and network mask of your host’s interface back to their default values as in Fig. 1.3.
+
+    Exchange your data saved in this exercise with a student working in the other subnet.
+
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.7\textwidth]{img/figure2-9.png}
     \end{figure}
+    
     \subsection*{Report}
-    Explain the operation of proxy ARP. \\
-    Why can a host in the 128.238.65.0 subnet reach a host in the 128.238.64.0 subnet, even though they have different subnet IDs? \\
-    What are the MAC addresses corresponding to hosts in the 128.238.64.0 subnet, in the ARP table of a host in the 128.238.65.0 subnet? \\
+    Explain the operation of proxy ARP.
+
+    Why can a host in the 128.238.65.0 subnet reach a host in the 128.238.64.0 subnet, even though they have different subnet IDs?
+
+    What are the MAC addresses corresponding to hosts in the 128.238.64.0 subnet, in the ARP table of a host in the 128.238.65.0 subnet?
+
     Give one advantage and one disadvantage of using proxy ARP.
 
 \section{ARP reboot timeout}
-    While \textbf{tcpdump -ex -w exe7.out} (or run \textbf{wireshark}) is running on all the hosts, reboot host \texttt{guchi}. \\
-    After \texttt{guchi} is started, terminate \textbf{tcpdump} and run \textbf{wireshark -r exe7.out \&} to load the \textbf{tcpdump} trace.
+    While \lstinline{tcpdump -ex -w exe7.out} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{guchi}. 
+
+    After \textit{guchi} is started, terminate \lstinline{tcpdump} and run \lstinline{wireshark -r exe7.out &} to load the \lstinline{tcpdump} trace.
     Print the gratuitous ARP request for your lab report.
+    
     \subsection*{Report}
-    What is the purpose of gratuitous ARP? \\
+    What is the purpose of gratuitous ARP?
+
     List the sender IP address, target IP address, sender MAC address, and target MAC address of the gratuitous ARP you saved.
 
 
 \section*{Exercise with ICMP and Ping}
 \section{ping ICMP}
-    Use \textbf{ping -sv} \textit{remote-host} to test whether the remote host is reachable, while running: \textbf{tcpdump -enx host} \textit{your-host} \textbf{and} \textit{remote-host}.
-    Save the \textbf{tcpdump} and \textbf{ping} output for the future study on \textbf{ping}.
+    Use \lstinline[emph={remote-host}]{ping -sv remote-host} to test whether the remote host is reachable, while running:
+    \lstinline[emph={your-host, remote-host}]{tcpdump -enx host your-host and remote-host}.
+    Save the \lstinline{tcpdump} and \lstinline{ping} output for the future study on \lstinline{ping}.
+    
     \subsection*{Report}
-    What ICMP messages are used by \textbf{ping}?
+    What ICMP messages are used by \lstinline{ping}?
 
 \section{ICMP port unreachable}
-    While running \textbf{tcpdump -x -s 70 host} \textit{your-host} \textbf{and} \textit{remote-host}, execute the following \textbf{sock} command to send a UDP datagram to the remote host: \textbf{socket -i -u -n1 -w1000} \textit{remote\_host} \textbf{88888}. \\
-    Save the \textbf{tcpdump} output for the lab report.
+    While running \lstinline[emph={your-host, remote-host}]{tcpdump -x -s 70 host your-host and remote-host}, execute the following \lstinline{socket} command to send a UDP datagram to the remote host:
+    \lstinline[emph={your-host, remote-host}]{socket -i -u -n1 -w1000 remote-host 88888}.
+
+    Save the \lstinline{tcpdump} output for the lab report.
+
     \subsection*{Report}
     Study the saved ICMP port unreachable error message (see Fig. 2.7).
     Why are the first 8 bytes of the original IP datagram payload included in the ICMP message?
 
 \section{ping ICMP}
-    While \textbf{tcpdump} is running to capture the ICMP messages, \textbf{ping} a host with IP address 128.238.60.100. Save the \textbf{ping} output.
+    While \lstinline{tcpdump} is running to capture the ICMP messages, \lstinline{ping} a host with IP address 128.238.60.100. Save the \lstinline{ping} output.
+    
     \subsection*{Report}
-    Can you see any traffic sent on the network? Why? Explain what happened from the \textbf{ping} output. \\
+    Can you see any traffic sent on the network? Why? Explain what happened from the \lstinline{ping} output.
+
     List the different ICMP messages you captured in Exercises 8, 9, and 10 (if any). Give the values of the type and code fields.
 
 \section*{Exercises with IP address and subnet mask}
@@ -244,7 +294,7 @@
     For the next two exercises, we split the current single segment network into two segments, Group A and Group B as shown in Table 2.3, so that they will not interfere with each other.
 
     \begin{table}[H]
-        \caption{\textit{Table 2.3.} Host IP addresses and network masks for \textbf{11 Duplicate IP}}
+        \caption{\textit{Table 2.3.} Host IP addresses and network masks for \textit{11 Duplicate IP}}
         \vspace{5pt}
         \centering
         \large
@@ -266,38 +316,54 @@
     \end{table}
 
 \section{Duplicate IP}
-    Change the IP address of your workstation as shown in Table 2.3. \\
-    Delete the entries for all hosts other than your own workstation from your workstation’s ARP table. \\
-    Run \textbf{tcpdump -enx} on all the hosts.
-    Then, do the following three experiments. \\
+    Change the IP address of your workstation as shown in Table 2.3.
+
+    Delete the entries for all hosts other than your own workstation from your workstation’s ARP table.
+
+    Run \lstinline{tcpdump -enx} on all the hosts.
+    Then, do the following three experiments.
+
     \begin{enumerate}
-        \item Execute \textbf{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g. \texttt{shakti} –> \texttt{agni} in Group A and \texttt{yachi} –> \texttt{kenchi} in Group B). \\
-        Now, from the other host with the duplicate IP address, execute \textbf{telnet} command to the same host (\texttt{vayu} –> \texttt{agni} or \texttt{fenchi} –> \texttt{kenchi}). \\
-        Observe what happens and save the \textbf{tcpdump} output and the ARP tables in all the hosts in your group.
-        \item Execute \textbf{telnet 128.238.66.100} (or \textbf{128.238.66.104}) from \texttt{agni} (or \texttt{kenchi}).
+        \item Execute \lstinline{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g. \textit{shakti} –> \textit{agni} in Group A and \textit{yachi} –> \textit{kenchi} in Group B).
+
+        Now, from the other host with the duplicate IP address, execute \lstinline{telnet} command to the same host (\textit{vayu} –> \textit{agni} or \textit{fenchi} –> \textit{kenchi}).
+
+        Observe what happens and save the \lstinline{tcpdump} output and the ARP tables in all the hosts in your group.
+        
+        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{agni} (or \textit{kenchi}).
         Which host provides the telnet connection?
         Why?
-        \item Execute \textbf{telnet 128.238.66.100} (or \textbf{128.238.66.104})from \texttt{apah} (or \texttt{guchi}). Which host is connected to \texttt{apah} (or \texttt{guchi})? Why?
+        
+        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{apah} (or \textit{guchi}). Which host is connected to \textit{apah} (or \textit{guchi})? Why?
     \end{enumerate}
+    
     \subsection*{Report}
     Explain what happened in the first case and why.
     Answer the questions for the second and third cases.
 
 \section{IP subnets}
     Change the host IP addresses and the subnet masks as shown in Table 2.4. Since we still have two separate segments, Groups A and B can do the exercise independently.
-    Note that two hosts in each group (\texttt{shakti} and \texttt{apah} in Group A, or \texttt{yachi} and \texttt{guchi} in Group B) are assigned an incorrect subnet mask. \\
-    Capture the packets with \textbf{tcpdump -e} for the following cases. \\
+    Note that two hosts in each group (\textit{shakti} and \textit{apah} in Group A, or \textit{yachi} and \textit{guchi} in Group B) are assigned an incorrect subnet mask.
+
+    Capture the packets with \lstinline{tcpdump -e} for the following cases.
+
     \begin{enumerate}
-        \item When \texttt{shakti} (\texttt{yachi}) \textbf{ping}s one of the hosts that have the correct subnet mask.
-        \item When \texttt{apah} (\texttt{guchi}) \textbf{ping}s one of the hosts that have the correct subnet mask. \\ Now, copy the output displayed from the \textbf{ping} window in \texttt{apah} (\texttt{guchi}).
+        \item When \textit{shakti} (\textit{yachi}) \lstinline{ping}s one of the hosts that have the correct subnet mask.
+        
+        \item When \textit{apah} (\textit{guchi}) \lstinline{ping}s one of the hosts that have the correct subnet mask.
+
+        Now, copy the output displayed from the \lstinline{ping} window in \textit{apah} (\textit{guchi}).
         Share the saved output message with other students.
-        \item When a host with the correct subnet mask \textbf{ping}s \texttt{shakti} (\texttt{yachi}).
-        \item When a host with the correct subnet mask \textbf{ping}s \texttt{apah} (\texttt{guchi}).
+        
+        \item When a host with the correct subnet mask \lstinline{ping}s \textit{shakti} (\textit{yachi}).
+        
+        \item When a host with the correct subnet mask \lstinline{ping}s \textit{apah} (\textit{guchi}).
     \end{enumerate}
+    
     To avoid confusion, only one machine in each group should generate traffic in each case.
     Clearly, this exercise has to be performed as a team.
     \begin{table}[H]
-        \caption{\textit{Table 2.4.} Host IP addresses and network masks for \textbf{12 IP subnet}}
+        \caption{\textit{Table 2.4.} Host IP addresses and network masks for \textit{12 IP subnet}}
         \vspace{5pt}
         \centering
         \begin{tabular}{ l l l l }
@@ -316,18 +382,8 @@
             \hline \hline
             \end{tabular}
     \end{table}
+    
     \subsection*{Report}
-    Explain what happened in each case according to the \textbf{tcpdump} outputs saved.
-    Explain why \texttt{apah} (or \texttt{guchi} in Group B) could not be reached from other hosts, whereas \texttt{shakti} (or \texttt{yachi} in Group B), which has the same incorrect subnet mask, could communicate with the other hosts.
+    Explain what happened in each case according to the \lstinline{tcpdump} outputs saved.
+    Explain why \textit{apah} (or \textit{guchi} in Group B) could not be reached from other hosts, whereas \textit{shakti} (or \textit{yachi} in Group B), which has the same incorrect subnet mask, could communicate with the other hosts.
 \end{document}
-
-
-
-
-
-
-
-
-
-
-

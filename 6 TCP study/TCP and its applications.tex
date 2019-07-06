@@ -41,28 +41,30 @@
     Like previous lab, connect two host with one hub together.
 
 \section{Telnet terminal}
-    While \textbf{tcpdump -S host \textit{your\_host} and \textit{remote\_host}} is running, execute: \textbf{telnet \textit{remote\_host} date}.
+    While \lstinline[emph={your-host, remote-host}]{tcpdump -S host your-host  and remote-host} is running, execute: \lstinline[emph={your-host, remote-host}]{telnet remote-host date}.
     Save the tcpdump output.
-	\subsection*{Report}
+	
+    \subsection*{Report}
 	\begin{enumerate}
 		\item Explain TCP connection establishment and termination using the tcpdump output.
 		\item What were the announced MSS values for the two hosts?
 		\item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
 		See if the \texttt{DF} flag was set in tcpdump output.
-		\textit{you can change interface \textbf{MTU} with} \textbf{sudo ifconfig \$ETH mtu 1400}
+		You can change interface \texttt{MTU} with \lstinline{sudo ifconfig $ETH mtu 1400}
 	\end{enumerate}
     
 \section{TCP vs UDP connection establishment}
-    While \textbf{tcpdump -nx host \textit{your\_host} and \textit{remote\_host}} is running, use \textbf{socket}\footnote{Basic command is sock use alternative socket (linked to sock)} to send a UDP datagram to \texttt{h2}:
-	\begin{itemize}
-		\item \textbf{socket -u -s \textit{remote\_host} 8888}
-	\end{itemize}
-    \underline{Save} the \textbf{tcpdump} or \textbf{wireshark} output for your lab report. \\
-	Restart the above \textbf{tcpdump} command, execute \textbf{socket} in the TCP mode:
-	\begin{itemize}
-		\item \textbf{socket -i -n1} \textit{host} \textbf{8888}
-	\end{itemize}
-    \underline{Save} the \textbf{tcpdump} output for your lab report.
+    While \lstinline[emph={your-host, remote-host}]{tcpdump -nx host your-host and remote-host} is running, use \lstinline{socket}\footnote{Basic command is \lstinline{sock}. Use alternative \lstinline{socket} (linked to \lstinline{sock}).} to send a UDP datagram to \textit{h2}:
+	\begin{lstlisting}[emph={your-host, remote-host}]
+socket -u -s remote-host 8888
+	\end{lstlisting}
+    {Save} the \lstinline{tcpdump} or \lstinline{wireshark} output for your lab report. \\
+	Restart the above \lstinline{tcpdump} command, execute \lstinline{socket} in the TCP mode:
+	\begin{lstlisting}[emph={host}]
+socket -i -n1 host 8888
+	\end{lstlisting}
+    {Save} the \lstinline{tcpdump} output for your lab report.
+    
     \subsection*{Report}
     \begin{enumerate}
         \item Explain what happened in both the UDP and TCP cases. When a client requests a non-existing server, how do UDP and TCP handle this request, respectively?
@@ -70,95 +72,116 @@
 
 \section*{Exercise on TCP interactive data flow}
 \section{Interactive data flow}
-While \textbf{tcpdump} is capturing the traffic between your machine and a remote machine, issue following commands:
-    \begin{itemize}
-        \item \textbf{tcpdump -nv} or run \textbf{wireshark}
-        \item \textbf{telnet} \textit{host}
-    \end{itemize}
-    After logging in to the host, type \texttt{date} and press the \texttt{Enter} key. \\
-    Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \textbf{telnet} window very rapidly\footnote{for example hold "A" key or write "qwertyuiop" in telnet window.}. \\
-    \underline{Save} the \textbf{tcpdump} output for your lab report.
+While \lstinline{tcpdump} is capturing the traffic between your machine and a remote machine, issue following commands:
+    \begin{lstlisting}[emph={host}]
+tcpdump -nv @{\normalfont\normalsize (or run }wireshark{\normalfont\normalsize  )}@
+telnet host
+    \end{lstlisting}
+    After logging in to the host, type \lstinline{date} and press the {Enter} key.
+
+    Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \lstinline{telnet} window very rapidly.\footnote{For example hold ``A'' key or write ``qwertyuiop'' in \lstinline{telnet} window.}
+
+    {Save} the \lstinline{tcpdump} output for your lab report.
+    
     \subsection*{Report}
-    Answer the following questions, based upon the \textbf{tcpdump} output saved in the above exercise.
+    Answer the following questions, based upon the \lstinline{tcpdump} output saved in the above exercise.
     \begin{enumerate}
         \item What is a delayed acknowledgement?
         What is it used for?
-        \item Can you see any delayed acknowledgements in your \textbf{tcpdump} output? \\
+        
+        \item Can you see any delayed acknowledgements in your \lstinline{tcpdump} output?
+
         If yes, explain the reason.
-        Mark some of the lines with delayed acknowledgements, and submit the \textbf{tcpdump} output with your report. \\
-        Explain how the delayed ACK timer operates from your \textbf{tcpdump} output. \\
+        Mark some of the lines with delayed acknowledgements, and submit the \lstinline{tcpdump} output with your report.
+
+        Explain how the delayed ACK timer operates from your \lstinline{tcpdump} output.
+
         If you don’t see any delayed acknowledgements, explain the reason why none was observed.
-        \item What is the \textbf{Nagle}\footnote{Nagle Algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.} algorithm used for? \\
-        From your \textbf{tcpdump} output, can you tell whether the Nagle algorithm is enabled or not? Give the reason for your answer.\\
-        From your \textbf{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your workstation to the remote machine?
+        
+        \item What is the \textit{Nagle}\footnote{Nagle Algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.} algorithm used for?
+
+        From your \lstinline{tcpdump} output, can you tell whether the Nagle algorithm is enabled or not? Give the reason for your answer.
+
+        From your \lstinline{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your workstation to the remote machine?
     \end{enumerate}
 
 \section*{Exercise on TCP bulk data flow}
 \section{IP Segment}
     While tcpdump is running and capturing the packets between your machine and a remote machine, on the remote machine, which acts as the server, execute:
-    \begin{itemize}
-        \item \textbf{socket -i -s 7777}
-    \end{itemize}
+    \begin{lstlisting}
+socket -i -s 7777
+    \end{lstlisting}
     Then, on your machine, which acts as the client, execute:
-    \begin{itemize}
-        \item \textbf{socket -i -n16} \textit{remote-host} \textbf{7777}
-    \end{itemize}
-    Do the same experiment three times. \\
-    \underline{Save} all the \textbf{tcpdump} outputs for your lab report.
+    \begin{lstlisting}[emph={your-host, remote-host}]
+socket -i -n16 remote-host 7777
+    \end{lstlisting}
+    Do the same experiment three times.
+
+    {Save} all the \lstinline{tcpdump} outputs for your lab report.
+    
     \subsection*{Report}
     \begin{enumerate}
-        \item Using one of three \textbf{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements. Does the number of data segments differ from that of their acknowledgements? \\
-        Compare all the \textbf{tcpdump} outputs you saved.
+        \item Using one of three \lstinline{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements. Does the number of data segments differ from that of their acknowledgements?
+
+        Compare all the \lstinline{tcpdump} outputs you saved.
         Discuss any differences among them, in terms of data segments and their acknowledgements.
-        \item From the \textbf{tcpdump} output, how many different TCP flags can you see? Enumerate the flags and explain their meanings. \\
+        
+        \item From the \lstinline{tcpdump} output, how many different TCP flags can you see? Enumerate the flags and explain their meanings.
+
         How many different TCP options can you see?
         Explain their meanings.
     \end{enumerate}
 
 \section*{Exercises on TCP timers and retransmission}
 \section{Keepalive parameter}
-    Execute \textbf{sysctl -A | grep keepalive} to display the default values of the TCP kernel parameters that are related to the TCP keepalive timer. \\
+    Execute \lstinline{sysctl -A | grep keepalive} to display the default values of the TCP kernel parameters that are related to the TCP keepalive timer.
+
     \begin{enumerate}
         \item What is the default value of the TCP keepalive timer?
         \item What is the maximum number of TCP keepalive probes a host can send?
     \end{enumerate}
+    
     \subsection*{Report}
     Answer the above questions.
 
 \section{TCP retransmission}
-    While \textbf{tcpdump} is running to capture the packets between your host and a remote host, start a \textbf{socket} server on the remote host,
-    \begin{itemize}
-    	\item \textbf{socket -s 8888}
-    \end{itemize}
+    While \lstinline{tcpdump} is running to capture the packets between your host and a remote host, start a \lstinline{socket} server on the remote host,
+    \begin{lstlisting}
+socket -s 8888
+    \end{lstlisting}
     Then, execute the following command on your host,
     \begin{itemize}
-        \item \textit{add link delay in simulator}\footnote{In gns3, \textbf{right click} on link, select \textbf{Packet Filter} and set link \textbf{delay} to \texttt{10 ms}}
-        \item \textbf{socket -i -n200} \textit{host} \textbf{8888}
+        \item add link delay in simulator\footnote{In GNS3, \lstinline{right click} on link, select \lstinline{Packet Filter} and set link \lstinline{delay} to \textit{10 ms}}
+        \item \lstinline[emph={host}]{socket -i -n200 host 8888}
     \end{itemize}
-    While the sender is injecting data segments into the network, disconnect the cable connecting the sender to the hub for about ten seconds. \\
+    While the sender is injecting data segments into the network, disconnect the cable connecting the sender to the hub for about ten seconds.
+
     After observing several retransmissions, reconnect the cable:
-    \begin{itemize}
-    	\setlength{\itemindent}{30pt}
-        \item \textbf{ip link set eth0 down} or \textbf{ifconfig eth0 down}
-        \item [-] after seconds...
-        \item \textbf{ip link set eth0 up} or \textbf{ifconfig eth0 up}
-    \end{itemize}
-    When all the data segments are sent, save the \textbf{tcpdump} output for the lab report.
+    \begin{lstlisting}
+ip link set eth0 down@{\normalfont\normalsize{ or }}@ifconfig eth0 down
+    \end{lstlisting}
+after seconds\ldots
+    \begin{lstlisting}
+ip link set eth0 up@{\normalfont\normalsize{ or }}@ifconfig eth0 up
+    \end{lstlisting}
+    When all the data segments are sent, save the \lstinline{tcpdump} output for the lab report.
+    
     \subsection*{Report}
     \begin{enumerate}
-        \item Submit the \textbf{tcpdump} output saved in this exercise.
-        \item From the \textbf{tcpdump} output, identify when the cable was disconnected.
+        \item Submit the \lstinline{tcpdump} output saved in this exercise.
+        \item From the \lstinline{tcpdump} output, identify when the cable was disconnected.
         \item Describe how the retransmission timer changes after sending each retransmitted packet, during the period when the cable was disconnected.
-        \item Explain how the number of data segments that the sender transmits at once (before getting an ACK) changes after the connection is reestablished\footnote{\href{http://www.ccs-labs.org/teaching/rn/animations/gbn_sr/}{TCP Window visualizer}}.
+        \item Explain how the number of data segments that the sender transmits at once (before getting an ACK) changes after the connection is reestablished.\footnote{\href{http://www.ccs-labs.org/teaching/rn/animations/gbn_sr/}{TCP Window visualizer}}.
     \end{enumerate}
     
 \section*{Other exercises}
 \section{Fragmentation}
-    While tcpdump src host your host is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous chapter (Chapter 5),
-    \begin{itemize}
-        \item \textbf{socket -i -n1 -w}\textit{n} \textit{remote-host} \textbf{echo} 
-    \end{itemize}
-    Let \textit{n} be larger than the maximum UDP datagram size we found in previous chapter. \\
+    While \lstinline[emph={your-host, remote-host}]{tcpdump src host your-host} is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous chapter (Chapter 5),
+    \begin{lstlisting}[emph={n, remote-host}]
+socket -i -n1 -w n remote-host echo
+    \end{lstlisting}
+    Let \textit{n} be larger than the maximum UDP datagram size we found in previous chapter.
+
     As an example, you may use $n = 70080$.
     \subsection*{Report}
     \begin{enumerate}
@@ -167,14 +190,14 @@ While \textbf{tcpdump} is capturing the traffic between your machine and a remot
     \end{enumerate}
 
 \section{Linux TCP/IP kernel parameter}
-    Study the manual page of \textbf{\texttt{/sbin/sysctl}}.
+    Study the manual page of \lstinline{/sbin/sysctl}.
     Examine the default values of some TCP/IP configuration parameters that you might be interested in.
-    Examine the configuration files in the \texttt{/proc/sys/net/ipv4} directory.
+    Examine the configuration files in the \path{/proc/sys/net/ipv4} directory.
     \subsection*{Report}
     \begin{enumerate}
-        \item Explain what is \textbf{sysctl} command for?
+        \item Explain what is \lstinline{sysctl} command for?
         \item Explain two arbitrary TCP/IP configuration parameters. What is their default values?
-        \item Name two arbitrary file in the \texttt{/proc/sys/net/ipv4} directory. What is their content?
+        \item Name two arbitrary file in the \path{/proc/sys/net/ipv4} directory. What is their content?
     \end{enumerate}
 
 \end{document}

@@ -37,8 +37,8 @@
     \selectlanguage{english}
     \maketitle
 
-\section*{Systems configuration}
-    Launch GNS3 and make a network as below. You can use "\textbf{ifconfig \texttt{eth0} 192.168.0.1 netmask 255.255.255.0}" to set ip.
+\section*{Systems Configuration}
+    Launch GNS3 and make a network as below. You can use \lstinline{ifconfig eth0 192.168.0.1 netmask 255.255.255.0} to set ip.
     \begin{center}
         %	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
         \begin{minipage}{0.48\textwidth}
@@ -94,113 +94,149 @@
         \end{minipage}
     \end{center}
 
-\section{Telnet service}
-    Run \textbf{ps -e} to list the processes running in \texttt{h1}.
-    After starting a new process by running \textbf{telnet} in another command window, execute \textbf{ps -e} again in a third window to see if there is any change in its output. \\
-    Find the process id of the \textbf{telnet} process you started, by: \\
-    \centerline{\textbf{ps -e | grep telnet}} \\
-    Then use \textbf{kill} \textit{process-id-of-telnet} to terminate the \textbf{telnet} process.
+\section{Telnet Service}
+    Run \lstinline{ps -e} to list the processes running in \textit{h1}.
+    After starting a new process by running \lstinline{telnet} in another command window, execute \lstinline{ps -e} again in a third window to see if there is any change in its output.
+
+    Find the process id of the \lstinline{telnet} process you started, by:
+    \begin{lstlisting}
+ps -e | grep telnet
+    \end{lstlisting}
+    Then use \lstinline[emph={process-id-of-telnet}]{kill process-id-of-telnet} to terminate the \lstinline{telnet} process.
+    
     \subsection*{Report}
-    What is Internet service daemon (inetd)? \\
-    Is \textbf{inetd} started in your system?
-    Why? \\
-    Is \textbf{xinetd} started in your system? What is its PID? \\
+    What is Internet Service Daemon (\lstinline{inetd})?
 
-\section{Default network services}
-    Display the file \texttt{/etc/services} on \texttt{h1} screen, using: \\
-    \centerline{\textbf{more} \texttt{/etc/services}} \\
-    Then in another console, use the redirect operator to redirect the \textbf{more} output to
-    a file using \textbf{more} \texttt{/etc/services > ser-more}. Compare the file \texttt{ser-more} with the original \textbf{more} output in the other command window. \\
-    Copy \texttt{/etc/services} file to a local file named \texttt{ser-cp} in your working directory,
-    using \textbf{cp} \texttt{/etc/services ser-cp}. Compare files \texttt{ser-more} and \texttt{ser-cp}, using \textbf{cmp} \texttt{ser-more ser-cp}. Are these two files identical?\\
-    Concatenate these two files using \textbf{cat} \texttt{ser-more ser-cp > ser-cat}. \\
-    Display the file sizes using \textbf{ls -l ser*}. Save the output. What are the sizes of files \texttt{ser-more}, \texttt{ser-cp}, and \texttt{ser-cat}?
+    Is \lstinline{inetd} started in your system?
+    Why?
 
-\section{Network command manual}
-    Read the \textbf{man} pages for the following programs:
+    Is \lstinline{xinetd} started in your system? What is its PID?
+
+\section{Default Network Services}
+    Display the file \path{/etc/services} on \textit{h1} screen, using:
+    \begin{lstlisting}
+more /etc/services
+    \end{lstlisting}
+    Then in another console, use the redirect operator to redirect the \lstinline{more} output to
+    a file using \lstinline{more /etc/services > ser-more}. Compare the file \path{ser-more} with the original \lstinline{more} output in the other command window.
+
+    Copy \path{/etc/services} file to a local file named \path{ser-cp} in your working directory,
+    using \lstinline{cp /etc/services ser-cp}. Compare files \path{ser-more} and \path{ser-cp}, using \lstinline{cmp ser-more ser-cp}. Are these two files identical?
+
+    Concatenate these two files using \lstinline{cat ser-more ser-cp > ser-cat}.
+
+    Display the file sizes using \lstinline{ls -l ser*}. Save the output. What are the sizes of files \path{ser-more}, \path{ser-cp}, and \path{ser-cat}?
+
+\section{Network Command Manual}
+    Read the \lstinline{man} pages for the following programs:
     \begin{multicols}{3}
         \begin{enumerate}
-            \item arp
-            \item arping
-            \item ifconfig
-            \item tcpdump
-            \item ping
-            \item netstat
-            \item route
-            \item wireshark
-            \item iptables
+            \item \lstinline{arp}
+            \item \lstinline{arping}
+            \item \lstinline{ifconfig}
+            \item \lstinline{tcpdump}
+            \item \lstinline{ping}
+            \item \lstinline{netstat}
+            \item \lstinline{route}
+            \item \lstinline{wireshark}
+            \item \lstinline{iptables}
         \end{enumerate}
     \end{multicols}
     Study the different options associated with each command.
     Throughout this lab you will use these commands rather extensively.
+    
     \subsection*{Report}
     Explain the above commands briefly.
     Two or three sentences per command would be adequate.
 
-\section{Packet capturing}
-    In this exercise, we will use \textbf{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \textbf{wireshark} to analyze this packet. \\
-    First, run \textbf{tcpdump -enx -w} \texttt{dump.out} in \texttt{h1}.
-    You will not see any \textbf{tcpdump} output, since the \textbf{-w} option is used to write the output to the \texttt{dump.out} file. \\
-    Then, you may want to run \textbf{telnet} \texttt{10.0.0.2} to generate some TCP traffic.\footnote{Remember to run \textbf{\texttt{/etc/init.d/xinetd} restart} in \texttt{h2} to start telnet server on it.}
-    After you login to \texttt{h2}, terminate the \textbf{telnet} session and terminate the \textbf{tcpdump} program.
-    Next, you will use \textbf{wireshark} to open the packet trace captured by \textbf{tcpdump} and analyze the captured packets.
-    To do this, run \textbf{wireshark} \texttt{dump.out \&}.
-    The \textbf{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \textbf{tcpdump} will be displayed.
+\section{Packet Capturing}
+    In this exercise, we will use \lstinline{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \lstinline{wireshark} to analyze this packet.
+
+    First, run \lstinline{tcpdump -enx -w dump.out} in \textit{h1}.
+    You will not see any \lstinline{tcpdump} output, since the \lstinline{-w} option is used to write the output to the \path{dump.out} file.
+
+    Then, you may want to run \lstinline{telnet 10.0.0.2} to generate some TCP traffic.\footnote{Remember to run \lstinline{/etc/init.d/xinetd restart} in \textit{h2} to start telnet server on it.}
+    After you login to \textit{h2}, terminate the \lstinline{telnet} session and terminate the \lstinline{tcpdump} program.
+    Next, you will use \lstinline{wireshark} to open the packet trace captured by \lstinline{tcpdump} and analyze the captured packets.
+    To do this, run \lstinline{wireshark dump.out &}.
+    The \lstinline{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \lstinline{tcpdump} will be displayed.
     Select any one of the packets that contain the link, IP, and TCP headers.
+    
     \subsection*{Report}
     What is the value of the \texttt{protocol} field in the IP header of the packet you saved?
-    What is the use of the \texttt{protocol} field? \\
+    What is the use of the \texttt{protocol} field?
+
     What is the value of the \texttt{frame type} field in an Ethernet frame carrying an IP datagram?
 
-\section{ARPing}
-    This time we will run wireshark to capture an ARP request and an ARP reply in real-time. Simply run \textbf{wireshark \&} in \texttt{h1} and select the interface and start capturing.
-    If there is no arp requests and replies in the network, generate some using \textbf{arping} \textit{10.0.0.2}. \\
+\section{\texttt{ARPing}}
+    This time we will run wireshark to capture an ARP request and an ARP reply in real-time. Simply run \lstinline{wireshark &} in \textit{h1} and select the interface and start capturing.
+    If there is no arp requests and replies in the network, generate some using \lstinline{arping 10.0.0.2}.
+
     Now you should see several ARP replies in the arping output.
+    
     \subsection*{Report}
-    What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively? \\
-    What is the use of the \texttt{frame type} field? \\
+    What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively?
+
+    What is the use of the \texttt{frame type} field?
 
 \section{Packet filtering}
-    Using the \textbf{tcpdump} utility, capture any packet on the LAN and see the output format
+    Using the \lstinline{tcpdump} utility, capture any packet on the LAN and see the output format
     for different command-line options. Study the various expressions for selecting
-    which packets to be dumped.\\
-    For this experiment, use the \textbf{man} page for \textbf{tcpdump} to find out the options and
-    expressions that can be used.\\
+    which packets to be dumped.
+
+    For this experiment, use the \lstinline{man} page for \lstinline{tcpdump} to find out the options and
+    expressions that can be used.
+
     If there is no traffic on the network, you may generate traffic with some applications
-    (e.g. \textbf{telnet}, \textbf{ping}, etc.).\\
+    (e.g. \lstinline{telnet}, \lstinline{ping}, etc.).
+    
     \subsection*{Report}
-    Explain briefly the purposes of the following \textbf{tcpdump} expressions. If using wireshark, use next list
+    Explain briefly the purposes of the following \lstinline{tcpdump} expressions.
+
+    If using wireshark, use the next list:
     \begin{itemize}
-        \item \textbf{tcpdump udp port 520}
-        \item \textbf{tcpdump -x -s 120 ip proto 89}
-        \item \textbf{tcpdump -x -s 70 host \texttt{ip\_addr1} and (\texttt{ip\_addr2} or \texttt{ip\_addr3})}
-        \item \textbf{tcpdump -x -s 70 host \texttt{ip\_addr1} and not \texttt{ip\_addr2}}
+        \item \lstinline{tcpdump udp port 520}
+        \item \lstinline{tcpdump -x -s 120 ip proto 89}
+        \item \lstinline[emph={ip-addr1, ip-addr2, ip-addr3}]{tcpdump -x -s 70 host ip-addr1 and (ip-addr2 or ip-addr3)}
+        \item \lstinline[emph={ip-addr1, ip-addr2}]{tcpdump -x -s 70 host ip-addr1 and not ip-addr2}
     \end{itemize}
-    If you ar using \textbf{wireshark} explain the following filter.
+    
+    If you are using \lstinline{wireshark} explain the following filters:
     \begin{itemize}
-        \item \textbf{udp.port == 520}
-        \item \textbf{ip.proto == 89}
-        \item \textbf{ip.addr == \texttt{ip\_addr1} and (ip.addr == \texttt{ip\_addr2} or ip.addr == \texttt{ip\_addr3})}
-        \item \textbf{ip.addr == \texttt{ip\_addr1} and not ip.addr \texttt{ip\_addr2}}
+        \item \lstinline[language=generic]{udp.port == 520}
+        \item \lstinline[language=generic]{ip.proto == 89}
+        \item \lstinline[emph={ip-addr1, ip-addr2, ip-addr3},language={generic}]{ip.addr == ip-addr1 and (ip.addr == ip-addr2 or ip.addr == ip-addr3)}
+        \item \lstinline[emph={ip-addr1, ip-addr2},language={generic}]{ip.addr == ip-addr1 and not ip.addr ip-addr2}
     \end{itemize}
 
-\section{Connection port}
-    In \texttt{h1} run \textbf{wireshark \&} and select an interface to capture packets between hosts. \\
-    Execute a TCP utility, \textbf{telnet} for example, in another command window: \\
-    \textbf{telnet} \textit{10.0.0.2}
+\section{Connection Port}
+    In \textit{h1} run \lstinline{wireshark &} and select an interface to capture packets between hosts.
+
+    Execute a TCP utility, \lstinline{telnet} for example, in another command window:
+    \begin{lstlisting}
+telnet 10.0.0.2
+    \end{lstlisting}
+    
     \subsection*{Report}
-    What are the port numbers used by the \texttt{h1} (local machine) and \texttt{h2} (remote machine)? \\
-    Which machine’s port number matches the port number listed for \textbf{telnet} in the \texttt{/etc/services} file? \\
+    What are the port numbers used by the \textit{h1} (local machine) and \textit{h2} (remote machine)?
+
+    Which machine’s port number matches the port number listed for \lstinline{telnet} in the \path{/etc/services} file?
 
 \section{Random port}
-    In \texttt{h1} run \textbf{wireshark \&} and select an interface to capture packets between hosts. \\
-    Then, \textbf{telnet} to the \texttt{h2} from a second command window by typing \textbf{telnet} \textit{10.0.0.2}.
-    Again issue the same \textbf{telnet} \textit{10.0.0.2} command from a third command window.
-    Now you are opening two \textbf{telnet} sessions to \texttt{h2} simultaneously, from two different command windows. \\
-    Check the port numbers being used on both sides of the two connections from the output in the \textbf{wireshark} window. \\
+    In \textit{h1} run \lstinline{wireshark &} and select an interface to capture packets between hosts.
+
+    Then, \lstinline{telnet} to the \textit{h2} from a second command window by typing \lstinline{telnet 10.0.0.2}.
+    Again issue the same \lstinline{telnet 10.0.0.2} command from a third command window.
+    Now you are opening two \lstinline{telnet} sessions to \textit{h2} simultaneously, from two different command windows.
+
+    Check the port numbers being used on both sides of the two connections from the output in the \lstinline{wireshark} window.
+
     \subsection*{Report}
-    When you have two \textbf{telnet} sessions with your machine, what port number is used on the \texttt{h2} (remote machine)? \\
-    Are both sessions connected to the same port number on the \texttt{h2} (remote machine)? \\
-    What port numbers are used in \texttt{h1} (local machine) for the first and second \textbf{telnet}, respectively? \\
-    Explain briefly what a \texttt{socket} is. \\
+    When you have two \lstinline{telnet} sessions with your machine, what port number is used on the \textit{h2} (remote machine)?
+
+    Are both sessions connected to the same port number on the \textit{h2} (remote machine)?
+
+    What port numbers are used in \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
+
+    Explain briefly what a \textbf{socket} is.
 \end{document}
