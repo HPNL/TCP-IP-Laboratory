@@ -5,11 +5,11 @@
 \RequirePackage[OT1,T1,LFE,LAE]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[arabic,english,farsi]{babel}
-\RequirePackage{amsmath,amsfonts} % Math packages
+\RequirePackage{amsmath,amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{multicol}
 \RequirePackage{graphicx}
-\RequirePackage[left=2cm, right=2cm, top=3cm, bottom=3cm]{geometry}
+\RequirePackage{geometry}
 \RequirePackage[caption=false]{subfig}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{float}
@@ -42,7 +42,6 @@
     \numberwithin{figure}{section}
     \numberwithin{table}{section}
     \pagestyle{fancy}
-    %\pagestyle{fancyplain}
     \fancyhf{}
     \fancyhead[L]{\footnotesize Computer Network Lab \\ \FR{آزمایشگاه شبکه‌های کامپیوتری}}
     \fancyhead[R]{\footnotesize {{\thetitle{}} \\ Laboratory Manual}}
@@ -52,10 +51,9 @@
     \renewcommand{\headrulewidth}{1pt}
     \renewcommand{\footrulewidth}{1pt}
     \setlength{\headheight}{13.6pt}
-    \newcommand{\horrule}[1]{\rule{\linewidth}{#1}}    % Horizontal rule
+    \newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
     \renewcommand{\arraystretch}{1.2}
     \setlength{\parindent}{0pt}
-    % \setlength{\parskip}{0.5em}
     \renewcommand{\footnoterule}{%
       \kern -3pt
       \hrule width 0.3\textwidth height 0.3pt
@@ -131,41 +129,43 @@
   % \vskip 60\p@
   \begin{center}%
     {\LARGE {%
-    {\normalsize{}In the name of Allah}\\
-    \normalsize\FR{بسم \allah\  الرحمن الرحیم}\\
-    \vspace{10pt}
+    \vspace{-25pt}
+    {\normalsize{}In the name of Allah\\}
+    \normalsize\FR{بسم \allah\  الرحمن الرحيم\par}
     \begin{center}
-        %   \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+        % \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
         \begin{minipage}{0.48\textwidth}
             \begin{flushleft}
-                \includegraphics[height=64pt,width=64pt]{../img/ut}
+                \hspace*{-50pt}
+                \includegraphics[height=64pt]{../img/ut}
             \end{flushleft}
         \end{minipage}
         \begin{minipage}{0.48\textwidth}
             \begin{flushright}
                 \includegraphics[height=64pt]{../img/fanni}
+                \hspace*{-60pt}
             \end{flushright}
         \end{minipage}
     \end{center}
-    \vspace*{-64pt}
-    %   \horrule{0.5pt} \\[0.4cm]
-    \huge \@title\\
-    \LARGE Laboratory Manual\\
-    \vspace{40pt}
-    %   \horrule{2pt} \\[0.5cm]
+    \vspace*{-50pt}
+    % \horrule{0.5pt} \\[0.4cm]
+    {\huge\bfseries \@title\par}
+    \LARGE\scshape Laboratory Manual\par
+    \vspace{20pt}
+    % \horrule{2pt} \\[0.5cm]
     } \par}%
     \vskip 3em%
     {\large
      \lineskip .75em%
         {
-          {\LARGE University of Tehran\\}
-          {\Large School of Electrical and Computer Engineering\\}
-          % \vskip 1.5em%
-          {\Large\FR{دانشگاه تهران}}\\
-          \FR{دانشکده‌ی مهندسی برق و کامپیوتر}
+          {\Large University of Tehran\\}
+          {\large School of Electrical and Computer Engineering\par}
+          \vskip 1.5em%
+          {\Large\FR{دانشگاه تهران}\\}
+          \FR{دانشکده‌ی مهندسی برق و کامپیوتر\par}
           \vskip 3em%
-          {\Large Computer Network Lab\\}
-          \FR{آزمایشگاه شبکه‌های کامپیوتری\\}
+          {\Large\bfseries Computer Network Lab\\}
+          \bfseries\FR{آزمایشگاه شبکه‌های کامپیوتری\par}
           \vskip 1.5em%
           \normalfont
           \normalsize
@@ -195,7 +195,7 @@
 }
 \renewcommand{\maketitle}{\maketitlepage}
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
-\newcommand{\mail}[1]{\href{mailto:#1?subject=[CNL]\%20}{#1}}
+\newcommand{\mail}[1]{\href{mailto:#1?subject=[CNL]\%20}{\ttfamily #1}}
 
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
