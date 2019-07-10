@@ -39,26 +39,26 @@
     Remember one of the previous labs\footnote{Lab 4: routing} where you are using host rather than router to emulate some routing functionality. In this experiment we want to implement same functionality with SDN switches. To warm up our hands we will start by simple scenario:
 
     \begin{itemize}
-    	\item Open \path{switch.py} and read it's codes carefully.
-    	\item Run this code with \lstinline{sudo python switch.py}
-    	\item Ping \textit{h2} from \textit{h1}.
-    	\item Capture OpenFlow hello packet on \textit{lo} interface. (Filter \lstinline{wireshark} output with \lstinline{of} filter)
+        \item Open \path{switch.py} and read it's codes carefully.
+        \item Run this code with \lstinline{sudo python switch.py}
+        \item Ping \textit{h2} from \textit{h1}.
+        \item Capture OpenFlow hello packet on \textit{lo} interface. (Filter \lstinline{wireshark} output with \lstinline{of} filter)
     \end{itemize}
 
     \subsubsection*{Report}
     \begin{itemize}
-    	\item Explain line 21 to 26 of \path{switch.py}.
-    	\item Read \url{http://flowgrammable.org/sdn/openflow/state-machine/} and explain switch handshake with controller. What is \texttt{xid} of your packets. Justify your answer with captured packets. \textbf{Don't copy and paste text from reference in your lab report}.
+        \item Explain line 21 to 26 of \path{switch.py}.
+        \item Read \url{http://flowgrammable.org/sdn/openflow/state-machine/} and explain switch handshake with controller. What is \texttt{xid} of your packets. Justify your answer with captured packets. \textbf{Don't copy and paste text from reference in your lab report}.
     \end{itemize}
 
     \subsection{Exercise Two}
     Use what you learned in previous exercise and create figure \ref{fig:linearRouters} topology. Configure switches in this topology where ??? we can ping each host from each host. Show your final result to instructors.
 
     \begin{figure}[H]
-    	\centering
-    	\includegraphics[height=30pt]{img/fig1.png}
-    	\caption{Mininet Topology}
-    	\label{fig:linearRouters}
+        \centering
+        \includegraphics[height=30pt]{img/fig1.png}
+        \caption{Mininet Topology}
+        \label{fig:linearRouters}
     \end{figure}
 
 
@@ -67,23 +67,23 @@
     In this section we are loading switch flows from another files and examining it's functionality.
 
     \begin{itemize}
-    	\item Execute \lstinline{sudo python topo.py} 
-    	\item Execute \lstinline{sh ovs-ofctl add-flows s1 tables.txt} on mininet console.
-    	\item Ping each host from other hosts.
-    	\item Capture ICMP packets on each host and observe network behavior.
-    	\item Modify \path{tables.txt} to drop packets between \textit{h1} and \textit{h2}.
+        \item Execute \lstinline{sudo python topo.py} 
+        \item Execute \lstinline{sh ovs-ofctl add-flows s1 tables.txt} on mininet console.
+        \item Ping each host from other hosts.
+        \item Capture ICMP packets on each host and observe network behavior.
+        \item Modify \path{tables.txt} to drop packets between \textit{h1} and \textit{h2}.
     \end{itemize}
 
     \begin{figure}[H]
-    	\centering
-    	\includegraphics[height=300pt]{img/fig2.png}
-    	\caption{Multi Table Scenario}
-    	\label{fig:MultiTableScenario}
+        \centering
+        \includegraphics[height=300pt]{img/fig2.png}
+        \caption{Multi Table Scenario}
+        \label{fig:MultiTableScenario}
     \end{figure}
 
 
     \subsubsection*{Report}
     \begin{itemize}
-    	\item Can you explain switch behavior? Justify your answer with \lstinline{wireshark} output and \path{tables.txt} file.
+        \item Can you explain switch behavior? Justify your answer with \lstinline{wireshark} output and \path{tables.txt} file.
     \end{itemize}
 \end{document}

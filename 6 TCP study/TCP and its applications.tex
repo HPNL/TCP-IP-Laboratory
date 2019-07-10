@@ -40,26 +40,26 @@
 \section{Telnet terminal}
     While \lstinline[emph={your-host, remote-host}]{tcpdump -S host your-host  and remote-host} is running, execute: \lstinline[emph={your-host, remote-host}]{telnet remote-host date}.
     Save the tcpdump output.
-	
+    
     \subsection*{Report}
-	\begin{enumerate}
-		\item Explain TCP connection establishment and termination using the tcpdump output.
-		\item What were the announced MSS values for the two hosts?
-		\item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
-		See if the \texttt{DF} flag was set in tcpdump output.
-		You can change interface \texttt{MTU} with \lstinline{sudo ifconfig $ETH mtu 1400}
-	\end{enumerate}
+    \begin{enumerate}
+        \item Explain TCP connection establishment and termination using the tcpdump output.
+        \item What were the announced MSS values for the two hosts?
+        \item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
+        See if the \texttt{DF} flag was set in tcpdump output.
+        You can change interface \texttt{MTU} with \lstinline{sudo ifconfig $ETH mtu 1400}
+    \end{enumerate}
     
 \section{TCP vs UDP connection establishment}
     While \lstinline[emph={your-host, remote-host}]{tcpdump -nx host your-host and remote-host} is running, use \lstinline{socket}\footnote{Basic command is \lstinline{sock}. Use alternative \lstinline{socket} (linked to \lstinline{sock}).} to send a UDP datagram to \textit{h2}:
-	\begin{lstlisting}[emph={your-host, remote-host}]
+    \begin{lstlisting}[emph={your-host, remote-host}]
 socket -u -s remote-host 8888
-	\end{lstlisting}
+    \end{lstlisting}
     {Save} the \lstinline{tcpdump} or \lstinline{wireshark} output for your lab report. \\
-	Restart the above \lstinline{tcpdump} command, execute \lstinline{socket} in the TCP mode:
-	\begin{lstlisting}[emph={host}]
+    Restart the above \lstinline{tcpdump} command, execute \lstinline{socket} in the TCP mode:
+    \begin{lstlisting}[emph={host}]
 socket -i -n1 host 8888
-	\end{lstlisting}
+    \end{lstlisting}
     {Save} the \lstinline{tcpdump} output for your lab report.
     
     \subsection*{Report}
