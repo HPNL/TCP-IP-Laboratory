@@ -117,6 +117,9 @@
         fontadjust=true,
         upquote=true,
     }
+
+    \selectlanguage{english}
+    \maketitle
 }
 
 \newcommand{\maketitlepage}{%
