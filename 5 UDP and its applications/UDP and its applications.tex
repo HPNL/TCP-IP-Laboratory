@@ -41,10 +41,10 @@
         \caption{Host IP addresses for Fig. 5.0}
         \label{tbl:5.0}
         \centering
-        \begin{tabular}{ *2l|*2l }
+        \begin{tabular}{ *2c|*2c }
             \hline \hline
-            \multicolumn{2}{l|}{Host\textsubscript{A}} & \multicolumn{2}{l}{Host\textsubscript{B}} \\
-            Name & Ip Address & Name & IP Address \\
+            \multicolumn{2}{c|}{Host\textsubscript{A}} & \multicolumn{2}{c}{Host\textsubscript{B}} \\
+            Name & IP Address & Name & IP Address \\
             \hline 
             h0 & 128.238.61.100/24 & h1 & 128.238.61.101/24\\
             \hline \hline
@@ -86,7 +86,7 @@ socket -i -n3 -w2048 server-host 5555
     Appendix C of [5] in the reference book.
 
 \section{Segment size}
-    While running \lstinline{tcpdump -nv} on \textit{your-host} or \textit{remote-host}, execute the following command with different values of size (i.e., the size of the datagram).
+    While running \lstinline{tcpdump -nv} on \textit{your-host} or \textit{remote-host}, execute the following command with different values of size (i.e.\  the size of the datagram).
 
     \begin{lstlisting}[emph={size, remote-host}]
 socket -u -i -n1 -w size remote-host echo
@@ -94,7 +94,7 @@ socket -u -i -n1 -w size remote-host echo
     
     The \lstinline{-u} option is used to send UDP datagrams rather than TCP segments.
 
-    Increase \textit{size} (i.e., the size of the datagram) until fragmentation occurs.
+    Increase \textit{size} (i.e.\  the size of the datagram) until fragmentation occurs.
 
     Use \lstinline{netstat -in} to find out the MTU of the Ethernet interface.
 
@@ -154,10 +154,10 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     \begin{table}[H]
         \caption{\textit{Table 5.2} Router and Host IP addresses for \autoref{fig:5.2}}
         \centering
-        \begin{tabular}{ *2l|*2l|*2l }
+        \begin{tabular}{ *2c|*2c|*2c }
             \hline \hline
-            \multicolumn{2}{l|}{Router} & \multicolumn{2}{l|}{Host\textsubscript{A}} & \multicolumn{2}{l}{Host\textsubscript{B}} \\
-            eth0 & eth1 & Name & Ip Address & Name & IP Address \\
+            \multicolumn{2}{c|}{Router} & \multicolumn{2}{c|}{Host\textsubscript{A}} & \multicolumn{2}{c}{Host\textsubscript{B}} \\
+            eth0 & eth1 & Name & IP Address & Name & IP Address \\
             \hline 
             128.238.61.1/24 & 128.238.62.1/24 & h0 & 128.238.61.101/24 & h1 & 128.238.62.101/24 \\
             \hline \hline

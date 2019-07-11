@@ -48,10 +48,10 @@
     \begin{table}[H]
         \caption{Router and Host IP addresses for Fig. 3.7}
         \centering
-        \begin{tabular}{ *2l|*2l|*2l }
+        \begin{tabular}{ *2c|*2c|*2c }
             \hline \hline
-            \multicolumn{2}{l|}{Router} & \multicolumn{2}{l|}{Host\textsubscript{A}} & \multicolumn{2}{l}{Host\textsubscript{B}} \\
-            eth0 & eth1 & Name & Ip Address & Name & IP Address \\
+            \multicolumn{2}{c|}{Router} & \multicolumn{2}{c|}{Host\textsubscript{A}} & \multicolumn{2}{c}{Host\textsubscript{B}} \\
+            eth0 & eth1 & Name & IP Address & Name & IP Address \\
             \hline 
             128.238.61.1/24 & 128.238.61.2/24 & h0 & 128.238.61.100/24 & h1 & 128.238.61.101/24 \\
             % 128.238.62.2/24 & 128.238.62.3/24 & h2 & 128.238.62.102/24 & h3 & 128.238.62.103/24 \\
@@ -229,7 +229,7 @@ Ctrl+Z
 
     \section*{Exercise on the Cisco IOS web browser UI}
 \section{Cisco IOS HTTP rest API}
-    In this section we create simple network with a router and one gui host with \textit{Internet Browser} (you can use \texttt{utnetlab-ipgui}). Set ip same as previous section for your network.
+    In this section we create simple network with a router and one gui host with \textit{Internet Browser} (you can use \texttt{utnetlab-ipgui}). Set IP same as previous section for your network.
 
     You can also configure a router using the web browser UI. To enable the web server, login to the router and config as below  in the \textit{Global Configuration} mode. 
 
@@ -243,6 +243,6 @@ R1(config)# ip http secure-server
 R1(config)# ip http authentication local
     \end{lstlisting}
     
-    Next, start a web browser (e.g. \textit{Mozilla} in Linux, or \textit{Hotjava} in Solaris) in your host, and enter the IP address of the router interface. When prompted, enter \texttt{netlab} for password, and leave the \texttt{User Name} field blank. Then you can browse the router configuration web pages and configure the router there.
+    Next, start a web browser (e.g.\ \textit{Mozilla} in Linux, or \textit{Hotjava} in Solaris) in your host, and enter the IP address of the router interface. When prompted, enter \texttt{netlab} for password, and leave the \texttt{User Name} field blank. Then you can browse the router configuration web pages and configure the router there.
 
 \end{document}
