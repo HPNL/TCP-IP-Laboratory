@@ -20,8 +20,9 @@
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
+\RequirePackage{caption} 
 \RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref}
-\usetikzlibrary{calc}
+\usetikzlibrary{calc,positioning}
 
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessKeyvalOptions*
@@ -60,6 +61,7 @@
       \hrule width 0.3\textwidth height 0.3pt
       \kern 2pt
     }
+  \captionsetup{skip=10pt}
 
     \definecolor{shadecolor}{rgb}{.9, .9, .9}
     \newenvironment{grayverbatim}%
