@@ -45,10 +45,10 @@
             \multicolumn{2}{l|}{Router} & \multicolumn{2}{l|}{Host\textsubscript{A}} & \multicolumn{2}{l}{Host\textsubscript{B}} \\
             eth0 & eth1 & Name & Ip Address & Name & IP Address \\
             \hline 
-            128.238.61.1/24 & 128.238.62.1/24 & h0(shakti) & 128.238.61.101/24 & h1(vayu) & 128.238.62.101/24 \\
-            % 2 & 128.238.62.2/24 & 128.238.63.2/24 & h2(agni) & 128.238.62.102/24 & h3(apah) & 128.238.63.102/24 \\
-            % 3 & 128.238.63.3/24 & 128.238.64.3/24 & h4(yachi) & 128.238.63.103/24 & h5(fenchi) & 128.238.64.103/24 \\
-            % 4 & 128.238.64.4/24 & 128.238.65.4/24 & h6(kenchi) & 128.238.64.104/24 & h7(guchi) & 128.238.65.104/24 \\
+            128.238.61.1/24 & 128.238.62.1/24 & h0 & 128.238.61.101/24 & h1 & 128.238.62.101/24 \\
+            % 2 & 128.238.62.2/24 & 128.238.63.2/24 & h2 & 128.238.62.102/24 & h3 & 128.238.63.102/24 \\
+            % 3 & 128.238.63.3/24 & 128.238.64.3/24 & h4 & 128.238.63.103/24 & h5 & 128.238.64.103/24 \\
+            % 4 & 128.238.64.4/24 & 128.238.65.4/24 & h6 & 128.238.64.104/24 & h7 & 128.238.65.104/24 \\
             \hline \hline
             \end{tabular}
     \end{table}
@@ -170,7 +170,7 @@ tcpdump -x -s 100 -c 4 udp port 520
 
 \section{RIP recover on link failure}
     In this exercise we will examine how RIP responds to link failures.
-    Send \lstinline{ping} message continuously from \textit{apah} to \textit{yachi} and start \lstinline{tcpdump} on \textit{apah}.
+    Send \lstinline{ping} message continuously from \textit{h3} to \textit{h4} and start \lstinline{tcpdump} on \textit{h3}.
     Let the two programs run during this exercise.
 
     Disconnect the cable from the \textit{ethernet0} port of \textit{router2} from the hub in the 128.238.62.0 subnet (you can use \lstinline[language={cisco}]{shut} for interface in the router interface configuration state), and type the \lstinline{date} command to get the current time.

@@ -26,7 +26,7 @@
 ## ToDo
 
 * [ ] Add pre-build projects requirement with ip and hosts map
-* [ ] rename hosts
+* [x] rename hosts
 * [ ] replace image with schematic figure
 * [ ] remap IP hosts to simplest network domain
 * [ ] split and revise report

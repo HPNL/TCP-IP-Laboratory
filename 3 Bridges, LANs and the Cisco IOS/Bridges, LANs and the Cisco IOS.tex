@@ -53,10 +53,10 @@
             \multicolumn{2}{l|}{Router} & \multicolumn{2}{l|}{Host\textsubscript{A}} & \multicolumn{2}{l}{Host\textsubscript{B}} \\
             eth0 & eth1 & Name & Ip Address & Name & IP Address \\
             \hline 
-            128.238.61.1/24 & 128.238.61.2/24 & h0(shakti) & 128.238.61.100/24 & h1(vayu) & 128.238.61.101/24 \\
-            % 128.238.62.2/24 & 128.238.62.3/24 & h2(agni) & 128.238.62.102/24 & h3(apah) & 128.238.62.103/24 \\
-            % 128.238.63.3/24 & 128.238.63.4/24 & h4(yachi) & 128.238.63.104/24 & h5(fenchi) & 128.238.63.105/24 \\
-            % 128.238.64.4/24 & 128.238.64.5/24 & h6(kenchi) & 128.238.64.106/24 & h7(guchi) & 128.238.64.107/24 \\
+            128.238.61.1/24 & 128.238.61.2/24 & h0 & 128.238.61.100/24 & h1 & 128.238.61.101/24 \\
+            % 128.238.62.2/24 & 128.238.62.3/24 & h2 & 128.238.62.102/24 & h3 & 128.238.62.103/24 \\
+            % 128.238.63.3/24 & 128.238.63.4/24 & h4 & 128.238.63.104/24 & h5 & 128.238.63.105/24 \\
+            % 128.238.64.4/24 & 128.238.64.5/24 & h6 & 128.238.64.106/24 & h7 & 128.238.64.107/24 \\
             \hline \hline
             \end{tabular}
     \end{table}
@@ -213,10 +213,10 @@ Ctrl+Z
 
 
 \section{STP over topology dynamics}
-    First, send \lstinline{ping} messages from \textit{apah} to \textit{yachi}, while \lstinline{tcpdump} is running.
+    First, send \lstinline{ping} messages from \textit{h3} to \textit{h4}, while \lstinline{tcpdump} is running.
     Let the two programs run during this exercise.
 
-    Then, disconnect the cable from the \textit{ethernet0} port of \textit{Bridge2} from the hub, and get system time (\lstinline{date}, \lstinline{date '+%D %T.%N'} or \lstinline{date +%s%N} to get nano seconds) on \textit{apah} or \textit{yachi} to get the current time.
+    Then, disconnect the cable from the \textit{ethernet0} port of \textit{Bridge2} from the hub, and get system time (\lstinline{date}, \lstinline{date '+%D %T.%N'} or \lstinline{date +%s%N} to get nano seconds) on \textit{h3} or \textit{h4} to get the current time.
 
     Observe the \lstinline{ping} and \lstinline{tcpdump} windows. When the connection is reestablished, get the \lstinline{time} again. How long does it take the spanning tree algorithm to react to the change in the topology?
 

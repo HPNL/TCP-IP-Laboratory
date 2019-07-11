@@ -178,7 +178,7 @@ User-Agent: HTTPTool/1.0
 
         And run \lstinline{dhclient eth0}.
 
-        When \textit{shakti} is successfully reconfigured, execute \lstinline{ifconfig -a} or \lstinline{ip a} to display its
+        When \textit{h0} is successfully reconfigured, execute \lstinline{ifconfig -a} or \lstinline{ip a} to display its
         network interface configurations and execute \lstinline{netstat -rn} or \lstinline{ip r} to display its routing table.
 
         Save the outputs for the lab report.
@@ -238,14 +238,14 @@ User-Agent: HTTPTool/1.0
                         \hline \hline
                         Host & IP Address & Subnet Mask \\
                         \hline 
-                        h0 (shakti) & 128.238.66.100 & 255.255.255.0 \\
-                        h1 (vayu) & 128.238.66.101 & 255.255.255.0 \\
-                        h2 (agni) & 128.238.66.102 & 255.255.255.0 \\
-                        h3 (apah) & 128.238.66.103 & 255.255.255.0 \\
-                        h4 (yachi) & 128.238.66.104 & 255.255.255.0 \\
-                        h5 (fenchi) & 128.238.66.105 & 255.255.255.0 \\
-                        h6 (kenchi) & 128.238.66.106 & 255.255.255.0 \\
-                        h7 (guchi) & 128.238.66.107 & 255.255.255.0 \\
+                        h0 & 128.238.66.100 & 255.255.255.0 \\
+                        h1 & 128.238.66.101 & 255.255.255.0 \\
+                        h2 & 128.238.66.102 & 255.255.255.0 \\
+                        h3 & 128.238.66.103 & 255.255.255.0 \\
+                        h4 & 128.238.66.104 & 255.255.255.0 \\
+                        h5 & 128.238.66.105 & 255.255.255.0 \\
+                        h6 & 128.238.66.106 & 255.255.255.0 \\
+                        h7 & 128.238.66.107 & 255.255.255.0 \\
                         \hline \hline
                         \end{tabular}
                 \end{table}
@@ -324,7 +324,7 @@ date -r file-name
     \end{enumerate}
 
 \section*{NAT exercises}
-    For the exercises in this section, we use a network setting as shown in Fig. 8.7. The lower subnet is a private network where the hosts are assigned with the Class A addresses with the 10.0.0.0/8 prefix. The upper subnet represents the Internet. The hosts, i.e., shakti and vayu are assigned with public IP addresses. Router 1 is used as the stub router, which performs address or port translation for the private network.
+    For the exercises in this section, we use a network setting as shown in Fig. 8.7. The lower subnet is a private network where the hosts are assigned with the Class A addresses with the 10.0.0.0/8 prefix. The upper subnet represents the Internet. The hosts, i.e., \textit{h0} and \textit{h1} are assigned with public IP addresses. Router 1 is used as the stub router, which performs address or port translation for the private network.
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{img/fig1.png}
@@ -336,7 +336,7 @@ date -r file-name
     Connect the hosts and Router 1 as shown in Fig.
     8.7. Then set the IP address and the network mask of your host as shown in the figure.
     In addition, you need to add a default route in your host’s routing table, using the router interface on your subnet as the default router.
-    One student should \lstinline{telnet} to the router and configure the router as shown in Table 8.5. Note that there is a static translation that maps 10.0.0.7, or \textit{guchi}, to 128.238.61.104.
+    One student should \lstinline{telnet} to the router and configure the router as shown in Table 8.5. Note that there is a static translation that maps 10.0.0.7, or \textit{h7}, to 128.238.61.104.
     Login to the router, execute \lstinline{write term} to display the current router configuration.
     Execute \lstinline{show ip nat translations} in the \textit{Privileged EXEC} mode to display the translation table.
     Save both outputs for the lab report.
@@ -370,9 +370,9 @@ access-list 8 permit 10.0.0.0 0.0.0.255
 \section{NAT Visibility}
     Keep the login session to the router running. Execute \lstinline{tcpdump -exn -nn} or \lstinline{wireshark} on all the hosts. 
 
-    Before any host in the private network send any packets out, \lstinline{ping} an inside host (e.g. \textit{fenchi}) from an outside host (e.g. \textit{vayu}). You may try to \lstinline{ping} \textit{10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104}. Can you \lstinline{ping} these IP addresses? 
+    Before any host in the private network send any packets out, \lstinline{ping} an inside host (e.g. \textit{h5}) from an outside host (e.g. \textit{h1}). You may try to \lstinline{ping} \textit{10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104}. Can you \lstinline{ping} these IP addresses? 
 
-    Let an inside host send packets to an outside host, e.g. from \textit{fenchi}, execute \lstinline{ping} 128.238.61.100. Can you \lstinline{ping} \textit{fenchi} from an outside host now? Why? Which IP address should be used in the \lstinline{ping} command in order to \lstinline{ping} \textit{fenchi}? 
+    Let an inside host send packets to an outside host, e.g. from \textit{h5}, execute \lstinline{ping} 128.238.61.100. Can you \lstinline{ping} \textit{h5} from an outside host now? Why? Which IP address should be used in the \lstinline{ping} command in order to \lstinline{ping} \textit{h5}? 
 
     Execute show ip nat translations in the router login window to display the translation table. Save the output for the lab report. 
 
@@ -390,7 +390,7 @@ access-list 8 permit 10.0.0.0 0.0.0.255
 \section{NAT Table}
     Keep the login session to the router running. Execute \lstinline{tcpdump -enx -s 100 ip proto 1} or \lstinline{wireshark} to capture ICMP messages. 
 
-    Execute \lstinline{socket -i -u -n1 128.238.61.101 8888} on \textit{agni} to generate an ICMP port unreachable error. 
+    Execute \lstinline{socket -i -u -n1 128.238.61.101 8888} on \textit{h2} to generate an ICMP port unreachable error. 
 
     Print the ICMP error message for the lab report. 
 
@@ -407,14 +407,14 @@ access-list 8 permit 10.0.0.0 0.0.0.255
 
 \section{NAT and PAT}
     Reboot the router to restore its default configuration.
-    Then, configure the router to use PAT, as given in Table 8.6. Now all the hosts in the private network use the same IP address 128.238.61.1. However, note that there is a static translation that maps guchi’s port 80 to 128.238.61.1 port 80. 
+    Then, configure the router to use PAT, as given in Table 8.6. Now all the hosts in the private network use the same IP address 128.238.61.1. However, note that there is a static translation that maps \textit{h7}’s port 80 to 128.238.61.1 port 80. 
 
     Execute \lstinline{tcpdump} on all the hosts. 
 
     Generate traffic between the inside and outside hosts.
     Examine the \lstinline{tcpdump} output to see how PAT works.
 
-    Start the Apache web server on \textit{guchi}. Also, start the web browser \textit{Mozilla} on an outside host (e.g. \textit{shakti}), and enter the URL \url{http://128.238.61.1}. Save the \lstinline{tcpdump} output.
+    Start the Apache web server on \textit{h7}. Also, start the web browser \textit{Mozilla} on an outside host (e.g. \textit{h0}), and enter the URL \url{http://128.238.61.1}. Save the \lstinline{tcpdump} output.
 
     Use \lstinline{show ip nat translations} to display and then save the translation table.
     Exchange the data you saved with a student in the other subnet.

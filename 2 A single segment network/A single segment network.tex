@@ -46,14 +46,14 @@
                         \hline \hline
                         Host & IP Address & Subnet Mask \\
                         \hline 
-                        h0 (shakti) & 128.238.66.100 & 255.255.255.0 \\
-                        h1 (vayu) & 128.238.66.101 & 255.255.255.0 \\
-                        h2 (agni) & 128.238.66.102 & 255.255.255.0 \\
-                        h3 (apah) & 128.238.66.103 & 255.255.255.0 \\
-                        h4 (yachi) & 128.238.66.104 & 255.255.255.0 \\
-                        h5 (fenchi) & 128.238.66.105 & 255.255.255.0 \\
-                        h6 (kenchi) & 128.238.66.106 & 255.255.255.0 \\
-                        h7 (guchi) & 128.238.66.107 & 255.255.255.0 \\
+                        h0 & 128.238.66.100 & 255.255.255.0 \\
+                        h1 & 128.238.66.101 & 255.255.255.0 \\
+                        h2 & 128.238.66.102 & 255.255.255.0 \\
+                        h3 & 128.238.66.103 & 255.255.255.0 \\
+                        h4 & 128.238.66.104 & 255.255.255.0 \\
+                        h5 & 128.238.66.105 & 255.255.255.0 \\
+                        h6 & 128.238.66.106 & 255.255.255.0 \\
+                        h7 & 128.238.66.107 & 255.255.255.0 \\
                         \hline \hline
                         \end{tabular}
                 \end{table}
@@ -215,7 +215,7 @@ arp -d remote-host
     Run \lstinline{tcpdump -enx} on all the hosts.
 
     Then let the hosts in the 128.238.65.0 subnet send UDP datagrams to the hosts in the 128.238.64.0 subnet.
-    For example, on \textit{guchi} type:
+    For example, on \textit{h7} type:
     \begin{lstlisting}[emph={host-in-64-0-subnet}]
 socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \end{lstlisting}
@@ -244,9 +244,9 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     Give one advantage and one disadvantage of using proxy ARP.
 
 \section{ARP reboot timeout}
-    While \lstinline{tcpdump -ex -w exe7.out} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{guchi}. 
+    While \lstinline{tcpdump -ex -w exe7.out} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}. 
 
-    After \textit{guchi} is started, terminate \lstinline{tcpdump} and run \lstinline{wireshark -r exe7.out &} to load the \lstinline{tcpdump} trace.
+    After \textit{h7} is started, terminate \lstinline{tcpdump} and run \lstinline{wireshark -r exe7.out &} to load the \lstinline{tcpdump} trace.
     Print the gratuitous ARP request for your lab report.
     
     \subsection*{Report}
@@ -294,15 +294,15 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
             \hline \hline
             Group & Host & IP Address & Subnet Mask \\
             \hline 
-            Group A & h0 (shakti) & 128.238.66.100 & 255.255.255.0 \\
-                    & h1 (vayu) & 128.238.66.100 & 255.255.255.0 \\
-                    & h2 (agni) & 128.238.66.102 & 255.255.255.0 \\
-                    & h3 (apah) & 128.238.66.103 & 255.255.255.0 \\
+            Group A & h0 & 128.238.66.100 & 255.255.255.0 \\
+                    & h1 & 128.238.66.100 & 255.255.255.0 \\
+                    & h2 & 128.238.66.102 & 255.255.255.0 \\
+                    & h3 & 128.238.66.103 & 255.255.255.0 \\
                     \hline
-            Group B & h4 (yachi) & 128.238.66.104 & 255.255.255.0 \\
-                    & h5 (fenchi) & 128.238.66.104 & 255.255.255.0 \\
-                    & h6 (kenchi) & 128.238.66.106 & 255.255.255.0 \\
-                    & h7 (guchi) & 128.238.66.107 & 255.255.255.0 \\
+            Group B & h4 & 128.238.66.104 & 255.255.255.0 \\
+                    & h5 & 128.238.66.104 & 255.255.255.0 \\
+                    & h6 & 128.238.66.106 & 255.255.255.0 \\
+                    & h7 & 128.238.66.107 & 255.255.255.0 \\
             \hline \hline
             \end{tabular}
     \end{table}
@@ -316,17 +316,17 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     Then, do the following three experiments.
 
     \begin{enumerate}
-        \item Execute \lstinline{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g. \textit{shakti} –> \textit{agni} in Group A and \textit{yachi} –> \textit{kenchi} in Group B).
+        \item Execute \lstinline{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g. \textit{h0} –> \textit{h2} in Group A and \textit{h4} –> \textit{h6} in Group B).
 
-        Now, from the other host with the duplicate IP address, execute \lstinline{telnet} command to the same host (\textit{vayu} –> \textit{agni} or \textit{fenchi} –> \textit{kenchi}).
+        Now, from the other host with the duplicate IP address, execute \lstinline{telnet} command to the same host (\textit{h1} –> \textit{h2} or \textit{h5} –> \textit{h6}).
 
         Observe what happens and save the \lstinline{tcpdump} output and the ARP tables in all the hosts in your group.
         
-        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{agni} (or \textit{kenchi}).
+        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{h2} (or \textit{h6}).
         Which host provides the telnet connection?
         Why?
         
-        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{apah} (or \textit{guchi}). Which host is connected to \textit{apah} (or \textit{guchi})? Why?
+        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{h3} (or \textit{h7}). Which host is connected to \textit{h3} (or \textit{h7})? Why?
     \end{enumerate}
     
     \subsection*{Report}
@@ -335,21 +335,21 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
 
 \section{IP subnets}
     Change the host IP addresses and the subnet masks as shown in Table 2.4. Since we still have two separate segments, Groups A and B can do the exercise independently.
-    Note that two hosts in each group (\textit{shakti} and \textit{apah} in Group A, or \textit{yachi} and \textit{guchi} in Group B) are assigned an incorrect subnet mask.
+    Note that two hosts in each group (\textit{h0} and \textit{h3} in Group A, or \textit{h4} and \textit{h7} in Group B) are assigned an incorrect subnet mask.
 
     Capture the packets with \lstinline{tcpdump -e} for the following cases.
 
     \begin{enumerate}
-        \item When \textit{shakti} (\textit{yachi}) \lstinline{ping}s one of the hosts that have the correct subnet mask.
+        \item When \textit{h0} (\textit{h4}) \lstinline{ping}s one of the hosts that have the correct subnet mask.
         
-        \item When \textit{apah} (\textit{guchi}) \lstinline{ping}s one of the hosts that have the correct subnet mask.
+        \item When \textit{h3} (\textit{h7}) \lstinline{ping}s one of the hosts that have the correct subnet mask.
 
-        Now, copy the output displayed from the \lstinline{ping} window in \textit{apah} (\textit{guchi}).
+        Now, copy the output displayed from the \lstinline{ping} window in \textit{h3} (\textit{h7}).
         Share the saved output message with other students.
         
-        \item When a host with the correct subnet mask \lstinline{ping}s \textit{shakti} (\textit{yachi}).
+        \item When a host with the correct subnet mask \lstinline{ping}s \textit{h0} (\textit{h4}).
         
-        \item When a host with the correct subnet mask \lstinline{ping}s \textit{apah} (\textit{guchi}).
+        \item When a host with the correct subnet mask \lstinline{ping}s \textit{h3} (\textit{h7}).
     \end{enumerate}
     
     To avoid confusion, only one machine in each group should generate traffic in each case.
@@ -361,20 +361,20 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
             \hline \hline
             Group & Host & IP Address & Subnet Mask \\
             \hline 
-            Group A & h0 (shakti) & 128.238.66.100 & 255.255.255.240 \\
-                    & h1 (vayu) & 128.238.66.101 & 255.255.255.0 \\
-                    & h2 (agni) & 128.238.66.102 & 255.255.255.0 \\
-                    & h3 (apah) & 128.238.66.120 & 255.255.255.240 \\
+            Group A & h0 & 128.238.66.100 & 255.255.255.240 \\
+                    & h1 & 128.238.66.101 & 255.255.255.0 \\
+                    & h2 & 128.238.66.102 & 255.255.255.0 \\
+                    & h3 & 128.238.66.120 & 255.255.255.240 \\
                     \hline
-            Group B & h4 (yachi) & 128.238.66.104 & 255.255.255.240 \\
-                    & h5 (fenchi) & 128.238.66.105 & 255.255.255.0 \\
-                    & h6 (kenchi) & 128.238.66.106 & 255.255.255.0 \\
-                    & h7 (guchi) & 128.238.66.121 & 255.255.255.240 \\
+            Group B & h4 & 128.238.66.104 & 255.255.255.240 \\
+                    & h5 & 128.238.66.105 & 255.255.255.0 \\
+                    & h6 & 128.238.66.106 & 255.255.255.0 \\
+                    & h7 & 128.238.66.121 & 255.255.255.240 \\
             \hline \hline
             \end{tabular}
     \end{table}
     
     \subsection*{Report}
     Explain what happened in each case according to the \lstinline{tcpdump} outputs saved.
-    Explain why \textit{apah} (or \textit{guchi} in Group B) could not be reached from other hosts, whereas \textit{shakti} (or \textit{yachi} in Group B), which has the same incorrect subnet mask, could communicate with the other hosts.
+    Explain why \textit{h3} (or \textit{h7} in Group B) could not be reached from other hosts, whereas \textit{h0} (or \textit{h4} in Group B), which has the same incorrect subnet mask, could communicate with the other hosts.
 \end{document}
