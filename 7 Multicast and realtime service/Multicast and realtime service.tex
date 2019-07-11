@@ -34,7 +34,7 @@
 }
 
 \begin{document}
-\section*{Simple multicast exercises}
+\part{Simple Multicast Exercises}
     For all the exercises in this section, the network topology is given in Fig.
     \ref{fig:fig13}\footnote{1.3 in Reference}, where all the hosts are connected to a single network segment using their default IP addresses, i.e.\ from 128.238.66.100 to 128.238.66.107.
     
@@ -91,7 +91,7 @@
         \end{flushright}
     \end{minipage}
 
-\section{Linux multicast routing table}
+\section{Linux Multicast Routing Table}
 \label{sec:linux-multicast-routing}
     Execute \lstinline{netstat -rn} to display the routing table of your host.
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
@@ -101,16 +101,18 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
     Save the new routing table.
     
-    \subsection*{Report}
-    Submit the routing table you saved.
+    \begin{report}
+    \item Submit the routing table you saved.
+    \end{report}
 
 \section{Multicast Membership}
     Execute \lstinline{netstat -g} to show the multicast group memberships for all the interfaces in your host.
     
-    \subsection*{Report}
-    How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
+    \begin{report}
+    \item How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
+    \end{report}
 
-\section{Multicast Ping}
+\section{Multicast \texttt{ping}}
     Execute \lstinline{ping 224.0.0.1}.
     Examine the \lstinline{ping} output to see which hosts reply.
 
@@ -119,11 +121,12 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 
     You can enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
     
-    \subsection*{Report}
-    Which hosts replied when the multicast address was pinged?
+    \begin{report}
+    \item Which hosts replied when the multicast address was pinged?
     Which hosts replied when the broadcast address was pinged?
 
-    In each case, was there a reply from your host?
+    \item In each case, was there a reply from your host?
+    \end{report}
 
 \section{Multicast vs Unicast}
     Execute \lstinline{tcpdump -n -nn -e} and \lstinline{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
@@ -139,14 +142,15 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 
     Save the frames captured for the lab report.
 
-    \subsection*{Report}
-    Compare the source and destination MAC addresses of the frames you captured.
+    \begin{report}
+    \item Compare the source and destination MAC addresses of the frames you captured.
 
-    Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
+    \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
     For the two multicast frames captured, do they have the same destination MAC address?
     Why?
+    \end{report}
 
-\section{Simple UDP Multicast client and server}
+\section{Simple UDP Multicast Client and Server}
     Start the multicast client \lstinline{netspy} on all the hosts, by executing:
     \begin{lstlisting}
 netspy 224.111.111.111 1500
@@ -161,15 +165,16 @@ netspyd 224.111.111.111 1500 1
 
     Save the captured multicast datagram sent by \lstinline{netspyd} and exit the \lstinline{telnet} (or \lstinline{ssh}) session.
 
-    \subsection*{Report}
-    From the \lstinline{tcpdump} output, how many messages are sent by \lstinline{netspyd} when a new user logged in to \textit{h0}?
+    \begin{report}
+    \item From the \lstinline{tcpdump} output, how many messages are sent by \lstinline{netspyd} when a new user logged in to \textit{h0}?
     From the \lstinline{netspy} outputs on all the hosts, how many copies of the message are received in total?
 
-    Did \textit{h0}, where the multicast sender, \lstinline{netspyd}, was running, receive the multicast datagram?
+    \item Did \textit{h0}, where the multicast sender, \lstinline{netspyd}, was running, receive the multicast datagram?
     Why?
     If yes, through which interface did \textit{h0} receive this datagram?
+    \end{report}
 
-\section{ping Replay}
+\section{\texttt{ping} Replay}
     Enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
     Keep the \lstinline{netspy} and the \lstinline{tcpdump} programs running.
     Execute \lstinline{ping 224.111.111.111} from \textit{h6}.
@@ -179,7 +184,7 @@ netspyd 224.111.111.111 1500 1
     Execute the \lstinline{ping} command again.
     Also, examine the \lstinline{tcpdump} and the \lstinline{ping} outputs to see which hosts replied.
 
-\section*{IGMP exercises}
+\part{IGMP Exercises}
     In the following exercises, use four hosts and one router. The network topology is given in Fig. 7.13, and the corresponding host IP addresses and router IP addresses are given in Table 7.2 and Table 7.3, respectively.
 
     \begin{table}[H]
@@ -262,10 +267,11 @@ netspyd 224.111.111.111 1500 16
 
     Add \textit{route} for other subnet to your host and try \lstinline{ping} again. Now, login to \textit{host1} from \textit{host2} in your group, then logout.
     
-    \subsection*{Report}
-    Can you ping a host on the other side of the router?
+    \begin{report}
+    \item Can you ping a host on the other side of the router?
     Will the router forward a multicast IP datagram to the other side?
     Justify your answers.
+    \end{report}
 
 \section{IGMP Types}
     Execute \lstinline{tcpdump ip multicast -v} or \lstinline{wireshark} in one console to capture IGMP messages.
@@ -279,23 +285,25 @@ netspyd 224.111.111.111 1500 16
     Terminate \lstinline{netspy} on \textit{host2} and \textit{host4}.
     Terminate the \lstinline{tcpdump} programs and analyze the IGMP leave message you captured.
     
-    \subsection*{Report}
-    What is the value of the Time-to-Live (TTL) field for the IGMP messages?
+    \begin{report}
+    \item What is the value of the Time-to-Live (TTL) field for the IGMP messages?
     Why do we not set the TTL to a larger number?
 
-    What is the default frequency at which the router sends IGMP queries?
+    \item What is the default frequency at which the router sends IGMP queries?
+    \end{report}
 
-\section{Router Join To Multicast-Group}
+\section{Router Join to Multicast-Group}
     Login to the router.
     See if you can make a router interface (e.g.\ \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
     \begin{lstlisting}[language={cisco}]
 ip igmp join-group 224.0.0.2
     \end{lstlisting}
     
-    \subsection*{Report}
-    Explain why the above command fails.
+    \begin{report}
+    \item Explain why the above command fails.
+    \end{report}
 
-\section*{Multicast routing exercises}
+\part{Multicast Routing Exercises}
     For the rest of the exercises in this chapter, the network topology is given in Fig. 7.14. The exercises will be jointly performed by all the students. The IP addresses of the hosts and router interfaces are given in Fig. 7.14.
     \begin{figure}[H]
         \centering
@@ -332,11 +340,12 @@ ip igmp join-group 224.0.0.2
     You may use \lstinline{tcpdump} output to analyze it.
     What is the destination IP address used in this PIM routing packet?
     
-    \subsection*{Report}
-    Answer the above questions.
+    \begin{report}
+    \item Answer the above questions.
+    \end{report}
 
-\section{Multicast tree}
-    In this exercise, try the \lstinline[language={cisco}]{mstat} Cisco IOS command to find the multicast tree from a source.
+\section{Multicast Tree}
+    In this exercise, try the \lstinline[language={cisco}]{mstat} Cisco~IOS command to find the multicast tree from a source.
     The \lstinline[language={cisco}]{mstat} command is executable in the \textit{Privileged EXEC} mode.
     You can always type \lstinline[language={cisco}]{?} to get help on the syntax of the command.
 
@@ -354,7 +363,7 @@ ping 224.111.111.111 -t n
     See how far a multicast datagram can travel with different TTL values. 
 
     Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using: 
-    \footnote{The syntax of this command may be different for different versions of Cisco IOS. You may use \lstinline[language={cisco}]{?} to get help.}
+    \footnote{The syntax of this command may be different for different versions of Cisco~IOS. You may use \lstinline[language={cisco}]{?} to get help.}
     \begin{lstlisting}[language={cisco}]    
 ip multicast ttl-threshold 32
     \end{lstlisting}
@@ -364,12 +373,13 @@ ip multicast ttl-threshold 32
     Try $n = 33$.
     Answer the same question.
     
-    \subsection*{Report}
-    Answer the above questions. 
+    \begin{report}
+    \item Answer the above questions. 
+    
+    \item What is the use of the TTL threshold in the router interface?
+    \end{report}
 
-    What is the use of the TTL threshold in the router interface?
-
-\section*{Multicast video streaming exercise}
+\part{Multicast Video Streaming Exercise}
     In the following exercise, we use \lstinline{vlc} for video streaming.
     The routers and hosts have the same configurations as in Fig. 7.14.
 
@@ -392,15 +402,13 @@ ip multicast ttl-threshold 32
     Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
 
 
-    \appendix
-\section*{Appendices}
-\addcontentsline{toc}{section}{Appendices}
-\renewcommand{\thesubsection}{\Alph{subsection}}
+\begin{appendices}
 
-\subsection{Configuring a multicast router}
-The \lstinline[language={cisco}]{no} form of this command cancels the group membership.
-\subsubsection{Configuring IGMP}
-\begin{lstlisting}[language={cisco}, emph={new-value-in-seconds, }]
+\section{Configuring a Multicast Router}
+    The \lstinline[language={cisco}]{no} form of this command cancels the group membership.
+    \begin{subappendices}
+\subsection{Configuring IGMP}
+    \begin{lstlisting}[language={cisco}, emph={new-value-in-seconds}]
 ip igmp join-group group-address
 no ip igmp join-group group-address
 ip igmp query-interval new-value-in-seconds
@@ -408,10 +416,10 @@ no ip igmp query-interval
 show ip igmp groups  # Displays the multicast groups in the attached networks.
 show ip igmp interface  # Displays multicast related information on a router interface.
 debug ip igmp  # Displays IGMP packets received and transmitted.
-\end{lstlisting}
+    \end{lstlisting}
 
-\subsubsection{Configuring multicast routing}
-\begin{lstlisting}[language={cisco}]
+\subsection{Configuring Multicast Routing}
+    \begin{lstlisting}[language={cisco}]
 ip multicast-routing
 no ip multicast-routing
 ip pim [dense-mode | sparse-mode | dense-sparse-mode].
@@ -421,14 +429,18 @@ show ip mroute count  # Displays multicast statistics.
 show ip dvmrp route  # Displays the DVMRP routing table.
 show ip pim neighbor  # Lists PIM neighbors discovered by the router.
 show ip pim interface  # Displays router interface configurations.
-\end{lstlisting}
+    \end{lstlisting}
 
-\subsubsection{Cisco IOS multicast diagnostic tools}
-\begin{itemize}
-    \item \lstinline[language={cisco}]{mtrace}
-    \item \lstinline[language={cisco}]{mrinfo}
-    \item \lstinline[language={cisco}]{mstat}
-    \item \lstinline[language={cisco}]{ping}
-\end{itemize}
+\subsection{Cisco~IOS Multicast Diagnostic Tools}
+    \begin{itemize}
+        \item \lstinline[language={cisco}]{mtrace}
+        \item \lstinline[language={cisco}]{mrinfo}
+        \item \lstinline[language={cisco}]{mstat}
+        \item \lstinline[language={cisco}]{ping}
+    \end{itemize}
+
+    \end{subappendices}
+\end{appendices}
+
 
 \end{document}

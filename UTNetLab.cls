@@ -19,8 +19,9 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
-\usetikzlibrary{calc}
+\RequirePackage[title,toc,page]{appendix}
 \RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref}
+\usetikzlibrary{calc}
 
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessKeyvalOptions*
@@ -196,6 +197,7 @@
 \renewcommand{\maketitle}{\maketitlepage}
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
 \newcommand{\mail}[1]{\href{mailto:#1?subject=[CNL]\%20}{\ttfamily #1}}
+\newenvironment{report}[1][]{\subsection*{Report}#1\begin{itemize}}{\end{itemize}}
 
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 

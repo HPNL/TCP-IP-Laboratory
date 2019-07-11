@@ -34,7 +34,7 @@
 }
 
 \begin{document}
-\section*{A Simple Router Experiment}
+\part{A Simple Router Experiment}
     As in the previous lab, we will divide the students into four groups, each with two workstations, a router, and two hubs, which are to be connected as shown in Figure 4.10.
     The IP addresses of the routers and hosts are given in Table 4.2 and Table 4.3, respectively.
     \begin{table}[H]
@@ -95,22 +95,24 @@ ping -sv remote-host
     During this exercise, don’t run the \lstinline{ping} program at the same time.
     For clean results, do your experiments in turn.
     
-    \subsubsection*{Report}
-    \begin{itemize}
-        \item When a packet was sent to a workstation in the other subnet, explain how the source and destination Ethernet addresses were changed.
-        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from your machine to the router?
-        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from the router to your partner’s machine?
-        \item Answer the above two questions, but now for the echo reply that was returned from your partner’s machine.
-    \end{itemize}
+    \begin{report}
+    \item When a packet was sent to a workstation in the other subnet, explain how the source and destination Ethernet addresses were changed.
     
-    \subsubsection*{Report}
-    \begin{itemize}
-        \item Use the \lstinline{tcpdump} outputs from both machines to calculate the average delay that a packet experienced in the router. Note that the system times of the two machines might be different. Show all the steps and submit the \lstinline{tcpdump} outputs with your report.
-        \item Compare this value with the previous value in the case of the bridge. Which, a router or a bridge, is faster? Why?
-    \end{itemize}
+    \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from your machine to the router?
+    
+    \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from the router to your partner’s machine?
+    
+    \item Answer the above two questions, but now for the echo reply that was returned from your partner’s machine.
+    \end{report}
+    
+    \begin{report}
+    \item Use the \lstinline{tcpdump} outputs from both machines to calculate the average delay that a packet experienced in the router. Note that the system times of the two machines might be different. Show all the steps and submit the \lstinline{tcpdump} outputs with your report.
+    
+    \item Compare this value with the previous value in the case of the bridge. Which, a router or a bridge, is faster? Why?
+    \end{report}
 
 
-\section*{RIP exercises}
+\part{RIP Exercises}
     In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode.
     \begin{lstlisting}[language={cisco}, emph={network-number}]
 Router(config)# router rip
@@ -133,7 +135,7 @@ Router(config)# no router rip
         \centering
         \includegraphics[width=0.9\textwidth]{img/figure4-11.png}
     \end{figure}
-\section{RIP messages}
+\section{RIP Messages}
     Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in Figure 4.11.
     Also, make sure that your workstation has no other routing entries than your own subnet and your loopback interface.
     For how to remove an entry from the host routing table, see Section 4.3.
@@ -154,21 +156,23 @@ tcpdump -x -s 100 -c 4 udp port 520
     Exchange the printed RIP messages with students in other groups.
     You need eight different RIP messages for your lab report.
     
-    \subsubsection*{Report}
-    \begin{itemize}
-        \item Explain why you can only get two different RIP messages in your subnet.
-        Was a RIP packet forwarded by the routers?
-        Why?
-        \item Draw the format of one of the saved RIP response packets from your sub- net, including the IP and UDP headers and the RIP message (see Figs 0.13, 0.14, and 4.4). Identify each field, and express their values in decimal format.
-        \item For the other seven RIP response packets collected, explain the contents of the RIP messages only, excluding IP and UDP headers.
-    \end{itemize}
-    \begin{itemize}
-        \item Draw the distance tables and the routing tables in the routers based on Figure 4.11, assuming that number of hops is used as the metric.
-        \item Verify the routing tables using the RIP messages you captured.
-    \end{itemize}
+    \begin{report}
+    \item Explain why you can only get two different RIP messages in your subnet.
+    Was a RIP packet forwarded by the routers?
+    Why?
+    
+    \item Draw the format of one of the saved RIP response packets from your sub- net, including the IP and UDP headers and the RIP message (see Figs 0.13, 0.14, and 4.4). Identify each field, and express their values in decimal format.
+    
+    \item For the other seven RIP response packets collected, explain the contents of the RIP messages only, excluding IP and UDP headers.
+
+    
+    \item Draw the distance tables and the routing tables in the routers based on Figure 4.11, assuming that number of hops is used as the metric.
+
+    \item Verify the routing tables using the RIP messages you captured.
+    \end{report}
 
 
-\section{RIP recover on link failure}
+\section{RIP recOver on Link Failure}
     In this exercise we will examine how RIP responds to link failures.
     Send \lstinline{ping} message continuously from \textit{h3} to \textit{h4} and start \lstinline{tcpdump} on \textit{h3}.
     Let the two programs run during this exercise.
@@ -182,15 +186,15 @@ tcpdump -x -s 100 -c 4 udp port 520
     Once you can successfully reach other hosts, connect the cable to the original position.
     Again, measure the time that RIP takes to change your routing table.
     
-    \subsubsection*{Report}
-    \begin{itemize}
-        \item Compare this time with the previous value in the spanning tree experiment.
-        \item Explain why it takes this time for RIP to react to the route change.
+    \begin{report}
+    \item Compare this time with the previous value in the spanning tree experiment.
+    
+    \item Explain why it takes this time for RIP to react to the route change.
         Refer to Section 4.2.4 for RIP operation and default timer values.
-    \end{itemize}
+    \end{report}
 
 
-\section*{Routing experiments with ICMP}
+\part{Routing Experiments with ICMP}
 \section{ICMP redirect}
     Eliminate the routing entries for subnets other than your own and the loopback interface.
     Save the routing table for your lab report.
@@ -202,15 +206,16 @@ tcpdump -x -s 100 -c 4 udp port 520
     After capturing an ICMP redirect message, save the \lstinline{tcpdump} output, the \lstinline{ping} output, and your workstation’s routing table.
     You may need to \lstinline{ping} the same host several times in order to get your routing table updated.
     
-    \subsubsection*{Report}
-    \begin{itemize}
+    \begin{report}
         \item Submit what you saved in Exercise 4.
+        
         \item Identify every field in the ICMP redirect message (see Figure 4.2).
+        
         \item Compare the original routing table with the new routing table. Explain the meaning of the flags of the new entry.
-    \end{itemize}
+    \end{report}
 
 
-\section*{OSPF exercise}
+\part{OSPF Exercise}
     In order to enable OSPF in the routers, you need to create an OSPF routing process first.
     Then, define the range of IP addresses to be associated with the routing process and assign area IDs for these IP addresses, using the following commands:
     \begin{lstlisting}[language={cisco}, emph={process-id, area-id, address, wildcard-mask}]
@@ -240,7 +245,7 @@ Router(config)# network address wildcard-mask area area-id
         \includegraphics[width=0.9\textwidth]{img/figure4-13.png}
     \end{figure}
 
-\section{OSPF messages}
+\section{OSPF Messages}
     After connecting the cables properly, change the host IP addresses as given in Figure 4.13 You need to remove the default route added in Exercise 4 from the host routing table.
     Note that the router interfaces are set as Fig. 4.13 by default. 
 
@@ -271,14 +276,13 @@ show ip ospf neighbor
 show ip ospf virtual-links
     \end{lstlisting}
     
-    \subsubsection*{Report}
-    \begin{itemize}
-        \setlength{\itemindent}{0pt}
+    \begin{report}
         \item Draw the common header of a saved OSPF message, giving the decimal values of the header fields (see Fig. 4.8).
+        
         \item Submit the routing tables you collected from the routers.
-    \end{itemize}
+    \end{report}
 
-\section*{Static routing experiment}
+\part{Static Routing Experiment}
     In this experiment, we reuse the network as shown in Figure 4.13.
 \section{Static routing}
     After checking the wiring, as shown in Figure 4.13, reboot the routers to restore their initial settings.
@@ -305,21 +309,23 @@ ip route
     When you can reach all other subnets successfully,\footnote{Even when the routing table in your workstation and all the routers are configured perfectly, you may not be able to \lstinline{ping} a remote host, if the routing table in the remote host is incorrect.
     When you can get \lstinline{ping} reply messages from all the interfaces of the routers successfully, your work is done for this exercise.} save the routing tables in your workstation and all the routers for the lab report.
     
-    \subsubsection*{Report}
-    Submit the routing tables saved in this exercise.
+    \begin{report}
+    \item Submit the routing tables saved in this exercise.
+    \end{report}
 
 
-\section*{Traceroute experiment}
-\section{Traceroute multi-hup path}
+\part{\texttt{traceroute} Experiment}
+\section{\texttt{traceroute} multi-hop path}
     Execute \lstinline[emph={your-host, remote-host}]{tcpdump -enx -s 100 host your-host and remote-host} on your host, where \textit{remote-host} is a workstation at least two hops away. 
 
     Then, execute \lstinline[emph={your-host, remote-host}]{traceroute remote-host} to find the route from your host to the remote host. 
 
     Save the output of both \lstinline{traceroute} and \lstinline{tcpdump}.
 
-    \subsubsection*{Report}
-    Submit what you saved in this exercise. 
+    \begin{report}
+    \item Submit what you saved in this exercise. 
 
-    From the \lstinline{tcpdump} output, explain how the multi-hop route was found.
+    \item From the \lstinline{tcpdump} output, explain how the multi-hop route was found.
     Explain the sequence of the ICMP messages used.
+    \end{report}
 \end{document}

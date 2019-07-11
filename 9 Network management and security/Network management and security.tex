@@ -34,7 +34,7 @@
 }
 
 \begin{document}
-\section*{SNMP exercises}
+\part{SNMP Exercises}
     For the exercises in this section, the network topology is given in Fig. 1.3, where all the hosts are connected in a single network segment using their IP addresses, i.e.\  from 128.238.66.100 to 128.238.66.102.
 
     Before the lab, you should:
@@ -47,22 +47,23 @@ rocommunity guest
         \end{lstlisting}
     \end{enumerate}
 
-\section{SNMP service and MIB struct}
+\section{SNMP Service and MIB Struct}
     Use \lstinline{pgrep snmpd} to check if \lstinline{snmpd} is started. Try to stop and then start the SNMP agent daemon using \lstinline{service snmpd start|stop}.
 
     Study the \lstinline{snmpd} configuration file \path{/etc/snmp/snmpd.conf}. Also study the default configuration file \path{/etc/snmp/snmpd.conf.save}. This file is well commented. Read the comments and study the configuration options.
 
     Study the MIB files in the \path{/usr/share/snmp/mibs} directory. Examine the Interface MIB \path{IF-MIB.txt} and the TCP MIB \path{TCP-MIB.txt} to see the MIB objects and data types. Save these two files for the lab report.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item What is the community name used in this lab? What is the use of the
-        community name?
-        \item What is the data type for the MIB object \texttt{ifMtu.2}? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
-        \item What is the data type and definition of \texttt{tcpRtoAlgorithm}? What values are allowed for \texttt{tcpRtoAlgorithm}? What is the definition of \texttt{tcpMaxConn}?
-    \end{enumerate}
+    \begin{report}
+    \item What is the community name used in this lab? What is the use of the
+    community name?
+    
+    \item What is the data type for the MIB object \texttt{ifMtu.2}? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
+    
+    \item What is the data type and definition of \texttt{tcpRtoAlgorithm}? What values are allowed for \texttt{tcpRtoAlgorithm}? What is the definition of \texttt{tcpMaxConn}?
+    \end{report}
 
-\section{SNMP list objects}
+\section{SNMP List Objects}
     Use \lstinline{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
 
     Use \lstinline{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
@@ -71,13 +72,13 @@ rocommunity guest
 
     Retry the \lstinline{snmpwalk} commands, but change \lstinline{guest} to \lstinline{public}. Can you display the MIBs this time?
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item What is the MTU of the Ethernet interface? What is the MTU of the loopback interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
-        \item Why did the snmpwalk command with a community name public fail?
-    \end{enumerate}
+    \begin{report}
+    \item What is the MTU of the Ethernet interface? What is the MTU of the loopback interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
+    
+    \item Why did the snmpwalk command with a community name public fail?
+    \end{report}
 
-\section{SNMP remote access}
+\section{SNMP Remote Access}
     Execute \lstinline{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
 
     Run from \textit{h1} host \lstinline[emph={h0}]{telnet h0 echo} (use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}) and while telnet is running, try again to run \lstinline{snmpwalk -v 2c -c guest localhost tcp} on \textit{h0}.
@@ -90,14 +91,15 @@ rocommunity guest
 
     Use \lstinline{wireshark} to analyze the format of the captured SNMP Get and Response messages. Print the messages for the lab report.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item What is the port number used by the SNMP agent?
-        \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.2}? What was the value returned? Justify the answer using Fig. 9.3 and the \lstinline{ifconfig} output.
-        \item Draw the format of one of the SNMP messages saved, including the name and value of each field.
-    \end{enumerate}
+    \begin{report}
+    \item What is the port number used by the SNMP agent?
+    
+    \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.2}? What was the value returned? Justify the answer using Fig. 9.3 and the \lstinline{ifconfig} output.
+    
+    \item Draw the format of one of the SNMP messages saved, including the name and value of each field.
+    \end{report}
 
-\section*{Exercises on secure applications}
+\part{Exercises on Secure Applications}
     
 \section{Plain Transfer}
     Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} to capture packets between your machine and a remote machine.
@@ -108,12 +110,13 @@ rocommunity guest
 
     Repeat the above experiment, but use \lstinline{telnet} and the \lstinline{wireshark} to analyze and print output.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Can you see the login ID and the password in the FTP experiment? Submit the two packets you printed.
-        \item Can you see the login ID and the password in the TELNET experiment? Submit the packets you printed.
-        \item What is the difference between FTP and TELNET in their transmission of user ID’s and passwords? Which one is more secure?
-    \end{enumerate}
+    \begin{report}
+    \item Can you see the login ID and the password in the FTP experiment? Submit the two packets you printed.
+    
+    \item Can you see the login ID and the password in the TELNET experiment? Submit the packets you printed.
+    
+    \item What is the difference between FTP and TELNET in their transmission of user ID’s and passwords? Which one is more secure?
+    \end{report}
 
 \section{Secure Transfer}
     Start \lstinline{ssh} service on target machine by \lstinline{service ssh start}.
@@ -128,18 +131,18 @@ rocommunity guest
 
     Repeat the above experiment, but use \lstinline{ssh} and the \lstinline{wireshark} to analyze and print output.
 
+    \begin{report}
+    \item In each experiment, can you extract the password from the \lstinline{tcpdump} output? Can you read the IP, TCP, SSH headers? Can you read the TCP data?
+    
+    \item What is the client protocol (and version) used in both cases?
+    
+    \item What is the port number used by the \lstinline{ssh} server? What is the port number used by the sftp server? Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
+    \end{report}
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item In each experiment, can you extract the password from the \lstinline{tcpdump} output? Can you read the IP, TCP, SSH headers? Can you read the TCP data?
-        \item What is the client protocol (and version) used in both cases?
-        \item What is the port number used by the \lstinline{ssh} server? What is the port number used by the sftp server? Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
-    \end{enumerate}
-
-\section*{Exercises on Firewalls and Iptables}
+\part{Exercises on Firewalls and \texttt{iptables}}
     In this exercise using two workstations.
 
-\section{Firewall basic}
+\section{Firewall Basic}
     Execute \lstinline{iptables -L -v} to list the existing rules in the filter table. Save the output for the lab report.
 
     Append a rule to the end of the \texttt{INPUT} chain, by executing
@@ -151,11 +154,11 @@ iptables -A INPUT -v -p TCP -{}-dport 23 -j DROP
 
     On both machines, execute \lstinline{tcpdump}. Then, \lstinline{telnet} to the host where the rule is set from the remote machine. Save the tcpdump output for the lab report.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Can you \lstinline{telnet} to the host from the remote machine?
-        \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential backoff algorithm of TCP timeout and retransmission.
-    \end{enumerate}
+    \begin{report}
+    \item Can you \lstinline{telnet} to the host from the remote machine?
+    
+    \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential backoff algorithm of TCP timeout and retransmission.
+    \end{report}
     
 \section{Firewall Action}
     Delete the rule created in the last exercise, by:    
@@ -172,13 +175,11 @@ iptables -A INPUT -v -p TCP -{}-dport 23 -j REJECT -{}-reject-with tcp-reset
 
     On both machines in your topology, restart \lstinline{tcpdump}, and then \lstinline{telnet} to the host where the rule is set from the remote machine. Save the wireshark output for the lab report.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \setlength{\itemindent}{0pt}
-        \item Explain the difference between the \lstinline{tcpdump} outputs of this exercise and the previous exercise. How many attempts did {TCP} make this time?
-    \end{enumerate}
+    \begin{report}
+    \item Explain the difference between the \lstinline{tcpdump} outputs of this exercise and the previous exercise. How many attempts did {TCP} make this time?
+    \end{report}
 
-\section*{Exercises on secure Apache server}
+\part{Exercises on Secure Apache Server}
     In the exercises in this section, using two workstations from \textit{term} and \textit{gui} hosts. Run \lstinline{apache2} service on \textit{server}
 
 \section{Generate Certificate}
@@ -227,7 +228,7 @@ Email Address []:netlab@ut.ac.ir
 
     Save the output for the lab report.
 
-\section{HTTPS handshake and request}
+\section{HTTPS Handshake and Request}
     Restart the Apache server to load the new key and the new certification: \lstinline{service apache2 restart}.
 
     Execute \lstinline{wireshark} to capture the packets between your host and a remote host.
@@ -239,18 +240,20 @@ Email Address []:netlab@ut.ac.ir
     Click the \textit{Continue} button in the \textit{Website Certified by an Unknown Authority} dialog window to accept the certificate. Then terminate \lstinline{wireshark} and Mozilla.
 
     Use \lstinline{wireshark} to examine the operation of SSL.
-    
-    
-    \subsection*{Report}
-    \begin{enumerate}
-        \item What is the port number used by the secure Apache server?
-        \item Compare the general information of the received certificate with the \lstinline{openssl} output saved in the previous exercise. Are they consistent?
-        \item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
-        \item What is the \textit{Certificate Signature Algorithm} used to generate and distribute this certificate?
-        \item When was the certificate signed? When will it expire?
-    \end{enumerate}
 
-\section*{Exercises on auditing and intrusion detection}
+    \begin{report}
+    \item What is the port number used by the secure Apache server?
+    
+    \item Compare the general information of the received certificate with the \lstinline{openssl} output saved in the previous exercise. Are they consistent?
+    
+    \item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
+    
+    \item What is the \textit{Certificate Signature Algorithm} used to generate and distribute this certificate?
+    
+    \item When was the certificate signed? When will it expire?
+    \end{report}
+
+\part{Exercises on Auditing and Intrusion Detection}
     Start \lstinline{apache2} service and brwose several page in the \textit{Mozilla}. Open random URL that not exist on the web server to generate log for apache. Browse again page as \path{secure http}.
 
 \section{Trace Log}
@@ -275,19 +278,18 @@ goaccess -a > /var/www/html/report.html
     
     To view the report of the \lstinline{goaccess}, start \textit{Mozilla} and enter the URL \url{http://remote-host/report.html}. Examine the web statistics displayed in the browser. Also click on the side panel to see other section.
 
-    \subsection*{Report}
-    \begin{itemize}
-        \item List the most frequently visited pages at the local Apache server during the most recent month, respectively.
-        \item List the web pages that have the most number of bytes transferred by the local during the most recent month, respectively.
-    \end{itemize}
+    \begin{report}
+    \item List the most frequently visited pages at the local Apache server during the most recent month, respectively.
+    
+    \item List the web pages that have the most number of bytes transferred by the local during the most recent month, respectively.
+    \end{report}
 
-\section{System status}
+\section{System Status}
     Execute \lstinline{netstat -l} to display the listening sockets in your host.
 
     Execute \lstinline{service --status-all} to list the services in the \path{/etc/init.d/} and \path{/etc/init/} directories and their status. Save the output for the lab report.
     
-    \subsection*{Report}
-    \begin{itemize}
-        \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled in your host?
-    \end{itemize}
+    \begin{report}
+    \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled in your host?
+    \end{report}
 \end{document}

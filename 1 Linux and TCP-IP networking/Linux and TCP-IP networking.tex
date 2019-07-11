@@ -99,13 +99,14 @@ ps -e | grep telnet
     \end{lstlisting}
     Then use \lstinline[emph={process-id-of-telnet}]{kill process-id-of-telnet} to terminate the \lstinline{telnet} process.
     
-    \subsection*{Report}
-    What is Internet Service Daemon (\lstinline{inetd})?
+    \begin{report}
+    \item What is Internet Service Daemon (\lstinline{inetd})?
 
-    Is \lstinline{inetd} started in your system?
+    \item Is \lstinline{inetd} started in your system?
     Why?
 
-    Is \lstinline{xinetd} started in your system? What is its PID?
+    \item Is \lstinline{xinetd} started in your system? What is its PID?
+    \end{report}
 
 \section{Default Network Services}
     Display the file \path{/etc/services} on \textit{h1} screen, using:
@@ -140,9 +141,10 @@ more /etc/services
     Study the different options associated with each command.
     Throughout this lab you will use these commands rather extensively.
     
-    \subsection*{Report}
-    Explain the above commands briefly.
-    Two or three sentences per command would be adequate.
+    \begin{report}
+    \item Explain the above commands briefly.
+    \item Two or three sentences per command would be adequate.
+    \end{report}
 
 \section{Packet Capturing}
     In this exercise, we will use \lstinline{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \lstinline{wireshark} to analyze this packet.
@@ -157,11 +159,12 @@ more /etc/services
     The \lstinline{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \lstinline{tcpdump} will be displayed.
     Select any one of the packets that contain the link, IP, and TCP headers.
     
-    \subsection*{Report}
-    What is the value of the \texttt{protocol} field in the IP header of the packet you saved?
+    \begin{report}
+    \item What is the value of the \texttt{protocol} field in the IP header of the packet you saved?
     What is the use of the \texttt{protocol} field?
 
-    What is the value of the \texttt{frame type} field in an Ethernet frame carrying an IP datagram?
+    \item What is the value of the \texttt{frame type} field in an Ethernet frame carrying an IP datagram?
+    \end{report}
 
 \section{\texttt{ARPing}}
     This time we will run wireshark to capture an ARP request and an ARP reply in real-time. Simply run \lstinline{wireshark &} in \textit{h1} and select the interface and start capturing.
@@ -169,12 +172,13 @@ more /etc/services
 
     Now you should see several ARP replies in the arping output.
     
-    \subsection*{Report}
-    What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively?
+    \begin{report}
+    \item What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively?
 
-    What is the use of the \texttt{frame type} field?
+    \item What is the use of the \texttt{frame type} field?
+    \end{report}
 
-\section{Packet filtering}
+\section{Packet Filtering}
     Using the \lstinline{tcpdump} utility, capture any packet on the LAN and see the output format
     for different command-line options. Study the various expressions for selecting
     which packets to be dumped.
@@ -185,8 +189,9 @@ more /etc/services
     If there is no traffic on the network, you may generate traffic with some applications
     (e.g.\ \lstinline{telnet}, \lstinline{ping}, etc.).
     
-    \subsection*{Report}
-    Explain briefly the purposes of the following \lstinline{tcpdump} expressions.
+    \begin{report}
+    \item Explain briefly the purposes of the following \lstinline{tcpdump} expressions.
+    \end{report}
 
     If using wireshark, use the next list:
     \begin{itemize}
@@ -212,12 +217,13 @@ more /etc/services
 telnet 10.0.0.2
     \end{lstlisting}
     
-    \subsection*{Report}
-    What are the port numbers used by the \textit{h1} (local machine) and \textit{h2} (remote machine)?
+    \begin{report}
+    \item What are the port numbers used by the \textit{h1} (local machine) and \textit{h2} (remote machine)?
 
-    Which machine’s port number matches the port number listed for \lstinline{telnet} in the \path{/etc/services} file?
+    \item Which machine’s port number matches the port number listed for \lstinline{telnet} in the \path{/etc/services} file?
+    \end{report}
 
-\section{Random port}
+\section{Random Port}
     In \textit{h1} run \lstinline{wireshark &} and select an interface to capture packets between hosts.
 
     Then, \lstinline{telnet} to the \textit{h2} from a second command window by typing \lstinline{telnet 10.0.0.2}.
@@ -226,12 +232,13 @@ telnet 10.0.0.2
 
     Check the port numbers being used on both sides of the two connections from the output in the \lstinline{wireshark} window.
 
-    \subsection*{Report}
-    When you have two \lstinline{telnet} sessions with your machine, what port number is used on the \textit{h2} (remote machine)?
+    \begin{report}
+    \item When you have two \lstinline{telnet} sessions with your machine, what port number is used on the \textit{h2} (remote machine)?
 
-    Are both sessions connected to the same port number on the \textit{h2} (remote machine)?
+    \item Are both sessions connected to the same port number on the \textit{h2} (remote machine)?
 
-    What port numbers are used in \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
+    \item What port numbers are used in \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
 
-    Explain briefly what a \textbf{socket} is.
+    \item Explain briefly what a \textbf{socket} is.
+    \end{report}
 \end{document}

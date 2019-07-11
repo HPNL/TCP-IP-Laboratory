@@ -34,7 +34,7 @@
 }
 
 \begin{document}
-\section*{HTTP exercises}
+\part{HTTP Exercises}
     For the exercises in this section, the network topology is simple with two hosts are connected to a single network segment with IP addresses, i.e.\  from 128.238.66.100 to 128.238.66.101. Add first host from \textit{http-server} and another hsot from \textit{gui}.
 
 \section{HTTP Server}
@@ -46,13 +46,13 @@
     Then, execute \lstinline{pgrep apache2} to list the process IDs of the \lstinline{apache2} processes started.\footnote{By \lstinline{a2enmod mpm_prefork} you can enable Multi-Processing Module and change default spare process (config file: \path{/etc/apache2/mods-available/mpm_prefork.conf}).}
     Save the output and the configuration file for the lab report.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item How many apache2 processes were started?
-        Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textit{tree} to see process hierarchy})
-        Justify your answer using the \path{apache2.conf} file.
-        \item What is the purpose of initiating multiple apache2 processes?
-    \end{enumerate}
+    \begin{report}
+    \item How many apache2 processes were started?
+    Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textit{tree} to see process hierarchy})
+    Justify your answer using the \path{apache2.conf} file.
+    
+    \item What is the purpose of initiating multiple apache2 processes?
+    \end{report}
 
 \section{HTTP Request}
     Execute \lstinline{wireshark} to capture packets between your host and a remote host. 
@@ -75,13 +75,12 @@ User-Agent: HTTPTool/1.0
     Save the HTTP response’s data part into a file, named \path{index.html}.
     Use \textit{Mozilla} to view the file.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Submit the HTTP request and response, including the start-lines and all the headers.
-    \end{enumerate}
+    \begin{report}
+    \item Submit the HTTP request and response, including the start-lines and all the headers.
+    \end{report}
 
     
-\section{HTTP Keep-Alive}
+\section{HTTP \texttt{Keep-Alive}}
     By default, Apache server supports persistent connections. Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file \footnote{\path{/etc/apache2/apache2.conf}} to make sure it is turned on, as \lstinline[language={HTTP}]{KeepAlive On}. 
 
     Execute \lstinline[emph={your-host, remote-host}]{tcpdump host your-host and remote-host} or run \lstinline{wireshark} to capture packets between your host and a remote host. 
@@ -99,14 +98,15 @@ User-Agent: HTTPTool/1.0
 
     Use \lstinline{wireshark} and print the HTTP requests and responses for the lab report.
 
-    \subsection*{Report}
-    \begin{enumerate}
+    \begin{report}
         \item When you browsed the \path{try1.html} file for the first time, how many HTTP requests were sent?
         Which files were requested?
         How many TCP connections were used?
+        
         \item Answer the above questions for when you browsed the \path{try1.html} file for the second time.
+        
         \item What is the purpose of using persistent connections?
-    \end{enumerate}
+    \end{report}
 
 \section{HTTP Submit}
     Execute \lstinline{wireshark} to capture packets between your host and a remote host. 
@@ -120,12 +120,11 @@ User-Agent: HTTPTool/1.0
     Examine how LAMP (for php) [CGI (for perl)] works, and identify the data string sent to the server.
     Save the HTTP request containing the data string for lab report.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Submit the data string sent to the server.
-    \end{enumerate}
+    \begin{report}
+    \item Submit the data string sent to the server.
+    \end{report}
 
-\section*{DHCP exercises}
+\part{DHCP Exercises}
     For the exercises in this section, the network topology is given in Fig. 1.3 (\ref{fig:1.3}), where all the hosts are connected to a single network segment whitout their default IP addresses.
 
     \begin{center}
@@ -160,7 +159,7 @@ User-Agent: HTTPTool/1.0
         \end{minipage}
     \end{center}
 
-\section{DHCP server}
+\section{DHCP Server}
     In this exercise, we use \textit{h1} as the DHCP server, with a configuration file\footnote{\path{/etc/dhcp/dhcpd.conf}} shown in Table 8.3. Do the following.
 
     \begin{enumerate}
@@ -193,40 +192,40 @@ User-Agent: HTTPTool/1.0
 
     Save the DHCP server output on \textit{h1} for the lab report.
 
-    \subsection*{Table 8.3: A DHCP server configuration file}
-    \path{/etc/dhcp/dhcpd.conf}
-    \begin{lstlisting}[language={conf}]
-    default-lease-time 600;
-    max-lease-time 7200;
-    option subnet-mask 255.255.255.0;
-    option broadcast-address 128.238.66.255;
-    option routers 128.238.66.1;
-    #option domain-name-servers 128.238.2.38, 128.238.3.21;
-    #option domain-name "netlab.ut.ac.ir";
+    \begin{lstlisting}[language={conf}, caption={\textit{Table 8.3} A DHCP server configuration file}]
+default-lease-time 600;
+max-lease-time 7200;
+option subnet-mask 255.255.255.0;
+option broadcast-address 128.238.66.255;
+option routers 128.238.66.1;
+#option domain-name-servers 128.238.2.38, 128.238.3.21;
+#option domain-name "netlab.ut.ac.ir";
 
-    subnet 128.238.66.0 netmask 255.255.255.0 {
-        range 128.238.66.111 128.238.66.112;
-    }
+subnet 128.238.66.0 netmask 255.255.255.0 {
+    range 128.238.66.111 128.238.66.112;
+}
 
-    host h5 {
-        hardware ethernet 08:00:20:79:e9:9f;
-        fixed-address 128.238.66.110;
-    }
+host h5 {
+    hardware ethernet 08:00:20:79:e9:9f;
+    fixed-address 128.238.66.110;
+}
     \end{lstlisting}
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Compare the DHCP operation captured by \lstinline{wireshark} and that shown by the DHCP server output.
-        Explain how DHCP works.
-        \item Did \textit{h2} and \textit{h3} successfully obtain a set of new parameters?
-        Compare the ifconfig and netstat output with the parameters carried in the corresponding DHCP messages.
-        \item Answer the above question for \textit{h4}.
-        Explain why \textit{h4} failed.
-        \item Answer the above question for \textit{h5}.
-        Explain why \textit{h5} succeeded.
-    \end{enumerate}
+    \begin{report}
+    \item Compare the DHCP operation captured by \lstinline{wireshark} and that shown by the DHCP server output.
+    Explain how DHCP works.
+    
+    \item Did \textit{h2} and \textit{h3} successfully obtain a set of new parameters?
+    Compare the ifconfig and netstat output with the parameters carried in the corresponding DHCP messages.
+    
+    \item Answer the above question for \textit{h4}.
+    Explain why \textit{h4} failed.
+    
+    \item Answer the above question for \textit{h5}.
+    Explain why \textit{h5} succeeded.
+    \end{report}
 
-\section*{NTP exercises}
+\part{NTP exercises}
     Before proceeding to the next exercise, reboot the hosts and set network topology is given in Fig. 1.3 and set hosts IP address from 128.238.66.100 to 128.238.66.107.
     \begin{center}
         \begin{minipage}{0.48\textwidth}
@@ -265,24 +264,24 @@ date -r file-name
     \end{lstlisting}
     You can choose any file in the current directory for the \textit{file-name} parameter.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Submit the \lstinline{date} outputs you saved.
-        Explain the use of the commands.
-    \end{enumerate}
+    \begin{report}
+    \item Submit the \lstinline{date} outputs you saved.
+    Explain the use of the commands.
+    \end{report}
 
 \section{Remote Date}
     While \lstinline[emph={your-host, remote-host}]{tcpdump -n -nn -ex host your-host and remote-host} or \lstinline{wireshark} is running, execute \lstinline[emph={your-host, remote-host}]{rdate -p remote-host} to display the system time of the remote machine.
     Repeat the above \lstinline{rdate} command, but use the \lstinline{-u} option.
     Save the \lstinline{wireshark} outputs for the lab report.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item What port numbers were used by the remote machine?
-        What port numbers were used by the local host?
-        \item How many bytes of data were returned by the remote time server, both in the UDP case and in the TCP case?
-        \item What TCP header options were used?
-    \end{enumerate}
+    \begin{report}
+    \item What port numbers were used by the remote machine?
+    What port numbers were used by the local host?
+    
+    \item How many bytes of data were returned by the remote time server, both in the UDP case and in the TCP case?
+    
+    \item What TCP header options were used?
+    \end{report}
 
 \section{NTP Sync}
     In this exercise, we start the NTP server daemon on \textit{h0} and use NTP to
@@ -296,13 +295,12 @@ date -r file-name
     Study the output of this command.
     Save the \lstinline{ntpdate} and the \lstinline{wireshark} outputs for the lab report.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Which port does the NTP server use?
-        Justify your answer using the \lstinline{wireshark} output.
-    \end{enumerate}
+    \begin{report}
+    \item Which port does the NTP server use?
+    Justify your answer using the \lstinline{wireshark} output.
+    \end{report}
 
-\section{NTP server}
+\section{NTP Server}
     Keep the NTP server running on \textit{h0}. Execute \lstinline[emph={your-host, remote-host}]{tcpdump -exn -nn host your-host and 128.238.66.100} or \lstinline{wireshark} to capture the NTP messages between \textit{your-host} and \textit{h0}.
 
     Config \path{/etc/ntp.conf} in \textit{other-host} and add \lstinline[language={conf}]{server 128.238.66.100} to config file.
@@ -315,15 +313,15 @@ date -r file-name
 
     Execute \lstinline{ntptrace} to show the client/server relation of NTP.
 
+    \begin{report}
+    \item Submit the NTP packet captured. List the fields and their values.
+    
+    \item What was the rate at which NTP queries were sent by the client?
+    
+    \item Which stratum was your host in? Which stratum was the NTP server in?
+    \end{report}
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Submit the NTP packet captured. List the fields and their values.
-        \item What was the rate at which NTP queries were sent by the client?
-        \item Which stratum was your host in? Which stratum was the NTP server in?
-    \end{enumerate}
-
-\section*{NAT exercises}
+\part{NAT Exercises}
     For the exercises in this section, we use a network setting as shown in Fig. 8.7. The lower subnet is a private network where the hosts are assigned with the Class A addresses with the 10.0.0.0/8 prefix. The upper subnet represents the Internet. The hosts, i.e.\  \textit{h0} and \textit{h1} are assigned with public IP addresses. Router 1 is used as the stub router, which performs address or port translation for the private network.
     \begin{figure}[H]
         \centering
@@ -341,13 +339,11 @@ date -r file-name
     Execute \lstinline{show ip nat translations} in the \textit{Privileged EXEC} mode to display the translation table.
     Save both outputs for the lab report.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item How many entries were there in the translation table? Why?
-    \end{enumerate}
+    \begin{report}
+    \item How many entries were there in the translation table? Why?
+    \end{report}
     
-    \subsection*{NAT Router Configuration in Fig. 8.7}
-    \begin{lstlisting}[language={cisco}]
+    \begin{lstlisting}[language={cisco}, caption={NAT Router Configuration in Fig. 8.7}]
 ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
 ip nat inside source list 8 pool mypool
 
@@ -377,15 +373,16 @@ access-list 8 permit 10.0.0.0 0.0.0.255
     Execute \lstinline[language=cisco]{show ip nat translations} in the router login window to display the translation table. Save the output for the lab report. 
 
     Exchange the data you saved with a student in the other subnet.
+
+    \begin{report}
+    \item Answer the above questions.
+    Use the saved translation table to justify your answers.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Answer the above questions.
-        Use the saved translation table to justify your answers.
-        \item Compare the IP header of the ICMP query captured in the private network with that of the same ICMP query captured in the upper subnet, list their differences.
-        Explain how NAT works.
-        \item In addition to the IP address, what else was changed in the ICMP query packet?
-    \end{enumerate}
+    \item Compare the IP header of the ICMP query captured in the private network with that of the same ICMP query captured in the upper subnet, list their differences.
+    Explain how NAT works.
+    
+    \item In addition to the IP address, what else was changed in the ICMP query packet?
+    \end{report}
 
 \section{NAT Table}
     Keep the login session to the router running. Execute \lstinline{tcpdump -enx -s 100 ip proto 1} or \lstinline{wireshark} to capture ICMP messages. 
@@ -399,11 +396,10 @@ access-list 8 permit 10.0.0.0 0.0.0.255
 
     Exchange the data you saved with a student in the other subnet.
     
-    \subsection*{Report}
-    \begin{enumerate}
-        \item Analyze the IP headers, the ICMP headers, and the ICMP payloads of the ICMP port unreachable errors captured in the private network and in the public network from the first experiment.
-        Explain how ICMP error was handled by the NAT router.
-    \end{enumerate}
+    \begin{report}
+    \item Analyze the IP headers, the ICMP headers, and the ICMP payloads of the ICMP port unreachable errors captured in the private network and in the public network from the first experiment.
+    Explain how ICMP error was handled by the NAT router.
+    \end{report}
 
 \section{NAT and PAT}
     Reboot the router to restore its default configuration.
@@ -419,17 +415,15 @@ access-list 8 permit 10.0.0.0 0.0.0.255
     Use \lstinline{show ip nat translations} to display and then save the translation table.
     Exchange the data you saved with a student in the other subnet.
 
-    \subsection*{Report}
-    \begin{enumerate}
-        \item From the \lstinline{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
-        
-        \item With PAT, can you have two web servers in the private network?
-        If not, why?
-        If yes, explain how this can be done.
-    \end{enumerate}
+    \begin{report}
+    \item From the \lstinline{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
+    
+    \item With PAT, can you have two web servers in the private network?
+    If not, why?
+    If yes, explain how this can be done.
+    \end{report}
 
-    \subsection*{PAT Router Configuration in Fig. 8.7}
-    \begin{lstlisting}[language={cisco}]
+    \begin{lstlisting}[language={cisco}, caption={PAT Router Configuration in Fig. 8.7}]
 ip nat inside source list 8 interface ethernet 0 overload
 
 ip nat inside source static tcp 10.0.0.7 80 128.238.61.1 80
@@ -448,8 +442,8 @@ access-list 8 deny host 10.0.0.7
 access-list 8 permit 10.0.0.0 0.0.0.255
     \end{lstlisting}
 
-\section*{Socket programming exercises}
-\section{Socket programming}
+\part{Socket Programming Exercises}
+\section{Socket Programming}
     Examine the UDP socket programs \path{/home/netlab/code/UDPserver.c} and \path{/home/netlab/code/UDPclient.c} to learn how to write a UDP socket program.
     You can compile the C programs by using \lstinline{gcc -o UDPserver UDPserver.c -lnsl} and \lstinline{gcc -o UDPclient UDPclient.c -lnsl}. Compile output available at \path{/usr/local/bin/} directory.
 
@@ -463,18 +457,17 @@ access-list 8 permit 10.0.0.0 0.0.0.255
 
     Repeat the above experiments, but now use the \path{TCPserver.c} and \path{TCPclient.c}.
 
-\section{Socket options}
+\section{Socket Options}
     Execute \lstinline{man setsockopt} to display the various socket options and how to set them.
 
     Examine the \lstinline{netspy} and \lstinline{netspyd} source code in Appendix C.2 to see how to create a multicast socket and how to set the TTL value for the packets.
+    
+    % \begin{report}
+    % \item Explain the various options you could set on socket.
+    % \item Explain the difference between a socket and multicast socket.
+    % \end{report}
 
-    % \subsection*{Report}
-    % \begin{enumerate}
-    %     \item Explain the various options you could set on socket.
-    %     \item Explain the difference between a socket and multicast socket.
-    % \end{enumerate}
-
-\section{FTP Socket programming}
+\section{FTP Socket Programming}
     This is an optional exercise on socket programming. Or, it can be assigned as a take-home project for extra credits. Note that familiarity with C (or C++) programming is required.
 
     \subsection*{Problem}

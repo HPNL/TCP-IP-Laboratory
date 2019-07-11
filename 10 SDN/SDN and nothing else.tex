@@ -34,8 +34,8 @@
 }
 
 \begin{document}
-\section{SDN Introduction}
-    \subsection{Exercise One}
+\part{SDN Introduction}
+    \section{Exercise One}
     Remember one of the previous labs\footnote{Lab 4: routing} where you are using host rather than router to emulate some routing functionality. In this experiment we want to implement same functionality with SDN switches. To warm up our hands we will start by simple scenario:
 
     \begin{itemize}
@@ -45,13 +45,12 @@
         \item Capture OpenFlow hello packet on \textit{lo} interface. (Filter \lstinline{wireshark} output with \lstinline{of} filter)
     \end{itemize}
 
-    \subsubsection*{Report}
-    \begin{itemize}
-        \item Explain line 21 to 26 of \path{switch.py}.
-        \item Read \url{http://flowgrammable.org/sdn/openflow/state-machine/} and explain switch handshake with controller. What is \texttt{xid} of your packets. Justify your answer with captured packets. \textbf{Don't copy and paste text from reference in your lab report}.
-    \end{itemize}
+    \begin{report}
+    \item Explain line 21 to 26 of \path{switch.py}.
+    \item Read \url{http://flowgrammable.org/sdn/openflow/state-machine/} and explain switch handshake with controller. What is \texttt{xid} of your packets. Justify your answer with captured packets. \textbf{Don't copy and paste text from reference in your lab report}.
+    \end{report}
 
-    \subsection{Exercise Two}
+    \section{Exercise Two}
     Use what you learned in previous exercise and create figure \ref{fig:linearRouters} topology. Configure switches in this topology where ??? we can ping each host from each host. Show your final result to instructors.
 
     \begin{figure}[H]
@@ -62,8 +61,8 @@
     \end{figure}
 
 
-\section{Exercises with Multitables Flows}
-    \subsection*{Exercise Three}
+\part{Exercises with Multitables Flows}
+    \section{Exercise Three}
     In this section we are loading switch flows from another files and examining it's functionality.
 
     \begin{itemize}
@@ -82,8 +81,7 @@
     \end{figure}
 
 
-    \subsubsection*{Report}
-    \begin{itemize}
+    \begin{report}
         \item Can you explain switch behavior? Justify your answer with \lstinline{wireshark} output and \path{tables.txt} file.
-    \end{itemize}
+    \end{report}
 \end{document}
