@@ -65,7 +65,6 @@
     \newenvironment{grayverbatim}%
        {\snugshade\verbatim}%
        {\endverbatim\endsnugshade}
-    \date{\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
 
     % \setmonofont{Courier New}
     \tolerance=5000
@@ -198,7 +197,35 @@
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
 \newcommand{\mail}[1]{\href{mailto:#1?subject=[CNL]\%20}{\ttfamily #1}}
 \newenvironment{report}[1][]{\subsection*{Report}#1\begin{itemize}}{\end{itemize}}
-
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
+
+\date{\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
+\authorshort{A. Khonsari, A. HajiAliKhamseh'i, M. Borhani, A. Khordadi, S. Kashipazha, H. Safari}
+\author{%
+    Dr. Ahmad Khonsari\\
+    \FR{دکتر احمد خونساری}\\
+    \mail{a\_khonsari@ut.ac.ir}
+    \end{tabular}\vskip 1em
+    \begin{tabular}[t]{c}
+    Amir Haji Ali Khamseh'i\\
+    \FR{امیر حاجی‌علی‌خمسه‌ء}\\
+    \mail{khamse@ut.ac.ir}
+    \and
+    {Muhammad Borhani}\\
+    \FR{محمد برهانی}\\
+    \mail{m.borhani@ut.ac.ir}
+    \and
+    {AmirAhmad Khordadi}\\
+    \FR{امیراحمد خردادی}\\
+    \mail{a.a.khordadi@ut.ac.ir}
+    \and
+    {Sina Kashipazha}\\
+    \FR{سینا کاشی‌پزها}\\
+    \mail{sina\_kashipazha@ut.ac.ir}
+    \and
+    {Hadi Safari}\\
+    \FR{هادی صفری}\\
+    \mail{hadi.safari@ut.ac.ir}
+}
 
 \makeatother
