@@ -6,10 +6,10 @@
 
 ## Chapters
 
-* Linux and Simulator
+* Linux & Simulator
   * Mininet
   * GNS3
-* Introduction to network peripheral
+* Introduction to Network Peripheral
 * UDP
 * TCP
 * NAT
@@ -18,35 +18,38 @@
 * AS Routing
 * Security
 * Firewall
-* SDN and routing rule
+* SDN and Routing Rules
 * Multicast
 * Socket Programming
-* Network performance
+* Network Performance
 
 ## ToDo
 
-* [ ] Add pre-build projects requirement with ip and hosts map
+* [ ] add pre-build projects requirement with IP and hosts map
 * [x] rename hosts
-* [ ] replace image with schematic figure
+* [x] replace image with schematic figure
 * [ ] remap IP hosts to simplest network domain
 * [ ] split and revise report
+* [ ] revise section titles and captions
+* [ ] revise links and references to section titles and captions
 * [ ] add reference to book (commands & ...)
 * [ ] update network tools
   * [ ] base linux
-  * [ ] socket
+  * [ ] `socket`
   * [ ] linux routing service
   * [ ] router discovery
   * [ ] ...
-* [x] CI (generate pdf to github release)
+* [x] config CI/CD (generate _pdf_ to github release)
+* [ ] add references
 
 # Appendix
 
-* [ifconfig vs ip](https://p5r.uk/blog/2010/ifconfig-ip-comparison.html)
-* [SCREEN Quick Reference](http://aperiodic.net/screen/quick_reference)
-* [How To Use Linux Screen](https://linuxize.com/post/how-to-use-linux-screen/)
-* [quagga](http://download.savannah.gnu.org/releases/quagga/)
-* [NIST Net](https://www-x.antd.nist.gov/nistnet/): is no longer actively maintained. Much of its functionality has been incorporated into **netem** and the __iproute2__ toolkit. These are almost certainly already included in your Linux distribution
-* **DBS**: Not found.
-* [distributed benchmark system](https://distributed-system-analysis.github.io/pbench/)
-* [ipbench](http://ipbench.sourceforge.net)
-* [iputils](https://github.com/iputils/iputils)
+* [`ifconfig` vs `ip`](https://p5r.uk/blog/2010/ifconfig-ip-comparison.html)
+* [`screen` Quick Reference](http://aperiodic.net/screen/quick_reference)
+* [How To Use Linux `screen`](https://linuxize.com/post/how-to-use-linux-screen/)
+* [_Quagga_](http://download.savannah.gnu.org/releases/quagga/)
+* [_NIST Net_](https://www-x.antd.nist.gov/nistnet/): is no longer actively maintained. Much of its functionality has been incorporated into _NetEm_ and the `iproute2` toolkit. These are almost certainly already included in your Linux distribution
+* [_DBS_](http://ns1.ai3.net/products/dbs): is no longer available. ([v1.1.5](http://www.kusa.ac.jp/~yukio-m/dbs/software1.1.5/dbs-1.1.5.tar.gz), [v1.2.0beta1](http://www.kusa.ac.jp/~yukio-m/dbs/software1.2.0beta1/dbs-1.2.0beta1.tar.gz), and [manual](http://www.kusa.ac.jp/~yukio-m/dbs/dbs_man.html))
+    * [_Pbench_: a benchmarking and performance analysis framework](https://distributed-system-analysis.github.io/pbench/)
+* [`ipbench`](http://ipbench.sourceforge.net)
+* [`iputils`](https://github.com/iputils/iputils)
