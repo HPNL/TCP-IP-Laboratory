@@ -31,25 +31,25 @@
             \begin{flushright}
                 \begin{figure}[H]
                     \centering
-                    \begin{tikzpicture}[font=\sf]
-                        \node[draw] (s) at (0,0){Core Switch};
-                        \node[draw,circle] (h0) at (0,2){h0};
-                        \node[draw,circle] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
-                        \node[draw,circle] (h2) at (2,0){h2};
-                        \node[draw,circle] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
-                        \node[draw,circle] (h4) at (-2,0){h4};
-                        \node[draw,circle] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
-                        \node[draw,circle] (h6) at (0,-2){h6};
-                        \node[draw,circle] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+                    \begin{tikzpicture}
+                        \node[draw,align=center,rounded corners] (s) at (0,0){Core\\Switch};
+                        \node[draw] (h0) at (0,2){h0};
+                        \node[draw] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+                        \node[draw] (h2) at (2,0){h2};
+                        \node[draw] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+                        \node[draw] (h4) at (-2,0){h4};
+                        \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+                        \node[draw] (h6) at (0,-2){h6};
+                        \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
                     
-                        \draw[thick] (h0) -- (s);
-                        \draw[thick] (h1) -- (s);
-                        \draw[thick] (h2) -- (s);
-                        \draw[thick] (h3) -- (s);
-                        \draw[thick] (h4) -- (s);
-                        \draw[thick] (h5) -- (s);
-                        \draw[thick] (h6) -- (s);
-                        \draw[thick] (h7) -- (s);
+                        \draw (h0) -- (s);
+                        \draw (h1) -- (s);
+                        \draw (h2) -- (s);
+                        \draw (h3) -- (s);
+                        \draw (h4) -- (s);
+                        \draw (h5) -- (s);
+                        \draw (h6) -- (s);
+                        \draw (h7) -- (s);
                     \end{tikzpicture}
                     \caption{\textit{Figure 1.3} A single segment network}        
                 \end{figure}

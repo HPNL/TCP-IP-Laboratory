@@ -20,7 +20,8 @@
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
-\RequirePackage{caption} 
+\RequirePackage{caption}
+\RequirePackage{chngcntr}
 \RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref}
 \usetikzlibrary{calc,positioning}
 
@@ -62,6 +63,9 @@
       \kern 2pt
     }
   \captionsetup{skip=10pt}
+  \counterwithout{figure}{section}
+  \counterwithout{table}{section}
+  \counterwithout{lstlisting}{section}
 
     \definecolor{shadecolor}{rgb}{.9, .9, .9}
     \newenvironment{grayverbatim}%
@@ -76,7 +80,7 @@
       morekeywords={
         grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail,
         tcpdump, wireshark, arp, arping, ping, iptables, xinetd, date, time, ftp, tftp,
-        sock, socket, sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh,
+        sock, socket, sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute, tracepath,
         goaccess, webalizer, vlc, firefox,
       },
     }

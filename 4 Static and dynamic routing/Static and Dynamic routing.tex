@@ -1,6 +1,8 @@
 \documentclass{../UTNetLab}
 
 \title{Static and Dynamic Routing}
+
+
 \begin{document}
 \part{A Simple Router Experiment}
     As in the previous lab, we will divide the students into four groups, each with two workstations, a router, and two hubs, which are to be connected as shown in Figure 4.10.
@@ -23,19 +25,19 @@
 
     \begin{figure}[H]
         \centering
-        \begin{tikzpicture}[font=\sf]
-            \node[draw] (h1) at (-2,-2){Host\textsubscript{A}};
-            \node[draw,circle] (hub2) at (-2,0){Switch 2};
-            \node[draw,rounded corners] (router) at (0,0){\shortstack{Router}};
-            \node[draw,circle] (hub1) at (2,0){Switch 1};
-            \node[draw] (h0) at (2,-2){Host\textsubscript{B}};
+        \begin{tikzpicture}
+            \node[draw] (h1) at (-4,0){Host\textsubscript{A}};
+            \node[draw,rounded corners] (hub2) at (-2,0){Switch 2};
+            \node[draw,rounded corners] (router) at (0,0){Router};
+            \node[draw,rounded corners] (hub1) at (2,0){Switch 1};
+            \node[draw] (h0) at (4,0){Host\textsubscript{B}};
         
-            \draw[thick] (h0) -- (hub1);
-            \draw[thick] (h1) -- (hub2);
+            \draw (h0) -- (hub1);
+            \draw (h1) -- (hub2);
             \draw[thick] (hub1) -- (router);
             \draw[thick] (hub2) -- (router);
         \end{tikzpicture}
-        \caption{\textit{Figure 4.10.} Simple router experiment.}        
+        \caption{\textit{Figure 4.10} Simple router experiment}
     \end{figure}
 
 \section{Simple Routing}
@@ -101,7 +103,69 @@ Router(config)# no router rip
     Configure network router and workstation’s as Figure 4.11. Since our workstation’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each workstation.
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth]{img/figure4-11.png}
+        \begin{tikzpicture}
+            \draw (2.5,1) node[draw,fill=white,rounded corners] (br4) {Router 4}
+                -- +(0,-1)
+                -- +(0,+1)
+                +(0,0.5) node {\scriptsize\textit{eth1}\quad 61.4}
+                +(0,-0.5) node {\scriptsize\textit{eth0}\quad 64.4}
+            ;
+            \draw (3,-1) node[draw,fill=white,rounded corners] (br3) {Router 3}
+                -- +(0,-1)
+                -- +(0,+1)
+                +(0,0.5) node {\scriptsize\textit{eth1}\quad 64.3}
+                +(0,-0.5) node {\scriptsize\textit{eth0}\quad 63.3}
+            ;
+            \draw (-2.5,1) node[draw,fill=white,rounded corners] (br1) {Router 1}
+                -- +(0,-1)
+                -- +(0,+1)
+                +(0,0.5) node {\scriptsize\textit{eth0}\quad 61.1}
+                +(0,-0.5) node {\scriptsize\textit{eth1}\quad 62.1}
+            ;
+            \draw (-3,-1) node[draw,fill=white,rounded corners] (br2) {Router 2}
+                -- +(0,-1)
+                -- +(0,+1)
+                +(0,0.5) node {\scriptsize\textit{eth0}\quad 62.2}
+                +(0,-0.5) node {\scriptsize\textit{eth1}\quad 63.2}
+            ;
+            \draw (5.5,1) node[draw,fill=white] {h7}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 64.101/24}
+            ;
+            \draw (6,-1) node[draw,fill=white] {h6}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 64.100/24}
+            ;
+            \draw (-5.5,1) node[draw,fill=white] {h2}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 62.100/24}
+            ;
+            \draw (-6,-1) node[draw,fill=white] {h3}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 62.101/24}
+            ;
+            \draw (-1.5,3) node[draw,fill=white] {h1}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 61.101/24}
+            ;
+            \draw (1.5,3) node[draw,fill=white] {h0}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 61.100/24}
+            ;
+            \draw (-2,-3) node[draw,fill=white] {h4}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 63.100/24}
+            ;
+            \draw (2,-3) node[draw,fill=white] {h5}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 63.101/24}
+            ;
+            \draw[thick] (2,0) -- +(4.5,0) node[pos=0.5,above] {\scriptsize 128.238.64.0 subnet};
+            \draw[thick] (-2,0) -- +(-4.5,0) node[pos=0.5,above] {\scriptsize 128.238.62.0 subnet};
+            \draw[thick] (-3,2) -- +(6,0) node[pos=0.5,below] {\scriptsize 128.238.61.0 subnet};
+            \draw[thick] (-3.5,-2) -- +(7,0) node[pos=0.5,above] {\scriptsize 128.238.63.0 subnet};
+        \end{tikzpicture}
+        \caption{\textit{Figure 4.11} Network Configuration for RIP exercises}
     \end{figure}
 \section{RIP Messages}
     Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in Figure 4.11.
@@ -210,7 +274,69 @@ Router(config)# network address wildcard-mask area area-id
     The lab instructor should reboot the routers to restore their default configurations.
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth]{img/figure4-13.png}
+        \begin{tikzpicture}
+            \draw (2.5,1) node[draw,fill=white,rounded corners] (br4) {Router 4}
+                -- +(0,-1)
+                -- +(0,+1)
+                +(0,0.5) node {\scriptsize\textit{eth1}\quad 65.4}
+                +(0,-0.5) node {\scriptsize\textit{eth0}\quad 64.4}
+            ;
+            \draw (3,-1) node[draw,fill=white,rounded corners] (br3) {Router 3}
+                -- +(0,-1)
+                -- +(0,+1)
+                +(0,0.5) node {\scriptsize\textit{eth1}\quad 64.3}
+                +(0,-0.5) node {\scriptsize\textit{eth0}\quad 63.3}
+            ;
+            % \draw (-2.5,1) node[draw,fill=white,rounded corners] (br1) {Router 1}
+            %     -- +(0,-1)
+            %     -- +(0,+1)
+            %     +(0,0.5) node {\scriptsize\textit{eth0}\quad 65.1}
+            %     +(0,-0.5) node {\scriptsize\textit{eth1}\quad 62.1}
+            % ;
+            \draw (-3,-1) node[draw,fill=white,rounded corners] (br2) {Router 2}
+                -- +(0,-1)
+                -- +(0,+1)
+                +(0,0.5) node {\scriptsize\textit{eth0}\quad 62.2}
+                +(0,-0.5) node {\scriptsize\textit{eth1}\quad 63.2}
+            ;
+            \draw (5.5,1) node[draw,fill=white] {h7}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 64.101/24}
+            ;
+            \draw (6,-1) node[draw,fill=white] {h6}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 64.100/24}
+            ;
+            \draw (-5.5,1) node[draw,fill=white] {h2}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 62.100/24}
+            ;
+            \draw (-6,-1) node[draw,fill=white] {h3}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 62.101/24}
+            ;
+            \draw (-1.5,3) node[draw,fill=white] {h1}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 65.101/24}
+            ;
+            \draw (1.5,3) node[draw,fill=white] {h0}
+                -- +(0,-1)
+                +(0,0.5) node {\scriptsize 65.100/24}
+            ;
+            \draw (-2,-3) node[draw,fill=white] {h4}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 63.100/24}
+            ;
+            \draw (2,-3) node[draw,fill=white] {h5}
+                -- +(0,1)
+                +(0,-0.5) node {\scriptsize 63.101/24}
+            ;
+            \draw[thick] (2,0) -- +(4.5,0) node[pos=0.5,above] {\scriptsize 128.238.64.0 subnet};
+            \draw[thick] (-2,0) -- +(-4.5,0) node[pos=0.5,above] {\scriptsize 128.238.62.0 subnet};
+            \draw[thick] (-3,2) -- +(6,0) node[pos=0.5,below] {\scriptsize 128.238.65.0 subnet};
+            \draw[thick] (-3.5,-2) -- +(7,0) node[pos=0.5,above] {\scriptsize 128.238.63.0 subnet};
+        \end{tikzpicture}
+        \caption{\textit{Figure 4.11} Network Configuration for OSPF exercises, static routing experiments and \lstinline{traceroute} experiment}
     \end{figure}
 
 \section{OSPF Messages}

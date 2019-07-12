@@ -33,25 +33,25 @@
         \begin{flushright}
             \begin{figure}[H]
                 \centering
-                \begin{tikzpicture}[font=\sf]
-                    \node[draw,rounded corners] (s) at (0,0){\shortstack{Core \\   Switch}};
-                    \node[draw,circle] (h0) at (0,2){h0};
-                    \node[draw,circle] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
-                    \node[draw,circle] (h2) at (2,0){h2};
-                    \node[draw,circle] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
-                    \node[draw,circle] (h4) at (-2,0){h4};
-                    \node[draw,circle] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
-                    \node[draw,circle] (h6) at (0,-2){h6};
-                    \node[draw,circle] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+                \begin{tikzpicture}
+                    \node[draw,rounded corners,align=center] (s) at (0,0) {Core\\Switch};
+                    \node[draw] (h0) at (0,2){h0};
+                    \node[draw] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+                    \node[draw] (h2) at (2,0){h2};
+                    \node[draw] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+                    \node[draw] (h4) at (-2,0){h4};
+                    \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+                    \node[draw] (h6) at (0,-2){h6};
+                    \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
                 
-                    \draw[thick] (h0) -- (s);
-                    \draw[thick] (h1) -- (s);
-                    \draw[thick] (h2) -- (s);
-                    \draw[thick] (h3) -- (s);
-                    \draw[thick] (h4) -- (s);
-                    \draw[thick] (h5) -- (s);
-                    \draw[thick] (h6) -- (s);
-                    \draw[thick] (h7) -- (s);
+                    \draw (h0) -- (s);
+                    \draw (h1) -- (s);
+                    \draw (h2) -- (s);
+                    \draw (h3) -- (s);
+                    \draw (h4) -- (s);
+                    \draw (h5) -- (s);
+                    \draw (h6) -- (s);
+                    \draw (h7) -- (s);
                 \end{tikzpicture}
                 \caption{\textit{Figure 1.3} A single segment network}
                 \label{fig:fig13}
@@ -161,12 +161,12 @@ netspyd 224.111.111.111 1500 1
         \centering
         \begin{tabular}{ *3c }
             \hline \hline
-            Host & Name & IP Address \\
+            Name & IP Address \\
             \hline
-                host1 & h0 & 128.238.63.101/24 \\
-                host2 & h1   & 128.238.63.102/24 \\
-                host3 & h2   & 128.238.64.103/24 \\
-                host4 & h3   & 128.238.64.104/24 \\
+                h1 & 128.238.63.101/24 \\
+                h2 & 128.238.63.102/24 \\
+                h3 & 128.238.64.103/24 \\
+                h4 & 128.238.64.104/24 \\
             \hline \hline
             \end{tabular}
     \end{table}
@@ -186,21 +186,21 @@ netspyd 224.111.111.111 1500 1
 
     \begin{figure}[H]
         \centering
-        \begin{tikzpicture}[font=\sf]
-            \node[draw] (h1) at (-4,-1){host1};
-            \node[draw] (h2) at (-2,-1){host2};
+        \begin{tikzpicture}
+            \node[draw] (h1) at (-4,-1){h1};
+            \node[draw] (h2) at (-2,-1){h2};
             \node[draw,rounded corners] (router) at (0,0){Router};
             % \node[draw,rounded corners] (router) at (0,0){\shortstack{Router}};
-            % \node[draw,circle] (hub1) at (2,0){Switch 1};
-            \node[draw] (h3) at (2,-1){host3};
-            \node[draw] (h4) at (4,-1){host4};
+            % \node[draw,rounded corners] (hub1) at (2,0){Switch 1};
+            \node[draw] (h3) at (2,-1){h3};
+            \node[draw] (h4) at (4,-1){h4};
         
-            \draw[thick] (h1) -- (-4,0);
-            \draw[thick] (h2) -- (-2,0);
-            \draw[thick] (h3) -- (2,0);
-            \draw[thick] (h4) -- (4,0);
-            \draw[thick] (4,0) -- (router);
-            \draw[thick] (-4,0) -- (router);
+            \draw (h1) -- (-4,0);
+            \draw (h2) -- (-2,0);
+            \draw (h3) -- (2,0);
+            \draw (h4) -- (4,0);
+            \draw[thick] (4.5,0) -- (router);
+            \draw[thick] (-4.5,0) -- (router);
         \end{tikzpicture}
         \caption{\textit{Figure 7.13.} The network topology for the exercises in Section 7.5.}
         \label{fig:7.13}
@@ -221,7 +221,7 @@ netspyd 224.111.111.111 1500 1
     \begin{lstlisting}
 netspy 224.111.111.111 1500
     \end{lstlisting}
-    Start \lstinline{netspy} on \textit{host1} (\textit{h0}, by using:
+    Start \lstinline{netspy} on \textit{h1}, by using:
     \begin{lstlisting}
 netspyd 224.111.111.111 1500 16
     \end{lstlisting}
@@ -230,10 +230,10 @@ netspyd 224.111.111.111 1500 16
     Run \lstinline[language={cisco}]{show ip igmp interface} and \lstinline[language={cisco}]{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
 
     Try if you can \lstinline{ping} a host on the other side of the router.
-    Login to \textit{host1} from \textit{host2} in your group, then logout.
+    Login to \textit{h1} from \textit{h2} in your group, then logout.
     See if the multicast messages sent by \lstinline{netspyd} reach the other side of the router.
 
-    Add \textit{route} for other subnet to your host and try \lstinline{ping} again. Now, login to \textit{host1} from \textit{host2} in your group, then logout.
+    Add \textit{route} for other subnet to your host and try \lstinline{ping} again. Now, login to \textit{h1} from \textit{h2} in your group, then logout.
     
     \begin{report}
     \item Can you ping a host on the other side of the router?
@@ -250,7 +250,7 @@ netspyd 224.111.111.111 1500 16
     Print and save two different IGMP messages.
 
     Repeat the above experiment.
-    Terminate \lstinline{netspy} on \textit{host2} and \textit{host4}.
+    Terminate \lstinline{netspy} on \textit{h2} and \textit{h4}.
     Terminate the \lstinline{tcpdump} programs and analyze the IGMP leave message you captured.
     
     \begin{report}
@@ -275,7 +275,70 @@ ip igmp join-group 224.0.0.2
     For the rest of the exercises in this chapter, the network topology is given in Fig. 7.14. The exercises will be jointly performed by all the students. The IP addresses of the hosts and router interfaces are given in Fig. 7.14.
     \begin{figure}[H]
         \centering
-        \includegraphics[width=0.9\textwidth]{img/figure7-14.png}
+        \begin{tikzpicture}
+            \draw (0,0) node[draw,rounded corners,fill=white] (r1) {Router 1}
+                (r1) -- +(0,1)
+                (r1) -- +(0,-1)
+                +(0,0.5) node {\scriptsize\textit{ethernet1}\quad 62.1/24}
+                +(0,-0.5) node {\scriptsize\textit{ethernet0}\quad 61.1/24}
+            ;
+            \draw (2,1.5) node[draw,rounded corners,fill=white] (r2) {Router 2}
+                (r2) -| +(1,-0.5)
+                (r2) -| +(-1,-0.5)
+                +(1.5,0) node[align=right] {\scriptsize\textit{ethernet1}\\\scriptsize63.2/24}
+                +(-1.5,0) node[align=left] {\scriptsize\textit{ethernet0}\\\scriptsize62.2/24}
+            ;
+            \draw (4,0) node[draw,rounded corners,fill=white] (r3) {Router 3}
+                (r3) -- +(0,1)
+                (r3) -- +(0,-1)
+                +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.3/24}
+                +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 64.3/24}
+            ;
+            \draw (7,0) node[draw,rounded corners,fill=white] (r4) {Router 4}
+                (r4) -- +(0,1)
+                (r4) -- +(0,-1)
+                +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.4/24}
+                +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 65.4/24}
+            ;
+            \draw (-1,-1.5) node[draw,fill=white] (h0) {h0}
+                -- +(0,0.5)
+                +(0,-0.5) node {\scriptsize61.100/24}
+            ;
+            \draw (1,-1.5) node[draw,fill=white] (h1) {h1}
+                -- +(0,0.5)
+                +(0,-0.5) node {\scriptsize61.101/24}
+            ;
+            \draw (-1,1.5) node[draw,fill=white] (h2) {h2}
+                -- +(0,-0.5)
+                +(0,0.5) node {\scriptsize61.102/24}
+            ;
+            \draw (7-1,-1.5) node[draw,fill=white] (h6) {h6}
+                -- +(0,0.5)
+                +(0,-0.5) node {\scriptsize65.100/24}
+            ;
+            \draw (7+1,-1.5) node[draw,fill=white] (h7) {h7}
+                -- +(0,0.5)
+                +(0,-0.5) node {\scriptsize65.101/24}
+            ;
+            \draw (4,-1.5) node[draw,fill=white] (h5) {h5}
+                -- +(0,0.5)
+                +(0,-0.5) node {\scriptsize64.100/24}
+            ;
+            \draw (7-1,1.5) node[draw,fill=white] (h3) {h3}
+                -- +(0,-0.5)
+                +(0,0.5) node {\scriptsize63.100/24}
+            ;
+            \draw (7+1,1.5) node[draw,fill=white] (h4) {h4}
+                -- +(0,-0.5)
+                +(0,0.5) node {\scriptsize63.101/24}
+            ;
+            \draw[thick] (-1.5,-1) -- +(3,0);
+            \draw[thick] (-1.5,1) -- +(3,0);
+            \draw[thick] (4-1.5,1) -- +(6,0);
+            \draw[thick] (4-0.5,-1) -- +(1,0);
+            \draw[thick] (7-1.5,-1) -- +(3,0);
+        \end{tikzpicture}
+        \caption{\textit{Figure 7.14} The network topology for Multicast exercises}
         \label{fig:7.14}
     \end{figure}
 
