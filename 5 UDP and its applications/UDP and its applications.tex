@@ -177,7 +177,7 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     In order to compare the transfer rates of FTP and TFTP, we will retrieve a large file from a remote server using FTP and TFTP, respectively.
 
     First run First run the following \lstinline{tcpdump} command:
-    \begin{lstlisting}
+    \begin{lstlisting}[emph={your-host,remote-host}]
 tcpdump host your-host and remote-host
     \end{lstlisting}
     % Here we use the redirect operator, \lstinline{>}, to save the \lstinline{tcpdump} output into a text file called \path{output1}.
@@ -187,9 +187,9 @@ $ tftp host
 tftp> get $filename # small,med,large
 tftp> quit
 $ ftp host # Enter user and password -> netlab
-tftp> ls
-tftp> get $filename
-tftp> quit
+ftp> ls
+ftp> get $filename
+ftp> quit
     \end{lstlisting}
     % Create \path{small.dum} with 10kB, \path{med.dum} with 1MB and \path{larg.dum} with 50MB.
 

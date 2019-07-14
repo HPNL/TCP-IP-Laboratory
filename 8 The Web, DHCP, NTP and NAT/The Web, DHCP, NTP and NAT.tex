@@ -15,8 +15,8 @@
     Save the output and the configuration file for the lab report.
     
     \begin{report}
-    \item How many apache2 processes were started?
-    Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textit{tree} to see process hierarchy})
+    \item How many \lstinline{apache2} processes were started?
+    Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textbf{tree} to see process hierarchy})
     Justify your answer using the \path{apache2.conf} file.
     
     \item What is the purpose of initiating multiple apache2 processes?
@@ -354,7 +354,7 @@ date -r file-name
     \item How many entries were there in the translation table? Why?
     \end{report}
     
-    \begin{lstlisting}[language={cisco}, caption={NAT Router Configuration in Fig. 8.7}]
+    \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in Fig. 8.7}]
 ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
 ip nat inside source list 8 pool mypool
 
@@ -402,7 +402,7 @@ access-list 8 permit 10.0.0.0 0.0.0.255
 
     Print the ICMP error message for the lab report. 
 
-    Execute \lstinline{show ip nat translations} in the router login window to display the translation table.
+    Execute \lstinline[language=cisco]{show ip nat translations} in the router login window to display the translation table.
     Save the output for the lab report.
 
     Exchange the data you saved with a student in the other subnet.
@@ -460,8 +460,8 @@ access-list 8 permit 10.0.0.0 0.0.0.255
 
     Start \lstinline[emph={your-host, remote-host}]{tcpdump host remote-host} or \lstinline{wireshark} to capture packets from or to a remote host. 
 
-    On the remote host, start the UDP server by \lstinline[emph={server-port}]{UDPserver server-port}.
-    Then, start the UDP client on your host by \lstinline[emph={your-host, remote-host, server-port, a-message}]{UDPclient remote-host server-port a-message}.
+    On the remote host, start the UDP server by \lstinline[emph={server-port}]{./UDPserver server-port}.
+    Then, start the UDP client on your host by \lstinline[emph={your-host, remote-host, server-port, a-message}]{./UDPclient remote-host server-port a-message}.
     You may execute the UDP client program on other hosts to connect to the same UDP server.
 
     Terminate \lstinline{tcpdump}, examine its output and compare the output with the UDP server and client outputs.

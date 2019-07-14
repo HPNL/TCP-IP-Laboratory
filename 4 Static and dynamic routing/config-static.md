@@ -33,6 +33,7 @@ end
 ```
 
 ## R4
+
 ```shell
 config term
 int f0/0

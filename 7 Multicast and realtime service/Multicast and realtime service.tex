@@ -264,7 +264,7 @@ netspyd 224.111.111.111 1500 16
     Login to the router.
     See if you can make a router interface (e.g.\ \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
     \begin{lstlisting}[language={cisco}]
-ip igmp join-group 224.0.0.2
+Router(interface)# ip igmp join-group 224.0.0.2
     \end{lstlisting}
     
     \begin{report}
@@ -396,7 +396,7 @@ ping 224.111.111.111 -t n
     Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using: 
     \footnote{The syntax of this command may be different for different versions of Cisco~IOS. You may use \lstinline[language={cisco}]{?} to get help.}
     \begin{lstlisting}[language={cisco}]    
-ip multicast ttl-threshold 32
+Router(interface)# ip multicast ttl-threshold 32
     \end{lstlisting}
 
     Run the \lstinline{ping} command with $n = 16$ again.

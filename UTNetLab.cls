@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{UTNetLab}
-
+	
 \LoadClass[10pt,a4paper]{article}
 \RequirePackage[OT1,T1,LFE,LAE]{fontenc}
 \RequirePackage[utf8]{inputenc}
@@ -9,7 +9,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{multicol}
 \RequirePackage{graphicx}
-\RequirePackage{geometry}
+\RequirePackage[a4paper, margin=2cm, top=2.5cm, bottom=2.5cm]{geometry}
 \RequirePackage[caption=false]{subfig}
 \RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{float}
@@ -21,7 +21,9 @@
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
 \RequirePackage{caption}
-\RequirePackage{chngcntr}
+% \let\counterwithout\relax
+% \let\counterwithin\relax
+% \RequirePackage{chngcntr}
 \RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref}
 \usetikzlibrary{calc,positioning}
 
@@ -77,10 +79,14 @@
 
     \lstdefinelanguage{bash-ext}{%
       language=bash,
-      morekeywords={
-        grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail,
-        tcpdump, wireshark, arp, arping, ping, iptables, xinetd, date, time, ftp, tftp,
-        sock, socket, sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute, tracepath,
+      keywords=[1]{
+        grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
+        tcpdump, wireshark, arp, arping, ping, iptables, xinetd, date, time, ftp, tftp, htop, ntp,
+        sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
+        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin
+      },
+      morekeywords=[2]{
+        sock, socket, netspy, netspyd, %UDPserver, UDPclient,
         goaccess, webalizer, vlc, firefox,
       },
     }
@@ -93,6 +99,27 @@
     }
     \lstdefinelanguage{cisco}{
         alsoletter={-},
+        keywords = [1]{
+          show, ip, no, config, configuration, int, interface, router,
+          mtrace,mrinfo,mstat,ping,debug,
+          end, exit, aaa, username, access-list, bridge-group,
+        },
+        morekeywords=[2]{
+          igmp, term, terminal,
+          route, network, rip, ospf, irdp, area, database, neighbor, virtual-links,
+          summary,asb-summary,external,database-summary,count,
+          mroute, pim, dvmrp, privilege, password, new-model, authentication, login, default,
+          exec, http, server, secure-server, local, overload, tcp,
+          dense-mode, sparse-mode, dense-sparse-mode, multicast-routing,
+          join-group, group-address, query-interval,groups, deny, permit, host,translations,
+          nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside, shut,
+        },
+        comment=[l]{!},
+        keywordstyle=[2]\color{NavyBlue},
+        commentstyle=\color{purple}\ttfamily,
+        stringstyle=\color{red}\ttfamily,
+        morestring=[b]',
+        morestring=[b]"
     }
     \lstdefinelanguage{HTTP}{
         alsoletter={-},
@@ -137,19 +164,19 @@
     {\LARGE {%
     \vspace{-25pt}
     {\normalsize{}In the name of Allah\\}
-    \normalsize\FR{بسم \allah\  الرحمن الرحيم\par}
+    \normalsize\AR{بسم \allah\  الرحمن الرحيم\par}
     \begin{center}
         % \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
         \begin{minipage}{0.48\textwidth}
             \begin{flushleft}
-                \hspace*{-50pt}
+                \hspace*{-20pt}
                 \includegraphics[height=64pt]{../img/ut}
             \end{flushleft}
         \end{minipage}
         \begin{minipage}{0.48\textwidth}
             \begin{flushright}
                 \includegraphics[height=64pt]{../img/fanni}
-                \hspace*{-60pt}
+                \hspace*{-35pt}
             \end{flushright}
         \end{minipage}
     \end{center}

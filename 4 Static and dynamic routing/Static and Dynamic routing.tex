@@ -86,7 +86,7 @@ ping -sv remote-host
     In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode.
     \begin{lstlisting}[language={cisco}, emph={network-number}]
 Router(config)# router rip
-Router(config)# network network-number
+Router(config-router)# network network-number
     \end{lstlisting}
     where \textit{network-number} could be 128.238.0.0.
     To remove the network, use:
@@ -204,7 +204,7 @@ tcpdump -x -s 100 -c 4 udp port 520
     \end{report}
 
 
-\section{RIP recOver on Link Failure}
+\section{RIP recover on Link Failure}
     In this exercise we will examine how RIP responds to link failures.
     Send \lstinline{ping} message continuously from \textit{h3} to \textit{h4} and start \lstinline{tcpdump} on \textit{h3}.
     Let the two programs run during this exercise.
@@ -246,13 +246,35 @@ tcpdump -x -s 100 -c 4 udp port 520
         \item Compare the original routing table with the new routing table. Explain the meaning of the flags of the new entry.
     \end{report}
 
+\section{Router Discovery}
+    This exercise is on ICMP router discovery.
+    
+    Connect the routers and hosts and change the host IP addresses as shown in Fig. 4.12.
+    
+    Telnet to the routers, change the IP address of the ethernet1 interfaces as shown in Fig. 4.12. Enable ICMP router discovery on these two interfaces by the following
+    
+    \textit{Interface Configuration command:}
+    \begin{lstlisting}[language={cisco}]
+        Router(config-if)# ip irdp.
+    \end{lstlisting}
+    Run \lstinline{tcpdump -enx ip proto 1} on all the hosts except \textit{h0}.
+    The lab instructor should now reboot \textit{h0}.
+    Save the captured route discovery requests and replies for the lab report.
+    \lstinline{Telnet} to \textit{h0}  and save its routing table for the lab report.
+    
+    \begin{report}
+        \item What is the destination IP address of the ICMP router solicitation message? Who sends the ICMP router advertisement message?
+        \item What are the type and code of the ICMP messages captured?
+        \item What are the advertised router IP addresses and their preference levels?
+        \item How many default router entries are there in \textit{h0} routing table? Why?
+    \end{report}
 
 \part{OSPF Exercise}
     In order to enable OSPF in the routers, you need to create an OSPF routing process first.
     Then, define the range of IP addresses to be associated with the routing process and assign area IDs for these IP addresses, using the following commands:
     \begin{lstlisting}[language={cisco}, emph={process-id, area-id, address, wildcard-mask}]
 Router(config)# router ospf process-id
-Router(config)# network address wildcard-mask area area-id
+Router(config-router)# network address wildcard-mask area area-id
     \end{lstlisting}
     
     \textit{process-id} is a numeric value local to the router.
@@ -395,8 +417,8 @@ show ip ospf virtual-links
     See Section 4.3 for commands and syntax on manipulating router routing tables.
     Note that each router should be configured by one person only. 
 
-    \begin{lstlisting}
-ip route
+    \begin{lstlisting}[language={cisco}, emph={network, net-mask, next-hup}]
+ip route network net-mask next-hup
     \end{lstlisting}
 
     Use \lstinline{ping} to test the connections.

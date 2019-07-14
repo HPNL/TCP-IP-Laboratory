@@ -9,8 +9,8 @@
     \begin{enumerate}
         \item Backup the original \lstinline{snmpd} configuration file:
         \lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}.
-        \item Create a simple configuration file \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community guest:
-        \begin{lstlisting}[language={conf}]
+        \item Create a simple configuration file \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community \textbf{guest}:
+        \begin{lstlisting}[language={conf}, emph={guest}]
 rocommunity guest
         \end{lstlisting}
     \end{enumerate}
@@ -32,13 +32,13 @@ rocommunity guest
     \end{report}
 
 \section{SNMP List Objects}
-    Use \lstinline{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
+    Use \lstinline[emph=guest]{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
 
-    Use \lstinline{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
+    Use \lstinline[emph=guest]{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
 
     You may run \lstinline{man snmpwalk} to find out the meanings of the options used in the commands. Compare the outputs with the MIB files you saved in the previous exercise. Also compare the outputs of the first command with that of \lstinline{ifconfig -a}.
 
-    Retry the \lstinline{snmpwalk} commands, but change \lstinline{guest} to \lstinline{public}. Can you display the MIBs this time?
+    Retry the \lstinline{snmpwalk} commands, but change \textbf{guest} to \textbf{public}. Can you display the MIBs this time?
     
     \begin{report}
     \item What is the MTU of the Ethernet interface? What is the MTU of the loopback interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
@@ -115,7 +115,7 @@ rocommunity guest
 
     Append a rule to the end of the \texttt{INPUT} chain, by executing
     \begin{lstlisting}
-iptables -A INPUT -v -p TCP -{}-dport 23 -j DROP
+iptables -A INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
     Run \lstinline{iptables -L -v} again on both hosts to display the filter table. Save the output.
@@ -131,12 +131,12 @@ iptables -A INPUT -v -p TCP -{}-dport 23 -j DROP
 \section{Firewall Action}
     Delete the rule created in the last exercise, by:    
     \begin{lstlisting}
-iptables -D INPUT -v -p TCP -{}-dport 23 -j DROP
+iptables -D INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
     Then, append a new rule to the \texttt{INPUT} chain:    
     \begin{lstlisting}
-iptables -A INPUT -v -p TCP -{}-dport 23 -j REJECT -{}-reject-with tcp-reset
+iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     \end{lstlisting}
     
     Execute \lstinline{iptables -L -v} to display the new rule.
@@ -173,7 +173,7 @@ openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/ser
 
         \begin{itemize}
             \item \lstinline{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
-            \item \lstinline{req}: This specifies a subcommand for X.509 certificate signing request (CSR) management. X.509 is a public key infrastructure standard that SSL adheres to for its key and certificate managment. Since we are wanting to create a new X.509 certificate, this is what we want.
+            \item \lstinline{req}: This specifies a sub-command for X.509 certificate signing request (CSR) management. X.509 is a public key infrastructure standard that SSL adheres to for its key and certificate management. Since we are wanting to create a new X.509 certificate, this is what we want.
             \item \lstinline{-x509}: This option specifies that we want to make a self-signed certificate file instead of generating a certificate request.
             \item \lstinline{-nodes}: This option tells OpenSSL that we do not wish to secure our key file with a passphrase. Having a password protected key file would get in the way of Apache starting automatically as we would have to enter the password every time the service restarts.
             \item \lstinline{-days 365}: This specifies that the certificate we are creating will be valid for one year.
@@ -222,7 +222,7 @@ Email Address []:netlab@ut.ac.ir
     \end{report}
 
 \part{Exercises on Auditing and Intrusion Detection}
-    Start \lstinline{apache2} service and brwose several page in the \textit{Mozilla}. Open random URL that not exist on the web server to generate log for apache. Browse again page as \path{secure http}.
+    Start \lstinline{apache2} service and browse several page in the \textit{Mozilla}. Open random URL that not exist on the web server to generate log for apache. Browse again page as \path{secure http}.
 
 \section{Trace Log}
     Go to \path{log} folder at \path{/var/log/} to examine the log files in your host. If a log (e.g.\ the \textit{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \lstinline[emph={keyword}]{grep keyword access.log} (e.g.\ \texttt{GET}) in the {console} to display those log entries containing the keyword. Enter the keyword \texttt{failed} to display logged failures.

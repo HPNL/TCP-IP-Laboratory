@@ -82,16 +82,18 @@
     Config Cisco Router as transparent Bridge:
     \begin{lstlisting}[language={cisco}]
 config term
-no ip routing
-bridge 1 protocol ieee # for STP protocol
-int f0/0
-ip addr 128.238.61.1 255.255.255.0
-bridge-group 1
-no shut
-int f0/1
-ip addr 128.238.61.2 255.255.255.0
-bridge-group 1
-no shut
+    no ip routing
+    bridge 1 protocol ieee # for STP protocol
+    int f0/0
+        ip addr 128.238.61.1 255.255.255.0
+        bridge-group 1
+        no shut
+        exit
+    int f0/1
+        ip addr 128.238.61.2 255.255.255.0
+        bridge-group 1
+        no shut
+        end
 Ctrl+Z
     \end{lstlisting}
     
