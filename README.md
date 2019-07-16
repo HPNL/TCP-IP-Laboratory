@@ -24,6 +24,8 @@
 
 ## ToDo
 
+* [ ] add quiz sample
+* [ ] add network equipment and device overview
 * [ ] add pre-build projects requirement with IP and hosts map
 * [x] rename hosts
 * [x] replace image with schematic figure
@@ -40,7 +42,6 @@
   * [ ] router discovery
   * [ ] ...
 * [x] config CI/CD (generate _pdf_ to github release)
-* [ ] add references
 
 # Appendix
 
@@ -53,3 +54,4 @@
   * [_Pbench_: a benchmarking and performance analysis framework](https://distributed-system-analysis.github.io/pbench/)
 * [`ipbench`](http://ipbench.sourceforge.net)
 * [`iputils`](https://github.com/iputils/iputils)
+* new lab from [intronetworks](http://intronetworks.cs.luc.edu/)

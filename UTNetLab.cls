@@ -99,22 +99,24 @@
     }
     \lstdefinelanguage{cisco}{
         alsoletter={-},
+        keywords = [0]{no},
         keywords = [1]{
-          show, ip, no, config, configuration, int, interface, router,
-          mtrace,mrinfo,mstat,ping,debug,
+          show, ip, config, configuration, int, interface, router,
+          mtrace,mrinfo,mstat,ping,debug, bridge, shut,
           end, exit, aaa, username, access-list, bridge-group,
         },
         morekeywords=[2]{
-          igmp, term, terminal,
+          igmp, term, terminal, protocol, ieee, addr, routing,
           route, network, rip, ospf, irdp, area, database, neighbor, virtual-links,
-          summary,asb-summary,external,database-summary,count,
+          summary,asb-summary,external,database-summary,count, authorization,
           mroute, pim, dvmrp, privilege, password, new-model, authentication, login, default,
           exec, http, server, secure-server, local, overload, tcp,
           dense-mode, sparse-mode, dense-sparse-mode, multicast-routing,
           join-group, group-address, query-interval,groups, deny, permit, host,translations,
-          nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside, shut,
+          nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside,
         },
         comment=[l]{!},
+        keywordstyle=[0]\color{red},
         keywordstyle=[2]\color{NavyBlue},
         commentstyle=\color{purple}\ttfamily,
         stringstyle=\color{red}\ttfamily,
@@ -163,8 +165,8 @@
   \begin{center}%
     {\LARGE {%
     \vspace{-25pt}
+    \Large\AR{بسم \allah\  الرحمن الرحيم\par}\\
     {\normalsize{}In the name of Allah\\}
-    \normalsize\AR{بسم \allah\  الرحمن الرحيم\par}
     \begin{center}
         % \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
         \begin{minipage}{0.48\textwidth}
@@ -182,7 +184,7 @@
     \end{center}
     \vspace*{-50pt}
     % \horrule{0.5pt} \\[0.4cm]
-    {\huge\bfseries \@title\par}
+  {\huge\bfseries \@title  \footnote{\reference} \par}
     \LARGE\scshape Laboratory Manual\par
     \vspace{20pt}
     % \horrule{2pt} \\[0.5cm]
