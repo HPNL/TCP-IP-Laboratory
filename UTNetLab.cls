@@ -184,7 +184,7 @@
     \end{center}
     \vspace*{-50pt}
     % \horrule{0.5pt} \\[0.4cm]
-  {\huge\bfseries \@title  \footnote{\reference} \par}
+  {\huge\bfseries \@title  \ifdefined\reference \footnote{\reference}\fi \par}
     \LARGE\scshape Laboratory Manual\par
     \vspace{20pt}
     % \horrule{2pt} \\[0.5cm]
