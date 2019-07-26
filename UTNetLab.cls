@@ -59,7 +59,7 @@
     \newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
     \renewcommand{\arraystretch}{1.2}
     \setlength{\parindent}{0pt}
-    \renewcommand{\footnoterule}{%
+    \renewcommand{\footnoterule}{
       \kern -3pt
       \hrule width 0.3\textwidth height 0.3pt
       \kern 2pt
@@ -70,14 +70,14 @@
   \counterwithout{lstlisting}{section}
 
     \definecolor{shadecolor}{rgb}{.9, .9, .9}
-    \newenvironment{grayverbatim}%
-       {\snugshade\verbatim}%
+    \newenvironment{grayverbatim}
+       {\snugshade\verbatim}
        {\endverbatim\endsnugshade}
 
     % \setmonofont{Courier New}
     \tolerance=5000
 
-    \lstdefinelanguage{bash-ext}{%
+    \lstdefinelanguage{bash-ext}{
       language=bash,
       keywords=[1]{
         grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
@@ -155,15 +155,15 @@
     \maketitle
 }
 
-\newcommand{\maketitlepage}{%
-  \begin{titlepage}%
+\newcommand{\maketitlepage}{
+  \begin{titlepage}
   \let\footnotesize\small
   \let\footnoterule\relax
   \let \footnote \thanks
   \null\vfil
   % \vskip 60\p@
-  \begin{center}%
-    {\LARGE {%
+  \begin{center}
+    {\LARGE {
     \vspace{-25pt}
     \Large\AR{بسم \allah\  الرحمن الرحيم\par}\\
     {\normalsize{}In the name of Allah\\}
@@ -188,34 +188,34 @@
     \LARGE\scshape Laboratory Manual\par
     \vspace{20pt}
     % \horrule{2pt} \\[0.5cm]
-    } \par}%
-    \vskip 3em%
+    } \par}
+    \vskip 3em
     {\large
-     \lineskip .75em%
+     \lineskip .75em
         {
           {\Large University of Tehran\\}
           {\large School of Electrical and Computer Engineering\par}
-          \vskip 1.5em%
+          \vskip 1.5em
           {\Large\FR{دانشگاه تهران}\\}
           \FR{دانشکده‌ی مهندسی برق و کامپیوتر\par}
-          \vskip 3em%
+          \vskip 3em
           {\Large\bfseries Computer Network Lab\\}
           \bfseries\FR{آزمایشگاه شبکه‌های کامپیوتری\par}
-          \vskip 1.5em%
+          \vskip 1.5em
           \normalfont
           \normalsize
-          \begin{tabular}[t]{c}%
+          \begin{tabular}[t]{c}
           \@author
           \end{tabular}
         }
-      \par}%
-      \vskip 3em%
-    {\small \@date \par}%
+      \par}
+      \vskip 3em
+    {\small \@date \par}
   \end{center}\par
   \@thanks
   \vfil\null
-  \end{titlepage}%
-  \setcounter{footnote}{0}%
+  \end{titlepage}
+  \setcounter{footnote}{0}
   \global\let\thanks\relax
   \global\let\maketitle\relax
   \global\let\@thanks\@empty
@@ -236,7 +236,7 @@
 
 \date{\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}
 \authorshort{A. Khonsari, A. HajiAliKhamseh'i, M. Borhani, A. Khordadi, S. Kashipazha, H. Safari}
-\author{%
+\author{
     Dr. Ahmad Khonsari\\
     \FR{دکتر احمد خونساری}\\
     \mail{a\_khonsari@ut.ac.ir}

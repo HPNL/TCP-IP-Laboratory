@@ -1,0 +1,58 @@
+\documentclass{../UTNetLabFa}
+
+\title{کلیات شبکه و پشته‌ی \textLR{TCP-IP}}
+
+\begin{document}	
+%	\tableofcontents
+%	\newpage
+
+\part{ابتدایی}
+    \section{اینترنت}
+    اینترنت یک سیستم جهانی است که از اتصال میلیون ها کامپیوتر در سراسر جهان ساخته شده است.
+\subsection{تنظیمات مسیریاب}
+    برای تنظیم کردن مسیریاب از دستورات زیر استفاده کنید:
+
+    \begin{figure}[h]
+    	\centering
+        {\selectlanguage{english}\includegraphics[height=64pt]{../img/fanni}}
+    \end{figure}
+
+{
+    \selectlanguage{english}
+    Router configuration:
+        \begin{lstlisting}[language={cisco}]
+config term
+    no ip routing
+    bridge 1 protocol ieee # for STP protocol
+    int f0/0
+        ip addr 128.238.61.1 255.255.255.0
+        bridge-group 1
+        no shut
+        exit
+    int f0/1
+        ip addr 128.238.61.2 255.255.255.0
+        bridge-group 1
+        no shut
+        end
+    Ctrl+Z
+    \end{lstlisting}
+}
+
+\begin{otherlanguage}{english}
+	\section{English Section}
+	This is a english section.
+\end{otherlanguage}
+
+\section{ادوات شبکه}
+در این بخش توضیحاتی در رابطه با ادوات شبکه قرار می‌گیرد.
+\subsection{سیمی}
+انواع ارتباطات سیمی
+
+\subsection{بی سیم}
+	اتصلاتی همانند \textLR{WiFi} و \textLR{Bluetooth}.
+\subsection{نوری}
+\begin{report}
+\item نمونه گزارش
+\end{report}
+
+\end{document}
