@@ -234,9 +234,9 @@
 \newenvironment{report}[1][]{\subsection*{گزارش}#1\begin{itemize}}{\end{itemize}}
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
-\date{\today \\ \vspace{10pt} \textLR{\selectlanguage{english}\today}}
+\date{\hspace*{-1em}\today \\ \vspace{10pt} \textLR{\selectlanguage{english}\today}}
 \authorshort{\textLR{A. Khonsari, A. HajiAliKhamseh'i, M. Borhani, A. Khordadi, S. Kashipazha, H. Safari}}
-\author{
+\author{\hspace*{1em}
 	\FR{دکتر احمد خونساری}\\
 	\textLR{Dr. Ahmad Khonsari}\\
 	\mail{a\_khonsari@ut.ac.ir}
