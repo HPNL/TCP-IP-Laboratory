@@ -4,7 +4,7 @@
 \LoadClass[10pt,a4paper]{article}
 \RequirePackage{arabtex}
 \RequirePackage[OT1,T1,LFE,LAE]{fontenc}
-\RequirePackage[free]{FRfonts}
+\RequirePackage[free]{frfonts}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[arabic,english,farsi]{babel}
 \RequirePackage{amsmath,amsfonts}
