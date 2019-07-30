@@ -30,6 +30,7 @@
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessKeyvalOptions*
 
+\definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
 \makeatletter
 
 \AtBeginDocument{
@@ -81,9 +82,9 @@
       language=bash,
       keywords=[1]{
         grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
-        tcpdump, wireshark, arp, arping, ping, iptables, xinetd, date, time, ftp, tftp, htop, ntp,
+        tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
         sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
-        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin
+        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill,
       },
       morekeywords=[2]{
         sock, socket, netspy, netspyd, %UDPserver, UDPclient,
@@ -128,6 +129,9 @@
         alsoother={@},
     }
     \lstset{
+    	backgroundcolor = \color{magnolia},
+    	xleftmargin = 2cm,
+    	framexleftmargin = 1em,
         language=bash-ext,
         alsoletter={-},
         columns=flexible,
@@ -231,7 +235,8 @@
 \renewcommand{\maketitle}{\maketitlepage}
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
 \newcommand{\mail}[1]{\href{mailto:#1?subject=[CNL]\%20}{\ttfamily #1}}
-\newenvironment{report}[1][]{\subsection*{Report}#1\begin{itemize}}{\end{itemize}}
+\newenvironment{report}[1][]{\subsection*{Report}#1\begin{enumerate}}{\end{enumerate}}
+\newenvironment{question}[1][]{\subsection*{Question}#1\begin{itemize}}{\end{itemize}}
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
 \date{\today\\\vspace{10pt}{\selectlanguage{farsi}\today}}

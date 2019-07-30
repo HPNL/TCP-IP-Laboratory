@@ -34,8 +34,9 @@
 * [ ] remap IP hosts to simplest network domain
 * [ ] split and revise report
 * [ ] revise section titles and captions
-* [ ] revise links and references to section titles and captions
-* [ ] add reference to book (commands & ...)
+* [?] revise links and references to section titles and captions
+* [X] add reference to book (commands & ...)
+* [ ] add api to transfer file to host
 * [ ] update network tools
   * [ ] base linux
   * [ ] `socket` with `netcat`
