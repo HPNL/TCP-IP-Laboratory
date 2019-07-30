@@ -166,8 +166,8 @@ arp -d remote-host
 
     Set IP of each network by running the following command in the hosts:
     \begin{enumerate}
-        \item \lstinline[emph={x.x.x.x}]{ifconfig eth0 x.x.x.x/mask}
-        \item \lstinline[emph={x.x.x.x}]{route add default gw x.x.x.x}
+        \item \lstinline[emph={x}]{ifconfig eth0 x.x.x.x/mask}
+        \item \lstinline[emph={x}]{route add default gw x.x.x.x}
     \end{enumerate}
     Next we will enable the proxy ARP function on the ethernet1 interface of \textit{Router4}.
     \begin{enumerate}
@@ -175,16 +175,15 @@ arp -d remote-host
         \item Log in to the router, type \lstinline[language={cisco}]{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter~3.}
         \item Enter the \textit{Global Configuration} mode by typing \lstinline[language={cisco}]{config term}.
         \item Then type the following lines for each interfaces:
-        \begin{itemize}
-            \item \lstinline[language={cisco}]{interface f0/0 # f0/1 for another}\footnote{The name of the router interfaces may be different for various routers.
-            You can find the names by typing \lstinline[language={cisco}]{write term} in the \textit{Privilege EXEC} mode.}
-            \item \lstinline[language={cisco}]{ip addr x.x.x.x 255.255.255.0}
-            \item \lstinline[language={cisco}]{no shut}
-            \item \lstinline[language={cisco}]{ip proxy-arp}
-            \item \texttt{Ctrl-Z}
-            \item \lstinline[language={cisco}]{wr}
-        \end{itemize}
-        % \item Type \lstinline[language={cisco}]{exit} to terminate the \lstinline{telnet} session.
+        \begin{lstlisting}[language={cisco}, escapechar={@}, emph={x}]
+interface f0/0 ! use f0/1 for the other interface@\footnote{The name of the router interfaces may be different for various routers. You can find the names by typing \texttt{write term} in the \textit{Privilege EXEC} mode.}@
+ip addr x.x.x.x 255.255.255.0
+no shut
+ip proxy-arp
+Ctrl-Z
+wr
+exit
+        \end{lstlisting}
     \end{enumerate}
     
     Now \textit{Router4}’s \textit{ethernet1} interface can perform proxy ARP for the hosts in the 128.238.64.0 subnet.
