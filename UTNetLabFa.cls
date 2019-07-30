@@ -2,18 +2,18 @@
 \ProvidesClass{UTNetLabFa}
 	
 \LoadClass[10pt,a4paper]{article}
-\RequirePackage{arabtex}
 \RequirePackage[OT1,T1,LFE,LAE]{fontenc}
 \RequirePackage[free]{frfonts}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[arabic,english,farsi]{babel}
+\RequirePackage[dvipsnames]{xcolor}
+% \RequirePackage{hyperref} % have bug with arabi package in referencing
 \RequirePackage{amsmath,amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{multicol}
 \RequirePackage{graphicx}
 \RequirePackage[a4paper, margin=2cm, top=2.5cm, bottom=2.5cm]{geometry}
 \RequirePackage[caption=false]{subfig}
-\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{float}
 \RequirePackage{sidecap}
 \RequirePackage{textcomp}
@@ -22,15 +22,12 @@
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
-\RequirePackage{caption}
-% \let\counterwithout\relax
-% \let\counterwithin\relax
-% \RequirePackage{chngcntr}
-\RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref}
+
 \usetikzlibrary{calc,positioning}
 
-\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
-\ProcessKeyvalOptions*
+% \hypersetup{colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan}
+% \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
+% \ProcessKeyvalOptions*
 
 \makeatletter
 
@@ -40,7 +37,7 @@
 	\let\thedate\@date
 	
 	% \hypersetup{pdftitle={آزمایشگاه شبکه‌های کامپیوتری :: \thetitle}}
-	\hypersetup{pdfauthor=\theauthorshort}
+	% \hypersetup{pdfauthor=\theauthorshort}
 	
 	\renewcommand{\lstlistingname}{کد}
 	\renewcommand{\lstlistlistingname}{فهرست \lstlistingname ها}
@@ -171,7 +168,7 @@
 			\LARGE
 			{
 				\vspace{-35pt}
-				\Large\AR{بسم \allah\  الرحمن الرحيم}\par
+				\Large\AR{\textmash{بسم \allah\  الرحمن الرحيم}}\par
 				{\normalsize\textLR{In the name of Allah}}
 				\vspace{30pt}
 				\begin{center}
@@ -230,13 +227,13 @@
 
 \renewcommand{\maketitle}{\maketitlepage}
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
-\newcommand{\mail}[1]{\href{mailto:#1?subject=[CNL]\%20}{\ttfamily \textLR{#1}}}
+\newcommand{\mail}[1]{{\color{Cyan}\ttfamily \textLR{#1}}}%\href{mailto:#1?subject=[CNL]\%20}
 \newenvironment{report}[1][]{\subsection*{گزارش}#1\begin{itemize}}{\end{itemize}}
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
-\date{\hspace*{-1em}\today \\ \vspace{10pt} \textLR{\selectlanguage{english}\today}}
+\date{\today \\ \vspace{10pt} {\selectlanguage{english}\today}}
 \authorshort{\textLR{A. Khonsari, A. HajiAliKhamseh'i, M. Borhani, A. Khordadi, S. Kashipazha, H. Safari}}
-\author{\hspace*{1em}
+\author{
 	\FR{دکتر احمد خونساری}\\
 	\textLR{Dr. Ahmad Khonsari}\\
 	\mail{a\_khonsari@ut.ac.ir}
