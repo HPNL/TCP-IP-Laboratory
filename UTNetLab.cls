@@ -44,6 +44,8 @@
     \renewcommand{\lstlistingname}{Code}
     \renewcommand{\lstlistlistingname}{List of \lstlistingname s}
 
+    \counterwithout{lstlisting}{section}
+
     \numberwithin{equation}{section}
     \numberwithin{figure}{section}
     \numberwithin{table}{section}
@@ -129,9 +131,14 @@
         alsoother={@},
     }
     \lstset{
-    	backgroundcolor = \color{magnolia},
-    	xleftmargin = 2cm,
-    	framexleftmargin = 1em,
+        backgroundcolor = \color{magnolia},
+        % frame = single,
+        frame = l,
+        frameround=tttt,
+        framesep = 4pt,
+        breaklines=true,
+        xleftmargin  = 0.7cm,
+        xrightmargin = 0.5cm,
         language=bash-ext,
         alsoletter={-},
         columns=flexible,

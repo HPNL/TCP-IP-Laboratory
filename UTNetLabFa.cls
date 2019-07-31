@@ -22,12 +22,28 @@
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
+\usepackage{array}
+
+\newsavebox{\RTLbox}
+\newcolumntype{R}{>{\begin{lrbox}{\RTLbox}}r<{\end{lrbox}\AR{\unhbox\RTLbox}}}
+\newcolumntype{L}{>{\begin{lrbox}{\RTLbox}}l<{\end{lrbox}\AR{\unhbox\RTLbox}}}
+\newcolumntype{C}{>{\begin{lrbox}{\RTLbox}}c<{\end{lrbox}\AR{\unhbox\RTLbox}}}
+
+\newcommand{\LR}{\textLR}
+\newcommand{\EN}{\textLR}
+\newcommand{\en}{\textLR}
+\newcommand{\RL}{\textRL}
+\newcommand{\FA}{\FR}
+% \newcommand{\fa}{\FR}
+
 
 \usetikzlibrary{calc,positioning}
 
 % \hypersetup{colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan}
 % \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
 % \ProcessKeyvalOptions*
+
+\definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
 
 \makeatletter
 
@@ -39,8 +55,10 @@
 	% \hypersetup{pdftitle={آزمایشگاه شبکه‌های کامپیوتری :: \thetitle}}
 	% \hypersetup{pdfauthor=\theauthorshort}
 	
-	\renewcommand{\lstlistingname}{کد}
+	\renewcommand{\lstlistingname}{\FR{کد}}
 	\renewcommand{\lstlistlistingname}{فهرست \lstlistingname ها}
+
+	\counterwithout{lstlisting}{section}
 	
 	\numberwithin{equation}{section}
 	\numberwithin{figure}{section}
@@ -80,9 +98,9 @@
 		language=bash,
 		keywords=[1]{
 			grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
-			tcpdump, wireshark, arp, arping, ping, iptables, xinetd, date, time, ftp, tftp, htop, ntp,
+			tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
 			sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
-			a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin
+			a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill,
 		},
 		morekeywords=[2]{
 			sock, socket, netspy, netspyd, %UDPserver, UDPclient,
@@ -114,7 +132,7 @@
 			join-group, group-address, query-interval,groups, deny, permit, host,translations,
 			nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside,
 		},
-		comment=[l]{!},
+		comment=[l]{!}, %\#
 		keywordstyle=[0]\color{red},
 		keywordstyle=[2]\color{NavyBlue},
 		commentstyle=\color{purple}\ttfamily,
@@ -127,6 +145,14 @@
 		alsoother={@},
 	}
 	\lstset{
+		backgroundcolor = \color{magnolia},
+		% frame = single,
+		frame = l,
+		frameround=tttt,
+		framesep = 4pt,
+		breaklines=true,
+		xleftmargin  = 0.7cm,
+		xrightmargin = 0.5cm,
 		language=bash-ext,
 		alsoletter={-},
 		columns=flexible,
@@ -228,7 +254,8 @@
 \renewcommand{\maketitle}{\maketitlepage}
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
 \newcommand{\mail}[1]{{\color{Cyan}\ttfamily \textLR{#1}}}%\href{mailto:#1?subject=[CNL]\%20}
-\newenvironment{report}[1][]{\subsection*{گزارش}#1\begin{itemize}}{\end{itemize}}
+\newenvironment{report}[1][]{\subsection*{گزارش}#1\begin{enumerate}}{\end{enumerate}}
+\newenvironment{question}[1][]{\subsection*{پرسش}#1\begin{itemize}}{\end{itemize}}
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
 \date{\today \\ \vspace{10pt} {\selectlanguage{english}\today}}

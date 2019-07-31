@@ -2,48 +2,59 @@
 
 \title{کلیات شبکه و پشته‌ی \textLR{TCP-IP}}
 
-\begin{document}	
-%	\tableofcontents
-%	\newpage
 
-\part{ابتدایی}
+\begin{document}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings
+%\listofcodes
+\pagebreak
+
+\part{تعاریف}
+\section{شبکه}
     \section{اینترنت}
     اینترنت یک سیستم جهانی است که از اتصال میلیون ها کامپیوتر در سراسر جهان ساخته شده است.
-\subsection{تنظیمات مسیریاب}
+
     برای تنظیم کردن مسیریاب از دستورات زیر استفاده کنید:
 
     \begin{figure}[h]
     	\centering
         {\selectlanguage{english}\includegraphics[height=64pt]{../img/fanni}}
+        \caption{\FR{تصویر دانشکده‌ی فنی - دانشگاه تهران}}
+        \label{fig:fanni}
     \end{figure}
 
-{
-    \selectlanguage{english}
-    Router configuration:
-        \begin{lstlisting}[language={cisco}]
-config term
-    no ip routing
-    bridge 1 protocol ieee # for STP protocol
-    int f0/0
-        ip addr 128.238.61.1 255.255.255.0
-        bridge-group 1
-        no shut
-        exit
-    int f0/1
-        ip addr 128.238.61.2 255.255.255.0
-        bridge-group 1
-        no shut
-        end
-    Ctrl+Z
-    \end{lstlisting}
-}
+\subsection{فونت‌ها}
+نمونه فونت‌های قابل استفاده:
+\begin{table}[h]
+	\label{tbl:farsi-fonts}
+	\caption{جدول فونت های موجود}
+	\centering
+	\begin{tabular}{|l|l||R|R|}
+		\hline
+		\bfseries \LR{Font name}  & \bfseries\en{Command} & \bfseries نام & \bfseries    نمونه متن \\ \hline\hline
+		\en{Nazli}      & \en{\textbackslash{}textnazli}  &      نازلی &  \textnazli{یک متن نمونه از فونت} \\ \hline
+		\en{Nazli Bold} & \en{\textbackslash{}textnazlib} & نازلی درشت & \textnazlib{یک متن نمونه از فونت} \\ \hline
+		\en{Titr Bold}  & \en{\textbackslash{}texttitr}   &       تیتر &   \texttitr{یک متن نمونه از فونت} \\ \hline
+		\en{Homa}       & \en{\textbackslash{}texthoma}   &        هما &   \texthoma{یک متن نمونه از فونت} \\ \hline
+	\end{tabular}
+\end{table}
+
+
 
 \begin{otherlanguage}{english}
 	\section{English Section}
-	This is a english section.
+	This is a english section.%\footnote{\en{sample footnote}}
+%	\subsection{English subsection}
+	Subsection text.
+%	\subsubsection{English SubSubSection}
+	Subsubsection text.
 \end{otherlanguage}
 
-\section{ادوات شبکه}
+\part{ادوات شبکه}
+\section{کابل‌ها}
 در این بخش توضیحاتی در رابطه با ادوات شبکه قرار می‌گیرد.
 \subsection{سیمی}
 انواع ارتباطات سیمی
@@ -51,8 +62,45 @@ config term
 \subsection{بی سیم}
 	اتصالاتی همانند \textLR{WiFi} و \textLR{Bluetooth}.
 \subsection{نوری}
+    اتصالات فیبر نوری به علت نویز کمتر در مسیر، امکان ارسال به مسیرهای دور را با سرعت بالا و خطای کم را فراهم می‌کنند.
+\begin{question}
+    \item متن سوال
+\end{question}
+
 \begin{report}
-\item نمونه گزارش
+	\item نمونه گزارش
 \end{report}
+
+\section{دستگاه‌ها}
+
+\subsection{هاب}
+\subsection{سوئیچ}
+\subsection{مسیریاب}
+\subsubsection{تنظیمات مسیریاب}
+{
+	\selectlanguage{english}
+\begin{lstlisting}[language=cisco,caption=\FR{تنظیمات مسیریاب}]
+config term
+	no ip routing
+	bridge 1 protocol ieee ! for STP protocol
+	int f0/0
+		ip addr 128.238.61.1 255.255.255.0
+		bridge-group 1
+		no shut
+		exit
+	int f0/1
+		ip addr 128.238.61.2 255.255.255.0
+		bridge-group 1
+		no shut
+		end
+	Ctrl+Z
+\end{lstlisting}
+}
+\subsection{سوئیچ های نسل جدید}
+\subsubsection{کنترل کننده}
+\subsection{پایشگر (\en{FireWall})}
+
+\part{شبیه سازی}
+
 
 \end{document}
