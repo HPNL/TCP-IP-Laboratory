@@ -123,7 +123,7 @@
 			end, exit, aaa, username, access-list, bridge-group,
 		},
 		morekeywords=[2]{
-			igmp, term, terminal, protocol, ieee, addr, routing,
+			igmp, term, terminal, protocol, ieee, addr, routing, ttl-threshold,
 			route, network, rip, ospf, irdp, area, database, neighbor, virtual-links,
 			summary,asb-summary,external,database-summary,count, authorization,
 			mroute, pim, dvmrp, privilege, password, new-model, authentication, login, default,

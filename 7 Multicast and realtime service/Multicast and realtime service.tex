@@ -443,27 +443,27 @@ Router(interface)# ip multicast ttl-threshold 32
     The \lstinline[language={cisco}]{no} form of this command cancels the group membership.
     \begin{subappendices}
 \subsection{Configuring IGMP}
-    \begin{lstlisting}[language={cisco}, emph={new-value-in-seconds}]
-ip igmp join-group group-address
-no ip igmp join-group group-address
-ip igmp query-interval new-value-in-seconds
-no ip igmp query-interval
-show ip igmp groups  # Displays the multicast groups in the attached networks.
-show ip igmp interface  # Displays multicast related information on a router interface.
-debug ip igmp  # Displays IGMP packets received and transmitted.
+    \begin{lstlisting}[language={cisco}, emph={group-address, new-value-in-seconds}]
+    ip igmp join-group group-address
+    no ip igmp join-group group-address
+    ip igmp query-interval new-value-in-seconds
+    no ip igmp query-interval
+show ip igmp groups     ! Displays the multicast groups in the attached networks.
+show ip igmp interface  ! Displays multicast related information on a router interface.
+debug ip igmp           ! Displays IGMP packets received and transmitted.
     \end{lstlisting}
 
 \subsection{Configuring Multicast Routing}
     \begin{lstlisting}[language={cisco}]
-ip multicast-routing
-no ip multicast-routing
-ip pim [dense-mode | sparse-mode | dense-sparse-mode].
-show ip mroute  # Displays the multicast routing table.
-show ip mroute summary  # Displays a one-line summary for each entry in the multicast routing table.
-show ip mroute count  # Displays multicast statistics.
-show ip dvmrp route  # Displays the DVMRP routing table.
-show ip pim neighbor  # Lists PIM neighbors discovered by the router.
-show ip pim interface  # Displays router interface configurations.
+    ip multicast-routing
+    no ip multicast-routing
+    ip pim [dense-mode | sparse-mode | dense-sparse-mode].
+show ip mroute          ! Displays the multicast routing table.
+show ip mroute summary  ! Displays a one-line summary for each entry in the multicast routing table.
+show ip mroute count    ! Displays multicast statistics.
+show ip dvmrp route     ! Displays the DVMRP routing table.
+show ip pim neighbor    ! Lists PIM neighbors discovered by the router.
+show ip pim interface   ! Displays router interface configurations.
     \end{lstlisting}
 
 \subsection{Cisco~IOS Multicast Diagnostic Tools}

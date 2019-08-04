@@ -176,13 +176,12 @@ arp -d remote-host
         \item Enter the \textit{Global Configuration} mode by typing \lstinline[language={cisco}]{config term}.
         \item Then type the following lines for each interfaces:
         \begin{lstlisting}[language={cisco}, escapechar={@}, emph={x}]
-interface f0/0 ! use f0/1 for the other interface@\footnote{The name of the router interfaces may be different for various routers. You can find the names by typing \texttt{write term} in the \textit{Privilege EXEC} mode.}@
-ip addr x.x.x.x 255.255.255.0
-no shut
-ip proxy-arp
-Ctrl-Z
+    interface f0/0 ! use f0/1 for the other interface@\footnote{The name of the router interfaces may be different for various routers. You can find the names by typing \texttt{write term} in the \textit{Privilege EXEC} mode.}@
+        ip addr x.x.x.x 255.255.255.0
+        no shut
+        ip proxy-arp
+        Ctrl-Z
 wr
-exit
         \end{lstlisting}
     \end{enumerate}
     

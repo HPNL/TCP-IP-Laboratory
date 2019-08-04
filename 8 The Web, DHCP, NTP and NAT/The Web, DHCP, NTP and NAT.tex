@@ -359,23 +359,22 @@ date -r file-name
     \end{report}
     
     \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in Fig. 8.7}]
-ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
-ip nat inside source list 8 pool mypool
+    ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
+    ip nat inside source list 8 pool mypool
+    ip nat inside source static 10.0.0.7 128.238.61.104
 
-ip nat inside source static 10.0.0.7 128.238.61.104
+    interface ethernet 0
+        ip address 128.238.61.1 255.255.255.0
+        no shut
+        ip nat outside
 
-interface ethernet 0
-ip address 128.238.61.1 255.255.255.0
-no shut
-ip nat outside
+    interface ethernet 1
+        ip address 10.0.0.1 255.0.0.0
+        no shut
+        ip nat inside
 
-interface ethernet 1
-ip address 10.0.0.1 255.0.0.0
-no shut
-ip nat inside
-
-access-list 8 deny host 10.0.0.7
-access-list 8 permit 10.0.0.0 0.0.0.255
+    access-list 8 deny host 10.0.0.7
+    access-list 8 permit 10.0.0.0 0.0.0.255
     \end{lstlisting}
 
 \section{NAT Visibility}
@@ -439,22 +438,23 @@ access-list 8 permit 10.0.0.0 0.0.0.255
     \end{report}
 
     \begin{lstlisting}[language={cisco}, caption={PAT Router Configuration in Fig. 8.7}]
-ip nat inside source list 8 interface ethernet 0 overload
+    ip nat inside source list 8 interface ethernet 0 overload
+    ip nat inside source static tcp 10.0.0.7 80 128.238.61.1 80
 
-ip nat inside source static tcp 10.0.0.7 80 128.238.61.1 80
+    interface ethernet 0
+        ip address 128.238.61.1 255.255.255.0
+        no shut
+        ip nat outside
+        exit
 
-interface ethernet 0
-ip address 128.238.61.1 255.255.255.0
-no shut
-ip nat outside
+    interface ethernet 1
+        ip address 10.0.0.1 255.0.0.0
+        no shut
+        ip nat inside
+        exit
 
-interface ethernet 1
-ip address 10.0.0.1 255.0.0.0
-no shut
-ip nat inside
-
-access-list 8 deny host 10.0.0.7
-access-list 8 permit 10.0.0.0 0.0.0.255
+    access-list 8 deny host 10.0.0.7
+    access-list 8 permit 10.0.0.0 0.0.0.255
     \end{lstlisting}
 
 \part{Socket Programming Exercises}
