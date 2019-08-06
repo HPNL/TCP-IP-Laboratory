@@ -7,7 +7,7 @@
 
 \begin{document}
 \part{Exercises on Cisco~IOS}
-    Each group in the lab uses two workstations, a bridge, and two hubs, which are required to be connected as shown in Fig. 3.7, Table 3.2 and Table 3.3.
+    Each group in the lab need two workstations, a bridge, and two hubs, which are required to be connected as shown in Fig. 3.7, Table 3.2 and Table 3.3.
 
 \section{Network Setup}
     In this exercise we build the connection to the router.
@@ -296,6 +296,7 @@ Ctrl+Z
     You can also configure a router using the web browser UI. To enable the web server, login to the router and config as below  in the \textit{Global Configuration} mode. 
 
     \begin{lstlisting}[language={cisco},emph={netlab}]
+R1# config term
 R1(config)# aaa new-model
 R1(config)# aaa authentication login default local
 R1(config)# aaa authorization exec default local
@@ -305,6 +306,6 @@ R1(config)# ip http secure-server
 R1(config)# ip http authentication local
     \end{lstlisting}
     
-    Next, start a web browser (e.g.\ \textit{Mozilla} in Linux, or \textit{Hotjava} in Solaris) in your host, and enter the IP address of the router interface. When prompted, enter \texttt{netlab} for user name and password. Then you can browse the router configuration web pages and configure the router there.
+    Next, start a web browser (e.g.\ \textit{Mozilla} in Linux) in your host, and enter the IP address of the router interface. When prompted, enter \texttt{netlab} for user name and password. Then you can browse the router configuration web pages and configure the router there.
 
 \end{document}
