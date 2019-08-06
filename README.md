@@ -44,6 +44,7 @@
   * [ ] router discovery
   * [ ] ...
 * [x] config CI/CD (generate _pdf_ to github release)
+* [ ] gratuitous ARP in section 2.7
 
 # Appendix
 
