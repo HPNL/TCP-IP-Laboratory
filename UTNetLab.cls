@@ -16,14 +16,13 @@
 \RequirePackage{sidecap}
 \RequirePackage{textcomp}
 \RequirePackage{listings}
+\RequirePackage{realboxes}
+\RequirePackage{xpatch}
 \RequirePackage{fancyhdr}
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
 \RequirePackage{caption}
-% \let\counterwithout\relax
-% \let\counterwithin\relax
-% \RequirePackage{chngcntr}
 \RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref}
 \usetikzlibrary{calc,positioning}
 
@@ -31,6 +30,8 @@
 \ProcessKeyvalOptions*
 
 \definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
+\definecolor{magnolia1}{rgb}{0.98, 0.97, 1.0}
+
 \makeatletter
 
 \AtBeginDocument{
@@ -86,11 +87,11 @@
         grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
         tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
         sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
-        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill,
+        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket,
+        goaccess, webalizer, vlc, firefox,
       },
       morekeywords=[2]{
-        sock, socket, netspy, netspyd, %UDPserver, UDPclient,
-        goaccess, webalizer, vlc, firefox,
+        netspy, netspyd, %UDPserver, UDPclient,
       },
     }
     \lstdefinelanguage{generic}{
@@ -132,8 +133,8 @@
     }
     \lstset{
         backgroundcolor = \color{magnolia},
-        % frame = single,
-        frame = l,
+        frame = single,
+        % frame = l,
         frameround=tttt,
         framesep = 4pt,
         breaklines=true,
@@ -161,10 +162,11 @@
         fontadjust=true,
         upquote=true,
     }
-
+    
     \selectlanguage{english}
     \maketitle
-}
+  }
+\xpretocmd\lstinline{\Colorbox{magnolia1}\bgroup\appto\lst@DeInit{\egroup}}{}{}
 
 \newcommand{\maketitlepage}{
   \begin{titlepage}

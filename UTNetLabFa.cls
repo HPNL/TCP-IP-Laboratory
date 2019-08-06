@@ -18,6 +18,8 @@
 \RequirePackage{sidecap}
 \RequirePackage{textcomp}
 \RequirePackage{listings}
+\RequirePackage{realboxes}
+\RequirePackage{xpatch}
 \RequirePackage{fancyhdr}
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
@@ -35,7 +37,6 @@
 \newcommand{\RL}{\textRL}
 \newcommand{\FA}{\FR}
 % \newcommand{\fa}{\FR}
-
 
 \usetikzlibrary{calc,positioning}
 
@@ -100,11 +101,11 @@
 			grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
 			tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
 			sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
-			a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill,
+			a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket,
+			goaccess, webalizer, vlc, firefox,
 		},
 		morekeywords=[2]{
-			sock, socket, netspy, netspyd, %UDPserver, UDPclient,
-			goaccess, webalizer, vlc, firefox,
+			netspy, netspyd, %UDPserver, UDPclient,
 		},
 	}
 	\lstdefinelanguage{generic}{
@@ -146,8 +147,8 @@
 	}
 	\lstset{
 		backgroundcolor = \color{magnolia},
-		% frame = single,
-		frame = l,
+		frame = single,
+		% frame = l,
 		frameround=tttt,
 		framesep = 4pt,
 		breaklines=true,
@@ -182,6 +183,8 @@
 	\makeatother
 	\newpage
 }
+
+\xpretocmd\lstinline{\Colorbox{magnolia1}\bgroup\appto\lst@DeInit{\egroup}}{}{}
 
 \newcommand{\maketitlepage}{
 	\begin{titlepage}
