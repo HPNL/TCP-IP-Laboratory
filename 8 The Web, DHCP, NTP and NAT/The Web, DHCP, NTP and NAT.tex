@@ -359,6 +359,7 @@ date -r file-name
     \end{report}
     
     \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in Fig. 8.7}]
+config term
     ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
     ip nat inside source list 8 pool mypool
     ip nat inside source static 10.0.0.7 128.238.61.104
@@ -438,6 +439,7 @@ date -r file-name
     \end{report}
 
     \begin{lstlisting}[language={cisco}, caption={PAT Router Configuration in Fig. 8.7}]
+config term
     ip nat inside source list 8 interface ethernet 0 overload
     ip nat inside source static tcp 10.0.0.7 80 128.238.61.1 80
 
