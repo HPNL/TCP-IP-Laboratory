@@ -45,6 +45,9 @@
   * [ ] ...
 * [x] config CI/CD (generate _pdf_ to github release)
 * [ ] gratuitous ARP in section 2.7
+* [ ] change `tcpdump` output for `tracerotue` (only see `ttl`)
+* [ ] build custom figure with enabled multicast ping reply
+* [ ] add route table for right subnet in exercise `8 Multicast Message`
 
 # Appendix
 

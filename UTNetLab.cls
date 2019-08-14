@@ -87,7 +87,7 @@
         grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
         tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
         sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
-        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket,
+        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket, ntptrace, ntpq,
         goaccess, webalizer, vlc, firefox,
       },
       morekeywords=[2]{
@@ -103,7 +103,7 @@
     }
     \lstdefinelanguage{cisco}{
         alsoletter={-},
-        keywords = [0]{no},
+        keywords = [0]{no, clear, wr},
         keywords = [1]{
           show, ip, config, configuration, int, interface, router,
           mtrace,mrinfo,mstat,ping,debug, bridge, shut,
