@@ -62,7 +62,7 @@
     \setlength{\headheight}{13.6pt}
     \newcommand{\horrule}[1]{\rule{\linewidth}{#1}}
     \renewcommand{\arraystretch}{1.2}
-    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{5pt}
     \renewcommand{\footnoterule}{
       \kern -3pt
       \hrule width 0.3\textwidth height 0.3pt
