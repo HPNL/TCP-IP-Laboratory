@@ -23,14 +23,16 @@
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
 \RequirePackage{caption}
+\RequirePackage{array}
+\RequirePackage{kvoptions}
 \RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref}
 \usetikzlibrary{calc,positioning}
 
-\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*
 
 \definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
-\definecolor{magnolia1}{rgb}{0.98, 0.97, 1.0}
+\definecolor{magnolialight}{rgb}{0.98, 0.97, 1.0}
 
 \makeatletter
 
@@ -134,7 +136,6 @@
     \lstset{
         backgroundcolor = \color{magnolia},
         frame = single,
-        % frame = l,
         frameround=tttt,
         framesep = 4pt,
         breaklines=true,
@@ -166,7 +167,8 @@
     \selectlanguage{english}
     \maketitle
   }
-\xpretocmd\lstinline{\Colorbox{magnolia1}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+
+\xpretocmd\lstinline{\Colorbox{magnolialight}\bgroup\appto\lst@DeInit{\egroup}}{}{}
 
 \newcommand{\maketitlepage}{
   \begin{titlepage}

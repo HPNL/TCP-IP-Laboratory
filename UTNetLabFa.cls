@@ -6,14 +6,13 @@
 \RequirePackage[free]{frfonts}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[arabic,english,farsi]{babel}
-\RequirePackage[dvipsnames]{xcolor}
-% \RequirePackage{hyperref} % have bug with arabi package in referencing
 \RequirePackage{amsmath,amsfonts}
 \RequirePackage{amssymb}
 \RequirePackage{multicol}
 \RequirePackage{graphicx}
 \RequirePackage[a4paper, margin=2cm, top=2.5cm, bottom=2.5cm]{geometry}
 \RequirePackage[caption=false]{subfig}
+\RequirePackage[dvipsnames]{xcolor}
 \RequirePackage{float}
 \RequirePackage{sidecap}
 \RequirePackage{textcomp}
@@ -24,7 +23,11 @@
 \RequirePackage{tikz}
 \RequirePackage{framed,verbatim}
 \RequirePackage[title,toc,page]{appendix}
-\usepackage{array}
+\RequirePackage{caption}
+\RequirePackage{array}
+\RequirePackage{kvoptions}
+% \RequirePackage[colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan]{hyperref} % has conflict with arabi package in referencing
+\usetikzlibrary{calc,positioning}
 
 \newsavebox{\RTLbox}
 \newcolumntype{R}{>{\begin{lrbox}{\RTLbox}}r<{\end{lrbox}\AR{\unhbox\RTLbox}}}
@@ -38,13 +41,11 @@
 \newcommand{\FA}{\FR}
 % \newcommand{\fa}{\FR}
 
-\usetikzlibrary{calc,positioning}
-
-% \hypersetup{colorlinks,plainpages,citecolor=Blue,linkcolor=Blue,urlcolor=Cyan,filecolor=Cyan}
-% \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{report}}
-% \ProcessKeyvalOptions*
+\DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessKeyvalOptions*
 
 \definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
+\definecolor{magnolialight}{rgb}{0.98, 0.97, 1.0}
 
 \makeatletter
 
@@ -133,7 +134,7 @@
 			join-group, group-address, query-interval,groups, deny, permit, host,translations,
 			nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside,
 		},
-		comment=[l]{!}, %\#
+		comment=[l]{!},
 		keywordstyle=[0]\color{red},
 		keywordstyle=[2]\color{NavyBlue},
 		commentstyle=\color{purple}\ttfamily,
@@ -148,7 +149,6 @@
 	\lstset{
 		backgroundcolor = \color{magnolia},
 		frame = single,
-		% frame = l,
 		frameround=tttt,
 		framesep = 4pt,
 		breaklines=true,
@@ -180,11 +180,9 @@
 	\selectlanguage{farsi}
 	
 	\maketitle
-	\makeatother
-	\newpage
 }
 
-\xpretocmd\lstinline{\Colorbox{magnolia1}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+\xpretocmd\lstinline{\Colorbox{magnolialight}\bgroup\appto\lst@DeInit{\egroup}}{}{}
 
 \newcommand{\maketitlepage}{
 	\begin{titlepage}
@@ -253,10 +251,9 @@
   \end{titlepage}
   \setcounter{footnote}{0}
 }
-
 \renewcommand{\maketitle}{\maketitlepage}
 \newcommand{\authorshort}[1]{\def\theauthorshort{#1}}
-\newcommand{\mail}[1]{{\color{Cyan}\ttfamily \textLR{#1}}}%\href{mailto:#1?subject=[CNL]\%20}
+\newcommand{\mail}[1]{{\color{Cyan}\ttfamily \textLR{#1}}}
 \newenvironment{report}[1][]{\subsection*{گزارش}#1\begin{enumerate}}{\end{enumerate}}
 \newenvironment{question}[1][]{\subsection*{پرسش}#1\begin{itemize}}{\end{itemize}}
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
