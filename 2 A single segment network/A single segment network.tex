@@ -238,7 +238,7 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \item Give one advantage and one disadvantage of using proxy ARP.
     \end{report}
 
-\section{ARP Reboot Timeout}
+\section{** ARP Reboot Timeout}
     While \lstinline{tcpdump -ex -w exe7.out} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}. 
 
     After \textit{h7} is started, terminate \lstinline{tcpdump} and run \lstinline{wireshark -r exe7.out &} to load the \lstinline{tcpdump} trace.
@@ -254,7 +254,7 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
 \part{Exercise with ICMP and \texttt{ping}}
 \section{ping ICMP}
     Use \lstinline[emph={remote-host}]{ping -sv remote-host} to test whether the remote host is reachable, while running:
-    \lstinline[emph={your-host, remote-host}]{tcpdump -enx host your-host and remote-host}.
+    \\\lstinline[emph={your-host, remote-host}]{tcpdump -enx host your-host and remote-host}.
     Save the \lstinline{tcpdump} and \lstinline{ping} output for the future study on \lstinline{ping}.
     
     \begin{report}
@@ -265,7 +265,7 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     While running \lstinline[emph={your-host, remote-host}]{tcpdump -x -s 70 host your-host and remote-host}, execute the following \lstinline{socket} command to send a UDP datagram to the remote host:
 
     \begin{lstlisting}[emph={your-host, remote-host}]
-        socket -i -u -n1 -w1000 remote-host 88888
+socket -i -u -n1 -w1000 remote-host 88888
     \end{lstlisting}
 
     Save the \lstinline{tcpdump} output for the lab report.
@@ -276,7 +276,7 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \end{report}
 
 \section{\texttt{ping} ICMP}
-    While \lstinline{tcpdump} is running to capture the ICMP messages, \lstinline{ping} a host with IP address 128.238.60.100. Save the \lstinline{ping} output.
+    While \lstinline{tcpdump} is running to capture the ICMP messages, \lstinline{ping} a host with IP address \textbf{128.238.60.100}. Save the \lstinline{ping} output.
     
     \begin{report}
     \item Can you see any traffic sent on the network? Why? Explain what happened from the \lstinline{ping} output.
@@ -309,8 +309,7 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
 
     Delete the entries for all hosts other than your own workstation from your workstation’s ARP table.
 
-    Run \lstinline{tcpdump -enx} on all the hosts.
-    Then, do the following three experiments.
+    Run \lstinline{tcpdump -enx} on all the hosts. Then, do the following three experiments:
 
     \begin{enumerate}
         \item Execute \lstinline{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g.\ \textit{h0} $\rightarrow$ \textit{h2}).

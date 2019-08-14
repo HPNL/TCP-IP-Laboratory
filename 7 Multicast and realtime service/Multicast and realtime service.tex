@@ -214,7 +214,7 @@ netspyd 224.111.111.111 1500 1
 \label{sec:config-router}
     Connect the hosts and the route in your group as shown in Fig. 7.13. Set the IP address of your host as given in Table 7.2. Note that the IP addresses of the router interfaces are the same as their default IP addresses.
     Login to the router and run \lstinline{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
-    Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode.\footnote{As usual,each router should be configured by one person to avoid confusion.} Now the router is enabled to do multicast routing using PIM.
+    Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode. Now the router is enabled to do multicast routing using PIM.
 
     Login to the router, execute \lstinline{show ip igmp interface} and \lstinline{show ip igmp group} in the \textit{Privileged EXEC} mode.
     Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
@@ -444,10 +444,10 @@ Router(interface)# ip multicast ttl-threshold 32
     \begin{subappendices}
 \subsection{Configuring IGMP}
     \begin{lstlisting}[language={cisco}, emph={group-address, new-value-in-seconds}]
-    ip igmp join-group group-address
-    no ip igmp join-group group-address
-    ip igmp query-interval new-value-in-seconds
-    no ip igmp query-interval
+R1(config)# ip igmp join-group group-address
+R1(config)# no ip igmp join-group group-address
+R1(config)# ip igmp query-interval new-value-in-seconds
+R1(config)# no ip igmp query-interval
 show ip igmp groups     ! Displays the multicast groups in the attached networks.
 show ip igmp interface  ! Displays multicast related information on a router interface.
 debug ip igmp           ! Displays IGMP packets received and transmitted.
@@ -455,9 +455,9 @@ debug ip igmp           ! Displays IGMP packets received and transmitted.
 
 \subsection{Configuring Multicast Routing}
     \begin{lstlisting}[language={cisco}]
-    ip multicast-routing
-    no ip multicast-routing
-    ip pim [dense-mode | sparse-mode | dense-sparse-mode].
+R1(config)# ip multicast-routing
+R1(config)# no ip multicast-routing
+R1(config)# ip pim [dense-mode | sparse-mode | dense-sparse-mode].
 show ip mroute          ! Displays the multicast routing table.
 show ip mroute summary  ! Displays a one-line summary for each entry in the multicast routing table.
 show ip mroute count    ! Displays multicast statistics.

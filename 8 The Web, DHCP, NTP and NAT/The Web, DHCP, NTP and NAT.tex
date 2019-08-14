@@ -272,7 +272,7 @@ date -r file-name
     Justify your answer using the \lstinline{wireshark} output.
     \end{report}
 
-\section{NTP Server}
+\section{** NTP Server}
     Keep the NTP server running on \textit{h0}. Execute \lstinline[emph={your-host, remote-host}]{tcpdump -exn -nn host your-host and 128.238.66.100} or \lstinline{wireshark} to capture the NTP messages between \textit{your-host} and \textit{h0}.
 
     Config \path{/etc/ntp.conf} in \textit{other-host} and add \lstinline[language={conf}]{server 128.238.66.100} to config file.
@@ -425,9 +425,9 @@ config term
     Generate traffic between the inside and outside hosts.
     Examine the \lstinline{tcpdump} output to see how PAT works.
 
-    Start the Apache web server on \textit{h7}. Also, start the web browser \textit{Mozilla} on an outside host (e.g.\ \textit{h0}), and enter the URL \url{http://128.238.61.1}. Save the \lstinline{tcpdump} output.
+    Start the Apache web server on \textit{h7}. Also, run \lstinline[language=bash-ext]{curl} on an outside host (e.g.\ \textit{h0}), and with the URL \url{http://128.238.61.1}. Save the \lstinline{tcpdump} output.
 
-    Use \lstinline{show ip nat translations} to display and then save the translation table.
+    Use \lstinline[language={cisco}]{show ip nat translations} to display and then save the translation table.
     Exchange the data you saved with a student in the other subnet.
 
     \begin{report}

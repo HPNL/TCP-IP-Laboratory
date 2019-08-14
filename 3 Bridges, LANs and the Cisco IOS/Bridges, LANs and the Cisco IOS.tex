@@ -52,6 +52,8 @@
         \caption{\textit{Figure 3.7} Using a transparent bridge}
     \end{figure}
 
+% ignore excersise 1 from book
+
 \section{IOS Console}
     Open Router Console (Use telnet to router in physical devices).
     You should now be in the \textit{User EXEC} mode.
@@ -63,10 +65,8 @@
     Identify which Cisco~IOS Release is running in the router.
     Save the Cisco~IOS banner for your lab report.
     
-    \begin{report}
-    \item Submit the Cisco~IOS banner you saved.
+    \paragraph{See} the Cisco~IOS banner.
     Identify the release of the Cisco~IOS software in the router.
-    \end{report}
 
 \part{A Simple Bridge Experiment}
     Figure 3.7 shows a simple case of the use of bridges, which consists of two network segments connected by a bridge.
@@ -126,7 +126,7 @@ Ctrl+Z
     At this time, save your BPDU capture output. 
     In our next step,  you get BPDUs from other gropu.
 
-    You should collect four different BPDUs in this exercise for all group.
+    You should collect two different BPDUs in this exercise.
     These BPDUs will be helpful when studying the spanning tree algorithm later in this chapter.
 
     \begin{report}
@@ -246,7 +246,7 @@ Ctrl+Z
     You may use the \lstinline[language={cisco}, emph={group}]{clear bridge group} command to remove any learned entries from the filtering database, if you see a full filtering database or if you want to repeat the above exercise.
 
     \begin{report}
-    \item From the output of \lstinline{show bridge}, identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.
+    \item From the output of \lstinline[language={cisco}]{show bridge}, identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.
     \end{report}
 
 \section{STP Process}
@@ -257,10 +257,10 @@ Ctrl+Z
     Login to each bridge to collect the \lstinline[language={cisco}]{show bridge} outputs.
     
     \begin{report}
-    \item \item Submit the four different BPDUs you saved.
+    \item Submit the four different BPDUs (from four network sections) you saved.
     Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU.
 
-    \item Based upon the initial BPDUs saved in \href{sec:spanning-tree}{Spanning tree exercise}, draw the spanning tree seen by the BPDUs. Identify the root ports and the root path cost (in hop counts) for each bridge.
+    \item Based upon the initial BPDUs saved in \hyperref[sec:spanning-tree]{Spanning tree exercise}, draw the spanning tree seen by the BPDUs. Identify the root ports and the root path cost (in hop counts) for each bridge.
     Identify the designated bridge and the designated port for each LAN segment.
     Identify the state of each bridge port (blocking or forwarding).
 
@@ -277,7 +277,7 @@ Ctrl+Z
     First, send \lstinline{ping} messages from \textit{h3} to \textit{h4}, while \lstinline{tcpdump} is running.
     Let the two programs run during this exercise.
 
-    Then, disconnect the cable from the \textit{ethernet0} port of \textit{Bridge2} from the hub, and get system time (\lstinline{date}, \lstinline{date '+%D %T.%N'} or \lstinline{date +%s%N} to get nano seconds) on \textit{h3} or \textit{h4} to get the current time.
+    Then, disconnect the cable from the \textit{ethernet0} port of \textit{Bridge2} from the hub (or shut the router interface), and get system time (\lstinline{date}, \lstinline{date '+%D %T.%N'} or \lstinline{date +%s%N} to get nano seconds) on \textit{h3} or \textit{h4} to get the current time.
 
     Observe the \lstinline{ping} and \lstinline{tcpdump} windows. When the connection is reestablished, get the \lstinline{time} again. How long does it take the spanning tree algorithm to react to the change in the topology?
 
