@@ -142,18 +142,18 @@ ip link set eth0 up@{\normalfont\normalsize{ or }}@ifconfig eth0 up
     
 \part{Other Exercises}
 \section{Fragmentation}
-    While \lstinline[emph={your-host, remote-host}]{tcpdump src host your-host} is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous chapter (Chapter 5),
+    While \lstinline[emph={your-host, remote-host}]{tcpdump src host your-host} is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous lab session (Chapter~5 of reference book),
     \begin{lstlisting}[emph={n, remote-host}]
 socket -i -n1 -w n remote-host echo
     \end{lstlisting}
-    Let \textit{n} be larger than the maximum UDP datagram size we found in previous chapter.
+    Let \textit{n} be larger than the maximum UDP datagram size we found in previous lab session.
 
     As an example, you may use $n = 70080$.
 
     \begin{report}
     \item Did you observe any IP fragmentation?
         
-    \item If IP fragmentation did not occur this time, how do you explain this compared to what you observed in previous chapter for UDP packets?
+    \item If IP fragmentation did not occur this time, how do you explain this compared to what you observed in previous lab session for UDP packets?
     \end{report}
 
 \section{Linux TCP/IP Kernel Parameter}

@@ -132,10 +132,10 @@ User-Agent: HTTPTool/1.0
     \end{center}
 
 \section{DHCP Server}
-    In this exercise, we use \textit{h1} as the DHCP server, with a configuration file\footnote{\path{/etc/dhcp/dhcpd.conf}} shown in Table 8.3. Do the following.
+    In this exercise, we use \textit{h1} as the DHCP server, with a configuration file\footnote{\path{/etc/dhcp/dhcpd.conf}} shown in \hyperref[tab:8.3]{Table~8.3}. Do the following:
 
     \begin{enumerate}
-        \item Change MAC address of \textit{h5} in server configuration file (Table 8.3) by your \textit{h5} MAC address and save to \textit{dhcpd.conf}.
+        \item Change MAC address of \textit{h5} in server configuration file (\hyperref[tab:8.3]{Table~8.3}) by your \textit{h5} MAC address and save to \textit{dhcpd.conf}.
         
         \item Set IP of \textit{h1} to {128.238.66.100}
         
@@ -160,11 +160,12 @@ User-Agent: HTTPTool/1.0
         
         \item Repeat 5 for \textit{h5}.
     \end{enumerate}
+
     Terminate \lstinline{wireshark}. Print out the DHCP messages for the lab report. 
 
     Save the DHCP server output on \textit{h1} for the lab report.
 
-    \begin{lstlisting}[language={conf}, caption={\textit{Table 8.3} A DHCP server configuration file}]
+    \begin{lstlisting}[language={conf}, caption={A DHCP server configuration file (Table~8.3)\label{tab:8.3}}]
 default-lease-time 600;
 max-lease-time 7200;
 option subnet-mask 255.255.255.0;
@@ -198,7 +199,7 @@ host h5 {
     \end{report}
 
 \part{NTP exercises}
-    Before proceeding to the next exercise, reboot the hosts and set network topology is given in Fig. 1.3 and set hosts IP address from 128.238.66.100 to 128.238.66.107.
+    Before proceeding to the next exercise, reboot the hosts and set network topology is given in \hyperref[fig:1.3]{Figure~1.3} and set hosts IP address from 128.238.66.100 to 128.238.66.107.
     \begin{center}
         \begin{minipage}{0.48\textwidth}
             \begin{flushleft}
@@ -294,7 +295,7 @@ date -r file-name
     \end{report}
 
 \part{NAT Exercises}
-    For the exercises in this section, we use a network setting as shown in Fig. 8.7. The lower subnet is a private network where the hosts are assigned with the Class A addresses with the 10.0.0.0/8 prefix. The upper subnet represents the Internet. The hosts, i.e.\  \textit{h0} and \textit{h1} are assigned with public IP addresses. Router 1 is used as the stub router, which performs address or port translation for the private network.
+    For the exercises in this section, we use a network setting as shown in \hyperref[fig:8.7]{Figure~8.7}. The lower subnet is a private network where the hosts are assigned with the Class A addresses with the 10.0.0.0/8 prefix. The upper subnet represents the Internet. The hosts, i.e.\  \textit{h0} and \textit{h1} are assigned with public IP addresses. Router 1 is used as the stub router, which performs address or port translation for the private network.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -346,10 +347,9 @@ date -r file-name
     \end{figure}
 
 \section{NAT}
-    Connect the hosts and Router 1 as shown in Fig.
-    8.7. Then set the IP address and the network mask of your host as shown in the figure.
+    Connect the hosts and Router 1 as shown in \hyperref[fig:8.7]{Figure~8.7}. Then set the IP address and the network mask of your host as shown in the figure.
     In addition, you need to add a default route in your host’s routing table, using the router interface on your subnet as the default router.
-    One student should \lstinline{telnet} to the router and configure the router as shown in Table 8.5. Note that there is a static translation that maps 10.0.0.7, or \textit{h7}, to 128.238.61.104.
+    One student should \lstinline{telnet} to the router and configure the router as shown in \hyperref[tab:8.5]{Table~8.5}. Note that there is a static translation that maps 10.0.0.7, or \textit{h7}, to 128.238.61.104.
     Login to the router, execute \lstinline{write term} to display the current router configuration.
     Execute \lstinline{show ip nat translations} in the \textit{Privileged EXEC} mode to display the translation table.
     Save both outputs for the lab report.
@@ -358,7 +358,7 @@ date -r file-name
     \item How many entries were there in the translation table? Why?
     \end{report}
     
-    \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in Fig. 8.7}]
+    \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in \hyperref[fig:8.7]{Figure~8.7} (Table~8.5)\label{tab:8.5}}]
 config term
     ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
     ip nat inside source list 8 pool mypool
@@ -418,7 +418,7 @@ config term
 
 \section{NAT and PAT}
     Reboot the router to restore its default configuration.
-    Then, configure the router to use PAT, as given in Table 8.6. Now all the hosts in the private network use the same IP address 128.238.61.1. However, note that there is a static translation that maps \textit{h7}’s port 80 to 128.238.61.1 port 80. 
+    Then, configure the router to use PAT, as given in \hyperref[tab:8.6]{Table~8.6}. Now all the hosts in the private network use the same IP address 128.238.61.1. However, note that there is a static translation that maps \textit{h7}’s port 80 to 128.238.61.1 port 80. 
 
     Execute \lstinline{tcpdump} on all the hosts. 
 
@@ -438,7 +438,7 @@ config term
     If yes, explain how this can be done.
     \end{report}
 
-    \begin{lstlisting}[language={cisco}, caption={PAT Router Configuration in Fig. 8.7}]
+    \begin{lstlisting}[language={cisco}, caption={PAT Router Configuration in \hyperref[fig:8.7]{Figure~8.7} (Table~8.6)\label{tab:8.6}}]
 config term
     ip nat inside source list 8 interface ethernet 0 overload
     ip nat inside source static tcp 10.0.0.7 80 128.238.61.1 80
@@ -493,13 +493,13 @@ config term
     \subsection*{Hints}
     \begin{itemize}
         \item First you need to set up the control connection to Port 21 of the remote machine, using a TCP socket.
-        \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in Table 5.1.
+        \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in \hyperref[tab:5.1]{Table~5.1} of reference book.
         \item You can first run \lstinline{telnet remote-host 21}, then type \lstinline{help} to list all the FTP commands.
         Also, you can try the commands out in the \lstinline{telnet} window, e.g.\ use \lstinline{USER netlab} to send the user ID and \lstinline{PASS netlab} to send the password to the FTP server.
         To terminate the \lstinline{telnet} session, type \lstinline{QUIT}.
         \item In your program, these messages should be sent to the FTP server by calling the \lstinline{send()} function of the local TCP socket.
-        \item Also your program needs to parse the server responses (some examples are given in Table 5.2) to find out the status of the previous FTP command.
-        \item The FTP data connection should be established using the \lstinline{PORT} command (see Chapter 5).
+        \item Also your program needs to parse the server responses (some examples are given in \hyperref[tab:5.2]{Table~5.2} of reference book) to find out the status of the previous FTP command.
+        \item The FTP data connection should be established using the \lstinline{PORT} command (see Chapter~5 of reference book).
     \end{itemize}
 
 \end{document}

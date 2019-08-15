@@ -7,18 +7,18 @@
 
 \begin{document}
 \part{Exercises on Cisco~IOS}
-    Each group in the lab need two workstations, a bridge, and two hubs, which are required to be connected as shown in Fig. 3.7, Table 3.2 and Table 3.3.
+    Each group in the lab need two workstations, a bridge, and two hubs, which are required to be connected as shown in \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}.
 
 \section{Network Setup}
     In this exercise we build the connection to the router.
 
-    Identify the cable from your workstation and the cable from your router interface (see Fig. 3.7, Table 3.2 and Table 3.3).
+    Identify the cable from your workstation and the cable from your router interface (see \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}).
     Plug these two cables into your hub.
     In this case, you have built a LAN segment with a \textit{star} topology.
     Your partner should build a star LAN segment on the other side of the router.
 
     \begin{table}[H]
-        \caption{Router and Host IP addresses for Fig. 3.7}
+        \caption{Router and Host IP addresses for \hyperref[fig:3.7]{Figure~3.7} (Table~3.2\label{tab:3.2}, Table~3.3\label{tab:3.3})}
         \centering
         \begin{tabular}{ *2c|*2c|*2c }
             \hline \hline
@@ -49,7 +49,7 @@
             \draw (router) +(-1,0.2) node {\scriptsize\textit{eth0}};
             \draw (router) +(1,0.2) node {\scriptsize\textit{eth1}};
         \end{tikzpicture}
-        \caption{Using a transparent bridge (Figure~3.7)}
+        \caption{Using a transparent bridge (Figure~3.7)}\label{fig:3.7}
     \end{figure}
 
 % ignore excersise 1 from book
@@ -59,7 +59,7 @@
     You should now be in the \textit{User EXEC} mode.
 
     Type \lstinline[language={cisco}]{help} to learn how to use the online help.
-    Study Fig. 3.6. Navigate through the \textit{User EXEC}, \textit{Privileged EXEC}, \textit{Global Configuration}, and \textit{Interface Configuration} modes. In each mode, type \lstinline[language={cisco}]{?} to display a list of available commands and study these commands.
+    Study \hyperref[fig:3.6]{Figure~3.6} of reference book. Navigate through the \textit{User EXEC}, \textit{Privileged EXEC}, \textit{Global Configuration}, and \textit{Interface Configuration} modes. In each mode, type \lstinline[language={cisco}]{?} to display a list of available commands and study these commands.
 
     Type \lstinline[language={cisco}]{show version} in the \textit{User EXEC} mode to display the Cisco~IOS banner.
     Identify which Cisco~IOS Release is running in the router.
@@ -69,18 +69,17 @@
     Identify the release of the Cisco~IOS software in the router.
 
 \part{A Simple Bridge Experiment}
-    Figure 3.7 shows a simple case of the use of bridges, which consists of two network segments connected by a bridge.
+    \hyperref[fig:3.7]{Figure~3.7} shows a simple case of the use of bridges, which consists of two network segments connected by a bridge.
     With this simple topology, we can easily capture initial BPDUs before each bridge is engaged in the spanning tree calculation.
 
-    Configure transparent bridging as in Fig.
-    3.7, Table 3.2 and Table 3.3.
+    Configure transparent bridging as in \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}.
     Note that the default configuration of the hosts and the bridges are different from those in the tables.
     You need to change the IP addresses of the bridge interfaces,\footnote{As soon as you change the IP address of the bridge interface your host is connected to, the \lstinline{telnet} connection will be lost.
     You need to again change the IP address of your workstation to be in the same subnet as the bridge interface. See Section~3.3.3  of reference book.} as well as set the bridge group and enable the spanning tree algorithm (see the previous section on bridge configuration).
     Do the following experiments.
 
 \section{Bridge Packet}
-    Configure the IP addresses of your workstation and the bridge interfaces as shown in Fig. 3.7, Table 3.2 and Table 3.3.
+    Configure the IP addresses of your workstation and the bridge interfaces as shown in \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}.
     To avoid confusion, each bridge should be configured by only one person.
 
     Config Cisco Router as transparent Bridge:
@@ -133,7 +132,7 @@ Ctrl+Z
     \item How frequently (in seconds) does a bridge sends its BPDUs?
 
     \item Submit the four different BPDUs you saved.
-    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may check the physical addresses of network interfaces. You need the MAC addresses to help analyze the BPDUs.} (may need to check BPDU message format Fig.3.4).
+    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may check the physical addresses of network interfaces. You need the MAC addresses to help analyze the BPDUs.} (may need to check BPDU message format \hyperref[fig:3.4]{Figure~3.4}).
     \end{report}
 
     \begin{figure}[H]
@@ -156,13 +155,13 @@ Ctrl+Z
             ;
         \end{tikzpicture}
         }
-        \caption{BPDU message format (Figure~3.4)}
+        \caption{BPDU message format (Figure~3.4)}\label{fig:3.4}
         {\footnotesize The numbers indicate the field length in byte.}
     \end{figure}
 
 \part{Spanning Tree Exercises}
 \label{sec:spanning-tree}
-    In this section, we will use Fig. 3.8 as our network topology.
+    In this section, we will use \hyperref[fig:3.8]{Figure~3.8} as our network topology.
     You need to change the IP addresses of the bridge interfaces, as well as that of your workstation. Refer to Section~3.3.4 of reference book on how to configure a transparent bridge.
     Also see Section~3.3.3 of reference book on how to handle a frozen telnet session after you change the bridge IP address.
 
@@ -233,11 +232,11 @@ Ctrl+Z
             \draw[thick] (-3,2) -- +(6,0);
             \draw[thick] (-3.5,-2) -- +(7,0);
         \end{tikzpicture}
-        \caption{Bridge experiment network (Figure~3.8)}
+        \caption{Bridge experiment network (Figure~3.8)}\label{fig:3.8}
     \end{figure}
 
 \section{Multi Bridge Path}
-    After configuring the network in Fig. 3.8, login to the bridge.
+    After configuring the network in \hyperref[fig:3.8]{Figure~3.8}, login to the bridge.
 
     Get to the \textit{Privileged EXEC} mode. Type \lstinline[language={cisco}]{show bridge} to see the entries in the bridge forwarding database.
 

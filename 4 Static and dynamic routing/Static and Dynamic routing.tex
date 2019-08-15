@@ -7,10 +7,10 @@
 
 \begin{document}
 \part{A Simple Router Experiment}
-    As in the previous lab, we will divide the students into four groups, each with two workstations, a router, and two hubs, which are to be connected as shown in Figure 4.10.
-    The IP addresses of the routers and hosts are given in Table 4.2 and Table 4.3, respectively.
+    As in the previous lab, we will divide the students into four groups, each with two workstations, a router, and two hubs, which are to be connected as shown in \hyperref[fig:4.10]{Figure~4.10}.
+    The IP addresses of the routers and hosts are given in \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3}, respectively.
     \begin{table}[H]
-        \caption{\textit{Table 4.2 and 4.3} Router and Host IP addresses for Fig. 4.10}
+        \caption{Router and Host IP addresses for \hyperref[fig:4.10]{Figure~4.10} (Table~4.2\label{tab:4.2}, Table~4.3\label{tab:4.3})}
         \centering
         \begin{tabular}{ *2c | *2c | *2c }
             \hline \hline
@@ -39,11 +39,11 @@
             \draw[thick] (hub1) -- (router);
             \draw[thick] (hub2) -- (router);
         \end{tikzpicture}
-        \caption{Simple router experiment (Figure~4.10)}
+        \caption{Simple router experiment (Figure~4.10)}\label{fig:4.10}
     \end{figure}
 
 \section{Simple Routing}
-    Configure the IP addresses of your workstations and the router as shown in Figure 4.10, Table 4.2 and Table 4.3 (select one of row in table).
+    Configure the IP addresses of your workstations and the router as shown in \hyperref[fig:4.10]{Figure~4.10}, \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3} (select one of row in table).
 
     Initially your host’s routing table has no entry for the subnet on the other side of the router.
     In order to be connected, you need to add a routing entry for the other subnet in the routing table of your workstation (see section 4.3.1).
@@ -96,10 +96,10 @@ Router(config)# no network network-number
     \begin{lstlisting}[language={cisco}]
 Router(config)# no router rip
     \end{lstlisting}
-    Consider Figure 4.11 as our network topology for this section.
+    Consider \hyperref[fig:4.11]{Figure~4.11} as our network topology for this section.
     
     % Since the IP address of \textit{ethernet1} in \textit{router4} is the only interface which is different from the initial configuration in Appendix~B of reference book, we will reboot all the four routers to restore their default configurations, and change the IP address on the \textit{ethernet1} in \textit{router4} only. Since our workstations started \lstinline{routed} at boot-up time, no further action is needed to run RIP on the workstations. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
-    Configure network router and workstation’s as Figure 4.11. Since our workstation’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each workstation.
+    Configure network router and workstation’s as \hyperref[fig:4.11]{Figure~4.11}. Since our workstation’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each workstation.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -164,10 +164,10 @@ Router(config)# no router rip
             \draw[thick] (-3,2) -- +(6,0) node[pos=0.5,below] {\scriptsize 128.238.61.0 subnet};
             \draw[thick] (-3.5,-2) -- +(7,0) node[pos=0.5,above] {\scriptsize 128.238.63.0 subnet};
         \end{tikzpicture}
-        \caption{Network Configuration for \nameref{sec:rip} (Figure~4.11)}
+        \caption{Network Configuration for \nameref{sec:rip} (Figure~4.11)}\label{fig:4.11}
     \end{figure}
 \section{RIP Messages}
-    Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in Figure 4.11.
+    Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in \hyperref[fig:4.11]{Figure~4.11}.
     Also, make sure that your workstation has no other routing entries than your own subnet and your loopback interface.
     For how to remove an entry from the host routing table, see Section~4.3 of reference book.
 
@@ -197,7 +197,7 @@ tcpdump -x -s 100 -c 4 udp port 520
     \item For the other seven RIP response packets collected, explain the contents of the RIP messages only, excluding IP and UDP headers.
 
     
-    \item Draw the distance tables and the routing tables in the routers based on Figure 4.11, assuming that number of hops is used as the metric.
+    \item Draw the distance tables and the routing tables in the routers based on \hyperref[fig:4.11]{Figure~4.11}, assuming that number of hops is used as the metric.
 
     \item Verify the routing tables using the RIP messages you captured.
     \end{report}
@@ -240,15 +240,15 @@ tcpdump -x -s 100 -c 4 udp port 520
     \begin{report}
         \item Submit what you saved in this exercise.
         
-        \item Identify every field in the ICMP redirect message (see Figure 4.2).
+        \item Identify every field in the ICMP redirect message (see \hyperref[fig:4.2]{Figure~4.2}).
         
         \item Compare the original routing table with the new routing table. Explain the meaning of the flags of the new entry.
     \end{report}
 
-\section{**Router Discovery}
+\section{**ICMP router discovery}\label{sec:ICMPRD}
     This exercise is on ICMP router discovery.
     
-    Connect the routers and hosts and change the host IP addresses as shown in Fig. 4.12.
+    Connect the routers and hosts and change the host IP addresses as shown in \hyperref[fig:4.12]{Figure~4.12}.
 
     \begin{figure}[H]
         \centering
@@ -279,10 +279,10 @@ tcpdump -x -s 100 -c 4 udp port 520
             \draw (h6) -- (s1);
             \draw (h7) -- (s1);
         \end{tikzpicture}
-        \caption{Network configuration of the ICMP router discovery experiment (Figure~4.12)}        
+        \caption{Network configuration of the \nameref{sec:ICMPRD} Experiment (Figure~4.12)}\label{fig:4.12}
     \end{figure}
     
-    Telnet to the routers, change the IP address of the \textit{ethernet1} interfaces as shown in Fig. 4.12. Enable ICMP router discovery on these two interfaces by the following
+    Telnet to the routers, change the IP address of the \textit{ethernet1} interfaces as shown in \hyperref[fig:4.12]{Figure~4.12}. Enable ICMP router discovery on these two interfaces by the following
     interface configuration command:
     \begin{lstlisting}[language={cisco}]
         Router(config-if)# ip irdp.
@@ -299,7 +299,7 @@ tcpdump -x -s 100 -c 4 udp port 520
         \item How many default router entries are there in \textit{h0} routing table? Why?
     \end{report}
 
-\part{OSPF Exercise}
+\part{OSPF Exercise}\label{sec:ospf}
     In order to enable OSPF in the routers, you need to create an OSPF routing process first.
     Then, define the range of IP addresses to be associated with the routing process and assign area IDs for these IP addresses, using the following commands:
     \begin{lstlisting}[language={cisco}, emph={process-id, area-id, address, wildcard-mask}]
@@ -316,7 +316,7 @@ Router(config-router)# network address wildcard-mask area area-id
     \item \lstinline{wildcard-mask} helps reduce the number of configuration commands.
     0 is a match and 1 is a \textit{don’t care} bit (0.0.255.255 in our case).
     
-    \item \lstinline{area-id} is the number of the area that the interfaces belong to (see Figure 4.7).
+    \item \lstinline{area-id} is the number of the area that the interfaces belong to (see \hyperref[fig:4.7]{Figure~4.7}).
     It can be any integer between 0 and $2^{32} - 1$ or can have an IP address form.
     Note that 0 is reserved for the backbone.
 \end{itemize}
@@ -324,7 +324,7 @@ Router(config-router)# network address wildcard-mask area area-id
     The above commands are required to configure OSPF, while other tasks (configuring interface parameters, configuring area parameters, etc.) are optional.
     For more information on other configuration tasks, refer to the router manual. 
 
-    Consider Figure 4.13 for our OSPF experiment.
+    Consider \hyperref[fig:4.13]{Figure~4.13} for our OSPF experiment.
 
     \begin{figure}[H]
         \centering
@@ -390,12 +390,12 @@ Router(config-router)# network address wildcard-mask area area-id
             \draw[thick] (-3,2) -- +(6,0) node[pos=0.5,below] {\scriptsize 128.238.65.0 subnet};
             \draw[thick] (-3.5,-2) -- +(7,0) node[pos=0.5,above] {\scriptsize 128.238.63.0 subnet};
         \end{tikzpicture}
-        \caption{Network Configuration for OSPF exercises, static routing experiments and \lstinline{traceroute (Figure~4.13)} experiment}
+        \caption{Network Configuration for \nameref{sec:ospf}, \nameref{sec:static} and \nameref{sec:traceroute} (Figure~4.13)}\label{fig:4.13}
     \end{figure}
 
 \section{OSPF Messages}
-    After connecting the cables properly, change the host IP addresses as given in Figure 4.13 You need to remove the default route added in Exercise 4 from the host routing table.
-    Note that the router interfaces are set as Fig. 4.13 by default. 
+    After connecting the cables properly, change the host IP addresses as given in \hyperref[fig:4.13]{Figure~4.13} You need to remove the default route added in Exercise 4 from the host routing table.
+    Note that the router interfaces are set as \hyperref[fig:4.13]{Figure~4.13} by default. 
 
     Run the following command to capture any OSPF packets: 
     \begin{lstlisting}
@@ -425,21 +425,21 @@ show ip ospf virtual-links
     \end{lstlisting}
     
     \begin{report}
-        \item Draw the common header of a saved OSPF message, giving the decimal values of the header fields (see Fig. 4.8).
+        \item Draw the common header of a saved OSPF message, giving the decimal values of the header fields (see \hyperref[fig:4.8]{Figure~4.8}).
         
         \item Submit the routing tables you collected from the routers.
     \end{report}
 
-\part{Static Routing Experiment}
-    In this experiment, we reuse the network as shown in Figure 4.13.
+\part{Static Routing Experiment}\label{sec:static}
+    In this experiment, we reuse the network as shown in \hyperref[fig:4.13]{Figure~4.13}.
 \section{Static routing}
-    After checking the wiring, as shown in Figure 4.13, reboot the routers to restore their initial settings.
-    Check the IP addresses of the workstations as shown in Figure 4.13. 
+    After checking the wiring, as shown in \hyperref[fig:4.13]{Figure~4.13}, reboot the routers to restore their initial settings.
+    Check the IP addresses of the workstations as shown in \hyperref[fig:4.13]{Figure~4.13}. 
 
     Remove all the routing entries other than your own subnet and the loopback interface from your host routing table.
     Save the output of \lstinline{netstat -rn} before building your workstation’s routing table. 
 
-    Examine Figure 4.13 and build your host’s static routing table manually. 
+    Examine \hyperref[fig:4.13]{Figure~4.13} and build your host’s static routing table manually. 
 
     Open console of the routers and save its routing table before building any route.
     Save the routing table of the other router if you have one more router connected directly.
@@ -462,7 +462,7 @@ ip route network net-mask next-hup
     \end{report}
 
 
-\part{\texttt{traceroute} Experiment}
+\part{\texttt{traceroute} Experiment}\label{sec:traceroute}
 \section{\texttt{traceroute} multi-hop path}
     Execute \lstinline[emph={your-host, remote-host}]{tcpdump -env host your-host and remote-host} on your host, where \textit{remote-host} is a workstation at least two hops away. 
 

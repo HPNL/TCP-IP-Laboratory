@@ -156,10 +156,10 @@ netspyd 224.111.111.111 1500 1
     Also, examine the \lstinline{tcpdump} and the \lstinline{ping} outputs to see which hosts replied.
 
 \part{IGMP Exercises}\label{sec:igmp}
-    In the following exercises, use four hosts and one router. The network topology is given in Fig. 7.13, and the corresponding host IP addresses and router IP addresses are given in Table 7.2 and Table 7.3, respectively.
+    In the following exercises, use four hosts and one router. The network topology is given in \hyperref[fig:7.13]{Figure~7.13}, and the corresponding host IP addresses and router IP addresses are given in \hyperref[tab:7.2]{Table~7.2} and \hyperref[tab:7.3]{Table~7.3}, respectively.
 
     \begin{table}[H]
-        \caption{Hosts IP addresses for Fig. 7.13 (Table~7.2)}
+        \caption{Hosts IP addresses for \hyperref[fig:7.13]{Figure~7.13} (Table~7.2)}
         \label{tab:7.2}
         \centering
         \begin{tabular}{ *3c }
@@ -175,7 +175,7 @@ netspyd 224.111.111.111 1500 1
     \end{table}
 
     \begin{table}[H]
-        \caption{Router IP addresses for Fig. 7.13 (Table~7.3)}
+        \caption{Router IP addresses for \hyperref[fig:7.13]{Figure~7.13} (Table~7.3)}
         \label{tab:7.3}
         \centering
         \begin{tabular}{ *3c }
@@ -211,7 +211,7 @@ netspyd 224.111.111.111 1500 1
 
 \section{Configuring Router}
 \label{sec:config-router}
-    Connect the hosts and the route in your group as shown in Fig. 7.13. Set the IP address of your host as given in Table 7.2. Note that the IP addresses of the router interfaces are the same as their default IP addresses.
+    Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}. Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}. Note that the IP addresses of the router interfaces are the same as their default IP addresses.
     Login to the router and run \lstinline{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
     Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode. Now the router is enabled to do multicast routing using PIM.
 
@@ -275,7 +275,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
     \end{report}
 
 \part{Multicast Routing Exercises}\label{sec:multicast-routing}
-    For the rest of the exercises in this chapter, the network topology is given in Fig. 7.14. The exercises will be jointly performed by all the students. The IP addresses of the hosts and router interfaces are given in Fig. 7.14.
+    For the rest of the exercises in this chapter, the network topology is given in \hyperref[fig:7.14]{Figure~7.14}. The exercises will be jointly performed by all the students. The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7.14]{Figure~7.14}.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -346,7 +346,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
     \end{figure}
 
 \section{Multicast Multi-Hub}
-    Connect the hosts and routers as illustrated in Figure 7.14.
+    Connect the hosts and routers as illustrated in \hyperref[fig:7.14]{Figure~7.14}.
     Configure the IP addresses of the hosts and router interfaces as given in the figure.
 
     % Note that most of the router interfaces use their default IP addresses, only the \textit{ethernet0} interface of Router4 needs to be changed to 128.238.63.4.
@@ -415,7 +415,7 @@ Router(interface)# ip multicast ttl-threshold 32
 
 \part{Multicast Video Streaming Exercise}
     In the following exercise, we use \lstinline{vlc} for video streaming.
-    The routers and hosts have the same configurations as in Fig. 7.14.
+    The routers and hosts have the same configurations as in \hyperref[fig:7.14]{Figure~7.14}.
 
 \section{Multicast Real-Time Video}
     Start \lstinline{vlc} on all the hosts, by using \lstinline{vlc &}. 

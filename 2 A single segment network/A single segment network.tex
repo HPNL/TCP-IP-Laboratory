@@ -7,7 +7,7 @@
 
 \begin{document}
 \part{Network Interface Exercises}
-    The following exercises use the single segment network topology shown in Fig. 1.3.
+    The following exercises use the single segment network topology shown in \hyperref[fig:1.3]{Figure~1.3}.
     \begin{center}
         \begin{minipage}{0.48\textwidth}
             \begin{flushleft}
@@ -132,7 +132,7 @@ arp -d remote-host
     Save the new ARP table for your lab report.
 
     Mark the ARP request packet and the ARP reply packet in the \lstinline{wireshark} window.
-    Then go to menu \textit{File/Print\ldots} to print the marked packets for your lab report (See Exercise 6 of Chapter 1).
+    Then go to menu \textit{File/Print\ldots} to print the marked packets for your lab report (See Exercise~6 of Chapter~1 of reference book).
 
     \begin{report}
     \item From the saved \lstinline{tcpdump} output, explain how ARP operates.
@@ -161,7 +161,7 @@ arp -d remote-host
     \end{report}
 
 \section{ARP Proxy}
-    The network topology for this proxy ARP exercise is shown in Fig. 2.9. The IP addresses and network masks for the hosts are also given in Fig. 2.9. Change the IP address and network mask of your host accordingly (see Section~2.3.2 of reference book). Change the IP addresses and network masks of the \textit{Router4} interfaces according to Fig. 2.9.
+    The network topology for this proxy ARP exercise is shown in \hyperref[fig:2.9]{Figure~2.9}. The IP addresses and network masks for the hosts are also given in \hyperref[fig:2.9]{Figure~2.9}. Change the IP address and network mask of your host accordingly (see Section~2.3.2 of reference book). Change the IP addresses and network masks of the \textit{Router4} interfaces according to \hyperref[fig:2.9]{Figure~2.9}.
 
     \textbf{Note}\quad
     Network mask of the hosts in the 128.238.65.0 network is 255.255.0.0.
@@ -206,7 +206,7 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     Run \lstinline{arp -a} to display the new ARP table in your host.
     Save the ARP table for your lab report.
 
-    After the lab instructor restores the network into a single subnet (see Fig. 1.3), change the IP address and network mask of your host’s interface back to their default values as in Fig. 1.3.
+    After the lab instructor restores the network into a single subnet (see \hyperref[fig:1.3]{Figure~1.3}), change the IP address and network mask of your host’s interface back to their default values as in \hyperref[fig:1.3]{Figure~1.3}.
 
     \begin{figure}[H]
         \centering
@@ -228,7 +228,7 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
                 \node at ({-1+(3+0.25)*2},2) {\scriptsize 128.238.64.0 subnet};
                 \node at ({-1+(3+0.25)*2},1) {\scriptsize 128.238.65.0 subnet};
             \end{tikzpicture}
-        \caption{Network configuration (Figure~2.9)}
+        \caption{Network configuration (Figure~2.9)}\label{fig:2.9}
     \end{figure}
     
     \begin{report}
@@ -274,7 +274,7 @@ socket -i -u -n1 -w1000 remote-host 88888
     Save the \lstinline{tcpdump} output for the lab report.
 
     \begin{report}
-    \item Study the saved ICMP port unreachable error message (see Fig. 2.7).
+    \item Study the saved ICMP port unreachable error message (See \hyperref[fig:2.7]{Figure~2.7} of reference book.).
     Why are the first 8 bytes of the original IP datagram payload included in the ICMP message?
     \end{report}
 
