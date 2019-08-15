@@ -8,10 +8,10 @@
 \begin{document}
 \part{Using the \texttt{socket} Program}
 \label{sec:schema}
-    In this lab, you will not need to a router, only two workstations and one hub to connect two host together as show in \autoref{fig:5.0} and \autoref{tbl:5.0}.
+    In this lab, you will not need to a router, only two workstations and one hub to connect two host together as show in \hyperref[fig:5.0]{Figure~5.0} and \hyperref[tab:5.0]{Table~5.0}.
     \begin{table}[H]
         \caption{Host IP addresses for Fig. 5.0}
-        \label{tbl:5.0}
+        \label{tab:5.0}
         \centering
         \begin{tabular}{ *2c|*2c }
             \hline \hline
@@ -34,7 +34,7 @@
         
             \draw (h0) -- (hub) -- (h1);
         \end{tikzpicture}
-        \caption{Simple router experiment. (Figure~5.0.)}        
+        \caption{Simple router experiment (Figure~5.0)}        
         \label{fig:5.0}
     \end{figure}
 
@@ -53,7 +53,7 @@ socket -i -n3 -w2048 server-host 5555
 \section{\texttt{socket -h}}
     Study various options associated with the \lstinline{socket} program.
     A brief list of options can be displayed by typing \lstinline{socket}. More detailed discussion on socket can be found in
-    Appendix C of [5] in the reference book.
+    Appendix~C of [5] in the reference book.
 
 \section{Segment Size}
     While running \lstinline{tcpdump -nv} on \textit{your-host} or \textit{remote-host}, execute the following command with different values of size (i.e.\  the size of the datagram).
@@ -103,12 +103,12 @@ socket -u -i -n1 -w10000 host echo@
     \end{report}
 
 
-\part{Path MTU Discovery Exercise}
-    Connect the routers and the workstations as shown in \autoref{fig:5.2} (Fig 5.2) Change the IP
+\part{Path MTU Discovery Exercise}\label{sec:PMTUD}
+    Connect the routers and the workstations as shown in \hyperref[fig:5.5]{Figure~5.5} Change the IP
     addresses of your workstation accordingly. Note that the router IP addresses are
     the same as their default.
 
-    % Open console of  each router, enable {RIP} routing (see Section 4.6 of reference book).
+    % Open console of  each router, enable {RIP} routing (See Section~4.6 of reference book).
 
     Change the \texttt{MTU} of the \textit{ethernet1} interfaces of \textit{Router4} to 500
     bytes.
@@ -125,7 +125,7 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     \end{lstlisting}
 
     \begin{table}[H]
-        \caption{Router and Host IP addresses for \autoref{fig:5.2 (Table~5.2)}}
+        \caption{Router and Host IP addresses for \hyperref[fig:5.5]{Figure~5.5} (Table~5.5)}
         \centering
         \begin{tabular}{ *2c|*2c|*2c }
             \hline \hline
@@ -151,8 +151,8 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
             \draw[thick] (hub1) -- (router);
             \draw[thick] (hub2) -- (router);
         \end{tikzpicture}
-        \caption{The network setup for Exercise 6 like Simple Routing section in previous chapter (Figure~5.2.)}
-        \label{fig:5.2}
+        \caption{The network setup for \nameref{sec:PMTUD} (Figure~5.5)}
+        \label{fig:5.5}
     \end{figure}
 
     Observe the DF bit of the first datagram and that of the following datagrams. Save the \lstinline{tcpdump} output for your lab report.

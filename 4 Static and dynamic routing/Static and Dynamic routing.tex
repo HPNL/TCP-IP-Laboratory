@@ -81,7 +81,7 @@ ping -sv remote-host
     \item Compare this value with the previous value in the case of the bridge. Which, a router or a bridge, is faster? Why?
     \end{report}
 
-\part{RIP Exercises}
+\part{RIP Exercises}\label{sec:rip}
     In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode.
     \begin{lstlisting}[language={cisco}, emph={network-number}]
 Router(config)# router rip
@@ -98,7 +98,7 @@ Router(config)# no router rip
     \end{lstlisting}
     Consider Figure 4.11 as our network topology for this section.
     
-    % Since the IP address of \textit{ethernet1} in \textit{router4} is the only interface which is different from the initial configuration in Appendix B, we will reboot all the four routers to restore their default configurations, and change the IP address on the \textit{ethernet1} in \textit{router4} only. Since our workstations started \lstinline{routed} at boot-up time, no further action is needed to run RIP on the workstations. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
+    % Since the IP address of \textit{ethernet1} in \textit{router4} is the only interface which is different from the initial configuration in Appendix~B of reference book, we will reboot all the four routers to restore their default configurations, and change the IP address on the \textit{ethernet1} in \textit{router4} only. Since our workstations started \lstinline{routed} at boot-up time, no further action is needed to run RIP on the workstations. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
     Configure network router and workstation’s as Figure 4.11. Since our workstation’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each workstation.
     \begin{figure}[H]
         \centering
@@ -164,12 +164,12 @@ Router(config)# no router rip
             \draw[thick] (-3,2) -- +(6,0) node[pos=0.5,below] {\scriptsize 128.238.61.0 subnet};
             \draw[thick] (-3.5,-2) -- +(7,0) node[pos=0.5,above] {\scriptsize 128.238.63.0 subnet};
         \end{tikzpicture}
-        \caption{Network Configuration for RIP exercises (Figure~4.11)}
+        \caption{Network Configuration for \nameref{sec:rip} (Figure~4.11)}
     \end{figure}
 \section{RIP Messages}
     Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in Figure 4.11.
     Also, make sure that your workstation has no other routing entries than your own subnet and your loopback interface.
-    For how to remove an entry from the host routing table, see Section 4.3.
+    For how to remove an entry from the host routing table, see Section~4.3 of reference book.
 
     Configure the RIP in each router.
     To avoid confusion, each router should be configured by only one person.
@@ -183,7 +183,7 @@ tcpdump -x -s 100 -c 4 udp port 520
     Save the routing table in your workstation (\lstinline{sh ip route}).
     Note the number of hops needed to reach destinations other than in your own subnet.
 
-    Mark and print two different RIP messages captured in your subnet (see Exercise 6 of Chapter 1).
+    Mark and print two different RIP messages captured in your subnet (see Exercise~6 of Chapter~1 of reference book).
     Exchange the printed RIP messages with students in other groups.
     You need four different RIP messages for your lab report.
     
@@ -221,7 +221,7 @@ tcpdump -x -s 100 -c 4 udp port 520
     \item Compare this time with the previous value in the spanning tree experiment.
     
     \item Explain why it takes this time for RIP to react to the route change.
-        Refer to Section 4.2.4 for RIP operation and default timer values.
+        Refer to Section~4.2.4 of reference book for RIP operation and default timer values.
     \end{report}
 
 
@@ -238,7 +238,7 @@ tcpdump -x -s 100 -c 4 udp port 520
     You may need to \lstinline{ping} the same host several times in order to get your routing table updated.
     
     \begin{report}
-        \item Submit what you saved in Exercise 4.
+        \item Submit what you saved in this exercise.
         
         \item Identify every field in the ICMP redirect message (see Figure 4.2).
         
@@ -409,7 +409,7 @@ tcpdump -x -s 120 ip proto 89
     % The routing daemon supporting OSPF, \lstinline{gated}, is not installed.
     In order to reach the routers and hosts in the other subnets, you need to add a default router in your host’s routing table. 
 
-    Examine the routing table in each router (see Section 4.3).
+    Examine the routing table in each router (see Section~4.3 of reference book.).
     When the routing table gets an entry for the network that is not directly connected, kill the \lstinline{tcpdump} process and save the \lstinline{tcpdump} output. 
 
     Collect the \lstinline{tcpdump} outputs from other subnets.
