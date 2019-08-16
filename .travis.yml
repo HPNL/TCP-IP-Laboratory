@@ -9,8 +9,8 @@ deploy:
   api_key:
     secure: gp51k2St0/qZagVZgDOHoGlg9UWQ6lPRWA5yhLfPap5+JdgQyDif35xyah65o+Ykivqlh7gmrA1XrU6c8N0mBy90TATJqfuS1pbsehRn/8I8TiO1PIRJalIW/wSGnXb/s8ObSQ2sSVGwyXP1rspcpYuHokNcQxH6JvpIVc8hs/HvyBVyd0POlWNyalI7LZzc5x6jHAFIMLAxAACY/BtYFbYxX2Y52aco4LLlDMj269WTJqKHsuPvEFkANOngawrL8MuK+Ee5u5ByBXevZy0tf0JQiI4+7KKsR2EcNROHusr1WoaaLj/LP/omWBdc38Nw4Q8OzxUkVZTVAgvYNlr9q9kgsG8JDN2225HtUf2xQdgxhUwxTnYJWOhUXoQR4IjbMbfKU6oz6OmdmkreSYY3xgI9e7/ogXlfhE5zPdCbBS24Q8pn5uK2oLD7vrw0fh/ERejw3S92CNPVc4OlzTsxnZzcPndE80ZcR8d0RTyU35fOK2pjGITVQIwKmRk19y7ubh3+ljLeyyTArj/Z0MlPdZr1SyHHEQPgHbomqXQ2aDmJZNuIDDdUoqz5f3M9Hg+9e28jhFQLhMQH7UhqKIRj3r9RqIF9CM5avvNO4vC5eVdXr9+afrnauXIR6/+wkqYa+PYpdSgEJvrX5txj4Dz2Eg6Xw/oVGaZEPFtNQ3Gz1jM=
   file_glob: true
-  file: "**/*.pdf"
+  file: "[0-9]**/*.pdf"
   skip_cleanup: true
   on:
-    repo: amirhakh/TCP-IP-Laboratory
+    repo: UT-Network-Lab/TCP-IP-Laboratory
     tags: true
