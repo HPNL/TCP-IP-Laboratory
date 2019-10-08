@@ -100,7 +100,7 @@ rocommunity guest
     \begin{report}
     \item What is the MTU of the Ethernet interface? What is the MTU of the loopback interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
     
-    \item Why did the snmpwalk command with a community name public fail?
+    \item Why did the \lstinline{snmpwalk} command with a community name public fail?
     \end{report}
 
 \section{SNMP Remote Access}
@@ -312,7 +312,12 @@ goaccess -a > /var/www/html/report.html
 \section{System Status}
     Execute \lstinline{netstat -l} to display the listening sockets in your host.
 
-    Execute \lstinline{service --status-all} to list the services in the \path{/etc/init.d/} and \path{/etc/init/} directories and their status. Save the output for the lab report.
+    Execute htis commands to see the system services info \footnote{The old Linux OS service loaded in\path{/etc/init.d/} and \path{/etc/init/} directories} and their status. Save the output for the lab report.
+    \begin{itemize}
+        \item \lstinline{service --status-all}
+        \item \lstinline{systemctl list-units --type=service --state=running}
+        \item \lstinline{systemctl list-unit-files --type service --state=enabled}
+    \end{itemize}
     
     \begin{report}
     \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled in your host?
