@@ -100,9 +100,9 @@
 socket -u -i -n200 remote-host echo
     \end{lstlisting}
     
-    \begin{question}
+    \begin{report}
     \item Calculate the average collision rate over all the hosts for the set of statistics you collected in this exercise.
-    \end{question}
+    \end{report}
 
 \part{ARP Exercises}
     In the following experiment, we shall examine the host ARP table and the ARP operation, including two interesting cases: proxy ARP and gratuitous ARP. You may need to find \textbf{MAC} addresses of the host and router interfaces, and record these \textbf{MAC} addresses.
@@ -241,16 +241,23 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \item Give one advantage and one disadvantage of using proxy ARP.
     \end{report}
 
-\section{** ARP Reboot Timeout}
-    While \lstinline{tcpdump -ex -w exe7.out} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}. 
+\section{Gratuitous (Unsolicited) ARP}
+    While \lstinline{tcpdump -ex} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}. You can send the gratuitous ARP manually by execute:
+
+    \begin{lstlisting}[emph={eth1,h7-ip,h6-ip}]
+arping -c 4 -A -I eth1 h6-ip
+arping -c 4 -U -I eth1 h7-ip
+    \end{lstlisting}
 
     After \textit{h7} is started, terminate \lstinline{tcpdump} and run \lstinline{wireshark -r exe7.out &} to load the \lstinline{tcpdump} trace.
     Print the gratuitous ARP request for your lab report.
     
     \begin{report}
     \item What is the purpose of gratuitous ARP?
-
+ 
     \item List the sender IP address, target IP address, sender \textbf{MAC} address, and target \textbf{MAC} address of the gratuitous ARP you saved.
+
+    \item What is the ARP table in \textit{h5}?
     \end{report}
 
 

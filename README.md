@@ -33,7 +33,7 @@
 * [X] update referencing in files
 * [-] split and revise report
 * [X] revise section titles and captions
-* [?] revise links and references to section titles and captions
+* [ ] revise links and references to section titles and captions
 * [X] add reference to book (commands & ...)
 * [ ] add api to transfer file to host
 * [ ] update network tools
@@ -42,7 +42,7 @@
   * [ ] linux routing service
   * [ ] router discovery
   * [ ] ...
-  * [ ] gratuitous ARP in section 2.7
+  * [X] gratuitous ARP in section 2.7
 * [x] config CI/CD (generate _pdf_ to github release)
 * [X] change `tcpdump` output for `tracerotue` (only see `ttl`)
 * [ ] build custom figure with enabled multicast ping reply
