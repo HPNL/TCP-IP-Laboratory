@@ -25,6 +25,7 @@
 ## ToDo
 
 * [X] add farsi template
+* [ ] add figure and template for `Cisco IOS HTTP REST API` section
 * [ ] add quiz sample
 * [ ] add network equipment and device overview
 * [ ] add pre-build projects requirement with IP and hosts map
