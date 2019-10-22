@@ -371,7 +371,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
                     "image": "ut/netlab/term:latest",
-                    "start_command": null
+                    "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
                 "width": 65,
@@ -443,7 +443,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
                     "image": "ut/netlab/term:latest",
-                    "start_command": null
+                    "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
                 "width": 65,
@@ -515,7 +515,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
                     "image": "ut/netlab/term:latest",
-                    "start_command": null
+                    "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
                 "width": 65,
@@ -587,7 +587,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
                     "image": "ut/netlab/term:latest",
-                    "start_command": null
+                    "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
                 "width": 65,
