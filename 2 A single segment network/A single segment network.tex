@@ -77,8 +77,8 @@
 
 
 \section{Local Host Dump}
-    While \lstinline[emph={your-host}]{tcpdump host your-host} is running in one command window, run \lstinline{ping 127.0.0.1} from another command window.
-    
+    While \lstinline[emph={lo}]{tcpdump -i lo}\footnote{In old linux use \lstinline[emph={your-host}]{tcpdump host your-host}} is running in one command window, run \lstinline{ping 127.0.0.1} from another command window.
+
     \begin{report}
     \item From the \lstinline{ping} output, is the 127.0.0.1 interface on?
     Can you see any ICMP message sent from your host in the \lstinline{tcpdump} output?
