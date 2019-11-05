@@ -3,7 +3,8 @@ language: generic
 services: docker
 script:
 - docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full
-  /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex;cd Figures;bash build-gns3p.sh; cd ..;"
+  /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"
+- docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo/Figures" --entrypoint "/bin/sh" kramos/alpine-zip "./build-gns3p.sh"
 deploy:
   provider: releases
   api_key:
