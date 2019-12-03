@@ -10,7 +10,7 @@
     Like previous lab, connect two host with one hub together (Figure~5.0).
 
 \section{Telnet terminal}
-    While \lstinline[emph={your-host, remote-host}]{tcpdump -S host your-host  and remote-host} is running, execute: \lstinline[emph={your-host, remote-host}]{telnet remote-host date}.
+    While \lstinline[emph={your-host, remote-host}]{tcpdump -S host your-host  and remote-host} is running, execute: \lstinline[emph={your-host, remote-host}]{telnet remote-host echo} then type some text.
     Save the tcpdump output.
     
     \begin{report}
@@ -26,12 +26,12 @@
 \section{TCP vs UDP Connection Establishment}
     While \lstinline[emph={your-host, remote-host}]{tcpdump -nx host your-host and remote-host} is running, use \lstinline{socket}\footnote{Basic command is \lstinline{sock}. Use alternative \lstinline{socket} (linked to \lstinline{sock}).} to send a UDP datagram to \textit{h2}:
     \begin{lstlisting}[emph={your-host, remote-host}]
-socket -u -s remote-host 8888
+socket -u -i -n1 remote-host 8888
     \end{lstlisting}
     {Save} the \lstinline{tcpdump} or \lstinline{wireshark} output for your lab report. \\
     Restart the above \lstinline{tcpdump} command, execute \lstinline{socket} in the TCP mode:
-    \begin{lstlisting}[emph={host}]
-socket -i -n1 host 8888
+    \begin{lstlisting}[emph={remote-host}]
+socket -i -n1 remote-host 8888
     \end{lstlisting}
     {Save} the \lstinline{tcpdump} output for your lab report.
     
@@ -43,7 +43,7 @@ socket -i -n1 host 8888
 \section{Interactive Data Flow}
 While \lstinline{tcpdump} is capturing the traffic between your machine and a remote machine, issue following commands:
     \begin{lstlisting}[emph={host}]
-tcpdump -nv @{\normalfont\normalsize (or run }wireshark{\normalfont\normalsize  )}@
+tcpdump -nv #@{\normalfont\normalsize (or run }wireshark{\normalfont\normalsize  )}@
 telnet host
     \end{lstlisting}
     After logging in to the host, type \lstinline{date} and press the {Enter} key.
@@ -116,18 +116,18 @@ socket -s 8888
     Then, execute the following command on your host,
     \begin{itemize}
         \item add link delay in simulator\footnote{In GNS3, \lstinline{right click} on link, select \lstinline{Packet Filter} and set link \lstinline{delay} to \textit{10 ms}}
-        \item \lstinline[emph={host}]{socket -i -n200 host 8888}
+        \item \lstinline[emph={host}]{socket -i -n200 -p 100 host 8888}
     \end{itemize}
-    While the sender is injecting data segments into the network, disconnect the cable connecting the sender to the hub for about ten seconds.
-
-    After observing several retransmissions, reconnect the cable:
+    While the sender is injecting data segments into the network, shutdown the network interface that connect the sender to the hub for about ten seconds.
     \begin{lstlisting}
 ip link set eth0 down@{\normalfont\normalsize{ or }}@ifconfig eth0 down
     \end{lstlisting}
+
+    After observing several retransmissions, set network interface up:
 after seconds\ldots
     \begin{lstlisting}
 ip link set eth0 up@{\normalfont\normalsize{ or }}@ifconfig eth0 up
-    \end{lstlisting}
+    \end{lstlisting} %in order to connect again%
     When all the data segments are sent, save the \lstinline{tcpdump} output for the lab report.
     
     \begin{report}
