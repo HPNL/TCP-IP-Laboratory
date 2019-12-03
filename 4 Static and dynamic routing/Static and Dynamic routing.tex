@@ -7,8 +7,7 @@
 
 \begin{document}
 \part{A Simple Router Experiment}
-    As in the previous lab, we will divide the students into four groups, each with two workstations, a router, and two hubs, which are to be connected as shown in \hyperref[fig:4.10]{Figure~4.10}.
-    The IP addresses of the routers and hosts are given in \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3}, respectively.
+In this lab, you need two workstations, a bridge, and two hubs, which are required to be connected as shown in \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3}.
     \begin{table}[H]
         \caption{Router and Host IP addresses for \hyperref[fig:4.10]{Figure~4.10} (Table~4.2\label{tab:4.2}, Table~4.3\label{tab:4.3})}
         \centering
@@ -45,15 +44,26 @@
 \section{Simple Routing}
     Configure the IP addresses of your workstations and the router as shown in \hyperref[fig:4.10]{Figure~4.10}, \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3} (select one of row in table).
 
-    Initially your host’s routing table has no entry for the subnet on the other side of the router.
-    In order to be connected, you need to add a routing entry for the other subnet in the routing table of your workstation (see section 4.3.1).
-    Like:
-    \begin{lstlisting}
-ip route add 192.168.1.0/24 [dev eth0|via 192.168.1.1]
-route add -net 192.168.1.0/24 [gw 192.168.1.1] dev eth0
-    \end{lstlisting}
+    Initially all hosts’ routing table has no entry for the subnet on the other side of the router.
+    In order to be connected, you need to add a routing entry for the other subnet in the routing table of all workstations (see section 4.3.1).
 
-    Run \lstinline{tcpdump -en} on your machine, and \lstinline{tcpdump -en} on your partner’s machine in the other subnet simultaneously:
+    You can use one of the following commands to add routing in workstations.
+    \begin{lstlisting}[emph={eth0,gateway-ip,remote-subnet}]
+# by ip command
+ip route add remote-subnet dev eth0            # with interface name
+ip route add remote-subnet via gateway-ip    # with default gateway
+# or by route command
+route add -net remote-subnet dev eth0           # with interface name
+route add -net remote-subnet gw gateway-ip   # with default gateway
+    \end{lstlisting}
+    \begin{itemize}
+        \item \textit{remote-subnet} is a subnet ip with mask number. It must be like \lstinline{192.168.1.0/24}.
+        \item \textit{gateway-ip} is a gateway ip in your network. It must be like \lstinline{128.238.61.1}
+        \item \textit{eth0} is a pyhisical interface name. It is shown in \lstinline{ifconfig} or \lstinline{ip a} commands.
+    \end{itemize}
+    
+
+    Run \lstinline{tcpdump -en} on first machine, and \lstinline{tcpdump -en} on second machine in the other subnet simultaneously:
     \begin{lstlisting}[emph={your-machine, remote-host}]
 tcpdump -en host remote-host and your-machine
     \end{lstlisting}
@@ -82,7 +92,7 @@ ping -sv remote-host
     \end{report}
 
 \part{RIP Exercises}\label{sec:rip}
-    In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode.
+    In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode (use \lstinline[language={cisco}]{config term} command).
     \begin{lstlisting}[language={cisco}, emph={network-number}]
 Router(config)# router rip
 Router(config-router)# network network-number
@@ -90,7 +100,7 @@ Router(config-router)# network network-number
     where \textit{network-number} could be 128.238.0.0.
     To remove the network, use:
     \begin{lstlisting}[language={cisco}, emph={network-number}]
-Router(config)# no network network-number
+Router(config-router)# no network network-number
     \end{lstlisting}
     To shutdown the RIP process, use:
     \begin{lstlisting}[language={cisco}]
@@ -208,7 +218,7 @@ tcpdump -x -s 100 -c 4 udp port 520
     Send \lstinline{ping} message continuously from \textit{h3} to \textit{h4} and start \lstinline{tcpdump} on \textit{h3}.
     Let the two programs run during this exercise.
 
-    Disconnect the cable from the \textit{ethernet0} port of \textit{router2} from the hub in the 128.238.62.0 subnet (you can use \lstinline[language={cisco}]{shut} for interface in the router interface configuration state), and type the \lstinline{date} command to get the current time.
+    Disconnect the cable from the \textit{ethernet0} port of \textit{router2} from the hub in the 128.238.62.0 subnet (use \lstinline[language={cisco}]{Router(config-interface)# shut} for interface in \textbf{GNS3}), and type the \lstinline{date} command to get the current time.
 
     Observe the \lstinline{ping} and \lstinline{tcpdump} windows.
     When the connection is re-established, type the \lstinline{date} command again.
@@ -219,7 +229,7 @@ tcpdump -x -s 100 -c 4 udp port 520
     
     \begin{report}
     \item Compare this time with the previous value in the spanning tree experiment.
-    
+
     \item Explain why it takes this time for RIP to react to the route change.
         Refer to Section~4.2.4 of reference book for RIP operation and default timer values.
     \end{report}
@@ -227,10 +237,9 @@ tcpdump -x -s 100 -c 4 udp port 520
 
 \part{Routing Experiments with ICMP}
 \section{ICMP redirect}
-    Eliminate the routing entries for subnets other than your own and the loopback interface.
     Save the routing table for your lab report.
 
-    Create a default routing entry using one of the routers directly connected to your workstation.
+    Create a default routing entry using one of the routers directly connected to your workstation (add route with default gateway).
 
     While \lstinline{tcpdump -enx -s 100 ip proto 1} is running, send \lstinline{ping} messages to a host that is three hops away through the default router.
 
@@ -282,7 +291,7 @@ tcpdump -x -s 100 -c 4 udp port 520
         \caption{Network configuration of the \nameref{sec:ICMPRD} Experiment (Figure~4.12)}\label{fig:4.12}
     \end{figure}
     
-    Telnet to the routers, change the IP address of the \textit{ethernet1} interfaces as shown in \hyperref[fig:4.12]{Figure~4.12}. Enable ICMP router discovery on these two interfaces by the following
+    Telnet to the routers (open router console), change the IP address of the \textit{ethernet1} interfaces as shown in \hyperref[fig:4.12]{Figure~4.12}. Enable ICMP router discovery on these two interfaces by the following
     interface configuration command:
     \begin{lstlisting}[language={cisco}]
         Router(config-if)# ip irdp.
@@ -394,7 +403,7 @@ Router(config-router)# network address wildcard-mask area area-id
     \end{figure}
 
 \section{OSPF Messages}
-    After connecting the cables properly, change the host IP addresses as given in \hyperref[fig:4.13]{Figure~4.13} You need to remove the default route added in Exercise 4 from the host routing table.
+    After connecting the cables properly, change the host IP addresses as given in \hyperref[fig:4.13]{Figure~4.13}.
     Note that the router interfaces are set as \hyperref[fig:4.13]{Figure~4.13} by default. 
 
     Run the following command to capture any OSPF packets: 
@@ -407,7 +416,7 @@ tcpdump -x -s 120 ip proto 89
 
     % The workstations in our lab run \lstinline{routed} (which uses RIP).
     % The routing daemon supporting OSPF, \lstinline{gated}, is not installed.
-    In order to reach the routers and hosts in the other subnets, you need to add a default router in your host’s routing table. 
+    In order to reach the routers and hosts in the other subnets, you need to add a default router in your host’s routing table.
 
     Examine the routing table in each router (see Section~4.3 of reference book.).
     When the routing table gets an entry for the network that is not directly connected, kill the \lstinline{tcpdump} process and save the \lstinline{tcpdump} output. 
