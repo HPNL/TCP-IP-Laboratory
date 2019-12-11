@@ -20,7 +20,7 @@
     
     \item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
     See if the \texttt{DF} flag was set in tcpdump output.
-    You can change interface \texttt{MTU} with \lstinline{sudo ifconfig $ETH mtu 1400}
+    You can change interface \texttt{MTU} with \lstinline[emph=$eth]{sudo ifconfig $eth mtu 1400}
     \end{report}
     
 \section{TCP vs UDP Connection Establishment}
@@ -115,10 +115,10 @@ socket -s 8888
     \end{lstlisting}
     Then, execute the following command on your host,
     \begin{itemize}
-        \item add link delay in simulator\footnote{In GNS3, \lstinline{right click} on link, select \lstinline{Packet Filter} and set link \lstinline{delay} to \textit{10 ms}}
+        \item add link delay in simulator\footnote{In GNS3, \lstinline{right click} on link, select \lstinline{Packet Filter} and set link \lstinline{delay} to \textit{100 ms}}
         \item \lstinline[emph={host}]{socket -i -n200 -p 100 host 8888}
     \end{itemize}
-    While the sender is injecting data segments into the network, shutdown the network interface that connect the sender to the hub for about ten seconds.
+    While the sender is injecting data segments into the network, shutdown the network interface on the \textit{remote-host} that connect the sender to the hub for about ten seconds.
     \begin{lstlisting}
 ip link set eth0 down@{\normalfont\normalsize{ or }}@ifconfig eth0 down
     \end{lstlisting}
