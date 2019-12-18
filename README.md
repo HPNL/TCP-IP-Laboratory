@@ -5,47 +5,47 @@
 
 ## Chapters
 
-* Linux & Simulator
-  * Mininet
-  * GNS3
 * Introduction to Network Peripheral
-* UDP
-* TCP
-* NAT
+
+1. Linux and TCP-IP networking
+2. Signel Segment Network
+3. Bridges, LANs and the Cisco IOS
+4. Static and dynamic routing
+5. UDP and its applications
+6. TCP study
+7. Multicast and realtime service
+8. The Web, DHCP, NTP and NAT
+9. Network management and security
+
+### Chapters ToDo
+
 * VLan
-* Routing (Static & Dynamic)
-* AS Routing
+* AS Routing (BGP, ...)
 * Security
 * Firewall
 * SDN and Routing Rules
-* Multicast
-* Socket Programming
 * Network Performance
 
-## ToDo
+## Requirement
 
-* [X] add farsi template
+* Linux
+* GNS3
+* Mininet
+
+## ToDo and Bugfix
+
+* [ ] add farsi Chapter
 * [ ] add figure and template for `Cisco IOS HTTP REST API` section
 * [ ] add quiz sample
 * [ ] add network equipment and device overview
-* [ ] add pre-build projects requirement with IP and hosts map
-* [x] rename hosts
-* [x] replace image with schematic figure
-* [X] update referencing in files
-* [-] split and revise report
-* [X] revise section titles and captions
-* [ ] revise links and references to section titles and captions
-* [X] add reference to book (commands & ...)
 * [ ] add api to transfer file to host
 * [ ] update network tools
+  * [ ] upgrade base docker image
   * [ ] base linux
   * [ ] `socket` with `netcat`
   * [ ] linux routing service
   * [ ] router discovery
   * [ ] ...
-  * [X] gratuitous ARP in section 2.7
-* [x] config CI/CD (generate _pdf_ to github release)
-* [X] change `tcpdump` output for `tracerotue` (only see `ttl`)
 * [ ] build custom figure with enabled multicast ping reply
 * [ ] add route table for right subnet in exercise `8 Multicast Message`
 
