@@ -64,12 +64,14 @@
 
 \section{Linux Multicast Routing Table}
 \label{sec:linux-multicast-routing}
-    Execute \lstinline{netstat -rn} to display the routing table of your host (for example \textit{h1}).
+    Execute \lstinline{netstat -rn} to display the routing table of one host (for example \textit{h1}).
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
     \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps. Each time when the network interface is brought down and up again by the \lstinline{ifconfig} command, you may need to run the \lstinline{route} command to re-insert the multicast routing entry.}
     \begin{lstlisting}[emph=eth0]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
+    Execute this command on all hosts.
+
     Save the new routing table.
     
     \begin{report}
@@ -108,7 +110,7 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 
     Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}.
 
-    To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host that has no entry in the ARP table of you host.
+    To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host that has no entry in the ARP table of your host.
     Recall that the ARP request is broadcast.
 
     Save the frames captured for the lab report.
