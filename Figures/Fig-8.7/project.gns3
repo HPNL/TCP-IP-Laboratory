@@ -685,7 +685,7 @@
                     "mmap": true,
                     "nvram": 256,
                     "platform": "c3725",
-                    "ram": 128,
+                    "ram": 192,
                     "slot0": "GT96100-FE",
                     "slot1": null,
                     "slot2": null,
