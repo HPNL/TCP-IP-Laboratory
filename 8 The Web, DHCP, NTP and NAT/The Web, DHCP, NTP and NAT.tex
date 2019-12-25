@@ -10,10 +10,10 @@
     For the exercises in this section, the network topology is simple with two hosts are connected to a single network segment with IP addresses, i.e.\  from 128.238.66.100 to 128.238.66.101. Add first host from \textit{http-server} and another hsot from \textit{gui}.
 
 \section{HTTP Server}
-    Examine the various configuration directives used and the corresponding settings\footnote{\path{/etc/apache2/apache2.conf}}. 
+    Examine the various configuration directives used and the corresponding settings\footnote{\path{/etc/apache2/apache2.conf}}.
 
     Start the Apache server on your host by: \lstinline{service apache2 start}.
-    In order to check if the server is working properly, you may start a \textit{Mozilla} web browser to download the test page at \url{http://remote-host/}.
+    In order to check if the server is working properly, you may start a \textit{Mozilla} web browser to download the test page at \href{http://remote-host-ip/}{\textit{http://remote-host-ip/}}.
 
     Then, execute \lstinline{pgrep apache2} to list the process IDs of the \lstinline{apache2} processes started.\footnote{By \lstinline{a2enmod mpm_prefork} you can enable Multi-Processing Module and change default spare process (config file: \path{/etc/apache2/mods-available/mpm_prefork.conf}).}
     Save the output and the configuration file for the lab report.
@@ -21,7 +21,7 @@
     \begin{report}
     \item How many \lstinline{apache2} processes were started?
     Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textbf{tree} to see process hierarchy})
-    Justify your answer using the \path{apache2.conf} file.
+    Justify your answer using the \textbf{apache2} configurations file. Explain your answer with value of \textit{Startservers, MinSpareServers, MaxSpareServers, MaxRequestWorkers, ServerLimit, MaxconnectionsPerChild}
     
     \item What is the purpose of initiating multiple apache2 processes?
     \end{report}
