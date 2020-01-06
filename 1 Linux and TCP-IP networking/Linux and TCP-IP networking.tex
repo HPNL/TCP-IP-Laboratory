@@ -85,10 +85,10 @@ ps -e | grep telnet
     \begin{lstlisting}
 more /etc/services
     \end{lstlisting}
-    Then in another console, use the redirect operator to redirect the \lstinline{more} output to
+    Then in another console (Auxiliary console), use the redirect operator to redirect the \lstinline{more} output to
     a file using \lstinline{more /etc/services > ser-more}. Compare the file \path{ser-more} with the original \lstinline{more} output in the other command window.
 
-    Copy \path{/etc/services} file to a local file named \path{ser-cp} in your working directory,
+    Copy \path{/etc/services} file to a local file named \path{ser-cp} in your working directory (use \lstinline{pwd} to see working directory path),
     using \lstinline{cp /etc/services ser-cp}. Compare files \path{ser-more} and \path{ser-cp}, using \lstinline{cmp ser-more ser-cp}. Are these two files identical?
 
     Concatenate these two files using \lstinline{cat ser-more ser-cp > ser-cat}.
@@ -119,13 +119,14 @@ more /etc/services
     \end{report}
 
 \section{Packet Capturing}
+    % fixme: content
     In this exercise, we will use \lstinline{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \lstinline{wireshark} to analyze this packet.
 
     First, run \lstinline{tcpdump -enx -w dump.out} in \textit{h1}.
     You will not see any \lstinline{tcpdump} output, since the \lstinline{-w} option is used to write the output to the \path{dump.out} file.
 
-    Then, you may want to run \lstinline{telnet 10.0.0.2} to generate some TCP traffic.\footnote{Remember to run \lstinline{/etc/init.d/xinetd restart} in \textit{h2} to start telnet server on it.}
-    After you login to \textit{h2}, terminate the \lstinline{telnet} session and terminate the \lstinline{tcpdump} program.
+    Then, you may want to run \lstinline{telnet 128.238.66.102} to generate some TCP traffic.\footnote{Remember to run \lstinline{/etc/init.d/xinetd restart} in \textit{h2} to start telnet server on it.}
+    After you login to \textit{h2} (use \textbf{netlab} for username and password), terminate the \lstinline{telnet} session and terminate the \lstinline{tcpdump} program.
     Next, you will use \lstinline{wireshark} to open the packet trace captured by \lstinline{tcpdump} and analyze the captured packets.
     To do this, run \lstinline{wireshark dump.out &}.
     The \lstinline{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \lstinline{tcpdump} will be displayed.
@@ -140,7 +141,7 @@ more /etc/services
 
 \section{\texttt{ARPing}}
     This time we will run wireshark to capture an ARP request and an ARP reply in real-time. Simply run \lstinline{wireshark &} in \textit{h1} and select the interface and start capturing.
-    If there is no arp requests and replies in the network, generate some using \lstinline{arping 10.0.0.2}.
+    If there is no arp requests and replies in the network, generate some using \lstinline{arping 128.238.66.102} command in the \textit{h1} terminal.
 
     Now you should see several ARP replies in the arping output.
     
@@ -165,7 +166,7 @@ more /etc/services
     \item Explain briefly the purposes of the following \lstinline{tcpdump} expressions.
     \end{report}
 
-    If using wireshark, use the next list:
+    If you are using \lstinline{tcpdump}, explain the following filters:
     \begin{itemize}
         \item \lstinline{tcpdump udp port 520}
         \item \lstinline{tcpdump -x -s 120 ip proto 89}
@@ -186,7 +187,7 @@ more /etc/services
 
     Execute a TCP utility, \lstinline{telnet} for example, in another command window:
     \begin{lstlisting}
-telnet 10.0.0.2
+telnet 128.238.66.102
     \end{lstlisting}
     
     \begin{report}
@@ -198,8 +199,8 @@ telnet 10.0.0.2
 \section{Random Port}
     In \textit{h1} run \lstinline{wireshark &} and select an interface to capture packets between hosts.
 
-    Then, \lstinline{telnet} to the \textit{h2} from a second command window by typing \lstinline{telnet 10.0.0.2}.
-    Again issue the same \lstinline{telnet 10.0.0.2} command from a third command window.
+    Then, \lstinline{telnet} to the \textit{h2} from a second command window (Auxiliary console) by typing \lstinline{telnet 128.238.66.102}.
+    Again issue the same \lstinline{telnet 128.238.66.102} command from a third command window.
     Now you are opening two \lstinline{telnet} sessions to \textit{h2} simultaneously, from two different command windows.
 
     Check the port numbers being used on both sides of the two connections from the output in the \lstinline{wireshark} window.

@@ -64,12 +64,14 @@
 
 \section{Linux Multicast Routing Table}
 \label{sec:linux-multicast-routing}
-    Execute \lstinline{netstat -rn} to display the routing table of your host.
+    Execute \lstinline{netstat -rn} to display the routing table of one host (for example \textit{h1}).
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
     \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps. Each time when the network interface is brought down and up again by the \lstinline{ifconfig} command, you may need to run the \lstinline{route} command to re-insert the multicast routing entry.}
-    \begin{lstlisting}
+    \begin{lstlisting}[emph=eth0]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
+    Execute this command on all hosts.
+
     Save the new routing table.
     
     \begin{report}
@@ -77,20 +79,20 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{report}
 
 \section{Multicast Membership}
-    Execute \lstinline{netstat -g} to show the multicast group memberships for all the interfaces in your host.
+    Execute \lstinline{netstat -g} to show the multicast group memberships for all the interfaces in your host (for example \textit{h1}).
     
     \begin{report}
     \item How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
     \end{report}
 
 \section{Multicast \texttt{ping}}
-    Execute \lstinline{ping 224.0.0.1}.
+    Execute \lstinline{ping 224.0.0.1} on \textit{h1}.
     Examine the \lstinline{ping} output to see which hosts reply.
 
     Ping a broadcast address using \lstinline{ping -b 128.238.66.255}.
     Examine the \lstinline{ping} output to see which hosts reply.
 
-    You can enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
+    % You can enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
     
     \begin{report}
     \item Which hosts replied when the multicast address was pinged?
@@ -100,7 +102,7 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{report}
 
 \section{Multicast vs Unicast}
-    Execute \lstinline{tcpdump -n -nn -e} and \lstinline{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
+    On \textit{h1} execute \lstinline{tcpdump -n -nn -e} and \lstinline{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
 
     To generate an Ethernet unicast frame, run \lstinline[emph={your-host, remote-host}]{socket -i -u -n1 remote-host echo}.
 
@@ -108,7 +110,7 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 
     Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}.
 
-    To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host that has no entry in the ARP table of you host.
+    To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host that has no entry in the ARP table of your host.
     Recall that the ARP request is broadcast.
 
     Save the frames captured for the lab report.
@@ -146,7 +148,7 @@ netspyd 224.111.111.111 1500 1
     \end{report}
 
 \section{\texttt{ping} Replay}
-    Enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
+    % Enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
     Keep the \lstinline{netspy} and the \lstinline{tcpdump} programs running.
     Execute \lstinline{ping 224.111.111.111} from \textit{h6}.
     Examine the \lstinline{tcpdump} and \lstinline{ping} outputs to see which hosts replied.
@@ -246,9 +248,8 @@ netspyd 224.111.111.111 1500 16
 
 \section{IGMP Types}
     Execute \lstinline{tcpdump ip multicast -v} or \lstinline{wireshark} in one console to capture IGMP messages.
-    At the same time, execute \lstinline{tcpdump ip multicast -v} in another console to monitor the capture process.
     When you see three or more IGMP queries in the second \lstinline{tcpdump} output, terminate both \lstinline{tcpdump} programs.
-
+% FIXME: check senario
     Analyze the IGMP messages you captured.
     Print and save two different IGMP messages.
 
@@ -275,7 +276,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
     \end{report}
 
 \part{Multicast Routing Exercises}\label{sec:multicast-routing}
-    For the rest of the exercises in this chapter, the network topology is given in \hyperref[fig:7.14]{Figure~7.14}. The exercises will be jointly performed by all the students. The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7.14]{Figure~7.14}.
+    For the rest of the exercises in this chapter, the network topology is given in \hyperref[fig:7.14]{Figure~7.14}. The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7.14]{Figure~7.14}.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -313,7 +314,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
             ;
             \draw (-1,1.5) node[draw,fill=white] (h2) {h2}
                 -- +(0,-0.5)
-                +(0,0.5) node {\scriptsize61.102/24}
+                +(0,0.5) node {\scriptsize62.100/24}
             ;
             \draw (7-1,-1.5) node[draw,fill=white] (h6) {h6}
                 -- +(0,0.5)
