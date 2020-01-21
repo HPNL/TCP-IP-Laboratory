@@ -49,6 +49,16 @@
 * [ ] build custom figure with enabled multicast ping reply
 * [ ] add route table for right subnet in exercise `8 Multicast Message`
 
+* add docker with use novnc gui
+    * https://www.github.com/theasp/docker-novnc
+    * https://www.github.com/x11vnc/x11vnc-desktop
+    * https://github.com/gotget/docker-novnc
+    * https://www.github.com/centminmod/docker-ubuntu-vnc-desktop
+    * https://github.com/fcwu/docker-ubuntu-vnc-desktop
+    * https://github.com/ConSol/docker-headless-vnc-container
+
+
+
 # Appendix
 
 * [`ifconfig` vs `ip`](https://p5r.uk/blog/2010/ifconfig-ip-comparison.html)
