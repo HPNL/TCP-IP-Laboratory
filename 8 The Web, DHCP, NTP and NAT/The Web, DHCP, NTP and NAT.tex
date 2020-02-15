@@ -379,15 +379,13 @@ config term
     \end{lstlisting}
 
 \section{NAT Visibility}
-    Keep the login session to the router running. Execute \lstinline{tcpdump -exn -nn} or \lstinline{wireshark} on all the hosts. 
+    Keep the login session to the router running. Execute \lstinline{tcpdump -exn -nn} or \lstinline{wireshark} on two side of the router.
 
     Before any host in the private network send any packets out, \lstinline{ping} an inside host (e.g.\ \textit{h5}) from an outside host (e.g.\ \textit{h1}). You may try to \lstinline{ping} \textit{10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104}. Can you \lstinline{ping} these IP addresses? 
 
     Let an inside host send packets to an outside host, e.g.\ from \textit{h5}, execute \lstinline{ping} 128.238.61.100. Can you \lstinline{ping} \textit{h5} from an outside host now? Why? Which IP address should be used in the \lstinline{ping} command in order to \lstinline{ping} \textit{h5}? 
 
     Execute \lstinline[language=cisco]{show ip nat translations} in the router login window to display the translation table. Save the output for the lab report. 
-
-    Exchange the data you saved with a student in the other subnet.
 
     \begin{report}
     \item Answer the above questions.
@@ -400,7 +398,7 @@ config term
     \end{report}
 
 \section{NAT Table}
-    Keep the login session to the router running. Execute \lstinline{tcpdump -enx -s 100 ip proto 1} or \lstinline{wireshark} to capture ICMP messages. 
+    Keep the login session to the router running. Execute \lstinline{tcpdump -enx -s 100 ip proto 1} or \lstinline{wireshark} to capture ICMP messages on two subnet.
 
     Execute \lstinline{socket -i -u -n1 128.238.61.101 8888} on \textit{h2} to generate an ICMP port unreachable error. 
 
@@ -409,8 +407,6 @@ config term
     Execute \lstinline[language=cisco]{show ip nat translations} in the router login window to display the translation table.
     Save the output for the lab report.
 
-    Exchange the data you saved with a student in the other subnet.
-    
     \begin{report}
     \item Analyze the IP headers, the ICMP headers, and the ICMP payloads of the ICMP port unreachable errors captured in the private network and in the public network from the first experiment.
     Explain how ICMP error was handled by the NAT router.
@@ -418,9 +414,9 @@ config term
 
 \section{NAT and PAT}
     Reboot the router to restore its default configuration.
-    Then, configure the router to use PAT, as given in \hyperref[tab:8.6]{Table~8.6}. Now all the hosts in the private network use the same IP address 128.238.61.1. However, note that there is a static translation that maps \textit{h7}’s port 80 to 128.238.61.1 port 80. 
+    Then, configure the router to use PAT, as given in \hyperref[tab:8.6]{Table~8.6}. Now all the hosts in the private network use the same IP address 128.238.61.1. However, note that there is a static translation that maps \textit{h7}’s port 80 to 128.238.61.1 port 80.
 
-    Execute \lstinline{tcpdump} on all the hosts. 
+    Execute \lstinline{tcpdump} on two subnet.
 
     Generate traffic between the inside and outside hosts.
     Examine the \lstinline{tcpdump} output to see how PAT works.
@@ -428,7 +424,6 @@ config term
     Start the Apache web server on \textit{h7}. Also, run \lstinline[language=bash-ext]{curl} on an outside host (e.g.\ \textit{h0}), and with the URL \url{http://128.238.61.1}. Save the \lstinline{tcpdump} output.
 
     Use \lstinline[language={cisco}]{show ip nat translations} to display and then save the translation table.
-    Exchange the data you saved with a student in the other subnet.
 
     \begin{report}
     \item From the \lstinline{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
