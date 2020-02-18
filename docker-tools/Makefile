@@ -15,11 +15,6 @@ clean-socket:
 	$(MAKE) -C $(socket_dir) clean
 	$(MAKE) -C $(socket_dir) distclean
 
-clean-docker:
-	docker rmi ut/netlab/gui
-	docker rmi ut/netlab/gui-s
-	docker rmi ut/netlab/term
-
 all: netspy TCPclient TCPserver UDPclient UDPserver socket netlab-term netlab-gui netlab-http
 
 netspy:
@@ -67,3 +62,8 @@ dockers-push:
 	docker commit ut/netlab/gui
 	docker push $(docker_registery)/ut/netlab/term
 	docker push $(docker_registery)/ut/netlab/gui
+
+clean-docker:
+	docker rmi ut/netlab/gui:$(docker_tag)
+	docker rmi ut/netlab/gui-s:$(docker_tag)
+	docker rmi ut/netlab/term:$(docker_tag)
