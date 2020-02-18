@@ -75,13 +75,12 @@ COPY xinetd.d/telnet xinetd.d/tftp xinetd.d/vsftp /etc/xinetd.d/
 COPY bashrc /root/.bashrc
 COPY bashrc /home/netlab/.bashrc
 
-# copy program file 
+# copy program file
 COPY netspy netspyd netspydd socket /usr/local/bin/
 COPY netspy.c netspyd.c TCPserver.c UDPclient.c UDPserver.c TCPclient.c TCPserver UDPclient UDPserver TCPclient /home/netlab/code/
 COPY mibs/* /usr/share/snmp/mibs/
 
 # start service and bash
 WORKDIR /root/
-
 # VOLUME [ "/root" ]
 CMD [ "sh", "-c", "echo Salam; service xinetd start; cd; exec bash -i" ]
