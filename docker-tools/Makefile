@@ -2,17 +2,23 @@ CC=gcc
 socket_url=http://www.icir.org/christian/downloads/sock-0.3.2.tar.gz
 socket_dir=sock
 docker_registery=hub.docker.com
+docker_tag=9812
 
 .PHONY: default all clean docker-clean
 default: all
 
-clean: clean-docker
+clean: clean-docker clean-tool clean-socket
+
+clean-tool:
 	rm -f netspy netspyd netspydd TCPclient TCPserver UDPclient UDPserver socket
+clean-socket:
 	$(MAKE) -C $(socket_dir) clean
+	$(MAKE) -C $(socket_dir) distclean
 
 clean-docker:
-	docker rmi ut/netlab/ipgui
-	docker rmi ut/netlab/ipterm
+	docker rmi ut/netlab/gui
+	docker rmi ut/netlab/gui-s
+	docker rmi ut/netlab/term
 
 all: netspy TCPclient TCPserver UDPclient UDPserver socket netlab-term netlab-gui netlab-http
 
@@ -32,23 +38,30 @@ UDPserver:
 # http://www.icir.org/christian/sock.html
 # https://github.com/anguslee/sock
 socket:
-	bash -c "test ! -f ${socket_dir}/Makefile && cd ./${socket_dir} && ./configure ||  cd .."
+	bash -c "test ! -f ${socket_dir}/Makefile && cd ./${socket_dir} && autoreconf -if && ./configure ||  cd .."
 	$(MAKE) -C ${socket_dir}
 	cp ${socket_dir}/src/sock socket
 
-dockers: netlab-gui
+dockers: netlab-gui-web
 gns3-ipterm:
 	docker pull gns3/ipterm
 gns3-webterm:
 	docker pull gns3/webterm
 
+docker-pull-base:
+	docker pull debian:10
+	docker pull dorowu/ubuntu-desktop-lxde-vnc
+
 netlab-term: netspy socket TCPserver UDPserver TCPclient UDPclient
-	docker pull debian:jessie
-	docker build -t ut/netlab/term -f term.Dockerfile .
+	docker build -t ut/netlab/term:$(docker_tag) -f term.Dockerfile .
 netlab-gui: netlab-term
-	docker build -t ut/netlab/gui -f gui.Dockerfile .
+	docker build -t ut/netlab/gui:$(docker_tag) -f gui.Dockerfile .
+netlab-gui-web: netlab-term
+	docker build -t ut/netlab/gui:$(docker_tag) -f gui.web.Dockerfile .
+	docker build -t ut/netlab/gui-s:$(docker_tag) -f gui.simple.Dockerfile .
 netlab-http:
 	docker build -t ut/netlab/http-server -f http/http.Dockerfile ./http/
+
 dockers-push:
 	docker commit ut/netlab/term
 	docker commit ut/netlab/gui
