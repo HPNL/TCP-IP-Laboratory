@@ -1,8 +1,7 @@
-# FROM gns3/ipterm
-
 # docker base image for basic networking tools
 
-#FROM ubuntu:18.04
+# FROM gns3/ipterm
+# FROM ubuntu:18.04
 FROM debian:10
 
 RUN set -ex \
@@ -20,10 +19,10 @@ RUN dpkg-query -f '${binary:Package}\n' -W | sort > base_packages \
     && make \
     && make install \
     && cd .. \
-    && rm -r mtools-2.3* \
-    && dpkg-query -f '${binary:Package}\n' -W | sort > packages \
-    && DEBIAN_FRONTEND=noninteractive apt-get -y purge \
-        `comm -13 base_packages packages` 
+    && rm -r mtools-2.3*
+    #&& dpkg-query -f '${binary:Package}\n' -W | sort > packages \
+    #&& DEBIAN_FRONTEND=noninteractive apt-get -y purge \
+    #    `comm -13 base_packages packages` 
     # && rm -f base_packages packages \
 #
 # install remaining tools
