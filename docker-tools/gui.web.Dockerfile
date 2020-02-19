@@ -34,6 +34,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
         openssh-server iptables iproute2 openssh-client openssh-server iptables \
         apache2 webalizer goaccess perl \
         tftpd-hpa inetutils-telnetd php php-common libapache2-mod-php openssl \
+        ifupdown \
    && rm -rf /var/lib/apt/lists/* && rm -f /var/cache/apt/archives/*.deb
 
 # not found package
