@@ -26,6 +26,56 @@
 * SDN and Routing Rules
 * Network Performance
 
+## Installation
+
+To setup environment, you need to install linux os like Ubuntu, Debian or other platform that support `GNS3` + `Docker`. To install `GNS3` you can follow [this](https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/index.html) link.
+
+You can install all needed tools with bellow commands on Ubuntu x64 based linux:
+
+```bash
+sudo add-apt-repository ppa:gns3/ppa
+sudo apt update
+sudo apt install gns3-gui gns3-server wireshark
+DockerType="Free"
+if [ $DockerType == "Free" ]; then
+  sudo apt install docker.io
+else
+  sudo apt remove docker docker-engine docker.io
+  sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  sudo add-apt-repository \
+  "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+  sudo apt update
+  sudo apt install docker-ce
+fi
+for group in {ubridge libvirt kvm wireshark docker}; do
+  sudo usermod -aG $group $USER
+done
+```
+
+
+
+### Build Tools and Docker images
+
+To use available Figures, you need use customized Docker images.
+
+```bash
+sudo apt install build-essential automake autoconf autoreconf auto-tools bin-utils
+cd ./docker-tools
+make
+cd ..
+```
+
+### Download Cisco firmware
+
+For Cisco based lab, you need download `c3725-adventerprisek9-mz.124-25d.image` firmware and add to `GNS3`.
+
+### Add docker images and Cisco firmware to GNS3
+
+## Build documents (LaTeX)
+
+## Build Figures
+
 ## Requirement
 
 * Linux
