@@ -33,7 +33,7 @@ UDPserver:
 # http://www.icir.org/christian/sock.html
 # https://github.com/anguslee/sock
 socket:
-	bash -c "test ! -f ${socket_dir}/Makefile && cd ./${socket_dir} && autoreconf -if && ./configure ||  cd .."
+	bash -c "cd ./${socket_dir} && autoreconf -if && ./configure ||  cd .."
 	$(MAKE) -C ${socket_dir}
 	cp ${socket_dir}/src/sock socket
 
