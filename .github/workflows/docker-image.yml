@@ -15,4 +15,4 @@ jobs:
       run: |
         sudo apt install build-essential
         cd docker-tools
-        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        make all
