@@ -77,7 +77,7 @@ RUN cd /home/netlab/code/ && \
     gcc UDPclient.c -o UDPclient && \
     gcc UDPserver.c -o UDPserver && \
     cd sock && autoreconf -if && ./configure && make && \
-    cp /home/netlab/sock/sock /usr/local/bin/socket && \
+    cp /home/netlab/sock/src/sock /usr/local/bin/socket && \
     cd .. && rm -rf sock
 
 # start service and bash
