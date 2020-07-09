@@ -61,13 +61,13 @@ COPY $http/webalizer.conf /etc/webalizer/
 COPY $http/goaccess.conf /etc/
 
 # config system
-COPY xinetd.d/telnet xinetd.d/tftp xinetd.d/vsftp /etc/xinetd.d/
-COPY bashrc /root/.bashrc
-COPY bashrc /home/netlab/.bashrc
+COPY ./docker-tools/xinetd.d/telnet ./docker-tools/xinetd.d/tftp ./docker-tools/xinetd.d/vsftp /etc/xinetd.d/
+COPY ./docker-tools/bashrc /root/.bashrc
+COPY ./docker-tools/bashrc /home/netlab/.bashrc
 
-COPY mibs/* /usr/share/snmp/mibs/
+COPY ./docker-tools/mibs/* /usr/share/snmp/mibs/
 # copy program file
-COPY netspy.c netspyd.c netspydd.c TCPserver.c UDPclient.c UDPserver.c TCPclient.c sock /home/netlab/code/
+COPY ./docker-tools/*.c ./docker-tools/sock /home/netlab/code/
 
 RUN cd /home/netlab/code/ && \
     gcc netspydd.c -o netspydd && \
