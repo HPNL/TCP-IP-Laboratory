@@ -53,10 +53,12 @@ RUN mkdir /etc/apache2/ssl/ && \
     a2ensite default-ssl.conf && \
     sed -i 's/SSLCertificateFile.*pem$/SSLCertificateFile  \/etc\/apache2\/ssl\/server.crt/; s/SSLCertificateKeyFile.*key$/SSLCertificateKeyFile \/etc\/apache2\/ssl\/server.key/;' /etc/apache2/sites-available/default-ssl.conf
 
-COPY http/hello.pl http/hello.php http/index.html http/try1.html http/try2.html http/logo.png /var/www/html/
-COPY http/server.key http/server.crt /etc/apache2/ssl/
-COPY http/webalizer.conf /etc/webalizer/
-COPY http/goaccess.conf /etc/
+ENV http=./docker-tools/http
+
+COPY $http/hello.pl $http/hello.php $http/index.html $http/try1.html $http/try2.html $http/logo.png /var/www/html/
+COPY $http/server.key $http/server.crt /etc/apache2/ssl/
+COPY $http/webalizer.conf /etc/webalizer/
+COPY $http/goaccess.conf /etc/
 
 # config system
 COPY xinetd.d/telnet xinetd.d/tftp xinetd.d/vsftp /etc/xinetd.d/
