@@ -30,6 +30,8 @@
 
 To setup environment, you need to install linux os like Ubuntu, Debian or other platform that support `GNS3` + `Docker`. To install `GNS3` you can follow [this](https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/index.html) link.
 
+You can use native installed ubuntu (or other linux), **Virtual Machine** platform or use new Microsoft **WSL2** to install linux toolbox.
+
 ### Install tools
 
 You can install all needed tools with bellow commands on Ubuntu x64 based linux:
@@ -70,7 +72,7 @@ To load template `Figures` you need to add **Cisco 3725** firmware and **utnetla
 
 #### Docker images
 
-To add Docker images, you need to open `Preferences` menu (under `Edit` in *Linux/Windows* and `GNS3` in *Mac OS*). Under `Docker > Docker containers` you can add new images to `GNS3`. In the `New` dialog, you can select **existing image** (load local images) or **new image** (use docker pull) with image name. Set confguration as below for two docker.
+To add Docker images, you need to open `Preferences` menu (under `Edit` in *Linux/Windows* and `GNS3` in *Mac OS*). Under `Docker > Docker containers` you can add new images to `GNS3`. In the `New` dialog, you can select **existing image** (load local images) or **new image** (use docker pull) with image name. Set configuration as below for two docker.
 
 Terminal:
 
