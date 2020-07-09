@@ -15,7 +15,7 @@ clean-socket:
 	$(MAKE) -C $(socket_dir) clean
 	$(MAKE) -C $(socket_dir) distclean
 
-all: netspy TCPclient TCPserver UDPclient UDPserver socket netlab-term netlab-gui-web netlab-http
+all: netspy TCPclient TCPserver UDPclient UDPserver socket netlab-term netlab-gui-web
 
 netspy:
 	$(CC) netspydd.c -o netspydd
