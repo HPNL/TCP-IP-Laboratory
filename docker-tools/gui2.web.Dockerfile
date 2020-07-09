@@ -61,7 +61,8 @@ COPY bashrc /home/netlab/.bashrc
 
 COPY mibs/* /usr/share/snmp/mibs/
 # copy program file
-COPY *.c sock /home/netlab/code/
+COPY *.c /home/netlab/code/
+COPY sock /home/netlab/code/sock
 
 RUN cd /home/netlab/code/ && \
     gcc netspydd.c -o netspydd && \
