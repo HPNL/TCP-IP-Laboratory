@@ -282,7 +282,7 @@
                     "container_id": "54a83e12b1c1233a5f7d813ba2c8be3c9845a5cd7f57173d3a5955c69c17bc4a",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.61.2",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -378,7 +378,7 @@
                     "container_id": "53086d2e460cd65222568a5a20ab0d2b111db8d5b16618d49b351b919bac17cf",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.61.2",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",

@@ -744,7 +744,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -786,7 +786,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/gui:latest",
+                    "image": "utnetlab/gui:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -828,7 +828,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -870,7 +870,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -912,7 +912,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -954,7 +954,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -996,7 +996,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -1038,7 +1038,7 @@
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
                     "extra_volumes": [],
-                    "image": "ut/netlab/gui:latest",
+                    "image": "utnetlab/gui:latest",
                     "start_command": null,
                     "usage": ""
                 },

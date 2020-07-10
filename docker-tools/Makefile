@@ -48,22 +48,22 @@ docker-pull-base:
 	docker pull dorowu/ubuntu-desktop-lxde-vnc
 
 netlab-term: netspy socket TCPserver UDPserver TCPclient UDPclient
-	docker build -t ut/netlab/term -t ut/netlab/term:$(docker_tag) -f term.Dockerfile .
+	docker build -t utnetlab/term -t utnetlab/term:$(docker_tag) -f term.Dockerfile .
 netlab-gui: netlab-term
-	docker build -t ut/netlab/gui -t ut/netlab/gui:$(docker_tag) -f gui.Dockerfile .
+	docker build -t utnetlab/gui -t utnetlab/gui:$(docker_tag) -f gui.Dockerfile .
 netlab-gui-web: netlab-term
-	docker build -t ut/netlab/gui -t ut/netlab/gui:$(docker_tag) -f gui.web.Dockerfile .
-	docker build -t ut/netlab/gui-s -t ut/netlab/gui-s:$(docker_tag) -f gui.simple.Dockerfile .
+	docker build -t utnetlab/gui -t utnetlab/gui:$(docker_tag) -f gui.web.Dockerfile .
+	docker build -t utnetlab/gui-s -t utnetlab/gui-s:$(docker_tag) -f gui.simple.Dockerfile .
 netlab-http:
 	docker build -t ut/netlab/http-server -t ut/netlab/http-server:$(docker_tag) -f http/http.Dockerfile ./http/
 
 dockers-push:
-	docker commit ut/netlab/term
-	docker commit ut/netlab/gui
-	docker push $(docker_registery)/ut/netlab/term
-	docker push $(docker_registery)/ut/netlab/gui
+	docker commit utnetlab/term
+	docker commit utnetlab/gui
+	docker push $(docker_registery)/utnetlab/term
+	docker push $(docker_registery)/utnetlab/gui
 
 clean-docker:
-	docker rmi ut/netlab/gui:$(docker_tag)
-	docker rmi ut/netlab/gui-s:$(docker_tag)
-	docker rmi ut/netlab/term:$(docker_tag)
+	docker rmi utnetlab/gui:$(docker_tag)
+	docker rmi utnetlab/gui-s:$(docker_tag)
+	docker rmi utnetlab/term:$(docker_tag)

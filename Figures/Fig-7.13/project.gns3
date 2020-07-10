@@ -422,7 +422,7 @@
                     "environment": "",
                     "extra_hosts": "nh1.netlab:128.238.63.101\nh2.netlab:128.238.63.102\nh3.netlab:128.238.64.103\nh4.netlab:128.238.64.104\ne0.r1.netlab:128.238.63.3\ne1.r1.netlab:128.238.64.3",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -464,7 +464,7 @@
                     "environment": "",
                     "extra_hosts": "nh1.netlab:128.238.63.101\nh2.netlab:128.238.63.102\nh3.netlab:128.238.64.103\nh4.netlab:128.238.64.104\ne0.r1.netlab:128.238.63.3\ne1.r1.netlab:128.238.64.3",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -506,7 +506,7 @@
                     "environment": "",
                     "extra_hosts": "nh1.netlab:128.238.63.101\nh2.netlab:128.238.63.102\nh3.netlab:128.238.64.103\nh4.netlab:128.238.64.104\ne0.r1.netlab:128.238.63.3\ne1.r1.netlab:128.238.64.3",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },
@@ -548,7 +548,7 @@
                     "environment": "",
                     "extra_hosts": "nh1.netlab:128.238.63.101\nh2.netlab:128.238.63.102\nh3.netlab:128.238.64.103\nh4.netlab:128.238.64.104\ne0.r1.netlab:128.238.63.3\ne1.r1.netlab:128.238.64.3",
                     "extra_volumes": [],
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null,
                     "usage": ""
                 },

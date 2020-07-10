@@ -528,7 +528,7 @@
                     "container_id": "31cd116763c95cfbb0fda80858c3e7e035c6be22772990e11c0d14fd19759ea9",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -564,7 +564,7 @@
                     "container_id": "7c4a8fd80683f6d355657bfe738948c0f83a18d2f819debfac399dbf10df6644",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -600,7 +600,7 @@
                     "container_id": "2c68ba5308593ebfc632ab035db9400dc0d30be2bc285de11fab8688b6220706",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -636,7 +636,7 @@
                     "container_id": "9d72428ee4513b1f600ae10c0af11cbb95714be3be9d1885a35d783974474d4c",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -672,7 +672,7 @@
                     "container_id": "f3293ce6049b4214820a92ae946d61fb83b932320f15a541124f5dab4c0bb50f",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -708,7 +708,7 @@
                     "container_id": "8782042734af95f650ed5270c9998b99196628035788958777a4349d1276cff7",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -744,7 +744,7 @@
                     "container_id": "5e6a521a69b6af44da066262bcd27f4efd7adec1cccfb2dde25888fae9f7ff8e",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -780,7 +780,7 @@
                     "container_id": "1f1a9e1cda02348598b2d46f8d65ff461b40131b46bd6a4ff42c18b6e5a1f50b",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.64.100\nh1.netlab:128.238.64.101\nh2.netlab:128.238.64.102\nh3.netlab:128.238.64.103\ne0.r4.netlab:128.238.64.4\ne1.r4.netlab:128.238.65.4\nh4.netlab:128.238.65.104\nh5.netlab:128.238.65.105\nh6.netlab:128.238.65.106\nh7.netlab:128.238.65.107\ne0.r1.netlab:128.238.64.4\ne1.r1.netlab:128.238.65.4",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",

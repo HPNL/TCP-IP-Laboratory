@@ -1,4 +1,4 @@
-FROM ut/netlab/term
+FROM utnetlab/term
 
 # docker image with basic networking tools and web browser
 

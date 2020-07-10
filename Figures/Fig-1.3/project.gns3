@@ -370,7 +370,7 @@
                     "container_id": "51c3fdee9ffd90d5589fb1b256a972686757f4ce55ae362a7052d30d2c501a69",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -406,7 +406,7 @@
                     "container_id": "300240f66321ac308764ea4d6e39841bb34c7bfe73fa8ca7a1e38d4c1f36e0e3",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -442,7 +442,7 @@
                     "container_id": "999147df31a26947ead2b26b7dc89f1af77a50bf99225d8dc24e25bdef4669b9",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -478,7 +478,7 @@
                     "container_id": "69baccdae83b47a2710f54c375f090b13e42ef922d3cc5065856b4fafc857c80",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -514,7 +514,7 @@
                     "container_id": "604201ab654915742a4074d1b033d4f5a9209b127583b1d01e7344707909a4c4",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -550,7 +550,7 @@
                     "container_id": "7d35a475c0e8dab4b5a4b4d249df12dced788ec582f680fa2b3ae02ef440f49c",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -586,7 +586,7 @@
                     "container_id": "25deab4f0b0588058714e9a994499c632712b4bba02f596c90fddf255174933b",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": "sh -c 'echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts;echo Salam; service xinetd start; cd; exec bash -i'"
                 },
                 "symbol": ":/symbols/docker_guest.svg",
@@ -622,7 +622,7 @@
                     "container_id": "f007bc87808714916efcc0b53608ca61791953a85f14c9b806629957a3a3d088",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.66.100\nh1.netlab:128.238.66.101\nh2.netlab:128.238.66.102\nh3.netlab:128.238.66.103\nh4.netlab:128.238.66.104\nh5.netlab:128.238.66.105\nh6.netlab:128.238.66.106\nh7.netlab:128.238.66.107",
-                    "image": "ut/netlab/term:latest",
+                    "image": "utnetlab/term:latest",
                     "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
