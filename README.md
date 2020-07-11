@@ -66,6 +66,14 @@ docker pull utnetlab/term
 docker pull utnetlab/gui
 ```
 
+Also you can load docker images from archive file as below:
+
+```bash
+# archive in (.tar, .tar.gz, .tgz, .bzip, .tar.xz, or .txz) format
+docker load -i utnetlab_term.tar.xz
+docker load -i utnetlab_gui.tar.xz
+```
+
 ### Setup GNS3
 
 To load template `Figures` you need to add **Cisco 3725** firmware and **utnetlab** docker images into `GNS3`.
