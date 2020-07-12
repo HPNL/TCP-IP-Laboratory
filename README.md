@@ -43,7 +43,8 @@ You can use native installed ubuntu (or other linux), **Virtual Machine** platfo
 You can install all needed tools with bellow commands on Ubuntu x64 based linux:
 
 ```bash
-sudo add-apt-repository ppa:gns3/ppa
+# sudo add-apt-repository ppa:gns3/ppa
+echo "deb http://ppa.launchpad.net/gns3/ppa/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gns3-ubuntu.list
 sudo apt update
 sudo apt install gns3-gui gns3-server wireshark
 DockerType="Free"
@@ -72,7 +73,7 @@ docker pull utnetlab/term
 docker pull utnetlab/gui
 ```
 
-Also you can load docker images from archive file as below:
+Also you can [download](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) and load docker images from archive file as below:
 
 ```bash
 # archive in (.tar, .tar.gz, .tgz, .bzip, .tar.xz, or .txz) format
@@ -139,11 +140,15 @@ For Cisco based lab, you need download `c3725-adventerprisek9-mz.124-25d.image` 
 
 ## Build documents (LaTeX)
 
+You can build `LaTeX` files with below command or download it from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest).
+
 ```bash
 latexmk -pdf -interaction=nonstopmode -cd **/*.tex
 ```
 
 ## Build Figures
+
+You can build `Figures` files with below command or download it from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest).
 
 ```bash
 cd Figures
