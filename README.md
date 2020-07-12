@@ -1,7 +1,13 @@
 # TCP/IP Laboratory manual
 
 [![GitHub release](https://img.shields.io/github/release/UT-Network-Lab/TCP-IP-Laboratory.svg?style=flat-square)](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest)
-[![Travis (.com) branch](https://img.shields.io/travis/com/UT-Network-Lab/TCP-IP-Laboratory/master.svg?style=flat-square)](https://travis-ci.com/UT-Network-Lab/TCP-IP-Laboratory)
+![Docker Image CI](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/workflows/Docker%20Image%20CI/badge.svg)
+
+## Introduction
+
+This is the repository of Network Lab in University of Tehran. The lab based on **TCP/IP Essentials** book. All chapter updated to use with modern tools on `GNS3` simulator.
+
+You can download all needed resource from [latest release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) and install all tools in [Installation](#Installation) section.
 
 ## Chapters
 

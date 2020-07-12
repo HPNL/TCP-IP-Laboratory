@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build resource CI
 
 on:
   push:
@@ -35,10 +35,30 @@ jobs:
           cd Figures
           bash ./build-gns3p.sh
           zip ../Figures.zip *.gns3p
+      - name: Upload Release Asset (Figures)
+        id: upload-release-asset-figures
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Figures.zip
+          asset_name: Figures.zip
+          asset_content_type: application/zip
       - name: Build the Latex
         run: |
           docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full  /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"
           zip Documents.zip [0-9]**/*.pdf
+      - name: Upload Release Asset (Documents)
+        id: upload-release-asset-documents
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Documents.zip
+          asset_name: Documents.zip
+          asset_content_type: application/zip
       - name: Build the Docker images
         run: |
           cd docker-tools
@@ -50,26 +70,6 @@ jobs:
         run: |
           docker save utnetlab/term | xz -5 > utnetlab_term.tar.xz
           docker save utnetlab/gui  | xz -5 > utnetlab_gui.tar.xz
-      - name: Upload Release Asset (Figures)
-        id: upload-release-asset-figures
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Figures.zip
-          asset_name: Figures.zip
-          asset_content_type: application/zip
-      - name: Upload Release Asset (Documents)
-        id: upload-release-asset-documents
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Documents.zip
-          asset_name: Documents.zip
-          asset_content_type: application/zip
       - name: Upload Release Asset (term)
         id: upload-release-asset-term
         uses: actions/upload-release-asset@v1
