@@ -16,8 +16,10 @@ jobs:
       - name: Build the Docker images
         run: |
           cd docker-tools
-          docker build -t utnetlab/term -t utnetlab/term:${{ github.ref }} -f term2.Dockerfile .
-          docker build -t utnetlab/gui -t utnetlab/gui:${{ github.ref }} -f gui2.web.Dockerfile .
+          refName=${{ github.ref }}
+          refName=$(echo $refName | cut -d / -f 3)
+          docker build -t utnetlab/term -t utnetlab/term:$refName -f term2.Dockerfile .
+          docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
       - name: Compress the Docker images
         run: |
           docker save utnetlab/term | xz -7 > utnetlab_term.tar.xz
