@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    tags: [ v* ]
+    tags: [ v*, 1.* ]
   #   branches: [ master ]
   # pull_request:
   #   branches: [ master ]
@@ -11,8 +11,45 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: |
-        cd docker-tools
-        make all
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Build the Docker images
+        run: |
+          cd docker-tools
+          docker build -t utnetlab/term -t utnetlab/term:${{ github.ref }} -f term2.Dockerfile .
+          docker build -t utnetlab/gui -t utnetlab/gui:${{ github.ref }} -f gui2.web.Dockerfile .
+      - name: Compress the Docker images
+        run: |
+          docker save utnetlab/term | xz -7 > utnetlab_term.tar.xz
+          docker save utnetlab/gui  | xz -7 > utnetlab_gui.tar.xz
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset (term)
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./utnetlab_term.tar.xz
+          asset_name: utnetlab_term.tar.xz
+          asset_content_type: application/x-xzip
+      - name: Upload Release Asset (gui)
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./utnetlab_gui.tar.xz
+          asset_name: utnetlab_gui.tar.xz
+          asset_content_type: application/x-xzip
+
