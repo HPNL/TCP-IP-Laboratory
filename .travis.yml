@@ -1,19 +1,19 @@
-sudo: required
-language: generic
-services: docker
-script:
-- docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full
-  /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"
-- docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo/Figures" --entrypoint "/bin/sh" kramos/alpine-zip "./build-gns3p.sh"
-deploy:
-  provider: releases
-  api_key:
-    secure: gp51k2St0/qZagVZgDOHoGlg9UWQ6lPRWA5yhLfPap5+JdgQyDif35xyah65o+Ykivqlh7gmrA1XrU6c8N0mBy90TATJqfuS1pbsehRn/8I8TiO1PIRJalIW/wSGnXb/s8ObSQ2sSVGwyXP1rspcpYuHokNcQxH6JvpIVc8hs/HvyBVyd0POlWNyalI7LZzc5x6jHAFIMLAxAACY/BtYFbYxX2Y52aco4LLlDMj269WTJqKHsuPvEFkANOngawrL8MuK+Ee5u5ByBXevZy0tf0JQiI4+7KKsR2EcNROHusr1WoaaLj/LP/omWBdc38Nw4Q8OzxUkVZTVAgvYNlr9q9kgsG8JDN2225HtUf2xQdgxhUwxTnYJWOhUXoQR4IjbMbfKU6oz6OmdmkreSYY3xgI9e7/ogXlfhE5zPdCbBS24Q8pn5uK2oLD7vrw0fh/ERejw3S92CNPVc4OlzTsxnZzcPndE80ZcR8d0RTyU35fOK2pjGITVQIwKmRk19y7ubh3+ljLeyyTArj/Z0MlPdZr1SyHHEQPgHbomqXQ2aDmJZNuIDDdUoqz5f3M9Hg+9e28jhFQLhMQH7UhqKIRj3r9RqIF9CM5avvNO4vC5eVdXr9+afrnauXIR6/+wkqYa+PYpdSgEJvrX5txj4Dz2Eg6Xw/oVGaZEPFtNQ3Gz1jM=
-  file_glob: true
-  file:
-    - "[0-9]**/*.pdf"
-    - "Figures/Fig*.gns3p"
-  skip_cleanup: true
-  on:
-    repo: UT-Network-Lab/TCP-IP-Laboratory
-    tags: true
+# sudo: required
+# language: generic
+# services: docker
+# script:
+# - docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full
+#   /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"
+# - docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo/Figures" --entrypoint "/bin/sh" kramos/alpine-zip "./build-gns3p.sh"
+# deploy:
+#   provider: releases
+#   api_key:
+#     secure: gp51k2St0/qZagVZgDOHoGlg9UWQ6lPRWA5yhLfPap5+JdgQyDif35xyah65o+Ykivqlh7gmrA1XrU6c8N0mBy90TATJqfuS1pbsehRn/8I8TiO1PIRJalIW/wSGnXb/s8ObSQ2sSVGwyXP1rspcpYuHokNcQxH6JvpIVc8hs/HvyBVyd0POlWNyalI7LZzc5x6jHAFIMLAxAACY/BtYFbYxX2Y52aco4LLlDMj269WTJqKHsuPvEFkANOngawrL8MuK+Ee5u5ByBXevZy0tf0JQiI4+7KKsR2EcNROHusr1WoaaLj/LP/omWBdc38Nw4Q8OzxUkVZTVAgvYNlr9q9kgsG8JDN2225HtUf2xQdgxhUwxTnYJWOhUXoQR4IjbMbfKU6oz6OmdmkreSYY3xgI9e7/ogXlfhE5zPdCbBS24Q8pn5uK2oLD7vrw0fh/ERejw3S92CNPVc4OlzTsxnZzcPndE80ZcR8d0RTyU35fOK2pjGITVQIwKmRk19y7ubh3+ljLeyyTArj/Z0MlPdZr1SyHHEQPgHbomqXQ2aDmJZNuIDDdUoqz5f3M9Hg+9e28jhFQLhMQH7UhqKIRj3r9RqIF9CM5avvNO4vC5eVdXr9+afrnauXIR6/+wkqYa+PYpdSgEJvrX5txj4Dz2Eg6Xw/oVGaZEPFtNQ3Gz1jM=
+#   file_glob: true
+#   file:
+#     - "[0-9]**/*.pdf"
+#     - "Figures/Fig*.gns3p"
+#   skip_cleanup: true
+#   on:
+#     repo: UT-Network-Lab/TCP-IP-Laboratory
+#     tags: true
