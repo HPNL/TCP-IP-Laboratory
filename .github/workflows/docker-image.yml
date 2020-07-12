@@ -19,11 +19,18 @@ jobs:
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
           docker build -t utnetlab/term -t utnetlab/term:$refName -f term2.Dockerfile .
-          docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
+        # docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
       - name: Compress the Docker images
         run: |
           docker save utnetlab/term | xz -3 > utnetlab_term.tar.xz
-          docker save utnetlab/gui  | xz -3 > utnetlab_gui.tar.xz
+        # docker save utnetlab/gui  | xz -3 > utnetlab_gui.tar.xz
+      - name: Get Latest Release
+        id: get_release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          upload_url=$(curl https://api.github.com/repos/UT-Network-Lab/TCP-IP-Laboratory/releases/latest | grep upload_url | cut -d'"' -f4)
+          echo "::set-output name=upload_url::$upload_url"
       # - name: Create Release
       #   id: create_release
       #   uses: actions/create-release@v1
@@ -41,7 +48,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: https://uploads.github.com/repos/UT-Network-Lab/TCP-IP-Laboratory/releases/1/assets{?name,label}
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: ./utnetlab_term.tar.xz
           asset_name: utnetlab_term.tar.xz
           asset_content_type: application/x-xzip
@@ -51,7 +58,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: https://uploads.github.com/repos/UT-Network-Lab/TCP-IP-Laboratory/releases/1/assets{?name,label}
+          upload_url: ${{ steps.get_release.outputs.upload_url }}
           asset_path: ./utnetlab_gui.tar.xz
           asset_name: utnetlab_gui.tar.xz
           asset_content_type: application/x-xzip
