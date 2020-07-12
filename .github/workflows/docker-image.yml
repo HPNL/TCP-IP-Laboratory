@@ -37,7 +37,7 @@ jobs:
           zip ../Figures.zip *.gns3p
       - name: Build the Latex
         run: |
-          docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full   '/bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"''
+          docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full   '/bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"'
           zip Documents.zip [0-9]**/*.pdf
       - name: Build the Docker images
         run: |
