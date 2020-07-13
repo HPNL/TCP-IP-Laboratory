@@ -59,19 +59,14 @@ jobs:
           asset_path: ./Documents.zip
           asset_name: Documents.zip
           asset_content_type: application/zip
-      - name: Build the Docker images
+      - name: Build and Compress the Docker images (term)
         run: |
           cd docker-tools
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
           docker build -t utnetlab/term -t utnetlab/term:$refName -f term2.Dockerfile .
-          docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
-      - name: Compress the Docker images
-        run: |
           docker save utnetlab/term | xz -5 > utnetlab_term.tar.xz
-          docker save utnetlab/gui  | xz -5 > utnetlab_gui.tar.xz
       - name: Upload Release Asset (term)
-        id: upload-release-asset-term
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -80,8 +75,14 @@ jobs:
           asset_path: ./utnetlab_term.tar.xz
           asset_name: utnetlab_term.tar.xz
           asset_content_type: application/x-xzip
+      - name: Build and Compress the Docker images (gui)
+        run: |
+          cd docker-tools
+          refName=${{ github.ref }}
+          refName=$(echo $refName | cut -d / -f 3)
+          docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
+          docker save utnetlab/gui  | xz -5 > utnetlab_gui.tar.xz
       - name: Upload Release Asset (gui)
-        id: upload-release-asset-gui
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
