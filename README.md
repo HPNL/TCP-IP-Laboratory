@@ -89,19 +89,6 @@ To load template `Figures` you need to add **Cisco 3725** firmware and **utnetla
 
 To add Docker images, you need to open `Preferences` menu (under `Edit` in *Linux/Windows* and `GNS3` in *Mac OS*). Under `Docker > Docker containers` you can add new images to `GNS3`. In the `New` dialog, you can select **existing image** (load local images) or **new image** (use docker pull) with image name. Set configuration as below for two docker.
 
-Terminal:
-
-```js
-{
-  image: "utnetlab/term",
-  name: "ut-netlab-term",
-  adaptor: 1, // number of eth adaptor
-  startCommand: null, // or empty
-  ConsoleType: "telnet",
-  env: null // or empty
-}
-```
-
 GUI:
 
 ```js
@@ -111,6 +98,19 @@ GUI:
   adaptor: 1,
   startCommand: null, // or empty
   ConsoleType: "https",
+  env: null // or empty
+}
+```
+
+Terminal:
+
+```js
+{
+  image: "utnetlab/term",
+  name: "ut-netlab-term",
+  adaptor: 1, // number of eth adaptor
+  startCommand: null, // or empty
+  ConsoleType: "telnet",
   env: null // or empty
 }
 ```
@@ -140,7 +140,7 @@ For Cisco based lab, you need download `c3725-adventerprisek9-mz.124-25d.image` 
 
 ## Build documents (LaTeX)
 
-You can build `LaTeX` files with below command or download it from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest).
+You can build `LaTeX` files with below command or download all as `Documents.zip` from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) page.
 
 ```bash
 latexmk -pdf -interaction=nonstopmode -cd **/*.tex
@@ -148,7 +148,7 @@ latexmk -pdf -interaction=nonstopmode -cd **/*.tex
 
 ## Build Figures
 
-You can build `Figures` files with below command or download it from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest).
+You can build `Figures` files with below command or download all as `Figures.zip` from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) page.
 
 ```bash
 cd Figures
