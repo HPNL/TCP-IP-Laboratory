@@ -59,9 +59,13 @@ else
   sudo apt update
   sudo apt install docker-ce
 fi
-for group in {ubridge libvirt kvm wireshark docker}; do
-  sudo usermod -aG $group $USER
-done
+sudo usermod -aG ubridge $USER
+sudo usermod -aG libvirt $USER
+sudo usermod -aG kvm $USER
+sudo usermod -aG wireshark $USER
+sudo usermod -aG docker $USER
+# loading new user group config
+sudo reboot
 ```
 
 ### Get docker images
@@ -168,6 +172,7 @@ cd Figures
 * [ ] add quiz sample
 * [ ] add network equipment and device overview
 * [ ] add api to transfer file to host
+  * Can use `docker cp`
 * [ ] update network tools
   * [ ] upgrade base docker image
   * [ ] base linux
