@@ -66,10 +66,10 @@ jobs:
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
           docker build -t utnetlab/term -t utnetlab/term:$refName -f term2.Dockerfile .
-          docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term
-          docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term:$refName
-          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term
-          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term:$refName
+          docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term
+          docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term:$refName
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term:$refName
           docker save utnetlab/term | xz -3 > ../utnetlab_term.tar.xz
       - name: Upload Release Asset (term)
         uses: actions/upload-release-asset@v1
@@ -86,10 +86,10 @@ jobs:
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
           docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
-          docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui
-          docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui:$refName
-          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui
-          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui:$refName
+          docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui
+          docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui:$refName
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui:$refName
           docker save utnetlab/gui  | xz -3 > ../utnetlab_gui.tar.xz
       - name: Upload Release Asset (gui)
         uses: actions/upload-release-asset@v1
