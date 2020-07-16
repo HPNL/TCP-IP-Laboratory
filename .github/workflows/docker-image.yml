@@ -64,7 +64,7 @@ jobs:
           cd docker-tools
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
-          docker build -t utnetlab/term -t utnetlab/term:$refName -t docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term:latest -t docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term:$refName -f term2.Dockerfile .
+          docker build -t utnetlab/term -t utnetlab/term:$refName -f term2.Dockerfile .
           docker save utnetlab/term | xz -5 > utnetlab_term.tar.xz
       - name: Upload Release Asset (term)
         uses: actions/upload-release-asset@v1
@@ -80,7 +80,7 @@ jobs:
           cd docker-tools
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
-          docker build -t utnetlab/gui -t utnetlab/gui:$refName -t docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui:latest -t docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui:$refName -f gui2.web.Dockerfile .
+          docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
           docker save utnetlab/gui  | xz -5 > utnetlab_gui.tar.xz
       - name: Upload Release Asset (gui)
         uses: actions/upload-release-asset@v1
@@ -96,6 +96,10 @@ jobs:
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
           cat ~/GH_TOKEN.txt | docker login docker.pkg.github.com -u amirhakh --password-stdin
-          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term:latest docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term:$refName
-          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui:latest docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui:$refName
+          docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term
+          docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term:$refName
+          docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui
+          docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui:$refName
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term:$refName
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui:$refName
 
