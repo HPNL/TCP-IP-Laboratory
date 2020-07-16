@@ -47,6 +47,7 @@ jobs:
           asset_content_type: application/zip
       - name: Build the Latex
         run: |
+          echo -n "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u amirhakh --password-stdin
           docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full  /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"
           zip Documents.zip [0-9]**/*.pdf
       - name: Upload Release Asset (Documents)
@@ -95,7 +96,6 @@ jobs:
         run: |
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
-          cat ~/GH_TOKEN.txt | docker login docker.pkg.github.com -u amirhakh --password-stdin
           docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term
           docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/term:$refName
           docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/utnetlab/gui
