@@ -70,7 +70,7 @@ jobs:
           docker tag utnetlab/term docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term:$refName
           docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term
           docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/term:$refName
-          docker save utnetlab/term | xz -3 > ../utnetlab_term.tar.xz
+          docker save utnetlab/term | xz -5 > ../utnetlab_term.tar.xz
       - name: Upload Release Asset (term)
         uses: actions/upload-release-asset@v1
         env:
@@ -90,7 +90,7 @@ jobs:
           docker tag utnetlab/gui docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui:$refName
           docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui
           docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/gui:$refName
-          docker save utnetlab/gui  | xz -3 > ../utnetlab_gui.tar.xz
+          docker save utnetlab/gui  | xz -5 > ../utnetlab_gui.tar.xz
       - name: Upload Release Asset (gui)
         uses: actions/upload-release-asset@v1
         env:
