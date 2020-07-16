@@ -65,7 +65,7 @@ jobs:
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
           docker build -t utnetlab/term -t utnetlab/term:$refName -f term2.Dockerfile .
-          docker save utnetlab/term | xz -5 > utnetlab_term.tar.xz
+          docker save utnetlab/term | xz -5 > ../utnetlab_term.tar.xz
       - name: Upload Release Asset (term)
         uses: actions/upload-release-asset@v1
         env:
@@ -81,7 +81,7 @@ jobs:
           refName=${{ github.ref }}
           refName=$(echo $refName | cut -d / -f 3)
           docker build -t utnetlab/gui -t utnetlab/gui:$refName -f gui2.web.Dockerfile .
-          docker save utnetlab/gui  | xz -5 > utnetlab_gui.tar.xz
+          docker save utnetlab/gui  | xz -5 > ../utnetlab_gui.tar.xz
       - name: Upload Release Asset (gui)
         uses: actions/upload-release-asset@v1
         env:
