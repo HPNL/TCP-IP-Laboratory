@@ -14,7 +14,7 @@ You can download all needed resource from [latest release](https://github.com/UT
 * Introduction to Network Peripheral
 
 1. Linux and TCP-IP networking
-2. Signel Segment Network
+2. Single Segment Network
 3. Bridges, LANs and the Cisco IOS
 4. Static and dynamic routing
 5. UDP and its applications
@@ -40,6 +40,14 @@ You can download all needed resource from [latest release](https://github.com/UT
 To setup environment, you need to install linux os like Ubuntu, Debian or other platform that support `GNS3` + `Docker`. To install `GNS3` you can follow [this](https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/index.html) link.
 
 You can use native installed ubuntu (or other linux), **Virtual Machine** platform or use new Microsoft **WSL2** to install linux toolbox.
+
+### Requirement
+
+* Linux
+* GNS3
+* Docker
+* Cisco router image
+* Mininet
 
 ### Install tools
 
@@ -162,11 +170,9 @@ cd Figures
 ./build-gns3p.sh
 ```
 
-## Requirement
+## License
 
-* Linux
-* GNS3
-* Mininet
+Open [LICENCE](LICENCE) file.
 
 ## ToDo and Bugfix
 
@@ -191,7 +197,7 @@ cd Figures
 * [`ifconfig` vs `ip`](https://p5r.uk/blog/2010/ifconfig-ip-comparison.html)
 * [`screen` Quick Reference](http://aperiodic.net/screen/quick_reference)
 * [How To Use Linux `screen`](https://linuxize.com/post/how-to-use-linux-screen/)
-* [_Quagga_](http://download.savannah.gnu.org/releases/quagga/)
+* [_Quagga_](http://download.savannah.gnu.org/releases/quagga/) => [_frrouting_](https://frrouting.org/)
 * [_NIST Net_](https://www-x.antd.nist.gov/nistnet/): is no longer actively maintained. Much of its functionality has been incorporated into _NetEm_ and the `iproute2` toolkit. These are almost certainly already included in your Linux distribution
 * [_DBS_](http://ns1.ai3.net/products/dbs): is no longer available. ([v1.1.5](http://www.kusa.ac.jp/~yukio-m/dbs/software1.1.5/dbs-1.1.5.tar.gz), [v1.2.0beta1](http://www.kusa.ac.jp/~yukio-m/dbs/software1.2.0beta1/dbs-1.2.0beta1.tar.gz), and [manual](http://www.kusa.ac.jp/~yukio-m/dbs/dbs_man.html))
   * [_Pbench_: a benchmarking and performance analysis framework](https://distributed-system-analysis.github.io/pbench/)
