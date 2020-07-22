@@ -172,7 +172,7 @@ cd Figures
 
 ## License
 
-Open [LICENSE](LICENSE) file.
+Open GPLv3 [LICENSE](LICENSE) file.
 
 ## ToDo and Bugfix
 
