@@ -25,12 +25,15 @@ You can download all needed resource from [latest release](https://github.com/UT
 
 ### Chapters ToDo
 
+* IPv6
 * VLan
-* AS Routing (BGP, ...)
+* AS Routing (BGP, EBGP, ...)
 * Security
 * Firewall
 * SDN and Routing Rules
 * Network Performance
+* Load balancing
+* MPlS
 
 ## Installation
 
