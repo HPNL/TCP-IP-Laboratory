@@ -172,7 +172,7 @@ cd Figures
 
 ## License
 
-Open [LICENCE](LICENCE) file.
+Open [LICENSE](LICENSE) file.
 
 ## ToDo and Bugfix
 
