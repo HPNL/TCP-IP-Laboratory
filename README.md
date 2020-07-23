@@ -76,7 +76,7 @@ sudo usermod -aG kvm $USER
 sudo usermod -aG wireshark $USER
 sudo usermod -aG docker $USER
 # loading new user group config
-sudo reboot
+sudo su $USER
 ```
 
 ### Get docker images
