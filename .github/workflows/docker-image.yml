@@ -100,3 +100,13 @@ jobs:
           asset_path: ./utnetlab_gui.tar.xz
           asset_name: utnetlab_gui.tar.xz
           asset_content_type: application/x-xzip
+      - name: Build the Docker images (mininet)
+        run: |
+          cd docker-tools
+          refName=${{ github.ref }}
+          refName=$(echo $refName | cut -d / -f 3)
+          docker build -t utnetlab/mininet -t utnetlab/mininet:$refName -f mininet.Dockerfile .
+          docker tag utnetlab/mininet docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/mininet
+          docker tag utnetlab/mininet docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/mininet:$refName
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/mininet
+          docker push docker.pkg.github.com/ut-network-lab/tcp-ip-laboratory/mininet:$refName
