@@ -1,0 +1,3 @@
+664:1000:1000:/etc/network/.gns3_perms
+664:1000:1000:/etc/network/interfaces
+775:1000:1000:/etc/network
