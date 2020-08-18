@@ -4,8 +4,8 @@ service tftp
     port            = 69
     socket_type     = dgram
     wait            = yes
-    user            = nobody
+    user            = root
     server          = /usr/sbin/in.tftpd
-    server_args     = /home/netlab
+    server_args     = -s /home/netlab
     disable         = no
 }
