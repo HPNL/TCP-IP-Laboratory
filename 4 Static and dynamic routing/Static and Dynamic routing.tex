@@ -239,7 +239,14 @@ tcpdump -x -s 100 -c 4 udp port 520
 \section{ICMP redirect}
     Save the routing table for your lab report.
 
-    Create a default routing entry using one of the routers directly connected to your workstation (add route with default gateway).
+    Create a default routing entry using one of the routers directly connected to your workstation (add route with default gateway). Also may you need to delete previously added route.
+
+    \begin{lstlisting}[emph={eth0,gateway-ip,remote-subnet}]
+# by ip command
+ip route add remote-subnet via gateway-ip    # with default gateway
+# or by route command
+route add -net remote-subnet gw gateway-ip   # with default gateway
+    \end{lstlisting}
 
     While \lstinline{tcpdump -enx -s 100 ip proto 1} is running, send \lstinline{ping} messages to a host that is three hops away through the default router.
 
