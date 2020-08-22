@@ -55,7 +55,7 @@ RUN sed -i 's/= yes/= no/g' /etc/xinetd.d/time && \
     sed -i 's/^mibs :/#mibs :/' /etc/snmp/snmp.conf && \
     mkdir -p /var/run/vsftpd/empty && \
     sed -i 's/listen_ipv6=YES/listen_ipv6=NO/' /etc/vsftpd.conf && \
-    su netlab -c 'cd; truncate -s 2K thin.dum; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 20M large.dum'
+    su netlab -c 'cd; truncate -s 1K thin.dum; truncate -s 10K small.dum; truncate -s 1M med.dum; truncate -s 20M large.dum'
 
 # config apache2
 RUN mkdir /etc/apache2/ssl/ && \

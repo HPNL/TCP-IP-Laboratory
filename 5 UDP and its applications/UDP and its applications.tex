@@ -180,7 +180,7 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
 
 
 \section{TFTP and FTP}
-    In order to compare the transfer rates of FTP and TFTP, we will retrieve a large, med, small and thin file from a remote server using FTP and TFTP, respectively.
+    In order to compare the transfer rates of FTP and TFTP, we will retrieve all large, med, small and thin files from a remote server using FTP and TFTP, respectively.
 
     First run First run the following \lstinline{tcpdump} command:
     \begin{lstlisting}[emph={your-host,remote-host}]
@@ -234,7 +234,7 @@ tcpdump -x host your-host and remote-host
         Why does the server’s port number change?
         
         \item In most cases, \lstinline{tftp} service is restricted.\footnote{This is not the case in our lab, where we deliberately enabled the \lstinline{tftp} service and use it as a tool to study the UDP protocol.}
-        Why is \lstinline{tftp} service not generally available to users?
+        Why is \lstinline{tftp} service not generally available to users? At least two items need to expressed.
         
         \item In \autoref{sec:MaxDatagramSize}, we found the maximum size of a UDP datagram in your machine. With \lstinline{tftp}, which uses UDP, we transferred a file larger than the maximum UDP datagram size.
         How do you explain this?
