@@ -11,7 +11,7 @@ FROM debian:10
 RUN apt-get update \
     && dpkg-query -f '${binary:Package}\n' -W | sort > base_packages \
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
-        libc6-dev make curl ca-certificates build-essential autoconf automake autotools-dev \
+        libc6-dev make curl ca-certificates build-essential autoconf automake autotools-dev meson ninja-build \
     && curl -OL https://github.com/troglobit/mtools/releases/download/v2.3/mtools-2.3.tar.gz \
     && tar xfz mtools-2.3.tar.gz \
     && cd mtools-2.3 \
@@ -19,6 +19,14 @@ RUN apt-get update \
     && make install \
     && cd .. \
     && rm -r mtools-2.3* \
+    && curl -OL https://github.com/iputils/iputils/archive/s20200821.tar.gz \
+    && tar xzf s20200821.tar.gz \
+    && cd iputils-s20200821/ \
+    && meson builddir -Dprefix=/ -DUSE_GETTEXT=false -DBUILD_RARPD=false -DBUILD_TFTPD=false -DBUILD_TRACEROUTE6=false -DBUILD_NINFOD=false -DBUILD_HTML_MANS=false -DNO_SETCAP_OR_SUID=true -DBUILD_MANS=false -DBUILD_CLOCKDIFF=false -DBUILD_TRACEPATH=false -DBUILD_ARPING=false -DBUILD_PING=false -DBUILD_RDISC=true -DUSE_CAP=false \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -r *s20200821* \
     && DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
         sudo htop bash-completion screen less man-db  curl wget socat knot-host mtr-tiny nano vim \
         net-tools iperf3 traceroute tcpdump isc-dhcp-client isc-dhcp-server icmpush iputils-ping \
