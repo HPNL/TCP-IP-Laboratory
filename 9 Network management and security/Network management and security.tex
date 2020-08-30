@@ -136,17 +136,15 @@ rocommunity guest
     Repeat the above experiment, but use \lstinline{telnet} and the \lstinline{wireshark} to analyze and print output.
 
     \begin{report}
-    \item Can you see the login ID and the password in the FTP experiment? Submit the two packets you printed.
+    \item Can you see the login ID and the password in the \lstinline{ftp} experiment? Submit the two packets you printed.
     
-    \item Can you see the login ID and the password in the TELNET experiment? Submit the packets you printed.
+    \item Can you see the login ID and the password in the \lstinline{telnet} experiment? Submit the packets you printed.
     
-    \item What is the difference between FTP and TELNET in their transmission of user ID’s and passwords? Which one is more secure?
+    \item What is the difference between \lstinline{ftp} and \lstinline{telnet} in their transmission of user ID’s and passwords? Which one is more secure?
     \end{report}
 
 \section{Secure Transfer}
     Start \lstinline{ssh} service on target machine by \lstinline{service ssh start}.
-
-        In this exercise, students pair up to work together using two workstations.
     
     Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} host your host and remote host to capture packets between your machine and a remote machine.
 
@@ -165,7 +163,7 @@ rocommunity guest
     \end{report}
 
 \part{Exercises on Firewalls and \texttt{iptables}}
-    In this exercise using two workstations.
+    In this exercise using two hosts. You can use Figure~1.3.
 
 \section{Firewall Basic}
     Execute \lstinline{iptables -L -v} to list the existing rules in the filter table. Save the output for the lab report.
@@ -205,25 +203,27 @@ iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     \end{report}
 
 \part{Exercises on Secure Apache Server}
-    In the exercises in this section, using two workstations from \textit{term} and \textit{gui} hosts. Run \lstinline{apache2} service on \textit{server}
+    In the exercises in this section, using two hosts from \textit{term} and \textit{gui} hosts. Run \lstinline{apache2} service on \textit{server}
 
 \section{Generate Certificate}
     Run \lstinline{man openssl} to study the OpenSSL command line tool.
 
     Create a new private key for the Apache server, using:
     \begin{lstlisting}
-openssl genrsa 1024 > /etc/apache2/ssl/server.key
+cd /etc/apache2/ssl
+openssl genrsa 2048 > server.key
     \end{lstlisting}
     To create a self-signed certificate, go to the \path{/etc/apache2/ssl/} directory, and execute:
     \begin{lstlisting}
-openssl req -new -x509 -days 365 -key /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt
+openssl req -new -x509 -sha256 -days 365 -key server.key -out server.crt
     \end{lstlisting}
     Then you will be asked a number of questions, regarding the location, affiliation, etc. of the Apache server. After you type in the answers, a self-signed certificate is created at \path{/etc/apache2/ssl/server.crt}
 
     You can generate private key and self-signed certificate whit one command by:
     \footnote{You can use simple command as \lstinline{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config.}
     \begin{lstlisting}
-openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout /etc/apache2/ssl/server.key -out /etc/apache2/ssl/server.crt
+cd /etc/apache2/ssl
+openssl req -new -x509 -sha256 -days 365 -newkey rsa:2048 -nodes -keyout server.key -out server.crt
     \end{lstlisting}
 
         Let's go over exactly what this means.
@@ -247,7 +247,7 @@ State or Province Name (full name) [Some-State]:Tehran
 Locality Name (eg, city) []:Tehran 
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:University of Tehran 
 Organizational Unit Name (eg, section) []:ECE Department 
-Common Name (e.g.\ server FQDN or YOUR name) []:ece.ut.ac.ir 
+Common Name (e.g.\ server FQDN or YOUR name) []:ece.ut.ac.ir
 Email Address []:netlab@ut.ac.ir 
     \end{lstlisting}}
 

@@ -7,7 +7,7 @@
 
 \begin{document}
 \part{Exercises on Cisco~IOS}
-    In this lab, you need two workstations, a bridge, and two hubs, which are required to be connected as shown in \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}.
+    In this lab, you need two hosts, a bridge, and two hubs, which are required to be connected as shown in \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}.
 
 \section{Network Setup}
     In this exercise we build the connection to the router (see \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}).
@@ -117,6 +117,7 @@ Ctrl+Z
 %    You need to collect all the different BPDUs from all group in your lab.
 %    At this time, save your BPDU capture output. 
 %    In our next step,  you get BPDUs from other gropu.
+explain stp and bpdu
 
     You should collect BPDUs in this exercise.
     These BPDUs will be helpful when studying the spanning tree algorithm later in this chapter.
@@ -160,6 +161,8 @@ Ctrl+Z
 
     Upon being started, a transparent bridge learns the network topology by analyzing source addresses of incoming frames from all attached networks.
     The next exercise shows the process by which a transparent bridge builds its filtering database.
+
+    You can read \autoref{appendix:spanningTree} and \autoref{appendix:bpdu} to learn how Spanning Tree Algorithm work.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -317,5 +320,86 @@ R1(config)# ip http authentication local
     \end{lstlisting}
     
     Next, start a web browser (e.g.\ \textit{Mozilla} in Linux) in your host, and enter the IP address of the router interface. When prompted, enter \texttt{netlab} for user name and password. Then you can browse the router configuration web pages and configure the router there.
+
+
+    \newpage
+\appendix
+
+\section{Spanning Tree Algorithm}
+\label{appendix:spanningTree}
+    The spanning tree algorithm defined in the IEEE 802.1d standard is used in bridged networks to build trees dynamically. It works as follows.
+
+\begin{enumerate}
+    \item Each bridge is assigned a unique identifier, and each port of a bridge is
+    assigned an identifier unique to that bridge. Typically, the identifier of
+    a bridge is a priority concatenated with one of the bridge ports’ MAC
+    address, and the identifier of a port is a priority concatenated with a port
+    index local to the bridge. Each bridge port has a corresponding path
+    cost, which indicates the cost to transfer a frame to an attached network
+    segment through that port.
+
+    \item Select the root bridge, which is the one with the lowest-value bridge
+    identifier. The ID of the root is called the root ID.
+
+    \item Each bridge selects its root port. The root port of a bridge is the port
+    from which the root bridge can be reached with the least aggregate path
+    cost (called the root path cost).
+
+    \item Determine the designated bridges and the designated ports. Each network
+    segment is associated with a designated bridge, which provides the
+    shortest path to the root bridge and is the only bridge allowed to forward
+    frames to and from the root. The port connecting a designated bridge to
+    the network segment is a designated port. If more than one bridge provides
+    the same root path cost, the bridge with the lowest-valued bridge
+    identifier is selected as the designated bridge.
+
+    \item Only the root ports and designated ports of the bridges are allowed to
+    forward frames. All other bridge ports are blocked.
+    
+    \item The above steps are repeated whenever the network topology changes.
+\end{enumerate}
+
+\section{Bridge Protocol Data Units}
+\label{appendix:bpdu}
+    To implement the spanning tree algorithm in a distributed manner, bridges exchange configuration information using a message called bridge
+    protocol data units (BPDUs).
+    The format of a BPDU message is given in Fig. 3.4 with the definition of the fields given below.
+
+    \begin{itemize}
+        \item \textit{Protocol Identifier}, \textit{Version}, and \textit{Message Type}:
+        These three fields are always set to 0.
+        
+        \item \textit{Flags}: The least significant bit, called the Topology Change (TC) bit, is
+        set to signal a topology change. The most significant bit is to acknowledge
+        receipt of a BPDU with the TC bit set. The remaining six bits are not
+        used.
+        
+        \item \textit{Root ID}: Identifies the root bridge by listing its 2-byte priority followed
+        by a 6-byte Ethernet address. The priority value can be set in the Global
+        Configuration mode. The default priority is 0x8000.
+        
+        \item \textit{Root Path Cost}: The path cost to the root bridge.
+        
+        \item \textit{Bridge ID}: The identifier of the bridge sending the message.
+        Port ID: Each bridge port has a unique 2-byte identifier. The first byte
+        is the priority, which is configurable, while the second byte is a number
+        assigned to the port.
+        
+        \item \textit{Message Age}:1 Specifies the amount of time since the root originally
+        sent the BPDU on which the current configuration message is based.
+        
+        \item \textit{Maximum Age}:1 Indicates when the spanning tree topology is recalculated
+        if a bridge does not hear BPDUs from the root bridge. The default
+        value is 15 seconds.
+        
+        \item \textit{Hello Time}:1 Provides the time period between two BPDUs from the
+        root bridge. The default value is 1 second.
+        
+        \item \textit{Forward Delay}:1 provides the amount of time that bridges should wait
+        before switching a port from the blocking state to forwarding state. If
+        a bridge port switches state too soon, not all network links may be
+        ready to change their state, and loops can occur. The default value is
+        30 seconds.
+    \end{itemize}
 
 \end{document}

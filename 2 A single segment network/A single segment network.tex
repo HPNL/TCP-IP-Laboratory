@@ -88,7 +88,7 @@
 
 \section{Network Statistics}
     By using \lstinline{netstat -ie}\footnote{You can use \lstinline{ifconfig} instead.} command, collect the statistics from all the hosts on the network.
-    Since we use the same login name and password, we can \lstinline{telnet} to other workstations and run \lstinline{netstat -ie} there.\footnote{%
+    Since we use the same login name and password, we can \lstinline{telnet} to other hosts and run \lstinline{netstat -ie} there.\footnote{%
     After you are done with a remote host, you should exit the \lstinline{telnet} session before you \lstinline{telnet} to another remote host.
     Recursive \lstinline{telnet} will generate unnecessary data in the \lstinline{tcpdump} output and cause confusion.
     }
@@ -112,9 +112,9 @@ socket -u -i -n200 remote-host echo
     Use \lstinline{arp -a} to see the entire ARP table.
     Observe that all the IP addresses displayed are on the same subnet.
 
-    If you find that all the remote hosts are in your host’s ARP table, you need to delete a remote host (not your workstation) from the table, using:
-    \footnote{If you deleted your workstation’s IP address from the ARP table by mistake, you must add the entry back in the table. See the \lstinline{arp} manual page to add.
-    Note that, in order for your workstation to reply to the ARP requests, the ARP entry of your workstation must have the \lstinline{P} flag in the ARP table.}
+    If you find that all the remote hosts are in your host’s ARP table, you need to delete a remote host from the table, using:
+    \footnote{If you deleted your host’s IP address from the ARP table by mistake, you must add the entry back in the table. See the \lstinline{arp} manual page to add.
+    Note that, in order for your host to reply to the ARP requests, the ARP entry of your host must have the \lstinline{P} flag in the ARP table.}
     \begin{lstlisting}[emph={remote-host}]
 arp -d remote-host
     \end{lstlisting}
@@ -244,9 +244,9 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
 \section{Gratuitous (Unsolicited) ARP}
     While \lstinline{tcpdump -ex} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}. You can send the gratuitous ARP manually by execute:
 
-    \begin{lstlisting}[emph={eth1,h7-ip,h6-ip}]
-arping -c 4 -A -I eth1 h6-ip
-arping -c 4 -U -I eth1 h7-ip
+    \begin{lstlisting}[emph={eth0,h7-ip,h6-ip}]
+arping -c 4 -A -I eth0 h6-ip
+arping -c 4 -U -I eth0 h7-ip
     \end{lstlisting}
 
     After \textit{h7} is started, terminate \lstinline{tcpdump} and run \lstinline{wireshark -r exe7.out &} to load the \lstinline{tcpdump} trace.
@@ -315,9 +315,9 @@ socket -i -u -n1 -w1000 remote-host 88888
     \end{table}
 
 \section{Duplicate IP}\label{sec:duplicate-ip}
-    Change the IP address of your workstation as shown in \hyperref[tab:2.3]{Table~2.3}.
+    Change the IP address of your hosts as shown in \hyperref[tab:2.3]{Table~2.3}.
 
-    Delete the entries for all hosts other than your own workstation from your workstation’s ARP table.
+    Delete the entries for all hosts other than your host from ARP table.
 
     Run \lstinline{tcpdump -enx} on all the hosts. Then, do the following three experiments:
 

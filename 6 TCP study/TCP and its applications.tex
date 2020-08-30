@@ -7,7 +7,7 @@
 
 \begin{document}
 \part{Exercises on TCP Connection Control}
-    Like previous lab, connect two host with one hub together (Figure~5.0).
+    Like previous lab, connect two host with one hub together (Figure~5.0) or use Figure~1.3 with two host.
 
 \section{Telnet terminal}
     While \lstinline[emph={your-host, remote-host}]{tcpdump -S host your-host  and remote-host} is running, execute: \lstinline[emph={your-host, remote-host}]{telnet remote-host echo} then type some text.
@@ -69,7 +69,7 @@ telnet host
 
     From your \lstinline{tcpdump} output, can you tell whether the Nagle algorithm is enabled or not? Give the reason for your answer.
 
-    From your \lstinline{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your workstation to the remote machine?
+    From your \lstinline{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your host to the remote machine?
     \end{report}
 
 \part{Exercise on TCP Bulk Data Flow}
@@ -119,14 +119,18 @@ socket -s 8888
         \item \lstinline[emph={host}]{socket -i -n200 -p 100 host 8888}
     \end{itemize}
     While the sender is injecting data segments into the network, shutdown the network interface on the \textit{remote-host} that connect the sender to the hub for about ten seconds.
-    \begin{lstlisting}
-ip link set eth0 down@{\normalfont\normalsize{ or }}@ifconfig eth0 down
+    \begin{lstlisting}[emph={eth0}]
+# use one of below commands
+ip link set eth0 down
+ifconfig eth0 down
     \end{lstlisting}
 
     After observing several retransmissions, set network interface up:
 after seconds\ldots
-    \begin{lstlisting}
-ip link set eth0 up@{\normalfont\normalsize{ or }}@ifconfig eth0 up
+    \begin{lstlisting}[emph={eth0}]
+# use one of below commands
+ip link set eth0 up
+ifconfig eth0 up
     \end{lstlisting} %in order to connect again%
     When all the data segments are sent, save the \lstinline{tcpdump} output for the lab report.
     

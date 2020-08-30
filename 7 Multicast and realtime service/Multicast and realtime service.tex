@@ -124,17 +124,20 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{report}
 
 \section{Simple UDP Multicast Client and Server}
+    Go to \textit{code} directory for \textit{netlab} user at \path{/home/netlab/code} with \lstinline{cd} command.
+    You can compile source code with \lstinline[emph={$fileName, $outputName}]{gcc $fileName -o $outputName}.
+
     Start the multicast client \lstinline{netspy} on all the hosts, by executing:
     \begin{lstlisting}
-netspy 224.111.111.111 1500
+./netspy 224.111.111.111 1500
     \end{lstlisting}
     Then, start the multicast sender \lstinline{netspyd} on \textit{h0}, by executing:
     \begin{lstlisting}
-netspyd 224.111.111.111 1500 1
+./netspyd 224.111.111.111 1500 1
     \end{lstlisting}
     Execute \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on every host to capture multicast IP datagrams.
 
-    Login to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using \lstinline{telnet} or \lstinline{ssh} (need to start ssh service).
+    Login to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using \lstinline{telnet} or \lstinline{ssh} (need to start \textit{ssh} service with \lstinline{service ssh start}).
 
     Save the captured multicast datagram sent by \lstinline{netspyd} and exit the \lstinline{telnet} (or \lstinline{ssh}) session.
 
@@ -224,11 +227,11 @@ netspyd 224.111.111.111 1500 1
     Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
     Start \lstinline{netspy} on all the hosts, by using:
     \begin{lstlisting}
-netspy 224.111.111.111 1500
+./netspy 224.111.111.111 1500
     \end{lstlisting}
     Start \lstinline{netspy} on \textit{h1}, by using:
     \begin{lstlisting}
-netspyd 224.111.111.111 1500 16
+./netspyd 224.111.111.111 1500 16
     \end{lstlisting}
     
     Login to the router.
@@ -358,8 +361,10 @@ Router(interface)# ip igmp join-group 224.0.0.2
 
     Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on all the hosts. 
 
-    Execute \lstinline{netspy 224.111.111.111 1500} on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}.
-    Execute \lstinline{netspyd 224.111.111.111 1500 16} on \textit{h4}.
+    Execute \lstinline{./netspy 224.111.111.111 1500} on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}.
+
+    Execute \lstinline{./netspyd 224.111.111.111 1500 16} on \textit{h4}.
+    
     To generate multicast traffic, you can login (by \lstinline{telnet} or \lstinline{ssh}) to or logout of \textit{h4}.
     Each time when the login user set of \textit{h4} changes, \lstinline{netspyd} on \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
 

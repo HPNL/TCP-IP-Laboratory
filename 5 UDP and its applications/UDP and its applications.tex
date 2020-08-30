@@ -8,7 +8,7 @@
 \begin{document}
 \part{Using the \texttt{socket} Program}
 \label{sec:schema}
-    In this lab, you will not need to a router, only two workstations and one hub to connect two host together as show in \hyperref[fig:5.0]{Figure~5.0} and \hyperref[tab:5.0]{Table~5.0}.
+    In this lab, you will not need to a router, only two hosts and one hub to connect two host together as show in \hyperref[fig:5.0]{Figure~5.0} and \hyperref[tab:5.0]{Table~5.0}.
     \begin{table}[H]
         \caption{Host IP addresses for \hyperref[fig:5.0]{Figure~5.0}}
         \label{tab:5.0}
@@ -39,7 +39,7 @@
     \end{figure}
 
 \section{Socket Operation}
-    Use the following commands in \textit{h0} and \textit{h0} to observe the basic operation of \lstinline{socket}\footnote{Basic command is \lstinline{sock} use alternative \lstinline{socket} (rename of \lstinline{sock})} and \lstinline{echo} service.
+    Use the following commands in \textit{h0} and \textit{h1} as client and server host to observe the basic operation of \lstinline{socket}\footnote{Basic command is \lstinline{sock} use alternative \lstinline{socket} (rename of \lstinline{sock})} and \lstinline{echo} service.
     \begin{lstlisting}[emph={host, server-host}]
 socket [-u] host echo@\footnote{Type any text in socket and press enter.}@
 socket -s 5555
@@ -91,9 +91,9 @@ socket -u -i -n1 -w10000 host echo
 
 \section{Maximum Datagram Size}
 \label{sec:MaxDatagramSize}
-    While running tcpdump src host your host, execute the following command with different values of size,
-    \begin{lstlisting}[emph={host}]
-socket -u -i -n1 -w10000 host echo@
+    While running \lstinline{tcpdump}, execute the following command with different values of size (for example 10000),
+    \begin{lstlisting}[emph={size, host}]
+socket -u -i -n1 -w size host echo@
 % socket -u -i -n1 -w65507 host echo@
     \end{lstlisting}
     in order to find out the maximum size of a UDP datagram that the system can send or receive, even when fragmentation is allowed.
@@ -106,23 +106,21 @@ socket -u -i -n1 -w10000 host echo@
 \part{Path MTU Discovery Exercise}\label{sec:PMTUD}
 
 \section{Discover path MTU}
-    Connect the routers and the workstations as shown in \hyperref[fig:5.5]{Figure~5.5} Change the IP
-    addresses of your workstation accordingly. Note that the router IP addresses are
-    the same as their default.
+    Connect the routers and the hosts as shown in \hyperref[fig:5.5]{Figure~5.5} Change the IP addresses of all hosts accordingly.
+    Note that the router IP addresses are the same as their default.
 
     % Open console of  each router, enable {RIP} routing (See Section~4.6 of reference book).
 
-    Change the \texttt{MTU} of the \textit{ethernet1} interfaces of \textit{Router4} to 500
-    bytes.
+    Change the \texttt{MTU} of the \textit{ethernet1} interfaces of \textit{Router4} to 500 bytes.
     \begin{lstlisting}[language={cisco}]
 R1(config-if)# ip mtu 500
     \end{lstlisting}
     Test connectivity by \lstinline{ping}ing hosts in the other subnets. After you can reach the
-    hosts in the other subnets, run \lstinline{tcpdump -nx} on your workstation.
+    hosts in the other subnets, run \lstinline{tcpdump -nx} on your host.
 
-    Start a UDP socket server on \textit{remote-host}, using \lstinline{socket -u -s 5555}.
-    Then run the socket client from \textit{your-host}:
-    \begin{lstlisting}[emph={your-host, remote-host}]
+    Start a UDP socket server on \textit{remote-host}, using \lstinline{socket -u -s 5555} on \textit{h1}.
+    Then run the socket client from \textit{h0}:
+    \begin{lstlisting}[emph={remote-host}]
 socket -i -u -n10 -w1200 -p5 remote-host 5555
     \end{lstlisting}
 
@@ -173,7 +171,7 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     We will study the performance of FTP and TFTP for file transfer between two machines.
     By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP. 
 
-    Four files (\path{large.dum}, \path{med.dum}, \path{small.dum} and \path{this.dum}) with random contents are stored in the \path{/home/netlab} directory and in the \path{/home/netlab}\footnote{We change original path (\path{/tftpboot}) to \path{/home/netlab} to be same as ftp user path.} directory of each workstation in the lab.
+    Four files (\path{large.dum}, \path{med.dum}, \path{small.dum} and \path{this.dum}) with random contents are stored in the \path{/home/netlab} directory and in the \path{/home/netlab}\footnote{We change original path (\path{/tftpboot}) to \path{/home/netlab} to be same as ftp user path.} directory of each host in the lab.
     We will use the \lstinline{get} command to retrieve files from a remote host.
     When FTP is used, you need to change directory to \path{/home/netlab/} by \lstinline{cd /home/netlab} before retrieving the file.
     If you don’t know how to use \lstinline{tftp}, refer to its manual page.
@@ -192,7 +190,7 @@ $ ls /etc/xinetd.d/ # see services in xinetd
 $ tftp host
 tftp> get $filename # thin, small, med, large
 tftp> quit
-$ ftp host # Enter user and password -> netlab
+$ ftp host # Enter user and password -> netlab and netlab
 ftp> ls
 ftp> get $filename # thin, small, med, large
 ftp> quit
@@ -234,7 +232,7 @@ tcpdump -x host your-host and remote-host
         Why does the server’s port number change?
         
         \item In most cases, \lstinline{tftp} service is restricted.\footnote{This is not the case in our lab, where we deliberately enabled the \lstinline{tftp} service and use it as a tool to study the UDP protocol.}
-        Why is \lstinline{tftp} service not generally available to users? At least two items need to expressed.
+        Why is \lstinline{tftp} service not generally available to users? At least write two problem of \lstinline{tftp} protocol.
         
         \item In \autoref{sec:MaxDatagramSize}, we found the maximum size of a UDP datagram in your machine. With \lstinline{tftp}, which uses UDP, we transferred a file larger than the maximum UDP datagram size.
         How do you explain this?

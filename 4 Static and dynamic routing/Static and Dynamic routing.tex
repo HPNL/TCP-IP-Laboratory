@@ -7,7 +7,7 @@
 
 \begin{document}
 \part{A Simple Router Experiment}
-In this lab, you need two workstations, a bridge, and two hubs, which are required to be connected as shown in \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3}.
+In this lab, you need two hosts, a bridge, and two hubs, which are required to be connected as shown in \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3}.
     \begin{table}[H]
         \caption{Router and Host IP addresses for \hyperref[fig:4.10]{Figure~4.10} (Table~4.2\label{tab:4.2}, Table~4.3\label{tab:4.3})}
         \centering
@@ -42,12 +42,12 @@ In this lab, you need two workstations, a bridge, and two hubs, which are requir
     \end{figure}
 
 \section{Simple Routing}
-    Configure the IP addresses of your workstations and the router as shown in \hyperref[fig:4.10]{Figure~4.10}, \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3} (select one of row in table).
+    Configure the IP addresses of your hosts and the router as shown in \hyperref[fig:4.10]{Figure~4.10}, \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3} (select one of row in table).
 
     Initially all hosts’ routing table has no entry for the subnet on the other side of the router.
-    In order to be connected, you need to add a routing entry for the other subnet in the routing table of all workstations (see section 4.3.1).
+    In order to be connected, you need to add a routing entry for the other subnet in the routing table of all hosts (see section 4.3.1).
 
-    You can use one of the following commands to add routing in workstations.
+    You can use one of the following commands to add routing in hosts.
     \begin{lstlisting}[emph={eth0,gateway-ip,remote-subnet}]
 # by ip command
 ip route add remote-subnet dev eth0            # with interface name
@@ -78,7 +78,7 @@ ping -sv remote-host
     For clean results, do your experiments in turn.
     
     \begin{report}
-    \item When a packet was sent to a workstation in the other subnet, explain how the source and destination Ethernet addresses were changed.
+    \item When a packet was sent to a host in the other subnet, explain how the source and destination Ethernet addresses were changed.
     
     \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from your machine to the router?
     
@@ -108,8 +108,8 @@ Router(config)# no router rip
     \end{lstlisting}
     Consider \hyperref[fig:4.11]{Figure~4.11} as our network topology for this section.
     
-    % Since the IP address of \textit{ethernet1} in \textit{router4} is the only interface which is different from the initial configuration in Appendix~B of reference book, we will reboot all the four routers to restore their default configurations, and change the IP address on the \textit{ethernet1} in \textit{router4} only. Since our workstations started \lstinline{routed} at boot-up time, no further action is needed to run RIP on the workstations. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
-    Configure network router and workstation’s as \hyperref[fig:4.11]{Figure~4.11}. Since our workstation’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each workstation.
+    % Since the IP address of \textit{ethernet1} in \textit{router4} is the only interface which is different from the initial configuration in Appendix~B of reference book, we will reboot all the four routers to restore their default configurations, and change the IP address on the \textit{ethernet1} in \textit{router4} only. Since our hosts started \lstinline{routed} at boot-up time, no further action is needed to run RIP on the hosts. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
+    Configure network router and host’s as \hyperref[fig:4.11]{Figure~4.11}. Since our host’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each host.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -177,8 +177,8 @@ Router(config)# no router rip
         \caption{Network Configuration for \nameref{sec:rip} (Figure~4.11)}\label{fig:4.11}
     \end{figure}
 \section{RIP Messages}
-    Connect the routers and hosts and change the IP addresses of the workstations and router4 as shown in \hyperref[fig:4.11]{Figure~4.11}.
-    Also, make sure that your workstation has no other routing entries than your own subnet and your loopback interface.
+    Connect the routers and hosts and change the IP addresses of the hosts and router4 as shown in \hyperref[fig:4.11]{Figure~4.11}.
+    Also, make sure that your host has no other routing entries than your own subnet and your loopback interface.
     For how to remove an entry from the host routing table, see Section~4.3 of reference book.
 
     Configure the RIP in each router.
@@ -190,7 +190,7 @@ Router(config)# no router rip
 tcpdump -x -s 100 -c 4 udp port 520
     \end{lstlisting}
 
-    Save the routing table in your workstation (\lstinline{sh ip route}).
+    Save the routing table of router (\lstinline{sh ip route} in \textit{User EXEC} mode).
     Note the number of hops needed to reach destinations other than in your own subnet.
 
     Mark and print two different RIP messages captured in your subnet (see Exercise~6 of Chapter~1 of reference book).
@@ -222,7 +222,7 @@ tcpdump -x -s 100 -c 4 udp port 520
 
     Observe the \lstinline{ping} and \lstinline{tcpdump} windows.
     When the connection is re-established, type the \lstinline{date} command again.
-    See how much time RIP takes to alter the routing table in your workstation to the new topology.
+    See how much time RIP takes to alter the routing table in your hsot to the new topology.
 
     Once you can successfully reach other hosts, connect the cable to the original position.
     Again, measure the time that RIP takes to change your routing table.
@@ -239,7 +239,7 @@ tcpdump -x -s 100 -c 4 udp port 520
 \section{ICMP redirect}
     Save the routing table for your lab report.
 
-    Create a default routing entry using one of the routers directly connected to your workstation (add route with default gateway). Also may you need to delete previously added route.
+    Create a default routing entry using one of the routers directly connected to your host (add route with default gateway). Also may you need to delete previously added route.
 
     \begin{lstlisting}[emph={eth0,gateway-ip,remote-subnet}]
 # by ip command
@@ -250,7 +250,7 @@ route add -net remote-subnet gw gateway-ip   # with default gateway
 
     While \lstinline{tcpdump -enx -s 100 ip proto 1} is running, send \lstinline{ping} messages to a host that is three hops away through the default router.
 
-    After capturing an ICMP redirect message, save the \lstinline{tcpdump} output, the \lstinline{ping} output, and your workstation’s routing table.
+    After capturing an ICMP redirect message, save the \lstinline{tcpdump} output, the \lstinline{ping} output, and your host’s routing table.
     You may need to \lstinline{ping} the same host several times in order to get your routing table updated.
     
     \begin{report}
@@ -421,7 +421,7 @@ tcpdump -x -s 120 ip proto 89
     Login to a directly connected router and start the OSPF process.
     Set the argument \textit{area-id} to 1 for all the routers. 
 
-    % The workstations in our lab run \lstinline{routed} (which uses RIP).
+    % The hosts in our lab run \lstinline{routed} (which uses RIP).
     % The routing daemon supporting OSPF, \lstinline{gated}, is not installed.
     In order to reach the routers and hosts in the other subnets, you need to add a default router in your host’s routing table.
 
@@ -450,10 +450,10 @@ show ip ospf virtual-links
     In this experiment, we reuse the network as shown in \hyperref[fig:4.13]{Figure~4.13}.
 \section{Static routing}
     After checking the wiring, as shown in \hyperref[fig:4.13]{Figure~4.13}, reboot the routers to restore their initial settings.
-    Check the IP addresses of the workstations as shown in \hyperref[fig:4.13]{Figure~4.13}. 
+    Check the IP addresses of the hosts as shown in \hyperref[fig:4.13]{Figure~4.13}. 
 
     Remove all the routing entries other than your own subnet and the loopback interface from your host routing table.
-    Save the output of \lstinline{netstat -rn} before building your workstation’s routing table. 
+    Save the output of \lstinline{netstat -rn} before building your host’s routing table. 
 
     Examine \hyperref[fig:4.13]{Figure~4.13} and build your host’s static routing table manually. 
 
@@ -467,11 +467,12 @@ show ip ospf virtual-links
 
     \begin{lstlisting}[language={cisco}, emph={network, net-mask, next-hup}]
 ip route network net-mask next-hup
+! ip route 192.168.1.0 255.255.255.0 192.168.2.1
     \end{lstlisting}
 
     Use \lstinline{ping} to test the connections.
-    When you can reach all other subnets successfully,\footnote{Even when the routing table in your workstation and all the routers are configured perfectly, you may not be able to \lstinline{ping} a remote host, if the routing table in the remote host is incorrect.
-    When you can get \lstinline{ping} reply messages from all the interfaces of the routers successfully, your work is done for this exercise.} save the routing tables in your workstation and all the routers for the lab report.
+    When you can reach all other subnets successfully,\footnote{Even when the routing table in your host and all the routers are configured perfectly, you may not be able to \lstinline{ping} a remote host, if the routing table in the remote host is incorrect.
+    When you can get \lstinline{ping} reply messages from all the interfaces of the routers successfully, your work is done for this exercise.} save the routing tables in your host and all the routers for the lab report.
     
     \begin{report}
     \item Submit the routing tables saved in this exercise.
@@ -480,7 +481,7 @@ ip route network net-mask next-hup
 
 \part{\texttt{traceroute} Experiment}\label{sec:traceroute}
 \section{\texttt{traceroute} multi-hop path}
-    Execute \lstinline[emph={your-host, remote-host}]{tcpdump -env host your-host and remote-host} on your host, where \textit{remote-host} is a workstation at least two hops away. 
+    Execute \lstinline[emph={your-host, remote-host}]{tcpdump -env host your-host and remote-host} on your host, where \textit{remote-host} is a host at least two hops away. 
 
     Then, execute \lstinline[emph={your-host, remote-host}]{traceroute remote-host} to find the route from your host to the remote host. 
 
