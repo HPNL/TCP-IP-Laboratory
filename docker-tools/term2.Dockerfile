@@ -87,6 +87,8 @@ RUN cd /home/netlab/code/ && \
     cd sock && autoreconf -if && ./configure && make && \
     cp ./src/sock /usr/local/bin/socket && cd .. && rm -rf sock
 
+ENV PATH="/home/netlab/code:${PATH}"
+
 # start service and bash
 WORKDIR /root/
 # VOLUME [ "/root" ]

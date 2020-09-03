@@ -82,3 +82,5 @@ RUN cd /home/netlab/code/ && \
     gcc UDPserver.c -o UDPserver && \
     cd sock && autoreconf -if && ./configure && make && \
     cp ./src/sock /usr/local/bin/socket && cd .. && rm -rf sock
+
+ENV PATH="/home/netlab/code:${PATH}"
