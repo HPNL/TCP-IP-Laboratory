@@ -106,7 +106,7 @@ To load template `Figures` you need to add **Cisco 3725** firmware and **utnetla
 
 #### Docker images
 
-To add Docker images, you need to open `Preferences` menu (under `Edit` in *Linux/Windows* and `GNS3` in *Mac OS*). Under `Docker > Docker containers` you can add new images to `GNS3`. In the `New` dialog, you can select **existing image** (load local images) or **new image** (use docker pull) with image name. Set configuration as below for two docker.
+To add Docker images, you need to open `Preferences` menu (under `Edit` in *Linux/Windows* and `GNS3` in *Mac OS*). Under `Docker > Docker containers` you can add new images to `GNS3`. In the `New` dialog, you can select **existing image** (load local images) or **new image** (use docker pull) with image name. Set configuration as below for two docker (use value according to key at each setup dialog).
 
 GUI:
 
