@@ -94,7 +94,7 @@ Ctrl+Z
     \end{lstlisting}
 
 \section{Bridge Packet}
-    Run \lstinline{tcpdump -en ip proto 1} on h0 and h1 machine. Send \lstinline{ping} messages to h1 machine: \lstinline[emph={remote-machine}]{ping -sv remote-machine}.
+    Run \lstinline{tcpdump -en ip proto 1} on \textit{h0} and \textit{h1} machine. Send \lstinline{ping} messages to \textit{h1} machine: \lstinline[emph={remote-machine}]{ping -sv remote-machine}.
     After receiving the tenth echo reply, quit the \lstinline{ping} process, and save the \lstinline{tcpdump} outputs from both machines.
 
     During this exercise, don’t run \lstinline{ping} programs at the same time from other host. For clean results, do your experiments in turn.
@@ -236,7 +236,7 @@ explain stp and bpdu
 
     Get to the \textit{Privileged EXEC}\footnote{use \textbf{enable} command to active \textit{Privileged EXEC}} mode (is activated by default in \textbf{GNS3}). Type \lstinline[language={cisco}]{show bridge} to see the entries in the bridge forwarding database.
 
-    Whenever you \lstinline{ping} or \lstinline{telnet} from h0 to a host that is not in the table (table form bridge 1), observe how the filtering database in the bridge is expanded.
+    Whenever you \lstinline{ping} or \lstinline{telnet} from \textit{h0} to a host that is not in the table (table form bridge 1), observe how the filtering database in the bridge is expanded.
 
     You may use the \lstinline[language={cisco}, emph={group}]{clear bridge group} command to remove any learned entries from the filtering database, if you see a full filtering database or if you want to repeat the above exercise.
 
