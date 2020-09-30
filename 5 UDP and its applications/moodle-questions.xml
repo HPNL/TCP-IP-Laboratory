@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Chapter 5</text>
+    </category>
+    <info format="moodle_auto_format">
+      <text>The default category for questions shared in context 'Chapter 5'.</text>
+    </info>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>5.1.1</text>
+    </name>
+    <questiontext format="plain_text">
+      <text>Explain the operation of each command.</text>
+    </questiontext>
+    <generalfeedback format="plain_text">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_1</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.3.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is the maximum value of size for which the UDP datagram can be sent without IP fragmentation?
+Justify your answer with the <b>netstat</b> output.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_3</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.4.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Explain the <b>tcpdump</b> output in terms of the IP header fields that are used in fragmentation.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_4</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.4.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>When IP fragmentation occurs, only the first fragment has the UDP header. How do you verify this fact
+from the <b>tcpdump</b> output?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_4</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.5.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is the maximum size of user data in a UDP datagram that the system can send or receive, even
+when fragmentation is allowed?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_5</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.6.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Explain the operation of path MTU discovery based on the <b>tcpdump</b> outputs saved.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.6.2</text>
+    </name>
+    <questiontext format="plain_text">
+      <text>Which ICMP message is used in path MTU discovery? Give the decimal value of each field of the captured
+ICMP message.</text>
+    </questiontext>
+    <generalfeedback format="plain_text">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.6.3</text>
+    </name>
+    <questiontext format="plain_text">
+      <text>What is the MTU of the destination network of the UDP datagram? Verify your answer using both the
+ICMP message and the IP fragmentation trace saved.</text>
+    </questiontext>
+    <generalfeedback format="plain_text">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.7.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Examining the saved <b>tcpdump</b> output. Identify the starting and ending time of actual data transfer. Don’t
+include the time spent establishing the TCP connection. Calculate the time spent for data transfer.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.7.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Compare the time with the value displayed in <b>ftp</b> window. Are they consistent? If there exists any
+significant difference, what might be the reason?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.7.3</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Now, from the second session, carefully determine the starting and ending time of data transfer for the
+<b>tftp</b> program.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.7.4</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Compare the time with the value displayed in <b>tftp</b> window. Are they consistent? If there exists any
+significant difference, what might be the reason?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.7.5</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>By comparing the actual data transfer times of <b>ftp</b> and <b>tftp</b> , which of these two is faster, and why?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.8.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>List all the different types of packets exchanged during the <b>tftp</b> session. Compare them with the TFTP
+message format in Figure 5.3 of reference book.
+Why does the server’s port number change?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.8.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In most cases, <b>tftp</b> service is restricted.4 Why is <b>tftp</b> service not generally available to users?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.8.3</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>In section 5, we found the maximum size of a UDP datagram in your machine. With <b>tftp</b> , which uses
+UDP, we transferred a file larger than the maximum UDP datagram size. How do you explain this?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.9.1</text>
+    </name>
+    <questiontext format="plain_text">
+      <text>How many well-known port numbers were used? Which machine used the well-known port numbers? What
+were the other machine’s port numbers?</text>
+    </questiontext>
+    <generalfeedback format="plain_text">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_9</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.9.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>As can be seen from the <b>tcpdump</b> output, FTP involves two different connections, ftp-control and
+ftp-data. Why are two different connections used, instead of one connection?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_9</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>5.10.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Submit what you saved in this exercise, explaining each line of the output. Explain how the <i>PORT</i> command
+works. Which connection, the control connection or the data connection, did the server send the response
+(the <i>LIST</i> output) on?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_5</text></tag>
+      <tag><text>section_10</text></tag>
+    </tags>
+  </question>
+  
+</quiz>

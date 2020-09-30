@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Chapter 3</text>
+    </category>
+    <info format="moodle_auto_format">
+      <text>The default category for questions shared in context 'Chapter 3'.</text>
+    </info>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>3.3.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What are the IP and MAC addresses of a packet that went from your machine to the bridge? What are the IP and MAC addresses of a packet that went from the router to your partner’s machine?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_3</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.3.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Answer the same questions, but for the echo reply that was returned from your partner’s machine</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_3</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.4.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>How frequently (in seconds) does a bridge sends its BPDUs?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_4</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.4.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Submit the four different BPDUs you saved. Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU2 (may need to check BPDU message format Figure 3.4).</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_4</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.5.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>From the output of <b>show bridge</b> , identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_5</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.6.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Submit the four different BPDUs (from four network sections) you saved. Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.6.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Based upon the initial BPDUs saved in Spanning Tree Exercises, draw the spanning tree seen by the
+BPDUs. Identify the root ports and the root path cost (in hop counts) for each bridge. Identify the
+designated bridge and the designated port for each LAN segment. Identify the state of each bridge port
+(blocking or forwarding).
+Don’t just assume that Bridge1 has the highest priority for the root bridge. Draw the spanning tree based
+upon your data (eight initial BPDUs).
+</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.6.3</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Write the final BPDUs you collected using the three-tuple format: root ID, root path cost, bridge ID.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.6.4</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Once you have the spanning tree, justify it using the four final BPDUs collected in this exercise and/or
+the output of the <b>show bridge</b> command.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.7.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Draw the new tree formed after the cable was disconnected, based on the BPDUs you collected in this
+exercise. Specify the state of each bridge port.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+  
+  <question type="essay">
+    <name>
+      <text>3.8.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Add image from one command execution.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_3</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+  
+</quiz>

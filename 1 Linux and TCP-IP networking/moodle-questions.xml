@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="category">
+    <category>
+      <text>$course$/top/Chapter 1</text>
+    </category>
+    <info format="moodle_auto_format">
+      <text>The default category for questions shared in context 'Chapter 1'.</text>
+    </info>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.1.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is Internet Service Daemon (<b>inetd</b>)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber>10101</idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_1</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.1.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Is <b>inetd</b> started in your system? Why?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_1</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.1.3</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Is <b>xinetd</b> started in your system? What is its <b>PID</b>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_1</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.2.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What are the sizes of <b>filesser-more</b>,<b>ser-cp</b>, and <b>ser-cat</b>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_2</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.3.1</text>
+    </name>
+    <questiontext format="plain_text">
+      <text>Explain the above commands briefly.</text>
+    </questiontext>
+    <generalfeedback format="plain_text">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_3</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.4.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is the value of the <b>protocol</b> field in the IP header of the packet you saved? What is the use of the <b>protocol</b> field?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_4</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.4.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is the value of the <b>frame type</b> field in an Ethernet frame carrying an IP datagram?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_4</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.5.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is the value of the <b>frame type</b> field in an Ethernet frame carrying an ARP request and in anEthernet frame carrying an ARP reply, respectively?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_5</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.5.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What is the use of the <b>frame type</b> field?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_5</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.6.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Explain briefly the purposes of the following <b>tcpdump</b> expressions.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_6</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.7.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What are the port numbers used by the <b>h1</b> (local machine) and <b>h2</b> (remote machine)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.7.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Which machine’s port number matches the port number listed for <b>telnet</b> in the <i>/etc/servicesfile</i>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_7</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.8.1</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>When you have two <b>telnet</b> sessions with your machine, what port number is used on the <b>h2</b> (remote machine)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.8.2</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Are both sessions connected to the same port number on the <b>h2</b> (remote machine)?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.8.3</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>What port numbers are used in <b>h1</b> (local machine) for the first and second <b>telnet</b>, respectively?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+
+  <question type="essay">
+    <name>
+      <text>1.8.4</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Explain briefly what a <b>socket</b> is.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <responseformat>editor</responseformat>
+    <responserequired>1</responserequired>
+    <responsefieldlines>15</responsefieldlines>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <graderinfo format="html">
+      <text></text>
+    </graderinfo>
+    <responsetemplate format="html">
+      <text></text>
+    </responsetemplate>
+    <tags>
+      <tag><text>chapter_1</text></tag>
+      <tag><text>section_8</text></tag>
+    </tags>
+  </question>
+
+</quiz>
