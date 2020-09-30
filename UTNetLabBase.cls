@@ -79,7 +79,7 @@
       tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
       sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
       a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket, ntptrace, ntpq,
-      goaccess, webalizer, vlc, firefox, systemctl,
+      goaccess, webalizer, vlc, firefox, systemctl, nano, vim,
     },
     morekeywords=[2]{
       netspy, netspyd, %UDPserver, UDPclient,

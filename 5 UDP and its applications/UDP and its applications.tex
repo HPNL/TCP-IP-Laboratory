@@ -171,7 +171,7 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     We will study the performance of FTP and TFTP for file transfer between two machines.
     By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP. 
 
-    Four files (\path{large.dum}, \path{med.dum}, \path{small.dum} and \path{this.dum}) with random contents are stored in the \path{/home/netlab} directory and in the \path{/home/netlab}\footnote{We change original path (\path{/tftpboot}) to \path{/home/netlab} to be same as ftp user path.} directory of each host in the lab.
+    Four files (\path{large.dum}, \path{med.dum}, \path{small.dum} and \path{thin.dum}) with random contents are stored in the \path{/home/netlab} directory and in the \path{/home/netlab}\footnote{We change original path (\path{/tftpboot}) to \path{/home/netlab} to be same as ftp user path.} directory of each host in the lab.
     We will use the \lstinline{get} command to retrieve files from a remote host.
     When FTP is used, you need to change directory to \path{/home/netlab/} by \lstinline{cd /home/netlab} before retrieving the file.
     If you don’t know how to use \lstinline{tftp}, refer to its manual page.
@@ -184,7 +184,14 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     \begin{lstlisting}[emph={your-host,remote-host}]
 tcpdump host your-host and remote-host
     \end{lstlisting}
-    % Here we use the redirect operator, \lstinline{>}, to save the \lstinline{tcpdump} output into a text file called \path{output1}.
+
+    You can use the redirect operator, \lstinline{>}, to save the \lstinline{tcpdump} output into a text file for large \lstinline{tcpdump} outputs and read it with \lstinline{less, grep, nano} or \lstinline{vim}.
+    For example you can change previous command into:
+    \begin{lstlisting}[emph={your-host,remote-host,output,dump}]
+tcpdump host your-host and remote-host > output.dump
+    \end{lstlisting}
+    
+    Now you should repeat this scenario for all files (\path{large.dum}, \path{med.dum}, \path{small.dum} and \path{thin.dum}).
     \begin{lstlisting}[emph={host}]
 $ ls /etc/xinetd.d/ # see services in xinetd
 $ tftp host
