@@ -1,16 +1,19 @@
-\documentclass[15pt]{beamer}
+\documentclass[aspectratio=169,15pt]{beamer}
 
 \usepackage[utf8]{inputenc}
 \usepackage{xcolor}
 \usepackage{hyperref}
+\usepackage{makebox}
+\usepackage{textpos}
 
 \usetheme{Madrid}
+% \usetheme{Szeged}
 \usecolortheme{beaver}
 
 \title{Computer Networks Laboratory}
 \subtitle{Chapter 0: Introduction}
 \author{Ahmad Khonsari}
-\institute{
+\institute[ECE @ UT]{
     ECE Department\\
     Tehran University \newline
     \url{http://ece.ut.ac.ir/portal/}
@@ -18,12 +21,30 @@
 \date{Spring 1399}
 \subject{Computer Science}
 
+% \logo{
+%     \includegraphics[height=1.4cm]{../img/ut.pdf}
+% }
+\titlegraphic{
+    \makebox[0.9\paperwidth]{
+        \includegraphics[height=1.4cm]{../img/fanni.png}
+        \hfill
+        \includegraphics[height=1.4cm]{../img/ut.pdf}
+    }
+}
+
 \setbeamercolor{section number projected}{bg=red,fg=white}
 \setbeamercolor*{item}{fg=red}
 
 \begin{document}
 
 \frame{\titlepage}
+
+\addtobeamertemplate{frametitle}{}{%
+    \begin{textblock*}{100mm}(.85\textwidth,-1cm)
+        \includegraphics[height=1cm,width=1.33cm]{../img/fanni.png}
+        \includegraphics[height=1cm,width=1cm]{../img/ut.pdf}
+    \end{textblock*}
+}
 
 \begin{frame}
     \frametitle{Table of Contents}
@@ -46,7 +67,7 @@
     \begin{itemize}
         \item Mohammad Borhani: borhani.m@ut.ac.ir
     \end{itemize}
-    \item Contact time: Tuesday-Wenesday (netlab-softlab (azmayeshagah narmafzar))
+    \item Contact time: Tuesday-Wednesday (netlab-softlab (Azmayeshagah Narmafzar))
 \end{itemize}
 
 \end{frame}
@@ -93,8 +114,10 @@
         \item 10 sessions
         \item Cover the “TCP/IP essential: A lab based approach” + one new Lab
         \item 10 lab reports + TA quizzes
-        \item {\color{red} Don’t accept delay (must submit and finish your work in time)}
     \end{itemize}
+    \begin{alertblock}{Important}
+        Don’t accept delay (must submit and finish your work in time)
+    \end{alertblock}
 
 \end{frame}
 
@@ -103,7 +126,7 @@
     \frametitle{Grading}
 
     \begin{itemize}
-        \item For remote class when COVID-19
+        \item For remote class when \alert{COVID-19}
         \begin{itemize}
             \item {\color{red} 1.8} for each lab report
         \end{itemize}
@@ -114,10 +137,11 @@
         \end{itemize}
         \item {\color{red} 0.2} to {\color{red} 0.3} for each quiz (0.1 Additional Score)
         \item Don’t submit image, except for report questions that specifically ask for an image.
-        \item 
-        \item You can only object to your grades within {\color{red} 2 days} of receiving them. We do not consider objections after that. 
         
     \end{itemize}
+    \begin{block}{}
+        You can only object to your grades within {\color{red} 2 days} of receiving them. We do not consider objections after that.
+    \end{block}
 
 \end{frame}
 
@@ -141,11 +165,18 @@
     \frametitle{Class rules}
 
     LATE ARRIVAL:
-    \begin{itemize}
-        \item below 15 min $\rightarrow$ don’t worry (but you may miss quiz)
-        \item {\color{orange} between 15 and 30 min $\rightarrow$ get -0.5 for your session grade}
-        \item {\color{red} more than 30 min $\rightarrow$ don’t enter the class}
-    \end{itemize}
+
+    {
+        \setbeamercolor{block body}{fg=black, bg=green!10!white}
+        \setbeamercolor{block title}{fg=white, bg=green!40!black}
+        \begin{block}{Below 15 min} Don’t worry (but you may miss quiz) \end{block}
+    }
+    {
+        \setbeamercolor{block body}{fg=black, bg=orange!10!white}
+        \setbeamercolor{block title}{fg=white, bg=orange!50!black}
+        \begin{block}{Between 15 and 30 min} Get -0.5 for your session grade \end{block}
+    }
+    \begin{alertblock}{More than 30 min} Don’t enter the class \end{alertblock}
 
 \end{frame}
 
