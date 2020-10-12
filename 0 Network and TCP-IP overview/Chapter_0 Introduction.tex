@@ -6,6 +6,8 @@
 \usepackage{makebox}
 \usepackage{textpos}
 
+\hypersetup{colorlinks = true}
+
 \usetheme{Madrid}
 % \usetheme{Szeged}
 \usecolortheme{beaver}
@@ -14,7 +16,7 @@
 \subtitle{Chapter 0: Introduction}
 \author{Ahmad Khonsari}
 \institute[ECE @ UT]{
-    ECE Department\\
+    Electrical and Computer Engineering Department\\
     Tehran University \newline
     \url{http://ece.ut.ac.ir/portal/}
 }
@@ -61,11 +63,14 @@
     \end{itemize}
     \item Chief Teaching assistants:
     \begin{itemize}
-        \item Amir Haji Ali Khamseh’i: khamse@ut.ac.ir
+        \item Amir Haji Ali Khamseh’i: \alert{khamse @ut .ac .ir}
+        \item Reza Sharifi nia: \alert{reza.sharifnia @ut .ac .ir}
     \end{itemize}
     \item Teaching assistants:
     \begin{itemize}
-        \item Mohammad Borhani: borhani.m@ut.ac.ir
+        \item Mohammad Borhani: \alert{borhani.m @ut .ac .ir}
+        \item Javad Aynevand: \alert{javad.aynevand @ut .ac .ir}
+        \item Z. Fath Firooz: \alert{z\_fathfirooz @ut .ac .ir}
     \end{itemize}
     \item Contact time: Tuesday-Wednesday (netlab-softlab (Azmayeshagah Narmafzar))
 \end{itemize}
@@ -82,8 +87,10 @@
         \item Learn how to simulate network
         \item Learn new network protocol (SNMP, \dots)
         \item IPv4, IPv6, Routing, ARP, RIP, OSPF, UDP, TCP, Multicast, NAT, HTTP, DHCP, SNMP, Security, ...         
-        \item During the study you need to read extra book and documents for do your lab (has not been taught in the Network lesson)
     \end{itemize}
+    \begin{alertblock}{Alert}
+        During the study you need to read extra book and documents for do your lab (has not been taught in the Network lesson)
+    \end{alertblock}
 
 \end{frame}
 
@@ -99,49 +106,9 @@
         \begin{enumerate}
             \item Reading the background material of each lab before attending each session. There is a quiz in the beginning of each lab of the main materials of the current session.
             \item Carrying out the lab within the time slot that assigned for each lab and prepare the report
-            \item A final exam. In the current semester due to Covid 19, we may ask students to voluntarily prepare and fulfil an extra lab instead of exam.
+            \item A final exam. In the current semester due to COVID 19, we may ask students to voluntarily prepare and fulfil an extra lab instead of exam.
         \end{enumerate}
     \end{itemize}
-
-
-\end{frame}
-
-\section{Course Format}
-\begin{frame}
-    \frametitle{Course Format}
-
-    \begin{itemize}
-        \item 10 sessions
-        \item Cover the “TCP/IP essential: A lab based approach” + one new Lab
-        \item 10 lab reports + TA quizzes
-    \end{itemize}
-    \begin{alertblock}{Important}
-        Don’t accept delay (must submit and finish your work in time)
-    \end{alertblock}
-
-\end{frame}
-
-\section{Grading}
-\begin{frame}
-    \frametitle{Grading}
-
-    \begin{itemize}
-        \item For remote class when \alert{COVID-19}
-        \begin{itemize}
-            \item {\color{red} 1.8} for each lab report
-        \end{itemize}
-        \item For normal class
-        \begin{itemize}
-            \item {\color{red} 1.4} for finishing up the lab
-            \item {\color{red} 0.4} for each lab report (1 week)
-        \end{itemize}
-        \item {\color{red} 0.2} to {\color{red} 0.3} for each quiz (0.1 Additional Score)
-        \item Don’t submit image, except for report questions that specifically ask for an image.
-        
-    \end{itemize}
-    \begin{block}{}
-        You can only object to your grades within {\color{red} 2 days} of receiving them. We do not consider objections after that.
-    \end{block}
 
 \end{frame}
 
@@ -153,10 +120,74 @@
         \item Textbook: TCP/IP Essential, a lab based approach
         \item \url{https://github.com/UT-Network-Lab/TCP-IP-Laboratory}
         \item GNS3 on Linux (physical or virtual machine)
-        \item Cisco router image (c3725-adventerprisek9-mz.124-25d.image)
-        \item Docker images (netlab/term, netlab/gui)
+        \begin{itemize}
+            \item Installation instruction available in \href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/blob/master/README.md}{README.md}
+            \item Installation instructions \href{https://www.dropbox.com/s/bad8eongryfnylr/GNS3\%20Installation\%20Tutorial.mp4?dl=0}{video in Persian}
+        \end{itemize}
+        \item Cisco router image (\href{https://www.dropbox.com/s/8scxq3o8yvb8njw/c3725-adventerprisek9-mz.124-25d.image?dl=0}{c3725-adventerprisek9-mz.124-25d.image})
+        \item Docker images (\href{https://hub.docker.com/r/utnetlab/term}{netlab/term}, \href{https://hub.docker.com/r/utnetlab/gui}{netlab/gui})
         \item GNS3 Portable projects (Figures)
     \end{itemize}
+    You can download all documents (PDF), figures and docker images from \href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest}{GitHub release page}
+
+\end{frame}
+
+\section{Course Format}
+\begin{frame}
+    \frametitle{Course Format}
+
+    \begin{itemize}
+        \item 10 sessions
+        \item Cover the “TCP/IP essential: A lab based approach” (maybe have one new Lab)
+        \item 10 lab reports + class quizzes
+        \item Students grouping:
+        \begin{itemize}
+            \item \alert{Virtual Class} No grouping
+            \item \alert{Attendance Class} Grouping in two-member groups
+        \end{itemize}
+    \end{itemize}
+    
+\end{frame}
+
+\section{Class Program}
+\begin{frame}
+    \frametitle{Class Program}
+    
+    \begin{enumerate}
+        \item \alert{10 min} Quiz from reference book chapter content
+        \item \alert{10 min} TA chapter description (or watch recorded videos)\footnote{May you watch it before class to save time for do lab instructions}
+        \item \alert{2:30 min} Perform laboratory instructions (with TA hint and help)
+        \item Fill and submit your lab report (while do lab instructions)
+    \end{enumerate}
+    \begin{alertblock}{Important}
+        Don’t accept delay (must submit and finish your work on time even if it is \textbf{incomplete})
+    \end{alertblock}
+
+\end{frame}
+
+\section{Grading}
+\begin{frame}
+    \frametitle{Grading}
+
+    \begin{itemize}
+        \item 10 lab with score of \alert{2} (total score sum is \alert{20})
+        \item For remote class at time of \alert{COVID-19} spreading
+        \begin{itemize}
+            \item {\color{red} 0.4} to {\color{red} 0.5} for each quiz (0.1 Additional Score)
+            \item {\color{red} 1.6} for each lab report
+        \end{itemize}
+        \item For normal attendance class
+        \begin{itemize}
+            \item {\color{red} 0.2} to {\color{red} 0.3} for each quiz (0.1 Additional Score)
+            \item {\color{red} 1.4} for finishing up the lab
+            \item {\color{red} 0.4} for each lab report (1 week)
+        \end{itemize}
+        \item Don’t submit image, except for report questions that specifically ask for an image.
+    \end{itemize}
+    \begin{alertblock}{}
+        You can only object to your grades within {\color{red} 2 days} of receiving them.
+        We do not consider objections after that.
+    \end{alertblock}
 
 \end{frame}
 
@@ -165,7 +196,6 @@
     \frametitle{Class rules}
 
     LATE ARRIVAL:
-
     {
         \setbeamercolor{block body}{fg=black, bg=green!10!white}
         \setbeamercolor{block title}{fg=white, bg=green!40!black}
@@ -174,9 +204,9 @@
     {
         \setbeamercolor{block body}{fg=black, bg=orange!10!white}
         \setbeamercolor{block title}{fg=white, bg=orange!50!black}
-        \begin{block}{Between 15 and 30 min} Get -0.5 for your session grade \end{block}
+        \begin{block}{Between 15 and 30 min} Get \alert{-0.5} penalty score for your session grade \end{block}
     }
-    \begin{alertblock}{More than 30 min} Don’t enter the class \end{alertblock}
+    \begin{alertblock}{More than 30 min} Don’t enter the class, Get \alert{0} for session grade (absence grade) \end{alertblock}
 
 \end{frame}
 
