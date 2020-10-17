@@ -121,7 +121,7 @@
   \and
   \FR{محمد برهانی}\\
   \textLR{Muhammad Borhani}\\
-  \mail{m.borhani@ut.ac.ir}
+  \mail{borhani.m@ut.ac.ir}
   \and
   \FR{امیراحمد خردادی}\\
   \textLR{AmirAhmad Khordadi}\\
