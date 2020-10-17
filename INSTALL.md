@@ -6,13 +6,15 @@ You can use native installed ubuntu (or other linux), **Virtual Machine** platfo
 
 ## Requirement
 
-* Linux
+* Linux (Ubuntu 18.04, Ubuntu 20.04, Debian 9, Debian 10)
 * GNS3
 * Docker
 * Cisco router image
 * Mininet
 
 ## Install tools
+
+We prefer to use last long term support (LTS) branch of **Ubuntu** linux.
 
 You can install all needed tools with bellow commands on Ubuntu x64 based linux:
 
