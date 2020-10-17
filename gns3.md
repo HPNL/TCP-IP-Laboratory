@@ -16,15 +16,19 @@
 
 * plus configuration for each
 
-### Add Hosts
+### Hosts
 
-### Add Switch or Hub
+### Switch or Hub
 
-### Add Router
+### Router
 
-### Add Security devices
+### Security devices
 
-### Add link
+### link
+
+#### Packet Filter
+
+#### Packet Capture
 
 ## Project Panel
 
