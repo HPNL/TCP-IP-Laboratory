@@ -41,106 +41,11 @@ You can download all needed resource from [latest release](https://github.com/UT
 
 ## Installation
 
-To setup environment, you need to install linux os like Ubuntu, Debian or other platform that support `GNS3` + `Docker`. To install `GNS3` you can follow [this](https://docs.gns3.com/1QXVIihk7dsOL7Xr7Bmz4zRzTsJ02wklfImGuHwTlaA4/index.html) link.
+To setup environment, you need to install linux os like Ubuntu, Debian or other platform that support `GNS3` + `Docker`. To install `GNS3` you can follow [GNS3 Installation](https://docs.gns3.com/docs/getting-started/installation/linux/) link.
 
-You can use native installed ubuntu (or other linux), **Virtual Machine** platform or use new Microsoft **WSL2** to install linux toolbox.
+Read more in [installation](./INSTALL.md)
 
-### Requirement
-
-* Linux
-* GNS3
-* Docker
-* Cisco router image
-* Mininet
-
-### Install tools
-
-You can install all needed tools with bellow commands on Ubuntu x64 based linux:
-
-```bash
-# sudo add-apt-repository ppa:gns3/ppa
-echo "deb http://ppa.launchpad.net/gns3/ppa/ubuntu $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gns3-ubuntu.list
-sudo apt update
-sudo apt install gns3-gui gns3-server wireshark
-DockerType="Free"
-if [ $DockerType == "Free" ]; then
-  sudo apt install docker.io
-else
-  sudo apt remove docker docker-engine docker.io
-  sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
-  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-  sudo add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-  sudo apt update
-  sudo apt install docker-ce
-fi
-sudo usermod -aG ubridge $USER
-sudo usermod -aG libvirt $USER
-sudo usermod -aG kvm $USER
-sudo usermod -aG wireshark $USER
-sudo usermod -aG docker $USER
-# loading new user group config
-sudo su $USER
-```
-
-### Get docker images
-
-After install **docker**, you need to get **utnetlab** images and add into `GNS3`.
-
-```bash
-docker pull utnetlab/term
-docker pull utnetlab/gui
-```
-
-Also you can [download](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) and load docker images from archive file as below:
-
-```bash
-# archive in (.tar, .tar.gz, .tgz, .bzip, .tar.xz, or .txz) format
-docker load -i utnetlab_term.tar.xz
-docker load -i utnetlab_gui.tar.xz
-```
-
-### Setup GNS3
-
-To load template `Figures` you need to add **Cisco 3725** firmware and **utnetlab** docker images into `GNS3`.
-
-#### Docker images
-
-To add Docker images, you need to open `Preferences` menu (under `Edit` in *Linux/Windows* and `GNS3` in *Mac OS*). Under `Docker > Docker containers` you can add new images to `GNS3`. In the `New` dialog, you can select **existing image** (load local images) or **new image** (use docker pull) with image name. Set configuration as below for two docker (use value according to key at each setup dialog).
-
-GUI:
-
-```js
-{
-  image: "utnetlab/gui",
-  name: "ut-netlab-gui",
-  adaptor: 1,
-  startCommand: null, // or empty
-  ConsoleType: "https",
-  env: null // or empty
-}
-```
-
-Terminal:
-
-```js
-{
-  image: "utnetlab/term",
-  name: "ut-netlab-term",
-  adaptor: 1, // number of eth adaptor
-  startCommand: null, // or empty
-  ConsoleType: "telnet",
-  env: null // or empty
-}
-```
-
-Edit the `ut-netlab-gui` item and set **HTTP port in the container** from ~~80~~ into **443**.
-
-#### Cisco images
-
-To load Cisco images into `GNS3`, you need got into `Preferences > Dynamips > IOS routers` and add *new images*. Select file in *Browse* dialog and click on next. Set **c3725** for new router. Under *Memory* section, set *Default RAM* to **160 MB** at minimum. Skip *slots* step until get *Idle-PC* step. Click on *Idle-PC finder* to find local idle-PC number and then press *Finish*.
-
-### Manual build tools and Docker images
+## Manual build tools and Docker images
 
 To use available Figures, you need use customized Docker images.
 
@@ -150,12 +55,6 @@ cd ./docker-tools
 make
 cd ..
 ```
-
-### Download Cisco firmware
-
-For Cisco based lab, you need download `c3725-adventerprisek9-mz.124-25d.image` firmware and add to `GNS3`.
-
-### Add docker images and Cisco firmware to GNS3
 
 ## Build documents (LaTeX)
 
