@@ -22,6 +22,7 @@ You can download all needed resource from [latest release](https://github.com/UT
 7. Multicast and realtime service
 8. The Web, DHCP, NTP and NAT
 9. Network management and security
+10. *preview*: SDN
 
 ## Installation
 
@@ -30,35 +31,9 @@ You can download all needed resource from [latest release](https://github.com/UT
 1. install linux(e.g. Ubuntu 18.04 or Debian or any platform that supports `GNS3` + `Docker`) or a linux VM You can use native installed ubuntu (or other linux), Virtual Machine platform or use new Microsoft WSL2 to install linux toolbox.
 2. `GNS3` + `Docker` installation: [click here](./INSTALL.md)
 
+## Build Resource
 
-
-## Manual build tools and Docker images
-
-To use available Figures, you need use customized Docker images.
-
-```bash
-sudo apt install build-essential automake autoconf autoreconf auto-tools bin-utils
-cd ./docker-tools
-make
-cd ..
-```
-
-## Build documents (LaTeX)
-
-You can build `LaTeX` files with below command or download all as `Documents.zip` from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) page.
-
-```bash
-latexmk -pdf -interaction=nonstopmode -cd **/*.tex
-```
-
-## Build Figures
-
-You can build `Figures` files with below command or download all as `Figures.zip` from [release](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) page.
-
-```bash
-cd Figures
-./build-gns3p.sh
-```
+To build the all resource (LaTeX, Docker tools, Figures) follow [BUILD.md](./BUILD.md) instructions.
 
 ## License
 
