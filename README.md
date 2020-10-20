@@ -23,27 +23,14 @@ You can download all needed resource from [latest release](https://github.com/UT
 8. The Web, DHCP, NTP and NAT
 9. Network management and security
 
-### Chapters ToDo
-
-* IPv6
-* VLan
-* AS Routing (BGP, EBGP, ...)
-* Security
-* Firewall
-* SDN and Routing Rules
-* Network Performance
-* Load balancing
-* MPLS
-* Segment Routing
-* SDN
-* VPN
-* SRV6
-
 ## Installation
 
-To setup environment, you need to install linux os like Ubuntu, Debian or other platform that support `GNS3` + `Docker`. To install `GNS3` you can follow [GNS3 Installation](https://docs.gns3.com/docs/getting-started/installation/linux/) link.
+### Requirements
 
-Read more in [installation](./INSTALL.md)
+1. install linux(e.g. Ubuntu 18.04 or Debian or any platform that supports `GNS3` + `Docker`) or a linux VM You can use native installed ubuntu (or other linux), Virtual Machine platform or use new Microsoft WSL2 to install linux toolbox.
+2. `GNS3` + `Docker` installation: [click here](./INSTALL.md)
+
+
 
 ## Manual build tools and Docker images
 
@@ -76,6 +63,22 @@ cd Figures
 ## License
 
 Open GPLv3 [LICENSE](LICENSE) file.
+
+### Chapters ToDo
+
+* IPv6
+* VLan
+* AS Routing (BGP, EBGP, ...)
+* Security
+* Firewall
+* SDN and Routing Rules
+* Network Performance
+* Load balancing
+* MPLS
+* Segment Routing
+* SDN
+* VPN
+* SRV6
 
 ## ToDo and Bugfix
 

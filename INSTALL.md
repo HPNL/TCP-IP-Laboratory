@@ -1,12 +1,10 @@
 # Installation
 
-To setup environment, you need to install linux os like Ubuntu, Debian or other platform that support `GNS3` + `Docker`. To install `GNS3` you can follow [GNS3 Installation](https://docs.gns3.com/docs/getting-started/installation/linux/) link.
-
-You can use native installed ubuntu (or other linux), **Virtual Machine** platform or use new Microsoft **WSL2** to install linux toolbox.
+This installation based on [GNS3 Installation](https://docs.gns3.com/docs/getting-started/installation/linux/) for linux.
 
 ## Requirement
 
-* Linux (Ubuntu 18.04, Ubuntu 20.04, Debian 9, Debian 10)
+* Linux (Ubuntu 18.04, Ubuntu 20.04, Debian 9, Debian 10 or other supported linux)
 * GNS3
 * Docker
 * Cisco router image
@@ -23,9 +21,10 @@ You can install all needed tools with bellow commands on Ubuntu x64 based linux:
 sudo add-apt-repository ppa:gns3/ppa
 sudo apt update
 sudo apt install gns3-gui gns3-server wireshark
+
 # to install open source edition of docker use "Free"
 # else use "CE" to install community edition of docker
-DockerType="Free"
+DockerType="Free" # "CE"
 if [ $DockerType == "Free" ]; then
   sudo apt install docker.io
 else
