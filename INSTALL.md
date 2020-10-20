@@ -146,7 +146,7 @@ Terminal:
 
 ### Cisco images
 
-To load Cisco images into `GNS3`, you need got into `Preferences > Dynamips > IOS routers` and add *new images*.
+To load [Cisco images](http://tfr.org/cisco-ios/37xx/3725/c3725-adventerprisek9-mz.124-25d.bin) into `GNS3`, you need got into `Preferences > Dynamips > IOS routers` and add *new images*.
 
 ![gns3-router-add](./img/gns3-router-add.jpg)
 
