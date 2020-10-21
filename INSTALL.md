@@ -28,6 +28,7 @@ DockerType="Free" # "CE"
 if [ $DockerType == "Free" ]; then
   sudo apt install docker.io
 else
+  # reference: https://docs.docker.com/install/linux/docker-ce/ubuntu/#supported-storage-drivers
   sudo apt remove docker docker-engine docker.io
   sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
