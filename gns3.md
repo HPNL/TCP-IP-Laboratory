@@ -102,7 +102,9 @@ You can add device from `GNS3` template or import manually from `GNS3` `Preferen
 
 ### Hosts
 
-<img style="float: right; margin-left: 10pt; height:250pt;" src="./img/gns3-host-menu.jpg">
+<div style="float: right; margin-left: 10pt; height:250pt;">
+<img src="./img/gns3-host-menu.jpg">
+</div>
 
 `GNS3` support the following host type that can managed in `GNS3` > `Preferences`.
 The docker host is the lightest host in `GNS3`.
