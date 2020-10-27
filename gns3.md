@@ -98,11 +98,11 @@ In `GNS3` you can import the exported project. If the selected portable project 
 The `GNS3` support [host](#hosts), [switches](#switch-or-hub), [router](#router), [security](#security-devices) devices plus [link](#link).
 You can add device from `GNS3` template or import manually from `GNS3` `Preferences`.
 
-* plus configuration for each
+To add a new device to your project, you can open device panel and **drag** device to you topology.
 
 ### Hosts
 
-<img src="./img/gns3-host-menu.jpg"  align="right" height=250pt left-margin=10pt>
+<img src="./img/gns3-host-menu.jpg"  align="right" left-margin=10pt>
 
 `GNS3` support the following host type that can managed in `GNS3` > `Preferences`.
 The docker host is the lightest host in `GNS3`.
@@ -141,7 +141,11 @@ The `/etc/hosts` file like a local `DNS` server.
 
 ### Switch or Hub
 
+<img src="./img/gns3-switch-menu.jpg"  align="right" left-margin=10pt>
+
 ### Router
+
+<img src="./img/gns3-router-menu.jpg"  align="right" left-margin=10pt>
 
 ### Security devices
 
