@@ -22,13 +22,15 @@ sudo add-apt-repository ppa:gns3/ppa
 sudo apt update
 sudo apt install gns3-gui gns3-server wireshark
 
-# to install open source edition of docker use "Free"
-# else use "CE" to install community edition of docker
+## To install preview of gns3 webclient, uncomment this line
+# sudo apt install gns3-webclient-pack
+
+## to install open source edition of docker use "Free"
+## else use "CE" to install community edition of docker
 DockerType="Free" # "CE"
 if [ $DockerType == "Free" ]; then
   sudo apt install docker.io
 else
-  # reference: https://docs.docker.com/install/linux/docker-ce/ubuntu/#supported-storage-drivers
   sudo apt remove docker docker-engine docker.io
   sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -38,11 +40,15 @@ else
   sudo apt install docker-ce
 fi
 ```
+
  verify installation:
+
  ```bash
  sudo docker run hello-world
  ```
+
  adding your user to the “docker” group:
+
  ```bash
 sudo usermod -aG ubridge $USER
 sudo usermod -aG libvirt $USER
@@ -52,9 +58,10 @@ sudo usermod -aG docker $USER
 # loading new user group config
 sudo su $USER
 ```
-## Commented
 
- Reference [1] : https://docs.docker.com/install/linux/docker-ce/ubuntu/#supported-storage-drivers 
+### Commented
+
+ Reference [1] : <https://docs.docker.com/install/linux/docker-ce/ubuntu/#supported-storage-drivers>
 
 ## Get docker images
 
