@@ -37,6 +37,13 @@ else
   sudo apt update
   sudo apt install docker-ce
 fi
+```
+ verify installation:
+ ```bash
+ sudo docker run hello-world
+ ```
+ adding your user to the “docker” group:
+ ```bash
 sudo usermod -aG ubridge $USER
 sudo usermod -aG libvirt $USER
 sudo usermod -aG kvm $USER
@@ -45,6 +52,9 @@ sudo usermod -aG docker $USER
 # loading new user group config
 sudo su $USER
 ```
+## Commented
+
+ Reference [1] : https://docs.docker.com/install/linux/docker-ce/ubuntu/#supported-storage-drivers 
 
 ## Get docker images
 
