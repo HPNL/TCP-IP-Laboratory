@@ -266,7 +266,7 @@ arping -c 4 -U -I eth0 h7-ip
 
 
 \part{Exercise with ICMP and \texttt{ping}}\label{sec:icmp-ping}
-    The following exercises use the single segment network topology shown in \hyperref[fig:1.3]{Figure~1.3}.
+    The following exercises use the previous network topology shown in \hyperref[fig:2.9]{Figure~2.9}.
 
 \section{ping ICMP}
     Use \lstinline[emph={remote-host}]{ping -sv remote-host} to test whether the remote host is reachable, while running:
@@ -291,8 +291,9 @@ socket -i -u -n1 -w1000 remote-host 88888
     Why are the first 8 bytes of the original IP datagram payload included in the ICMP message?
     \end{report}
 
-\section{\texttt{ping} ICMP}
-    While \lstinline{tcpdump} is running to capture the ICMP messages, \lstinline{ping} a host with IP address \textbf{128.238.60.100}. Save the \lstinline{ping} output.
+\section{ICMP Host Unreachable}
+    While \lstinline{tcpdump} is running to capture the ICMP messages, \lstinline{ping} a host with IP address \textbf{128.238.60.100} on \text{h2}.
+    Save the \lstinline{ping} output.
     
     \begin{report}
     \item Can you see any traffic sent on the network? Why? Explain what happened from the \lstinline{ping} output.
