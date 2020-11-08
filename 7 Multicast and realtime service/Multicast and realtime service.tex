@@ -62,16 +62,51 @@
         \end{flushright}
     \end{minipage}
 
-\section{Linux Multicast Routing Table}
+    Launch GNS3 and make a network as above.
+
+    To use prepared topology to GNS3:
+    \begin{enumerate}
+        \item Open \texttt{File} menu
+        \item Select \texttt{Import }
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.6]{img/import-1}
+        \end{figure}
+        \item Choose the figure from \texttt{Figures} folder
+        \item Enter a name for new project
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=1.6]{img/import-2}
+        \end{figure}
+    \end{enumerate}
+
+    After that, start all devices by clicking on the \texttt{Start/Resume all nodes} (green triangular button).
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1.6]{img/start-all}
+    \end{figure}
+
+    To open a console, double click on a already-started machine.
+
+%     Use a command like this to allocate IP address to each machine:
+%     \begin{lstlisting}[emph=eth0]
+% ifconfig eth0 128.238.66.100 netmask 255.255.255.0
+%     \end{lstlisting}
+
+\section{Linux Multicast Routing Table\label{sec:rt}}
 \label{sec:linux-multicast-routing}
-    Execute \lstinline{netstat -rn} to display the routing table of one host (for example \textit{h1}).
+    Execute the following command to display the routing table of one host (for example \textit{h1}).
+    \begin{lstlisting}
+netstat -rn
+    \end{lstlisting}
+    
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
     \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps. Each time when the network interface is brought down and up again by the \lstinline{ifconfig} command, you may need to run the \lstinline{route} command to re-insert the multicast routing entry.}
     \begin{lstlisting}[emph=eth0]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
-    \textbf{Execute this command on all hosts}.
-
+    
+    Execute this command on all hosts.
     Save the new routing table.
     
     \begin{report}
@@ -79,17 +114,26 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{report}
 
 \section{Multicast Membership}
-    Execute \lstinline{netstat -g} to show the multicast group memberships for all the interfaces in your host (for example \textit{h1}).
+    Execute the following command to show the multicast group memberships for all the interfaces in your host (for example \textit{h1}).
+    \begin{lstlisting}
+netstat -g
+    \end{lstlisting}
     
     \begin{report}
     \item How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
     \end{report}
 
 \section{Multicast \texttt{ping}}
-    Execute \lstinline{ping 224.0.0.1} on \textit{h1}.
+    Execute following command on \textit{h1}:
+    \begin{lstlisting}
+ping 224.0.0.1
+    \end{lstlisting}
     Examine the \lstinline{ping} output to see which hosts reply.
 
-    Ping a broadcast address using \lstinline{ping -b 128.238.66.255}.
+    Ping a broadcast address using:
+    \begin{lstlisting}
+ping -b 128.238.66.255
+    \end{lstlisting}
     Examine the \lstinline{ping} output to see which hosts reply.
 
     % You can enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
@@ -99,19 +143,39 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     Which hosts replied when the broadcast address was pinged?
 
     \item In each case, was there a reply from your host?
+    What if you ping from \textit{h0}?
     \end{report}
 
-\section{Multicast vs Unicast}
+\section{Multicast vs Unicast\label{sec:multicast-vs-unicast}}
     On \textit{h1} execute \lstinline{tcpdump -n -nn -e} and \lstinline{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
 
-    To generate an Ethernet unicast frame, run \lstinline[emph={your-host, remote-host}]{socket -i -u -n1 remote-host echo}.
+    You can open an auxiliary terminal by right-clicking on a host and selecting \texttt{Auxiliary console} if needed.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1.6]{img/auxiliary}
+    \end{figure}
 
-    Execute \lstinline{socket -i -u -n1 230.11.111.10 2000} to generate an Ethernet multicast frame.
+    Also, to open \lstinline{wireshark}, right-click on the link between host and switch and select \texttt{Start capture}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=1.6]{img/capture}
+    \end{figure}
+
+    To generate an Ethernet unicast frame, run:
+    \begin{lstlisting}[emph={your-host, remote-host}]
+socket -i -u -n1 remote-host echo
+    \end{lstlisting}
+
+    Execute the following command to generate an Ethernet multicast frame:
+    \begin{lstlisting}[emph={your-host, remote-host}]
+socket -i -u -n1 230.11.111.10 2000
+    \end{lstlisting}
 
     Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}.
 
     To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host that has no entry in the ARP table of your host.
-    Recall that the ARP request is broadcast.
+    Recall that the ARP request is broadcast.%
+    \footnote{You can delete a cached ARP entry by \lstinline[emph={ip}]{arp -d ip}.}
 
     Save the frames captured for the lab report.
 
@@ -119,25 +183,49 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \item Compare the source and destination MAC addresses of the frames you captured.
 
     \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
+
     For the two multicast frames captured, do they have the same destination MAC address?
     Why?
     \end{report}
 
 \section{Simple UDP Multicast Client and Server}
-    Go to \textit{code} directory for \textit{netlab} user at \path{/home/netlab/code} with \lstinline{cd} command.
-    You can compile source code with \lstinline[emph={$fileName, $outputName}]{gcc $fileName -o $outputName}.
 
-    Start the multicast client \lstinline{netspy} on all the hosts, by executing:
+    % \lstinline{netspy} and \lstinline{netspyd} programs are located in \textit{code} directory for \textit{netlab} user.
+    
+%     You can go there by the following command:
+%     \begin{lstlisting}
+% cd /home/netlab/code
+%     \end{lstlisting}
+    
+%     You can compile source codes, if needed, by:
+%     \begin{lstlisting}[emph={fileName, outputName}]
+% gcc fileName -o outputName
+%     \end{lstlisting}
+
+    Start the multicast client \lstinline{netspy} on all the hosts, by executing:%
+    \footnote{If you get \textit{Netspy : cannot join multicast group `224.111.111.111'}, add route for the groups as described in \autoref{sec:rt}.}
     \begin{lstlisting}
-./netspy 224.111.111.111 1500
+/home/netlab/code/netspy 224.111.111.111 1500
     \end{lstlisting}
+    
     Then, start the multicast sender \lstinline{netspyd} on \textit{h0}, by executing:
     \begin{lstlisting}
-./netspyd 224.111.111.111 1500 1
+/home/netlab/code/netspyd 224.111.111.111 1500 1
     \end{lstlisting}
+    You may need to open an auxiliary terminal as described in \autoref{sec:multicast-vs-unicast}.
+    
     Execute \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on every host to capture multicast IP datagrams.
 
-    Login to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using \lstinline{telnet} or \lstinline{ssh} (need to start \textit{ssh} service with \lstinline{service ssh start}).
+%     Start \textit{ssh} service on \textit{h0} by:
+%     \begin{lstlisting}
+% service ssh start
+%     \end{lstlisting}
+
+    \lstinline{telnet} to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using:
+    \begin{lstlisting}
+telnet 128.238.66.100
+    \end{lstlisting}
+    Use \texttt{netlab} as username and password.
 
     Save the captured multicast datagram sent by \lstinline{netspyd} and exit the \lstinline{telnet} (or \lstinline{ssh}) session.
 
@@ -155,10 +243,15 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     Keep the \lstinline{netspy} and the \lstinline{tcpdump} programs running.
     Execute \lstinline{ping 224.111.111.111} from \textit{h6}.
     Examine the \lstinline{tcpdump} and \lstinline{ping} outputs to see which hosts replied.
-    To avoid confusion, students should do this exercise by turns.
+
     Terminate the \lstinline{netspy} programs on several hosts, e.g.\ \textit{h0}, \textit{h1}, and \textit{h5}.
     Execute the \lstinline{ping} command again.
+
     Also, examine the \lstinline{tcpdump} and the \lstinline{ping} outputs to see which hosts replied.
+
+    \begin{report}
+    \item Which hosts reply to \lstinline{ping} each time?
+    \end{report}
 
 \part{IGMP Exercises}\label{sec:igmp}
     In the following exercises, use four hosts and one router. The network topology is given in \hyperref[fig:7.13]{Figure~7.13}, and the corresponding host IP addresses and router IP addresses are given in \hyperref[tab:7.2]{Table~7.2} and \hyperref[tab:7.3]{Table~7.3}, respectively.
