@@ -2,11 +2,10 @@
     "auto_close": true,
     "auto_open": false,
     "auto_start": false,
-    "drawing_grid_size": 25,
     "grid_size": 75,
     "name": "Fig-7.14",
     "project_id": "c1a2f2cd-d16f-4d20-a9f7-759e640ab4ee",
-    "revision": 9,
+    "revision": 8,
     "scene_height": 1000,
     "scene_width": 2000,
     "show_grid": false,
@@ -488,9 +487,7 @@
             {
                 "compute_id": "local",
                 "console": 5000,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 45,
                 "label": {
@@ -500,7 +497,6 @@
                     "x": 20,
                     "y": -25
                 },
-                "locked": false,
                 "name": "R1",
                 "node_id": "3c6596d1-c8d5-45a4-85ad-64cac2dbaa21",
                 "node_type": "dynamips",
@@ -530,13 +526,11 @@
                     "slot2": "NM-1FE-TX",
                     "sparsemem": true,
                     "system_id": "FTX0945W0MY",
-                    "usage": "",
                     "wic0": null,
                     "wic1": null,
                     "wic2": null
                 },
                 "symbol": ":/symbols/router.svg",
-                "template_id": "67675799-f801-4842-bd14-127a8b775b2c",
                 "width": 66,
                 "x": -161,
                 "y": -25,
@@ -545,9 +539,7 @@
             {
                 "compute_id": "local",
                 "console": 5001,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 45,
                 "label": {
@@ -557,7 +549,6 @@
                     "x": 20,
                     "y": -25
                 },
-                "locked": false,
                 "name": "R2",
                 "node_id": "0a4ea7b9-39cf-41a3-b856-cab0ce36d378",
                 "node_type": "dynamips",
@@ -587,13 +578,11 @@
                     "slot2": "NM-1FE-TX",
                     "sparsemem": true,
                     "system_id": "FTX0945W0MY",
-                    "usage": "",
                     "wic0": null,
                     "wic1": null,
                     "wic2": null
                 },
                 "symbol": ":/symbols/router.svg",
-                "template_id": "67675799-f801-4842-bd14-127a8b775b2c",
                 "width": 66,
                 "x": -168,
                 "y": -151,
@@ -602,9 +591,7 @@
             {
                 "compute_id": "local",
                 "console": 5002,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 45,
                 "label": {
@@ -614,7 +601,6 @@
                     "x": 20,
                     "y": -25
                 },
-                "locked": false,
                 "name": "R3",
                 "node_id": "a2d56e14-3c08-40fd-ac68-e27c69364581",
                 "node_type": "dynamips",
@@ -644,13 +630,11 @@
                     "slot2": "NM-1FE-TX",
                     "sparsemem": true,
                     "system_id": "FTX0945W0MY",
-                    "usage": "",
                     "wic0": null,
                     "wic1": null,
                     "wic2": null
                 },
                 "symbol": ":/symbols/router.svg",
-                "template_id": "67675799-f801-4842-bd14-127a8b775b2c",
                 "width": 66,
                 "x": -22,
                 "y": -23,
@@ -659,9 +643,7 @@
             {
                 "compute_id": "local",
                 "console": 5003,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 45,
                 "label": {
@@ -671,7 +653,6 @@
                     "x": 20,
                     "y": -25
                 },
-                "locked": false,
                 "name": "R4",
                 "node_id": "092ce3ec-9b73-440e-94c5-6052eb3c1660",
                 "node_type": "dynamips",
@@ -701,13 +682,11 @@
                     "slot2": "NM-1FE-TX",
                     "sparsemem": true,
                     "system_id": "FTX0945W0MY",
-                    "usage": "",
                     "wic0": null,
                     "wic1": null,
                     "wic2": null
                 },
                 "symbol": ":/symbols/router.svg",
-                "template_id": "67675799-f801-4842-bd14-127a8b775b2c",
                 "width": 66,
                 "x": 139,
                 "y": -26,
@@ -716,9 +695,7 @@
             {
                 "compute_id": "local",
                 "console": 5004,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -728,7 +705,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h0.netlab",
                 "node_id": "6975f0aa-5910-42bb-af72-9bc4712be767",
                 "node_type": "docker",
@@ -743,13 +719,10 @@
                     "container_id": "cb83b9aaf604e2438afbd166e2ad40ef1eeb1142aeb2a524c7828c30a33256ea",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/term:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": -296,
                 "y": 95,
@@ -758,9 +731,7 @@
             {
                 "compute_id": "local",
                 "console": 5901,
-                "console_auto_start": false,
                 "console_type": "https",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -770,7 +741,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h1.netlab",
                 "node_id": "e2936b02-7061-4cf4-a410-7c0b4967e8ed",
                 "node_type": "docker",
@@ -785,13 +755,10 @@
                     "container_id": "f24699fa13c6f3c16b5c37c62fae97c30a0b44dec07f7906b2557ab99b41b071",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/gui:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": -159,
                 "y": 97,
@@ -800,9 +767,7 @@
             {
                 "compute_id": "local",
                 "console": 5009,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -812,7 +777,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h2.netlab",
                 "node_id": "3a06d9ad-31c0-45c9-befc-09faa3b0b004",
                 "node_type": "docker",
@@ -827,13 +791,10 @@
                     "container_id": "998dc551cab233876150ff41b7233083e334bfbc13f7caff2b8f78b1b86b8879",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/term:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": -425,
                 "y": -158,
@@ -842,9 +803,7 @@
             {
                 "compute_id": "local",
                 "console": 5011,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -854,7 +813,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h3.netlab",
                 "node_id": "865da85c-a0ef-41ed-8f70-bd443fd1583c",
                 "node_type": "docker",
@@ -869,13 +827,10 @@
                     "container_id": "682b27f72a837ddf986f2a4a8d02d30312e9114f1a7d4785fb9bf245efa1b5e3",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/term:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": 145,
                 "y": -155,
@@ -884,9 +839,7 @@
             {
                 "compute_id": "local",
                 "console": 5013,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -896,7 +849,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h4.netlab",
                 "node_id": "6641ab74-a9b3-4de6-81c4-1cee39164a69",
                 "node_type": "docker",
@@ -911,13 +863,10 @@
                     "container_id": "04e3da4079a4c180a3279ca8f61ddaed46d9823323cec79b2ad1ad864e1780b6",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/term:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": 276,
                 "y": -152,
@@ -926,9 +875,7 @@
             {
                 "compute_id": "local",
                 "console": 5015,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -938,7 +885,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h5.netlab",
                 "node_id": "27b38109-240e-44d6-ac19-414998c52a5b",
                 "node_type": "docker",
@@ -953,13 +899,10 @@
                     "container_id": "7e591ce25ff7ea8f161ef67e95bcabf0b189a929389b780a4e34cfd1f4339c1a",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/term:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": -19,
                 "y": 96,
@@ -968,9 +911,7 @@
             {
                 "compute_id": "local",
                 "console": 5017,
-                "console_auto_start": false,
                 "console_type": "telnet",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -980,7 +921,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h6.netlab",
                 "node_id": "0ed1381f-3bbd-437f-bf1e-d47dfd993f15",
                 "node_type": "docker",
@@ -995,13 +935,10 @@
                     "container_id": "b9ff301cab3247a89525718a177e8de9b0a55190397e2bf660bfc5a0fadf9e57",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/term:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": 140,
                 "y": 96,
@@ -1010,9 +947,7 @@
             {
                 "compute_id": "local",
                 "console": 5900,
-                "console_auto_start": false,
                 "console_type": "https",
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 59,
                 "label": {
@@ -1022,7 +957,6 @@
                     "x": -2,
                     "y": -25
                 },
-                "locked": false,
                 "name": "h7.netlab",
                 "node_id": "9b491f58-2f02-411d-b330-0b13c3d37619",
                 "node_type": "docker",
@@ -1037,13 +971,10 @@
                     "container_id": "64f0014f9531933f52e4fe74e3b3df7d2e5a36848793b1888eaf0ace904510ce",
                     "environment": "",
                     "extra_hosts": "h0.netlab:128.238.61.100\nh1.netlab:128.238.61.101\ne0.r1.netlab:128.238.61.1\ne1.r1.netlab:128.238.62.1\nh2.netlab:128.238.62.100\ne0.r2.netlab:128.238.62.2\ne1.r2.netlab:128.238.63.2\nh3.netlab:128.238.63.100\nh4.netlab:128.238.63.101\ne0.r3.netlab:128.238.63.3\ne1.r3.netlab:128.238.64.3\nh5.netlab:128.238.64.100\ne0.r4.netlab:128.238.63.4\ne1.r4.netlab:128.238.65.4\nh6.netlab:128.238.65.100\nh7.netlab:128.238.65.101",
-                    "extra_volumes": [],
                     "image": "utnetlab/gui:latest",
-                    "start_command": null,
-                    "usage": ""
+                    "start_command": null
                 },
                 "symbol": ":/symbols/docker_guest.svg",
-                "template_id": "ea1b1c73-a2eb-406f-92c4-85897499a415",
                 "width": 65,
                 "x": 281,
                 "y": 100,
@@ -1052,9 +983,7 @@
             {
                 "compute_id": "local",
                 "console": null,
-                "console_auto_start": false,
                 "console_type": null,
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 32,
                 "label": {
@@ -1064,7 +993,6 @@
                     "x": 14,
                     "y": -25
                 },
-                "locked": false,
                 "name": "Hub1",
                 "node_id": "3f521f34-ca8c-4ba2-ac0e-38ff9a832188",
                 "node_type": "ethernet_hub",
@@ -1107,7 +1035,6 @@
                     ]
                 },
                 "symbol": ":/symbols/hub.svg",
-                "template_id": "b4503ea9-d6b6-3695-9fe4-1db3b39290b0",
                 "width": 72,
                 "x": -297,
                 "y": -144,
@@ -1116,9 +1043,7 @@
             {
                 "compute_id": "local",
                 "console": null,
-                "console_auto_start": false,
                 "console_type": null,
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 32,
                 "label": {
@@ -1128,7 +1053,6 @@
                     "x": 14,
                     "y": -25
                 },
-                "locked": false,
                 "name": "Hub2",
                 "node_id": "d3684221-9ae5-4e49-b2b8-70d735795e86",
                 "node_type": "ethernet_hub",
@@ -1171,7 +1095,6 @@
                     ]
                 },
                 "symbol": ":/symbols/hub.svg",
-                "template_id": "b4503ea9-d6b6-3695-9fe4-1db3b39290b0",
                 "width": 72,
                 "x": -301,
                 "y": -17,
@@ -1180,9 +1103,7 @@
             {
                 "compute_id": "local",
                 "console": null,
-                "console_auto_start": false,
                 "console_type": null,
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 32,
                 "label": {
@@ -1192,7 +1113,6 @@
                     "x": 14,
                     "y": -25
                 },
-                "locked": false,
                 "name": "Hub3",
                 "node_id": "3dc41f90-2c02-46c2-8afb-ab2fe456c7d6",
                 "node_type": "ethernet_hub",
@@ -1235,7 +1155,6 @@
                     ]
                 },
                 "symbol": ":/symbols/hub.svg",
-                "template_id": "b4503ea9-d6b6-3695-9fe4-1db3b39290b0",
                 "width": 72,
                 "x": -25,
                 "y": -144,
@@ -1244,9 +1163,7 @@
             {
                 "compute_id": "local",
                 "console": null,
-                "console_auto_start": false,
                 "console_type": null,
-                "custom_adapters": [],
                 "first_port_name": null,
                 "height": 32,
                 "label": {
@@ -1256,7 +1173,6 @@
                     "x": 14,
                     "y": -25
                 },
-                "locked": false,
                 "name": "Hub4",
                 "node_id": "56bca7a8-1ce5-4e23-9534-0323c28e2af8",
                 "node_type": "ethernet_hub",
@@ -1299,7 +1215,6 @@
                     ]
                 },
                 "symbol": ":/symbols/hub.svg",
-                "template_id": "b4503ea9-d6b6-3695-9fe4-1db3b39290b0",
                 "width": 72,
                 "x": 275,
                 "y": -22,
@@ -1309,6 +1224,6 @@
     },
     "type": "topology",
     "variables": null,
-    "version": "2.2.0",
+    "version": "2.1.21",
     "zoom": 100
 }
