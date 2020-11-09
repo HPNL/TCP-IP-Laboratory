@@ -72,13 +72,22 @@ docker pull utnetlab/term
 docker pull utnetlab/gui
 ```
 
-Also you can [download](https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest) and load docker images from archive file as below:
+Also you can pull this images from github package section. But you need to add docker tag.
 
 ```bash
+docker pull docker.pkg.github.com/ut-network-lab/docker-tools/term:latest
+docker tag docker.pkg.github.com/ut-network-lab/docker-tools/term:latest utnetlab/term:latest
+docker pull docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest
+docker tag docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest utnetlab/gui:latest
+```
+
+<!-- Also you can [download](https://github.com/orgs/UT-Network-Lab/packages?repo_name=docker-tools) and load docker images from archive file as below: -->
+
+<!-- ```bash
 # archive in (.tar, .tar.gz, .tgz, .bzip, .tar.xz, or .txz) format
 docker load -i utnetlab_term.tar.xz
 docker load -i utnetlab_gui.tar.xz
-```
+``` -->
 
 ## Setup GNS3
 
