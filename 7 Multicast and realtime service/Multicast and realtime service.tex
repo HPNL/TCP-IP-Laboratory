@@ -319,12 +319,12 @@ telnet 128.238.66.100
 configure terminal
     ip multicast-routing
     interface f0/0
-        ip addr 128.238.63.3 255.255.255.0
+        ip address 128.238.63.3 255.255.255.0
         ip pim dense-mode
         no shutdown
         exit
     interface f0/1
-        ip addr 128.238.64.3 255.255.255.0
+        ip address 128.238.64.3 255.255.255.0
         ip pim dense-mode
         no shutdown
         exit
@@ -336,7 +336,10 @@ configure terminal
 show ip igmp interface
 show ip igmp group
     \end{lstlisting}
-    Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
+
+    \begin{report}
+    \item Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
+    \end{report}
 
 \section{Multicast Message}
     Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
@@ -397,6 +400,8 @@ configure terminal
     ip multicast-routing
     interface f0/0
         ip igmp join-group 224.0.0.2
+        exit
+    end
     \end{lstlisting}
     
     \begin{report}
@@ -474,50 +479,94 @@ configure terminal
         \label{fig:7.14}
     \end{figure}
 
-\section{Multicast Multi-Hub}
-    Connect the hosts and routers as illustrated in \hyperref[fig:7.14]{Figure~7.14}.
-    Configure the IP addresses of the hosts and router interfaces as given in the figure.
+    You can use prepared topology as described in \autoref{sec:simple-multicast}.
 
-    % Note that most of the router interfaces use their default IP addresses, only the \textit{ethernet0} interface of Router4 needs to be changed to 128.238.63.4.
-
-    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).
+\section{Multicast Multi-Hub\label{sec:multi-hub}}
+    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}):
+    \begin{lstlisting}[emph={eth0}]
+route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
+route add -net 128.238.0.0/16 dev eth0
+    \end{lstlisting}
 
     Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}). 
+    \begin{lstlisting}[language={cisco}, emph={ethernet0_ip, ethernet1_ip}]
+configure terminal
+    ip multicast-routing
+    interface f0/0
+        ip address ethernet0_ip 255.255.255.0
+        ip pim dense-mode
+        no shutdown
+        exit
+    interface f0/1
+        ip address ethernet1_ip 255.255.255.0
+        ip pim dense-mode
+        no shutdown
+        exit
+    end
+    \end{lstlisting}
 
     Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on all the hosts. 
 
-    Execute \lstinline{/home/netlab/code/netspy 224.111.111.111 1500} on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}.
+    Execute \lstinline{netspy} client on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}:
+    \begin{lstlisting}
+/home/netlab/code/netspy 224.111.111.111 1500
+    \end{lstlisting}
 
-    Execute \lstinline{/home/netlab/code/netspyd 224.111.111.111 1500 16} on \textit{h4}.
+    Execute \lstinline{netspy} server on \textit{h4}:
+    \begin{lstlisting}
+/home/netlab/code/netspyd 224.111.111.111 1500 16
+    \end{lstlisting}
     
-    To generate multicast traffic, you can login (by \lstinline{telnet} or \lstinline{ssh}) to or logout of \textit{h4}.
+    To generate multicast traffic, you can login (by \lstinline{telnet}) to or logout of \textit{h4} from \textit{h2}. (Use \texttt{netlab} as username and password.)
+    \begin{lstlisting}
+telnet 128.238.63.101
+    \end{lstlisting}
+
     Each time when the login user set of \textit{h4} changes, \lstinline{netspyd} on \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
 
-    Can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet in the \lstinline{tcpdump} output? 
-
     Terminate the \lstinline{netspy} program on \textit{h6} (or \textit{h0}).
-    Can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet?
+
+    Save one of the PIM routing packets.
+    You may use \lstinline{tcpdump} output to analyze it.
+    
+    \begin{report}
+    \item While the \lstinline{netspy} program is running on \textit{h6} (or \textit{h0}),
+    can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet in the \lstinline{tcpdump} output?
+
+    \item After terminating the \lstinline{netspy} program on \textit{h6} (or \textit{h0}),
+    can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet?%
     \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
     In this case, the membership record in the router expires in 120 seconds.
     During this interval, the router still forwards multicast datagram through the port.} 
 
-    Save one of the PIM routing packets.
-    You may use \lstinline{tcpdump} output to analyze it.
-    What is the destination IP address used in this PIM routing packet?
-    
-    \begin{report}
-    \item Answer the above questions.
+    \item What is the destination IP address used in this PIM routing packet?
     \end{report}
 
 \section{Multicast Tree}
     In this exercise, try the \lstinline[language={cisco}]{mstat} Cisco~IOS command to find the multicast tree from a source.
     The \lstinline[language={cisco}]{mstat} command is executable in the \textit{Privileged EXEC} mode.
+    Its syntax is \lstinline[language={cisco}, emph={source, destination, group}]{mstat source [destination] [group]}, in which:
+    \begin{description}
+        \item[source] Specifies the IP address or name of the multicast source.
+        \item[destination] (Optional) Specifies the IP address or name of the destination. If not provided, the router uses itself as the destination.
+        \item[group] (Optional) Specifies the IP address or name of the group to display. The default is 224.2.0.1.
+    \end{description}
     You can always type \lstinline[language={cisco}]{?} to get help on the syntax of the command.
+
+    While \lstinline{netspy} program is running like the \textbf{end} of previous part, try the following command in \textit{Router2}:
+    \begin{lstlisting}[language={cisco}]
+mstat 128.238.62.100 128.238.61.100 224.111.111.111
+    \end{lstlisting}
 
     Generate multicast packet when execute command for specific source.
 
+    \begin{report}
+    \item Draw mullticast tree from 128.238.62.100 to 128.238.61.100 via 224.111.111.111 group.
+    \end{report}
+
 \section{Multicast TTL}
-    Keep \lstinline{netspy} running on all the hosts.
+    Keep \lstinline{netspy} running on hosts \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6} and server on \textit{h4} as described in \autoref{sec:multi-hub}.
+    
     Ping the multicast group address from \textit{h4}, using: 
     \begin{lstlisting}[emph={n}]
 ping 224.111.111.111 -t n
@@ -527,10 +576,14 @@ ping 224.111.111.111 -t n
     Try different values of \textit{n}, e.g.\ 1, 2, 3, and 16.
     See how far a multicast datagram can travel with different TTL values. 
 
-    Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using: 
+    Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using:%
     \footnote{The syntax of this command may be different for different versions of Cisco~IOS. You may use \lstinline[language={cisco}]{?} to get help.}
     \begin{lstlisting}[language={cisco}]    
-Router(interface)# ip multicast ttl-threshold 32
+configure terminal
+    interface f0/0
+        ip multicast ttl-threshold 32
+        exit
+    end
     \end{lstlisting}
 
     Run the \lstinline{ping} command with $n = 16$ again.
@@ -539,7 +592,11 @@ Router(interface)# ip multicast ttl-threshold 32
     Answer the same question.
     
     \begin{report}
-    \item Answer the above questions. 
+    \item At first, which hosts answered the \lstinline{ping} with \textit{n} equals to 1, 2, 3, and 16?
+    \item After changing threshold of \textit{Router2} to 16, which hosts answered the \lstinline{ping} with \textit{n} equals to 16?
+    Does datagrams reach 128.238.61.0 and 128.238.62.0 subnets?
+    \item After changing threshold of \textit{Router2} to 16, which hosts answered the \lstinline{ping} with \textit{n} equals to 33?
+    Does datagrams reach 128.238.61.0 and 128.238.62.0 subnets?
     
     \item What is the use of the TTL threshold in the router interface?
     \end{report}
@@ -549,15 +606,15 @@ Router(interface)# ip multicast ttl-threshold 32
     The routers and hosts have the same configurations as in \hyperref[fig:7.14]{Figure~7.14}.
 
 \section{Multicast Real-Time Video}
-    Start \lstinline{vlc} on all the hosts, by using \lstinline{vlc &}. 
+    Start \lstinline{vlc} on \textit{h1} and \textit{h7}, by using \lstinline{vlc &}. 
 
-    On \textit{h0}, go to the \lstinline{vlc} menu: \textit{Media/Stream\ldots }. Chose video file \path{/home/netlab/group.mp4} and press \textit{stream} button. In \textit{Stream output} add \textit{RTP /MPEG Transport Stream} dialog.
+    On \textit{h1}, go to the \lstinline{vlc} menu: \textit{Media/Stream\ldots }. Chose video file \path{/home/netlab/group.mp4} and press \textit{stream} button. In \textit{Stream output} add \textit{RTP /MPEG Transport Stream} dialog.
     Then click the \textit{next} button.
     In the next window, specify the multicast group address to be {224.123.111.101}, with port number {22224} %and TTL 33.
     Then click the \textit{Finish} button.
-    Now the \lstinline{vlc} on \textit{h0} is transmitting the video clip using \textit{RTP/RTSP/UDP/IP} to the multicast group {224.123.111.101} on port {22224}. 
+    Now the \lstinline{vlc} on \textit{h1} is transmitting the video clip using \textit{RTP/RTSP/UDP/IP} to the multicast group {224.123.111.101} on port {22224}. 
 
-    On all other hosts, go to the \lstinline{vlc} menu: \textit{Media/Open Network Stream\ldots}. In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in \textit{h0}.%and TTL
+    On all other hosts, go to the \lstinline{vlc} menu: \textit{Media/Open Network Stream\ldots}. In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in \textit{h1}.%and TTL
     Now you should see the received video is displayed on the screen. 
 
     Execute \lstinline{tcpdump ip multicast} or \lstinline{wireshark} in one console to capture the multicast datagrams.
