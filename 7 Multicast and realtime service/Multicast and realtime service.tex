@@ -621,7 +621,7 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
         \includegraphics[scale=1.6]{img/terminal}
     \end{figure}
 
-\section{Multicast Real-Time Video}
+\section{** Multicast Real-Time Video}
     Start \lstinline{vlc} on \textit{h1} and \textit{h7}:
     \begin{figure}[H]
         \centering
@@ -697,7 +697,9 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
     In another console, execute \lstinline{tcpdump ip multicast} to monitor the capture process.
     When you see some \texttt{RTCP} packets in the second \lstinline{tcpdump} output, terminate both \lstinline{tcpdump} programs. 
 
-    Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
+    \begin{report}
+    \item Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
+    \end{report}
 
 
 \begin{appendices}
