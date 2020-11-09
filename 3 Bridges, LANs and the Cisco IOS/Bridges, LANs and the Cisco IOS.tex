@@ -245,11 +245,11 @@ explain stp and bpdu
     \end{report}
 
 \section{STP Process}
-    Using \lstinline{tcpdump -ex ether multicast -vv}, capture the BPDU packet flowing on your network segment.
+    Using \lstinline{tcpdump -ex ether multicast -vv} on all LAN segments, capture the BPDU packet flowing on your network segment.
 
-    \lstinline{telnet} to the hosts in the other three LAN segments and execute the above \lstinline{tcpdump} command in the \lstinline{telnet} window to collect BPDUs sent there.
+    To collect all BPDU packets from start time, you need restart (reload) all router.
 
-    Login to each bridge to collect the \lstinline[language={cisco}]{show bridge} outputs.
+    Login to each bridge (or open \textbf{GNS3} router console) to collect the \lstinline[language={cisco}]{show bridge} outputs.
     
     \begin{report}
     \item Submit the four different BPDUs (from four network sections) you saved.
