@@ -95,7 +95,7 @@
 
 \section{Linux Multicast Routing Table\label{sec:rt}}
 \label{sec:linux-multicast-routing}
-    Execute the following command to display the routing table of one host (for example \textit{h1}).
+    Execute the following command to display the routing table of one host (for example \textit{h0}).
     \begin{lstlisting}
 netstat -rn
     \end{lstlisting}
@@ -114,7 +114,7 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{report}
 
 \section{Multicast Membership}
-    Execute the following command to show the multicast group memberships for all the interfaces in your host (for example \textit{h1}).
+    Execute the following command to show the multicast group memberships for all the interfaces in your host (for example \textit{h0}).
     \begin{lstlisting}
 netstat -g
     \end{lstlisting}
@@ -124,6 +124,11 @@ netstat -g
     \end{report}
 
 \section{Multicast \texttt{ping}}
+    Set hosts \textit{h0}, \textit{h2}, \textit{h4} and \textit{h6} to replry linux multicast routing in all the hosts:
+    \begin{lstlisting}[emph={eth0}]
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+    \end{lstlisting}
+
     Execute following command on \textit{h1}:
     \begin{lstlisting}
 ping 224.0.0.1
@@ -161,21 +166,19 @@ ping -b 128.238.66.255
         \includegraphics[scale=1.6]{img/capture}
     \end{figure}
 
-    To generate an Ethernet unicast frame, run:
-    \begin{lstlisting}[emph={your-host, remote-host}]
-socket -i -u -n1 remote-host echo
-    \end{lstlisting}
-
-    Execute the following command to generate an Ethernet multicast frame:
+    Execute the following command in \textit{h0} to generate an Ethernet multicast frame:
     \begin{lstlisting}[emph={your-host, remote-host}]
 socket -i -u -n1 230.11.111.10 2000
     \end{lstlisting}
 
     Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}.
 
-    To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host that has no entry in the ARP table of your host.
+    To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host from \textit{h0} that has no entry in the ARP table of your host, e.g.\ \textit{h5}.
+    \footnote{You can see ARP table by \lstinline{arp -a} delete a cached ARP entry by \lstinline[emph={ip}]{arp -d ip}.}
+    \begin{lstlisting}
+ping 128.238.66.105
+    \end{lstlisting}
     Recall that the ARP request is broadcast.%
-    \footnote{You can delete a cached ARP entry by \lstinline[emph={ip}]{arp -d ip}.}
 
     Save the frames captured for the lab report.
 
@@ -202,7 +205,7 @@ socket -i -u -n1 230.11.111.10 2000
 % gcc fileName -o outputName
 %     \end{lstlisting}
 
-    Start the multicast client \lstinline{netspy} on all the hosts, by executing:%
+    Start the multicast client \lstinline{netspy} on hosts \textit{h0}, \textit{h2}, \textit{h4} and \textit{h6}, by executing:%
     \footnote{If you get \textit{Netspy : cannot join multicast group `224.111.111.111'}, add route for the groups as described in \autoref{sec:rt}.}
     \begin{lstlisting}
 /home/netlab/code/netspy 224.111.111.111 1500
@@ -227,7 +230,7 @@ telnet 128.238.66.100
     \end{lstlisting}
     Use \texttt{netlab} as username and password.
 
-    Save the captured multicast datagram sent by \lstinline{netspyd} and exit the \lstinline{telnet} (or \lstinline{ssh}) session.
+    Save the captured multicast datagram sent by \lstinline{netspyd} and exit the \lstinline{telnet} session.
 
     \begin{report}
     \item From the \lstinline{tcpdump} output, how many messages are sent by \lstinline{netspyd} when a new user logged in to \textit{h0}?
@@ -240,14 +243,24 @@ telnet 128.238.66.100
 
 \section{\texttt{ping} Replay}
     % Enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
-    Keep the \lstinline{netspy} and the \lstinline{tcpdump} programs running.
-    Execute \lstinline{ping 224.111.111.111} from \textit{h6}.
+    Keep the \lstinline{netspy} and the \lstinline{tcpdump} (on \textit{h6}) programs running.
+    Execute the following command from \textit{h6}:
+    \begin{lstlisting}
+ping 224.111.111.111
+    \end{lstlisting}
     Examine the \lstinline{tcpdump} and \lstinline{ping} outputs to see which hosts replied.
 
-    Terminate the \lstinline{netspy} programs on several hosts, e.g.\ \textit{h0}, \textit{h1}, and \textit{h5}.
+    Terminate the \lstinline{netspy} programs on several hosts, e.g.\ \textit{h0} and \textit{h6}.
     Execute the \lstinline{ping} command again.
 
-    Also, examine the \lstinline{tcpdump} and the \lstinline{ping} outputs to see which hosts replied.
+    Also, examine the \lstinline{tcpdump} and the \lstinline{ping} outputs (on \textit{h6}) to see which hosts replied.
+
+    Ping a broadcast address using:
+    \begin{lstlisting}
+ping -b 128.238.66.255
+    \end{lstlisting}
+    Examine the \lstinline{ping} output to see which hosts reply and see the difference with multicast.
+
 
     \begin{report}
     \item Which hosts reply to \lstinline{ping} each time?
@@ -291,8 +304,6 @@ telnet 128.238.66.100
             \node[draw] (h1) at (-4,-1){h1};
             \node[draw] (h2) at (-2,-1){h2};
             \node[draw,rounded corners] (router) at (0,0){Router};
-            % \node[draw,rounded corners] (router) at (0,0){\shortstack{Router}};
-            % \node[draw,rounded corners] (hub1) at (2,0){Switch 1};
             \node[draw] (h3) at (2,-1){h3};
             \node[draw] (h4) at (4,-1){h4};
         
@@ -302,19 +313,30 @@ telnet 128.238.66.100
             \draw (h4) -- (4,0);
             \draw[thick] (4.5,0) -- (router);
             \draw[thick] (-4.5,0) -- (router);
+            \draw (router) +(1,0.25) node[align=right] {\scriptsize\textit{eth1}};
+            \draw (router) +(-1,0.25) node[align=left] {\scriptsize\textit{eth0}};
         \end{tikzpicture}
         \caption{The network topology for \nameref{sec:igmp} (Figure~7.13)}
         \label{fig:7.13}
     \end{figure}
 
+    Enable linux multicast routing in all the hosts (see \autoref{sec:simple-multicast}):
+    \begin{lstlisting}[emph={eth0}]
+route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
+route add -net 128.238.0.0/16 dev eth0
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
+    \end{lstlisting}
+
     You can use prepared topology as described in \autoref{sec:simple-multicast}.
 
 \section{Configuring Router}
 \label{sec:config-router}
-    Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}. Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}. Note that the IP addresses of the router interfaces are the same as their default IP addresses.
-    Login to the router and run \lstinline{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
-    Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode. Now the router is enabled to do multicast routing using PIM.
-
+    Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}.
+    Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}.
+    % Note that the IP addresses of the router interfaces are the same as their default IP addresses.
+    Run \lstinline{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
+    Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode.
+    Now the router is enabled to do multicast routing using PIM.
     \begin{lstlisting}[language=cisco]
 configure terminal
     ip multicast-routing
@@ -331,7 +353,7 @@ configure terminal
     end
     \end{lstlisting}
 
-    Login to the router, execute the following commands in the \textit{Privileged EXEC} mode.
+    Login to the router, execute the following commands in the \textit{Privileged EXEC} mode:
     \begin{lstlisting}[language=cisco]
 show ip igmp interface
 show ip igmp group
@@ -353,18 +375,30 @@ show ip igmp group
     \end{lstlisting}
     
     Login to the router.
-    Run \lstinline[language={cisco}]{show ip igmp interface} and \lstinline[language={cisco}]{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
+    Run the following commands in the \textit{Privileged EXEC} mode again to examine the current membership records:
+    \begin{lstlisting}[language=cisco]
+show ip igmp interface
+show ip igmp group
+    \end{lstlisting}
 
-    Try if you can \lstinline{ping} a host on the other side of the router (e.g.\ \lstinline{ping} \textit{h4} from \textit{h1}).
+    Can you \lstinline{ping} a host on the other side of the router (e.g.\ \lstinline{ping} \textit{h4} from \textit{h1})? If not, why not?
+    \begin{lstlisting}
+ping 128.238.64.104
+    \end{lstlisting}
 
     \lstinline{telnet} from \textit{h2} to \textit{h1} in your group, then logout. (Use \texttt{netlab} as username and password.)
     \begin{lstlisting}
 telnet 128.238.63.101
     \end{lstlisting}
-    See if the multicast messages sent by \lstinline{netspyd} reach the other side of the router.
+    Does multicast messages sent by \lstinline{netspyd} reach the other side of the router? If not, why not?
 
-    Add \textit{route} for other subnet to your host and try \lstinline{ping} again.
+    Add \textit{route} for \textbf{other subnet} to your host and try \lstinline{ping} again:
+    \begin{lstlisting}[emph={eth0}]
+route add -net 128.238.64.0/24 dev eth0  # on h1 & h2
+route add -net 128.238.63.0/24 dev eth0  # on h3 & h4
+    \end{lstlisting}
     Now, login to \textit{h1} from \textit{h2} in your group via \lstinline{telnet}, then logout.
+    Check if multicast messages sent by \lstinline{netspyd} reach the other side of the router.
     
     \begin{report}
     \item Can you ping a host on the other side of the router?
@@ -373,7 +407,10 @@ telnet 128.238.63.101
     \end{report}
 
 \section{IGMP Types}
-    Execute \lstinline{tcpdump ip multicast -v} or \lstinline{wireshark} in one console to capture IGMP messages.
+    Execute \lstinline{tcpdump} or \lstinline{wireshark}\footnote{If you have trouble in getting packets using \lstinline{wireshark}, try \lstinline{tcpdump}.} in one console to capture IGMP messages.
+    \begin{lstlisting}[emph={eth0}]
+tcpdump ip multicast -v
+    \end{lstlisting}
     When you see \textbf{three or more IGMP queries} in the second \lstinline{tcpdump} output, terminate both \lstinline{tcpdump} programs.
 
     Analyze the IGMP messages you captured.
@@ -382,8 +419,6 @@ telnet 128.238.63.101
     Repeat the above experiment.
     Terminate \lstinline{netspy} on \textit{h2} and \textit{h4}.
     Terminate the \lstinline{tcpdump} programs and analyze the IGMP leave message you captured.
-
-    If you have trouble in getting packets using \lstinline{wireshark}, try \lstinline{tcpdump}.
     
     \begin{report}
     \item What is the value of the Time-to-Live (TTL) field for the IGMP messages?
@@ -482,10 +517,11 @@ configure terminal
     You can use prepared topology as described in \autoref{sec:simple-multicast}.
 
 \section{Multicast Multi-Hub\label{sec:multi-hub}}
-    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}):
+    Enable linux multicast routing in all the hosts (see \autoref{sec:simple-multicast}):
     \begin{lstlisting}[emph={eth0}]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 route add -net 128.238.0.0/16 dev eth0
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
     \end{lstlisting}
 
     Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}). 
@@ -524,16 +560,16 @@ telnet 128.238.63.101
 
     Each time when the login user set of \textit{h4} changes, \lstinline{netspyd} on \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
 
-    Terminate the \lstinline{netspy} program on \textit{h6} (or \textit{h0}).
+    Terminate the \lstinline{netspy} program on \textit{h6}.
 
     Save one of the PIM routing packets.
     You may use \lstinline{tcpdump} output to analyze it.
     
     \begin{report}
-    \item While the \lstinline{netspy} program is running on \textit{h6} (or \textit{h0}),
+    \item While the \lstinline{netspy} program is running on \textit{h6},
     can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet in the \lstinline{tcpdump} output?
 
-    \item After terminating the \lstinline{netspy} program on \textit{h6} (or \textit{h0}),
+    \item After terminating the \lstinline{netspy} program on \textit{h6},
     can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet?%
     \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
     In this case, the membership record in the router expires in 120 seconds.
@@ -553,7 +589,8 @@ telnet 128.238.63.101
     \end{description}
     You can always type \lstinline[language={cisco}]{?} to get help on the syntax of the command.
 
-    While \lstinline{netspy} program is running like the \textbf{end} of previous part, try the following command in \textit{Router2}:
+    Keep \lstinline{netspy} running on hosts \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6} and server on \textit{h4} as described in \autoref{sec:multi-hub}.
+    Try the following command in \textit{Router2}:
     \begin{lstlisting}[language={cisco}]
 mstat 128.238.62.100 128.238.61.100 224.111.111.111
     \end{lstlisting}
@@ -561,7 +598,7 @@ mstat 128.238.62.100 128.238.61.100 224.111.111.111
     Generate multicast packet when execute command for specific source.
 
     \begin{report}
-    \item Draw mullticast tree from 128.238.62.100 to 128.238.61.100 via 224.111.111.111 group.
+    \item Draw multicast tree from 128.238.62.100 to 128.238.61.100 via 224.111.111.111 group.
     \end{report}
 
 \section{Multicast TTL}
@@ -701,7 +738,7 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
     \item Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
     \end{report}
 
-
+\clearpage
 \begin{appendices}
 
 \section{Configuring a Multicast Router}
