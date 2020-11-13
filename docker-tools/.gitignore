@@ -1,9 +1,0 @@
-*.o
-TCPclient
-TCPserver
-UDPclient
-UDPserver
-netspy
-netspyd
-netspydd
-socket
