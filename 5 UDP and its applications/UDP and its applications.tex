@@ -9,6 +9,7 @@
 \part{Using the \texttt{socket} Program}
 \label{sec:schema}
     In this lab, you will not need to a router, only two hosts and one hub to connect two host together as show in \hyperref[fig:5.0]{Figure~5.0} and \hyperref[tab:5.0]{Table~5.0}.
+    Also you can use Figure~1.3.
     \begin{table}[H]
         \caption{Host IP addresses for \hyperref[fig:5.0]{Figure~5.0}}
         \label{tab:5.0}
@@ -110,11 +111,14 @@ socket -u -i -n1 -w size host echo@
     Note that the router IP addresses are the same as their default.
 
     % Open console of  each router, enable {RIP} routing (See Section~4.6 of reference book).
+    % ifconfig interface_name mtu new_MTU_value.
 
     Change the \texttt{MTU} of the \textit{ethernet1} interfaces of \textit{Router4} to 500 bytes.
     \begin{lstlisting}[language={cisco}]
+R1(config-if)# ip unreachables ! enables the router to send ICMP unreachable errors
 R1(config-if)# ip mtu 500
     \end{lstlisting}
+
     Test connectivity by \lstinline{ping}ing hosts in the other subnets. After you can reach the
     hosts in the other subnets, run \lstinline{tcpdump -nx} on your host.
 
@@ -141,9 +145,9 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
         \centering
         \begin{tikzpicture}
             \node[draw] (h1) at (-4,0){Host\textsubscript{A}};
-            \node[draw,rounded corners] (hub2) at (-2,0){Switch 2};
+            \node[draw,rounded corners] (hub2) at (-2,0){Hub 2};
             \node[draw,rounded corners] (router) at (0,0){Router};
-            \node[draw,rounded corners] (hub1) at (2,0){Switch 1};
+            \node[draw,rounded corners] (hub1) at (2,0){Hub 1};
             \node[draw] (h0) at (4,0){Host\textsubscript{B}};
         
             \draw (h0) -- (hub1);
