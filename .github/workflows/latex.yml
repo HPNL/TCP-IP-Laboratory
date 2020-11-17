@@ -30,26 +30,13 @@ jobs:
           release_name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Build the Figures
-        run: |
-          cd Figures
-          bash ./build-gns3p.sh
-          zip ../Figures.zip *.gns3p
-      - name: Upload Release Asset (Figures)
-        id: upload-release-asset-figures
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./Figures.zip
-          asset_name: Figures.zip
-          asset_content_type: application/zip
+
       - name: Build the Latex
         run: |
           echo -n "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u amirhakh --password-stdin
           docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full  /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"
           zip Documents.zip [0-9]**/*.pdf
+
       - name: Upload Release Asset (Documents)
         id: upload-release-asset-documents
         uses: actions/upload-release-asset@v1
