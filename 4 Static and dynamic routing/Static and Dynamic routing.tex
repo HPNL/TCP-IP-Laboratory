@@ -107,6 +107,11 @@ Router(config-router)# no network network-number
 Router(config)# no router rip
     \end{lstlisting}
     Consider \hyperref[fig:4.11]{Figure~4.11} as our network topology for this section.
+
+    % You can see router RIP status and state by following command in router \textit{Privileged EXEC} mode.
+    % \begin{itemize}
+    %     \item \lstinline[language={cisco}]{show ip rip [,route,interface,statistics]}
+    % \end{itemize}
     
     % Since the IP address of \textit{ethernet1} in \textit{router4} is the only interface which is different from the initial configuration in Appendix~B of reference book, we will reboot all the four routers to restore their default configurations, and change the IP address on the \textit{ethernet1} in \textit{router4} only. Since our hosts started \lstinline{routed} at boot-up time, no further action is needed to run RIP on the hosts. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
     Configure network router and host’s as \hyperref[fig:4.11]{Figure~4.11}. Since our host’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each host.
@@ -237,9 +242,15 @@ tcpdump -x -s 100 -c 4 udp port 520
 
 \part{Routing Experiments with ICMP}
 \section{ICMP redirect}
-    Save the routing table for your lab report.
+    ICMP redirect is disabled by default in linux system for security (ICMP Redirect Attacks).
+    You can enable this by this command:
+    \begin{lstlisting}
+sysctl -w net.ipv4.conf.all.accept_redirects=1
+    \end{lstlisting}
 
-    Create a default routing entry using one of the routers directly connected to your host (add route with default gateway). Also may you need to delete previously added route.
+    Create a default routing entry using one of the routers directly connected to your host (add route with default gateway).
+    Also may you need to delete previously added route.
+    For example you can set default route for \textit{h1} to \textit{R1->f0/0}.
 
     \begin{lstlisting}[emph={eth0,gateway-ip,remote-subnet}]
 # by ip command
@@ -261,52 +272,20 @@ route add -net remote-subnet gw gateway-ip   # with default gateway
         \item Compare the original routing table with the new routing table. Explain the meaning of the flags of the new entry.
     \end{report}
 
-\section{**ICMP router discovery}\label{sec:ICMPRD}
+\section{ICMP router discovery}\label{sec:ICMPRD}
     This exercise is on ICMP router discovery.
     
-    Connect the routers and hosts and change the host IP addresses as shown in \hyperref[fig:4.12]{Figure~4.12}.
-
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \draw (0,0) node[draw,align=center,rounded corners] (s1) {Switch 1};
-            \draw (-2.75,0) node[draw,align=center,rounded corners] (s2) {Switch 2};
-            \draw (0,2) node[draw] (h4) {h4} +(0,0.5) node {\scriptsize 66.104/24};
-            \draw ({sqrt(2)},{sqrt(2)}) node[draw] (h1) {h1} +(0,0.5) node {\scriptsize 66.101/24};
-            \draw (2,0) node[draw] (h2) {h2} +(0,-0.5) node {\scriptsize 66.102/24};
-            \draw (-{sqrt(2)},{sqrt(2)}) node[draw] (h3) {h3} +(0,0.5) node {\scriptsize 66.103/24};
-            \draw (-{sqrt(2)},-{sqrt(2)}) node[draw] (h5) {h5} +(0,-0.5) node {\scriptsize 66.105/24};
-            \draw (0,-2) node[draw] (h6) {h6} +(0,-0.5) node {\scriptsize 66.106/24};
-            \draw ({sqrt(2)},-{sqrt(2)}) node[draw] (h7) {h7} +(0,-0.5) node {\scriptsize 66.107/24};
-            \draw (-3.5,2) node[draw,align=center,rounded corners] (r3) {Router 3} +(0,-0.5) node {\scriptsize\textit{ethernet1} 66.3/24~~~};
-            \draw (-3.5,-2) node[draw,align=center,rounded corners] (r4) {Router 4} +(0,0.5) node {\scriptsize\textit{ethernet1} 66.4/24~~~};
-            \draw (-5,0) node[draw] (h0) {h0} +(0,-0.5) node {\scriptsize 66.100/24};
-            
-            \draw[dotted] (s1) -- +(2.5,1) node[anchor=south west] {\scriptsize 128.238.66.0/24 subnet};
-            \draw (r3) -- +(0,-0.75) -- (s2);
-            \draw (r4) -- +(0,0.75) -- (s2);
-            \draw (s1) -- (s2);
-            \draw (h0) -- (s2);
-            \draw (h1) -- (s1);
-            \draw (h2) -- (s1);
-            \draw (h3) -- (s1);
-            \draw (h4) -- (s1);
-            \draw (h5) -- (s1);
-            \draw (h6) -- (s1);
-            \draw (h7) -- (s1);
-        \end{tikzpicture}
-        \caption{Network configuration of the \nameref{sec:ICMPRD} Experiment (Figure~4.12)}\label{fig:4.12}
-    \end{figure}
+    Connect the routers and hosts and change the host IP addresses as shown in \hyperref[fig:4.11]{Figure~4.11}.
     
-    Telnet to the routers (open router console), change the IP address of the \textit{ethernet1} interfaces as shown in \hyperref[fig:4.12]{Figure~4.12}. Enable ICMP router discovery on these two interfaces by the following
-    interface configuration command:
+    Telnet to the \textit{R1} and \textit{R4} routers (open routers console) shown in \hyperref[fig:4.11]{Figure~4.11}.
+    Enable ICMP router discovery on these two interfaces by the following interface configuration command:
     \begin{lstlisting}[language={cisco}]
-        Router(config-if)# ip irdp.
+Router(config-if)# ip irdp
     \end{lstlisting}
-    Run \lstinline{tcpdump -enx ip proto 1} on all the hosts except \textit{h0}.
-    The lab instructor should now reboot \textit{h0}.
+    Run \lstinline{tcpdump -enx ip proto 1} on \textit{h1}.
+    Now, run \lstinline{/home/netlab/code/rdisc -s # solicitation mode} on \textit{h0}.
     Save the captured route discovery requests and replies for the lab report.
-    \lstinline{Telnet} to \textit{h0}  and save its routing table for the lab report.
+    Save \textit{h0} routing table for the lab report.
     
     \begin{report}
         \item What is the destination IP address of the ICMP router solicitation message? Who sends the ICMP router advertisement message?
