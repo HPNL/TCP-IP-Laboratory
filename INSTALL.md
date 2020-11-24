@@ -2,6 +2,8 @@
 
 This installation based on [GNS3 Installation](https://docs.gns3.com/docs/getting-started/installation/linux/) for linux.
 
+If you use `GNS3 VM` or need to connect a remote server, use [install remote](./INSTALL-remote.md) document for setup remote server.
+
 ## Requirement
 
 * Linux (Ubuntu 18.04, Ubuntu 20.04, Debian 9, Debian 10 or other supported linux)
@@ -57,6 +59,17 @@ sudo usermod -aG wireshark $USER
 sudo usermod -aG docker $USER
 # loading new user group config
 sudo su $USER
+```
+
+### Distribution Upgrade
+
+If you upgrade your ubuntu distribution, you need to remove old `GNS3` repository and add again.
+
+```bash
+sudo rm /etc/apt/sources.list.d/gns3*
+sudo add-apt-repository ppa:gns3/ppa
+sudo apt-get update
+sudo apt-get -y -u dist-upgrade
 ```
 
 ### Commented
@@ -196,3 +209,5 @@ Skip *slots* step until get *Idle-PC* step.
 Click on **Idle-PC finder** to find local idle-PC number if it was empty and then press **Finish**.
 
 ![gns3-router-idlepc](./img/gns3-router-idlepc.jpg)
+
+## Setup remote server
