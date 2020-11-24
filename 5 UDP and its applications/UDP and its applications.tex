@@ -53,7 +53,8 @@ socket -i -n3 -w2048 server-host 5555
 
 \section{\texttt{socket -h}}
     Study various options associated with the \lstinline{socket} program.
-    A brief list of options can be displayed by typing \lstinline{socket}. More detailed discussion on socket can be found in
+    A brief list of options can be displayed by typing \lstinline{socket}.
+    More detailed discussion on socket can be found in
     Appendix~C of [5] in the reference book.
 
 \section{Segment Size}
@@ -109,6 +110,7 @@ socket -u -i -n1 -w size host echo@
 \section{Discover path MTU}
     Connect the routers and the hosts as shown in \hyperref[fig:5.5]{Figure~5.5} Change the IP addresses of all hosts accordingly.
     Note that the router IP addresses are the same as their default.
+    Also you need to add route for all hosts to other subnets.
 
     % Open console of  each router, enable {RIP} routing (See Section~4.6 of reference book).
     % ifconfig interface_name mtu new_MTU_value.
@@ -119,7 +121,8 @@ R1(config-if)# ip unreachables ! enables the router to send ICMP unreachable err
 R1(config-if)# ip mtu 500
     \end{lstlisting}
 
-    Test connectivity by \lstinline{ping}ing hosts in the other subnets. After you can reach the
+    Test connectivity by \lstinline{ping}ing hosts in the other subnets.
+    After you can reach the
     hosts in the other subnets, run \lstinline{tcpdump -nx} on your host.
 
     Start a UDP socket server on \textit{remote-host}, using \lstinline{socket -u -s 5555} on \textit{h1}.
@@ -159,7 +162,8 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
         \label{fig:5.5}
     \end{figure}
 
-    Observe the DF bit of the first datagram and that of the following datagrams. Save the \lstinline{tcpdump} output for your lab report.
+    Observe the DF bit of the first datagram and that of the following datagrams.
+    Save the \lstinline{tcpdump} output for your lab report.
 
     \begin{report}
     \item Explain the operation of path MTU discovery based on the \lstinline{tcpdump} outputs saved.
@@ -170,10 +174,10 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     \end{report}
 
 \part{Exercises with FTP and TFTP}
-    Use first network (section \nameref{sec:schema}) topology for this exercise.
+    Use first network (section \nameref{sec:schema}) topology (\hyperref[fig:5.0]{Figure~5.0} or Figure~1.3) for this exercise.
 
     We will study the performance of FTP and TFTP for file transfer between two machines.
-    By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP. 
+    By transferring the same file using these two protocols, we can compare the operations and performances of UDP and TCP.
 
     Four files (\path{large.dum}, \path{med.dum}, \path{small.dum} and \path{thin.dum}) with random contents are stored in the \path{/home/netlab} directory and in the \path{/home/netlab}\footnote{We change original path (\path{/tftpboot}) to \path{/home/netlab} to be same as ftp user path.} directory of each host in the lab.
     We will use the \lstinline{get} command to retrieve files from a remote host.
@@ -208,20 +212,21 @@ ftp> quit
     \end{lstlisting}
     % Create \path{small.dum} with 10kB, \path{med.dum} with 1MB and \path{larg.dum} with 50MB.
 
-    Also, from the \lstinline{ftp} window, record the transfer rate (time) displayed. 
+    Also, from the \lstinline{ftp} window, record the transfer rate (time) displayed.
 
     Restart the above \lstinline{tcpdump} session.
 
     \begin{report}
-    \item Examining the saved \lstinline{tcpdump} output. Identify the starting and ending time of actual data transfer.
+    \item Examining the saved \lstinline{tcpdump} output.
+    Identify the starting and ending time of actual data transfer.
     Don’t include the time spent establishing the TCP connection.
-    Calculate the time spent for data transfer. 
+    Calculate the time spent for data transfer.
 
     \item Compare the time with the value displayed in \lstinline{ftp} window.
     Are they consistent?
     If there exists any significant difference, what might be the reason? 
 
-    \item Now, from the second session, carefully determine the starting and ending time of data transfer for the \lstinline{tftp} program. 
+    \item Now, from the second session, carefully determine the starting and ending time of data transfer for the \lstinline{tftp} program.
 
     \item Compare the time with the value displayed in \lstinline{tftp} window.
     Are they consistent?
@@ -235,17 +240,21 @@ ftp> quit
     \begin{lstlisting}[emph={your-host, remote-host}]
 tcpdump -x host your-host and remote-host
     \end{lstlisting}
-    Observe the protocol in action.    Analyze various types of TFTP messages. Save \lstinline{tcpdump} output for the lab report.
+    Observe the protocol in action.
+    Analyze various types of TFTP messages.
+    Save \lstinline{tcpdump} output for the lab report.
     
     \begin{report}
-        \item List all the different types of packets exchanged during the \lstinline{tftp} session. Compare them with the TFTP message format in \hyperref[fig:5.3]{Figure~5.3} of reference book.
+        \item List all the different types of packets exchanged during the \lstinline{tftp} session.
+        Compare them with the TFTP message format in \hyperref[fig:5.3]{Figure~5.3} of reference book.
 
         Why does the server’s port number change?
         
         \item In most cases, \lstinline{tftp} service is restricted.\footnote{This is not the case in our lab, where we deliberately enabled the \lstinline{tftp} service and use it as a tool to study the UDP protocol.}
         Why is \lstinline{tftp} service not generally available to users? At least write two problem of \lstinline{tftp} protocol.
         
-        \item In \autoref{sec:MaxDatagramSize}, we found the maximum size of a UDP datagram in your machine. With \lstinline{tftp}, which uses UDP, we transferred a file larger than the maximum UDP datagram size.
+        \item In \autoref{sec:MaxDatagramSize}, we found the maximum size of a UDP datagram in your machine.
+    With \lstinline{tftp}, which uses UDP, we transferred a file larger than the maximum UDP datagram size.
         How do you explain this?
     \end{report}
 

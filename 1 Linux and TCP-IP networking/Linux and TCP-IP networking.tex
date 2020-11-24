@@ -7,7 +7,8 @@
 
 \begin{document}
 \section*{Systems Configuration}
-    Launch GNS3 and make a network as below. You can use \lstinline{ifconfig eth0 192.168.0.1 netmask 255.255.255.0} to set ip.
+    Launch GNS3 and make a network as below.
+    You can use \lstinline{ifconfig eth0 192.168.0.1 netmask 255.255.255.0} to set ip.
     \begin{center}
         \begin{minipage}{0.48\textwidth}
             \begin{flushleft}
@@ -85,14 +86,18 @@ ps -e | grep telnet
 more /etc/services
     \end{lstlisting}
     Then in another console (Auxiliary console), use the redirect operator to redirect the \lstinline{more} output to
-    a file using \lstinline{more /etc/services > ser-more}. Compare the file \path{ser-more} with the original \lstinline{more} output in the other command window.
+    a file using \lstinline{more /etc/services > ser-more}.
+    Compare the file \path{ser-more} with the original \lstinline{more} output in the other command window.
 
     Copy \path{/etc/services} file to a local file named \path{ser-cp} in your working directory (use \lstinline{pwd} to see working directory path),
-    using \lstinline{cp /etc/services ser-cp}. Compare files \path{ser-more} and \path{ser-cp}, using \lstinline{cmp ser-more ser-cp}. Are these two files identical?
+    using \lstinline{cp /etc/services ser-cp}.
+    Compare files \path{ser-more} and \path{ser-cp}, using \lstinline{cmp ser-more ser-cp}.
+    Are these two files identical?
 
     Concatenate these two files using \lstinline{cat ser-more ser-cp > ser-cat}.
 
-    Display the file sizes using \lstinline{ls -l ser*}. Save the output. 
+    Display the file sizes using \lstinline{ls -l ser*}.
+    Save the output.
     
     \begin{report}
     \item What are the sizes of files \path{ser-more}, \path{ser-cp}, and \path{ser-cat}?
@@ -117,7 +122,8 @@ more /etc/services
     Throughout this lab you will use these commands rather extensively.
     
     \begin{report}
-    \item Explain the above commands briefly. (Two or three sentences per command would be adequate.)
+    \item Explain the above commands briefly.
+    (Two or three sentences per command would be adequate.)
     \end{report}
 
 \section{Packet Capturing}
@@ -143,7 +149,8 @@ more /etc/services
     \end{report}
 
 \section{\texttt{ARPing}}
-    This time we will run \lstinline{wireshark} to capture an ARP request and an ARP reply in real-time. Simply run \lstinline{wireshark &} in \textit{h1} and select the interface and start capturing.
+    This time we will run \lstinline{wireshark} to capture an ARP request and an ARP reply in real-time.
+    Simply run \lstinline{wireshark &} in \textit{h1} and select the interface and start capturing.
     If there is no arp requests and replies in the network, generate some using \lstinline{arping 128.238.66.102} command in the \textit{h1} terminal.
 
     Now you should see several ARP replies in the \lstinline{arping} output.
@@ -156,7 +163,8 @@ more /etc/services
 
 \section{Packet Filtering}
     Using the \lstinline{tcpdump} utility, capture any packet on the LAN and see the output format
-    for different command-line options. Study the various expressions for selecting
+    for different command-line options.
+    Study the various expressions for selecting
     which packets to be dumped.
 
     For this experiment, use the \lstinline{man} page for \lstinline{tcpdump} to find out the options and

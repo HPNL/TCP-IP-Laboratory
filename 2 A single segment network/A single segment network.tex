@@ -95,7 +95,8 @@
 
     Save the \lstinline{netstat -ie} outputs.
 
-    If you don’t see a significant amount of output packets in the \lstinline{netstat} output, the machine was probably restarted recently. You may do this experiment later, or use the following \lstinline{socket} command to generate some network traffic:
+    If you don’t see a significant amount of output packets in the \lstinline{netstat} output, the machine was probably restarted recently.
+    You may do this experiment later, or use the following \lstinline{socket} command to generate some network traffic:
     \begin{lstlisting}[emph={remote-host}]
 # replace remote-host with ip address
 socket -u -i -n200 remote-host echo
@@ -106,7 +107,8 @@ socket -u -i -n200 remote-host echo
     \end{report}
 
 \part{ARP Exercises}
-    In the following experiment, we shall examine the host ARP table and the ARP operation, including two interesting cases: proxy ARP and gratuitous ARP. You may need to find \textbf{MAC} addresses of the host and router interfaces, and record these \textbf{MAC} addresses.
+    In the following experiment, we shall examine the host ARP table and the ARP operation, including two interesting cases: proxy ARP and gratuitous ARP.
+    You may need to find \textbf{MAC} addresses of the host and router interfaces, and record these \textbf{MAC} addresses.
     You need these \textbf{MAC} addresses for the exercises and lab report (as table of host and \textbf{MAC}).
 
 \section{ARP Table}
@@ -114,7 +116,8 @@ socket -u -i -n200 remote-host echo
     Observe that all the IP addresses displayed are on the same subnet.
 
     If you find that all the remote hosts are in \textit{h0}’s ARP table, you need to delete a remote host from the table, using:
-    \footnote{If you deleted \textit{h0}’s IP address from the ARP table by mistake, you must add the entry back in the table. See the \lstinline{arp} manual page to add.
+    \footnote{If you deleted \textit{h0}’s IP address from the ARP table by mistake, you must add the entry back in the table.
+    See the \lstinline{arp} manual page to add.
     Note that, in order for \textit{h0} to reply to the ARP requests, the ARP entry of \textit{h0} must have the \lstinline{P} flag in the ARP table.}
     \begin{lstlisting}[emph={remote-host}]
 arp -d remote-host
@@ -180,13 +183,15 @@ arp -d remote-host
     \end{enumerate}
     Next we will enable the proxy ARP function on the ethernet1 interface of \textit{Router4}.
     \begin{enumerate}
-        \item \lstinline{telnet} to \textit{Router4}. (Right click on the Router and open console on GNS3 or use \lstinline{telnet 128.238.64.4}.)
+        \item \lstinline{telnet} to \textit{Router4}.
+                (Right click on the Router and open console on GNS3 or use \lstinline{telnet 128.238.64.4}.)
         \item Log in to the router, type \lstinline[language={cisco}]{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter~3.}
         \item Enter the \textit{Global Configuration} mode by typing \lstinline[language={cisco}]{config term}.
         \item Then type the following lines for each interfaces:
         \begin{lstlisting}[language={cisco}, escapechar={@}, emph={x}]
 ! config term
-    interface f0/0 ! use f0/1 for the other interface@\footnote{The name of the router interfaces may be different for various routers. You can find the names by typing \texttt{write term} in the \textit{Privilege EXEC} mode.}@
+    interface f0/0 ! use f0/1 for the other interface@\footnote{The name of the router interfaces may be different for various routers.
+    You can find the names by typing \texttt{write term} in the \textit{Privilege EXEC} mode.}@
         ip addr x.x.x.x 255.255.255.0
         no shut
         ip proxy-arp
@@ -205,7 +210,7 @@ wr
 socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \end{lstlisting}
 
-    When you are done with all the hosts in the 128.238.64.0 subnet, save the tcpdump output for the lab report.
+    When you are done with all the hosts in the 128.238.64.0 subnet, save the \lstinline{tcpdump} output for the lab report.
 
     Run \lstinline{arp -a} to display the new ARP table in \textit{h1}, \textit{h4} and \textit{h5}.
     Save the ARP table for your lab report.
@@ -246,7 +251,8 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \end{report}
 
 \section{** Gratuitous (Unsolicited) ARP}
-    While \lstinline{tcpdump -ex} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}. You can send the gratuitous ARP manually by execute:
+    While \lstinline{tcpdump -ex} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}.
+    You can send the gratuitous ARP manually by execute:
 
     \begin{lstlisting}[emph={eth0,h7-ip,h6-ip}]
 arping -c 4 -A -I eth0 h6-ip
@@ -298,7 +304,8 @@ socket -i -u -n1 -w1000 remote-host 88888
     \begin{report}
     \item Can you see any traffic sent on the network? Why? Explain what happened from the \lstinline{ping} output.
 
-    \item List the different ICMP messages you captured in \nameref{sec:icmp-ping}. Give the values of the type and code fields.
+    \item List the different ICMP messages you captured in \nameref{sec:icmp-ping}.
+    Give the values of the type and code fields.
     \end{report}
 
 \part{Exercises with IP address and subnet mask}
@@ -326,7 +333,8 @@ socket -i -u -n1 -w1000 remote-host 88888
 
     Delete the entries for all hosts other than your host from ARP table.
 
-    Run \lstinline{tcpdump -enx} on all the hosts. Then, do the following three experiments:
+    Run \lstinline{tcpdump -enx} on all the hosts.
+    Then, do the following three experiments:
 
     \begin{enumerate}
         \item Execute \lstinline{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g.\ \textit{h0} $\rightarrow$ \textit{h2}).
@@ -339,7 +347,8 @@ socket -i -u -n1 -w1000 remote-host 88888
         Which host provides the telnet connection?
         Why?
         
-        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{h3}. Which host is connected to \textit{h3}? Why?
+        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{h3}.
+    Which host is connected to \textit{h3}? Why?
     \end{enumerate}
     
     \begin{report}

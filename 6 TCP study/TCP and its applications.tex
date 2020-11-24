@@ -11,15 +11,15 @@
 
 \section{Telnet terminal}
     While \lstinline[emph={your-host, remote-host}]{tcpdump -S host your-host  and remote-host} is running, execute: \lstinline[emph={your-host, remote-host}]{telnet remote-host echo} then type some text.
-    Save the tcpdump output.
+    Save the \lstinline{tcpdump} output.
     
     \begin{report}
-    \item Explain TCP connection establishment and termination using the tcpdump output.
+    \item Explain TCP connection establishment and termination using the \lstinline{tcpdump} output.
     
     \item What were the announced MSS values for the two hosts?
     
     \item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
-    See if the \texttt{DF} flag was set in tcpdump output.
+    See if the \texttt{DF}\footnote{Don't Fragment} flag was set in \lstinline{tcpdump} output.
     You can change interface \texttt{MTU} with \lstinline[emph=$eth]{sudo ifconfig $eth mtu 1400}
     \end{report}
     
@@ -36,14 +36,15 @@ socket -i -n1 remote-host 8888
     {Save} the \lstinline{tcpdump} output for your lab report.
     
     \begin{report}
-        \item Explain what happened in both the UDP and TCP cases. When a client requests a non-existing server, how do UDP and TCP handle this request, respectively?
+        \item Explain what happened in both the UDP and TCP cases.
+                When a client requests a non-existing server, how do UDP and TCP handle this request, respectively?
     \end{report}
 
 \part{Exercise on TCP Interactive Data Flow}
 \section{Interactive Data Flow}
 While \lstinline{tcpdump} is capturing the traffic between your machine and a remote machine, issue following commands:
     \begin{lstlisting}[emph={host}]
-tcpdump -nv #@{\normalfont\normalsize (or run }wireshark{\normalfont\normalsize  )}@
+tcpdump -nv # or run wireshark
 telnet host
     \end{lstlisting}
     After logging in to the host, type \lstinline{date} and press the {Enter} key.
@@ -67,14 +68,14 @@ telnet host
     
     \item What is the \textit{Nagle}\footnote{Nagle Algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.} algorithm used for?
 
-    From your \lstinline{tcpdump} output, can you tell whether the Nagle algorithm is enabled or not? Give the reason for your answer.
+    From your \lstinline{tcpdump} output, can you tell whether the \textit{Nagle} algorithm is enabled or not? Give the reason for your answer.
 
     From your \lstinline{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your host to the remote machine?
     \end{report}
 
 \part{Exercise on TCP Bulk Data Flow}
 \section{IP Segment}
-    While tcpdump is running and capturing the packets between your machine and a remote machine, on the remote machine, which acts as the server, execute:
+    While \lstinline{tcpdump} is running and capturing the packets between your machine and a remote machine, on the remote machine, which acts as the server, execute:
     \begin{lstlisting}
 socket -i -s 7777
     \end{lstlisting}
@@ -84,10 +85,11 @@ socket -i -n16 remote-host 7777
     \end{lstlisting}
     Do the same experiment three times.
 
-    {Save} all the \lstinline{tcpdump} outputs for your lab report.
+    Save all the \lstinline{tcpdump} outputs for your lab report.
     
     \begin{report}
-    \item Using one of three \lstinline{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements. Does the number of data segments differ from that of their acknowledgements?
+    \item Using one of three \lstinline{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements.
+            Does the number of data segments differ from that of their acknowledgements?
 
     Compare all the \lstinline{tcpdump} outputs you saved.
     Discuss any differences among them, in terms of data segments and their acknowledgements.
@@ -168,9 +170,11 @@ socket -i -n1 -w n remote-host echo
     \begin{report}
     \item Explain what is \lstinline{sysctl} command for?
         
-    \item Explain two arbitrary TCP/IP configuration parameters. What is their default values?
+    \item Explain two arbitrary TCP/IP configuration parameters.
+            What is their default values?
         
-    \item Name two arbitrary file in the \path{/proc/sys/net/ipv4} directory. What is their content?
+    \item Name two arbitrary file in the \path{/proc/sys/net/ipv4} directory.
+            What is their content?
     \end{report}
 
 \end{document}

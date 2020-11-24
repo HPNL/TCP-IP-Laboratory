@@ -57,9 +57,12 @@ route add -net remote-subnet dev eth0           # with interface name
 route add -net remote-subnet gw gateway-ip   # with default gateway
     \end{lstlisting}
     \begin{itemize}
-        \item \textit{remote-subnet} is a subnet ip with mask number. It must be like \lstinline{192.168.1.0/24}.
-        \item \textit{gateway-ip} is a gateway ip in your network. It must be like \lstinline{128.238.61.1}
-        \item \textit{eth0} is a pyhisical interface name. It is shown in \lstinline{ifconfig} or \lstinline{ip a} commands.
+        \item \textit{remote-subnet} is a subnet ip with mask number.
+                It must be like \lstinline{192.168.1.0/24}.
+        \item \textit{gateway-ip} is a gateway ip in your network.
+                It must be like \lstinline{128.238.61.1}
+        \item \textit{eth0} is a pyhisical interface name.
+                It is shown in \lstinline{ifconfig} or \lstinline{ip a} commands.
     \end{itemize}
     
 
@@ -86,13 +89,17 @@ ping -sv remote-host
     
     \item Answer the above two questions, but now for the echo reply that was returned from your partner’s machine.
 
-    \item Use the \lstinline{tcpdump} outputs from both machines to calculate the average delay that a packet experienced in the router. Note that the system times of the two machines might be different. Show all the steps and submit the \lstinline{tcpdump} outputs with your report.
+    \item Use the \lstinline{tcpdump} outputs from both machines to calculate the average delay that a packet experienced in the router.
+            Note that the system times of the two machines might be different.
+            Show all the steps and submit the \lstinline{tcpdump} outputs with your report.
     
-    \item Compare this value with the previous value in the case of the bridge. Which, a router or a bridge, is faster? Why?
+    \item Compare this value with the previous value in the case of the bridge.
+            Which, a router or a bridge, is faster? Why?
     \end{report}
 
 \part{RIP Exercises}\label{sec:rip}
-    In this section, we will examine the operation of RIP. To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode (use \lstinline[language={cisco}]{config term} command).
+    In this section, we will examine the operation of RIP.
+    To enable the RIP routing process in a router, use the following commands in the \textit{Global Configuration} mode (use \lstinline[language={cisco}]{config term} command).
     \begin{lstlisting}[language={cisco}, emph={network-number}]
 Router(config)# router rip
 Router(config-router)# network network-number
@@ -114,7 +121,8 @@ Router(config)# no router rip
     % \end{itemize}
     
     % Since the IP address of \textit{ethernet1} in \textit{router4} is the only interface which is different from the initial configuration in Appendix~B of reference book, we will reboot all the four routers to restore their default configurations, and change the IP address on the \textit{ethernet1} in \textit{router4} only. Since our hosts started \lstinline{routed} at boot-up time, no further action is needed to run RIP on the hosts. \footnote{The lab instructor should make sure that the IP-Forwarding function is enabled in each host.}
-    Configure network router and host’s as \hyperref[fig:4.11]{Figure~4.11}. Since our host’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each host.
+    Configure network router and host’s as \hyperref[fig:4.11]{Figure~4.11}.
+    Since our host’s don’t have \lstinline{routed} package, you need to add route for subnet \textit{128.238.0.0/16} to each host.
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -207,7 +215,8 @@ tcpdump -x -s 100 -c 4 udp port 520
     Was a RIP packet forwarded by the routers?
     Why?
     
-    \item Draw the format of one of the saved RIP response packets from your sub-net, including the IP and UDP headers and the RIP message (see Figs 0.13, 0.14, and 4.4). Identify each field, and express their values in decimal format.
+    \item Draw the format of one of the saved RIP response packets from your sub-net, including the IP and UDP headers and the RIP message (see Figs 0.13, 0.14, and 4.4).
+    Identify each field, and express their values in decimal format.
     
     \item For the other seven RIP response packets collected, explain the contents of the RIP messages only, excluding IP and UDP headers.
 
@@ -269,7 +278,8 @@ route add -net remote-subnet gw gateway-ip   # with default gateway
         
         \item Identify every field in the ICMP redirect message (see \hyperref[fig:4.2]{Figure~4.2}).
         
-        \item Compare the original routing table with the new routing table. Explain the meaning of the flags of the new entry.
+        \item Compare the original routing table with the new routing table.
+    Explain the meaning of the flags of the new entry.
     \end{report}
 
 \section{ICMP router discovery}\label{sec:ICMPRD}
@@ -317,7 +327,7 @@ Router(config-router)# network address wildcard-mask area area-id
 \end{itemize}
  
     The above commands are required to configure OSPF, while other tasks (configuring interface parameters, configuring area parameters, etc.) are optional.
-    For more information on other configuration tasks, refer to the router manual. 
+    For more information on other configuration tasks, refer to the router manual.
 
     Consider \hyperref[fig:4.13]{Figure~4.13} for our OSPF experiment.
 
@@ -390,7 +400,7 @@ Router(config-router)# network address wildcard-mask area area-id
 
 \section{OSPF Messages}
     After connecting the cables properly, change the host IP addresses as given in \hyperref[fig:4.13]{Figure~4.13}.
-    Note that the router interfaces are set as \hyperref[fig:4.13]{Figure~4.13} by default. 
+    Note that the router interfaces are set as \hyperref[fig:4.13]{Figure~4.13} by default.
 
     Run the following command to capture any OSPF packets: 
     \begin{lstlisting}
@@ -398,17 +408,17 @@ tcpdump -x -s 120 ip proto 89
     \end{lstlisting}
 
     Login to a directly connected router and start the OSPF process.
-    Set the argument \textit{area-id} to 1 for all the routers. 
+    Set the argument \textit{area-id} to 1 for all the routers.
 
     % The hosts in our lab run \lstinline{routed} (which uses RIP).
     % The routing daemon supporting OSPF, \lstinline{gated}, is not installed.
     In order to reach the routers and hosts in the other subnets, you need to add a default router in your host’s routing table.
 
     Examine the routing table in each router (see Section~4.3 of reference book.).
-    When the routing table gets an entry for the network that is not directly connected, kill the \lstinline{tcpdump} process and save the \lstinline{tcpdump} output. 
+    When the routing table gets an entry for the network that is not directly connected, kill the \lstinline{tcpdump} process and save the \lstinline{tcpdump} output.
 
     Collect the \lstinline{tcpdump} outputs from other subnets.
-    Study the various types of OSPF packets from the \lstinline{tcpdump} outputs. 
+    Study the various types of OSPF packets from the \lstinline{tcpdump} outputs.
 
     You can display OSPF information in a router using the following commands in the \textit{Privileged EXEC} mode.
     \begin{lstlisting}[language={cisco}]
@@ -429,20 +439,20 @@ show ip ospf virtual-links
     In this experiment, we reuse the network as shown in \hyperref[fig:4.13]{Figure~4.13}.
 \section{Static routing}
     After checking the wiring, as shown in \hyperref[fig:4.13]{Figure~4.13}, reboot the routers to restore their initial settings.
-    Check the IP addresses of the hosts as shown in \hyperref[fig:4.13]{Figure~4.13}. 
+    Check the IP addresses of the hosts as shown in \hyperref[fig:4.13]{Figure~4.13}.
 
     Remove all the routing entries other than your own subnet and the loopback interface from your host routing table.
-    Save the output of \lstinline{netstat -rn} before building your host’s routing table. 
+    Save the output of \lstinline{netstat -rn} before building your host’s routing table.
 
-    Examine \hyperref[fig:4.13]{Figure~4.13} and build your host’s static routing table manually. 
+    Examine \hyperref[fig:4.13]{Figure~4.13} and build your host’s static routing table manually.
 
     Open console of the routers and save its routing table before building any route.
     Save the routing table of the other router if you have one more router connected directly.
-    In this case, copy the initial routing table of these routers from students in other subnets later. 
+    In this case, copy the initial routing table of these routers from students in other subnets later.
 
     Now configure the routing table in each router.
     See Section 4.3 for commands and syntax on manipulating router routing tables.
-    Note that each router should be configured by one person only. 
+    Note that each router should be configured by one person only.
 
     \begin{lstlisting}[language={cisco}, emph={network, net-mask, next-hup}]
 ip route network net-mask next-hup
@@ -460,14 +470,14 @@ ip route network net-mask next-hup
 
 \part{\texttt{traceroute} Experiment}\label{sec:traceroute}
 \section{\texttt{traceroute} multi-hop path}
-    Execute \lstinline[emph={your-host, remote-host}]{tcpdump -env host your-host and remote-host} on your host, where \textit{remote-host} is a host at least two hops away. 
+    Execute \lstinline[emph={your-host, remote-host}]{tcpdump -env host your-host and remote-host} on your host, where \textit{remote-host} is a host at least two hops away.
 
-    Then, execute \lstinline[emph={your-host, remote-host}]{traceroute remote-host} to find the route from your host to the remote host. 
+    Then, execute \lstinline[emph={your-host, remote-host}]{traceroute remote-host} to find the route from your host to the remote host.
 
     Save the output of both \lstinline{traceroute} and \lstinline{tcpdump}.
 
     \begin{report}
-    \item Submit what you saved in this exercise. 
+    \item Submit what you saved in this exercise.
 
     \item From the \lstinline{tcpdump} output, explain how the multi-hop route was found.
     Explain the sequence of the ICMP messages used.
