@@ -93,13 +93,18 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     Ping a broadcast address using \lstinline{ping -b 128.238.66.255}.
     Examine the \lstinline{ping} output to see which hosts reply.
 
-    % You can enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
+    You can see and change broadcast ping replay state by:
+    \begin{lstlisting}[emph=eth0]
+cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts      # see the os config
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1
+    \end{lstlisting}
     
     \begin{report}
     \item Which hosts replied when the multicast address was pinged?
     Which hosts replied when the broadcast address was pinged?
+    Verify you answers with hosts config \path{/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
 
-    \item In each case, was there a reply from your host?
+    \item In each case, was there a reply from \textit{h0} and \textit{h1}?
     \end{report}
 
 \section{Multicast vs Unicast}
@@ -492,7 +497,11 @@ mstat
 ping
 \end{lstlisting}
     
-    \end{subappendices}
+\end{subappendices}
+
+\section{Wikipedia}
+    You can reed more about multicast address in \href{https://en.wikipedia.org/wiki/Multicast_address}{wikipedia}.
+
 \end{appendices}
 
 
