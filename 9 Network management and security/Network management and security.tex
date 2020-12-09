@@ -236,7 +236,7 @@ iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     Create a new private key for the Apache server, using:
     \begin{lstlisting}
 cd /etc/apache2/ssl
-openssl genrsa 2048 > server.key
+openssl genrsa 4096 > server.key
     \end{lstlisting}
     To create a self-signed certificate, go to the \path{/etc/apache2/ssl/} directory, and execute:
     \begin{lstlisting}
@@ -250,7 +250,7 @@ openssl req -new -x509 -sha256 -days 365 -key server.key -out server.crt
     \footnote{You can use simple command as \lstinline{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config.}
     \begin{lstlisting}
 cd /etc/apache2/ssl
-openssl req -new -x509 -sha256 -days 365 -newkey rsa:2048 -nodes -keyout server.key -out server.crt
+openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.key -out server.crt
     \end{lstlisting}
 
         Let's go over exactly what this means.
