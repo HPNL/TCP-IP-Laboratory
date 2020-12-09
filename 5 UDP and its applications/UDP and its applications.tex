@@ -119,6 +119,10 @@ socket -u -i -n1 -w size host echo@
     \begin{lstlisting}[language={cisco}]
 R1(config-if)# ip unreachables ! enables the router to send ICMP unreachable errors
 R1(config-if)# ip mtu 500
+! this command set ip layer mtu size
+! the real packet has 20 byte ip header (or more depend on options value)
+R1(config-if)# mtu 500 ! may be not supported (can see: mtu ?)
+! this command set ethernet layer mtu size
     \end{lstlisting}
 
     Test connectivity by \lstinline{ping}ing hosts in the other subnets.
