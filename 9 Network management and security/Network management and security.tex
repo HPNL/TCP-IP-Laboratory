@@ -62,11 +62,11 @@
         \end{minipage}
     \end{center}
 
-    Before the lab, you should:
+    Before the lab, you should do this instructions on \textit{h0}:
     \begin{enumerate}
         \item Backup the original \lstinline{snmpd} configuration file:
         \lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}.
-        \item Create a simple configuration file \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community \textbf{guest}:
+        \item Create a simple configuration file\footnote{Can use \lstinline{echo "some text" > otuput.file}} \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community \textbf{guest}:
         \begin{lstlisting}[language={conf}, emph={guest}]
 rocommunity guest
         \end{lstlisting}
@@ -89,12 +89,13 @@ rocommunity guest
     \item What is the community name used in this lab? What is the use of the
     community name?
     
-    \item What is the data type for the MIB object \texttt{ifMtu.2}? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
+    \item What is the data type for the MIB object \texttt{ifMtu.\textit{x}}\footnote{$1$ for \textit{loopback}, otherwise it point to other \textit{interfaces}} ($x \in \{2,3,4,\cdots\}$)? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
     
     \item What is the data type and definition of \texttt{tcpRtoAlgorithm}? What values are allowed for \texttt{tcpRtoAlgorithm}? What is the definition of \texttt{tcpMaxConn}?
     \end{report}
 
 \section{SNMP List Objects}
+    On \textit{h0},
     Use \lstinline[emph=guest]{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
 
     Use \lstinline[emph=guest]{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
@@ -107,7 +108,7 @@ rocommunity guest
     Can you display the MIBs this time?
     
     \begin{report}
-    \item What is the MTU of the Ethernet interface? What is the MTU of the loopback interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
+    \item What is the MTU of the Ethernet interface? What is the MTU of the \textit{loopback} interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
     
     \item Why did the \lstinline{snmpwalk} command with a community name public fail?
     \end{report}
@@ -115,7 +116,7 @@ rocommunity guest
 \section{SNMP Remote Access}
     Execute \lstinline{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
 
-    Run from \textit{h1} host \lstinline[emph={h0}]{telnet h0 echo} (use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}) and while telnet is running, try again to run \lstinline{snmpwalk -v 2c -c guest localhost tcp} on \textit{h0}.
+    Run from \textit{h1} host \lstinline[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}} and while telnet is running, try again to run \lstinline{snmpwalk -v 2c -c guest localhost tcp} on \textit{h0}.
 
     Try to run \lstinline[emph={h0}]{snmpwalk -v 2c -c guest h0 tcp} from \textit{h2}.
 
@@ -129,7 +130,7 @@ rocommunity guest
     \begin{report}
     \item What is the port number used by the SNMP agent?
     
-    \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.2}? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstinline{ifconfig} output.
+    \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.\textit{x}} ($x \in \{2,3,4,\cdots\}$)? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstinline{ifconfig} output.
     
     \item Draw the format of one of the SNMP messages saved, including the name and value of each field.
     \end{report}
@@ -139,7 +140,7 @@ rocommunity guest
 \section{Plain Transfer}
     Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} to capture packets between your machine and a remote machine.
 
-    Execute \lstinline[emph={remote-host}]{ftp remote-host} .
+    Execute \lstinline[emph={h0,netlab}]{ftp h0.netlab} on \textit{h1}.
     When prompted, type \textit{1111} for the login ID, and \textit{2222} for the login password.
     Then terminate \lstinline{tcpdump} and \lstinline{ftp}.
 
@@ -156,15 +157,15 @@ rocommunity guest
     \end{report}
 
 \section{Secure Transfer}
-    Start \lstinline{ssh} service on target machine by \lstinline{service ssh start}.
+    Start \lstinline{ssh} service on \textit{h0} by \lstinline{service ssh start}.
     
     Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} host your host and remote host to capture packets between your machine and a remote machine.
 
-    Execute \lstinline[emph={your-host, remote-host}]{sftp remote-host}.
-    When prompted, type \textit{yes} to continue the connection and \textit{1111} for the login password.
+    Execute \lstinline[emph={1111,h0,1111@h0,netlab},escapechar=]{sftp 1111@h0.netlab} on \textit{h1}.
+    When prompted for \textit{The authenticity of host}, type \textit{yes} to continue the connection and type \textit{2222} for the login password.
     Then terminate \lstinline{tcpdump}.
 
-    Use \lstinline{wireshark} to analyze and print one or two \lstinline{SSH} packets for the lab report.
+    Use \lstinline{wireshark} to analyze and print one or two \lstinline{ssh} packets for the lab report.
 
     Repeat the above experiment, but use \lstinline{ssh} and the \lstinline{wireshark} to analyze and print output.
 
@@ -184,25 +185,25 @@ rocommunity guest
     You can use Figure~1.3.
 
 \section{Firewall Basic}
-    Execute \lstinline{iptables -L -v} to list the existing rules in the filter table.
+    Execute \lstinline{iptables -L -v} to list the existing rules in the filter table on \textit{h0}.
     Save the output for the lab report.
 
-    Append a rule to the end of the \texttt{INPUT} chain, by executing
+    Append a rule to the end of the \texttt{INPUT} chain, by executing on \textit{h0}
     \begin{lstlisting}
 iptables -A INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
-    Run \lstinline{iptables -L -v} again on both hosts to display the filter table.
+    Run \lstinline{iptables -L -v} again on \textit{h0} and \textit{h1} to display the filter table.
     Save the output.
 
-    On both machines, execute \lstinline{tcpdump}.
-    Then, \lstinline{telnet} to the host where the rule is set from the remote machine.
+    On \textit{h0} and \textit{h1}, execute \lstinline{tcpdump}.
+    Then, \lstinline{telnet} to the host where the rule is set (\textit{h0}), from the remote machine (\textit{h1}).
     Save the \lstinline{tcpdump} output for the lab report.
 
     \begin{report}
-    \item Can you \lstinline{telnet} to the host from the remote machine?
+    \item Can you \lstinline{telnet} to \textit{h0} from the remote machine (\textit{h1})?
     
-    \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential backoff algorithm of TCP timeout and retransmission.
+    \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential \textbf{backoff algorithm} of TCP timeout and retransmission.
     \end{report}
     
 \section{Firewall Action}
@@ -233,7 +234,7 @@ iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
 \section{Generate Certificate}
     Run \lstinline{man openssl} to study the OpenSSL command line tool.
 
-    Create a new private key for the Apache server, using:
+    Create a new private key on \textit{h0} for the Apache server, using:
     \begin{lstlisting}
 cd /etc/apache2/ssl
 openssl genrsa 4096 > server.key
@@ -273,26 +274,26 @@ openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.
 
     The questions portion looks something like this:
     {\small
-    \begin{lstlisting}[language={conf},emph={IR,Tehran,University, of, ECE, Department,ece,ut,ac,ir,netlab,}]
+    \begin{lstlisting}[language={conf},emph={IR,Tehran,University, of, ECE, Department,ece,ut,ac,ir,netlab,netlab@ut},escapechar=]
 Country Name (2 letter code) [AU]:IR 
 State or Province Name (full name) [Some-State]:Tehran 
 Locality Name (eg, city) []:Tehran 
 Organization Name (eg, company) [Internet Widgits Pty Ltd]:University of Tehran 
 Organizational Unit Name (eg, section) []:ECE Department 
 Common Name (e.g.\ server FQDN or YOUR name) []:ece.ut.ac.ir
-Email Address []:netlab@ut.ac.ir 
+Email Address []:netlab@ut.ac.ir
     \end{lstlisting}}
 
     Save the output for the lab report.
 
 \section{HTTPS Handshake and Request}
-    Restart the Apache server to load the new key and the new certification: \lstinline{service apache2 restart}.
+    Restart the Apache server to load the new key and the new certification: \lstinline{service apache2 restart} on \textit{h0}.
 
     Execute \lstinline{wireshark} to capture the packets between your host and a remote host.
 
     On the remote host, start the \textit{Mozilla} web browser.
-    After typing in the URL \url{https://your-host}, a dialog window titled \textit{Connection is not not secure} or \textit{Website Certified by an Unknown Authority} will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue.
-    Add "Certificate" to exceptions and continue browsing.
+    After typing in the URL \url{https://h0.netlab}, a dialog window titled \textit{Potential Security Risk Ahead} or \textit{Website Certified by an Unknown Authority} will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue.
+    Add "Certificate" to exceptions and continue browsing in \textit{Advanced...} section and click on \textit{Accept the Risk and Continue}.
 
     Click the \textit{View Certificate} button.
     Then a \textit{Certificate Viewer} window pops up, displaying detailed information about the received certificate.
@@ -365,8 +366,8 @@ goaccess -a > /var/www/html/report.html
     Save the output for the lab report.
     \begin{itemize}
         \item \lstinline{service --status-all}
-        \item \lstinline{systemctl list-units --type=service --state=running}
-        \item \lstinline{systemctl list-unit-files --type service --state=enabled}
+        \item \lstinline{systemctl list-units --type=service --state=running} (\textit{Not work on} \lstinline{docker})
+        \item \lstinline{systemctl list-unit-files --type service --state=enabled} (\textit{Not work on} \lstinline{docker})
     \end{itemize}
     
     \begin{report}
