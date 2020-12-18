@@ -76,14 +76,14 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     Save the new routing table.
     
     \begin{report}
-    \item Submit the routing table you saved.
+        \item Submit the routing table you saved.
     \end{report}
 
 \section{Multicast Membership}
     Execute \lstinline{netstat -g} to show the multicast group memberships for all the interfaces in your host (for example \textit{h1}).
     
     \begin{report}
-    \item How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
+        \item How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
     \end{report}
 
 \section{Multicast \texttt{ping}}
@@ -100,11 +100,11 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1
     \end{lstlisting}
     
     \begin{report}
-    \item Which hosts replied when the multicast address was pinged?
-    Which hosts replied when the broadcast address was pinged?
-    Verify you answers with hosts config \path{/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
+        \item Which hosts replied when the multicast address was pinged?
+            Which hosts replied when the broadcast address was pinged?
+            Verify you answers with hosts config \path{/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
 
-    \item In each case, was there a reply from \textit{h0} and \textit{h1}?
+        \item In each case, was there a reply from \textit{h0} and \textit{h1}?
     \end{report}
 
 \section{Multicast vs Unicast}
@@ -122,11 +122,11 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1
     Save the frames captured for the lab report.
 
     \begin{report}
-    \item Compare the source and destination MAC addresses of the frames you captured.
+        \item Compare the source and destination MAC addresses of the frames you captured.
 
-    \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
-    For the two multicast frames captured, do they have the same destination MAC address?
-    Why?
+        \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
+            For the two multicast frames captured, do they have the same destination MAC address?
+            Why?
     \end{report}
 
 \section{Simple UDP Multicast Client and Server}
@@ -148,12 +148,12 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1
     Save the captured multicast datagram sent by \lstinline{netspyd} and exit the \lstinline{telnet} (or \lstinline{ssh}) session.
 
     \begin{report}
-    \item From the \lstinline{tcpdump} output, how many messages are sent by \lstinline{netspyd} when a new user logged in to \textit{h0}?
-    From the \lstinline{netspy} outputs on all the hosts, how many copies of the message are received in total?
+        \item From the \lstinline{tcpdump} output, how many messages are sent by \lstinline{netspyd} when a new user logged in to \textit{h0}?
+            From the \lstinline{netspy} outputs on all the hosts, how many copies of the message are received in total?
 
-    \item Did \textit{h0}, where the multicast sender, \lstinline{netspyd}, was running, receive the multicast datagram?
-    Why?
-    If yes, through which interface did \textit{h0} receive this datagram?
+        \item Did \textit{h0}, where the multicast sender, \lstinline{netspyd}, was running, receive the multicast datagram?
+            Why?
+            If yes, through which interface did \textit{h0} receive this datagram?
     \end{report}
 
 \section{\texttt{ping} Replay}
@@ -255,9 +255,9 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1
     Now, login to \textit{h1} from \textit{h2} in your group, then logout.
     
     \begin{report}
-    \item Can you ping a host on the other side of the router?
-    Will the router forward a multicast IP datagram to the other side?
-    Justify your answers.
+        \item Can you ping a host on the other side of the router?
+            Will the router forward a multicast IP datagram to the other side?
+            Justify your answers.
     \end{report}
 
 \section{IGMP Types}
@@ -272,10 +272,10 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1
     Terminate the \lstinline{tcpdump} programs and analyze the IGMP leave message you captured.
     
     \begin{report}
-    \item What is the value of the Time-to-Live (TTL) field for the IGMP messages?
-    Why do we not set the TTL to a larger number?
+        \item What is the value of the Time-to-Live (TTL) field for the IGMP messages?
+            Why do we not set the TTL to a larger number?
 
-    \item What is the default frequency at which the router sends IGMP queries?
+        \item What is the default frequency at which the router sends IGMP queries?
     \end{report}
 
 \section{Router Join to Multicast-Group}
@@ -286,7 +286,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
     \end{lstlisting}
     
     \begin{report}
-    \item Explain why the above command fails.
+        \item Explain why the above command fails.
     \end{report}
 
 \part{Multicast Routing Exercises}\label{sec:multicast-routing}
@@ -368,10 +368,11 @@ Router(interface)# ip igmp join-group 224.0.0.2
     % Note that most of the router interfaces use their default IP addresses, only the \textit{ethernet0} interface of Router4 needs to be changed to 128.238.63.4.
 
     Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).
-
     Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}).
+    All routers pre-configured in \textit{GN3} \hyperref[fig:7.14]{Figure~7.14}
 
-    Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on all the hosts.
+    Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on all subnet (at least one host).
+    Maybe you need to restart (or reload) routers to capture all packet from start state.
 
     Execute \lstinline{./netspy 224.111.111.111 1500} on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}.
 
@@ -383,6 +384,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
     Can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet in the \lstinline{tcpdump} output? 
 
     Terminate the \lstinline{netspy} program on \textit{h6} (or \textit{h0}).
+
     Can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet?
     \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
     In this case, the membership record in the router expires in 120 seconds.
@@ -393,7 +395,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
     What is the destination IP address used in this PIM routing packet?
     
     \begin{report}
-    \item Answer the above questions.
+        \item Answer the above questions.
     \end{report}
 
 \section{Multicast Tree}
@@ -401,7 +403,11 @@ Router(interface)# ip igmp join-group 224.0.0.2
     The \lstinline[language={cisco}]{mstat} command is executable in the \textit{Privileged EXEC} mode.
     You can always type \lstinline[language={cisco}]{?} to get help on the syntax of the command.
 
-    Generate multicast packet when execute command for specific source.
+    Generate multicast packet when execute command for \textit{h4}.
+
+    \begin{report}
+        \item Report the \lstinline[language={cisco}]{mstat} output for \textit{h4} on \textit{R1}.
+    \end{report}
 
 \section{Multicast TTL}
     Keep \lstinline{netspy} running on all the hosts.
@@ -427,9 +433,9 @@ Router(interface)# ip multicast ttl-threshold 32
     Answer the same question.
     
     \begin{report}
-    \item Answer the above questions.
-    
-    \item What is the use of the TTL threshold in the router interface?
+        \item Answer the above questions.
+        
+        \item What is the use of the TTL threshold in the router interface?
     \end{report}
 
 \part{Multicast Video Streaming Exercise}
