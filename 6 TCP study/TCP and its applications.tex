@@ -14,11 +14,11 @@
     Save the \lstinline{tcpdump} output.
     
     \begin{report}
-    \item Explain TCP connection establishment and termination using the \lstinline{tcpdump} output.
-    
-    \item What were the announced MSS values for the two hosts?
-    
-    \item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
+        \item Explain TCP connection establishment and termination using the \lstinline{tcpdump} output.
+        
+        \item What were the announced MSS values for the two hosts?
+        
+        \item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
     See if the \texttt{DF}\footnote{Don't Fragment} flag was set in \lstinline{tcpdump} output.
     You can change interface \texttt{MTU} with \lstinline[emph=$eth]{sudo ifconfig $eth mtu 1400}
     \end{report}
@@ -54,23 +54,23 @@ telnet host
     {Save} the \lstinline{tcpdump} output for your lab report.
     
     \begin{report}[{Answer the following questions, based upon the \lstinline{tcpdump} output saved in the above exercise.}]
-    \item What is a delayed acknowledgement?
-    What is it used for?
-    
-    \item Can you see any delayed acknowledgements in your \lstinline{tcpdump} output?
+        \item What is a delayed acknowledgement?
+            What is it used for?
+        
+        \item Can you see any delayed acknowledgements in your \lstinline{tcpdump} output?
 
-    If yes, explain the reason.
-    Mark some of the lines with delayed acknowledgements, and submit the \lstinline{tcpdump} output with your report.
+            If yes, explain the reason.
+            Mark some of the lines with delayed acknowledgements, and submit the \lstinline{tcpdump} output with your report.
 
-    Explain how the delayed ACK timer operates from your \lstinline{tcpdump} output.
+            Explain how the delayed ACK timer operates from your \lstinline{tcpdump} output.
 
-    If you don’t see any delayed acknowledgements, explain the reason why none was observed.
-    
-    \item What is the \textit{Nagle}\footnote{Nagle Algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.} algorithm used for?
+            If you don’t see any delayed acknowledgements, explain the reason why none was observed.
+        
+        \item What is the \textit{Nagle}\footnote{Nagle Algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.} algorithm used for?
 
-    From your \lstinline{tcpdump} output, can you tell whether the \textit{Nagle} algorithm is enabled or not? Give the reason for your answer.
+            From your \lstinline{tcpdump} output, can you tell whether the \textit{Nagle} algorithm is enabled or not? Give the reason for your answer.
 
-    From your \lstinline{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your host to the remote machine?
+            From your \lstinline{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your host to the remote machine?
     \end{report}
 
 \part{Exercise on TCP Bulk Data Flow}
@@ -88,16 +88,16 @@ socket -i -n16 remote-host 7777
     Save all the \lstinline{tcpdump} outputs for your lab report.
     
     \begin{report}
-    \item Using one of three \lstinline{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements.
-            Does the number of data segments differ from that of their acknowledgements?
+        \item Using one of three \lstinline{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements.
+                Does the number of data segments differ from that of their acknowledgements?
 
-    Compare all the \lstinline{tcpdump} outputs you saved.
-    Discuss any differences among them, in terms of data segments and their acknowledgements.
-    
-    \item From the \lstinline{tcpdump} output, how many different TCP flags can you see? Enumerate the flags and explain their meanings.
+            Compare all the \lstinline{tcpdump} outputs you saved.
+            Discuss any differences among them, in terms of data segments and their acknowledgements.
+        
+        \item From the \lstinline{tcpdump} output, how many different TCP flags can you see? Enumerate the flags and explain their meanings.
 
-    How many different TCP options can you see?
-    Explain their meanings.
+            How many different TCP options can you see?
+            Explain their meanings.
     \end{report}
 
 \part{Exercises on TCP Timers and Retransmission}
@@ -105,9 +105,9 @@ socket -i -n16 remote-host 7777
     Execute \lstinline{sysctl -A | grep keepalive} to display the default values of the TCP kernel parameters that are related to the TCP keepalive timer.
 
     \begin{report}
-    \item What is the default value of the TCP keepalive timer?
-    
-    \item What is the maximum number of TCP keepalive probes a host can send?
+        \item What is the default value of the TCP keepalive timer?
+        
+        \item What is the maximum number of TCP keepalive probes a host can send?
     \end{report}
 
 \section{TCP Retransmission}
@@ -137,13 +137,13 @@ ifconfig eth0 up
     When all the data segments are sent, save the \lstinline{tcpdump} output for the lab report.
     
     \begin{report}
-    \item Submit the \lstinline{tcpdump} output saved in this exercise.
-    
-    \item From the \lstinline{tcpdump} output, identify when the cable was disconnected.
-    
-    \item Describe how the retransmission timer changes after sending each retransmitted packet, during the period when the cable was disconnected.
-    
-    \item Explain how the number of data segments that the sender transmits at once (before getting an ACK) changes after the connection is reestablished.\footnote{Can see TCP \textbf{window scale} option and \textbf{RTT}}.
+        \item Submit the \lstinline{tcpdump} output saved in this exercise.
+        
+        \item From the \lstinline{tcpdump} output, identify when the cable was disconnected.
+        
+        \item Describe how the retransmission timer changes after sending each retransmitted packet, during the period when the cable was disconnected.
+        
+        \item Explain how the number of data segments that the sender transmits at once (before getting an ACK) changes after the connection is reestablished.\footnote{Can see TCP \textbf{window scale} option and \textbf{RTT}}.
     \end{report}
     
 \part{Other Exercises}
@@ -157,9 +157,9 @@ socket -i -n1 -w n remote-host echo
     As an example, you may use $n = 70080$.
 
     \begin{report}
-    \item Did you observe any IP fragmentation?
-        
-    \item If IP fragmentation did not occur this time, how do you explain this compared to what you observed in previous lab session for UDP packets?
+        \item Did you observe any IP fragmentation?
+            
+        \item If IP fragmentation did not occur this time, how do you explain this compared to what you observed in previous lab session for UDP packets?
     \end{report}
 
 \section{Linux TCP/IP Kernel Parameter}
@@ -168,13 +168,13 @@ socket -i -n1 -w n remote-host echo
     Examine the configuration files in the \path{/proc/sys/net/ipv4} directory.
 
     \begin{report}
-    \item Explain what is \lstinline{sysctl} command for?
-        
-    \item Explain two arbitrary TCP/IP configuration parameters.
-            What is their default values?
-        
-    \item Name two arbitrary file in the \path{/proc/sys/net/ipv4} directory.
-            What is their content?
+        \item Explain what is \lstinline{sysctl} command for?
+            
+        \item Explain two arbitrary TCP/IP configuration parameters.
+                What is their default values?
+            
+        \item Name two arbitrary file in the \path{/proc/sys/net/ipv4} directory.
+                What is their content?
     \end{report}
 
 \end{document}

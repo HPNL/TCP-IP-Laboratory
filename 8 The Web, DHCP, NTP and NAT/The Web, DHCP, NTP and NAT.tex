@@ -20,12 +20,12 @@
     Save the output and the configuration file for the lab report.
     
     \begin{report}
-    \item How many \lstinline{apache2} processes were started?
-    Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textbf{tree} to see process hierarchy})
-    Justify your answer using the \textbf{apache2} configurations file.
-    Explain your answer with value of \textit{Startservers, MinSpareServers, MaxSpareServers, MaxRequestWorkers, ServerLimit, MaxconnectionsPerChild}\footnote{Need to read \textit{Apache} web documents}.
-    
-    \item What is the purpose of initiating multiple apache2 processes?
+        \item How many \lstinline{apache2} processes were started?
+            Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textbf{tree} to see process hierarchy})
+            Justify your answer using the \textbf{apache2} configurations file.
+            Explain your answer with value of \textit{Startservers, MinSpareServers, MaxSpareServers, MaxRequestWorkers, ServerLimit, MaxconnectionsPerChild}\footnote{Need to read \textit{Apache} web documents}.
+        
+        \item What is the purpose of initiating multiple apache2 processes?
     \end{report}
 
 \section{HTTP Request}
@@ -50,7 +50,7 @@ User-Agent: HTTPTool/1.0
     Use \textit{Mozilla} to view the file.
     
     \begin{report}
-    \item Submit the HTTP request and response, including the start-lines and all the headers.
+        \item Submit the HTTP request and response, including the start-lines and all the headers.
     \end{report}
 
     
@@ -97,7 +97,7 @@ User-Agent: HTTPTool/1.0
     Save the HTTP request containing the data string for lab report.
 
     \begin{report}
-    \item Submit the data string sent to the server.
+        \item Submit the data string sent to the server.
     \end{report}
 
 \part{DHCP Exercises}
@@ -191,17 +191,17 @@ host h5 {
     \end{lstlisting}
 
     \begin{report}
-    \item Compare the DHCP operation captured by \lstinline{wireshark} and that shown by the DHCP server output.
-    Explain how DHCP works.
-    
-    \item Did \textit{h2} and \textit{h3} successfully obtain a set of new parameters?
-    Compare the \lstinline{ifconfig} and \lstinline{netstat} output with the parameters carried in the corresponding DHCP messages.
-    
-    \item Answer the above question for \textit{h4}.
-    Explain why \textit{h4} failed.
-    
-    \item Answer the above question for \textit{h5}.
-    Explain why \textit{h5} succeeded.
+        \item Compare the DHCP operation captured by \lstinline{wireshark} and that shown by the DHCP server output.
+            Explain how DHCP works.
+        
+        \item Did \textit{h2} and \textit{h3} successfully obtain a set of new parameters?
+            Compare the \lstinline{ifconfig} and \lstinline{netstat} output with the parameters carried in the corresponding DHCP messages.
+        
+        \item Answer the above question for \textit{h4}.
+            Explain why \textit{h4} failed.
+        
+        \item Answer the above question for \textit{h5}.
+            Explain why \textit{h5} succeeded.
     \end{report}
 
 \part{NTP exercises}
@@ -245,8 +245,8 @@ date -r $file-name
     You can choose any file in the current directory for the \textit{file-name} parameter.
     
     \begin{report}
-    \item Submit the \lstinline{date} outputs you saved.
-    Explain the use of the commands.
+        \item Submit the \lstinline{date} outputs you saved.
+            Explain the use of the commands.
     \end{report}
 
 \section{Remote Date}
@@ -255,12 +255,12 @@ date -r $file-name
     Save the \lstinline{wireshark} outputs for the lab report.
 
     \begin{report}
-    \item What port numbers were used by the remote machine?
-    What port numbers were used by the local host?
-    
-    \item How many bytes of data were returned by the remote time server, both in the UDP case and in the TCP case?
-    
-    \item What TCP header options were used?
+        \item What port numbers were used by the remote machine?
+            What port numbers were used by the local host?
+        
+        \item How many bytes of data were returned by the remote time server, both in the UDP case and in the TCP case?
+        
+        \item What TCP header options were used?
     \end{report}
 
 \section{NTP Sync}
@@ -276,8 +276,8 @@ date -r $file-name
     Save the \lstinline{ntpdate} and the \lstinline{wireshark} outputs for the lab report.
     
     \begin{report}
-    \item Which port does the NTP server use?
-    Justify your answer using the \lstinline{wireshark} output.
+        \item Which port does the NTP server use?
+            Justify your answer using the \lstinline{wireshark} output.
     \end{report}
 
 \section{** NTP Server}
@@ -298,12 +298,12 @@ date -r $file-name
     Execute \lstinline{ntptrace} to show the client/server relation of NTP.
 
     \begin{report}
-    \item Submit the NTP packet captured.
-    List the fields and their values.
-    
-    \item What was the rate at which NTP queries were sent by the client?
-    
-    \item Which stratum was your host in? Which stratum was the NTP server in?
+        \item Submit the NTP packet captured.
+            List the fields and their values.
+        
+        \item What was the rate at which NTP queries were sent by the client?
+        
+        \item Which stratum was your host in? Which stratum was the NTP server in?
     \end{report}
 
 \part{NAT Exercises}
@@ -373,7 +373,7 @@ date -r $file-name
     Save both outputs for the lab report.
 
     \begin{report}
-    \item How many entries were there in the translation table? Why?
+        \item How many entries were there in the translation table? Why?
     \end{report}
     
     \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in \hyperref[fig:8.7]{Figure~8.7} (Table~8.5)\label{tab:8.5}}]
@@ -411,13 +411,13 @@ config term
     Save the output for the lab report.
 
     \begin{report}
-    \item Answer the above questions.
-    Use the saved translation table to justify your answers.
-    
-    \item Compare the IP header of the ICMP query captured in the private network with that of the same ICMP query captured in the upper subnet, list their differences.
-    Explain how NAT works.
-    
-    \item In addition to the IP address, what else was changed in the ICMP query packet?
+        \item Answer the above questions.
+            Use the saved translation table to justify your answers.
+        
+        \item Compare the IP header of the ICMP query captured in the private network with that of the same ICMP query captured in the upper subnet, list their differences.
+            Explain how NAT works.
+        
+        \item In addition to the IP address, what else was changed in the ICMP query packet?
     \end{report}
 
 \section{NAT Table}
@@ -432,8 +432,8 @@ config term
     Save the output for the lab report.
 
     \begin{report}
-    \item Analyze the IP headers, the ICMP headers, and the ICMP payloads of the ICMP port unreachable errors captured in the private network and in the public network from the first experiment.
-    Explain how ICMP error was handled by the NAT router.
+        \item Analyze the IP headers, the ICMP headers, and the ICMP payloads of the ICMP port unreachable errors captured in the private network and in the public network from the first experiment.
+            Explain how ICMP error was handled by the NAT router.
     \end{report}
 
 \section{NAT and PAT}
@@ -454,9 +454,9 @@ config term
     Use \lstinline[language={cisco}]{show ip nat translations} to display and then save the translation table.
 
     \begin{report}
-    \item From the \lstinline{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
-    
-    \item With PAT, can you have two web servers in the private network?
+        \item From the \lstinline{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
+        
+        \item With PAT, can you have two web servers in the private network?
     If not, why?
     If yes, explain how this can be done.
     \end{report}

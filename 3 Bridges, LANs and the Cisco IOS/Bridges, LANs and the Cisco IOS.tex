@@ -108,13 +108,13 @@ Ctrl+Z
     For clean results, do your experiments in turn.
     
     \begin{report}
-    \item What are the IP and MAC addresses of a packet that went from your machine to the bridge?
-    What are the IP and MAC addresses of a packet that went from the router to your partner’s machine?
+        \item What are the IP and MAC addresses of a packet that went from your machine to the bridge?
+            What are the IP and MAC addresses of a packet that went from the router to your partner’s machine?
 
-    \item Answer the same questions, but for the echo reply that was returned from your partner’s machine.
-    
-    \item Using the \lstinline{tcpdump} outputs from both machines, calculate the average delay that a packet experienced in the bridge.
-    \footnote{Note that the system times of the two machines might be different.}
+        \item Answer the same questions, but for the echo reply that was returned from your partner’s machine.
+        
+        \item Using the \lstinline{tcpdump} outputs from both machines, calculate the average delay that a packet experienced in the bridge.
+            \footnote{Note that the system times of the two machines might be different.}
     \end{report}
 
     Show all the steps and submit the \lstinline{tcpdump} outputs with your report.
@@ -133,11 +133,11 @@ explain stp and bpdu
     These BPDUs will be helpful when studying the spanning tree algorithm later in this chapter.
 
     \begin{report}
-    \item How frequently (in seconds) does a bridge sends its BPDUs?
+        \item How frequently (in seconds) does a bridge sends its BPDUs?
 
-    \item Submit the two different BPDUs you saved.
-    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may check the physical addresses of network interfaces.
-    You need the MAC addresses to help analyze the BPDUs.} (may need to check BPDU message format \hyperref[fig:3.4]{Figure~3.4}).
+        \item Submit the two different BPDUs you saved.
+            Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may check the physical addresses of network interfaces.
+            You need the MAC addresses to help analyze the BPDUs.} (may need to check BPDU message format \hyperref[fig:3.4]{Figure~3.4}).
     \end{report}
 
     \begin{figure}[H]
@@ -254,7 +254,7 @@ explain stp and bpdu
     You may use the \lstinline[language={cisco}, emph={group}]{clear bridge group} command to remove any learned entries from the filtering database, if you see a full filtering database or if you want to repeat the above exercise.
 
     \begin{report}
-    \item From the output of \lstinline[language={cisco}]{show bridge}, identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.
+        \item From the output of \lstinline[language={cisco}]{show bridge}, identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.
     \end{report}
 
 \section{STP Process}
@@ -265,17 +265,17 @@ explain stp and bpdu
     Login to each bridge (or open \textbf{GNS3} router console) to collect the \lstinline[language={cisco}]{show bridge} outputs.
     
     \begin{report}
-    \item Submit the four different BPDUs (from four network sections) you saved.
-    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU.
+        \item Submit the four different BPDUs (from four network sections) you saved.
+            Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU.
 
-    \item Based upon the initial BPDUs saved in \nameref{sec:spanning-tree}, draw the spanning tree seen by the BPDUs (or explain root node and its child).
-    Identify the root ports and the root path cost (in hop counts) for each bridge.
-%    Identify the state of each bridge port (blocking or forwarding).
-    Based on Spanning tree algorithm section in the reference book (section 3.2.3 page 63), explain how root node selected?
+        \item Based upon the initial BPDUs saved in \nameref{sec:spanning-tree}, draw the spanning tree seen by the BPDUs (or explain root node and its child).
+            Identify the root ports and the root path cost (in hop counts) for each bridge.
+%           Identify the state of each bridge port (blocking or forwarding).
+            Based on Spanning tree algorithm section in the reference book (section 3.2.3 page 63), explain how root node selected?
 
-    \item Write the final BPDUs you collected using the three-tuple format: \textit{{root ID, root path cost, bridge ID}}.
+        \item Write the final BPDUs you collected using the three-tuple format: \textit{{root ID, root path cost, bridge ID}}.
 
-    \item Once you have the spanning tree, justify it using the four final BPDUs collected in this exercise and/or the output of the \lstinline[language={cisco}]{show bridge} command.
+        \item Once you have the spanning tree, justify it using the four final BPDUs collected in this exercise and/or the output of the \lstinline[language={cisco}]{show bridge} command.
     \end{report}
 
 
@@ -296,8 +296,8 @@ explain stp and bpdu
     Again, measure the time it takes for the bridges to adapt to the new change.
     
     \begin{report}
-    \item Draw the new tree formed after the cable was disconnected, based on the BPDUs you collected in this exercise.
-    Specify the state of each bridge port.
+        \item Draw the new tree formed after the cable was disconnected, based on the BPDUs you collected in this exercise.
+            Specify the state of each bridge port.
     \end{report}
 
 \part{Exercise on the Cisco~IOS Web Browser UI}
@@ -352,25 +352,25 @@ R1(config)# ip http authentication local
     It works as follows.
 
 \begin{enumerate}
-    \item Each bridge is assigned a unique identifier, and each port of a bridge is assigned an identifier unique to that bridge. Typically, the identifier of a bridge is a priority concatenated with one of the bridge ports’ MAC
-    address, and the identifier of a port is a priority concatenated with a port index local to the bridge.
-    Each bridge port has a corresponding path cost, which indicates the cost to transfer a frame to an attached network segment through that port.
+        \item Each bridge is assigned a unique identifier, and each port of a bridge is assigned an identifier unique to that bridge. Typically, the identifier of a bridge is a priority concatenated with one of the bridge ports’ MAC
+            address, and the identifier of a port is a priority concatenated with a port index local to the bridge.
+            Each bridge port has a corresponding path cost, which indicates the cost to transfer a frame to an attached network segment through that port.
 
-    \item Select the root bridge, which is the one with the lowest-value bridge identifier.
-    The ID of the root is called the root ID.
+        \item Select the root bridge, which is the one with the lowest-value bridge identifier.
+            The ID of the root is called the root ID.
 
-    \item Each bridge selects its root port.
-    The root port of a bridge is the port from which the root bridge can be reached with the least aggregate path cost (called the root path cost).
+        \item Each bridge selects its root port.
+            The root port of a bridge is the port from which the root bridge can be reached with the least aggregate path cost (called the root path cost).
 
-    \item Determine the designated bridges and the designated ports.
-    Each network segment is associated with a designated bridge, which provides the shortest path to the root bridge and is the only bridge allowed to forward frames to and from the root.
-    The port connecting a designated bridge to the network segment is a designated port.
-    If more than one bridge provides the same root path cost, the bridge with the lowest-valued bridge identifier is selected as the designated bridge.
+        \item Determine the designated bridges and the designated ports.
+            Each network segment is associated with a designated bridge, which provides the shortest path to the root bridge and is the only bridge allowed to forward frames to and from the root.
+            The port connecting a designated bridge to the network segment is a designated port.
+            If more than one bridge provides the same root path cost, the bridge with the lowest-valued bridge identifier is selected as the designated bridge.
 
-    \item Only the root ports and designated ports of the bridges are allowed to forward frames.
-    All other bridge ports are blocked.
-    
-    \item The above steps are repeated whenever the network topology changes.
+        \item Only the root ports and designated ports of the bridges are allowed to forward frames.
+            All other bridge ports are blocked.
+        
+        \item The above steps are repeated whenever the network topology changes.
 \end{enumerate}
 
 \section{Bridge Protocol Data Units}
@@ -381,7 +381,7 @@ R1(config)# ip http authentication local
 
     \begin{itemize}
         \item \textit{Protocol Identifier}, \textit{Version}, and \textit{Message Type}:
-        These three fields are always set to 0.
+            These three fields are always set to 0.
         
         \item \textit{Flags}: The least significant bit, called the Topology Change (TC) bit, is set to signal a topology change.
                 The most significant bit is to acknowledge receipt of a BPDU with the TC bit set.

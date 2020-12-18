@@ -73,11 +73,11 @@ ps -e | grep telnet
     Then use \lstinline[emph={process-id-of-telnet}]{kill process-id-of-telnet} to terminate the \lstinline{telnet} process.
     
     \begin{report}
-    \item What is Internet Service Daemon (\lstinline{inetd})?
+        \item What is Internet Service Daemon (\lstinline{inetd})?
 
-    \item Is \lstinline{inetd} started in your system? Why?
+        \item Is \lstinline{inetd} started in your system? Why?
 
-    \item Is \lstinline{xinetd} started in your system? What is its PID?
+        \item Is \lstinline{xinetd} started in your system? What is its PID?
     \end{report}
 
 \section{Default Network Services}
@@ -100,7 +100,7 @@ more /etc/services
     Save the output.
     
     \begin{report}
-    \item What are the sizes of files \path{ser-more}, \path{ser-cp}, and \path{ser-cat}?
+        \item What are the sizes of files \path{ser-more}, \path{ser-cp}, and \path{ser-cat}?
     \end{report}
 
 \section{Network Command Manual}
@@ -122,8 +122,8 @@ more /etc/services
     Throughout this lab you will use these commands rather extensively.
     
     \begin{report}
-    \item Explain the above commands briefly.
-    (Two or three sentences per command would be adequate.)
+        \item Explain the above commands briefly.
+            (Two or three sentences per command would be adequate.)
     \end{report}
 
 \section{Packet Capturing}
@@ -142,10 +142,10 @@ more /etc/services
     In GNS3 you can capture ans see packet with right click on wire and select \textit{Start Capture}.
     
     \begin{report}
-    \item What is the value of the \texttt{protocol} field in the IP header of the packet you saved?
-    What is the use of the \texttt{protocol} field?
+        \item What is the value of the \texttt{protocol} field in the IP header of the packet you saved?
+            What is the use of the \texttt{protocol} field?
 
-    \item What is the value of the \texttt{frame type} field in an Ethernet frame carrying an IP datagram?
+        \item What is the value of the \texttt{frame type} field in an Ethernet frame carrying an IP datagram?
     \end{report}
 
 \section{\texttt{ARPing}}
@@ -156,9 +156,9 @@ more /etc/services
     Now you should see several ARP replies in the \lstinline{arping} output.
     
     \begin{report}
-    \item What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively?
+        \item What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively?
 
-    \item What is the use of the \texttt{frame type} field?
+        \item What is the use of the \texttt{frame type} field?
     \end{report}
 
 \section{Packet Filtering}
@@ -174,7 +174,7 @@ more /etc/services
     (e.g.\ \lstinline{telnet}, \lstinline{ping}, etc.).
     
     \begin{report}
-    \item Explain briefly the purposes of the following \lstinline{tcpdump} expressions.
+        \item Explain briefly the purposes of the following \lstinline{tcpdump} expressions.
     \end{report}
 
     % todo: make sample traffic
@@ -203,9 +203,9 @@ telnet 128.238.66.102
     \end{lstlisting}
     
     \begin{report}
-    \item What are the port numbers used by the \textit{h1} (local machine) and \textit{h2} (remote machine)?
+        \item What are the port numbers used by the \textit{h1} (local machine) and \textit{h2} (remote machine)?
 
-    \item Which machine’s port number matches the port number listed for \lstinline{telnet} in the \path{/etc/services} file?
+        \item Which machine’s port number matches the port number listed for \lstinline{telnet} in the \path{/etc/services} file?
     \end{report}
 
 \section{Random Port}
@@ -218,12 +218,12 @@ telnet 128.238.66.102
     Check the port numbers being used on both sides of the two connections from the output in the \lstinline{wireshark} window.
 
     \begin{report}
-    \item When you have two \lstinline{telnet} sessions with your machine, what port number is used on the \textit{h2} (remote machine)?
+        \item When you have two \lstinline{telnet} sessions with your machine, what port number is used on the \textit{h2} (remote machine)?
 
-    \item Are both sessions connected to the same port number on the \textit{h2} (remote machine)?
+        \item Are both sessions connected to the same port number on the \textit{h2} (remote machine)?
 
-    \item What port numbers are used in \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
+        \item What port numbers are used in \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
 
-    \item Explain briefly what a \lstinline[language=bash]{socket} is.
+        \item Explain briefly what a \lstinline[language=bash]{socket} is.
     \end{report}
 \end{document}

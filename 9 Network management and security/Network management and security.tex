@@ -86,12 +86,12 @@ rocommunity guest
     Save these two files for the lab report.
 
     \begin{report}
-    \item What is the community name used in this lab? What is the use of the
-    community name?
-    
-    \item What is the data type for the MIB object \texttt{ifMtu.\textit{x}} ($x=1$ for \textit{loopback} and $x \in \{2,3,4,\cdots\}$ for other interfaces)? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
-    
-    \item What is the data type and definition of \texttt{tcpRtoAlgorithm}? What values are allowed for \texttt{tcpRtoAlgorithm}? What is the definition of \texttt{tcpMaxConn}?
+        \item What is the community name used in this lab? What is the use of the
+            community name?
+        
+        \item What is the data type for the MIB object \texttt{ifMtu.\textit{x}} ($x=1$ for \textit{loopback} and $x \in \{2,3,4,\cdots\}$ for other interfaces)? What is the definition of the MIB object \texttt{ifPhysAddress} and \texttt{ifInOctets}?
+        
+        \item What is the data type and definition of \texttt{tcpRtoAlgorithm}? What values are allowed for \texttt{tcpRtoAlgorithm}? What is the definition of \texttt{tcpMaxConn}?
     \end{report}
 
 \section{SNMP List Objects}
@@ -108,9 +108,9 @@ rocommunity guest
     Can you display the MIBs this time?
     
     \begin{report}
-    \item What is the MTU of the Ethernet interface? What is the MTU of the \textit{loopback} interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
-    
-    \item Why did the \lstinline{snmpwalk} command with a community name public fail?
+        \item What is the MTU of the Ethernet interface? What is the MTU of the \textit{loopback} interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
+        
+        \item Why did the \lstinline{snmpwalk} command with a community name public fail?
     \end{report}
 
 \section{SNMP Remote Access}
@@ -128,11 +128,11 @@ rocommunity guest
     Print the messages for the lab report.
     
     \begin{report}
-    \item What is the port number used by the SNMP agent?
-    
-    \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.\textit{x}} ($x \in \{2,3,4,\cdots\}$)? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstinline{ifconfig} output.
-    
-    \item Draw the format of one of the SNMP messages saved, including the name and value of each field.
+        \item What is the port number used by the SNMP agent?
+        
+        \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.\textit{x}} ($x \in \{2,3,4,\cdots\}$)? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstinline{ifconfig} output.
+        
+        \item Draw the format of one of the SNMP messages saved, including the name and value of each field.
     \end{report}
 
 \part{Exercises on Secure Applications}
@@ -149,11 +149,11 @@ rocommunity guest
     Repeat the above experiment, but use \lstinline{telnet} and the \lstinline{wireshark} to analyze and print output.
 
     \begin{report}
-    \item Can you see the login ID and the password in the \lstinline{ftp} experiment? Submit the two packets you printed.
-    
-    \item Can you see the login ID and the password in the \lstinline{telnet} experiment? Submit the packets you printed.
-    
-    \item What is the difference between \lstinline{ftp} and \lstinline{telnet} in their transmission of user ID’s and passwords? Which one is more secure?
+        \item Can you see the login ID and the password in the \lstinline{ftp} experiment? Submit the two packets you printed.
+        
+        \item Can you see the login ID and the password in the \lstinline{telnet} experiment? Submit the packets you printed.
+        
+        \item What is the difference between \lstinline{ftp} and \lstinline{telnet} in their transmission of user ID’s and passwords? Which one is more secure?
     \end{report}
 
 \section{Secure Transfer}
@@ -170,14 +170,14 @@ rocommunity guest
     Repeat the above experiment, but use \lstinline{ssh} and the \lstinline{wireshark} to analyze and print output.
 
     \begin{report}
-    \item In each experiment, can you extract the password from the \lstinline{tcpdump} output?
-    Can you read the IP, TCP, SSH headers?
-    Can you read the TCP data?
-    
-    \item What is the client protocol (and version) used in both cases?
-    
-    \item What is the port number used by the \lstinline{ssh} server?
-    What is the port number used by the sftp server? Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
+        \item In each experiment, can you extract the password from the \lstinline{tcpdump} output?
+            Can you read the IP, TCP, SSH headers?
+            Can you read the TCP data?
+        
+        \item What is the client protocol (and version) used in both cases?
+        
+        \item What is the port number used by the \lstinline{ssh} server?
+            What is the port number used by the sftp server? Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
     \end{report}
 
 \part{Exercises on Firewalls and \texttt{iptables}}
@@ -201,9 +201,9 @@ iptables -A INPUT -v -p TCP --dport 23 -j DROP
     Save the \lstinline{tcpdump} output for the lab report.
 
     \begin{report}
-    \item Can you \lstinline{telnet} to \textit{h0} from the remote machine (\textit{h1})?
-    
-    \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential \textbf{backoff algorithm} of TCP timeout and retransmission.
+        \item Can you \lstinline{telnet} to \textit{h0} from the remote machine (\textit{h1})?
+        
+        \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential \textbf{backoff algorithm} of TCP timeout and retransmission.
     \end{report}
     
 \section{Firewall Action}
@@ -223,8 +223,8 @@ iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     Save the \lstinline{wireshark} output for the lab report.
     
     \begin{report}
-    \item Explain the difference between the \lstinline{tcpdump} outputs of this exercise and the previous exercise.
-    How many attempts did {TCP} make this time?
+        \item Explain the difference between the \lstinline{tcpdump} outputs of this exercise and the previous exercise.
+            How many attempts did {TCP} make this time?
     \end{report}
 
 \part{Exercises on Secure Apache Server}
@@ -306,16 +306,16 @@ Email Address []:netlab@ut.ac.ir
     Use \lstinline{wireshark} to examine the operation of SSL.
 
     \begin{report}
-    \item What is the port number used by the secure Apache server?
-    
-    \item Compare the general information of the received certificate with the \lstinline{openssl} output saved in the previous exercise.
-    Are they consistent?
-    
-    \item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
-    
-    \item What is the \textit{Certificate Signature Algorithm} used to generate and distribute this certificate?
-    
-    \item When was the certificate signed? When will it expire?
+        \item What is the port number used by the secure Apache server?
+        
+        \item Compare the general information of the received certificate with the \lstinline{openssl} output saved in the previous exercise.
+            Are they consistent?
+        
+        \item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
+        
+        \item What is the \textit{Certificate Signature Algorithm} used to generate and distribute this certificate?
+        
+        \item When was the certificate signed? When will it expire?
     \end{report}
 
 \part{Exercises on Auditing and Intrusion Detection}
@@ -354,9 +354,9 @@ goaccess -a > /var/www/html/report.html
     Also click on the side panel to see other section.
 
     \begin{report}
-    \item List the most frequently visited pages at the local Apache server during the most recent month, respectively.
-    
-    \item List the web pages that have the most number of bytes transferred by the local during the most recent month, respectively.
+        \item List the most frequently visited pages at the local Apache server during the most recent month, respectively.
+        
+        \item List the web pages that have the most number of bytes transferred by the local during the most recent month, respectively.
     \end{report}
 
 \section{System Status}
@@ -371,6 +371,6 @@ goaccess -a > /var/www/html/report.html
     \end{itemize}
     
     \begin{report}
-    \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled in your host?
+        \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled in your host?
     \end{report}
 \end{document}

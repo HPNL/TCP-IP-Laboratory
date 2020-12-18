@@ -48,7 +48,7 @@ socket -i -n3 -w2048 server-host 5555
     \end{lstlisting}
 
     \begin{report}
-    \item Explain the operation of each command.
+        \item Explain the operation of each command.
     \end{report}
 
 \section{\texttt{socket -h}}
@@ -71,8 +71,8 @@ socket -u -i -n1 -w size remote-host echo
     Use \lstinline{netstat -in} to find out the MTU of the Ethernet interface.
 
     \begin{report}
-    \item What is the maximum value of \textit{size} for which the UDP datagram can be sent without IP fragmentation?
-    Justify your answer with the \lstinline{netstat} output.
+        \item What is the maximum value of \textit{size} for which the UDP datagram can be sent without IP fragmentation?
+            Justify your answer with the \lstinline{netstat} output.
     \end{report}
 
 \section{Datagram Fragmentation}
@@ -84,9 +84,9 @@ socket -u -i -n1 -w10000 host echo
     Save the \lstinline{tcpdump} output for the lab report.
     
     \begin{report}
-    \item Explain the \lstinline{tcpdump} output in terms of the IP header fields that are used in fragmentation.
+        \item Explain the \lstinline{tcpdump} output in terms of the IP header fields that are used in fragmentation.
 
-    \item When IP fragmentation occurs, only the first fragment has the UDP header.
+        \item When IP fragmentation occurs, only the first fragment has the UDP header.
     How do you verify this fact from the \lstinline{tcpdump} output?
     \end{report}
 
@@ -101,7 +101,7 @@ socket -u -i -n1 -w size host echo@
     in order to find out the maximum size of a UDP datagram that the system can send or receive, even when fragmentation is allowed.
 
     \begin{report}
-    \item What is the maximum size of user data in a UDP datagram that the system can send or receive, even when fragmentation is allowed?
+        \item What is the maximum size of user data in a UDP datagram that the system can send or receive, even when fragmentation is allowed?
     \end{report}
 
 
@@ -170,11 +170,11 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     Save the \lstinline{tcpdump} output for your lab report.
 
     \begin{report}
-    \item Explain the operation of path MTU discovery based on the \lstinline{tcpdump} outputs saved.
-    
-    \item Which ICMP message is used in path MTU discovery? Give the decimal value of each field of the captured ICMP message.
-    
-    \item What is the MTU of the destination network of the UDP datagram? Verify your answer using both the ICMP message and the IP fragmentation trace saved.
+        \item Explain the operation of path MTU discovery based on the \lstinline{tcpdump} outputs saved.
+        
+        \item Which ICMP message is used in path MTU discovery? Give the decimal value of each field of the captured ICMP message.
+        
+        \item What is the MTU of the destination network of the UDP datagram? Verify your answer using both the ICMP message and the IP fragmentation trace saved.
     \end{report}
 
 \part{Exercises with FTP and TFTP}
@@ -221,22 +221,22 @@ ftp> quit
     Restart the above \lstinline{tcpdump} session.
 
     \begin{report}
-    \item Examining the saved \lstinline{tcpdump} output.
-    Identify the starting and ending time of actual data transfer.
-    Don’t include the time spent establishing the TCP connection.
-    Calculate the time spent for data transfer.
+        \item Examining the saved \lstinline{tcpdump} output.
+            Identify the starting and ending time of actual data transfer.
+            Don’t include the time spent establishing the TCP connection.
+            Calculate the time spent for data transfer.
 
-    \item Compare the time with the value displayed in \lstinline{ftp} window.
-    Are they consistent?
-    If there exists any significant difference, what might be the reason? 
+        \item Compare the time with the value displayed in \lstinline{ftp} window.
+            Are they consistent?
+            If there exists any significant difference, what might be the reason? 
 
-    \item Now, from the second session, carefully determine the starting and ending time of data transfer for the \lstinline{tftp} program.
+        \item Now, from the second session, carefully determine the starting and ending time of data transfer for the \lstinline{tftp} program.
 
-    \item Compare the time with the value displayed in \lstinline{tftp} window.
-    Are they consistent?
-    If there exists any significant difference, what might be the reason? 
+        \item Compare the time with the value displayed in \lstinline{tftp} window.
+            Are they consistent?
+            If there exists any significant difference, what might be the reason? 
 
-    \item By comparing the actual data transfer times of \lstinline{ftp} and \lstinline{tftp}, which of these two is faster, and why?
+        \item By comparing the actual data transfer times of \lstinline{ftp} and \lstinline{tftp}, which of these two is faster, and why?
     \end{report}
 
 \section{TFTP Analysis}
@@ -250,9 +250,9 @@ tcpdump -x host your-host and remote-host
     
     \begin{report}
         \item List all the different types of packets exchanged during the \lstinline{tftp} session.
-        Compare them with the TFTP message format in \hyperref[fig:5.3]{Figure~5.3} of reference book.
+            Compare them with the TFTP message format in \hyperref[fig:5.3]{Figure~5.3} of reference book.
 
-        Why does the server’s port number change?
+            Why does the server’s port number change?
         
         \item In most cases, \lstinline{tftp} service is restricted.\footnote{This is not the case in our lab, where we deliberately enabled the \lstinline{tftp} service and use it as a tool to study the UDP protocol.}
         Why is \lstinline{tftp} service not generally available to users? At least write two problem of \lstinline{tftp} protocol.
@@ -285,9 +285,9 @@ tcpdump -x host your-host and remote-host
     Then type \lstinline{quit} to terminate the \lstinline{ftp} session, and save the \lstinline{ftp} window output.
     
     \begin{report}
-    \item Submit what you saved in this exercise, explaining each line of the output.
-    Explain how the \lstinline{PORT} command works.
-    Which connection, the control connection or the data connection, did the server send the response (the \lstinline{LIST} output) on?
+        \item Submit what you saved in this exercise, explaining each line of the output.
+            Explain how the \lstinline{PORT} command works.
+            Which connection, the control connection or the data connection, did the server send the response (the \lstinline{LIST} output) on?
     \end{report}
 
 \end{document}
