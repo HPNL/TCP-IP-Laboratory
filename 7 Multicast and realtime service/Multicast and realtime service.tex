@@ -95,8 +95,11 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 
     You can see and change broadcast ping replay state by:
     \begin{lstlisting}[emph=eth0]
-cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts      # see the os config
-echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1
+cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts      # see the kernel parameter
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1 with kernel parameter
+sysctl net.ipv4.icmp_echo_ignore_broadcasts             # see with sysctl command
+sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=0        # set with sysctl command
+echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in boot time
     \end{lstlisting}
     
     \begin{report}
