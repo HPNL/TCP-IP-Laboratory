@@ -404,12 +404,12 @@ Router(interface)# ip igmp join-group 224.0.0.2
 \section{Multicast Tree}
     In this exercise, try the \lstinline[language={cisco}]{mstat} Cisco~IOS command to find the multicast tree from a source.
     The \lstinline[language={cisco}]{mstat} command is executable in the \textit{Privileged EXEC} mode.
-    You can always type \lstinline[language={cisco}]{?} to get help on the syntax of the command.
+    You can always type \lstinline[language={cisco}]{?}\footnote{For example: \lstinline[language={cisco}]{mstat ?}} to get help on the syntax of the command.
 
-    Generate multicast packet when execute command for \textit{h4}.
+    Generate multicast packet when execute command for \textit{h4} (to see statistics change).
 
     \begin{report}
-        \item Report the \lstinline[language={cisco}]{mstat} output for \textit{h4} on \textit{R1}.
+        \item Report the \lstinline[language={cisco}]{mstat}\footnote{\lstinline[language={cisco},emph={x}]{mstat x.x.x.x}} output for \textit{h4} on \textit{R1}.
     \end{report}
 
 \section{Multicast TTL}
