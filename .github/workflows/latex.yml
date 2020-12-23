@@ -1,0 +1,49 @@
+name: Build resource CI
+
+on:
+  push:
+    tags: [ v*, 1.* ]
+  #   branches: [ master ]
+  # pull_request:
+  #   branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      # - name: Get Latest Release
+      #   id: get_release
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   run: |
+      #     upload_url=$(curl https://api.github.com/repos/UT-Network-Lab/TCP-IP-Laboratory/releases/latest | grep upload_url | cut -d'"' -f4)
+      #     echo "::set-output name=upload_url::$upload_url"
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Build the Latex
+        run: |
+          echo -n "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u amirhakh --password-stdin
+          docker run --rm --user="$(id -u):$(id -g)" -v "$PWD":"/repo" -w "/repo" dockershelf/latex:full  /bin/sh -c "latexmk -pdf -interaction=nonstopmode -cd **/*.tex"
+          zip Documents.zip [0-9]**/*.pdf
+
+      - name: Upload Release Asset (Documents)
+        id: upload-release-asset-documents
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./Documents.zip
+          asset_name: Documents.zip
+          asset_content_type: application/zip

@@ -156,7 +156,12 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
             Which hosts replied when the broadcast address was pinged?
             Verify you answers with hosts config \path{/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
 
+<<<<<<< HEAD
+    \item In each case, was there a reply from your host?
+    What if you ping from \textit{h0}?
+=======
         \item In each case, was there a reply from \textit{h0} and \textit{h1}?
+>>>>>>> master
     \end{report}
 
 \section{Multicast vs Unicast\label{sec:multicast-vs-unicast}}
@@ -193,9 +198,16 @@ ping 128.238.66.105
     \begin{report}
         \item Compare the source and destination MAC addresses of the frames you captured.
 
+<<<<<<< HEAD
+    \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
+
+    For the two multicast frames captured, do they have the same destination MAC address?
+    Why?
+=======
         \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
             For the two multicast frames captured, do they have the same destination MAC address?
             Why?
+>>>>>>> master
     \end{report}
 
 \section{Simple UDP Multicast Client and Server}
@@ -341,6 +353,7 @@ echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
 \label{sec:config-router}
     Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}.
     Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}.
+<<<<<<< HEAD
     % Note that the IP addresses of the router interfaces are the same as their default IP addresses.
     Run \lstinline{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
     Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode.
@@ -366,6 +379,12 @@ configure terminal
 show ip igmp interface
 show ip igmp group
     \end{lstlisting}
+=======
+    Note that the IP addresses of the router interfaces are the same as their default IP addresses.
+    Login to the router and run \lstinline{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
+    Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode.
+    Now the router is enabled to do multicast routing using PIM.
+>>>>>>> master
 
     \begin{report}
     \item Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
@@ -394,6 +413,7 @@ show ip igmp group
 ping 128.238.64.104
     \end{lstlisting}
 
+<<<<<<< HEAD
     \lstinline{telnet} from \textit{h2} to \textit{h1} in your group, then logout. (Use \texttt{netlab} as username and password.)
     \begin{lstlisting}
 telnet 128.238.63.101
@@ -407,6 +427,10 @@ route add -net 128.238.63.0/24 dev eth0  # on h3 & h4
     \end{lstlisting}
     Now, login to \textit{h1} from \textit{h2} in your group via \lstinline{telnet}, then logout.
     Check if multicast messages sent by \lstinline{netspyd} reach the other side of the router.
+=======
+    Add \textit{route} for other subnet to your host and try \lstinline{ping} again.
+    Now, login to \textit{h1} from \textit{h2} in your group, then logout.
+>>>>>>> master
     
     \begin{report}
         \item Can you ping a host on the other side of the router?
@@ -451,9 +475,14 @@ configure terminal
         \item Explain why the above command fails.
     \end{report}
 
+<<<<<<< HEAD
+\part{Multicast Routing Exercises\label{sec:multicast-routing}}
+    For the rest of the exercises in this chapter, the network topology is given in \hyperref[fig:7.14]{Figure~7.14}. The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7.14]{Figure~7.14}.
+=======
 \part{Multicast Routing Exercises}\label{sec:multicast-routing}
     For the rest of the exercises in this chapter, the network topology is given in \hyperref[fig:7.14]{Figure~7.14}.
     The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7.14]{Figure~7.14}.
+>>>>>>> master
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
@@ -525,6 +554,7 @@ configure terminal
 
     You can use prepared topology as described in \autoref{sec:simple-multicast}.
 
+<<<<<<< HEAD
 \section{Multicast Multi-Hub\label{sec:multi-hub}}
     Enable linux multicast routing in all the hosts (see \autoref{sec:simple-multicast}):
     \begin{lstlisting}[emph={eth0}]
@@ -551,6 +581,14 @@ configure terminal
     \end{lstlisting}
 
     Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on all the hosts. 
+=======
+    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).
+    Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}).
+    All routers pre-configured in \textit{GN3} \hyperref[fig:7.14]{Figure~7.14}
+
+    Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on all subnet (at least one host).
+    Maybe you need to restart (or reload) routers to capture all packet from start state.
+>>>>>>> master
 
     Execute \lstinline{netspy} client on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}:
     \begin{lstlisting}
@@ -569,12 +607,22 @@ telnet 128.238.63.101
 
     Each time when the login user set of \textit{h4} changes, \lstinline{netspyd} on \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
 
+<<<<<<< HEAD
     Terminate the \lstinline{netspy} program on \textit{h6}.
+=======
+    Terminate the \lstinline{netspy} program on \textit{h6} (or \textit{h0}).
+
+    Can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet?
+    \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
+    In this case, the membership record in the router expires in 120 seconds.
+    During this interval, the router still forwards multicast datagram through the port.} 
+>>>>>>> master
 
     Save one of the PIM routing packets.
     You may use \lstinline{tcpdump} output to analyze it.
     
     \begin{report}
+<<<<<<< HEAD
     \item While the \lstinline{netspy} program is running on \textit{h6},
     can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet in the \lstinline{tcpdump} output?
 
@@ -585,11 +633,15 @@ telnet 128.238.63.101
     During this interval, the router still forwards multicast datagram through the port.} 
 
     \item What is the destination IP address used in this PIM routing packet?
+=======
+        \item Answer the above questions.
+>>>>>>> master
     \end{report}
 
 \section{Multicast Tree}
     In this exercise, try the \lstinline[language={cisco}]{mstat} Cisco~IOS command to find the multicast tree from a source.
     The \lstinline[language={cisco}]{mstat} command is executable in the \textit{Privileged EXEC} mode.
+<<<<<<< HEAD
     Its syntax is \lstinline[language={cisco}, emph={source, destination, group}]{mstat source [destination] [group]}, in which:
     \begin{description}
         \item[source] Specifies the IP address or name of the multicast source.
@@ -605,6 +657,15 @@ mstat 128.238.62.100 128.238.61.100 224.111.111.111
     \end{lstlisting}
 
     Generate multicast packet when execute command for specific source.
+=======
+    You can always type \lstinline[language={cisco}]{?}\footnote{For example: \lstinline[language={cisco}]{mstat ?}} to get help on the syntax of the command.
+
+    Generate multicast packet when execute command for \textit{h4} (to see statistics change).
+
+    \begin{report}
+        \item Report the \lstinline[language={cisco}]{mstat}\footnote{\lstinline[language={cisco},emph={x}]{mstat x.x.x.x}} output for \textit{h4} on \textit{R1}.
+    \end{report}
+>>>>>>> master
 
     \begin{report}
     \item Draw multicast tree from 128.238.62.100 to 128.238.61.100 via 224.111.111.111 group.
@@ -622,9 +683,14 @@ ping 224.111.111.111 -t n
     Try different values of \textit{n}, e.g.\ 1, 2, 3, and 16.
     See how far a multicast datagram can travel with different TTL values.
 
+<<<<<<< HEAD
+    Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using:%
+    \footnote{The syntax of this command may be different for different versions of Cisco~IOS. You may use \lstinline[language={cisco}]{?} to get help.}
+=======
     Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using: 
     \footnote{The syntax of this command may be different for different versions of Cisco~IOS.
     You may use \lstinline[language={cisco}]{?} to get help.}
+>>>>>>> master
     \begin{lstlisting}[language={cisco}]    
 configure terminal
     interface f0/0
@@ -639,6 +705,7 @@ configure terminal
     Answer the same question.
     
     \begin{report}
+<<<<<<< HEAD
     \item At first, which hosts answered the \lstinline{ping} with \textit{n} equals to 1, 2, 3, and 16?
     \item After changing threshold of \textit{Router2} to 16, which hosts answered the \lstinline{ping} with \textit{n} equals to 16?
     Does datagrams reach 128.238.61.0 and 128.238.62.0 subnets?
@@ -649,9 +716,17 @@ configure terminal
     \end{report}
 
 \part{Multicast Video Streaming Exercise\label{sec:multicast-streaming}}
-    In the following exercise, we use \lstinline{vlc} for video streaming.
+=======
+        \item Answer the above questions.
+        
+        \item What is the use of the TTL threshold in the router interface?
+    \end{report}
+
+\part{Multicast Video Streaming Exercise}
     This is an optional exercise on video streaming in multicast network.
     This exercise use many resource in GNS3 simulator.
+>>>>>>> master
+    In the following exercise, we use \lstinline{vlc} for video streaming.
     
     In the following exercises, use four hosts and one router. The network topology is given in \hyperref[fig:7.15]{Figure~7.15}\footnote{This figure is not in the book.}, and the corresponding host IP addresses and router IP addresses are given in \hyperref[tab:7.4]{Table~7.4} and \hyperref[tab:7.5]{Table~7.5}, respectively.
     Make sure you use a device with GUI (e.g.\ \texttt{utnetlab/gui}).
@@ -706,6 +781,7 @@ configure terminal
 
     You can use prepared topology as described in \autoref{sec:simple-multicast}.    
 
+<<<<<<< HEAD
     Open a \texttt{LXTerminal} in all hosts and add route for the hosts on the other side of router:
     \begin{lstlisting}[emph={eth0}]
 route add -net 128.238.0.0/16 dev eth0
@@ -806,6 +882,22 @@ configure terminal
 
     You can do the same on the \textit{h2}, too.
 
+=======
+\section{**Multicast Real-Time Video}
+    Start \lstinline{vlc} on all the hosts, by using \lstinline{vlc &}.
+
+    On \textit{h0}, go to the \lstinline{vlc} menu: \textit{Media/Stream\ldots }.
+    Chose video file \path{/home/netlab/group.mp4} and press \textit{stream} button.
+    In \textit{Stream output} add \textit{RTP /MPEG Transport Stream} dialog.
+    Then click the \textit{next} button.
+    In the next window, specify the multicast group address to be {224.123.111.101}, with port number {22224} %and TTL 33.
+    Then click the \textit{Finish} button.
+    Now the \lstinline{vlc} on \textit{h0} is transmitting the video clip using \textit{RTP/RTSP/UDP/IP} to the multicast group {224.123.111.101} on port {22224}.
+
+    On all other hosts, go to the \lstinline{vlc} menu: \textit{Media/Open Network Stream\ldots}.
+    In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in \textit{h0}.%and TTL
+    Now you should see the received video is displayed on the screen.
+>>>>>>> master
 
     Execute \lstinline{tcpdump ip multicast} or \lstinline{wireshark} in one console to capture the multicast datagrams.
     In another console, execute \lstinline{tcpdump ip multicast} to monitor the capture process.

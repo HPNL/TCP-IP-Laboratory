@@ -109,11 +109,12 @@
       dense-mode, sparse-mode, dense-sparse-mode, multicast-routing,
       join-group, group-address, query-interval,groups, deny, permit, host,translations,
       nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside,
+      unreachables, mtu,
     },
     comment=[l]{!},
     keywordstyle=[0]\color{red},
     keywordstyle=[2]\color{NavyBlue},
-    commentstyle=\color{purple}\ttfamily,
+    % commentstyle=\color{purple}\ttfamily,
     stringstyle=\color{red}\ttfamily,
     morestring=[b]',
     morestring=[b]"

@@ -66,13 +66,13 @@
     Find the IP address and the net mask of your machine.
     
     \begin{report}
-    \item How many interfaces does the host have?
-    List all the interfaces found, give their names, and explain their functions briefly.
+        \item How many interfaces does the host have?
+            List all the interfaces found, give their names, and explain their functions briefly.
 
-    \item What are the MTUs of the interfaces on \textit{h0}?
+        \item What are the MTUs of the interfaces on \textit{h0}?
 
-    \item Is network subnetted?
-    What is the reasoning for your answer? What the experimental are the reasons for subnetting?
+        \item Is network subnetted?
+            What is the reasoning for your answer? What the experimental are the reasons for subnetting?
     \end{report}
 
 
@@ -80,9 +80,9 @@
     While \lstinline[emph={lo}]{tcpdump -i lo}\footnote{In old linux use \lstinline[emph={your-host}]{tcpdump host your-host}} is running in one command window, run \lstinline{ping 127.0.0.1} from another command window.
 
     \begin{report}
-    \item From the \lstinline{ping} output, is the 127.0.0.1 interface on?
-    Can you see any ICMP message sent from your host in the \lstinline{tcpdump} output?
-    Why?
+        \item From the \lstinline{ping} output, is the 127.0.0.1 interface on?
+            Can you see any ICMP message sent from your host in the \lstinline{tcpdump} output?
+            Why?
     \end{report}
 
 
@@ -95,18 +95,20 @@
 
     Save the \lstinline{netstat -ie} outputs.
 
-    If you don’t see a significant amount of output packets in the \lstinline{netstat} output, the machine was probably restarted recently. You may do this experiment later, or use the following \lstinline{socket} command to generate some network traffic:
+    If you don’t see a significant amount of output packets in the \lstinline{netstat} output, the machine was probably restarted recently.
+    You may do this experiment later, or use the following \lstinline{socket} command to generate some network traffic:
     \begin{lstlisting}[emph={remote-host}]
 # replace remote-host with ip address
 socket -u -i -n200 remote-host echo
     \end{lstlisting}
     
     \begin{report}
-    \item Calculate the average collision rate over all the hosts for the set of statistics you collected in this exercise.
+        \item Calculate the average collision rate over all the hosts for the set of statistics you collected in this exercise.
     \end{report}
 
 \part{ARP Exercises}
-    In the following experiment, we shall examine the host ARP table and the ARP operation, including two interesting cases: proxy ARP and gratuitous ARP. You may need to find \textbf{MAC} addresses of the host and router interfaces, and record these \textbf{MAC} addresses.
+    In the following experiment, we shall examine the host ARP table and the ARP operation, including two interesting cases: proxy ARP and gratuitous ARP.
+    You may need to find \textbf{MAC} addresses of the host and router interfaces, and record these \textbf{MAC} addresses.
     You need these \textbf{MAC} addresses for the exercises and lab report (as table of host and \textbf{MAC}).
 
 \section{ARP Table}
@@ -114,7 +116,8 @@ socket -u -i -n200 remote-host echo
     Observe that all the IP addresses displayed are on the same subnet.
 
     If you find that all the remote hosts are in \textit{h0}’s ARP table, you need to delete a remote host from the table, using:
-    \footnote{If you deleted \textit{h0}’s IP address from the ARP table by mistake, you must add the entry back in the table. See the \lstinline{arp} manual page to add.
+    \footnote{If you deleted \textit{h0}’s IP address from the ARP table by mistake, you must add the entry back in the table.
+    See the \lstinline{arp} manual page to add.
     Note that, in order for \textit{h0} to reply to the ARP requests, the ARP entry of \textit{h0} must have the \lstinline{P} flag in the ARP table.}
     \begin{lstlisting}[emph={remote-host}]
 arp -d remote-host
@@ -136,8 +139,8 @@ arp -d remote-host
     Then go to menu \textit{File/Print\ldots} to print the marked packets for your lab report (See Exercise~6 of Chapter~1 of reference book).
 
     \begin{report}
-    \item From the saved \lstinline{tcpdump} output, explain how ARP operates.
-    Draw the format of a captured, ARP request and reply including each field and the value.
+        \item From the saved \lstinline{tcpdump} output, explain how ARP operates.
+            Draw the format of a captured, ARP request and reply including each field and the value.
     \end{report}
 
     Your report should include the answers for the following questions.
@@ -157,8 +160,8 @@ arp -d remote-host
     After getting the necessary output, terminate the \lstinline{telnet} session.
 
     \begin{report}
-    \item From the saved \lstinline{tcpdump} output, describe how the ARP timeout and retransmission were performed.
-    How many attemps were made to resolve a non-existing IP address?
+        \item From the saved \lstinline{tcpdump} output, describe how the ARP timeout and retransmission were performed.
+            How many attemps were made to resolve a non-existing IP address?
     \end{report}
 
 \section{ARP Proxy}
@@ -180,13 +183,15 @@ arp -d remote-host
     \end{enumerate}
     Next we will enable the proxy ARP function on the ethernet1 interface of \textit{Router4}.
     \begin{enumerate}
-        \item \lstinline{telnet} to \textit{Router4}. (Right click on the Router and open console on GNS3 or use \lstinline{telnet 128.238.64.4}.)
+        \item \lstinline{telnet} to \textit{Router4}.
+                (Right click on the Router and open console on GNS3 or use \lstinline{telnet 128.238.64.4}.)
         \item Log in to the router, type \lstinline[language={cisco}]{enable} to enter the \textit{Privileged EXEC} mode.\footnote{We will discuss bridge and router configuration in Chapter~3.}
         \item Enter the \textit{Global Configuration} mode by typing \lstinline[language={cisco}]{config term}.
         \item Then type the following lines for each interfaces:
         \begin{lstlisting}[language={cisco}, escapechar={@}, emph={x}]
 ! config term
-    interface f0/0 ! use f0/1 for the other interface@\footnote{The name of the router interfaces may be different for various routers. You can find the names by typing \texttt{write term} in the \textit{Privilege EXEC} mode.}@
+    interface f0/0 ! use f0/1 for the other interface@\footnote{The name of the router interfaces may be different for various routers.
+    You can find the names by typing \texttt{write term} in the \textit{Privilege EXEC} mode.}@
         ip addr x.x.x.x 255.255.255.0
         no shut
         ip proxy-arp
@@ -205,7 +210,7 @@ wr
 socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \end{lstlisting}
 
-    When you are done with all the hosts in the 128.238.64.0 subnet, save the tcpdump output for the lab report.
+    When you are done with all the hosts in the 128.238.64.0 subnet, save the \lstinline{tcpdump} output for the lab report.
 
     Run \lstinline{arp -a} to display the new ARP table in \textit{h1}, \textit{h4} and \textit{h5}.
     Save the ARP table for your lab report.
@@ -236,17 +241,18 @@ socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \end{figure}
     
     \begin{report}
-    \item Explain the operation of proxy ARP.
+        \item Explain the operation of proxy ARP.
 
-    \item Why can a host in the 128.238.65.0 subnet reach a host in the 128.238.64.0 subnet, even though they have different subnet IDs?
+        \item Why can a host in the 128.238.65.0 subnet reach a host in the 128.238.64.0 subnet, even though they have different subnet IDs?
 
-    \item What are the \textbf{MAC} addresses corresponding to hosts in the 128.238.64.0 subnet, in the ARP table of a host in the 128.238.65.0 subnet?
+        \item What are the \textbf{MAC} addresses corresponding to hosts in the 128.238.64.0 subnet, in the ARP table of a host in the 128.238.65.0 subnet?
 
-    \item Give one advantage and one disadvantage of using proxy ARP.
+        \item Give one advantage and one disadvantage of using proxy ARP.
     \end{report}
 
 \section{** Gratuitous (Unsolicited) ARP}
-    While \lstinline{tcpdump -ex} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}. You can send the gratuitous ARP manually by execute:
+    While \lstinline{tcpdump -ex} (or run \lstinline{wireshark}) is running on all the hosts, reboot host \textit{h7}.
+    You can send the gratuitous ARP manually by execute:
 
     \begin{lstlisting}[emph={eth0,h7-ip,h6-ip}]
 arping -c 4 -A -I eth0 h6-ip
@@ -257,11 +263,11 @@ arping -c 4 -U -I eth0 h7-ip
     Print the gratuitous ARP request for your lab report.
     
     \begin{report}
-    \item What is the purpose of gratuitous ARP?
- 
-    \item List the sender IP address, target IP address, sender \textbf{MAC} address, and target \textbf{MAC} address of the gratuitous ARP you saved.
+        \item What is the purpose of gratuitous ARP?
+    
+        \item List the sender IP address, target IP address, sender \textbf{MAC} address, and target \textbf{MAC} address of the gratuitous ARP you saved.
 
-    \item What is the ARP table in \textit{h5}?
+        \item What is the ARP table in \textit{h5}?
     \end{report}
 
 
@@ -274,7 +280,7 @@ arping -c 4 -U -I eth0 h7-ip
     Save the \lstinline{tcpdump} and \lstinline{ping} output for the future study on \lstinline{ping}.
     
     \begin{report}
-    \item What ICMP messages are used by \lstinline{ping}?
+        \item What ICMP messages are used by \lstinline{ping}?
     \end{report}
 
 \section{ICMP Port Unreachable}
@@ -287,8 +293,8 @@ socket -i -u -n1 -w1000 remote-host 88888
     Save the \lstinline{tcpdump} output for the lab report.
 
     \begin{report}
-    \item Study the saved ICMP port unreachable error message (See \hyperref[fig:2.7]{Figure~2.7} of reference book.).
-    Why are the first 8 bytes of the original IP datagram payload included in the ICMP message?
+        \item Study the saved ICMP port unreachable error message (See \hyperref[fig:2.7]{Figure~2.7} of reference book.).
+            Why are the first 8 bytes of the original IP datagram payload included in the ICMP message?
     \end{report}
 
 \section{ICMP Host Unreachable}
@@ -296,9 +302,10 @@ socket -i -u -n1 -w1000 remote-host 88888
     Save the \lstinline{ping} output.
     
     \begin{report}
-    \item Can you see any traffic sent on the network? Why? Explain what happened from the \lstinline{ping} output.
+        \item Can you see any traffic sent on the network? Why? Explain what happened from the \lstinline{ping} output.
 
-    \item List the different ICMP messages you captured in \nameref{sec:icmp-ping}. Give the values of the type and code fields.
+        \item List the different ICMP messages you captured in \nameref{sec:icmp-ping}.
+            Give the values of the type and code fields.
     \end{report}
 
 \part{Exercises with IP address and subnet mask}
@@ -326,7 +333,8 @@ socket -i -u -n1 -w1000 remote-host 88888
 
     Delete the entries for all hosts other than your host from ARP table.
 
-    Run \lstinline{tcpdump -enx} on all the hosts. Then, do the following three experiments:
+    Run \lstinline{tcpdump -enx} on all the hosts.
+    Then, do the following three experiments:
 
     \begin{enumerate}
         \item Execute \lstinline{telnet} from one of two hosts with the duplicate IP address to a host with unique IP address (e.g.\ \textit{h0} $\rightarrow$ \textit{h2}).
@@ -339,12 +347,13 @@ socket -i -u -n1 -w1000 remote-host 88888
         Which host provides the telnet connection?
         Why?
         
-        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{h3}. Which host is connected to \textit{h3}? Why?
+        \item Execute \lstinline{telnet 128.238.66.100} (or \lstinline{telnet 128.238.66.104}) from \textit{h3}.
+    Which host is connected to \textit{h3}? Why?
     \end{enumerate}
     
     \begin{report}
-    \item Explain what happened in the first case and why.
-    Answer the questions for the second and third cases.
+        \item Explain what happened in the first case and why.
+            Answer the questions for the second and third cases.
     \end{report}
 
     \newpage
@@ -387,7 +396,7 @@ socket -i -u -n1 -w1000 remote-host 88888
     Clearly, this exercise has to be performed as a team.
     
     \begin{report}
-    \item Explain what happened in each case according to the \lstinline{tcpdump} outputs saved.
-    Explain why \textit{h3} could not be reached from other hosts, whereas \textit{h0}), which has the same incorrect subnet mask, could communicate with the other hosts.
+        \item Explain what happened in each case according to the \lstinline{tcpdump} outputs saved.
+            Explain why \textit{h3} could not be reached from other hosts, whereas \textit{h0}), which has the same incorrect subnet mask, could communicate with the other hosts.
     \end{report}
 \end{document}

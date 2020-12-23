@@ -12,7 +12,9 @@
 \section{Network Setup}
     In this exercise we build the connection to the router (see \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}).
 
-    Use two hosts, two hubs, and one router (as a bridge). Then, connect first host to the first hub and connect the first port of the bridge to the previously mentioned hub. Now, connect the other side of the topology just like first side.
+    Use two hosts, two hubs, and one router (as a bridge).
+    Then, connect first host to the first hub and connect the first port of the bridge to the previously mentioned hub.
+    Now, connect the other side of the topology just like first side.
 
     \begin{table}[H]
         \caption{Router and Host IP addresses for \hyperref[fig:3.7]{Figure~3.7} (Table~3.2\label{tab:3.2}, Table~3.3\label{tab:3.3})}
@@ -52,11 +54,14 @@
 % ignore excersise 1 from book
 
 \section{IOS Console}
-    Open Router Console (Use telnet to router from host or connect console to serial port). In \textbf{GNS3} right click on router and open console window.
+    Open Router Console (Use telnet to router from host or connect console to serial port).
+    In \textbf{GNS3} right click on router and open console window.
     You should now be in the \textit{User EXEC} mode.
 
     Type \lstinline[language={cisco}]{help} to learn how to use the online help.
-    Study \hyperref[fig:3.6]{Figure~3.6} of reference book. Navigate through the \textit{User EXEC}, \textit{Privileged EXEC}, \textit{Global Configuration}, and \textit{Interface Configuration} modes. In each mode, type \lstinline[language={cisco}]{?} to display a list of available commands and study these commands.
+    Study \hyperref[fig:3.6]{Figure~3.6} of reference book.
+    Navigate through the \textit{User EXEC}, \textit{Privileged EXEC}, \textit{Global Configuration}, and \textit{Interface Configuration} modes.
+    In each mode, type \lstinline[language={cisco}]{?} to display a list of available commands and study these commands.
 
     Type \lstinline[language={cisco}]{show version} in the \textit{User EXEC} mode to display the Cisco~IOS banner.
     Identify which Cisco~IOS Release is running in the router.
@@ -72,7 +77,8 @@
     Configure transparent bridging as in \hyperref[fig:3.7]{Figure~3.7}, \hyperref[tab:3.2]{Table~3.2} and \hyperref[tab:3.3]{Table~3.3}.
     Note that the default configuration of the hosts and the bridges are different from those in the tables.
     You need to change the IP addresses of the bridge interfaces,\footnote{As soon as you change the IP address of the bridge interface your host is connected to, the \lstinline{telnet} connection will be lost.
-    You need to again change the IP address of your machine to be in the same subnet as the bridge interface. See Section~3.3.3  of reference book.} as well as set the bridge group and enable the spanning tree algorithm (see the previous section on bridge configuration).
+    You need to again change the IP address of your machine to be in the same subnet as the bridge interface.
+    See Section~3.3.3  of reference book.} as well as set the bridge group and enable the spanning tree algorithm (see the previous section on bridge configuration).
     Do the following experiments.
 
     Config Cisco Router as transparent Bridge:
@@ -94,18 +100,21 @@ Ctrl+Z
     \end{lstlisting}
 
 \section{Bridge Packet}
-    Run \lstinline{tcpdump -en ip proto 1} on \textit{h0} and \textit{h1} machine. Send \lstinline{ping} messages to \textit{h1} machine: \lstinline[emph={remote-machine}]{ping -sv remote-machine}.
+    Run \lstinline{tcpdump -en ip proto 1} on \textit{h0} and \textit{h1} machine.
+    Send \lstinline{ping} messages to \textit{h1} machine: \lstinline[emph={remote-machine}]{ping -sv remote-machine}.
     After receiving the tenth echo reply, quit the \lstinline{ping} process, and save the \lstinline{tcpdump} outputs from both machines.
 
-    During this exercise, don’t run \lstinline{ping} programs at the same time from other host. For clean results, do your experiments in turn.
+    During this exercise, don’t run \lstinline{ping} programs at the same time from other host.
+    For clean results, do your experiments in turn.
     
     \begin{report}
-    \item What are the IP and MAC addresses of a packet that went from your machine to the bridge?
-    What are the IP and MAC addresses of a packet that went from the router to your partner’s machine?
+        \item What are the IP and MAC addresses of a packet that went from your machine to the bridge?
+            What are the IP and MAC addresses of a packet that went from the router to your partner’s machine?
 
-    \item Answer the same questions, but for the echo reply that was returned from your partner’s machine.
-    
-    \item Using the \lstinline{tcpdump} outputs from both machines, calculate the average delay that a packet experienced in the bridge. \footnote{Note that the system times of the two machines might be different.}
+        \item Answer the same questions, but for the echo reply that was returned from your partner’s machine.
+        
+        \item Using the \lstinline{tcpdump} outputs from both machines, calculate the average delay that a packet experienced in the bridge.
+            \footnote{Note that the system times of the two machines might be different.}
     \end{report}
 
     Show all the steps and submit the \lstinline{tcpdump} outputs with your report.
@@ -115,7 +124,8 @@ Ctrl+Z
     Save the BPDUs for the lab report.
 
 %    You need to collect all the different BPDUs from all group in your lab.
-%    At this time, save your BPDU capture output. 
+%    At this time, save your BPDU capture output.
+    
 %    In our next step,  you get BPDUs from other gropu.
 explain stp and bpdu
 
@@ -123,10 +133,11 @@ explain stp and bpdu
     These BPDUs will be helpful when studying the spanning tree algorithm later in this chapter.
 
     \begin{report}
-    \item How frequently (in seconds) does a bridge sends its BPDUs?
+        \item How frequently (in seconds) does a bridge sends its BPDUs?
 
-    \item Submit the two different BPDUs you saved.
-    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may check the physical addresses of network interfaces. You need the MAC addresses to help analyze the BPDUs.} (may need to check BPDU message format \hyperref[fig:3.4]{Figure~3.4}).
+        \item Submit the two different BPDUs you saved.
+            Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU\footnote{You may check the physical addresses of network interfaces.
+            You need the MAC addresses to help analyze the BPDUs.} (may need to check BPDU message format \hyperref[fig:3.4]{Figure~3.4}).
     \end{report}
 
     \begin{figure}[H]
@@ -156,7 +167,8 @@ explain stp and bpdu
 \part{Spanning Tree Exercises}
 \label{sec:spanning-tree}
     In this section, we will use \hyperref[fig:3.8]{Figure~3.8} as our network topology.
-    You need to change the IP addresses of the bridge interfaces, as well as that of your machines. Refer to Section~3.3.4 of reference book on how to configure a transparent bridge.
+    You need to change the IP addresses of the bridge interfaces, as well as that of your machines.
+    Refer to Section~3.3.4 of reference book on how to configure a transparent bridge.
     Also see Section~3.3.3 of reference book on how to handle a frozen telnet session after you change the bridge IP address.
 
     Upon being started, a transparent bridge learns the network topology by analyzing source addresses of incoming frames from all attached networks.
@@ -234,14 +246,15 @@ explain stp and bpdu
 \section{Multi Bridge Path}
     After configuring the network in \hyperref[fig:3.8]{Figure~3.8}, login to the bridge 1.
 
-    Get to the \textit{Privileged EXEC}\footnote{use \textbf{enable} command to active \textit{Privileged EXEC}} mode (is activated by default in \textbf{GNS3}). Type \lstinline[language={cisco}]{show bridge} to see the entries in the bridge forwarding database.
+    Get to the \textit{Privileged EXEC}\footnote{use \textbf{enable} command to active \textit{Privileged EXEC}} mode (is activated by default in \textbf{GNS3}).
+    Type \lstinline[language={cisco}]{show bridge} to see the entries in the bridge forwarding database.
 
     Whenever you \lstinline{ping} or \lstinline{telnet} from \textit{h0} to a host that is not in the table (table form bridge 1), observe how the filtering database in the bridge is expanded.
 
     You may use the \lstinline[language={cisco}, emph={group}]{clear bridge group} command to remove any learned entries from the filtering database, if you see a full filtering database or if you want to repeat the above exercise.
 
     \begin{report}
-    \item From the output of \lstinline[language={cisco}]{show bridge}, identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.
+        \item From the output of \lstinline[language={cisco}]{show bridge}, identify which bridge ports are blocked, and which ports are in the forwarding state for each bridge.
     \end{report}
 
 \section{STP Process}
@@ -252,17 +265,17 @@ explain stp and bpdu
     Login to each bridge (or open \textbf{GNS3} router console) to collect the \lstinline[language={cisco}]{show bridge} outputs.
     
     \begin{report}
-    \item Submit the four different BPDUs (from four network sections) you saved.
-    Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU.
+        \item Submit the four different BPDUs (from four network sections) you saved.
+            Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU.
 
-    \item Based upon the initial BPDUs saved in \nameref{sec:spanning-tree}, draw the spanning tree seen by the BPDUs (or explain root node and its child).
-    Identify the root ports and the root path cost (in hop counts) for each bridge.
-%    Identify the state of each bridge port (blocking or forwarding).
-    Based on Spanning tree algorithm section in the reference book (section 3.2.3 page 63), explain how root node selected?
+        \item Based upon the initial BPDUs saved in \nameref{sec:spanning-tree}, draw the spanning tree seen by the BPDUs (or explain root node and its child).
+            Identify the root ports and the root path cost (in hop counts) for each bridge.
+%           Identify the state of each bridge port (blocking or forwarding).
+            Based on Spanning tree algorithm section in the reference book (section 3.2.3 page 63), explain how root node selected?
 
-    \item Write the final BPDUs you collected using the three-tuple format: \textit{{root ID, root path cost, bridge ID}}.
+        \item Write the final BPDUs you collected using the three-tuple format: \textit{{root ID, root path cost, bridge ID}}.
 
-    \item Once you have the spanning tree, justify it using the four final BPDUs collected in this exercise and/or the output of the \lstinline[language={cisco}]{show bridge} command.
+        \item Once you have the spanning tree, justify it using the four final BPDUs collected in this exercise and/or the output of the \lstinline[language={cisco}]{show bridge} command.
     \end{report}
 
 
@@ -272,14 +285,19 @@ explain stp and bpdu
 
     Then, disconnect the cable from the \textit{ethernet0} port of \textit{Bridge2} from the hub (or shut the router interface), and get system time (\lstinline{date}, \lstinline{date '+%D %T.%N'} or \lstinline{date +%s%N} to get nano seconds) on \textit{h3} or \textit{h4} to get the current time.
 
-    Observe the \lstinline{ping} and \lstinline{tcpdump} windows. When the connection is reestablished, get the \lstinline{time} again. How long does it take the spanning tree algorithm to react to the change in the topology?
+    Observe the \lstinline{ping} and \lstinline{tcpdump} windows.
+    When the connection is reestablished, get the \lstinline{time} again.
+    How long does it take the spanning tree algorithm to react to the change in the topology?
 
-    Once you can successfully reach other hosts, get to the bridges to run \lstinline[language={cisco}]{show bridge} to collect the port states. Also collect BPDUs from all the LAN segments as you did in the previous exercise.
+    Once you can successfully reach other hosts, get to the bridges to run \lstinline[language={cisco}]{show bridge} to collect the port states.
+    Also collect BPDUs from all the LAN segments as you did in the previous exercise.
 
-    After every student has collected the required data, connect the cable to the original position. Again, measure the time it takes for the bridges to adapt to the new change.
+    After every student has collected the required data, connect the cable to the original position.
+    Again, measure the time it takes for the bridges to adapt to the new change.
     
     \begin{report}
-    \item Draw the new tree formed after the cable was disconnected, based on the BPDUs you collected in this exercise. Specify the state of each bridge port.
+        \item Draw the new tree formed after the cable was disconnected, based on the BPDUs you collected in this exercise.
+            Specify the state of each bridge port.
     \end{report}
 
 \part{Exercise on the Cisco~IOS Web Browser UI}
@@ -306,7 +324,8 @@ explain stp and bpdu
         \label{fig:two-gui}
     \end{figure}
 
-    You can also configure a router using the web browser UI. To enable the web server, login to the router and config as below  in the \textit{Global Configuration} mode. 
+    You can also configure a router using the web browser UI.
+    To enable the web server, login to the router and config as below  in the \textit{Global Configuration} mode.
 
     \begin{lstlisting}[language={cisco},emph={netlab}]
 R1# config term
@@ -319,87 +338,76 @@ R1(config)# ip http secure-server
 R1(config)# ip http authentication local
     \end{lstlisting}
     
-    Next, start a web browser (e.g.\ \textit{Mozilla} in Linux) in your host, and enter the IP address of the router interface. When prompted, enter \texttt{netlab} for user name and password. Then you can browse the router configuration web pages and configure the router there.
+    Next, start a web browser (e.g.\ \textit{Mozilla} in Linux) in your host, and enter the IP address of the router interface.
+    When prompted, enter \texttt{netlab} for user name and password.
+    Then you can browse the router configuration web pages and configure the router there.
 
 
-    \newpage
+\newpage
 \appendix
 
 \section{Spanning Tree Algorithm}
 \label{appendix:spanningTree}
-    The spanning tree algorithm defined in the IEEE 802.1d standard is used in bridged networks to build trees dynamically. It works as follows.
+    The spanning tree algorithm defined in the IEEE 802.1d standard is used in bridged networks to build trees dynamically.
+    It works as follows.
 
 \begin{enumerate}
-    \item Each bridge is assigned a unique identifier, and each port of a bridge is
-    assigned an identifier unique to that bridge. Typically, the identifier of
-    a bridge is a priority concatenated with one of the bridge ports’ MAC
-    address, and the identifier of a port is a priority concatenated with a port
-    index local to the bridge. Each bridge port has a corresponding path
-    cost, which indicates the cost to transfer a frame to an attached network
-    segment through that port.
+        \item Each bridge is assigned a unique identifier, and each port of a bridge is assigned an identifier unique to that bridge. Typically, the identifier of a bridge is a priority concatenated with one of the bridge ports’ MAC
+            address, and the identifier of a port is a priority concatenated with a port index local to the bridge.
+            Each bridge port has a corresponding path cost, which indicates the cost to transfer a frame to an attached network segment through that port.
 
-    \item Select the root bridge, which is the one with the lowest-value bridge
-    identifier. The ID of the root is called the root ID.
+        \item Select the root bridge, which is the one with the lowest-value bridge identifier.
+            The ID of the root is called the root ID.
 
-    \item Each bridge selects its root port. The root port of a bridge is the port
-    from which the root bridge can be reached with the least aggregate path
-    cost (called the root path cost).
+        \item Each bridge selects its root port.
+            The root port of a bridge is the port from which the root bridge can be reached with the least aggregate path cost (called the root path cost).
 
-    \item Determine the designated bridges and the designated ports. Each network
-    segment is associated with a designated bridge, which provides the
-    shortest path to the root bridge and is the only bridge allowed to forward
-    frames to and from the root. The port connecting a designated bridge to
-    the network segment is a designated port. If more than one bridge provides
-    the same root path cost, the bridge with the lowest-valued bridge
-    identifier is selected as the designated bridge.
+        \item Determine the designated bridges and the designated ports.
+            Each network segment is associated with a designated bridge, which provides the shortest path to the root bridge and is the only bridge allowed to forward frames to and from the root.
+            The port connecting a designated bridge to the network segment is a designated port.
+            If more than one bridge provides the same root path cost, the bridge with the lowest-valued bridge identifier is selected as the designated bridge.
 
-    \item Only the root ports and designated ports of the bridges are allowed to
-    forward frames. All other bridge ports are blocked.
-    
-    \item The above steps are repeated whenever the network topology changes.
+        \item Only the root ports and designated ports of the bridges are allowed to forward frames.
+            All other bridge ports are blocked.
+        
+        \item The above steps are repeated whenever the network topology changes.
 \end{enumerate}
 
 \section{Bridge Protocol Data Units}
 \label{appendix:bpdu}
     To implement the spanning tree algorithm in a distributed manner, bridges exchange configuration information using a message called bridge
     protocol data units (BPDUs).
-    The format of a BPDU message is given in Fig. 3.4 with the definition of the fields given below.
+    The format of a BPDU message is given in Fig~3.4 with the definition of the fields given below.
 
     \begin{itemize}
         \item \textit{Protocol Identifier}, \textit{Version}, and \textit{Message Type}:
-        These three fields are always set to 0.
+            These three fields are always set to 0.
         
-        \item \textit{Flags}: The least significant bit, called the Topology Change (TC) bit, is
-        set to signal a topology change. The most significant bit is to acknowledge
-        receipt of a BPDU with the TC bit set. The remaining six bits are not
-        used.
+        \item \textit{Flags}: The least significant bit, called the Topology Change (TC) bit, is set to signal a topology change.
+                The most significant bit is to acknowledge receipt of a BPDU with the TC bit set.
+                The remaining six bits are not used.
         
-        \item \textit{Root ID}: Identifies the root bridge by listing its 2-byte priority followed
-        by a 6-byte Ethernet address. The priority value can be set in the Global
-        Configuration mode. The default priority is 0x8000.
+        \item \textit{Root ID}: Identifies the root bridge by listing its 2-byte priority followed by a 6-byte Ethernet address.
+                The priority value can be set in the Global Configuration mode.
+                The default priority is 0x8000.
         
         \item \textit{Root Path Cost}: The path cost to the root bridge.
         
         \item \textit{Bridge ID}: The identifier of the bridge sending the message.
-        Port ID: Each bridge port has a unique 2-byte identifier. The first byte
-        is the priority, which is configurable, while the second byte is a number
-        assigned to the port.
+                Port ID: Each bridge port has a unique 2-byte identifier.
+                The first byte is the priority, which is configurable, while the second byte is a number assigned to the port.
         
-        \item \textit{Message Age}:1 Specifies the amount of time since the root originally
-        sent the BPDU on which the current configuration message is based.
+        \item \textit{Message Age}:1 Specifies the amount of time since the root originally sent the BPDU on which the current configuration message is based.
         
-        \item \textit{Maximum Age}:1 Indicates when the spanning tree topology is recalculated
-        if a bridge does not hear BPDUs from the root bridge. The default
-        value is 15 seconds.
+        \item \textit{Maximum Age}:1 Indicates when the spanning tree topology is recalculated if a bridge does not hear BPDUs from the root bridge.
+                The default value is 15 seconds.
         
-        \item \textit{Hello Time}:1 Provides the time period between two BPDUs from the
-        root bridge. The default value is 1 second.
+        \item \textit{Hello Time}:1 Provides the time period between two BPDUs from the root bridge.
+                The default value is 1 second.
         
-        \item \textit{Forward Delay}:1 provides the amount of time that bridges should wait
-        before switching a port from the blocking state to forwarding state. If
-        a bridge port switches state too soon, not all network links may be
-        ready to change their state, and loops can occur. The default value is
-        30 seconds.
+        \item \textit{Forward Delay}:1 provides the amount of time that bridges should wait before switching a port from the blocking state to forwarding state.
+                If a bridge port switches state too soon, not all network links may be ready to change their state, and loops can occur.
+                The default value is 30 seconds.
     \end{itemize}
 
 \end{document}

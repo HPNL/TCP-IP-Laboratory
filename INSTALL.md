@@ -2,6 +2,8 @@
 
 This installation based on [GNS3 Installation](https://docs.gns3.com/docs/getting-started/installation/linux/) for linux.
 
+If you use `GNS3 VM` or need to connect a remote server, use [install remote](./INSTALL-remote.md) document for setup remote server.
+
 ## Requirement
 
 * Linux (Ubuntu 18.04, Ubuntu 20.04, Debian 9, Debian 10 or other supported linux)
@@ -59,6 +61,17 @@ sudo usermod -aG docker $USER
 sudo su $USER
 ```
 
+### Distribution Upgrade
+
+If you upgrade your ubuntu distribution, you need to remove old `GNS3` repository and add again.
+
+```bash
+sudo rm /etc/apt/sources.list.d/gns3*
+sudo add-apt-repository ppa:gns3/ppa
+sudo apt-get update
+sudo apt-get -y -u dist-upgrade
+```
+
 ### Commented
 
  Reference [1] : <https://docs.docker.com/install/linux/docker-ce/ubuntu/#supported-storage-drivers>
@@ -75,6 +88,7 @@ docker pull utnetlab/gui
 Also you can pull this images from github package section. But you need to add docker tag.
 
 ```bash
+# may be need login to github
 docker pull docker.pkg.github.com/ut-network-lab/docker-tools/term:latest
 docker tag docker.pkg.github.com/ut-network-lab/docker-tools/term:latest utnetlab/term:latest
 docker pull docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest
@@ -196,3 +210,5 @@ Skip *slots* step until get *Idle-PC* step.
 Click on **Idle-PC finder** to find local idle-PC number if it was empty and then press **Finish**.
 
 ![gns3-router-idlepc](./img/gns3-router-idlepc.jpg)
+
+## Setup remote server
