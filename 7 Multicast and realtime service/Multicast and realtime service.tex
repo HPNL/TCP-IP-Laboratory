@@ -96,6 +96,9 @@
 \section{Linux Multicast Routing Table\label{sec:rt}}
 \label{sec:linux-multicast-routing}
     Execute the following command to display the routing table of one host (for example \textit{h0}).
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 netstat -rn
     \end{lstlisting}
@@ -103,6 +106,9 @@ netstat -rn
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
     \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
     Each time when the network interface is brought down and up again by the \lstinline{ifconfig} command, you may need to run the \lstinline{route} command to re-insert the multicast routing entry.}
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}[emph=eth0]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
@@ -116,6 +122,9 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 
 \section{Multicast Membership}
     Execute the following command to show the multicast group memberships for all the interfaces in your host (for example \textit{h0}).
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 netstat -g
     \end{lstlisting}
@@ -131,25 +140,31 @@ netstat -g
 %     \end{lstlisting}
 
     Execute following command on \textit{h0}:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 ping 224.0.0.1
     \end{lstlisting}
     Examine the \lstinline{ping} output to see which hosts reply.
 
     Ping a broadcast address using:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 ping -b 128.238.66.255
     \end{lstlisting}
     Examine the \lstinline{ping} output to see which hosts reply.
 
-    You can see and change broadcast ping replay state by:
-    \begin{lstlisting}[emph=eth0]
-cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts      # see the kernel parameter
-echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1 with kernel parameter
-sysctl net.ipv4.icmp_echo_ignore_broadcasts             # see with sysctl command
-sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=0        # set with sysctl command
-echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in boot time
-    \end{lstlisting}
+%     You can see and change broadcast ping replay state by:
+%     \begin{lstlisting}[emph=eth0]
+% cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts      # see the kernel parameter
+% echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1 with kernel parameter
+% sysctl net.ipv4.icmp_echo_ignore_broadcasts             # see with sysctl command
+% sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=0        # set with sysctl command
+% echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in boot time
+%     \end{lstlisting}
     
     \begin{report}
         \item Which hosts replied when the multicast address was pinged?
@@ -171,15 +186,21 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
     Also, to open \lstinline{wireshark}, right-click on the link between host and switch and select \texttt{Start capture}.
     \begin{figure}[H]
         \centering
-        \includegraphics[scale=1.6]{img/capture}
+        \includegraphics[scale=1.8]{img/capture}
     \end{figure}
 
     Execute the following command in \textit{h0} to generate an Ethernet multicast frame:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}[emph={your-host, remote-host}]
 socket -i -u -n1 230.11.111.10 2000
     \end{lstlisting}
 
     Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}, e.g.:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}[emph={your-host, remote-host}]
 socket -i -u -n1 230.139.111.10 2000
     \end{lstlisting}
@@ -187,6 +208,9 @@ socket -i -u -n1 230.139.111.10 2000
 
     To generate an Ethernet broadcast frame, you may \lstinline{ping} a remote host from \textit{h0} that has no entry in the ARP table of your host, e.g.\ \textit{h5}.
     \footnote{You can see ARP table by \lstinline{arp -a} delete a cached ARP entry by \lstinline[emph={ip}]{arp -d ip}.}
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 ping 128.238.66.105
     \end{lstlisting}
@@ -218,11 +242,17 @@ ping 128.238.66.105
 
     Start the multicast client \lstinline{netspy} on hosts \textit{h0}, \textit{h2}, \textit{h4} and \textit{h6}, by executing:%
     \footnote{If you get \textit{Netspy : cannot join multicast group `224.111.111.111'}, add route for the groups as described in \autoref{sec:rt}.}
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}, h\textsubscript{2}, h\textsubscript{4}, h\textsubscript{6}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 /home/netlab/code/netspy 224.111.111.111 1500
     \end{lstlisting}
     
     Then, start the multicast sender \lstinline{netspyd} on \textit{h0}, by executing:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 /home/netlab/code/netspyd 224.111.111.111 1500 1
     \end{lstlisting}
@@ -236,6 +266,9 @@ ping 128.238.66.105
 %     \end{lstlisting}
 
     \lstinline{telnet} to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{6}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 telnet 128.238.66.100
     \end{lstlisting}
@@ -256,6 +289,9 @@ telnet 128.238.66.100
     % Enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
     Keep the \lstinline{netspy} and the \lstinline{tcpdump} (on \textit{h6}) programs running.
     Execute the following command from \textit{h6}:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{6}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 ping 224.111.111.111
     \end{lstlisting}
@@ -267,6 +303,9 @@ ping 224.111.111.111
     Also, examine the \lstinline{tcpdump} and the \lstinline{ping} outputs (on \textit{h6}) to see which hosts replied.
 
     Ping a broadcast address using:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{6}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 ping -b 128.238.66.255
     \end{lstlisting}
@@ -353,6 +392,9 @@ ping -b 128.238.66.255
     Run \lstinline{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
     Then, enable the PIM protocol on each interface, by running \lstinline{ip pim dense-mode} in the \textit{Interface Configuration} mode.
     Now the router is enabled to do multicast routing using PIM.
+
+    \fcolorbox{blue}{red!10}{{R\#}}
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language=cisco]
 configure terminal
     ip multicast-routing
@@ -366,6 +408,9 @@ configure terminal
     \end{lstlisting}
 
     Login to the router, execute the following commands in the \textit{Privileged EXEC} mode:
+
+    \fcolorbox{blue}{red!10}{{R\#}}
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language=cisco]
 show ip igmp interface
 show ip igmp group
@@ -378,27 +423,42 @@ show ip igmp group
 \section{Multicast Message}
     Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
     Start \lstinline{netspy} client on all the hosts, by using:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{1}, h\textsubscript{2}, h\textsubscript{3}, h\textsubscript{4}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 /home/netlab/code/netspy 224.111.111.111 1500
     \end{lstlisting}
     Start \lstinline{netspy} server on \textit{h1}, by using:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{1}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 /home/netlab/code/netspyd 224.111.111.111 1500 16
     \end{lstlisting}
     
     Login to the router.
     Run the following commands in the \textit{Privileged EXEC} mode again to examine the current membership records:
+
+    \fcolorbox{blue}{red!10}{{R\#}}
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language=cisco]
 show ip igmp interface
 show ip igmp group
     \end{lstlisting}
 
     Can you \lstinline{ping} a host on the other side of the router (e.g.\ \lstinline{ping} \textit{h4} from \textit{h1})?
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{1}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 ping 128.238.64.104
     \end{lstlisting}
 
     \lstinline{telnet} from \textit{h2} to \textit{h1} in your group, then logout. (Use \texttt{netlab} as username and password.)
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{2}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 telnet 128.238.63.101
     \end{lstlisting}
@@ -421,6 +481,9 @@ telnet 128.238.63.101
 
 \section{IGMP Types}
     Execute \lstinline{tcpdump} or \lstinline{wireshark}\footnote{If you have trouble in getting packets using \lstinline{wireshark}, try \lstinline{tcpdump}.} in one console to capture IGMP messages.
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{1}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}[emph={eth0}]
 tcpdump ip multicast -v
     \end{lstlisting}
@@ -443,6 +506,9 @@ tcpdump ip multicast -v
 \section{Router Join to Multicast-Group}
     Login to the router.
     See if you can make a router interface (e.g.\ \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
+
+    \fcolorbox{blue}{red!10}{{R\#}}
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language={cisco}]
 configure terminal
     ip multicast-routing
@@ -561,16 +627,25 @@ configure terminal
     Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on \textit{h6}. 
 
     Execute \lstinline{netspy} client on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}, h\textsubscript{2}, h\textsubscript{3}, h\textsubscript{5}, h\textsubscript{6}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 /home/netlab/code/netspy 224.111.111.111 1500
     \end{lstlisting}
 
     Execute \lstinline{netspy} server on \textit{h4}:
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{4}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 /home/netlab/code/netspyd 224.111.111.111 1500 16
     \end{lstlisting}
     
     To generate multicast traffic, you can login (by \lstinline{telnet}) to or logout of \textit{h4} from \textit{h2}. (Use \texttt{netlab} as username and password.)
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{2}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}
 telnet 128.238.63.101
     \end{lstlisting}
@@ -608,6 +683,9 @@ telnet 128.238.63.101
 
     Keep \lstinline{netspy} running on hosts \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6} and server on \textit{h4} as described in \autoref{sec:multi-hub}.
     Try the following command in \textit{Router2}:
+
+    \fcolorbox{blue}{red!10}{{R\textsubscript{2}\#}}
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language={cisco}]
 mstat 128.238.61.100 128.238.65.100 224.111.111.111
     \end{lstlisting}
@@ -622,6 +700,9 @@ mstat 128.238.61.100 128.238.65.100 224.111.111.111
     Keep \lstinline{netspy} running on hosts \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6} and server on \textit{h4} as described in \autoref{sec:multi-hub}.
     
     Ping the multicast group address from \textit{h4}, using: 
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{4}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}[emph={n}]
 ping 224.111.111.111 -t n
     \end{lstlisting}
@@ -633,6 +714,9 @@ ping 224.111.111.111 -t n
     Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using: 
     \footnote{The syntax of this command may be different for different versions of Cisco~IOS.
     You may use \lstinline[language={cisco}]{?} to get help.}
+
+    \fcolorbox{blue}{red!10}{{R\textsubscript{2}\#}}
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language={cisco}]    
 configure terminal
     interface f0/0
@@ -731,7 +815,10 @@ configure terminal
 
     You can use prepared topology as described in \autoref{sec:simple-multicast}.    
 
-    Open a \texttt{LXTerminal} in \textit{h0} and add multicast route:
+    Open a \texttt{LXTerminal} in \textit{h0} and add multicast route: (You can use auxiliary console, too.)
+
+    \fcolorbox{blue}{green!10}{{h\textsubscript{0}'s \lstinline{auxiliary console}}}
+    \lstset{backgroundcolor=\color{green!10}}
     \begin{lstlisting}[emph={eth0}]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
@@ -830,6 +917,8 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     The \lstinline[language={cisco}]{no} form of this command cancels the group membership.
     \begin{subappendices}
 \subsection{Configuring IGMP}
+
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language={cisco}, emph={group-address, new-value-in-seconds}]
 R1(config)# ip igmp join-group group-address
 R1(config)# no ip igmp join-group group-address
@@ -841,6 +930,8 @@ debug ip igmp           ! Displays IGMP packets received and transmitted.
     \end{lstlisting}
 
 \subsection{Configuring Multicast Routing}
+
+    \lstset{backgroundcolor=\color{red!10}}
     \begin{lstlisting}[language={cisco}]
 R1(config)# ip multicast-routing
 R1(config)# no ip multicast-routing
@@ -854,12 +945,14 @@ show ip pim interface   ! Displays router interface configurations.
     \end{lstlisting}
 
 \subsection{Cisco~IOS Multicast Diagnostic Tools}
-\begin{lstlisting}[language={cisco}]
+
+    \lstset{backgroundcolor=\color{red!10}}
+    \begin{lstlisting}[language={cisco}]
 mtrace
 mrinfo
 mstat
 ping
-\end{lstlisting}
+    \end{lstlisting}
     
 \end{subappendices}
 
