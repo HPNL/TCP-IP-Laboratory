@@ -57,6 +57,7 @@ Open GPLv3 [LICENSE](LICENSE) file.
 
 ## ToDo and Bugfix
 
+* [ ] change `your host` and `remote host` to real host name
 * [ ] add farsi Chapter
 * [ ] add figure and template for `Cisco IOS HTTP REST API` section
 * [ ] add quiz sample
