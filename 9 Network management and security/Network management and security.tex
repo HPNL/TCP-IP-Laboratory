@@ -96,9 +96,9 @@ rocommunity guest
 
 \section{SNMP List Objects}
     On \textit{h0},
-    Use \lstinline[emph=guest]{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
+    Use \lstinline[emph={guest}]{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
 
-    Use \lstinline[emph=guest]{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
+    Use \lstinline[emph={guest}]{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
 
     You may run \lstinline{man snmpwalk} to find out the meanings of the options used in the commands.
     Compare the outputs with the MIB files you saved in the previous exercise.
@@ -116,11 +116,13 @@ rocommunity guest
 \section{SNMP Remote Access}
     Execute \lstinline{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
 
-    Run from \textit{h1} host \lstinline[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}} and while telnet is running, try again to run \lstinline{snmpwalk -v 2c -c guest localhost tcp} on \textit{h0}.
+    Run from \textit{h1} host \lstinline[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}} and while telnet is running, try again to run on \textit{h0}  \lstinline[breaklines=true,escapechar={\ }]{snmpwalk -v 2c -c guest localhost tcp}.
 
-    Try to run \lstinline[emph={h0}]{snmpwalk -v 2c -c guest h0 tcp} from \textit{h2}.
+    Try to run \lstinline[emph={h0,netlab}]{snmpwalk -v 2c -c guest h0.netlab tcp} from \textit{h2}.
 
-    Execute \lstinline[emph={your-host, remote-host}]{snmpget -v 2c -c guest remote-host IF-MIB::ifMtu.1} to get the MIB object \texttt{IF-MIB::ifMTU.1} from a remote machine.
+    Execute \lstinline[emph={your-host, h0,netlab}]{snmpget -v 2c -c guest h0.netlab IF-MIB::ifMtu.1} to get the MIB object \texttt{IF-MIB::ifMTU.1} from a remote machine.
+    
+    You can list all interfaces for the hosts by executing \lstinline[emph={guest,h0,netlab}]{snmpwalk -v 2c -c guest h0.netlab interface} command.
 
     Save the \lstinline{snmpget} output and terminate \lstinline{tcpdump}.
 
@@ -130,7 +132,7 @@ rocommunity guest
     \begin{report}
         \item What is the port number used by the SNMP agent?
         
-        \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.\textit{x}} ($x \in \{2,3,4,\cdots\}$)? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstinline{ifconfig} output.
+        \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.\textit{x}} ($x \in \{2,3,4,\cdots\}$ that list in \lstinline{snmpwalk ... interface})? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstinline{ifconfig} output.
         
         \item Draw the format of one of the SNMP messages saved, including the name and value of each field.
     \end{report}
@@ -172,7 +174,7 @@ rocommunity guest
     \begin{report}
         \item In each experiment, can you extract the password from the \lstinline{tcpdump} output?
             Can you read the IP, TCP, SSH headers?
-            Can you read the TCP data?
+            Can you read the SSH data?
         
         \item What is the client protocol (and version) used in both cases?
         
@@ -326,7 +328,7 @@ Email Address []:netlab@ut.ac.ir
 \section{Trace Log}
     Go to \path{log} folder at \path{/var/log/} to examine the log files in your host.
     If a log (e.g.\ the \textit{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \lstinline[emph={keyword}]{grep keyword access.log} (e.g.\ \texttt{GET}) in the {console} to display those log entries containing the keyword.
-    Enter the keyword \texttt{failed} to display logged failures.
+    Enter the keyword \texttt{failed} or \texttt{404} to display logged failures.
 
     See other log files.
 
@@ -360,9 +362,9 @@ goaccess -a > /var/www/html/report.html
     \end{report}
 
 \section{System Status}
-    Execute \lstinline{netstat -l} to display the listening sockets in your host.
+    Execute \lstinline{netstat -l} to display the listening sockets in server host.
 
-    Execute htis commands to see the system services info \footnote{The old Linux OS service loaded in\path{/etc/init.d/} and \path{/etc/init/} directories} and their status.
+    Execute this commands to see the system services info \footnote{The old Linux OS service loaded in\path{/etc/init.d/} and \path{/etc/init/} directories} and their status.
     Save the output for the lab report.
     \begin{itemize}
         \item \lstinline{service --status-all}
@@ -371,6 +373,6 @@ goaccess -a > /var/www/html/report.html
     \end{itemize}
     
     \begin{report}
-        \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled in your host?
+        \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled and running in server host?
     \end{report}
 \end{document}
