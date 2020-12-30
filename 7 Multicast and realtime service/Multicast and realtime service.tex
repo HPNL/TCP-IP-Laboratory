@@ -107,14 +107,21 @@ netstat -rn
     \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
     Each time when the network interface is brought down and up again by the \lstinline{ifconfig} command, you may need to run the \lstinline{route} command to re-insert the multicast routing entry.}
 
-    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \fcolorbox{blue}{yellow!10}{{all hosts}}
     \lstset{backgroundcolor=\color{yellow!10}}
     \begin{lstlisting}[emph=eth0]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
     
     Execute this command on all hosts.
+
     Save the new routing table.
+
+    \fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+    \lstset{backgroundcolor=\color{yellow!10}}
+    \begin{lstlisting}
+netstat -rn
+    \end{lstlisting}
     
     \begin{report}
         \item Submit the routing table you saved.
@@ -690,7 +697,7 @@ telnet 128.238.63.101
 mstat 128.238.61.100 128.238.65.100 224.111.111.111
     \end{lstlisting}
 
-    Generate multicast packet when execute command for specific source.
+    Generate multicast packet when execute command for \textit{h6} (to see statistics change).
 
     \begin{report}
     \item Draw multicast tree from \textit{h0} (128.238.61.100) to \textit{h6} (128.238.65.100) via 224.111.111.111 group.
