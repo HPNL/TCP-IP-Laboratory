@@ -96,7 +96,7 @@
     alsoletter={-},
     keywords = [0]{no, clear, wr},
     keywords = [1]{
-      show, ip, config, configuration, int, interface, router,
+      show, ip, config, configure, configuration, int, interface, router,
       mtrace,mrinfo,mstat,ping,debug, bridge, shut,
       end, exit, aaa, username, access-list, bridge-group,
     },
@@ -109,7 +109,7 @@
       dense-mode, sparse-mode, dense-sparse-mode, multicast-routing,
       join-group, group-address, query-interval,groups, deny, permit, host,translations,
       nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside,
-      unreachables, mtu,
+      unreachables, mtu, group
     },
     comment=[l]{!},
     keywordstyle=[0]\color{red},
