@@ -79,7 +79,8 @@
       tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
       sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
       a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket, ntptrace, ntpq,
-      goaccess, webalizer, vlc, firefox, systemctl, nano, vim, docker
+      goaccess, webalizer, vlc, firefox, systemctl, nano, vim, docker, echo, dhclient, rdate, ntpdate,
+      status, dhcpd, routed
     },
     morekeywords=[2]{
       netspy, netspyd, %UDPserver, UDPclient,
@@ -94,11 +95,11 @@
   }
   \lstdefinelanguage{cisco}{
     alsoletter={-},
-    keywords = [0]{no, clear, wr},
+    keywords = [0]{no, clear, wr, ?},
     keywords = [1]{
-      show, ip, config, configure, configuration, int, interface, router,
-      mtrace,mrinfo,mstat,ping,debug, bridge, shut,
-      end, exit, aaa, username, access-list, bridge-group,
+      show, sh, ip, config, configure, configuration, int, interface, router,
+      mtrace,mrinfo,mstat,ping,debug, bridge, shut, write,
+      end, exit, aaa, username, access-list, bridge-group, help,
     },
     morekeywords=[2]{
       igmp, term, terminal, protocol, ieee, addr, routing, ttl-threshold,
@@ -106,10 +107,10 @@
       summary,asb-summary,external,database-summary,count, authorization,
       mroute, pim, dvmrp, privilege, password, new-model, authentication, login, default,
       exec, http, server, secure-server, local, overload, tcp,
-      dense-mode, sparse-mode, dense-sparse-mode, multicast-routing,
+      dense-mode, sparse-mode, dense-sparse-mode, multicast-routing, multicast,
       join-group, group-address, query-interval,groups, deny, permit, host,translations,
       nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside,
-      unreachables, mtu, group
+      unreachables, mtu, group, version
     },
     comment=[l]{!},
     keywordstyle=[0]\color{red},
