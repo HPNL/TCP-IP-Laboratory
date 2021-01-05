@@ -496,7 +496,7 @@ config term
 
     Terminate \lstinline{tcpdump}, examine its output and compare the output with the UDP server and client outputs.
 
-    Repeat the above experiments, but now use the \path{TCPserver.c} and \path{TCPclient.c}.
+    Repeat the above experiments, but now use the \lstinline{TCPserver.c} and \lstinline{TCPclient.c}.
 
 \section{Socket Options}
     Execute \lstinline{man setsockopt} to display the various socket options and how to set them.
@@ -521,8 +521,8 @@ config term
     \begin{itemize}
         \item First you need to set up the control connection to Port 21 of the remote machine, using a TCP socket.
         \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in \hyperref[tab:5.1]{Table~5.1} of reference book.
-        \item You can first run \lstinline{telnet remote-host 21}, then type \lstinline{help} to list all the FTP commands.
-        Also, you can try the commands out in the \lstinline{telnet} window, e.g.\ use \lstinline{USER netlab} to send the user ID and \lstinline{PASS netlab} to send the password to the FTP server.
+        \item You can first run \lstinline[emph={remote-host}]{telnet remote-host 21}, then type \lstinline{help} to list all the FTP commands.
+        Also, you can try the commands out in the \lstinline{telnet} window, e.g.\ use \lstinline[emph={netlab}]{USER netlab} to send the user ID and \lstinline[emph={netlab}]{PASS netlab} to send the password to the FTP server.
         To terminate the \lstinline{telnet} session, type \lstinline{QUIT}.
         \item In your program, these messages should be sent to the FTP server by calling the \lstinline{send()} function of the local TCP socket.
         \item Also your program needs to parse the server responses (some examples are given in \hyperref[tab:5.2]{Table~5.2} of reference book) to find out the status of the previous FTP command.
