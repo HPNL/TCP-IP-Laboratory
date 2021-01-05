@@ -65,7 +65,7 @@
     Before the lab, you should do this instructions on \textit{h0}:
     \begin{enumerate}
         \item Backup the original \lstinline{snmpd} configuration file:
-        \lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}.
+        \lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}\footnote{Shortest way: \lstinline{mv /etc/snmp/snmpd.conf\{,.save\}}}.
         \item Create a simple configuration file\footnote{Can use \lstinline{echo "some text" > otuput.file}} \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community \textbf{guest}:
         \begin{lstlisting}[language={conf}, emph={guest}]
 rocommunity guest
@@ -179,7 +179,8 @@ rocommunity guest
         \item What is the client protocol (and version) used in both cases?
         
         \item What is the port number used by the \lstinline{ssh} server?
-            What is the port number used by the sftp server? Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
+            What is the port number used by the sftp server?
+            Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
     \end{report}
 
 \part{Exercises on Firewalls and \texttt{iptables}}
@@ -253,7 +254,8 @@ openssl req -new -x509 -sha256 -days 365 -key server.key -out server.crt
     \footnote{You can use simple command as \lstinline{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config.}
     \begin{lstlisting}
 cd /etc/apache2/ssl
-openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.key -out server.crt
+openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.key -out server.crt \
+-subj "/C=IR/ST=Tehran/L=Tehran/O=Tehran University/OU=Network Laboratory/CN=netlab.ut.ac.ir"
     \end{lstlisting}
 
         Let's go over exactly what this means.
@@ -267,11 +269,12 @@ openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.
             \item \lstinline{-nodes}: This option tells OpenSSL that we do not wish to secure our key file with a passphrase.
                 Having a password protected key file would get in the way of Apache starting automatically as we would have to enter the password every time the service restarts.
             \item \lstinline{-days 365}: This specifies that the certificate we are creating will be valid for one year.
-            \item \lstinline{-newkey rsa:1024}: This option will create the certificate request and a new private key at the same time.
+            \item \lstinline{-newkey rsa:4096}: This option will create the certificate request and a new private key at the same time.
                 This is necessary since we didn't create a private key in advance.
-                The rsa:1024 tells OpenSSL to generate an RSA key that is 1024 bits long.
+                The rsa:4096 tells OpenSSL to generate an RSA key that is 4096 bits long.
             \item \lstinline{-keyout}: This parameter names the output file for the private key file that is being created.
             \item \lstinline{-out}: This option names the output file for the certificate that we are generating.
+            \item \lstinline{-subj}: Sets subject name for new request or supersedes the subject name when processing a request.
         \end{itemize}
 
     The questions portion looks something like this:
@@ -327,14 +330,14 @@ Email Address []:netlab@ut.ac.ir
 
 \section{Trace Log}
     Go to \path{log} folder at \path{/var/log/} to examine the log files in your host.
-    If a log (e.g.\ the \textit{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \lstinline[emph={keyword}]{grep keyword access.log} (e.g.\ \texttt{GET}) in the {console} to display those log entries containing the keyword.
-    Enter the keyword \texttt{failed} or \texttt{404} to display logged failures.
+    If a log (e.g.\ the \textit{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \lstinline[emph={keyword}]{grep keyword access.log | tail} (e.g.\ \textbf{GET}) in the {console} to display those log entries containing the keyword.
+    Enter the keyword \textbf{failed} or \textbf{404} to display logged failures.
 
     See other log files.
 
 \section{Log Analyzer}
     Linux uses a utility called \lstinline{webalizer} to analyze the web server log files.
-    \lstinline{Webalizer} reads the \lstinline{apache2} log files and creates a set of web reports on server statistics.
+    \lstinline{webalizer} reads the \lstinline{apache2} log files and creates a set of web reports on server statistics.
     Another utility is \lstinline{goaccess} that analyze various access type and list it.
 
     To analyze local log use this commands:
