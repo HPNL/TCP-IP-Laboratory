@@ -381,14 +381,14 @@ Router(interface)# ip igmp join-group 224.0.0.2
 
     Execute \lstinline{./netspyd 224.111.111.111 1500 16} on \textit{h4}.
     
-    To generate multicast traffic, you can login (by \lstinline{telnet} or \lstinline{ssh}) to or logout of \textit{h4}.
+    To generate multicast traffic, you can login (by \lstinline{telnet} or \lstinline{ssh}\footnote{Need to \lstinline{service ssh start} on remote machine}) to or logout of \textit{h4}.
     Each time when the login user set of \textit{h4} changes, \lstinline{netspyd} on \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
 
-    Can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet in the \lstinline{tcpdump} output? 
+    Can you see the \lstinline{netspy} messages on the 128.238.65.0 subnet in the \lstinline{tcpdump} output? 
 
-    Terminate the \lstinline{netspy} program on \textit{h6} (or \textit{h0}).
+    Terminate the \lstinline{netspy} program on \textit{h6}.
 
-    Can you see the \lstinline{netspy} messages on the 128.238.65.0 (or the 128.238.61.0) subnet?
+    Can you see the \lstinline{netspy} messages on the 128.238.65.0 subnet?
     \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
     In this case, the membership record in the router expires in 120 seconds.
     During this interval, the router still forwards multicast datagram through the port.} 
