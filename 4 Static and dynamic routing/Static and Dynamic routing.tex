@@ -427,6 +427,8 @@ tcpdump -x -s 120 ip proto 89
     \begin{report}
         \item Draw the common header of a saved OSPF message, giving the decimal values of the header fields (see \hyperref[fig:4.8]{Figure~4.8}).
         
+        \item Can you ping \textit{h1} from \textit{h2}?
+        
         \item Submit the routing tables you collected from the routers.
     \end{report}
 
@@ -435,6 +437,7 @@ tcpdump -x -s 120 ip proto 89
 \section{Static routing}
     After checking the wiring, as shown in \hyperref[fig:4.13]{Figure~4.13}, reboot the routers to restore their initial settings.
     Check the IP addresses of the hosts as shown in \hyperref[fig:4.13]{Figure~4.13}.
+    Also, you can disable \textit{OSPF} process on the router.
 
     Remove all the routing entries other than your own subnet and the \textit{loopback} interface from your host routing table.
     Save the output of \lstinline{netstat -rn} before building your host’s routing table.
@@ -460,6 +463,8 @@ ip route destination-network destination-net-mask next-hup-ip
     When you can get \lstinline{ping} reply messages from all the interfaces of the routers successfully, your work is done for this exercise.} save the routing tables in your host and all the routers for the lab report.
     
     \begin{report}
+        \item Can you ping \textit{h1} from \textit{h2}?
+        
         \item Submit the routing tables saved in this exercise.
     \end{report}
 
