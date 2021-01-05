@@ -33,6 +33,8 @@
 
 \definecolor{magnolia}{rgb}{0.97, 0.96, 1.0}
 \definecolor{magnolialight}{rgb}{0.98, 0.97, 1.0}
+\definecolor{olive}{rgb}{0.5, 0.5, 0.0}
+\definecolor{darkolivegreen}{rgb}{0.30, 0.40, 0.0}
 
 \makeatletter
 
@@ -80,10 +82,13 @@
       sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
       a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket, ntptrace, ntpq,
       goaccess, webalizer, vlc, firefox, systemctl, nano, vim, docker, echo, dhclient, rdate, ntpdate,
-      status, dhcpd, routed
+      status, dhcpd, routed, curl, snmpd
     },
-    morekeywords=[2]{
-      netspy, netspyd, %UDPserver, UDPclient,
+    keywords=[2]{
+      netspy, netspyd, setsockopt, send, UDPserver, UDPclient, TCPserver, TCPclient,
+    },
+    keywords=[3]{
+      setsockopt, localhost, start, stop, restart
     },
   }
   \lstdefinelanguage{generic}{
@@ -138,7 +143,7 @@
     basicstyle=\small\ttfamily,
     keywordstyle=\bfseries\color{Blue},
     keywordstyle={[2]\bfseries\color{Cyan}},
-    keywordstyle={[3]\bfseries\color{Olive}},
+    keywordstyle={[3]\bfseries\color{darkolivegreen}},
     stringstyle=\color{TealBlue},
     commentstyle=\itshape\color{Orange},
     identifierstyle=\color{Black},
