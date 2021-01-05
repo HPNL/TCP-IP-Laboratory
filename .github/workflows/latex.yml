@@ -2,7 +2,7 @@ name: Build resource CI
 
 on:
   push:
-    tags: [ v*, 1.* ]
+    tags: [ g1.* ]
   #   branches: [ master ]
   # pull_request:
   #   branches: [ master ]
@@ -27,9 +27,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          release_name: Release for GNS3 ${{ github.ref }}
           draft: false
-          prerelease: false
+          prerelease: true
 
       - name: Build the Latex
         run: |
