@@ -82,7 +82,7 @@
       sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
       a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket, ntptrace, ntpq,
       goaccess, webalizer, vlc, firefox, systemctl, nano, vim, docker, echo, dhclient, rdate, ntpdate,
-      status, dhcpd, routed, curl, snmpd
+      status, dhcpd, routed, curl, snmpd, ls, rm,
     },
     keywords=[2]{
       netspy, netspyd, setsockopt, send, UDPserver, UDPclient, TCPserver, TCPclient,
@@ -100,11 +100,11 @@
   }
   \lstdefinelanguage{cisco}{
     alsoletter={-},
-    keywords = [0]{no, clear, wr, ?},
+    keywords = [0]{Ctrl-Z, end, exit, no, clear, wr, ?},
     keywords = [1]{
       show, sh, ip, config, configure, configuration, int, interface, router,
       mtrace,mrinfo,mstat,ping,debug, bridge, shut, write,
-      end, exit, aaa, username, access-list, bridge-group, help,
+      enable, aaa, username, access-list, bridge-group, help,
     },
     morekeywords=[2]{
       igmp, term, terminal, protocol, ieee, addr, routing, ttl-threshold,
@@ -115,7 +115,7 @@
       dense-mode, sparse-mode, dense-sparse-mode, multicast-routing, multicast,
       join-group, group-address, query-interval,groups, deny, permit, host,translations,
       nat, pool, nat, inside, source, list, netmask, static, ethernet, address, outside,
-      unreachables, mtu, group, version
+      unreachables, mtu, group, version, proxy-arp
     },
     comment=[l]{!},
     keywordstyle=[0]\color{red},

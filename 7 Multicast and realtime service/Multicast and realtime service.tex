@@ -68,7 +68,7 @@
     If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
     \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
     Each time when the network interface is brought down and up again by the \lstinline{ifconfig} command, you may need to run the \lstinline{route} command to re-insert the multicast routing entry.}
-    \begin{lstlisting}[emph=eth0]
+    \begin{lstlisting}[emph=eth0,morekeywords={[3]add,netmask,dev}]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
     \textbf{Execute this command on all hosts}.
@@ -111,7 +111,7 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
     \end{report}
 
 \section{Multicast vs Unicast}
-    On \textit{h1} execute \lstinline{tcpdump -n -nn -e} and \lstinline{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
+    On \textit{h1} execute \lstinline{tcpdump -n -nn -e} and \lstinline[morekeywords={[3]ether,multicast}]{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
 
     To generate an Ethernet unicast frame, run \lstinline[emph={your-host, remote-host}]{socket -i -u -n1 remote-host echo}.
 
@@ -264,7 +264,7 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
     \end{report}
 
 \section{IGMP Types}
-    Execute \lstinline{tcpdump ip multicast -v} or \lstinline{wireshark} in one console to capture IGMP messages.
+    Execute \lstinline[morekeywords={[3]multicast}]{tcpdump ip multicast -v} or \lstinline{wireshark} in one console to capture IGMP messages.
     When you see three or more IGMP queries in the second \lstinline{tcpdump} output, terminate both \lstinline{tcpdump} programs.
 % FIXME: check senario
     Analyze the IGMP messages you captured.
@@ -374,7 +374,7 @@ Router(interface)# ip igmp join-group 224.0.0.2
     Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}).
     All routers pre-configured in \textit{GN3} \hyperref[fig:7.14]{Figure~7.14}
 
-    Run \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on all subnet (at least one host).
+    Run \lstinline[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstinline{wireshark} on all subnet (at least one host).
     Maybe you need to restart (or reload) routers to capture all packet from start state.
 
     Execute \lstinline{./netspy 224.111.111.111 1500} on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}.
@@ -462,8 +462,8 @@ Router(interface)# ip multicast ttl-threshold 32
     In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in \textit{h0}.%and TTL
     Now you should see the received video is displayed on the screen.
 
-    Execute \lstinline{tcpdump ip multicast} or \lstinline{wireshark} in one console to capture the multicast datagrams.
-    In another console, execute \lstinline{tcpdump ip multicast} to monitor the capture process.
+    Execute \lstinline[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstinline{wireshark} in one console to capture the multicast datagrams.
+    In another console, execute \lstinline[morekeywords={[3]multicast}]{tcpdump ip multicast} to monitor the capture process.
     When you see some \texttt{RTCP} packets in the second \lstinline{tcpdump} output, terminate both \lstinline{tcpdump} programs.
 
     Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.

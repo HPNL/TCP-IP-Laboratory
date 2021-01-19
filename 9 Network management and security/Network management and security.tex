@@ -67,7 +67,7 @@
         \item Backup the original \lstinline{snmpd} configuration file:
         \lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}\footnote{Shortest way: \lstinline{mv /etc/snmp/snmpd.conf\{,.save\}}}.
         \item Create a simple configuration file\footnote{Can use \lstinline{echo "some text" > otuput.file}} \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community \textbf{guest}:
-        \begin{lstlisting}[language={conf}, emph={guest}]
+        \begin{lstlisting}[language={conf}, emph={guest},morekeywords={[3]rocommunity}]
 rocommunity guest
         \end{lstlisting}
     \end{enumerate}
@@ -114,13 +114,13 @@ rocommunity guest
     \end{report}
 
 \section{SNMP Remote Access}
-    Execute \lstinline{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
+    Execute \lstinline[morekeywords={[3]udp,port}]{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
 
     Run from \textit{h1} host \lstinline[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}} and while telnet is running, try again to run on \textit{h0}  \lstinline[breaklines=true,escapechar={\ }]{snmpwalk -v 2c -c guest localhost tcp}.
 
-    Try to run \lstinline[emph={h0,netlab}]{snmpwalk -v 2c -c guest h0.netlab tcp} from \textit{h2}.
+    Try to run \lstinline[emph={h0,netlab,guest},morekeywords={[2]tcp}]{snmpwalk -v 2c -c guest h0.netlab tcp} from \textit{h2}.
 
-    Execute \lstinline[emph={your-host, h0,netlab}]{snmpget -v 2c -c guest h0.netlab IF-MIB::ifMtu.1} to get the MIB object \texttt{IF-MIB::ifMTU.1} from a remote machine.
+    Execute \lstinline[emph={your-host, h0,netlab,guest},morekeywords={[2]IF-MIB,ifMtu}]{snmpget -v 2c -c guest h0.netlab IF-MIB::ifMtu.1} to get the MIB object \textbf{IF-MIB::ifMTU.1} from a remote machine.
     
     You can list all interfaces for the hosts by executing \lstinline[emph={guest,h0,netlab}]{snmpwalk -v 2c -c guest h0.netlab interface} command.
 
@@ -192,7 +192,7 @@ rocommunity guest
     Save the output for the lab report.
 
     Append a rule to the end of the \texttt{INPUT} chain, by executing on \textit{h0}
-    \begin{lstlisting}
+    \begin{lstlisting}[morekeywords={[3]INPUT,TCP,DROP}]
 iptables -A INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
@@ -211,12 +211,12 @@ iptables -A INPUT -v -p TCP --dport 23 -j DROP
     
 \section{Firewall Action}
     Delete the rule created in the last exercise, by:    
-    \begin{lstlisting}
+    \begin{lstlisting}[morekeywords={[3]INPUT,TCP,DROP}]
 iptables -D INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
     Then, append a new rule to the \texttt{INPUT} chain:    
-    \begin{lstlisting}
+    \begin{lstlisting}[morekeywords={[3]INPUT,TCP,REJECT,tcp-reset}]
 iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     \end{lstlisting}
     
@@ -238,12 +238,12 @@ iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     Run \lstinline{man openssl} to study the OpenSSL command line tool.
 
     Create a new private key on \textit{h0} for the Apache server, using:
-    \begin{lstlisting}
+    \begin{lstlisting}[emph={server,key},morekeywords={[2]genrsa}]
 cd /etc/apache2/ssl
 openssl genrsa 4096 > server.key
     \end{lstlisting}
     To create a self-signed certificate, go to the \path{/etc/apache2/ssl/} directory, and execute:
-    \begin{lstlisting}
+    \begin{lstlisting}[emph={server,key,crt},morekeywords={[2]req}]
 openssl req -new -x509 -sha256 -days 365 -key server.key -out server.crt
     \end{lstlisting}
     Then you will be asked a number of questions, regarding the location, affiliation, etc.
@@ -252,10 +252,10 @@ openssl req -new -x509 -sha256 -days 365 -key server.key -out server.crt
 
     You can generate private key and self-signed certificate whit one command by:
     \footnote{You can use simple command as \lstinline{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config.}
-    \begin{lstlisting}
+    \begin{lstlisting}[emph={server,key,crt},morekeywords={[2]req},escapechar={}]
 cd /etc/apache2/ssl
 openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.key -out server.crt \
--subj "/C=IR/ST=Tehran/L=Tehran/O=Tehran University/OU=Network Laboratory/CN=netlab.ut.ac.ir"
+-subj "/C=IR/ST=Tehran/L=Tehran/O=Tehran University/OU=Network Laboratory/CN=netlab.ut.ac.ir/emailAddress=netlab@ut.ac.ir"
     \end{lstlisting}
 
         Let's go over exactly what this means.
@@ -283,9 +283,9 @@ openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.
 Country Name (2 letter code) [AU]:IR 
 State or Province Name (full name) [Some-State]:Tehran 
 Locality Name (eg, city) []:Tehran 
-Organization Name (eg, company) [Internet Widgits Pty Ltd]:University of Tehran 
-Organizational Unit Name (eg, section) []:ECE Department 
-Common Name (e.g.\ server FQDN or YOUR name) []:ece.ut.ac.ir
+Organization Name (eg, company) [Internet Widgits Pty Ltd]:Tehran University 
+Organizational Unit Name (eg, section) []:Network Laboratory 
+Common Name (e.g.\ server FQDN or YOUR name) []:netlab.ut.ac.ir
 Email Address []:netlab@ut.ac.ir
     \end{lstlisting}}
 
@@ -371,8 +371,8 @@ goaccess -a > /var/www/html/report.html
     Save the output for the lab report.
     \begin{itemize}
         \item \lstinline{service --status-all}
-        \item \lstinline{systemctl list-units --type=service --state=running} (\textit{Not work on} \lstinline{docker})
-        \item \lstinline{systemctl list-unit-files --type service --state=enabled} (\textit{Not work on} \lstinline{docker})
+        \item \lstinline[morekeywords={[2]list-units}]{systemctl list-units --type=service --state=running} (\textit{Not work on} \lstinline{docker})
+        \item \lstinline[morekeywords={[2]list-unit-files}]{systemctl list-unit-files --type service --state=enabled} (\textit{Not work on} \lstinline{docker})
     \end{itemize}
     
     \begin{report}

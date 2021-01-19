@@ -97,7 +97,7 @@
 
     If you don’t see a significant amount of output packets in the \lstinline{netstat} output, the machine was probably restarted recently.
     You may do this experiment later, or use the following \lstinline{socket} command to generate some network traffic:
-    \begin{lstlisting}[emph={remote-host}]
+    \begin{lstlisting}[emph={remote-host},morekeywords={[3]echo}]
 # replace remote-host with ip address
 socket -u -i -n200 remote-host echo
     \end{lstlisting}
@@ -178,8 +178,8 @@ arp -d remote-host
 
     Set IP of each network by running the following command in the hosts:
     \begin{enumerate}
-        \item \lstinline[emph={x}]{ifconfig eth0 x.x.x.x/mask}
-        \item \lstinline[emph={y}]{route add default gw y.y.y.y}
+        \item \lstinline[emph={x,eth0},morekeywords={[3]masks}]{ifconfig eth0 x.x.x.x/mask}
+        \item \lstinline[emph={y},morekeywords={[3]add,default,gw}]{route add default gw y.y.y.y}
     \end{enumerate}
     Next we will enable the proxy ARP function on the ethernet1 interface of \textit{Router4}.
     \begin{enumerate}
@@ -206,7 +206,7 @@ wr
 
     Then let the hosts in the 128.238.65.0 subnet send UDP datagrams to the hosts in the 128.238.64.0 subnet.
     For example, on \textit{h4} type:
-    \begin{lstlisting}[emph={host-in-64-0-subnet}]
+    \begin{lstlisting}[emph={host-in-64-0-subnet},morekeywords={[3]echo}]
 socket -i -u -n1 -w1000 host-in-64-0-subnet echo
     \end{lstlisting}
 
@@ -276,7 +276,7 @@ arping -c 4 -U -I eth0 h7-ip
 
 \section{ping ICMP}
     Use \lstinline[emph={remote-host}]{ping -sv remote-host} to test whether the remote host is reachable, while running:
-    \\\lstinline[emph={your-host, remote-host}]{tcpdump -enx host your-host and remote-host}.
+    \\\lstinline[emph={your-host, remote-host},morekeywords={[3]host,and}]{tcpdump -enx host your-host and remote-host}.
     Save the \lstinline{tcpdump} and \lstinline{ping} output for the future study on \lstinline{ping}.
     
     \begin{report}

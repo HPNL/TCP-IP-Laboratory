@@ -34,7 +34,7 @@
     Login to the remote host’s web server: \lstinline[emph={your-host, remote-host}]{telnet remote-host 80}.
 
     In the login console, type the following HTTP request line by line:
-    \begin{lstlisting}[language={HTTP},escapechar={},emph={your-host, remote-host}]
+    \begin{lstlisting}[language={HTTP},morekeywords={[2]GET,From,User-Agent},escapechar={},emph={your-host, remote-host}]
 GET /index.html HTTP/1.0
 From: netlab@your-host
 User-Agent: HTTPTool/1.0
@@ -58,7 +58,7 @@ User-Agent: HTTPTool/1.0
     By default, Apache server supports persistent connections.
     Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file \footnote{\path{/etc/apache2/apache2.conf}} to make sure it is turned on, as \lstinline[language={HTTP}]{KeepAlive On}.
 
-    Execute \lstinline[emph={your-host, remote-host}]{tcpdump host your-host and remote-host} or run \lstinline{wireshark} to capture packets between your host and a remote host.
+    Execute \lstinline[emph={your-host, remote-host},morekeywords={[3],host,and}]{tcpdump host your-host and remote-host} or run \lstinline{wireshark} to capture packets between your host and a remote host.
 
     
     Enter the URL \url{http://remote-host/try1.html}, to download the HTML file consisting a line of text, an embedded picture, and a hyperlink.
@@ -67,7 +67,7 @@ User-Agent: HTTPTool/1.0
     Disable Apache server persistent connections by change value of \texttt{KeepAlive} option to \lstinline{Off} and restart \lstinline{apache2} service\footnote{\lstinline{service apache2 restart}}.
 
     
-    Use \lstinline[emph={your-host, remote-host}]{tcpdump host your-host and remote-host} or run \lstinline{wireshark} and print the HTTP requests and responses for the lab report.
+    Use \lstinline[emph={your-host, remote-host},morekeywords={[3],host,and}]{tcpdump host your-host and remote-host} or run \lstinline{wireshark} and print the HTTP requests and responses for the lab report.
     
     Use \textit{Mozilla} to reload the \url{try1.html} file.
     Use \textit{Ctrl+F5} to ignore cache.
@@ -171,7 +171,7 @@ User-Agent: HTTPTool/1.0
 
     Save the DHCP server output on \textit{h1} for the lab report.
 
-    \begin{lstlisting}[language={conf}, caption={A DHCP server configuration file (Table~8.3)\label{tab:8.3}}]
+    \begin{lstlisting}[language={conf}, caption={A DHCP server configuration file (Table~8.3)\label{tab:8.3}},emph={xx}]
 default-lease-time 600;
 max-lease-time 7200;
 option subnet-mask 255.255.255.0;
@@ -185,7 +185,7 @@ subnet 128.238.66.0 netmask 255.255.255.0 {
 }
 
 host h5 {
-    hardware ethernet 08:00:20:79:e9:9f;
+    hardware ethernet xx:xx:xx:xx:xx:xx;
     fixed-address 128.238.66.110;
 }
     \end{lstlisting}
@@ -231,7 +231,7 @@ host h5 {
         \end{minipage}
     \end{center}
 
-\section{NTP Local Date}
+\section{Local Date}
     Execute \lstinline{date} to display the system time of your host.
     Display the manual page of \lstinline{date}, and study its options and usages.
     Try the following \lstinline{date} commands: 
@@ -270,7 +270,7 @@ date -r $file-name
     If you are using another machine, you can telnet to \textit{h0} and display the \path{/etc/ntp.conf} file in the telnet window.
     Start the NTP server on \textit{h0} by \lstinline{service ntp start}.
     To determine the status of the NTP server, use \lstinline{service ntp status}.
-    Use \lstinline[emph={your-host, remote-host, h0}]{tcpdump -ex -n -nn host your-host and h0} or \lstinline{wireshark} to capture packets between your host and \textit{h0}.
+    Use \lstinline[emph={your-host, remote-host, h0},morekeywords={[3],host,and}]{tcpdump -ex -n -nn host your-host and h0} or \lstinline{wireshark} to capture packets between your host and \textit{h0}.
     Execute \lstinline{ntpdate -d -v 128.238.66.100} to synchronize other host to \textit{h0}.
     Study the output of this command.
     Save the \lstinline{ntpdate} and the \lstinline{wireshark} outputs for the lab report.
@@ -282,7 +282,7 @@ date -r $file-name
 
 \section{** NTP Server}
     Keep the NTP server running on \textit{h0}.
-    Execute \lstinline[emph={your-host, remote-host}]{tcpdump -exn -nn host your-host and 128.238.66.100} or \lstinline{wireshark} to capture the NTP messages between \textit{your-host} and \textit{h0}.
+    Execute \lstinline[emph={your-host, remote-host},morekeywords={[3]host,and}]{tcpdump -exn -nn host your-host and 128.238.66.100} or \lstinline{wireshark} to capture the NTP messages between \textit{your-host} and \textit{h0}.
 
     Config \path{/etc/ntp.conf} in \textit{other-host} and add \lstinline[language={conf}]{server 128.238.66.100} to config file.
 
@@ -382,12 +382,12 @@ config term
     ip nat inside source list 8 pool mypool
     ip nat inside source static 10.0.0.7 128.238.61.104
 
-    interface ethernet 0
+    interface f0/0
         ip address 128.238.61.1 255.255.255.0
         no shut
         ip nat outside
 
-    interface ethernet 1
+    interface f0/1
         ip address 10.0.0.1 255.0.0.0
         no shut
         ip nat inside
@@ -422,7 +422,7 @@ config term
 
 \section{NAT Table}
     Keep the login session to the router running.
-    Execute \lstinline{tcpdump -enx -s 100 ip proto 1} or \lstinline{wireshark} to capture ICMP messages on two subnet.
+    Execute \lstinline[morekeywords={[3]proto}]{tcpdump -enx -s 100 ip proto 1} or \lstinline{wireshark} to capture ICMP messages on two subnet.
 
     Execute \lstinline{socket -i -u -n1 128.238.61.101 8888} on \textit{h2} to generate an ICMP port unreachable error.
 
@@ -463,16 +463,16 @@ config term
 
     \begin{lstlisting}[language={cisco}, caption={PAT Router Configuration in \hyperref[fig:8.7]{Figure~8.7} (Table~8.6)\label{tab:8.6}}]
 config term
-    ip nat inside source list 8 interface ethernet 0 overload
+    ip nat inside source list 8 interface f0/0 overload
     ip nat inside source static tcp 10.0.0.7 80 128.238.61.1 80
 
-    interface ethernet 0
+    interface f0/0
         ip address 128.238.61.1 255.255.255.0
         no shut
         ip nat outside
         exit
 
-    interface ethernet 1
+    interface f0/1
         ip address 10.0.0.1 255.0.0.0
         no shut
         ip nat inside
@@ -511,7 +511,7 @@ config term
 \section{FTP Socket Programming}
     This is an optional exercise on socket programming.
     Or, it can be assigned as a take-home project for extra credits.
-    Note that familiarity with C (or C++) programming is required.
+    Note that familiarity with \textbf{C} (or \textbf{C++}) programming is required.
 
     \subsection*{Problem}
     Examine the message exchanges of FTP.
@@ -522,11 +522,11 @@ config term
         \item First you need to set up the control connection to Port 21 of the remote machine, using a TCP socket.
         \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in \hyperref[tab:5.1]{Table~5.1} of reference book.
         \item You can first run \lstinline[emph={remote-host}]{telnet remote-host 21}, then type \lstinline{help} to list all the FTP commands.
-        Also, you can try the commands out in the \lstinline{telnet} window, e.g.\ use \lstinline[emph={netlab}]{USER netlab} to send the user ID and \lstinline[emph={netlab}]{PASS netlab} to send the password to the FTP server.
-        To terminate the \lstinline{telnet} session, type \lstinline{QUIT}.
+        Also, you can try the commands out in the \lstinline{telnet} window, e.g.\ use \lstinline[emph={netlab},morekeywords={[2]USER}]{USER netlab} to send the user ID and \lstinline[emph={netlab},morekeywords={[2]PASS}]{PASS netlab} to send the password to the FTP server.
+        To terminate the \lstinline{telnet} session, type \lstinline[morekeywords={[2]QUIT}]{QUIT}.
         \item In your program, these messages should be sent to the FTP server by calling the \lstinline{send()} function of the local TCP socket.
         \item Also your program needs to parse the server responses (some examples are given in \hyperref[tab:5.2]{Table~5.2} of reference book) to find out the status of the previous FTP command.
-        \item The FTP data connection should be established using the \lstinline{PORT} command (see Chapter~5 of reference book).
+        \item The FTP data connection should be established using the \lstinline[morekeywords={[2]PORT}]{PORT} command (see Chapter~5 of reference book).
     \end{itemize}
 
 \end{document}
