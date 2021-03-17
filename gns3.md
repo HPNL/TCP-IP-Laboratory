@@ -18,7 +18,7 @@ When you open `GNS3` and open or create topology, see something like this image.
     5. **Console to all devices**
     7. **Start/Resume all devices**
     8. Suspend all devices
-    9. Stop all devices
+    9. **Stop** all devices
     10. Reload all devices
     ---
     11. Add a note
@@ -39,9 +39,9 @@ When you open `GNS3` and open or create topology, see something like this image.
     6. **Add link**
 3. Topology summery
     * List all devices in Topology (`Node Name` & `Console Connection Command`)
-        * Right click: see all node commands (see [Project Devices](#project-devices))
+        * Right click: see all node menus (see [Project Devices](#project-devices))
     * In SubItem see all interfaces and link status (capture state, filter state, ...)
-        * Right click: see all link commands (see [Link](#link))
+        * Right click: see all link menus (see [Link](#link))
 4. Server summery
     * List all connected server (with system load)
         * SubItem: List all node in selected server
@@ -49,10 +49,10 @@ When you open `GNS3` and open or create topology, see something like this image.
     * Print all `GNS3` log (docker pull, connection failure, command failed or ...)
 6. **Topology view**
     * Show all node and device with link (The Topology)
-    * **Add device** by dragging them from it's panel (router, switch, host, ...)
+    * **Add device** by dragging device from it's panel (router, switch, host, ...) in to topology
     * **Add link** between devices by click on [link](#link) and click on first device and then second device
     * You can group devices, Add label
-    * You can drag and organize topology
+    * You can organize topology (move/add/delete/config)
 
 ## Projects
 
@@ -85,20 +85,28 @@ Also `GNS3` have **`File > Save project as`** menu to save the project with diff
 ### Export Project
 
 The `GNS3` have ability to save all project topology and it's resource like device image (docker, router, ...) and share with other.
+You can open `Export Project` dialog by selecting **`File > Export portable project`**.
 If you don't select `Include base images`, the target `GNS3` must loaded the resource before use topology.
 
 ![gns3-export](./img/gns3-export.jpg)
 
 ### Import Project
 
-In `GNS3` you can import the exported project. If the selected portable project don't include the base images, you must load them before start topology.
+In `GNS3` you can import the exported project with `.gns3p` or `.gns3project`.
+You can open `Export Project` dialog by selecting **`File > Import portable project`**.
+If the selected portable project don't include the base images, you must load them before start topology.
+
+### Delete Project
+
+In the `Browse Project` dialog, you can delete a project.
+Also, after open a project, you can delete it by selecting **`File > Delete Project`**
 
 ## Project Devices
 
 The `GNS3` support [host](#hosts), [switches](#switch-or-hub), [router](#router), [security](#security-devices) devices plus [link](#link).
 You can add device from `GNS3` template or import manually from `GNS3` `Preferences`.
 
-To add a new device to your project, you can open device panel and **drag** device to you topology.
+To add a new device to your project, you can open device panel and **drag** device in to your topology.
 
 ### Hosts
 
@@ -114,7 +122,9 @@ You can add custom host in `GNS3` > `Preferences`.
 * VMware VM based
 
 After you add host to your topology, you can **right click** on the new host and see menu.
-You can configure the host, Open console or Auxiliary console (open secondly console **only for docker** host), start/stop/suspend/reload host, change symbol, change ip and etc.
+You can configure the host, Open **console** and **Auxiliary console** (open secondly console in **docker** host), start/stop/suspend/reload host, change symbol, change ip and etc.
+
+> Auxiliary console always run `/bin/sh` command. You can switch to **BASH** environment by run `bash` command
 
 The configure panel of host consist all config that can edited for host.
 In the below describe each item:
@@ -123,10 +133,10 @@ In the below describe each item:
 * `Start command`: custom start command when you start the host (can add new service startup or config change)
 * `Adapters`: number of host network adapter
 * `Custom adapters`: can edit adaptors name
-* `Console type`:
+* `Console type`: can select between  {**Telnet**, **HTTP**, **HTTPS**, **VNC**}
 * `VNC console resoloution`:
 * `HTTP port in the container`: the port number for **HTTP** and **HTTPS** that map to outer host and use in browser when click on host and select open console.
-* `HTTP path`:
+* `HTTP path`: Default `HTTP` path
 * `Environment variables`: the linux **env** value
 * `Network configuration`: to edit `/etc/network/interfaces` of the host. Also you can select `Edit config` in host menu (a shortcut to edit network configuration)
 
@@ -141,21 +151,52 @@ The `/etc/hosts` file like a local `DNS` server.
 
 ### Switch or Hub
 
-<img src="./img/gns3-switch-menu.jpg"  align="right" left-margin=10pt>
+![gns3-switch-menu](./img/gns3-switch-menu.jpg)
+
+In the config panel of Switch and Hub, you can only change the device name and port number.
 
 ### Router
 
 <img src="./img/gns3-router-menu.jpg"  align="right" left-margin=10pt>
 
+`GNS3` support to emulate Cisco **IOS** image router with `dynamics` program.
+In the newer version, `GNS3` support **IOU** image router for simulation.
+
+By default, router start with default configuration file.
+In the router console, you can set and apply new configurations.
+If you want to save new configs in the router to load in next startup, you need to disable *Automatically delete NVRAM and disk file* in configure panel.
+
+Also you can change the peripheral **slots** and **wic**  in configuration panel.
+
+![gns3-router-config-panel](./img/gns3-router-config-panel.jpg)
+
 ### Security devices
+
+Some vendor or open source project in security, publish it's software in `GNS3` for simulate and debug network such as *Fortinet*.
 
 ### link
 
+<img src="./img/gns3-link-menu.jpg"  align="right" left-margin=10pt>
+
+The link has a small control menu.
+You can start capture or set some packet filter for each link.
+
 #### Packet Filter
+
+![gns3-link-filter-panel](./img/gns3-link-packet-filter.jpg)
+
+In the packet filter dialog, Yo can set some link property like:
+
+* `Drop`: set the Drop pattern
+* `Loss`: set loss rate
+* `Delay`: set packet latency and jitter
+* `Corrupt`: set corruption chance
+* `BPF`: set berkley packet filter
 
 #### Packet Capture
 
-### Node console
+In packet capture dialog, you can select link type and `pcap` file name for capture packet.
+By default, the `wireshark` app run after press **OK**, but you can disable it and save captured file.
 
 ## GNS3 Web-UI (beta)
 

@@ -88,7 +88,8 @@ docker pull utnetlab/gui
 Also you can pull this images from github package section. But you need to add docker tag.
 
 ```bash
-# may be need login to github
+# may be need login to github:
+# https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages
 docker pull docker.pkg.github.com/ut-network-lab/docker-tools/term:latest
 docker tag docker.pkg.github.com/ut-network-lab/docker-tools/term:latest utnetlab/term:latest
 docker pull docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest
