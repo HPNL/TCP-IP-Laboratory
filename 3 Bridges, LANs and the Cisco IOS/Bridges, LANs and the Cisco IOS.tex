@@ -101,7 +101,7 @@ Ctrl+Z
 
 \section{Bridge Packet}
     Run \lstinline{tcpdump -en ip proto 1} on \textit{h0} and \textit{h1} machine.
-    Send \lstinline{ping} messages to \textit{h1} machine: \lstinline[emph={remote-machine}]{ping -sv remote-machine}.
+    Send \lstinline{ping} messages to \textit{h1} machine from \textit{h0}: \lstinline[emph={h1,netlab}]{ping -sv h1.netlab}.
     After receiving the tenth echo reply, quit the \lstinline{ping} process, and save the \lstinline{tcpdump} outputs from both machines.
 
     During this exercise, don’t run \lstinline{ping} programs at the same time from other host.
