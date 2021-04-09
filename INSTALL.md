@@ -14,7 +14,23 @@ If you use `GNS3 VM` or need to connect a remote server, use [install remote](./
 
 ## Install tools
 
-We prefer to use last long term support (LTS) branch of **Ubuntu** linux.
+We prefer to use pre-build **VM** from `GNS3` github.
+Also, you can use last long term support (LTS) branch of **Ubuntu** or **Debian** linux to setup `GNS3`.
+
+### Client & Server (pre-build VM)
+
+You can setup your desktop connect to remote server.
+Pre-build **VM**s can downloaded from [this](https://github.com/GNS3/gns3-gui/releases) url.
+Download local executable (`.exe` or `.dmg`) and the **VM** image according to your hypervisor and import it.
+
+#### Setup remote server
+
+After download and boot your **remote-server**, you need setup your local `GNS3` as client of the **remote-server** (maybe you need change the **VM** network config into *bridge*).
+For do this, got into `Preferences > Server > Main server` and then disable local server.
+In the new panel, set remote **Host=***`displayed-ip`*, **Port=*80*** and disable **Auth**.
+
+After setup the **remote-server** on your client, you need download docker images in server `shell` ([Get docker images](#Get-docker-images)).
+All the other setup, can do in client `GUI` like local `GNS3` ([Setup GNS3](#Setup-GNS3)).
 
 ### Ubuntu (18.04, 20.04, 20.10, 21.04)
 
@@ -161,11 +177,9 @@ You can replace the `dockerhub.ir` with any proxy host.
 #### Set in docker deamon file
 
 ```bash
-cat > /etc/docker/daemon.json <<EOF
-{
+echo '{
   "registry-mirrors": ["https://dockerhub.ir"]
-}
-EOF
+}' | sudo tee /etc/docker/daemon.json
 sudo systemctl restart docker
 ```
 
@@ -295,14 +309,3 @@ Click on **Idle-PC finder** to find local idle-PC number if it was empty and the
 
 ![gns3-router-idlepc](./img/gns3-router-idlepc.jpg)
 
-## Setup remote server
-
-You can setup your desktop connect to remote server.
-Pre-build `VM` can accessed from [this](https://github.com/GNS3/gns3-gui/releases) url.
-Also you can setup your own server with [remote-install](./gns3-server/remote-install.sh) script.
-After download or install your **remote-server**, you need setup your local `GNS3` as client of the **remote-server**.
-For do this, got into `Preferences > Server > Main server` and then disable local server.
-In the new panel, set remote **Host** and **Port** (even disable **Auth** if not configured in server).
-
-After setup **remote-server**, you need download docker images in server.
-All other setup, can do in client `GUI` like local `GNS3`.
