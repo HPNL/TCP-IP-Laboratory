@@ -13,7 +13,7 @@ In this lab, you need two hosts, a bridge, and two hubs, which are required to b
         \centering
         \begin{tabular}{ *2c | *2c | *2c }
             \hline \hline
-            \multicolumn{2}{c|}{Router} & \multicolumn{2}{c|}{Host\textsubscript{A}} & \multicolumn{2}{c}{Host\textsubscript{B}} \\
+            \multicolumn{2}{c|}{Router} & \multicolumn{2}{c|}{Host\textsubscript{A} (h0)} & \multicolumn{2}{c}{Host\textsubscript{B} (h1)} \\
             eth0 & eth1 & Name & IP Address & Name & IP Address \\
             \hline 
             128.238.61.1/24 & 128.238.62.1/24 & h0 & 128.238.61.101/24 & h1 & 128.238.62.101/24 \\
@@ -27,11 +27,11 @@ In this lab, you need two hosts, a bridge, and two hubs, which are required to b
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}[every node/.style={inner sep=6}]
-            \node[draw] (h1) at (-3,-1.5){Host\textsubscript{A}};
+            \node[draw] (h1) at (-3,-1.5){Host\textsubscript{A} (h0)};
             \node[draw,rounded corners] (hub2) at (-3,0){Switch 2};
             \node[draw,rounded corners] (router) at (0,0){Router};
             \node[draw,rounded corners] (hub1) at (3,0){Switch 1};
-            \node[draw] (h0) at (3,-1.5){Host\textsubscript{B}};
+            \node[draw] (h0) at (3,-1.5){Host\textsubscript{B} (h1)};
         
             \draw (h0) -- (hub1);
             \draw (h1) -- (hub2);
@@ -42,7 +42,7 @@ In this lab, you need two hosts, a bridge, and two hubs, which are required to b
     \end{figure}
 
 \section{Simple Routing}
-    Configure the IP addresses of your hosts and the router as shown in \hyperref[fig:4.10]{Figure~4.10}, \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3} (select one of row in table).
+    Configure the IP addresses of your hosts and the router as shown in \hyperref[fig:4.10]{Figure~4.10}, \hyperref[tab:4.2]{Table~4.2} and \hyperref[tab:4.3]{Table~4.3}.
 
     Initially all hosts’ routing table has no entry for the subnet on the other side of the router.
     In order to be connected, you need to add a routing entry for the other subnet in the routing table of all hosts (see section 4.3.1).
@@ -61,18 +61,18 @@ route add -net remote-subnet gw gateway-ip   # with default gateway
                 It must be like \lstinline{192.168.1.0/24}.
         \item \textit{gateway-ip} is a gateway ip in your network.
                 It must be like \lstinline{128.238.61.1}
-        \item \textit{eth0} is a pyhisical interface name.
+        \item \textit{eth0} is a physical interface name.
                 It is shown in \lstinline{ifconfig} or \lstinline{ip a} commands.
     \end{itemize}
     
 
     Run \lstinline{tcpdump -en} on first machine, and \lstinline{tcpdump -en} on second machine in the other subnet simultaneously:
-    \begin{lstlisting}[emph={your-machine, remote-host},morekeywords={[3]host,and}]
-tcpdump -en host remote-host and your-machine
+    \begin{lstlisting}[emph={h0,h1,netlab},morekeywords={[3]host,and}]
+tcpdump -en host h1.netlab and h0.netlab
     \end{lstlisting}
-    Send \lstinline{ping} messages continuously to other machine:
-    \begin{lstlisting}[emph={your-host, remote-host}]
-ping -sv remote-host
+    Send \lstinline{ping} messages continuously from \textit{h0} to \textit{h1}:
+    \begin{lstlisting}[emph={h1, netlab}]
+ping -sv h1.netlab
     \end{lstlisting}
     After receiving the tenth echo reply, quit \lstinline{ping} and save the \lstinline{tcpdump} outputs from both machines.
     Also, copy the \lstinline{ping} output.
@@ -83,11 +83,11 @@ ping -sv remote-host
     \begin{report}
         \item When a packet was sent to a host in the other subnet, explain how the source and destination Ethernet addresses were changed.
         
-        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from your machine to the router?
+        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from \textit{h0} to the router?
         
-        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from the router to your partner’s machine?
+        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from the router to \textit{h1} machine?
         
-        \item Answer the above two questions, but now for the echo reply that was returned from your partner’s machine.
+        \item Answer the above two questions, but now for the echo reply that was returned from \textit{h1} machine.
 
         \item Use the \lstinline{tcpdump} outputs from both machines to calculate the average delay that a packet experienced in the router.
                 Note that the system times of the two machines might be different.
@@ -237,7 +237,7 @@ tcpdump -x -s 100 -c 4 udp port 520
 
     Observe the \lstinline{ping} and \lstinline{tcpdump} windows.
     When the connection is re-established, type the \lstinline{date} command again.
-    See how much time RIP takes to alter the routing table in your hsot to the new topology.
+    See how much time RIP takes to alter the routing table in your host to the new topology.
 
     Once you can successfully reach other hosts, connect the cable to the original position.
     Again, measure the time that RIP takes to change your routing table.

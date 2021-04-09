@@ -16,7 +16,7 @@
         \centering
         \begin{tabular}{ *2c|*2c }
             \hline \hline
-            \multicolumn{2}{c|}{Host\textsubscript{A}} & \multicolumn{2}{c}{Host\textsubscript{B}} \\
+            \multicolumn{2}{c|}{Host\textsubscript{A} (h0)} & \multicolumn{2}{c}{Host\textsubscript{B} (h1)} \\
             Name & IP Address & Name & IP Address \\
             \hline 
             h0 & 128.238.61.100/24 & h1 & 128.238.61.101/24\\
@@ -27,11 +27,11 @@
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
-            \node[draw] (h1) at (-2,0){Host\textsubscript{A}};
+            \node[draw] (h1) at (-2,0){Host\textsubscript{A} (h0)};
             \node[draw,rounded corners] (hub) at (0,0){Hub};
             % \node[draw,rounded corners] (router) at (0,0){Router};
             % \node[draw,rounded corners] (hub1) at (2,0){Switch 1};
-            \node[draw] (h0) at (2,0){Host\textsubscript{B}};
+            \node[draw] (h0) at (2,0){Host\textsubscript{B} (h1)};
         
             \draw (h0) -- (hub) -- (h1);
         \end{tikzpicture}
@@ -140,7 +140,7 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
         \centering
         \begin{tabular}{ *2c|*2c|*2c }
             \hline \hline
-            \multicolumn{2}{c|}{Router} & \multicolumn{2}{c|}{Host\textsubscript{A}} & \multicolumn{2}{c}{Host\textsubscript{B}} \\
+            \multicolumn{2}{c|}{Router} & \multicolumn{2}{c|}{Host\textsubscript{A} (h0)} & \multicolumn{2}{c}{Host\textsubscript{B} (h1)} \\
             eth0 & eth1 & Name & IP Address & Name & IP Address \\
             \hline 
             128.238.61.1/24 & 128.238.62.1/24 & h0 & 128.238.61.101/24 & h1 & 128.238.62.101/24 \\
@@ -151,11 +151,11 @@ socket -i -u -n10 -w1200 -p5 remote-host 5555
     \begin{figure}[H]
         \centering
         \begin{tikzpicture}
-            \node[draw] (h1) at (-4,0){Host\textsubscript{A}};
+            \node[draw] (h1) at (-4,0){Host\textsubscript{A} (h0)};
             \node[draw,rounded corners] (hub2) at (-2,0){Hub 2};
             \node[draw,rounded corners] (router) at (0,0){Router};
             \node[draw,rounded corners] (hub1) at (2,0){Hub 1};
-            \node[draw] (h0) at (4,0){Host\textsubscript{B}};
+            \node[draw] (h0) at (4,0){Host\textsubscript{B} (h1)};
         
             \draw (h0) -- (hub1);
             \draw (h1) -- (hub2);
