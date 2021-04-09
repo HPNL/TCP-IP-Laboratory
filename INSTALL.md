@@ -6,15 +6,17 @@ If you use `GNS3 VM` or need to connect a remote server, use [install remote](./
 
 ## Requirement
 
-* Linux (Ubuntu 18.04, Ubuntu 20.04, Debian 9, Debian 10 or other supported linux)
+* Linux (Ubuntu 20.04, Debian 10 or other supported linux)
 * GNS3
 * Docker
 * Cisco router image
-* Mininet
+<!-- * Mininet -->
 
 ## Install tools
 
 We prefer to use last long term support (LTS) branch of **Ubuntu** linux.
+
+### Ubuntu (18.04, 20.04, 20.10, 21.04)
 
 You can install all needed tools with bellow commands on Ubuntu x64 based linux:
 
@@ -26,7 +28,9 @@ sudo apt install gns3-gui gns3-server wireshark
 
 ## To install preview of gns3 webclient, uncomment this line
 # sudo apt install gns3-webclient-pack
+```
 
+```bash
 ## to install open source edition of docker use "Free"
 ## else use "CE" to install community edition of docker
 DockerType="Free" # "CE"
@@ -43,7 +47,7 @@ else
 fi
 ```
 
- verify installation:
+verify installation:
 
  ```bash
  sudo docker run hello-world
@@ -52,16 +56,69 @@ fi
  adding your user to the “docker” group:
 
  ```bash
-sudo usermod -aG ubridge $USER
-sudo usermod -aG libvirt $USER
-sudo usermod -aG kvm $USER
-sudo usermod -aG wireshark $USER
-sudo usermod -aG docker $USER
+for i in ubridge libvirt kvm docker wireshark; do
+  sudo usermod -aG $i $USER
+done
 # loading new user group config
 sudo su $USER
 ```
 
-### Distribution Upgrade
+### Debian 10
+
+```bash
+sudo apt update
+sudo apt install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
+python3-pyqt5.qtwebsockets \
+qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
+wireshark xtightvncviewer apt-transport-https \
+ca-certificates curl gnupg2 software-properties-common
+
+sudo pip3 install gns3-server
+sudo pip3 install gns3-gui
+# if install with user pip3, it will be installed into "$HOME/.local/bin"
+# add 'export PATH="$HOME/.local/bin:$PATH"' into end of .bashrc
+
+echo "deb http://ppa.launchpad.net/gns3/ppa/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/gns3.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F88F6D313016330404F710FC9A2FD067A2E3EF7B
+
+sudo apt-get update
+sudo apt install dynamips ubridge
+```
+
+```bash
+## to install open source edition of docker use "Free"
+## else use "CE" to install community edition of docker
+DockerType="Free" # "CE"
+if [ $DockerType == "Free" ]; then
+  sudo apt install docker.io
+else
+  sudo apt remove docker docker-engine docker.io
+  sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+  sudo add-apt-repository \
+  "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+  sudo apt update
+  sudo apt install docker-ce
+fi
+```
+
+verify installation:
+
+ ```bash
+ sudo docker run hello-world
+ ```
+
+ adding your user to the “docker” group:
+
+ ```bash
+for i in ubridge libvirt kvm docker wireshark sudo; do
+  sudo usermod -aG $i $USER
+done
+# loading new user group config
+sudo su $USER
+```
+
+### Ubuntu Distribution Upgrade
 
 If you upgrade your ubuntu distribution, you need to remove old `GNS3` repository and add again.
 
@@ -94,6 +151,31 @@ docker pull docker.pkg.github.com/ut-network-lab/docker-tools/term:latest
 docker tag docker.pkg.github.com/ut-network-lab/docker-tools/term:latest utnetlab/term:latest
 docker pull docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest
 docker tag docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest utnetlab/gui:latest
+```
+
+### Get from proxy
+
+If you need to use proxy, you can use one of the following way.
+You can replace the `dockerhub.ir` with any proxy host.
+
+#### Set in docker deamon file
+
+```bash
+cat > /etc/docker/daemon.json <<EOF
+{
+  "registry-mirrors": ["https://dockerhub.ir"]
+}
+EOF
+sudo systemctl restart docker
+```
+
+#### Pull from proxy
+
+```bash
+docker pull dockerhub.ir/utnetlab/term:latest
+docker tag dockerhub.ir/utnetlab/term:latest utnetlab/term:latest
+docker pull dockerhub.ir/utnetlab/gui:latest
+docker tag dockerhub.ir/utnetlab/gui:latest utnetlab/gui:latest
 ```
 
 <!-- Also you can [download](https://github.com/orgs/UT-Network-Lab/packages?repo_name=docker-tools) and load docker images from archive file as below: -->
@@ -209,7 +291,18 @@ Skip *slots* step until get *Idle-PC* step.
 ![gns3-router-wic](./img/gns3-router-wic.jpg)
 
 Click on **Idle-PC finder** to find local idle-PC number if it was empty and then press **Finish**.
+(Default value for idle-PC is **0x602467a4**)
 
 ![gns3-router-idlepc](./img/gns3-router-idlepc.jpg)
 
 ## Setup remote server
+
+You can setup your desktop connect to remote server.
+Pre-build `VM` can accessed from [this](https://github.com/GNS3/gns3-gui/releases) url.
+Also you can setup your own server with [remote-install](./gns3-server/remote-install.sh) script.
+After download or install your **remote-server**, you need setup your local `GNS3` as client of the **remote-server**.
+For do this, got into `Preferences > Server > Main server` and then disable local server.
+In the new panel, set remote **Host** and **Port** (even disable **Auth** if not configured in server).
+
+After setup **remote-server**, you need download docker images in server.
+All other setup, can do in client `GUI` like local `GNS3`.
