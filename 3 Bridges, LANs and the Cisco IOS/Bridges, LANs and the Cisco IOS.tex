@@ -246,7 +246,7 @@ explain stp and bpdu
 \section{Multi Bridge Path}
     After configuring the network in \hyperref[fig:3.8]{Figure~3.8}, login to the bridge 1.
 
-    Get to the \textit{Privileged EXEC}\footnote{use \textbf{enable} command to active \textit{Privileged EXEC}} mode (is activated by default in \textbf{GNS3}).
+    Get to the \textit{Privileged EXEC}\footnote{use \lstinline[language=cisco]{enable} command to active \textit{Privileged EXEC}} mode (is activated by default in \textbf{GNS3}).
     Type \lstinline[language={cisco}]{show bridge} to see the entries in the bridge forwarding database.
 
     Whenever you \lstinline{ping} or \lstinline{telnet} from \textit{h0} to a host that is not in the table (table form bridge 1), observe how the filtering database in the bridge is expanded.
@@ -283,13 +283,13 @@ explain stp and bpdu
     First, send \lstinline{ping} messages from \textit{h3} to \textit{h4}, while \lstinline{tcpdump} is running.
     Let the two programs run during this exercise.
 
-    Then, disconnect the cable from the \textit{ethernet0} port of \textit{Bridge2} from the hub (or shut the router interface), and get system time (\lstinline{date}, \lstinline{date '+%D %T.%N'} or \lstinline{date +%s%N} to get nano seconds) on \textit{h3} or \textit{h4} to get the current time.
+    Then, shutdown (disconnect) the cable from the \textit{ethernet0} (equal to \textit{FastEthernet0/0} or \textit{f0/0}) port of \textit{Bridge2} from the hub (by \lstinline[language=cisco]{shut} in the router interface configuration mode), and get system time (\lstinline{date}, \lstinline{date '+%D %T.%N'} or \lstinline{date +%s%N} to get nano seconds) on \textit{h3} or \textit{h4} to get the current time.
 
     Observe the \lstinline{ping} and \lstinline{tcpdump} windows.
     When the connection is reestablished, get the \lstinline{time} again.
     How long does it take the spanning tree algorithm to react to the change in the topology?
 
-    Once you can successfully reach other hosts, get to the bridges to run \lstinline[language={cisco}]{show bridge} to collect the port states.
+    Once you can successfully reach other hosts, get to the bridges to run \lstinline[language=cisco]{show bridge} to collect the port states.
     Also collect BPDUs from all the LAN segments as you did in the previous exercise.
 
     After every student has collected the required data, connect the cable to the original position.
@@ -338,7 +338,7 @@ R1(config)# ip http secure-server
 R1(config)# ip http authentication local
     \end{lstlisting}
     
-    Next, start a web browser (e.g.\ \textit{Mozilla} in Linux) in your host, and enter the IP address of the router interface.
+    Next, start a web browser (e.g. \textit{Mozilla FireFox} in Linux) in your host, and enter the IP address of the router interface (\url{http://128.238.61.1}).
     When prompted, enter \texttt{netlab} for user name and password.
     Then you can browse the router configuration web pages and configure the router there.
 
