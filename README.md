@@ -57,22 +57,17 @@ Open GPLv3 [LICENSE](LICENSE) file.
 
 ## ToDo and Bugfix
 
-* [ ] change `your host` and `remote host` to real host name
+* [ ] change `your host` and `remote host` to real host name `h0` and `h1`
 * [ ] add farsi Chapter
-* [ ] add figure and template for `Cisco IOS HTTP REST API` section
-* [ ] add quiz sample
 * [ ] add network equipment and device overview
 * [ ] add api to transfer file to host
   * Can use `docker cp`
 * [ ] update network tools
-  * [ ] upgrade base docker image
   * [ ] base linux
   * [ ] `socket` with `netcat`
   * [ ] linux routing service
   * [ ] router discovery
   * [ ] ...
-* [ ] build custom figure with enabled multicast ping reply
-* [ ] add route table for right subnet in exercise `8 Multicast Message`
 
 ## Appendix
 
