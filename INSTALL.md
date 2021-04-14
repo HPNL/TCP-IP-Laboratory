@@ -21,7 +21,11 @@ Also, you can use last long term support (LTS) branch of **Ubuntu** or **Debian*
 
 You can setup your desktop connect to remote server.
 Pre-build **VM**s can downloaded from [this](https://github.com/GNS3/gns3-gui/releases) url.
-Download local executable (`.exe` or `.dmg`) and the **VM** image according to your hypervisor and import it.
+Download local executable (`.exe` or `.dmg`) and the **VM** image according to your hypervisor and install it.
+
+> Don't need to install full `GNS3` client.
+> You can disable local server package (WebClient, VM (download manually), WinPCAP (for windows 10), NPcap (for os before windows 10), Dynamips, QEMU, VPCS, CPU-limit).
+> Also you can don't install **SolarWind** terminal package (in Windows OS) and use **putty** terminal instated.
 
 #### Setup remote server
 
@@ -295,7 +299,7 @@ Set name to **c3725** for new router.
 
 ![gns3-router-name](./img/gns3-router-name.jpg)
 
-Under *Memory* section, set *Default RAM* to **160 MB** at minimum.
+Under *Memory* section, set *Default RAM* to **144 MB** at minimum (prefer set to **160/192 MB** for correct **NAT** setup).
 
 ![gns3-router-ram](./img/gns3-router-ram.jpg)
 
