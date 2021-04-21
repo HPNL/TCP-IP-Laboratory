@@ -82,7 +82,7 @@
       sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
       a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket, ntptrace, ntpq,
       goaccess, webalizer, vlc, firefox, systemctl, nano, vim, docker, echo, dhclient, rdate, ntpdate,
-      status, dhcpd, routed, curl, snmpd, ls, rm,
+      status, dhcpd, routed, curl, snmpd, ls, rm, rdisc,
     },
     keywords=[2]{
       netspy, netspyd, setsockopt, send, UDPserver, UDPclient, TCPserver, TCPclient,
