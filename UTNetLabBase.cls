@@ -75,6 +75,7 @@
   \tolerance=5000
 
   \lstdefinelanguage{bash-ext}{
+    backgroundcolor = \color{green!10},
     language=bash,
     keywords=[1]{
       grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
@@ -95,12 +96,14 @@
     alsoletter={-},
   }
   \lstdefinelanguage{conf}{
+    backgroundcolor = \color{red!10},
     language=generic,
     comment=[l]{\#},
   }
   \lstdefinelanguage{cisco}{
-    alsoletter={-},
-    keywords = [0]{Ctrl-Z, end, exit, no, clear, wr, ?},
+    backgroundcolor = \color{yellow!10},
+    alsoletter={-,+},
+    keywords = [0]{Ctrl-Z, Ctrl+Z, end, exit, no, clear, wr, ?},
     keywords = [1]{
       show, sh, ip, config, configure, configuration, int, interface, router,
       mtrace,mrinfo,mstat,ping,debug, bridge, shut, write,
@@ -126,6 +129,7 @@
     morestring=[b]"
   }
   \lstdefinelanguage{HTTP}{
+    backgroundcolor = \color{RoyalPurple!10},
     alsoletter={-},
     alsoother={@},
   }
