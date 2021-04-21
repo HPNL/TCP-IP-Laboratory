@@ -1,3 +1,5 @@
+% !TeX spellcheck = en_US
+
 \documentclass{../UTNetLab}
 
 \title{Bridges, LANs and the Cisco~IOS}
@@ -23,7 +25,7 @@
             \hline \hline
             \multicolumn{2}{c|}{Router} & \multicolumn{2}{c|}{Host\textsubscript{A} (h0)} & \multicolumn{2}{c}{Host\textsubscript{B} (h1)} \\
             eth0 & eth1 & Name & IP Address & Name & IP Address \\
-            \hline 
+            \hline
             128.238.61.1/24 & 128.238.61.2/24 & h0 & 128.238.61.100/24 & h1 & 128.238.61.101/24 \\
             % 128.238.62.2/24 & 128.238.62.3/24 & h2 & 128.238.62.102/24 & h3 & 128.238.62.103/24 \\
             % 128.238.63.3/24 & 128.238.63.4/24 & h4 & 128.238.63.104/24 & h5 & 128.238.63.105/24 \\
@@ -40,7 +42,7 @@
             \node[draw,rounded corners,align=center] (router) at (0,0){Router\\as\\Brdige};
             \node[draw,rounded corners] (hub1) at (2.2,0){Hub 1};
             \node[draw] (h0) at (4,0){Host\textsubscript{B} (h1)};
-        
+
             \draw (h0) -- (hub1);
             \draw (h1) -- (hub2);
             \draw[thick] (hub1) -- (router);
@@ -66,7 +68,7 @@
     Type \lstinline[language={cisco}]{show version} in the \textit{User EXEC} mode to display the Cisco~IOS banner.
     Identify which Cisco~IOS Release is running in the router.
     Save the Cisco~IOS banner for your lab report.
-    
+
     \paragraph{See} the Cisco~IOS banner.
     Identify the release of the Cisco~IOS software in the router.
 
@@ -106,13 +108,13 @@ Ctrl+Z
 
     During this exercise, don’t run \lstinline{ping} programs at the same time from other host.
     For clean results, do your experiments in turn.
-    
+
     \begin{report}
         \item What are the IP and MAC addresses of a packet that went from the \textit{h0} machine to the bridge?
             What are the IP and MAC addresses of a packet that went from the router to the \textit{h1} machine?
 
         \item Answer the same questions, but for the echo reply that was returned from the \textit{h1} machine.
-        
+
         \item Using the \lstinline{tcpdump} outputs from both machines, calculate the average delay that a packet experienced in the bridge.
             \footnote{Note that the system times of the two machines might be different.}
     \end{report}
@@ -125,7 +127,7 @@ Ctrl+Z
 
 %    You need to collect all the different BPDUs from all group in your lab.
 %    At this time, save your BPDU capture output.
-    
+
 %    In our next step,  you get BPDUs from other gropu.
 % explain stp and bpdu
 
@@ -263,7 +265,7 @@ Ctrl+Z
     To collect all BPDU packets from start time, you need restart (reload) all router.
 
     Login to each bridge (or open \textbf{GNS3} router console) to collect the \lstinline[language={cisco}]{show bridge} outputs.
-    
+
     \begin{report}
         \item Submit the four different BPDUs (from four network sections) you saved.
             Identify the values of root ID, root path cost, bridge ID, and port ID for each BPDU.
@@ -294,7 +296,7 @@ Ctrl+Z
 
     After every student has collected the required data, connect the cable to the original position.
     Again, measure the time it takes for the bridges to adapt to the new change.
-    
+
     \begin{report}
         \item Draw the new tree formed after the cable was disconnected, based on the BPDUs you collected in this exercise.
             Specify the state of each bridge port.
@@ -311,7 +313,7 @@ Ctrl+Z
             \node[draw,rounded corners] (hub1) at (0,0){Hub 1};
             \node[draw] (h1) at (2,0){h1};
             \node[draw] (h0) at (-2,0){h0};
-        
+
             \draw (h0) -- (hub1);
             \draw (h1) -- (hub1);
             \draw[thick] (hub1) -- (router);
@@ -337,7 +339,7 @@ R1(config)# ip http server
 R1(config)# ip http secure-server
 R1(config)# ip http authentication local
     \end{lstlisting}
-    
+
     Next, start a web browser (e.g. \textit{Mozilla FireFox} in Linux) in your host, and enter the IP address of the router interface (\url{http://128.238.61.1}).
     When prompted, enter \texttt{netlab} for user name and password.
     Then you can browse the router configuration web pages and configure the router there.
@@ -369,7 +371,7 @@ R1(config)# ip http authentication local
 
         \item Only the root ports and designated ports of the bridges are allowed to forward frames.
             All other bridge ports are blocked.
-        
+
         \item The above steps are repeated whenever the network topology changes.
 \end{enumerate}
 
@@ -382,29 +384,29 @@ R1(config)# ip http authentication local
     \begin{itemize}
         \item \textit{Protocol Identifier}, \textit{Version}, and \textit{Message Type}:
             These three fields are always set to 0.
-        
+
         \item \textit{Flags}: The least significant bit, called the Topology Change (TC) bit, is set to signal a topology change.
                 The most significant bit is to acknowledge receipt of a BPDU with the TC bit set.
                 The remaining six bits are not used.
-        
+
         \item \textit{Root ID}: Identifies the root bridge by listing its 2-byte priority followed by a 6-byte Ethernet address.
                 The priority value can be set in the Global Configuration mode.
                 The default priority is 0x8000.
-        
+
         \item \textit{Root Path Cost}: The path cost to the root bridge.
-        
+
         \item \textit{Bridge ID}: The identifier of the bridge sending the message.
                 Port ID: Each bridge port has a unique 2-byte identifier.
                 The first byte is the priority, which is configurable, while the second byte is a number assigned to the port.
-        
+
         \item \textit{Message Age}:1 Specifies the amount of time since the root originally sent the BPDU on which the current configuration message is based.
-        
+
         \item \textit{Maximum Age}:1 Indicates when the spanning tree topology is recalculated if a bridge does not hear BPDUs from the root bridge.
                 The default value is 15 seconds.
-        
+
         \item \textit{Hello Time}:1 Provides the time period between two BPDUs from the root bridge.
                 The default value is 1 second.
-        
+
         \item \textit{Forward Delay}:1 provides the amount of time that bridges should wait before switching a port from the blocking state to forwarding state.
                 If a bridge port switches state too soon, not all network links may be ready to change their state, and loops can occur.
                 The default value is 30 seconds.
