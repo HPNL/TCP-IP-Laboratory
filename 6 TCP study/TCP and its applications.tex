@@ -12,30 +12,30 @@
     Like previous lab, connect two host with one hub together (Figure~5.0) or use Figure~1.3 with two host.
 
 \section{Telnet terminal}
-    While \lstinline[emph={h0,h1,netlab}]{tcpdump -S h0.netlab and h1.netlab} is running, execute: \lstinline[emph={h0,h1,netlab}]{telnet h1.netlab echo} on the \textit{h0} host, then type some text.
-    Save the \lstinline{tcpdump} output.
+    While \lstbash[emph={h0,h1,netlab}]{tcpdump -S h0.netlab and h1.netlab} is running, execute: \lstbash[emph={h0,h1,netlab}]{telnet h1.netlab echo} on the \textit{h0} host, then type some text.
+    Save the \lstbash{tcpdump} output.
     
     \begin{report}
-        \item Explain TCP connection establishment and termination using the \lstinline{tcpdump} output.
+        \item Explain TCP connection establishment and termination using the \lstbash{tcpdump} output.
         
         \item What were the announced MSS values for the two hosts?
         
         \item What happens if there is an intermediate network that has an MTU less than the MSS of each host?
-    See if the \texttt{DF}\footnote{Don't Fragment} flag was set in \lstinline{tcpdump} output.
-    You can change interface \texttt{MTU} with \lstinline[emph=$eth]{sudo ifconfig $eth mtu 1400}
+    See if the \texttt{DF}\footnote{Don't Fragment} flag was set in \lstbash{tcpdump} output.
+    You can change interface \texttt{MTU} with \lstbash[emph=$eth]{sudo ifconfig $eth mtu 1400}
     \end{report}
     
 \section{TCP vs UDP Connection Establishment}
-    While \lstinline[emph={h0,h1,netlab}]{tcpdump -nx h0.netlab and h1.netlab} is running, use \lstinline{socket}\footnote{Basic command is \lstinline{sock}. Use alternative \lstinline{socket} (linked to \lstinline{sock}).} to send a UDP datagram to the \textit{h1} host from the \textit{h0} machine:
+    While \lstbash[emph={h0,h1,netlab}]{tcpdump -nx h0.netlab and h1.netlab} is running, use \lstbash{socket}\footnote{Basic command is \lstbash{sock}. Use alternative \lstbash{socket} (linked to \lstbash{sock}).} to send a UDP datagram to the \textit{h1} host from the \textit{h0} machine:
     \begin{lstlisting}[emph={h0,h1,netlab}]
 socket -u -i -n1 h1.netlab 8888
     \end{lstlisting}
-    {Save} the \lstinline{tcpdump} or \lstinline{wireshark} output for your lab report. \\
-    Restart the above \lstinline{tcpdump} command, execute \lstinline{socket} in the TCP mode:
+    {Save} the \lstbash{tcpdump} or \lstbash{wireshark} output for your lab report. \\
+    Restart the above \lstbash{tcpdump} command, execute \lstbash{socket} in the TCP mode:
     \begin{lstlisting}[emph={h1,netlab}]
 socket -i -n1 h1.netlab 8888
     \end{lstlisting}
-    {Save} the \lstinline{tcpdump} output for your lab report.
+    {Save} the \lstbash{tcpdump} output for your lab report.
     
     \begin{report}
         \item Explain what happened in both the UDP and TCP cases.
@@ -44,40 +44,40 @@ socket -i -n1 h1.netlab 8888
 
 \part{Exercise on TCP Interactive Data Flow}
 \section{Interactive Data Flow}
-While \lstinline{tcpdump} is capturing the traffic between \textit{h0} machine and a \textit{h1} machine, issue following commands:
+While \lstbash{tcpdump} is capturing the traffic between \textit{h0} machine and a \textit{h1} machine, issue following commands:
     \begin{lstlisting}[emph={h1,netlab}]
 tcpdump -nv # or run wireshark
 telnet h1.netlab
     \end{lstlisting}
-    After logging in to the host, type \lstinline{date} and press the {Enter} key.
+    After logging in to the host, type \lstbash{date} and press the {Enter} key.
 
-    Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \lstinline{telnet} window very rapidly.\footnote{For example hold ``A'' key or write ``qwertyuiop'' in \lstinline{telnet} window.}
+    Now, in order to generate data faster than the round-trip time of a single byte to be sent and echoed, type any sequence of keys in the \lstbash{telnet} window very rapidly.\footnote{For example hold ``A'' key or write ``qwertyuiop'' in \lstbash{telnet} window.}
 
-    {Save} the \lstinline{tcpdump} output for your lab report.
+    {Save} the \lstbash{tcpdump} output for your lab report.
     
-    \begin{report}[{Answer the following questions, based upon the \lstinline{tcpdump} output saved in the above exercise.}]
+    \begin{report}[{Answer the following questions, based upon the \lstbash{tcpdump} output saved in the above exercise.}]
         \item What is a delayed acknowledgement?
             What is it used for?
         
-        \item Can you see any delayed acknowledgements in your \lstinline{tcpdump} output?
+        \item Can you see any delayed acknowledgements in your \lstbash{tcpdump} output?
 
             If yes, explain the reason.
-            Mark some of the lines with delayed acknowledgements, and submit the \lstinline{tcpdump} output with your report.
+            Mark some of the lines with delayed acknowledgements, and submit the \lstbash{tcpdump} output with your report.
 
-            Explain how the delayed ACK timer operates from your \lstinline{tcpdump} output.
+            Explain how the delayed ACK timer operates from your \lstbash{tcpdump} output.
 
             If you don’t see any delayed acknowledgements, explain the reason why none was observed.
         
         \item What is the \textit{Nagle}\footnote{Nagle Algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network.} algorithm used for?
 
-            From your \lstinline{tcpdump} output, can you tell whether the \textit{Nagle} algorithm is enabled or not? Give the reason for your answer.
+            From your \lstbash{tcpdump} output, can you tell whether the \textit{Nagle} algorithm is enabled or not? Give the reason for your answer.
 
-            From your \lstinline{tcpdump} output for when you typed very rapidly\footnote{You can paste a large string into terminal, about 50-100 byte.}, can you see any segment that contains more than one character going from the \textit{h0} host to the \textit{h1} machine?
+            From your \lstbash{tcpdump} output for when you typed very rapidly\footnote{You can paste a large string into terminal, about 50-100 byte.}, can you see any segment that contains more than one character going from the \textit{h0} host to the \textit{h1} machine?
     \end{report}
 
 \part{Exercise on TCP Bulk Data Flow}
 \section{IP Segment}
-    While \lstinline{tcpdump} is running and capturing the packets between \textit{h0} machine and a \textit{h1} machine, on the \textit{h1} machine, which acts as the server, execute:
+    While \lstbash{tcpdump} is running and capturing the packets between \textit{h0} machine and a \textit{h1} machine, on the \textit{h1} machine, which acts as the server, execute:
     \begin{lstlisting}
 socket -i -s 7777
     \end{lstlisting}
@@ -87,16 +87,16 @@ socket -i -n16 h1.netlab 7777
     \end{lstlisting}
     Do the same experiment three times.
 
-    Save all the \lstinline{tcpdump} outputs for your lab report.
+    Save all the \lstbash{tcpdump} outputs for your lab report.
     
     \begin{report}
-        \item Using one of three \lstinline{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements.
+        \item Using one of three \lstbash{tcpdump} outputs, explain the operation of TCP in terms of data segments and their acknowledgements.
                 Does the number of data segments differ from that of their acknowledgements?
 
-            Compare all the \lstinline{tcpdump} outputs you saved.
+            Compare all the \lstbash{tcpdump} outputs you saved.
             Discuss any differences among them, in terms of data segments and their acknowledgements.
         
-        \item From the \lstinline{tcpdump} output, how many different TCP flags can you see? Enumerate the flags and explain their meanings.
+        \item From the \lstbash{tcpdump} output, how many different TCP flags can you see? Enumerate the flags and explain their meanings.
 
             How many different TCP options can you see?
             Explain their meanings.
@@ -104,7 +104,7 @@ socket -i -n16 h1.netlab 7777
 
 \part{Exercises on TCP Timers and Retransmission}
 \section{Keepalive parameter}
-    Execute \lstinline{sysctl -A | grep keepalive} to display the default values of the TCP kernel parameters that are related to the TCP keepalive timer.
+    Execute \lstbash{sysctl -A | grep keepalive} to display the default values of the TCP kernel parameters that are related to the TCP keepalive timer.
 
     \begin{report}
         \item What is the default value of the TCP keepalive timer?
@@ -113,14 +113,14 @@ socket -i -n16 h1.netlab 7777
     \end{report}
 
 \section{TCP Retransmission}
-    While \lstinline{tcpdump} is running to capture the packets between the \textit{h0} host and the \textit{h1} host, start a \lstinline{socket} server on the \textit{h1} host,
+    While \lstbash{tcpdump} is running to capture the packets between the \textit{h0} host and the \textit{h1} host, start a \lstbash{socket} server on the \textit{h1} host,
     \begin{lstlisting}
 socket -s 8888
     \end{lstlisting}
     Then, execute the following command on the \textit{h0} host,
     \begin{itemize}
-        \item add link delay in simulator\footnote{In GNS3, \lstinline{right click} on link, select \lstinline{Packet Filter} and set link \lstinline{delay} to \textit{100 ms}}
-        \item \lstinline[emph={host}]{socket -i -n200 -p 100 host 8888}
+        \item add link delay in simulator\footnote{In GNS3, \lstbash{right click} on link, select \lstbash{Packet Filter} and set link \lstbash{delay} to \textit{100 ms}}
+        \item \lstbash[emph={host}]{socket -i -n200 -p 100 host 8888}
     \end{itemize}
     While the sender is injecting data segments into the network, shutdown the network interface on the \textit{h1} host that connect the sender to the hub for about ten seconds.
     \begin{lstlisting}[emph={eth0}]
@@ -136,12 +136,12 @@ after seconds\ldots
 ip link set eth0 up
 ifconfig eth0 up
     \end{lstlisting} %in order to connect again%
-    When all the data segments are sent, save the \lstinline{tcpdump} output for the lab report.
+    When all the data segments are sent, save the \lstbash{tcpdump} output for the lab report.
     
     \begin{report}
-        \item Submit the \lstinline{tcpdump} output saved in this exercise.
+        \item Submit the \lstbash{tcpdump} output saved in this exercise.
         
-        \item From the \lstinline{tcpdump} output, identify when the cable was disconnected.
+        \item From the \lstbash{tcpdump} output, identify when the cable was disconnected.
         
         \item Describe how the retransmission timer changes after sending each retransmitted packet, during the period when the cable was disconnected.
         
@@ -150,7 +150,7 @@ ifconfig eth0 up
     
 \part{Other Exercises}
 \section{Fragmentation}
-    While \lstinline[emph={h0,h1,netlab}]{tcpdump src host h0.netlab} is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous lab session (Chapter~5 of reference book),
+    While \lstbash[emph={h0,h1,netlab}]{tcpdump src host h0.netlab} is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous lab session (Chapter~5 of reference book),
     \begin{lstlisting}[emph={n, h1,netlab}]
 socket -i -n1 -w n h1.netlab echo
     \end{lstlisting}
@@ -165,12 +165,12 @@ socket -i -n1 -w n h1.netlab echo
     \end{report}
 
 \section{Linux TCP/IP Kernel Parameter}
-    Study the manual page of \lstinline{/sbin/sysctl}.
+    Study the manual page of \lstbash{/sbin/sysctl}.
     Examine the default values of some TCP/IP configuration parameters that you might be interested in.
     Examine the configuration files in the \path{/proc/sys/net/ipv4} directory.
 
     \begin{report}
-        \item Explain what is \lstinline{sysctl} command for?
+        \item Explain what is \lstbash{sysctl} command for?
             
         \item Explain two arbitrary TCP/IP configuration parameters.
                 What is their default values?

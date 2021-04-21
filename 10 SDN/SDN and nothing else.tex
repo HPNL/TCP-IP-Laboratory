@@ -9,9 +9,9 @@
 
     \begin{itemize}
         \item Open \path{switch.py} and read it's codes carefully.
-        \item Run this code with \lstinline{sudo python switch.py}
+        \item Run this code with \lstbash{sudo python switch.py}
         \item Ping \textit{h2} from the \textit{h1}.
-        \item Capture OpenFlow hello packet on the \textit{lo} interface. (Filter \lstinline{wireshark} output with \lstinline{of} filter)
+        \item Capture OpenFlow hello packet on the \textit{lo} interface. (Filter \lstbash{wireshark} output with \lstbash{of} filter)
     \end{itemize}
 
     \begin{report}
@@ -46,8 +46,8 @@
     In this section we are loading switch flows from another files and examining it's functionality.
 
     \begin{itemize}
-        \item Execute \lstinline{sudo python topo.py} 
-        \item Execute \lstinline{sh ovs-ofctl add-flows s1 tables.txt} on mininet console.
+        \item Execute \lstbash{sudo python topo.py} 
+        \item Execute \lstbash{sh ovs-ofctl add-flows s1 tables.txt} on mininet console.
         \item Ping each host from other hosts.
         \item Capture ICMP packets on each host and observe network behavior.
         \item Modify \path{tables.txt} to drop packets between \textit{h1} and the \textit{h2}.
@@ -73,6 +73,6 @@
 
 
     \begin{report}
-        \item Can you explain switch behavior? Justify your answer with \lstinline{wireshark} output and \path{tables.txt} file.
+        \item Can you explain switch behavior? Justify your answer with \lstbash{wireshark} output and \path{tables.txt} file.
     \end{report}
 \end{document}

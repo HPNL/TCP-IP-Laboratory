@@ -66,19 +66,19 @@
 
     Before the lab, you should do this instructions on the \textit{h0}:
     \begin{enumerate}
-        \item Backup the original \lstinline{snmpd} configuration file:
-        \lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}\footnote{Shortest way: \lstinline{mv /etc/snmp/snmpd.conf\{,.save\}}}.
-        \item Create a simple configuration file\footnote{Can use \lstinline{echo "some text" > otuput.file}} \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community \textbf{guest}:
+        \item Backup the original \lstbash{snmpd} configuration file:
+        \lstbash{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}\footnote{Shortest way: \lstbash{mv /etc/snmp/snmpd.conf\{,.save\}}}.
+        \item Create a simple configuration file\footnote{Can use \lstbash{echo "some text" > otuput.file}} \path{/etc/snmp/snmpd.conf} with a single line defining a read-only community \textbf{guest}:
         \begin{lstlisting}[language={conf}, emph={guest},morekeywords={[3]rocommunity}]
 rocommunity guest
         \end{lstlisting}
     \end{enumerate}
 
 \section{SNMP Service and MIB Struct}
-    Use \lstinline{pgrep snmpd} to check if \lstinline{snmpd} is started.
-    Try to stop and then start the SNMP agent daemon using \lstinline{service snmpd start|stop}.
+    Use \lstbash{pgrep snmpd} to check if \lstbash{snmpd} is started.
+    Try to stop and then start the SNMP agent daemon using \lstbash{service snmpd start|stop}.
 
-    Study the \lstinline{snmpd} configuration file \path{/etc/snmp/snmpd.conf}.
+    Study the \lstbash{snmpd} configuration file \path{/etc/snmp/snmpd.conf}.
     Also study the default configuration file \path{/etc/snmp/snmpd.conf.save}.
     This file is well commented.
     Read the comments and study the configuration options.
@@ -98,43 +98,43 @@ rocommunity guest
 
 \section{SNMP List Objects}
     on the \textit{h0},
-    Use \lstinline[emph={guest}]{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
+    Use \lstbash[emph={guest}]{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
 
-    Use \lstinline[emph={guest}]{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
+    Use \lstbash[emph={guest}]{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
 
-    You may run \lstinline{man snmpwalk} to find out the meanings of the options used in the commands.
+    You may run \lstbash{man snmpwalk} to find out the meanings of the options used in the commands.
     Compare the outputs with the MIB files you saved in the previous exercise.
-    Also compare the outputs of the first command with that of \lstinline{ifconfig -a}.
+    Also compare the outputs of the first command with that of \lstbash{ifconfig -a}.
 
-    Retry the \lstinline{snmpwalk} commands, but change \textbf{guest} to \textbf{public}.
+    Retry the \lstbash{snmpwalk} commands, but change \textbf{guest} to \textbf{public}.
     Can you display the MIBs this time?
     
     \begin{report}
-        \item What is the MTU of the Ethernet interface? What is the MTU of the \textit{loopback} interface? Justify your answer with the \lstinline{snmpwalk} output and the \lstinline{ifconfig} output.
+        \item What is the MTU of the Ethernet interface? What is the MTU of the \textit{loopback} interface? Justify your answer with the \lstbash{snmpwalk} output and the \lstbash{ifconfig} output.
         
-        \item Why did the \lstinline{snmpwalk} command with a community name public fail?
+        \item Why did the \lstbash{snmpwalk} command with a community name public fail?
     \end{report}
 
 \section{SNMP Remote Access}
-    Execute \lstinline[morekeywords={[3]udp,port}]{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
+    Execute \lstbash[morekeywords={[3]udp,port}]{tcpdump udp port 161} or \lstbash{wireshark} to capture SNMP messages.
 
-    Run from the \textit{h1} host \lstinline[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}} and while telnet is running, try again to run on the \textit{h0}  \lstinline[breaklines=true,escapechar={\ }]{snmpwalk -v 2c -c guest localhost tcp}.
+    Run from the \textit{h1} host \lstbash[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstbash{telnet} and then \lstbash{quit}} and while telnet is running, try again to run on the \textit{h0}  \lstbash[breaklines=true,escapechar={\ }]{snmpwalk -v 2c -c guest localhost tcp}.
 
-    Try to run \lstinline[emph={h0,netlab,guest},morekeywords={[2]tcp}]{snmpwalk -v 2c -c guest h0.netlab tcp} from the \textit{h2}.
+    Try to run \lstbash[emph={h0,netlab,guest},morekeywords={[2]tcp}]{snmpwalk -v 2c -c guest h0.netlab tcp} from the \textit{h2}.
 
-    Execute \lstinline[emph={your-host, h0,netlab,guest},morekeywords={[2]IF-MIB,ifMtu}]{snmpget -v 2c -c guest h0.netlab IF-MIB::ifMtu.1} to get the MIB object \textbf{IF-MIB::ifMTU.1} from a remote machine.
+    Execute \lstbash[emph={your-host, h0,netlab,guest},morekeywords={[2]IF-MIB,ifMtu}]{snmpget -v 2c -c guest h0.netlab IF-MIB::ifMtu.1} to get the MIB object \textbf{IF-MIB::ifMTU.1} from a remote machine.
     
-    You can list all interfaces for the hosts by executing \lstinline[emph={guest,h0,netlab}]{snmpwalk -v 2c -c guest h0.netlab interface} command.
+    You can list all interfaces for the hosts by executing \lstbash[emph={guest,h0,netlab}]{snmpwalk -v 2c -c guest h0.netlab interface} command.
 
-    Save the \lstinline{snmpget} output and terminate \lstinline{tcpdump}.
+    Save the \lstbash{snmpget} output and terminate \lstbash{tcpdump}.
 
-    Use \lstinline{wireshark} to analyze the format of the captured SNMP Get and Response messages.
+    Use \lstbash{wireshark} to analyze the format of the captured SNMP Get and Response messages.
     Print the messages for the lab report.
     
     \begin{report}
         \item What is the port number used by the SNMP agent?
         
-        \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.\textit{x}} ($x \in \{2,3,4,\cdots\}$ that list in \lstinline{snmpwalk ... interface})? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstinline{ifconfig} output.
+        \item What are the full text-based and numerical object ID’s of the MIB object \texttt{interface.ifMTU.\textit{x}} ($x \in \{2,3,4,\cdots\}$ that list in \lstbash{snmpwalk ... interface})? What was the value returned? Justify the answer using \hyperref[fig:9.3]{Figure~9.3} of reference book and the \lstbash{ifconfig} output.
         
         \item Draw the format of one of the SNMP messages saved, including the name and value of each field.
     \end{report}
@@ -142,47 +142,47 @@ rocommunity guest
 \part{Exercises on Secure Applications}
     
 \section{Plain Transfer}
-    Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} to capture packets between the \textit{h0} machine and the \textit{h1} machine.
+    Execute \lstbash{tcpdump -enX -s 100} or \lstbash{wireshark} to capture packets between the \textit{h0} machine and the \textit{h1} machine.
 
-    Execute \lstinline[emph={h0,netlab}]{ftp h0.netlab} on the \textit{h1}.
+    Execute \lstbash[emph={h0,netlab}]{ftp h0.netlab} on the \textit{h1}.
     When prompted, type \textit{1111} for the login ID, and \textit{2222} for the login password.
-    Then terminate \lstinline{tcpdump} and \lstinline{ftp}.
+    Then terminate \lstbash{tcpdump} and \lstbash{ftp}.
 
-    Use \lstinline{wireshark} to analyze and print the packets that carry the login ID and the password for the lab report.
+    Use \lstbash{wireshark} to analyze and print the packets that carry the login ID and the password for the lab report.
 
-    Repeat the above experiment, but use \lstinline{telnet} and the \lstinline{wireshark} to analyze and print output.
+    Repeat the above experiment, but use \lstbash{telnet} and the \lstbash{wireshark} to analyze and print output.
 
     \begin{report}
-        \item Can you see the login ID and the password in the \lstinline{ftp} experiment? Submit the two packets you printed.
+        \item Can you see the login ID and the password in the \lstbash{ftp} experiment? Submit the two packets you printed.
         
-        \item Can you see the login ID and the password in the \lstinline{telnet} experiment? Submit the packets you printed.
+        \item Can you see the login ID and the password in the \lstbash{telnet} experiment? Submit the packets you printed.
         
-        \item What is the difference between \lstinline{ftp} and \lstinline{telnet} in their transmission of user ID’s and passwords? Which one is more secure?
+        \item What is the difference between \lstbash{ftp} and \lstbash{telnet} in their transmission of user ID’s and passwords? Which one is more secure?
     \end{report}
 
 \section{Secure Transfer}
-    Start \lstinline{ssh} service on the \textit{h0} by \lstinline{service ssh start}.
+    Start \lstbash{ssh} service on the \textit{h0} by \lstbash{service ssh start}.
     
-    Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} on the \textit{h1} host or the \textit{h0} host to capture packets between two machine.
+    Execute \lstbash{tcpdump -enX -s 100} or \lstbash{wireshark} on the \textit{h1} host or the \textit{h0} host to capture packets between two machine.
 
-    Execute \lstinline[emph={1111,h0,1111@h0,netlab},escapechar=]{sftp 1111@h0.netlab} on the \textit{h1}.
+    Execute \lstbash[emph={1111,h0,1111@h0,netlab},escapechar=]{sftp 1111@h0.netlab} on the \textit{h1}.
     When prompted for \textit{The authenticity of host}, type \textit{yes} to continue the connection and type \textit{2222} for the login password.
-    Then terminate \lstinline{tcpdump}.
+    Then terminate \lstbash{tcpdump}.
 
-    Use \lstinline{wireshark} to analyze and print one or two \lstinline{ssh} packets for the lab report.
+    Use \lstbash{wireshark} to analyze and print one or two \lstbash{ssh} packets for the lab report.
 
-    Repeat the above experiment, but use \lstinline{ssh} and the \lstinline{wireshark} to analyze and print output.
+    Repeat the above experiment, but use \lstbash{ssh} and the \lstbash{wireshark} to analyze and print output.
 
     \begin{report}
-        \item In each experiment, can you extract the password from the \lstinline{tcpdump} output?
+        \item In each experiment, can you extract the password from the \lstbash{tcpdump} output?
             Can you read the IP, TCP, SSH headers?
             Can you read the SSH data?
         
         \item What is the client protocol (and version) used in both cases?
         
-        \item What is the port number used by the \lstinline{ssh} server?
+        \item What is the port number used by the \lstbash{ssh} server?
             What is the port number used by the sftp server?
-            Justify your answer using the \lstinline{tcpdump} output and the \path{/etc/services} file.
+            Justify your answer using the \lstbash{tcpdump} output and the \path{/etc/services} file.
     \end{report}
 
 \part{Exercises on Firewalls and \texttt{iptables}}
@@ -190,7 +190,7 @@ rocommunity guest
     You can use Figure~1.3.
 
 \section{Firewall Basic}
-    Execute \lstinline{iptables -L -v} to list the existing rules in the filter table on the \textit{h0}.
+    Execute \lstbash{iptables -L -v} to list the existing rules in the filter table on the \textit{h0}.
     Save the output for the lab report.
 
     Append a rule to the end of the \texttt{INPUT} chain, by executing on the \textit{h0}
@@ -198,17 +198,17 @@ rocommunity guest
 iptables -A INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
-    Run \lstinline{iptables -L -v} again on the \textit{h0} and the \textit{h1} to display the filter table.
+    Run \lstbash{iptables -L -v} again on the \textit{h0} and the \textit{h1} to display the filter table.
     Save the output.
 
-    on the \textit{h0} and the \textit{h1}, execute \lstinline{tcpdump}.
-    Then, \lstinline{telnet} to the \textit{h0} host where the rule is set, from the \textit{h1} machine.
-    Save the \lstinline{tcpdump} output for the lab report.
+    on the \textit{h0} and the \textit{h1}, execute \lstbash{tcpdump}.
+    Then, \lstbash{telnet} to the \textit{h0} host where the rule is set, from the \textit{h1} machine.
+    Save the \lstbash{tcpdump} output for the lab report.
 
     \begin{report}
-        \item Can you \lstinline{telnet} to \textit{h0} from the \textit{h1} machine?
+        \item Can you \lstbash{telnet} to \textit{h0} from the \textit{h1} machine?
         
-        \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make?
+        \item From the \lstbash{tcpdump} output, how many retries did \lstbash{telnet} make?
         Explain the exponential \textbf{backoff algorithm} of TCP timeout and retransmission.
     \end{report}
     
@@ -223,22 +223,22 @@ iptables -D INPUT -v -p TCP --dport 23 -j DROP
 iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     \end{lstlisting}
     
-    Execute \lstinline{iptables -L -v} to display the new rule.
+    Execute \lstbash{iptables -L -v} to display the new rule.
 
-    On both machines in your topology, restart \lstinline{tcpdump}, and then \lstinline{telnet} to the \textit{h0} host where the rule is set from the \textit{h1} machine.
-    Save the \lstinline{tcpdump} output for the lab report.
+    On both machines in your topology, restart \lstbash{tcpdump}, and then \lstbash{telnet} to the \textit{h0} host where the rule is set from the \textit{h1} machine.
+    Save the \lstbash{tcpdump} output for the lab report.
     
     \begin{report}
-        \item Explain the difference between the \lstinline{tcpdump} outputs of this exercise and the previous exercise.
+        \item Explain the difference between the \lstbash{tcpdump} outputs of this exercise and the previous exercise.
             How many attempts did {TCP} make this time?
     \end{report}
 
 \part{Exercises on Secure Apache Server}
     In the exercises in this section, using two hosts from \textit{server} and \textit{gui} hosts (also you can use {Figure~3.server.gui}).
-    Run \lstinline{apache2} service on \textit{server}
+    Run \lstbash{apache2} service on \textit{server}
 
 \section{Generate Certificate}
-    Run \lstinline{man openssl} to study the OpenSSL command line tool.
+    Run \lstbash{man openssl} to study the OpenSSL command line tool.
 
     Create a new private key on \textit{server} for the Apache server, using:
     \begin{lstlisting}[emph={server,key},morekeywords={[2]genrsa}]
@@ -254,7 +254,7 @@ openssl req -new -x509 -sha256 -days 365 -key server.key -out server.crt
     After you type in the answers, a self-signed certificate is created at \path{/etc/apache2/ssl/server.crt}
 
     You can generate private key and self-signed certificate whit one command by:
-    \footnote{You can use simple command as \lstinline{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config.}
+    \footnote{You can use simple command as \lstbash{make-ssl-cert generate-default-snakeoil --force-overwrite} without editing default apache ssl config.}
     \begin{lstlisting}[emph={server,key,crt},morekeywords={[2]req},escapechar={}]
 cd /etc/apache2/ssl
 openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.key -out server.crt \
@@ -264,20 +264,20 @@ openssl req -new -x509 -sha256 -days 365 -newkey rsa:4096 -nodes -keyout server.
         Let's go over exactly what this means.
 
         \begin{itemize}
-            \item \lstinline{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
-            \item \lstinline{req}: This specifies a sub-command for X.509 certificate signing request (CSR) management.
+            \item \lstbash{openssl}: This is the basic command line tool provided by OpenSSL to create and manage certificates, keys, signing requests, etc.
+            \item \lstbash{req}: This specifies a sub-command for X.509 certificate signing request (CSR) management.
                 X.509 is a public key infrastructure standard that SSL adheres to for its key and certificate management.
                 Since we are wanting to create a new X.509 certificate, this is what we want.
-            \item \lstinline{-x509}: This option specifies that we want to make a self-signed certificate file instead of generating a certificate request.
-            \item \lstinline{-nodes}: This option tells OpenSSL that we do not wish to secure our key file with a passphrase.
+            \item \lstbash{-x509}: This option specifies that we want to make a self-signed certificate file instead of generating a certificate request.
+            \item \lstbash{-nodes}: This option tells OpenSSL that we do not wish to secure our key file with a passphrase.
                 Having a password protected key file would get in the way of Apache starting automatically as we would have to enter the password every time the service restarts.
-            \item \lstinline{-days 365}: This specifies that the certificate we are creating will be valid for one year.
-            \item \lstinline{-newkey rsa:4096}: This option will create the certificate request and a new private key at the same time.
+            \item \lstbash{-days 365}: This specifies that the certificate we are creating will be valid for one year.
+            \item \lstbash{-newkey rsa:4096}: This option will create the certificate request and a new private key at the same time.
                 This is necessary since we didn't create a private key in advance.
                 The rsa:4096 tells OpenSSL to generate an RSA key that is 4096 bits long.
-            \item \lstinline{-keyout}: This parameter names the output file for the private key file that is being created.
-            \item \lstinline{-out}: This option names the output file for the certificate that we are generating.
-            \item \lstinline{-subj}: Sets subject name for new request or supersedes the subject name when processing a request.
+            \item \lstbash{-keyout}: This parameter names the output file for the private key file that is being created.
+            \item \lstbash{-out}: This option names the output file for the certificate that we are generating.
+            \item \lstbash{-subj}: Sets subject name for new request or supersedes the subject name when processing a request.
         \end{itemize}
 
     The questions portion looks something like this:
@@ -295,9 +295,9 @@ Email Address []:netlab@ut.ac.ir
     Save the output for the lab report.
 
 \section{HTTPS Handshake and Request}
-    Restart the Apache server to load the new key and the new certification: \lstinline{service apache2 restart} on \textit{server}.
+    Restart the Apache server to load the new key and the new certification: \lstbash{service apache2 restart} on \textit{server}.
 
-    Execute \lstinline{wireshark} to capture the packets between the \textit{gui} host and the \textit{server} host.
+    Execute \lstbash{wireshark} to capture the packets between the \textit{gui} host and the \textit{server} host.
 
     On the \textit{gui} host, start the \textit{Mozilla} web browser.
     After typing in the URL \url{https://server.netlab}, a dialog window titled \textit{Potential Security Risk Ahead} or \textit{Website Certified by an Unknown Authority} will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue.
@@ -309,14 +309,14 @@ Email Address []:netlab@ut.ac.ir
     Save the pictures for the lab report.
 
     Click the \textit{Continue} button in the \textit{Website Certified by an Unknown Authority} dialog window to accept the certificate.
-    Then terminate \lstinline{wireshark} and Mozilla.
+    Then terminate \lstbash{wireshark} and Mozilla.
 
-    Use \lstinline{wireshark} to examine the operation of SSL.
+    Use \lstbash{wireshark} to examine the operation of SSL.
 
     \begin{report}
         \item What is the port number used by the secure Apache server?
         
-        \item Compare the general information of the received certificate with the \lstinline{openssl} output saved in the previous exercise.
+        \item Compare the general information of the received certificate with the \lstbash{openssl} output saved in the previous exercise.
             Are they consistent?
         
         \item What is the Subject of the received certificate? Who is the Issuer of this certificate? Are they the same?
@@ -327,28 +327,28 @@ Email Address []:netlab@ut.ac.ir
     \end{report}
 
 \part{Exercises on Auditing and Intrusion Detection}
-    Start \lstinline{apache2} service and browse several page in the \textit{Mozilla}.
+    Start \lstbash{apache2} service and browse several page in the \textit{Mozilla}.
     Open random URL that not exist on the web server to generate log for apache.
     Browse again page as \path{secure http}.
 
 \section{Trace Log}
     Go to \path{log} folder at \path{/var/log/} to examine the log files in your host.
-    If a log (e.g.\ the \textit{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \lstinline[emph={keyword}]{grep keyword access.log | tail} (e.g.\ \textbf{GET}) in the {console} to display those log entries containing the keyword.
+    If a log (e.g.\ the \textit{Apache Access Log} at \path{/var/log/apache2/access.log}) is too long, use \lstbash[emph={keyword}]{grep keyword access.log | tail} (e.g.\ \textbf{GET}) in the {console} to display those log entries containing the keyword.
     Enter the keyword \textbf{failed} or \textbf{404} to display logged failures.
 
     See other log files.
 
 \section{Log Analyzer}
-    Linux uses a utility called \lstinline{webalizer} to analyze the web server log files.
-    \lstinline{webalizer} reads the \lstinline{apache2} log files and creates a set of web reports on server statistics.
-    Another utility is \lstinline{goaccess} that analyze various access type and list it.
+    Linux uses a utility called \lstbash{webalizer} to analyze the web server log files.
+    \lstbash{webalizer} reads the \lstbash{apache2} log files and creates a set of web reports on server statistics.
+    Another utility is \lstbash{goaccess} that analyze various access type and list it.
 
     To analyze local log use this commands:
     \begin{lstlisting}
 webalizer
     \end{lstlisting}
     
-    To view the reports of the \lstinline{webalizer}, start \textit{Mozilla} and enter the URL \url{http://server.netlab/usage/index.html}.
+    To view the reports of the \lstbash{webalizer}, start \textit{Mozilla} and enter the URL \url{http://server.netlab/usage/index.html}.
     Examine the web statistics displayed in the browser.
     Also click on the month links in the Summary by Month table to see the statistics of each month.
 
@@ -357,7 +357,7 @@ webalizer
 goaccess -a > /var/www/html/report.html
     \end{lstlisting}
     
-    To view the report of the \lstinline{goaccess}, start \textit{Mozilla} and enter the URL \url{http://server.netlab/report.html}.
+    To view the report of the \lstbash{goaccess}, start \textit{Mozilla} and enter the URL \url{http://server.netlab/report.html}.
     Examine the web statistics displayed in the browser.
     Also click on the side panel to see other section.
 
@@ -368,17 +368,17 @@ goaccess -a > /var/www/html/report.html
     \end{report}
 
 \section{System Status}
-    Execute \lstinline{netstat -l} to display the listening sockets in server host.
+    Execute \lstbash{netstat -l} to display the listening sockets in server host.
 
     Execute this commands to see the system services info \footnote{The old Linux OS service loaded in\path{/etc/init.d/} and \path{/etc/init/} directories} and their status.
     Save the output for the lab report.
     \begin{itemize}
-        \item \lstinline{service --status-all}
-        \item \lstinline[morekeywords={[2]list-units}]{systemctl list-units --type=service --state=running} (\textit{Not work on} \lstinline{docker})
-        \item \lstinline[morekeywords={[2]list-unit-files}]{systemctl list-unit-files --type service --state=enabled} (\textit{Not work on} \lstinline{docker})
+        \item \lstbash{service --status-all}
+        \item \lstbash[morekeywords={[2]list-units}]{systemctl list-units --type=service --state=running} (\textit{Not work on} \lstbash{docker})
+        \item \lstbash[morekeywords={[2]list-unit-files}]{systemctl list-unit-files --type service --state=enabled} (\textit{Not work on} \lstbash{docker})
     \end{itemize}
     
     \begin{report}
-        \item Is the \lstinline{rlogin}, \lstinline{ssh} and \lstinline{apache2} services enabled and running in server host?
+        \item Is the \lstbash{rlogin}, \lstbash{ssh} and \lstbash{apache2} services enabled and running in server host?
     \end{report}
 \end{document}

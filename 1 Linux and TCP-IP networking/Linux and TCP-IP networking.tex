@@ -10,7 +10,7 @@
 \begin{document}
 \section*{Systems Configuration}
     Launch GNS3 and make a network as below.
-    You can use \lstinline[emph={eth0},morekeywords={[3]netmask}]{ifconfig eth0 192.168.0.1 netmask 255.255.255.0} to set ip.
+    You can use \lstbash[emph={eth0},morekeywords={[3]netmask}]{ifconfig eth0 192.168.0.1 netmask 255.255.255.0} to set ip.
     \begin{center}
         \begin{minipage}{0.48\textwidth}
             \begin{flushleft}
@@ -65,21 +65,21 @@
     \end{center}
 
 \section{Telnet Service}
-    Run \lstinline{ps -e} to list the processes running in the \textit{h1}.
-    After starting a new process by running \lstinline{telnet} in another command window (open new auxiliary console), execute \lstinline{ps -e} again in a third window to see if there is any change in its output.
+    Run \lstbash{ps -e} to list the processes running in the \textit{h1}.
+    After starting a new process by running \lstbash{telnet} in another command window (open new auxiliary console), execute \lstbash{ps -e} again in a third window to see if there is any change in its output.
 
-    Find the process id of the \lstinline{telnet} process you started, by:
+    Find the process id of the \lstbash{telnet} process you started, by:
     \begin{lstlisting}
 ps -e | grep telnet
     \end{lstlisting}
-    Then use \lstinline[emph={process-id-of-telnet}]{kill process-id-of-telnet} to terminate the \lstinline{telnet} process.
+    Then use \lstbash[emph={process-id-of-telnet}]{kill process-id-of-telnet} to terminate the \lstbash{telnet} process.
     
     \begin{report}
-        \item What is Internet Service Daemon (\lstinline{inetd})?
+        \item What is Internet Service Daemon (\lstbash{inetd})?
 
-        \item Is \lstinline{inetd} started in your system? Why?
+        \item Is \lstbash{inetd} started in your system? Why?
 
-        \item Is \lstinline{xinetd} started in your system? What is its PID?
+        \item Is \lstbash{xinetd} started in your system? What is its PID?
     \end{report}
 
 \section{Default Network Services}
@@ -87,18 +87,18 @@ ps -e | grep telnet
     \begin{lstlisting}
 more /etc/services
     \end{lstlisting}
-    Then in another console (Auxiliary console), use the redirect operator to redirect the \lstinline{more} output to
-    a file using \lstinline{more /etc/services > ser-more}.
-    Compare the file \path{ser-more} with the original \lstinline{more} output in the other command window.
+    Then in another console (Auxiliary console), use the redirect operator to redirect the \lstbash{more} output to
+    a file using \lstbash{more /etc/services > ser-more}.
+    Compare the file \path{ser-more} with the original \lstbash{more} output in the other command window.
 
-    Copy \path{/etc/services} file to a local file named \path{ser-cp} in your working directory (use \lstinline{pwd} to see working directory path),
-    using \lstinline{cp /etc/services ser-cp}.
-    Compare files \path{ser-more} and \path{ser-cp}, using \lstinline{cmp ser-more ser-cp}.
+    Copy \path{/etc/services} file to a local file named \path{ser-cp} in your working directory (use \lstbash{pwd} to see working directory path),
+    using \lstbash{cp /etc/services ser-cp}.
+    Compare files \path{ser-more} and \path{ser-cp}, using \lstbash{cmp ser-more ser-cp}.
     Are these two files identical?
 
-    Concatenate these two files using \lstinline{cat ser-more ser-cp > ser-cat}.
+    Concatenate these two files using \lstbash{cat ser-more ser-cp > ser-cat}.
 
-    Display the file sizes using \lstinline{ls -l ser*}.
+    Display the file sizes using \lstbash{ls -l ser*}.
     Save the output.
     
     \begin{report}
@@ -106,18 +106,18 @@ more /etc/services
     \end{report}
 
 \section{Network Command Manual}
-    Read the \lstinline{man} pages for the following programs:
+    Read the \lstbash{man} pages for the following programs:
     \begin{multicols}{3}
         \begin{enumerate}
-            \item \lstinline{arp}
-            \item \lstinline{arping}
-            \item \lstinline{ifconfig}
-            \item \lstinline{tcpdump}
-            \item \lstinline{ping}
-            \item \lstinline{netstat}
-            \item \lstinline{route}
-            \item \lstinline{wireshark}
-            \item \lstinline{iptables}
+            \item \lstbash{arp}
+            \item \lstbash{arping}
+            \item \lstbash{ifconfig}
+            \item \lstbash{tcpdump}
+            \item \lstbash{ping}
+            \item \lstbash{netstat}
+            \item \lstbash{route}
+            \item \lstbash{wireshark}
+            \item \lstbash{iptables}
         \end{enumerate}
     \end{multicols}
     Study the different options associated with each command.
@@ -130,16 +130,16 @@ more /etc/services
 
 \section{Packet Capturing}
     % fixme: content
-    In this exercise, we will use \lstinline{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \lstinline{wireshark} to analyze this packet.
+    In this exercise, we will use \lstbash{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \lstbash{wireshark} to analyze this packet.
 
-    First, run \lstinline{tcpdump -enx -w dump.pcap} in the \textit{h1}.
-    You will not see any \lstinline{tcpdump} output, since the \lstinline{-w} option is used to write the output to the \path{dump.pcap} file.
+    First, run \lstbash{tcpdump -enx -w dump.pcap} in the \textit{h1}.
+    You will not see any \lstbash{tcpdump} output, since the \lstbash{-w} option is used to write the output to the \path{dump.pcap} file.
 
-    Then, you may want to run \lstinline{telnet 128.238.66.102} in the \textit{h1} to generate some TCP traffic.\footnote{Remember to run \lstinline{/etc/init.d/xinetd restart} in the \textit{h2} to start telnet server on it.}
-    After you login to \textit{h2} (use \textbf{netlab} for username and password), terminate the \lstinline{telnet} session and terminate the \lstinline{tcpdump} program.
-    Next, you will use \lstinline{tcpdump} or \lstinline{wireshark} to open the packet trace captured by \lstinline{tcpdump} and analyze the captured packets.
-    To do this, use this command \lstinline{tcpdump -r dump.pcap} to see content of \path{dump.pcap} or see with GUI \lstinline{wireshark dump.pcap &}\footnote{To use \lstinline{wireshark} in isolated \lstinline{docker} space, you need to copy file from  \lstinline{docker} space to your PC}.
-    The \lstinline{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \lstinline{tcpdump} will be displayed.
+    Then, you may want to run \lstbash{telnet 128.238.66.102} in the \textit{h1} to generate some TCP traffic.\footnote{Remember to run \lstbash{/etc/init.d/xinetd restart} in the \textit{h2} to start telnet server on it.}
+    After you login to \textit{h2} (use \textbf{netlab} for username and password), terminate the \lstbash{telnet} session and terminate the \lstbash{tcpdump} program.
+    Next, you will use \lstbash{tcpdump} or \lstbash{wireshark} to open the packet trace captured by \lstbash{tcpdump} and analyze the captured packets.
+    To do this, use this command \lstbash{tcpdump -r dump.pcap} to see content of \path{dump.pcap} or see with GUI \lstbash{wireshark dump.pcap &}\footnote{To use \lstbash{wireshark} in isolated \lstbash{docker} space, you need to copy file from  \lstbash{docker} space to your PC}.
+    The \lstbash{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \lstbash{tcpdump} will be displayed.
     Select any one of the packets that contain the link, IP, and TCP headers.
     In GNS3 you can capture ans see packet with right click on wire and select \textit{Start Capture}.
     
@@ -151,11 +151,11 @@ more /etc/services
     \end{report}
 
 \section{\texttt{ARPing}}
-    This time we will run \lstinline{wireshark} to capture an ARP request and an ARP reply in real-time.
-    Simply run \lstinline{wireshark} on the \textit{h1} link with right click and select \textbf{start capture} item to start capturing\footnote{On physical machine, can start capture with \lstinline{wireshark &} command.}.
-    If there is no arp requests and replies in the network, generate some using \lstinline{arping 128.238.66.102} command in the \textit{h1} terminal.
+    This time we will run \lstbash{wireshark} to capture an ARP request and an ARP reply in real-time.
+    Simply run \lstbash{wireshark} on the \textit{h1} link with right click and select \textbf{start capture} item to start capturing\footnote{On physical machine, can start capture with \lstbash{wireshark &} command.}.
+    If there is no arp requests and replies in the network, generate some using \lstbash{arping 128.238.66.102} command in the \textit{h1} terminal.
 
-    Now you should see several ARP replies in the \lstinline{arping} output.
+    Now you should see several ARP replies in the \lstbash{arping} output.
     
     \begin{report}
         \item What is the value of the \texttt{frame type} field in an Ethernet frame carrying an ARP request and in an Ethernet frame carrying an ARP reply, respectively?
@@ -164,42 +164,42 @@ more /etc/services
     \end{report}
 
 \section{Packet Filtering}
-    Using the \lstinline{tcpdump} utility, capture any packet on the LAN and see the output format
+    Using the \lstbash{tcpdump} utility, capture any packet on the LAN and see the output format
     for different command-line options.
     Study the various expressions for selecting
     which packets to be dumped.
 
-    For this experiment, use the \lstinline{man} page for \lstinline{tcpdump} to find out the options and
+    For this experiment, use the \lstbash{man} page for \lstbash{tcpdump} to find out the options and
     expressions that can be used.
 
     If there is no traffic on the network, you may generate traffic with some applications
-    (e.g.\ \lstinline{telnet}, \lstinline{ping}, etc.).
+    (e.g.\ \lstbash{telnet}, \lstbash{ping}, etc.).
     
     \begin{report}
-        \item Explain briefly the purposes of the following \lstinline{tcpdump} expressions.
+        \item Explain briefly the purposes of the following \lstbash{tcpdump} expressions.
     \end{report}
 
     % todo: make sample traffic
-    If you are using \lstinline{tcpdump}, explain the following filters:
+    If you are using \lstbash{tcpdump}, explain the following filters:
     \begin{itemize}
-        \item \lstinline{tcpdump udp port 520}
-        \item \lstinline{tcpdump -x -s 120 ip proto 89}
-        \item \lstinline[emph={ip-addr1, ip-addr2, ip-addr3}]{tcpdump -x -s 70 host ip-addr1 and (ip-addr2 or ip-addr3)}
-        \item \lstinline[emph={ip-addr1, ip-addr2}]{tcpdump -x -s 70 host ip-addr1 and not ip-addr2}
+        \item \lstbash{tcpdump udp port 520}
+        \item \lstbash{tcpdump -x -s 120 ip proto 89}
+        \item \lstbash[emph={ip-addr1, ip-addr2, ip-addr3}]{tcpdump -x -s 70 host ip-addr1 and (ip-addr2 or ip-addr3)}
+        \item \lstbash[emph={ip-addr1, ip-addr2}]{tcpdump -x -s 70 host ip-addr1 and not ip-addr2}
     \end{itemize}
     
-    If you are using \lstinline{wireshark} explain the following filters:
+    If you are using \lstbash{wireshark} explain the following filters:
     \begin{itemize}
-        \item \lstinline[language=generic]{udp.port == 520}
-        \item \lstinline[language=generic]{ip.proto == 89}
-        \item \lstinline[emph={ip-addr1, ip-addr2, ip-addr3},language={generic}]{ip.addr == ip-addr1 and (ip.addr == ip-addr2 or ip.addr == ip-addr3)}
-        \item \lstinline[emph={ip-addr1, ip-addr2},language={generic}]{ip.addr == ip-addr1 and not ip.addr ip-addr2}
+        \item \lstgeneric{udp.port == 520}
+        \item \lstgeneric{ip.proto == 89}
+        \item \lstgeneric[emph={ip-addr1, ip-addr2, ip-addr3}]{ip.addr == ip-addr1 and (ip.addr == ip-addr2 or ip.addr == ip-addr3)}
+        \item \lstgeneric[emph={ip-addr1, ip-addr2}]{ip.addr == ip-addr1 and not ip.addr ip-addr2}
     \end{itemize}
 
 \section{Connection Port}
-    Run \lstinline{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
+    Run \lstbash{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
 
-    Execute a TCP utility, \lstinline{telnet} for example, in another command window:
+    Execute a TCP utility, \lstbash{telnet} for example, in another command window:
     \begin{lstlisting}
 telnet 128.238.66.102
     \end{lstlisting}
@@ -207,26 +207,26 @@ telnet 128.238.66.102
     \begin{report}
         \item What are the port numbers used by the \textit{h1} (local machine) and the \textit{h2} (remote machine)?
 
-        \item Which port numbers matches the port number listed for \lstinline{telnet} in the \path{/etc/services} file?
+        \item Which port numbers matches the port number listed for \lstbash{telnet} in the \path{/etc/services} file?
     \end{report}
 
 \section{Random Port}
-    Run \lstinline{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
+    Run \lstbash{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
 
-    Then, \lstinline{telnet} to the \textit{h2} from a second command window (Auxiliary console) by typing \lstinline{telnet 128.238.66.102}.
-    Again issue the same \lstinline{telnet 128.238.66.102} command from a third command window.
-    Now you are opening two \lstinline{telnet} sessions to \textit{h2} simultaneously, from two different command windows.
-    % On each telnet terminal, run \lstinline{pwd} to generate traffic.
+    Then, \lstbash{telnet} to the \textit{h2} from a second command window (Auxiliary console) by typing \lstbash{telnet 128.238.66.102}.
+    Again issue the same \lstbash{telnet 128.238.66.102} command from a third command window.
+    Now you are opening two \lstbash{telnet} sessions to \textit{h2} simultaneously, from two different command windows.
+    % On each telnet terminal, run \lstbash{pwd} to generate traffic.
 
-    Check the port numbers being used on both sides of the two connections from the output in the \lstinline{wireshark} window.
+    Check the port numbers being used on both sides of the two connections from the output in the \lstbash{wireshark} window.
 
     \begin{report}
-        \item When you have two \lstinline{telnet} sessions with your machine, what port number is used on the \textit{h2} (remote machine)?
+        \item When you have two \lstbash{telnet} sessions with your machine, what port number is used on the \textit{h2} (remote machine)?
 
         \item Are both sessions connected to the same port number on the \textit{h2} (remote machine)?
 
-        \item What port numbers are used in the \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
+        \item What port numbers are used in the \textit{h1} (local machine) for the first and second \lstbash{telnet}, respectively?
 
-        \item Explain briefly what a \lstinline[language=bash]{socket} is.
+        \item Explain briefly what a \lstbash{socket} is.
     \end{report}
 \end{document}

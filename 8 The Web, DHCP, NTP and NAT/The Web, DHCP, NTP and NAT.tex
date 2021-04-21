@@ -15,25 +15,25 @@
 \section{HTTP Server}
     Examine the various configuration directives used and the corresponding settings\footnote{\path{/etc/apache2/apache2.conf}}.
 
-    Start the Apache server on your host by: \lstinline{service apache2 start}.
+    Start the Apache server on your host by: \lstbash{service apache2 start}.
     In order to check if the server is working properly, you may start a \textit{Mozilla} web browser to download the test page at \url{http://server.netlab/}.
 
-    Then, execute \lstinline{pgrep apache2} to list the process IDs of the \lstinline{apache2} processes started.\footnote{By \lstinline{a2enmod mpm_prefork} you can enable Multi-Processing Module and change default spare process (config file: \path{/etc/apache2/mods-available/mpm_prefork.conf}).}
+    Then, execute \lstbash{pgrep apache2} to list the process IDs of the \lstbash{apache2} processes started.\footnote{By \lstbash{a2enmod mpm_prefork} you can enable Multi-Processing Module and change default spare process (config file: \path{/etc/apache2/mods-available/mpm_prefork.conf}).}
     Save the output and the configuration file for the lab report.
-    
+
     \begin{report}
-        \item How many \lstinline{apache2} processes were started?
-            Which one was the master server, and which ones were the child servers? (\textit{use \lstinline{htop} and switch to \textbf{tree} to see process hierarchy})
+        \item How many \lstbash{apache2} processes were started?
+            Which one was the master server, and which ones were the child servers? (\textit{use \lstbash{htop} and switch to \textbf{tree} to see process hierarchy})
             Justify your answer using the \textbf{apache2} configurations file.
             Explain your answer with value of \textit{StartServers, MinSpareServers, MaxSpareServers, MaxRequestWorkers, ServerLimit, MaxConnectionsPerChild}\footnote{Need to read \textit{Apache} web documents}.
-        
+
         \item What is the purpose of initiating multiple apache2 processes?
     \end{report}
 
 \section{HTTP Request}
-    Execute \lstinline{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
+    Execute \lstbash{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
 
-    Login to the \textit{server} host’s web server: \lstinline[emph={server,netlab}]{telnet server.netlab 80}.
+    Login to the \textit{server} host’s web server: \lstbash[emph={server,netlab}]{telnet server.netlab 80}.
 
     In the login console, type the following HTTP request line by line:
     \begin{lstlisting}[language={HTTP},morekeywords={[2]GET,From,User-Agent},escapechar={},emph={server,netlab}]
@@ -43,57 +43,57 @@ User-Agent: HTTPTool/1.0
 
     \end{lstlisting}
     Note that you need to press the \textit{Return} key to input the last line, which is blank.
-    When the \lstinline{telnet} process is terminated, save the output for your lab report.
+    When the \lstbash{telnet} process is terminated, save the output for your lab report.
 
-    Terminate \lstinline{wireshark} and analyze the captured HTTP packets.
+    Terminate \lstbash{wireshark} and analyze the captured HTTP packets.
     Print and save the HTTP request and response.
 
     Save the HTTP response’s data part into a file, named \path{index.html}.
     Use \textit{Mozilla} to view the file.
-    
+
     \begin{report}
         \item Submit the HTTP request and response, including the start-lines and all the headers.
     \end{report}
 
-    
+
 \section{HTTP \texttt{Keep-Alive}}
     By default, Apache server supports persistent connections.
     Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file \footnote{\path{/etc/apache2/apache2.conf}} to make sure it is turned on, as \lstinline[language={HTTP}]{KeepAlive On}.
 
-    Execute \lstinline[emph={gui,server,netlab},morekeywords={[3],host,and}]{tcpdump host gui.netlab and server.netlab} or run \lstinline{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
+    Execute \lstbash[emph={gui,server,netlab},morekeywords={[3],host,and}]{tcpdump host gui.netlab and server.netlab} or run \lstbash{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
 
-    
+
     Enter the URL \url{http://server.netlab/try1.html}, to download the HTML file consisting a line of text, an embedded picture, and a hyperlink.
 
 
-    Disable Apache server persistent connections by change value of \texttt{KeepAlive} option to \lstinline{Off} and restart \lstinline{apache2} service\footnote{\lstinline{service apache2 restart}}.
+    Disable Apache server persistent connections by change value of \texttt{KeepAlive} option to \lstbash{Off} and restart \lstbash{apache2} service\footnote{\lstbash{service apache2 restart}}.
 
-    
-    Use \lstinline[emph={gui,server,netlab},morekeywords={[3],host,and}]{tcpdump host gui.netlab and server.netlab} or run \lstinline{wireshark} and print the HTTP requests and responses for the lab report.
-    
+
+    Use \lstbash[emph={gui,server,netlab},morekeywords={[3],host,and}]{tcpdump host gui.netlab and server.netlab} or run \lstbash{wireshark} and print the HTTP requests and responses for the lab report.
+
     Use \textit{Mozilla} to reload the \url{try1.html} file.
     Use \textit{Ctrl+F5} to ignore cache.
 
-    Use \lstinline{wireshark} and print the HTTP requests and responses for the lab report.
+    Use \lstbash{wireshark} and print the HTTP requests and responses for the lab report.
 
     \begin{report}
         \item When you browsed the \path{try1.html} file for the first time, how many HTTP requests were sent?
         Which files were requested?
         How many TCP connections were used?
-        
+
         \item Answer the above questions for when you browsed the \path{try1.html} file for the second time.
-        
+
         \item What is the purpose of using persistent connections?
     \end{report}
 
 \section{HTTP Submit}
-    Execute \lstinline{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
+    Execute \lstbash{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
 
     Use \textit{Mozilla} to download the \url{http://server.netlab/try2.htm} file, which is an \textit{HTML} form, from the \textit{server} host.
 
     Fill a text string, e.g.\ the name of the host being used, into the text field in the form and click the submit button in the form.
 
-    When the server response is received, terminate \lstinline{wireshark}.
+    When the server response is received, terminate \lstbash{wireshark}.
 
     Examine how LAMP (for php)\footnote{or CGI (for perl)} works, and identify the data string sent to the server.
     Save the HTTP request containing the data string for lab report.
@@ -120,7 +120,7 @@ User-Agent: HTTPTool/1.0
                         \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
                         \node[draw] (h6) at (0,-2){h6};
                         \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
-                    
+
                         \draw (h0) -- (s);
                         \draw (h1) -- (s);
                         \draw (h2) -- (s);
@@ -131,7 +131,7 @@ User-Agent: HTTPTool/1.0
                         \draw (h7) -- (s);
                     \end{tikzpicture}
                     \caption{A single segment network (Figure~1.3)}
-                    \label{fig:1.3}   
+                    \label{fig:1.3}
                 \end{figure}
             \end{flushright}
         \end{minipage}
@@ -143,32 +143,32 @@ User-Agent: HTTPTool/1.0
 
     \begin{enumerate}
         \item Change MAC address of \textit{h5} in server configuration file (\hyperref[tab:8.3]{Table~8.3}) by your \textit{h5} MAC address and save to \textit{dhcpd.conf}.
-        
+
         \item Set IP of \textit{h1} to {128.238.66.100}
-        
-        \item Start the DHCP server on the \textit{h1} in the foreground and working in the debugging mode: \lstinline{dhcpd -d -f}\footnote{default }.
-        
-        \item Execute \lstinline{tcpdump -exn -nn -s 100} or \lstinline{wireshark} to capture the DHCP messages in the network segment.
-        
+
+        \item Start the DHCP server on the \textit{h1} in the foreground and working in the debugging mode: \lstbash{dhcpd -d -f}\footnote{default }.
+
+        \item Execute \lstbash{tcpdump -exn -nn -s 100} or \lstbash{wireshark} to capture the DHCP messages in the network segment.
+
         \item Then do the following to enable DHCP for the Ethernet interface on the \textit{h2}.
 
-        Run \lstinline{ifconfig eth0 0} on \lstinline{h2} to clear IP of \textit{eth0}
+        Run \lstbash{ifconfig eth0 0} on \lstbash{h2} to clear IP of \textit{eth0}
 
-        And run \lstinline{dhclient eth0}.
+        And run \lstbash{dhclient eth0}.
 
-        When \textit{h0} is successfully reconfigured, execute \lstinline{ifconfig -a} or \lstinline{ip a} to display its
-        network interface configurations and execute \lstinline{netstat -rn} or \lstinline{ip r} to display its routing table.
+        When \textit{h0} is successfully reconfigured, execute \lstbash{ifconfig -a} or \lstbash{ip a} to display its
+        network interface configurations and execute \lstbash{netstat -rn} or \lstbash{ip r} to display its routing table.
 
         Save the outputs for the lab report.
-        
+
         \item Then, repeat 5 for the \textit{h3}.
-        
+
         \item Repeat 5 for the \textit{h4}.
-        
+
         \item Repeat 5 for the \textit{h5}.
     \end{enumerate}
 
-    Terminate \lstinline{wireshark}.
+    Terminate \lstbash{wireshark}.
     Print out the DHCP messages for the lab report.
 
     Save the DHCP server output on the \textit{h1} for the lab report.
@@ -193,15 +193,15 @@ host h5 {
     \end{lstlisting}
 
     \begin{report}
-        \item Compare the DHCP operation captured by \lstinline{wireshark} and that shown by the DHCP server output.
+        \item Compare the DHCP operation captured by \lstbash{wireshark} and that shown by the DHCP server output.
             Explain how DHCP works.
-        
+
         \item Did \textit{h2} and the \textit{h3} successfully obtain a set of new parameters?
-            Compare the \lstinline{ifconfig} and \lstinline{netstat} output with the parameters carried in the corresponding DHCP messages.
-        
+            Compare the \lstbash{ifconfig} and \lstbash{netstat} output with the parameters carried in the corresponding DHCP messages.
+
         \item Answer the above question for the \textit{h4}.
             Explain why \textit{h4} failed.
-        
+
         \item Answer the above question for the \textit{h5}.
             Explain why \textit{h5} succeeded.
     \end{report}
@@ -217,7 +217,7 @@ host h5 {
                     \begin{tabular}{ c c c }
                         \hline \hline
                         Host & IP Address & Subnet Mask \\
-                        \hline 
+                        \hline
                         h0 & 128.238.66.100 & 255.255.255.0 \\
                         h1 & 128.238.66.101 & 255.255.255.0 \\
                         h2 & 128.238.66.102 & 255.255.255.0 \\
@@ -234,9 +234,9 @@ host h5 {
     \end{center}
 
 \section{Local Date}
-    Execute \lstinline{date} to display the system time of your host.
-    Display the manual page of \lstinline{date}, and study its options and usages.
-    Try the following \lstinline{date} commands: 
+    Execute \lstbash{date} to display the system time of your host.
+    Display the manual page of \lstbash{date}, and study its options and usages.
+    Try the following \lstbash{date} commands:
 
     \begin{lstlisting}[emph={$file-name}]
 date --date='2 days ago'
@@ -245,23 +245,23 @@ date --set='+3 minutes'
 date -r $file-name
     \end{lstlisting}
     You can choose any file in the current directory for the \textit{file-name} parameter.
-    
+
     \begin{report}
-        \item Submit the \lstinline{date} outputs you saved.
+        \item Submit the \lstbash{date} outputs you saved.
             Explain the use of the commands.
     \end{report}
 
 \section{Remote Date}
-    While \lstinline[emph={h0,h1,netlab}]{tcpdump -n -nn -ex host h0.netlab and h1.netlab} or \lstinline{wireshark} is running, execute \lstinline[emph={h1,netlab}]{rdate -p h1.netlab} on the \textit{h0} to display the system time of the \textit{h1} machine.
-    Repeat the above \lstinline{rdate} command, but use the \lstinline{-u} option.
-    Save the \lstinline{wireshark} outputs for the lab report.
+    While \lstbash[emph={h0,h1,netlab}]{tcpdump -n -nn -ex host h0.netlab and h1.netlab} or \lstbash{wireshark} is running, execute \lstbash[emph={h1,netlab}]{rdate -p h1.netlab} on the \textit{h0} to display the system time of the \textit{h1} machine.
+    Repeat the above \lstbash{rdate} command, but use the \lstbash{-u} option.
+    Save the \lstbash{wireshark} outputs for the lab report.
 
     \begin{report}
         \item What port numbers were used by the \textit{h1} (server) machine?
             What port numbers were used by the \textit{h0} (client) host?
-        
+
         \item How many bytes of data were returned by the \textit{h1} time server, both in the UDP case and in the TCP case?
-        
+
         \item What TCP header options were used?
     \end{report}
 
@@ -270,41 +270,41 @@ date -r $file-name
     synchronize all the other hosts to \textit{h0}.
     Study the NTP configuration file \path{/etc/ntp.conf} in the \textit{h0} and in your host.
     If you are using another machine, you can telnet to \textit{h0} and display the \path{/etc/ntp.conf} file in the telnet window.
-    Start the NTP server on the \textit{h0} by \lstinline{service ntp start}.
-    To determine the status of the NTP server, use \lstinline{service ntp status}.
-    Use \lstinline[emph={h0,h1,netlab},morekeywords={[3],host,and}]{tcpdump -ex -n -nn host h1.netlab and h0.netlab} or \lstinline{wireshark} to capture packets between the \textit{h1} host and the \textit{h0}.
-    Execute \lstinline{ntpdate -d -v 128.238.66.100} to synchronize the \textit{h1} host with \textit{h0}.
+    Start the NTP server on the \textit{h0} by \lstbash{service ntp start}.
+    To determine the status of the NTP server, use \lstbash{service ntp status}.
+    Use \lstbash[emph={h0,h1,netlab},morekeywords={[3],host,and}]{tcpdump -ex -n -nn host h1.netlab and h0.netlab} or \lstbash{wireshark} to capture packets between the \textit{h1} host and the \textit{h0}.
+    Execute \lstbash{ntpdate -d -v 128.238.66.100} to synchronize the \textit{h1} host with \textit{h0}.
     Study the output of this command.
-    Save the \lstinline{ntpdate} and the \lstinline{wireshark} outputs for the lab report.
-    
+    Save the \lstbash{ntpdate} and the \lstbash{wireshark} outputs for the lab report.
+
     \begin{report}
         \item Which port does the NTP server use?
-            Justify your answer using the \lstinline{wireshark} output.
+            Justify your answer using the \lstbash{wireshark} output.
     \end{report}
 
 \section{** NTP Server}
     Keep the NTP server running on the \textit{h0}.
-    Execute \lstinline[emph={h1,h0,netlab},morekeywords={[3]host,and}]{tcpdump -exn -nn host h1.netlab and h0.netlab} or \lstinline{wireshark} to capture the NTP messages between the \textit{h1} host and the \textit{h0}.
+    Execute \lstbash[emph={h1,h0,netlab},morekeywords={[3]host,and}]{tcpdump -exn -nn host h1.netlab and h0.netlab} or \lstbash{wireshark} to capture the NTP messages between the \textit{h1} host and the \textit{h0}.
 
-    Config \path{/etc/ntp.conf} in \textit{other-host} and add \lstinline[language={conf}]{server 128.238.66.100} to config file.
+    Config \path{/etc/ntp.conf} in \textit{other-host} and add \lstconf{server 128.238.66.100} to config file.
 
-    Start the NTP clients on your host, by \lstinline{service ntp start}.
+    Start the NTP clients on your host, by \lstbash{service ntp start}.
 
     Wait for several minutes.
-    Then terminate the \lstinline{tcpdump} program.
+    Then terminate the \lstbash{tcpdump} program.
     Analyze the captured NTP packets.
     Print one of the NTP packets for the lab report.
 
-    Execute \lstinline{ntpq -p} to get \lstinline{ntp} server list.
+    Execute \lstbash{ntpq -p} to get \lstbash{ntp} server list.
 
-    Execute \lstinline{ntptrace} to show the client/server relation of NTP.
+    Execute \lstbash{ntptrace} to show the client/server relation of NTP.
 
     \begin{report}
         \item Submit the NTP packet captured.
             List the fields and their values.
-        
+
         \item What was the rate at which NTP queries were sent by the client?
-        
+
         \item Which stratum was your host in? Which stratum was the NTP server in?
     \end{report}
 
@@ -368,16 +368,16 @@ date -r $file-name
     Connect the hosts and Router 1 as shown in \hyperref[fig:8.7]{Figure~8.7}.
     Then set the IP address and the network mask of your host as shown in the figure.
     In addition, you need to add a default route in your host’s routing table, using the router interface on your subnet as the default router.
-    One student should \lstinline{telnet} to the router and configure the router as shown in \hyperref[tab:8.5]{Table~8.5}.
+    One student should \lstbash{telnet} to the router and configure the router as shown in \hyperref[tab:8.5]{Table~8.5}.
     Note that there is a static translation that maps 10.0.0.7, or the \textit{h7}, to 128.238.61.104.
-    Login to the router, execute \lstinline[language={cisco}]{write term} to display the current router configuration.
-    Execute \lstinline[language={cisco}]{show ip nat translations} in the \textit{Privileged EXEC} mode to display the translation table.
+    Login to the router, execute \lstcisco{write term} to display the current router configuration.
+    Execute \lstcisco{show ip nat translations} in the \textit{Privileged EXEC} mode to display the translation table.
     Save both outputs for the lab report.
 
     \begin{report}
         \item How many entries were there in the translation table? Why?
     \end{report}
-    
+
     \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in \hyperref[fig:8.7]{Figure~8.7} (Table~8.5)\label{tab:8.5}}]
 config term
     ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
@@ -400,37 +400,37 @@ config term
 
 \section{NAT Visibility}
     Keep the login session to the router running.
-    Execute \lstinline{tcpdump -exn -nn} or \lstinline{wireshark} on two side of the router.
+    Execute \lstbash{tcpdump -exn -nn} or \lstbash{wireshark} on two side of the router.
 
-    Before any host in the private network send any packets out, \lstinline{ping} an inside host (e.g.\ \textit{h5}) from an outside host (e.g.\ \textit{h1}).
-    You may try to \lstinline{ping} \textit{10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104}.
-    Can you \lstinline{ping} these IP addresses? 
+    Before any host in the private network send any packets out, \lstbash{ping} an inside host (e.g.\ \textit{h5}) from an outside host (e.g.\ \textit{h1}).
+    You may try to \lstbash{ping} \textit{10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104}.
+    Can you \lstbash{ping} these IP addresses?
 
-    Let an inside host send packets to an outside host, e.g.\ from the \textit{h5}, execute \lstinline{ping} 128.238.61.100.
-    Can you \lstinline{ping} \textit{h5} from an outside host now? Why? Which IP address should be used in the \lstinline{ping} command in order to \lstinline{ping} \textit{h5}? 
+    Let an inside host send packets to an outside host, e.g.\ from the \textit{h5}, execute \lstbash{ping} 128.238.61.100.
+    Can you \lstbash{ping} \textit{h5} from an outside host now? Why? Which IP address should be used in the \lstbash{ping} command in order to \lstbash{ping} \textit{h5}?
 
-    Execute \lstinline[language=cisco]{show ip nat translations} in the router login window to display the translation table.
+    Execute \lstcisco{show ip nat translations} in the router login window to display the translation table.
     Save the output for the lab report.
 
     \begin{report}
         \item Answer the above questions.
             Use the saved translation table to justify your answers.
-        
+
         \item Compare the IP header of the ICMP query captured in the private network with that of the same ICMP query captured in the upper subnet, list their differences.
             Explain how NAT works.
-        
+
         \item In addition to the IP address, what else was changed in the ICMP query packet?
     \end{report}
 
 \section{NAT Table}
     Keep the login session to the router running.
-    Execute \lstinline[morekeywords={[3]proto}]{tcpdump -enx -s 100 ip proto 1} or \lstinline{wireshark} to capture ICMP messages on two subnet.
+    Execute \lstbash[morekeywords={[3]proto}]{tcpdump -enx -s 100 ip proto 1} or \lstbash{wireshark} to capture ICMP messages on two subnet.
 
-    Execute \lstinline{socket -i -u -n1 128.238.61.101 8888} on the \textit{h2} to generate an ICMP port unreachable error.
+    Execute \lstbash{socket -i -u -n1 128.238.61.101 8888} on the \textit{h2} to generate an ICMP port unreachable error.
 
     Print the ICMP error message for the lab report.
 
-    Execute \lstinline[language=cisco]{show ip nat translations} in the router login window to display the translation table.
+    Execute \lstcisco{show ip nat translations} in the router login window to display the translation table.
     Save the output for the lab report.
 
     \begin{report}
@@ -444,20 +444,20 @@ config term
     Now all the hosts in the private network use the same IP address 128.238.61.1.
     However, note that there is a static translation that maps \textit{h7}’s port 80 to 128.238.61.1 port 80.
 
-    Execute \lstinline{tcpdump} on two subnet.
+    Execute \lstbash{tcpdump} on two subnet.
 
     Generate traffic between the inside and outside hosts.
-    Examine the \lstinline{tcpdump} output to see how PAT works.
+    Examine the \lstbash{tcpdump} output to see how PAT works.
 
     Start the Apache web server on the \textit{h7}.
-    Also, run \lstinline[language=bash-ext]{curl} on an outside host (e.g.\ \textit{h0}), and with the URL \url{http://128.238.61.1}.
-    Save the \lstinline{tcpdump} output.
+    Also, run \lstbash{curl} on an outside host (e.g.\ \textit{h0}), and with the URL \url{http://128.238.61.1}.
+    Save the \lstbash{tcpdump} output.
 
-    Use \lstinline[language={cisco}]{show ip nat translations} to display and then save the translation table.
+    Use \lstcisco{show ip nat translations} to display and then save the translation table.
 
     \begin{report}
-        \item From the \lstinline{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
-        
+        \item From the \lstbash{wireshark} data, explain how PAT worked, both for a dynamic translation and a static translation.
+
         \item With PAT, can you have two web servers in the private network?
     If not, why?
     If yes, explain how this can be done.
@@ -487,24 +487,24 @@ config term
 \part{Socket Programming Exercises}
 \section{Socket Programming}
     Examine the UDP socket programs \path{/home/netlab/code/UDPserver.c} and \path{/home/netlab/code/UDPclient.c} to learn how to write a UDP socket program.
-    You can compile the C programs by using \lstinline{gcc -o UDPserver UDPserver.c -lnsl} and \lstinline{gcc -o UDPclient UDPclient.c -lnsl}.
+    You can compile the C programs by using \lstbash{gcc -o UDPserver UDPserver.c -lnsl} and \lstbash{gcc -o UDPclient UDPclient.c -lnsl}.
     Compile output available at \path{/usr/local/bin/} directory.
 
-    Start \lstinline[emph={h0,h1,netlab,remote-host}]{tcpdump host remote-host} or \lstinline{wireshark} to capture packets from or to a remote host.
+    Start \lstbash[emph={h0,h1,netlab,remote-host}]{tcpdump host remote-host} or \lstbash{wireshark} to capture packets from or to a remote host.
 
-    On the remote host, start the UDP server by \lstinline[emph={server-port}]{./UDPserver server-port}.
-    Then, start the UDP client on your host by \lstinline[emph={h0,h1,netlab,remote-host, server-port, a-message}]{./UDPclient remote-host server-port a-message}.
+    On the remote host, start the UDP server by \lstbash[emph={server-port}]{./UDPserver server-port}.
+    Then, start the UDP client on your host by \lstbash[emph={h0,h1,netlab,remote-host, server-port, a-message}]{./UDPclient remote-host server-port a-message}.
     You may execute the UDP client program on other hosts to connect to the same UDP server.
 
-    Terminate \lstinline{tcpdump}, examine its output and compare the output with the UDP server and client outputs.
+    Terminate \lstbash{tcpdump}, examine its output and compare the output with the UDP server and client outputs.
 
-    Repeat the above experiments, but now use the \lstinline{TCPserver.c} and \lstinline{TCPclient.c}.
+    Repeat the above experiments, but now use the \lstbash{TCPserver.c} and \lstbash{TCPclient.c}.
 
 \section{Socket Options}
-    Execute \lstinline{man setsockopt} to display the various socket options and how to set them.
+    Execute \lstbash{man setsockopt} to display the various socket options and how to set them.
 
-    Examine the \lstinline{netspy} and \lstinline{netspyd} source code in Appendix~C.2 of reference book to see how to create a multicast socket and how to set the TTL value for the packets.
-    
+    Examine the \lstbash{netspy} and \lstbash{netspyd} source code in Appendix~C.2 of reference book to see how to create a multicast socket and how to set the TTL value for the packets.
+
     % \begin{report}
     % \item Explain the various options you could set on socket.
     % \item Explain the difference between a socket and multicast socket.
@@ -523,12 +523,12 @@ config term
     \begin{itemize}
         \item First you need to set up the control connection to Port 21 of the remote machine, using a TCP socket.
         \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in \hyperref[tab:5.1]{Table~5.1} of reference book.
-        \item You can first run \lstinline[emph={remote-host}]{telnet remote-host 21}, then type \lstinline{help} to list all the FTP commands.
-        Also, you can try the commands out in the \lstinline{telnet} window, e.g.\ use \lstinline[emph={netlab},morekeywords={[2]USER}]{USER netlab} to send the user ID and \lstinline[emph={netlab},morekeywords={[2]PASS}]{PASS netlab} to send the password to the FTP server.
-        To terminate the \lstinline{telnet} session, type \lstinline[morekeywords={[2]QUIT}]{QUIT}.
-        \item In your program, these messages should be sent to the FTP server by calling the \lstinline{send()} function of the local TCP socket.
+        \item You can first run \lstbash[emph={remote-host}]{telnet remote-host 21}, then type \lstbash{help} to list all the FTP commands.
+        Also, you can try the commands out in the \lstbash{telnet} window, e.g.\ use \lstbash[emph={netlab},morekeywords={[2]USER}]{USER netlab} to send the user ID and \lstbash[emph={netlab},morekeywords={[2]PASS}]{PASS netlab} to send the password to the FTP server.
+        To terminate the \lstbash{telnet} session, type \lstbash[morekeywords={[2]QUIT}]{QUIT}.
+        \item In your program, these messages should be sent to the FTP server by calling the \lstgeneric{send()} function of the local TCP socket.
         \item Also your program needs to parse the server responses (some examples are given in \hyperref[tab:5.2]{Table~5.2} of reference book) to find out the status of the previous FTP command.
-        \item The FTP data connection should be established using the \lstinline[morekeywords={[2]PORT}]{PORT} command (see Chapter~5 of reference book).
+        \item The FTP data connection should be established using the \lstbash[morekeywords={[2]PORT}]{PORT} command (see Chapter~5 of reference book).
     \end{itemize}
 
 \end{document}

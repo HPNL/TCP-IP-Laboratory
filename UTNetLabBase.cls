@@ -102,7 +102,7 @@
   }
   \lstdefinelanguage{cisco}{
     backgroundcolor = \color{yellow!10},
-    alsoletter={-,+},
+    alsoletter={-,+,?},
     keywords = [0]{Ctrl-Z, Ctrl+Z, end, exit, no, clear, wr, ?},
     keywords = [1]{
       show, sh, ip, config, configure, configuration, int, interface, router,
@@ -165,7 +165,11 @@
   }
 }
 
-\xpretocmd\lstinline{\Colorbox{magnolialight}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+% \xpretocmd\lstinline{\Colorbox{magnolialight}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+\newcommand{\lstbash}[2][]{\Colorbox{green!10}{\lstinline[language=bash-ext, #1]{#2}}}
+\newcommand{\lstcisco}[2][]{\Colorbox{yellow!10}{\lstinline[language=cisco, #1]{#2}}}
+\newcommand{\lstconf}[2][]{\Colorbox{red!10}{\lstinline[language=conf, #1]{#2}}}
+\newcommand{\lstgeneric}[2][]{\Colorbox{magnolialight}{\lstinline[language=generic, #1]{#2}}}
 
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
