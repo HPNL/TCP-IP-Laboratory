@@ -87,7 +87,7 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{report}
 
 \section{Multicast \texttt{ping}}
-    Execute \lstinline{ping 224.0.0.1} on \textit{h1}.
+    Execute \lstinline{ping 224.0.0.1} on the \textit{h1}.
     Examine the \lstinline{ping} output to see which hosts reply.
 
     Ping a broadcast address using \lstinline{ping -b 128.238.66.255}.
@@ -107,13 +107,13 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
             Which hosts replied when the broadcast address was pinged?
             Verify you answers with hosts config \path{/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
 
-        \item In each case, was there a reply from \textit{h0} and \textit{h1}?
+        \item In each case, was there a reply from the \textit{h0} and the \textit{h1}?
     \end{report}
 
 \section{Multicast vs Unicast}
-    On \textit{h1} execute \lstinline{tcpdump -n -nn -e} and \lstinline[morekeywords={[3]ether,multicast}]{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
+    on the \textit{h1} execute \lstinline{tcpdump -n -nn -e} and \lstinline[morekeywords={[3]ether,multicast}]{tcpdump ether multicast -n -nn -e} (or run \lstinline{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
 
-    To generate an Ethernet unicast frame, run \lstinline[emph={your-host, remote-host}]{socket -i -u -n1 remote-host echo}.
+    To generate an Ethernet unicast frame, run \lstinline[emph={h1,netlab}]{socket -i -u -n1 h1.netlab echo} from the \textit{h0}.
 
     Execute \lstinline{socket -i -u -n1 230.11.111.10 2000} to generate an Ethernet multicast frame.
 
@@ -140,11 +140,11 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
     \begin{lstlisting}
 ./netspy 224.111.111.111 1500
     \end{lstlisting}
-    Then, start the multicast sender \lstinline{netspyd} on \textit{h0}, by executing:
+    Then, start the multicast sender \lstinline{netspyd} on the \textit{h0}, by executing:
     \begin{lstlisting}
 ./netspyd 224.111.111.111 1500 1
     \end{lstlisting}
-    Execute \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on every host to capture multicast IP datagrams.
+    Execute \lstinline{tcpdump ip multicast} or \lstinline{wireshark} on every subnet to capture multicast IP datagrams.
 
     Login to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using \lstinline{telnet} or \lstinline{ssh} (need to start \textit{ssh} service with \lstinline{service ssh start}).
 
@@ -162,10 +162,10 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
 \section{\texttt{ping} Replay}
     % Enable broadcast ping replay by: \lstinline{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
     Keep the \lstinline{netspy} and the \lstinline{tcpdump} programs running.
-    Execute \lstinline{ping 224.111.111.111} from \textit{h6}.
+    Execute \lstinline{ping 224.111.111.111} from the \textit{h6}.
     Examine the \lstinline{tcpdump} and \lstinline{ping} outputs to see which hosts replied.
     To avoid confusion, students should do this exercise by turns.
-    Terminate the \lstinline{netspy} programs on several hosts, e.g.\ \textit{h0}, \textit{h1}, and \textit{h5}.
+    Terminate the \lstinline{netspy} programs on several hosts, e.g.\ \textit{h0}, \textit{h1}, and the \textit{h5}.
     Execute the \lstinline{ping} command again.
     Also, examine the \lstinline{tcpdump} and the \lstinline{ping} outputs to see which hosts replied.
 
@@ -242,7 +242,7 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
     \begin{lstlisting}
 ./netspy 224.111.111.111 1500
     \end{lstlisting}
-    Start \lstinline{netspy} on \textit{h1}, by using:
+    Start \lstinline{netspy} on the \textit{h1}, by using:
     \begin{lstlisting}
 ./netspyd 224.111.111.111 1500 16
     \end{lstlisting}
@@ -251,11 +251,11 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
     Run \lstinline[language={cisco}]{show ip igmp interface} and \lstinline[language={cisco}]{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
 
     Try if you can \lstinline{ping} a host on the other side of the router.
-    Login to \textit{h1} from \textit{h2} in your group, then logout.
+    Login to \textit{h1} from the \textit{h2} in your group, then logout.
     See if the multicast messages sent by \lstinline{netspyd} reach the other side of the router.
 
     Add \textit{route} for other subnet to your host and try \lstinline{ping} again.
-    Now, login to \textit{h1} from \textit{h2} in your group, then logout.
+    Now, login to \textit{h1} from the \textit{h2} in your group, then logout.
     
     \begin{report}
         \item Can you ping a host on the other side of the router?
@@ -271,7 +271,7 @@ echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in bo
     Print and save two different IGMP messages.
 
     Repeat the above experiment.
-    Terminate \lstinline{netspy} on \textit{h2} and \textit{h4}.
+    Terminate \lstinline{netspy} on the \textit{h2} and the \textit{h4}.
     Terminate the \lstinline{tcpdump} programs and analyze the IGMP leave message you captured.
     
     \begin{report}
@@ -377,16 +377,16 @@ Router(interface)# ip igmp join-group 224.0.0.2
     Run \lstinline[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstinline{wireshark} on all subnet (at least one host).
     Maybe you need to restart (or reload) routers to capture all packet from start state.
 
-    Execute \lstinline{./netspy 224.111.111.111 1500} on \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6}.
+    Execute \lstinline{./netspy 224.111.111.111 1500} on the \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and the \textit{h6}.
 
-    Execute \lstinline{./netspyd 224.111.111.111 1500 16} on \textit{h4}.
+    Execute \lstinline{./netspyd 224.111.111.111 1500 16} on the \textit{h4}.
     
     To generate multicast traffic, you can login (by \lstinline{telnet} or \lstinline{ssh}\footnote{Need to \lstinline{service ssh start} on remote machine}) to or logout of \textit{h4}.
-    Each time when the login user set of \textit{h4} changes, \lstinline{netspyd} on \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
+    Each time when the login user set of \textit{h4} changes, \lstinline{netspyd} on the \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
 
     Can you see the \lstinline{netspy} messages on the 128.238.65.0 subnet in the \lstinline{tcpdump} output? 
 
-    Terminate the \lstinline{netspy} program on \textit{h6}.
+    Terminate the \lstinline{netspy} program on the \textit{h6}.
 
     Can you see the \lstinline{netspy} messages on the 128.238.65.0 subnet?
     \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
@@ -406,15 +406,15 @@ Router(interface)# ip igmp join-group 224.0.0.2
     The \lstinline[language={cisco}]{mstat} command is executable in the \textit{Privileged EXEC} mode.
     You can always type \lstinline[language={cisco}]{?}\footnote{For example: \lstinline[language={cisco}]{mstat ?}} to get help on the syntax of the command.
 
-    Generate multicast packet when execute command for \textit{h4} (to see statistics change).
+    Generate multicast packet when execute command for the \textit{h4} (to see statistics change).
 
     \begin{report}
-        \item Report the \lstinline[language={cisco}]{mstat}\footnote{\lstinline[language={cisco},emph={x}]{mstat x.x.x.x}} output for \textit{h4} on \textit{R1}.
+        \item Report the \lstinline[language={cisco}]{mstat}\footnote{\lstinline[language={cisco},emph={x}]{mstat x.x.x.x}} output for the \textit{h4} on \textit{R1}.
     \end{report}
 
 \section{Multicast TTL}
     Keep \lstinline{netspy} running on all the hosts.
-    Ping the multicast group address from \textit{h4}, using: 
+    Ping the multicast group address from the \textit{h4}, using: 
     \begin{lstlisting}[emph={n}]
 ping 224.111.111.111 -t n
     \end{lstlisting}
@@ -450,16 +450,16 @@ Router(interface)# ip multicast ttl-threshold 32
 \section{**Multicast Real-Time Video}
     Start \lstinline{vlc} on all the hosts, by using \lstinline{vlc &}.
 
-    On \textit{h0}, go to the \lstinline{vlc} menu: \textit{Media/Stream\ldots }.
+    on the \textit{h0}, go to the \lstinline{vlc} menu: \textit{Media/Stream\ldots }.
     Chose video file \path{/home/netlab/group.mp4} and press \textit{stream} button.
     In \textit{Stream output} add \textit{RTP /MPEG Transport Stream} dialog.
     Then click the \textit{next} button.
     In the next window, specify the multicast group address to be {224.123.111.101}, with port number {22224} %and TTL 33.
     Then click the \textit{Finish} button.
-    Now the \lstinline{vlc} on \textit{h0} is transmitting the video clip using \textit{RTP/RTSP/UDP/IP} to the multicast group {224.123.111.101} on port {22224}.
+    Now the \lstinline{vlc} on the \textit{h0} is transmitting the video clip using \textit{RTP/RTSP/UDP/IP} to the multicast group {224.123.111.101} on port {22224}.
 
     On all other hosts, go to the \lstinline{vlc} menu: \textit{Media/Open Network Stream\ldots}.
-    In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in \textit{h0}.%and TTL
+    In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in the \textit{h0}.%and TTL
     Now you should see the received video is displayed on the screen.
 
     Execute \lstinline[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstinline{wireshark} in one console to capture the multicast datagrams.

@@ -63,7 +63,7 @@
     \end{center}
 
 \section{Telnet Service}
-    Run \lstinline{ps -e} to list the processes running in \textit{h1}.
+    Run \lstinline{ps -e} to list the processes running in the \textit{h1}.
     After starting a new process by running \lstinline{telnet} in another command window (open new auxiliary console), execute \lstinline{ps -e} again in a third window to see if there is any change in its output.
 
     Find the process id of the \lstinline{telnet} process you started, by:
@@ -81,7 +81,7 @@ ps -e | grep telnet
     \end{report}
 
 \section{Default Network Services}
-    Display the file \path{/etc/services} on \textit{h1} screen, using:
+    Display the file \path{/etc/services} on the \textit{h1} screen, using:
     \begin{lstlisting}
 more /etc/services
     \end{lstlisting}
@@ -130,10 +130,10 @@ more /etc/services
     % fixme: content
     In this exercise, we will use \lstinline{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \lstinline{wireshark} to analyze this packet.
 
-    First, run \lstinline{tcpdump -enx -w dump.pcap} in \textit{h1}.
+    First, run \lstinline{tcpdump -enx -w dump.pcap} in the \textit{h1}.
     You will not see any \lstinline{tcpdump} output, since the \lstinline{-w} option is used to write the output to the \path{dump.pcap} file.
 
-    Then, you may want to run \lstinline{telnet 128.238.66.102} in \textit{h1} to generate some TCP traffic.\footnote{Remember to run \lstinline{/etc/init.d/xinetd restart} in \textit{h2} to start telnet server on it.}
+    Then, you may want to run \lstinline{telnet 128.238.66.102} in the \textit{h1} to generate some TCP traffic.\footnote{Remember to run \lstinline{/etc/init.d/xinetd restart} in the \textit{h2} to start telnet server on it.}
     After you login to \textit{h2} (use \textbf{netlab} for username and password), terminate the \lstinline{telnet} session and terminate the \lstinline{tcpdump} program.
     Next, you will use \lstinline{tcpdump} or \lstinline{wireshark} to open the packet trace captured by \lstinline{tcpdump} and analyze the captured packets.
     To do this, use this command \lstinline{tcpdump -r dump.pcap} to see content of \path{dump.pcap} or see with GUI \lstinline{wireshark dump.pcap &}\footnote{To use \lstinline{wireshark} in isolated \lstinline{docker} space, you need to copy file from  \lstinline{docker} space to your PC}.
@@ -150,7 +150,7 @@ more /etc/services
 
 \section{\texttt{ARPing}}
     This time we will run \lstinline{wireshark} to capture an ARP request and an ARP reply in real-time.
-    Simply run \lstinline{wireshark} on \textit{h1} link with right click and select \textbf{start capture} item to start capturing\footnote{On physical machine, can start capture with \lstinline{wireshark &} command.}.
+    Simply run \lstinline{wireshark} on the \textit{h1} link with right click and select \textbf{start capture} item to start capturing\footnote{On physical machine, can start capture with \lstinline{wireshark &} command.}.
     If there is no arp requests and replies in the network, generate some using \lstinline{arping 128.238.66.102} command in the \textit{h1} terminal.
 
     Now you should see several ARP replies in the \lstinline{arping} output.
@@ -195,7 +195,7 @@ more /etc/services
     \end{itemize}
 
 \section{Connection Port}
-    Run \lstinline{wireshark} on \textit{h1} link and select an interface to capture packets between hosts.
+    Run \lstinline{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
 
     Execute a TCP utility, \lstinline{telnet} for example, in another command window:
     \begin{lstlisting}
@@ -203,13 +203,13 @@ telnet 128.238.66.102
     \end{lstlisting}
     
     \begin{report}
-        \item What are the port numbers used by the \textit{h1} (local machine) and \textit{h2} (remote machine)?
+        \item What are the port numbers used by the \textit{h1} (local machine) and the \textit{h2} (remote machine)?
 
         \item Which port numbers matches the port number listed for \lstinline{telnet} in the \path{/etc/services} file?
     \end{report}
 
 \section{Random Port}
-    Run \lstinline{wireshark} on \textit{h1} link and select an interface to capture packets between hosts.
+    Run \lstinline{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
 
     Then, \lstinline{telnet} to the \textit{h2} from a second command window (Auxiliary console) by typing \lstinline{telnet 128.238.66.102}.
     Again issue the same \lstinline{telnet 128.238.66.102} command from a third command window.
@@ -223,7 +223,7 @@ telnet 128.238.66.102
 
         \item Are both sessions connected to the same port number on the \textit{h2} (remote machine)?
 
-        \item What port numbers are used in \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
+        \item What port numbers are used in the \textit{h1} (local machine) for the first and second \lstinline{telnet}, respectively?
 
         \item Explain briefly what a \lstinline[language=bash]{socket} is.
     \end{report}

@@ -66,11 +66,11 @@ route add -net remote-subnet gw gateway-ip   # with default gateway
     \end{itemize}
     
 
-    Run \lstinline{tcpdump -en} on first machine, and \lstinline{tcpdump -en} on second machine in the other subnet simultaneously:
+    Run \lstinline{tcpdump -en} on the \textit{h0}, and \lstinline{tcpdump -en} on the \textit{h1} in the other subnet simultaneously:
     \begin{lstlisting}[emph={h0,h1,netlab},morekeywords={[3]host,and}]
 tcpdump -en host h1.netlab and h0.netlab
     \end{lstlisting}
-    Send \lstinline{ping} messages continuously from \textit{h0} to \textit{h1}:
+    Send \lstinline{ping} messages continuously from the \textit{h0} to \textit{h1}:
     \begin{lstlisting}[emph={h1, netlab}]
 ping -sv h1.netlab
     \end{lstlisting}
@@ -83,11 +83,11 @@ ping -sv h1.netlab
     \begin{report}
         \item When a packet was sent to a host in the other subnet, explain how the source and destination Ethernet addresses were changed.
         
-        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from \textit{h0} to the router?
+        \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from the \textit{h0} to the router?
         
         \item What are the source and destination addresses in the IP and Ethernet headers of a packet that went from the router to \textit{h1} machine?
         
-        \item Answer the above two questions, but now for the echo reply that was returned from \textit{h1} machine.
+        \item Answer the above two questions, but now for the echo reply that was returned from the \textit{h1} machine.
 
         \item Use the \lstinline{tcpdump} outputs from both machines to calculate the average delay that a packet experienced in the router.
                 Note that the system times of the two machines might be different.
@@ -230,7 +230,7 @@ tcpdump -x -s 100 -c 4 udp port 520
 
 \section{RIP recover on Link Failure}
     In this exercise we will examine how RIP responds to link failures.
-    Send \lstinline{ping} message continuously from \textit{h3} to \textit{h4} and start \lstinline{tcpdump} on \textit{h3}.
+    Send \lstinline{ping} message continuously from the \textit{h3} to \textit{h4} and start \lstinline{tcpdump} on the \textit{h3}.
     Let the two programs run during this exercise.
 
     Disconnect the cable from the \textit{ethernet0} port of \textit{router2} from the hub in the 128.238.62.0 subnet (use \lstinline[language={cisco}]{Router(config-interface)# shut} for interface in \textbf{GNS3}), and type the \lstinline{date} command to get the current time.
@@ -262,7 +262,7 @@ sysctl -w net.ipv4.conf.all.accept_redirects=1
 
     Create a default routing entry using one of the routers directly connected to your host (add route with default gateway).
     Also may you need to delete previously added route.
-    For example you can set default route for \textit{h1} to \textit{R1->f0/0}.
+    For example you can set default route for the \textit{h1} to \textit{R1->f0/0}.
 
     \begin{lstlisting}[emph={eth0,gateway-ip,remote-subnet},morekeywords={[3]add,dev,via,gw}]
 # by ip command
@@ -281,7 +281,7 @@ route add -net remote-subnet gw gateway-ip   # with default gateway
         
         \item Identify every field in the ICMP redirect message (see \hyperref[fig:4.2]{Figure~4.2}).
         
-        \item Compare the original routing table with the new routing table.
+        \item [*] Compare the original routing table with the new routing table.
     Explain the meaning of the flags of the new entry.
     \end{report}
 
@@ -295,8 +295,8 @@ route add -net remote-subnet gw gateway-ip   # with default gateway
     \begin{lstlisting}[language={cisco}]
 Router(config-if)# ip irdp
     \end{lstlisting}
-    Run \lstinline{tcpdump -enx ip proto 1} on \textit{h1}.
-    Now, run \lstinline{/home/netlab/code/rdisc -s # solicitation mode} on \textit{h0}.
+    Run \lstinline{tcpdump -enx ip proto 1} on the \textit{h1}.
+    Now, run \lstinline{rdisc -s # solicitation mode} on the \textit{h0}.
     Save the captured route discovery requests and replies for the lab report.
     Save \textit{h0} routing table for the lab report.
     
@@ -304,7 +304,7 @@ Router(config-if)# ip irdp
         \item What is the destination IP address of the ICMP router solicitation message? Who sends the ICMP router advertisement message?
         \item What are the type and code of the ICMP messages captured?
         \item What are the advertised router IP addresses and their preference levels?
-        \item How many default router entries are there in \textit{h0} routing table? Why?
+        \item [*] How many default router entries are there in the \textit{h0} routing table? Why?
     \end{report}
 
 \part{OSPF Exercise}\label{sec:ospf}
@@ -427,7 +427,7 @@ tcpdump -x -s 120 ip proto 89
     \begin{report}
         \item Draw the common header of a saved OSPF message, giving the decimal values of the header fields (see \hyperref[fig:4.8]{Figure~4.8}).
         
-        \item Can you ping \textit{h1} from \textit{h2}?
+        \item Can you ping \textit{h1} from the \textit{h2}?
         
         \item Submit the routing tables you collected from the routers.
     \end{report}
@@ -463,17 +463,19 @@ ip route destination-network destination-net-mask next-hup-ip
     When you can get \lstinline{ping} reply messages from all the interfaces of the routers successfully, your work is done for this exercise.} save the routing tables in your host and all the routers for the lab report.
     
     \begin{report}
-        \item Can you ping \textit{h1} from \textit{h2}?
+        \item Can you ping \textit{h1} from the \textit{h2}?
         
         \item Submit the routing tables saved in this exercise.
     \end{report}
 
 
-\part{\texttt{traceroute} Experiment}\label{sec:traceroute}
-\section{\texttt{traceroute} multi-hop path}
-    Execute \lstinline[emph={your-host, remote-host},morekeywords={[3]host,and}]{tcpdump -env host your-host and remote-host} on your host, where \textit{remote-host} is a host at least two hops away (for example \textit{h1} to \textit{h2} in \hyperref[fig:4.13]{Figure~4.13}).
+\part{\texttt{traceroute} Experiment}
+In this experiment, we reuse the network as shown in Figure 4.13.
 
-    Then, execute \lstinline[emph={your-host, remote-host}]{traceroute remote-host} to find the route from your host to the remote host.
+\section{\texttt{traceroute} multi-hop path}\label{sec:traceroute}
+    Execute \lstinline[emph={h1,h2,netlab},morekeywords={[3]host,and}]{tcpdump -env host h1.netlab and h2.netlab} on the \textit{h1} host, where \textit{h2} is a host at least two hops away (for example \textit{h1} to \textit{h2} in \hyperref[fig:4.13]{Figure~4.13}).
+
+    Then, execute \lstinline[emph={h2,netlab}]{traceroute h2.netlab} to find the route from the \textit{h1} host to the \textit{h2} host.
 
     Save the output of both \lstinline{traceroute} and \lstinline{tcpdump}.
 

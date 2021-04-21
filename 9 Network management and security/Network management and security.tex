@@ -62,7 +62,7 @@
         \end{minipage}
     \end{center}
 
-    Before the lab, you should do this instructions on \textit{h0}:
+    Before the lab, you should do this instructions on the \textit{h0}:
     \begin{enumerate}
         \item Backup the original \lstinline{snmpd} configuration file:
         \lstinline{mv /etc/snmp/snmpd.conf /etc/snmp/snmpd.conf.save}\footnote{Shortest way: \lstinline{mv /etc/snmp/snmpd.conf\{,.save\}}}.
@@ -95,7 +95,7 @@ rocommunity guest
     \end{report}
 
 \section{SNMP List Objects}
-    On \textit{h0},
+    on the \textit{h0},
     Use \lstinline[emph={guest}]{snmpwalk -v 2c -c guest localhost interface} to display the Interface MIB.
 
     Use \lstinline[emph={guest}]{snmpwalk -v 2c -c guest localhost tcp} to display the TCP MIB.
@@ -116,9 +116,9 @@ rocommunity guest
 \section{SNMP Remote Access}
     Execute \lstinline[morekeywords={[3]udp,port}]{tcpdump udp port 161} or \lstinline{wireshark} to capture SNMP messages.
 
-    Run from \textit{h1} host \lstinline[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}} and while telnet is running, try again to run on \textit{h0}  \lstinline[breaklines=true,escapechar={\ }]{snmpwalk -v 2c -c guest localhost tcp}.
+    Run from the \textit{h1} host \lstinline[emph={h0,netlab}]{telnet h0.netlab} \footnote{Use \textit{ctrl+]} to terminate \lstinline{telnet} and then \lstinline{quit}} and while telnet is running, try again to run on the \textit{h0}  \lstinline[breaklines=true,escapechar={\ }]{snmpwalk -v 2c -c guest localhost tcp}.
 
-    Try to run \lstinline[emph={h0,netlab,guest},morekeywords={[2]tcp}]{snmpwalk -v 2c -c guest h0.netlab tcp} from \textit{h2}.
+    Try to run \lstinline[emph={h0,netlab,guest},morekeywords={[2]tcp}]{snmpwalk -v 2c -c guest h0.netlab tcp} from the \textit{h2}.
 
     Execute \lstinline[emph={your-host, h0,netlab,guest},morekeywords={[2]IF-MIB,ifMtu}]{snmpget -v 2c -c guest h0.netlab IF-MIB::ifMtu.1} to get the MIB object \textbf{IF-MIB::ifMTU.1} from a remote machine.
     
@@ -140,9 +140,9 @@ rocommunity guest
 \part{Exercises on Secure Applications}
     
 \section{Plain Transfer}
-    Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} to capture packets between your machine and a remote machine.
+    Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} to capture packets between the \textit{h0} machine and the \textit{h1} machine.
 
-    Execute \lstinline[emph={h0,netlab}]{ftp h0.netlab} on \textit{h1}.
+    Execute \lstinline[emph={h0,netlab}]{ftp h0.netlab} on the \textit{h1}.
     When prompted, type \textit{1111} for the login ID, and \textit{2222} for the login password.
     Then terminate \lstinline{tcpdump} and \lstinline{ftp}.
 
@@ -159,11 +159,11 @@ rocommunity guest
     \end{report}
 
 \section{Secure Transfer}
-    Start \lstinline{ssh} service on \textit{h0} by \lstinline{service ssh start}.
+    Start \lstinline{ssh} service on the \textit{h0} by \lstinline{service ssh start}.
     
-    Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} host your host and remote host to capture packets between your machine and a remote machine.
+    Execute \lstinline{tcpdump -enX -s 100} or \lstinline{wireshark} on the \textit{h1} host or the \textit{h0} host to capture packets between two machine.
 
-    Execute \lstinline[emph={1111,h0,1111@h0,netlab},escapechar=]{sftp 1111@h0.netlab} on \textit{h1}.
+    Execute \lstinline[emph={1111,h0,1111@h0,netlab},escapechar=]{sftp 1111@h0.netlab} on the \textit{h1}.
     When prompted for \textit{The authenticity of host}, type \textit{yes} to continue the connection and type \textit{2222} for the login password.
     Then terminate \lstinline{tcpdump}.
 
@@ -188,42 +188,43 @@ rocommunity guest
     You can use Figure~1.3.
 
 \section{Firewall Basic}
-    Execute \lstinline{iptables -L -v} to list the existing rules in the filter table on \textit{h0}.
+    Execute \lstinline{iptables -L -v} to list the existing rules in the filter table on the \textit{h0}.
     Save the output for the lab report.
 
-    Append a rule to the end of the \texttt{INPUT} chain, by executing on \textit{h0}
+    Append a rule to the end of the \texttt{INPUT} chain, by executing on the \textit{h0}
     \begin{lstlisting}[morekeywords={[3]INPUT,TCP,DROP}]
 iptables -A INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
-    Run \lstinline{iptables -L -v} again on \textit{h0} and \textit{h1} to display the filter table.
+    Run \lstinline{iptables -L -v} again on the \textit{h0} and the \textit{h1} to display the filter table.
     Save the output.
 
-    On \textit{h0} and \textit{h1}, execute \lstinline{tcpdump}.
-    Then, \lstinline{telnet} to the host where the rule is set (\textit{h0}), from the remote machine (\textit{h1}).
+    on the \textit{h0} and the \textit{h1}, execute \lstinline{tcpdump}.
+    Then, \lstinline{telnet} to the \textit{h0} host where the rule is set, from the \textit{h1} machine.
     Save the \lstinline{tcpdump} output for the lab report.
 
     \begin{report}
-        \item Can you \lstinline{telnet} to \textit{h0} from the remote machine (\textit{h1})?
+        \item Can you \lstinline{telnet} to \textit{h0} from the \textit{h1} machine?
         
-        \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make? Explain the exponential \textbf{backoff algorithm} of TCP timeout and retransmission.
+        \item From the \lstinline{tcpdump} output, how many retries did \lstinline{telnet} make?
+        Explain the exponential \textbf{backoff algorithm} of TCP timeout and retransmission.
     \end{report}
     
 \section{Firewall Action}
-    Delete the rule created in the last exercise, by:    
+    Delete the rule created in the last exercise in the \textit{h0} machine, by:    
     \begin{lstlisting}[morekeywords={[3]INPUT,TCP,DROP}]
 iptables -D INPUT -v -p TCP --dport 23 -j DROP
     \end{lstlisting}
     
-    Then, append a new rule to the \texttt{INPUT} chain:    
+    Then, append a new rule to the \texttt{INPUT} chain in the \textit{h0} machine:    
     \begin{lstlisting}[morekeywords={[3]INPUT,TCP,REJECT,tcp-reset}]
 iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     \end{lstlisting}
     
     Execute \lstinline{iptables -L -v} to display the new rule.
 
-    On both machines in your topology, restart \lstinline{tcpdump}, and then \lstinline{telnet} to the host where the rule is set from the remote machine.
-    Save the \lstinline{wireshark} output for the lab report.
+    On both machines in your topology, restart \lstinline{tcpdump}, and then \lstinline{telnet} to the \textit{h0} host where the rule is set from the \textit{h1} machine.
+    Save the \lstinline{tcpdump} output for the lab report.
     
     \begin{report}
         \item Explain the difference between the \lstinline{tcpdump} outputs of this exercise and the previous exercise.
@@ -231,13 +232,13 @@ iptables -A INPUT -v -p TCP --dport 23 -j REJECT --reject-with tcp-reset
     \end{report}
 
 \part{Exercises on Secure Apache Server}
-    In the exercises in this section, using two hosts from \textit{term} and \textit{gui} hosts.
+    In the exercises in this section, using two hosts from \textit{server} and \textit{gui} hosts (also you can use {Figure~3.server.gui}).
     Run \lstinline{apache2} service on \textit{server}
 
 \section{Generate Certificate}
     Run \lstinline{man openssl} to study the OpenSSL command line tool.
 
-    Create a new private key on \textit{h0} for the Apache server, using:
+    Create a new private key on \textit{server} for the Apache server, using:
     \begin{lstlisting}[emph={server,key},morekeywords={[2]genrsa}]
 cd /etc/apache2/ssl
 openssl genrsa 4096 > server.key
@@ -292,12 +293,12 @@ Email Address []:netlab@ut.ac.ir
     Save the output for the lab report.
 
 \section{HTTPS Handshake and Request}
-    Restart the Apache server to load the new key and the new certification: \lstinline{service apache2 restart} on \textit{h0}.
+    Restart the Apache server to load the new key and the new certification: \lstinline{service apache2 restart} on \textit{server}.
 
-    Execute \lstinline{wireshark} to capture the packets between your host and a remote host.
+    Execute \lstinline{wireshark} to capture the packets between the \textit{gui} host and the \textit{server} host.
 
-    On the remote host, start the \textit{Mozilla} web browser.
-    After typing in the URL \url{https://h0.netlab}, a dialog window titled \textit{Potential Security Risk Ahead} or \textit{Website Certified by an Unknown Authority} will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue.
+    On the \textit{gui} host, start the \textit{Mozilla} web browser.
+    After typing in the URL \url{https://server.netlab}, a dialog window titled \textit{Potential Security Risk Ahead} or \textit{Website Certified by an Unknown Authority} will pop up, reporting the reception of a certificate signed by an unknown authority and asking if you want to continue.
     Add "Certificate" to exceptions and continue browsing in \textit{Advanced...} section and click on \textit{Accept the Risk and Continue}.
 
     Click the \textit{View Certificate} button.
@@ -345,7 +346,7 @@ Email Address []:netlab@ut.ac.ir
 webalizer
     \end{lstlisting}
     
-    To view the reports of the \lstinline{webalizer}, start \textit{Mozilla} and enter the URL \url{http://remote-host/usage/index.html}.
+    To view the reports of the \lstinline{webalizer}, start \textit{Mozilla} and enter the URL \url{http://server.netlab/usage/index.html}.
     Examine the web statistics displayed in the browser.
     Also click on the month links in the Summary by Month table to see the statistics of each month.
 
@@ -354,7 +355,7 @@ webalizer
 goaccess -a > /var/www/html/report.html
     \end{lstlisting}
     
-    To view the report of the \lstinline{goaccess}, start \textit{Mozilla} and enter the URL \url{http://remote-host/report.html}.
+    To view the report of the \lstinline{goaccess}, start \textit{Mozilla} and enter the URL \url{http://server.netlab/report.html}.
     Examine the web statistics displayed in the browser.
     Also click on the side panel to see other section.
 

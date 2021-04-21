@@ -10,7 +10,7 @@
     Like previous lab, connect two host with one hub together (Figure~5.0) or use Figure~1.3 with two host.
 
 \section{Telnet terminal}
-    While \lstinline[emph={your-host, remote-host}]{tcpdump -S host your-host  and remote-host} is running, execute: \lstinline[emph={your-host, remote-host}]{telnet remote-host echo} then type some text.
+    While \lstinline[emph={h0,h1,netlab}]{tcpdump -S h0.netlab and h1.netlab} is running, execute: \lstinline[emph={h0,h1,netlab}]{telnet h1.netlab echo} on the \textit{h0} host, then type some text.
     Save the \lstinline{tcpdump} output.
     
     \begin{report}
@@ -24,14 +24,14 @@
     \end{report}
     
 \section{TCP vs UDP Connection Establishment}
-    While \lstinline[emph={your-host, remote-host}]{tcpdump -nx host your-host and remote-host} is running, use \lstinline{socket}\footnote{Basic command is \lstinline{sock}. Use alternative \lstinline{socket} (linked to \lstinline{sock}).} to send a UDP datagram to \textit{h2}:
-    \begin{lstlisting}[emph={your-host, remote-host}]
-socket -u -i -n1 remote-host 8888
+    While \lstinline[emph={h0,h1,netlab}]{tcpdump -nx h0.netlab and h1.netlab} is running, use \lstinline{socket}\footnote{Basic command is \lstinline{sock}. Use alternative \lstinline{socket} (linked to \lstinline{sock}).} to send a UDP datagram to the \textit{h1} host from the \textit{h0} machine:
+    \begin{lstlisting}[emph={h0,h1,netlab}]
+socket -u -i -n1 h1.netlab 8888
     \end{lstlisting}
     {Save} the \lstinline{tcpdump} or \lstinline{wireshark} output for your lab report. \\
     Restart the above \lstinline{tcpdump} command, execute \lstinline{socket} in the TCP mode:
-    \begin{lstlisting}[emph={remote-host}]
-socket -i -n1 remote-host 8888
+    \begin{lstlisting}[emph={h1,netlab}]
+socket -i -n1 h1.netlab 8888
     \end{lstlisting}
     {Save} the \lstinline{tcpdump} output for your lab report.
     
@@ -42,10 +42,10 @@ socket -i -n1 remote-host 8888
 
 \part{Exercise on TCP Interactive Data Flow}
 \section{Interactive Data Flow}
-While \lstinline{tcpdump} is capturing the traffic between your machine and a remote machine, issue following commands:
-    \begin{lstlisting}[emph={host}]
+While \lstinline{tcpdump} is capturing the traffic between \textit{h0} machine and a \textit{h1} machine, issue following commands:
+    \begin{lstlisting}[emph={h1,netlab}]
 tcpdump -nv # or run wireshark
-telnet host
+telnet h1.netlab
     \end{lstlisting}
     After logging in to the host, type \lstinline{date} and press the {Enter} key.
 
@@ -70,18 +70,18 @@ telnet host
 
             From your \lstinline{tcpdump} output, can you tell whether the \textit{Nagle} algorithm is enabled or not? Give the reason for your answer.
 
-            From your \lstinline{tcpdump} output for when you typed very rapidly, can you see any segment that contains more than one character going from your host to the remote machine?
+            From your \lstinline{tcpdump} output for when you typed very rapidly\footnote{You can paste a large string into terminal, about 50-100 byte.}, can you see any segment that contains more than one character going from the \textit{h0} host to the \textit{h1} machine?
     \end{report}
 
 \part{Exercise on TCP Bulk Data Flow}
 \section{IP Segment}
-    While \lstinline{tcpdump} is running and capturing the packets between your machine and a remote machine, on the remote machine, which acts as the server, execute:
+    While \lstinline{tcpdump} is running and capturing the packets between \textit{h0} machine and a \textit{h1} machine, on the \textit{h1} machine, which acts as the server, execute:
     \begin{lstlisting}
 socket -i -s 7777
     \end{lstlisting}
-    Then, on your machine, which acts as the client, execute:
-    \begin{lstlisting}[emph={your-host, remote-host}]
-socket -i -n16 remote-host 7777
+    Then, on the \textit{h0} machine, which acts as the client, execute:
+    \begin{lstlisting}[emph={h1,netlab}]
+socket -i -n16 h1.netlab 7777
     \end{lstlisting}
     Do the same experiment three times.
 
@@ -111,16 +111,16 @@ socket -i -n16 remote-host 7777
     \end{report}
 
 \section{TCP Retransmission}
-    While \lstinline{tcpdump} is running to capture the packets between your host and a remote host, start a \lstinline{socket} server on the remote host,
+    While \lstinline{tcpdump} is running to capture the packets between the \textit{h0} host and the \textit{h1} host, start a \lstinline{socket} server on the \textit{h1} host,
     \begin{lstlisting}
 socket -s 8888
     \end{lstlisting}
-    Then, execute the following command on your host,
+    Then, execute the following command on the \textit{h0} host,
     \begin{itemize}
         \item add link delay in simulator\footnote{In GNS3, \lstinline{right click} on link, select \lstinline{Packet Filter} and set link \lstinline{delay} to \textit{100 ms}}
         \item \lstinline[emph={host}]{socket -i -n200 -p 100 host 8888}
     \end{itemize}
-    While the sender is injecting data segments into the network, shutdown the network interface on the \textit{remote-host} that connect the sender to the hub for about ten seconds.
+    While the sender is injecting data segments into the network, shutdown the network interface on the \textit{h1} host that connect the sender to the hub for about ten seconds.
     \begin{lstlisting}[emph={eth0}]
 # use one of below commands
 ip link set eth0 down
@@ -148,9 +148,9 @@ ifconfig eth0 up
     
 \part{Other Exercises}
 \section{Fragmentation}
-    While \lstinline[emph={your-host, remote-host}]{tcpdump src host your-host} is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous lab session (Chapter~5 of reference book),
-    \begin{lstlisting}[emph={n, remote-host}]
-socket -i -n1 -w n remote-host echo
+    While \lstinline[emph={h0,h1,netlab}]{tcpdump src host h0.netlab} is running, execute the following command, which is similar to the command we used to find out the maximum size of a UDP datagram in previous lab session (Chapter~5 of reference book),
+    \begin{lstlisting}[emph={n, h1,netlab}]
+socket -i -n1 -w n h1.netlab echo
     \end{lstlisting}
     Let \textit{n} be larger than the maximum UDP datagram size we found in previous lab session.
 
