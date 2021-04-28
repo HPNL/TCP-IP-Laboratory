@@ -57,7 +57,6 @@ Open GPLv3 [LICENSE](LICENSE) file.
 
 ## ToDo and Bugfix
 
-* [ ] change `your host` and `remote host` to real host name `h0` and `h1`
 * [ ] add farsi Chapter
 * [ ] add network equipment and device overview
 * [ ] add api to transfer file to host
@@ -66,7 +65,6 @@ Open GPLv3 [LICENSE](LICENSE) file.
   * [ ] base linux
   * [ ] `socket` with `netcat`
   * [ ] linux routing service
-  * [ ] router discovery
   * [ ] ...
 
 ## Appendix
