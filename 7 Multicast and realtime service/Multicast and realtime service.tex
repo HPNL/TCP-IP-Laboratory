@@ -9,475 +9,475 @@
 
 \begin{document}
 \part{Simple Multicast Exercises}
-    For all the exercises in this section, the network topology is given in \hyperref[fig:1.3]{Figure~1.3}, where all the hosts are connected to a single network segment using their default IP addresses, i.e.\ from 128.238.66.100 to 128.238.66.107.
-    
-    \begin{minipage}{0.48\textwidth}
-        \begin{flushleft}
-            \begin{table}[H]
-                \caption{The IP addresses of the hosts (Table~1.2)}
-                \label{tab:1.2}
-                \centering
-                \begin{tabular}{ c c c }
-                    \hline \hline
-                    Host & IP Address & Subnet Mask \\
-                    \hline 
-                    h0 & 128.238.66.100 & 255.255.255.0 \\
-                    h1 & 128.238.66.101 & 255.255.255.0 \\
-                    h2 & 128.238.66.102 & 255.255.255.0 \\
-                    h3 & 128.238.66.103 & 255.255.255.0 \\
-                    h4 & 128.238.66.104 & 255.255.255.0 \\
-                    h5 & 128.238.66.105 & 255.255.255.0 \\
-                    h6 & 128.238.66.106 & 255.255.255.0 \\
-                    h7 & 128.238.66.107 & 255.255.255.0 \\
-                    \hline \hline
-                    \end{tabular}
-            \end{table}
-        \end{flushleft}
-    \end{minipage}
-    \begin{minipage}{0.48\textwidth}
-        \begin{flushright}
-            \begin{figure}[H]
-                \centering
-                \begin{tikzpicture}
-                    \node[draw,rounded corners,align=center] (s) at (0,0) {Core\\Switch};
-                    \node[draw] (h0) at (0,2){h0};
-                    \node[draw] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
-                    \node[draw] (h2) at (2,0){h2};
-                    \node[draw] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
-                    \node[draw] (h4) at (-2,0){h4};
-                    \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
-                    \node[draw] (h6) at (0,-2){h6};
-                    \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
-                
-                    \draw (h0) -- (s);
-                    \draw (h1) -- (s);
-                    \draw (h2) -- (s);
-                    \draw (h3) -- (s);
-                    \draw (h4) -- (s);
-                    \draw (h5) -- (s);
-                    \draw (h6) -- (s);
-                    \draw (h7) -- (s);
-                \end{tikzpicture}
-                \caption{A single segment network (Figure~1.3)}
-                \label{fig:1.3}
-            \end{figure}
-        \end{flushright}
-    \end{minipage}
+For all the exercises in this section, the network topology is given in \hyperref[fig:1.3]{Figure~1.3}, where all the hosts are connected to a single network segment using their default IP addresses, i.e.\ from 128.238.66.100 to 128.238.66.107.
+
+\begin{minipage}{0.48\textwidth}
+    \begin{flushleft}
+        \begin{table}[H]
+            \caption{The IP addresses of the hosts (Table~1.2)}
+            \label{tab:1.2}
+            \centering
+            \begin{tabular}{ c c c }
+                \hline \hline
+                Host & IP Address     & Subnet Mask   \\
+                \hline
+                h0   & 128.238.66.100 & 255.255.255.0 \\
+                h1   & 128.238.66.101 & 255.255.255.0 \\
+                h2   & 128.238.66.102 & 255.255.255.0 \\
+                h3   & 128.238.66.103 & 255.255.255.0 \\
+                h4   & 128.238.66.104 & 255.255.255.0 \\
+                h5   & 128.238.66.105 & 255.255.255.0 \\
+                h6   & 128.238.66.106 & 255.255.255.0 \\
+                h7   & 128.238.66.107 & 255.255.255.0 \\
+                \hline \hline
+            \end{tabular}
+        \end{table}
+    \end{flushleft}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+    \begin{flushright}
+        \begin{figure}[H]
+            \centering
+            \begin{tikzpicture}
+                \node[draw,rounded corners,align=center] (s) at (0,0) {Core\\Switch};
+                \node[draw] (h0) at (0,2){h0};
+                \node[draw] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+                \node[draw] (h2) at (2,0){h2};
+                \node[draw] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+                \node[draw] (h4) at (-2,0){h4};
+                \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+                \node[draw] (h6) at (0,-2){h6};
+                \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+
+                \draw (h0) -- (s);
+                \draw (h1) -- (s);
+                \draw (h2) -- (s);
+                \draw (h3) -- (s);
+                \draw (h4) -- (s);
+                \draw (h5) -- (s);
+                \draw (h6) -- (s);
+                \draw (h7) -- (s);
+            \end{tikzpicture}
+            \caption{A single segment network (Figure~1.3)}
+            \label{fig:1.3}
+        \end{figure}
+    \end{flushright}
+\end{minipage}
 
 \section{Linux Multicast Routing Table}
 \label{sec:linux-multicast-routing}
-    Execute \lstbash{netstat -rn} to display the routing table of one host (for example \textit{h1}).
-    If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
-    \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
+Execute \lstbash{netstat -rn} to display the routing table of one host (for example \textit{h1}).
+If there is no entry for the 224.0.0.0 subnet, you need to provide a default route for multicast traffic, by:
+\footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
     Each time when the network interface is brought down and up again by the \lstbash{ifconfig} command, you may need to run the \lstbash{route} command to re-insert the multicast routing entry.}
-    \begin{lstlisting}[emph=eth0,morekeywords={[3]add,netmask,dev}]
+\begin{lstlisting}[emph=eth0,morekeywords={[3]add,netmask,dev}]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
     \end{lstlisting}
-    \textbf{Execute this command on all hosts}.
+\textbf{Execute this command on all hosts}.
 
-    Save the new routing table.
-    
-    \begin{report}
-        \item Submit the routing table you saved.
-    \end{report}
+Save the new routing table.
+
+\begin{report}
+    \item Submit the routing table you saved.
+\end{report}
 
 \section{Multicast Membership}
-    Execute \lstbash{netstat -g} to show the multicast group memberships for all the interfaces in your host (for example \textit{h1}).
-    
-    \begin{report}
-        \item How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
-    \end{report}
+Execute \lstbash{netstat -g} to show the multicast group memberships for all the interfaces in your host (for example \textit{h1}).
+
+\begin{report}
+    \item How many multicast groups did the interface belong to? What were the groups? Explain the meaning of the group IDs.
+\end{report}
 
 \section{Multicast \texttt{ping}}
-    Execute \lstbash{ping 224.0.0.1} on the \textit{h1}.
-    Examine the \lstbash{ping} output to see which hosts reply.
+Execute \lstbash{ping 224.0.0.1} on the \textit{h1}.
+Examine the \lstbash{ping} output to see which hosts reply.
 
-    Ping a broadcast address using \lstbash{ping -b 128.238.66.255}.
-    Examine the \lstbash{ping} output to see which hosts reply.
+Ping a broadcast address using \lstbash{ping -b 128.238.66.255}.
+Examine the \lstbash{ping} output to see which hosts reply.
 
-    You can see and change broadcast ping replay state by:
-    \begin{lstlisting}[emph=eth0]
+You can see and change broadcast ping replay state by:
+\begin{lstlisting}[emph=eth0]
 cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts      # see the kernel parameter
 echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1 with kernel parameter
 sysctl net.ipv4.icmp_echo_ignore_broadcasts             # see with sysctl command
 sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=0        # set with sysctl command
 echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in boot time
     \end{lstlisting}
-    
-    \begin{report}
-        \item Which hosts replied when the multicast address was pinged?
-            Which hosts replied when the broadcast address was pinged?
-            Verify you answers with hosts config \path{/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
 
-        \item In each case, was there a reply from the \textit{h0} and the \textit{h1}?
-    \end{report}
+\begin{report}
+    \item Which hosts replied when the multicast address was pinged?
+    Which hosts replied when the broadcast address was pinged?
+    Verify you answers with hosts config \path{/proc/sys/net/ipv4/icmp_echo_ignore_broadcasts}.
+
+    \item In each case, was there a reply from the \textit{h0} and the \textit{h1}?
+\end{report}
 
 \section{Multicast vs Unicast}
-    on the \textit{h1} execute \lstbash{tcpdump -n -nn -e} and \lstbash[morekeywords={[3]ether,multicast}]{tcpdump ether multicast -n -nn -e} (or run \lstbash{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
+on the \textit{h1} execute \lstbash{tcpdump -n -nn -e} and \lstbash[morekeywords={[3]ether,multicast}]{tcpdump ether multicast -n -nn -e} (or run \lstbash{wireshark}) to capture an Ethernet unicast frame, an Ethernet multicast frame, and an Ethernet broadcast frame.
 
-    To generate an Ethernet unicast frame, run \lstbash[emph={h1,netlab}]{socket -i -u -n1 h1.netlab echo} from the \textit{h0}.
+To generate an Ethernet unicast frame, run \lstbash[emph={h1,netlab}]{socket -i -u -n1 h1.netlab echo} from the \textit{h0}.
 
-    Execute \lstbash{socket -i -u -n1 230.11.111.10 2000} to generate an Ethernet multicast frame.
+Execute \lstbash{socket -i -u -n1 230.11.111.10 2000} to generate an Ethernet multicast frame.
 
-    Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}.
+Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}.
 
-    To generate an Ethernet broadcast frame, you may \lstbash{ping} a remote host that has no entry in the ARP table of your host.
-    Recall that the ARP request is broadcast.
+To generate an Ethernet broadcast frame, you may \lstbash{ping} a remote host that has no entry in the ARP table of your host.
+Recall that the ARP request is broadcast.
 
-    Save the frames captured for the lab report.
+Save the frames captured for the lab report.
 
-    \begin{report}
-        \item Compare the source and destination MAC addresses of the frames you captured.
+\begin{report}
+    \item Compare the source and destination MAC addresses of the frames you captured.
 
-        \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
-            For the two multicast frames captured, do they have the same destination MAC address?
-            Why?
-    \end{report}
+    \item Use one of the multicast frames captured to explain how a multicast group address is mapped to a multicast MAC address.
+    For the two multicast frames captured, do they have the same destination MAC address?
+    Why?
+\end{report}
 
 \section{Simple UDP Multicast Client and Server}
-    Go to \textit{code} directory for \textit{netlab} user at \path{/home/netlab/code} with \lstbash{cd} command.
-    You can compile source code with \lstbash[emph={$fileName, $outputName}]{gcc $fileName -o $outputName}.
+Go to \textit{code} directory for \textit{netlab} user at \path{/home/netlab/code} with \lstbash{cd} command.
+You can compile source code with \lstbash[emph={$fileName, $outputName}]{gcc $fileName -o $outputName}.
 
-    Start the multicast client \lstbash{netspy} on all the hosts, by executing:
-    \begin{lstlisting}
+Start the multicast client \lstbash{netspy} on all the hosts, by executing:
+\begin{lstlisting}
 ./netspy 224.111.111.111 1500
     \end{lstlisting}
-    Then, start the multicast sender \lstbash{netspyd} on the \textit{h0}, by executing:
-    \begin{lstlisting}
+Then, start the multicast sender \lstbash{netspyd} on the \textit{h0}, by executing:
+\begin{lstlisting}
 ./netspyd 224.111.111.111 1500 1
     \end{lstlisting}
-    Execute \lstbash{tcpdump ip multicast} or \lstbash{wireshark} on every subnet to capture multicast IP datagrams.
+Execute \lstbash{tcpdump ip multicast} or \lstbash{wireshark} on every subnet to capture multicast IP datagrams.
 
-    Login to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using \lstbash{telnet} or \lstbash{ssh} (need to start \textit{ssh} service with \lstbash{service ssh start}).
+Login to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using \lstbash{telnet} or \lstbash{ssh} (need to start \textit{ssh} service with \lstbash{service ssh start}).
 
-    Save the captured multicast datagram sent by \lstbash{netspyd} and exit the \lstbash{telnet} (or \lstbash{ssh}) session.
+Save the captured multicast datagram sent by \lstbash{netspyd} and exit the \lstbash{telnet} (or \lstbash{ssh}) session.
 
-    \begin{report}
-        \item From the \lstbash{tcpdump} output, how many messages are sent by \lstbash{netspyd} when a new user logged in to \textit{h0}?
-            From the \lstbash{netspy} outputs on all the hosts, how many copies of the message are received in total?
+\begin{report}
+    \item From the \lstbash{tcpdump} output, how many messages are sent by \lstbash{netspyd} when a new user logged in to \textit{h0}?
+    From the \lstbash{netspy} outputs on all the hosts, how many copies of the message are received in total?
 
-        \item Did \textit{h0}, where the multicast sender, \lstbash{netspyd}, was running, receive the multicast datagram?
-            Why?
-            If yes, through which interface did \textit{h0} receive this datagram?
-    \end{report}
+    \item Did \textit{h0}, where the multicast sender, \lstbash{netspyd}, was running, receive the multicast datagram?
+    Why?
+    If yes, through which interface did \textit{h0} receive this datagram?
+\end{report}
 
 \section{\texttt{ping} Replay}
-    % Enable broadcast ping replay by: \lstbash{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
-    Keep the \lstbash{netspy} and the \lstbash{tcpdump} programs running.
-    Execute \lstbash{ping 224.111.111.111} from the \textit{h6}.
-    Examine the \lstbash{tcpdump} and \lstbash{ping} outputs to see which hosts replied.
-    To avoid confusion, students should do this exercise by turns.
-    Terminate the \lstbash{netspy} programs on several hosts, e.g.\ \textit{h0}, \textit{h1}, and the \textit{h5}.
-    Execute the \lstbash{ping} command again.
-    Also, examine the \lstbash{tcpdump} and the \lstbash{ping} outputs to see which hosts replied.
+% Enable broadcast ping replay by: \lstbash{echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts} on all hosts.
+Keep the \lstbash{netspy} and the \lstbash{tcpdump} programs running.
+Execute \lstbash{ping 224.111.111.111} from the \textit{h6}.
+Examine the \lstbash{tcpdump} and \lstbash{ping} outputs to see which hosts replied.
+To avoid confusion, students should do this exercise by turns.
+Terminate the \lstbash{netspy} programs on several hosts, e.g.\ \textit{h0}, \textit{h1}, and the \textit{h5}.
+Execute the \lstbash{ping} command again.
+Also, examine the \lstbash{tcpdump} and the \lstbash{ping} outputs to see which hosts replied.
 
 \part{IGMP Exercises}\label{sec:igmp}
-    In the following exercises, use four hosts and one router.
-    The network topology is given in \hyperref[fig:7.13]{Figure~7.13}, and the corresponding host IP addresses and router IP addresses are given in \hyperref[tab:7.2]{Table~7.2} and \hyperref[tab:7.3]{Table~7.3}, respectively.
+In the following exercises, use four hosts and one router.
+The network topology is given in \hyperref[fig:7.13]{Figure~7.13}, and the corresponding host IP addresses and router IP addresses are given in \hyperref[tab:7.2]{Table~7.2} and \hyperref[tab:7.3]{Table~7.3}, respectively.
 
-    \begin{table}[H]
-        \caption{Hosts IP addresses for \hyperref[fig:7.13]{Figure~7.13} (Table~7.2)}
-        \label{tab:7.2}
-        \centering
-        \begin{tabular}{ *3c }
-            \hline \hline
-            Name & IP Address \\
-            \hline
-                h1 & 128.238.63.101/24 \\
-                h2 & 128.238.63.102/24 \\
-                h3 & 128.238.64.103/24 \\
-                h4 & 128.238.64.104/24 \\
-            \hline \hline
-            \end{tabular}
-    \end{table}
+\begin{table}[H]
+    \caption{Hosts IP addresses for \hyperref[fig:7.13]{Figure~7.13} (Table~7.2)}
+    \label{tab:7.2}
+    \centering
+    \begin{tabular}{ *3c }
+        \hline \hline
+        Name & IP Address        \\
+        \hline
+        h1   & 128.238.63.101/24 \\
+        h2   & 128.238.63.102/24 \\
+        h3   & 128.238.64.103/24 \\
+        h4   & 128.238.64.104/24 \\
+        \hline \hline
+    \end{tabular}
+\end{table}
 
-    \begin{table}[H]
-        \caption{Router IP addresses for \hyperref[fig:7.13]{Figure~7.13} (Table~7.3)}
-        \label{tab:7.3}
-        \centering
-        \begin{tabular}{ *3c }
-            \hline \hline
-            Host & eth0 & eth1 \\
-            \hline
-            router & 128.238.63.3/24 & 128.238.64.3/24 \\
-            \hline \hline
-            \end{tabular}
-    \end{table}
+\begin{table}[H]
+    \caption{Router IP addresses for \hyperref[fig:7.13]{Figure~7.13} (Table~7.3)}
+    \label{tab:7.3}
+    \centering
+    \begin{tabular}{ *3c }
+        \hline \hline
+        Host   & eth0            & eth1            \\
+        \hline
+        router & 128.238.63.3/24 & 128.238.64.3/24 \\
+        \hline \hline
+    \end{tabular}
+\end{table}
 
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \node[draw] (h1) at (-4,-1){h1};
-            \node[draw] (h2) at (-2,-1){h2};
-            \node[draw,rounded corners] (router) at (0,0){Router};
-            % \node[draw,rounded corners] (router) at (0,0){\shortstack{Router}};
-            % \node[draw,rounded corners] (hub1) at (2,0){Switch 1};
-            \node[draw] (h3) at (2,-1){h3};
-            \node[draw] (h4) at (4,-1){h4};
-        
-            \draw (h1) -- (-4,0);
-            \draw (h2) -- (-2,0);
-            \draw (h3) -- (2,0);
-            \draw (h4) -- (4,0);
-            \draw[thick] (4.5,0) -- (router);
-            \draw[thick] (-4.5,0) -- (router);
-        \end{tikzpicture}
-        \caption{The network topology for \nameref{sec:igmp} (Figure~7.13)}
-        \label{fig:7.13}
-    \end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \node[draw] (h1) at (-4,-1){h1};
+        \node[draw] (h2) at (-2,-1){h2};
+        \node[draw,rounded corners] (router) at (0,0){Router};
+        % \node[draw,rounded corners] (router) at (0,0){\shortstack{Router}};
+        % \node[draw,rounded corners] (hub1) at (2,0){Switch 1};
+        \node[draw] (h3) at (2,-1){h3};
+        \node[draw] (h4) at (4,-1){h4};
+
+        \draw (h1) -- (-4,0);
+        \draw (h2) -- (-2,0);
+        \draw (h3) -- (2,0);
+        \draw (h4) -- (4,0);
+        \draw[thick] (4.5,0) -- (router);
+        \draw[thick] (-4.5,0) -- (router);
+    \end{tikzpicture}
+    \caption{The network topology for \nameref{sec:igmp} (Figure~7.13)}
+    \label{fig:7.13}
+\end{figure}
 
 \section{Configuring Router}
 \label{sec:config-router}
-    Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}.
-    Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}.
-    Note that the IP addresses of the router interfaces are the same as their default IP addresses.
-    Login to the router and run \lstbash{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
-    Then, enable the PIM protocol on each interface, by running \lstbash{ip pim dense-mode} in the \textit{Interface Configuration} mode.
-    Now the router is enabled to do multicast routing using PIM.
+Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}.
+Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}.
+Note that the IP addresses of the router interfaces are the same as their default IP addresses.
+Login to the router and run \lstbash{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
+Then, enable the PIM protocol on each interface, by running \lstbash{ip pim dense-mode} in the \textit{Interface Configuration} mode.
+Now the router is enabled to do multicast routing using PIM.
 
-    Login to the router, execute \lstbash{show ip igmp interface} and \lstbash{show ip igmp group} in the \textit{Privileged EXEC} mode.
-    Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
+Login to the router, execute \lstbash{show ip igmp interface} and \lstbash{show ip igmp group} in the \textit{Privileged EXEC} mode.
+Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
 
 \section{Multicast Message}
-    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
-    Start \lstbash{netspy} on all the hosts, by using:
-    \begin{lstlisting}
+Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).\\
+Start \lstbash{netspy} on all the hosts, by using:
+\begin{lstlisting}
 ./netspy 224.111.111.111 1500
     \end{lstlisting}
-    Start \lstbash{netspy} on the \textit{h1}, by using:
-    \begin{lstlisting}
+Start \lstbash{netspy} on the \textit{h1}, by using:
+\begin{lstlisting}
 ./netspyd 224.111.111.111 1500 16
     \end{lstlisting}
-    
-    Login to the router.
-    Run \lstcisco{show ip igmp interface} and \lstcisco{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
 
-    Try if you can \lstbash{ping} a host on the other side of the router.
-    Login to \textit{h1} from the \textit{h2} in your group, then logout.
-    See if the multicast messages sent by \lstbash{netspyd} reach the other side of the router.
+Login to the router.
+Run \lstcisco{show ip igmp interface} and \lstcisco{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
 
-    Add \textit{route} for other subnet to your host and try \lstbash{ping} again.
-    Now, login to \textit{h1} from the \textit{h2} in your group, then logout.
-    
-    \begin{report}
-        \item Can you ping a host on the other side of the router?
-            Will the router forward a multicast IP datagram to the other side?
-            Justify your answers.
-    \end{report}
+Try if you can \lstbash{ping} a host on the other side of the router.
+Login to \textit{h1} from the \textit{h2} in your group, then logout.
+See if the multicast messages sent by \lstbash{netspyd} reach the other side of the router.
+
+Add \textit{route} for other subnet to your host and try \lstbash{ping} again.
+Now, login to \textit{h1} from the \textit{h2} in your group, then logout.
+
+\begin{report}
+    \item Can you ping a host on the other side of the router?
+    Will the router forward a multicast IP datagram to the other side?
+    Justify your answers.
+\end{report}
 
 \section{IGMP Types}
-    Execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast -v} or \lstbash{wireshark} in one console to capture IGMP messages.
-    When you see three or more IGMP queries in the second \lstbash{tcpdump} output, terminate both \lstbash{tcpdump} programs.
+Execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast -v} or \lstbash{wireshark} in one console to capture IGMP messages.
+When you see three or more IGMP queries in the second \lstbash{tcpdump} output, terminate both \lstbash{tcpdump} programs.
 % FIXME: check senario
-    Analyze the IGMP messages you captured.
-    Print and save two different IGMP messages.
+Analyze the IGMP messages you captured.
+Print and save two different IGMP messages.
 
-    Repeat the above experiment.
-    Terminate \lstbash{netspy} on the \textit{h2} and the \textit{h4}.
-    Terminate the \lstbash{tcpdump} programs and analyze the IGMP leave message you captured.
-    
-    \begin{report}
-        \item What is the value of the Time-to-Live (TTL) field for the IGMP messages?
-            Why do we not set the TTL to a larger number?
+Repeat the above experiment.
+Terminate \lstbash{netspy} on the \textit{h2} and the \textit{h4}.
+Terminate the \lstbash{tcpdump} programs and analyze the IGMP leave message you captured.
 
-        \item What is the default \textbf{frequency} at which the router sends IGMP queries?
-    \end{report}
+\begin{report}
+    \item What is the value of the Time-to-Live (TTL) field for the IGMP messages?
+    Why do we not set the TTL to a larger number?
+
+    \item What is the default \textbf{frequency} at which the router sends IGMP queries?
+\end{report}
 
 \section{Router Join to Multicast-Group}
-    Login to the router.
-    See if you can make a router interface (e.g.\ \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
-    \begin{lstlisting}[language={cisco}]
+Login to the router.
+See if you can make a router interface (e.g.\ \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
+\begin{lstlisting}[language={cisco}]
 Router(interface)# ip igmp join-group 224.0.0.2
     \end{lstlisting}
-    
-    \begin{report}
-        \item Explain why the above command fails.
-    \end{report}
+
+\begin{report}
+    \item Explain why the above command fails.
+\end{report}
 
 \part{Multicast Routing Exercises}\label{sec:multicast-routing}
-    For the rest of the exercises in this chapter, the network topology is given in \hyperref[fig:7.14]{Figure~7.14}.
-    The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7.14]{Figure~7.14}.
-    \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-            \draw (0,0) node[draw,rounded corners,fill=white] (r1) {Router 1}
-                (r1) -- +(0,1)
-                (r1) -- +(0,-1)
-                +(0,0.5) node {\scriptsize\textit{ethernet1}\quad 62.1/24}
-                +(0,-0.5) node {\scriptsize\textit{ethernet0}\quad 61.1/24}
-            ;
-            \draw (2,1.5) node[draw,rounded corners,fill=white] (r2) {Router 2}
-                (r2) -| +(1,-0.5)
-                (r2) -| +(-1,-0.5)
-                +(1.5,0) node[align=right] {\scriptsize\textit{ethernet1}\\\scriptsize63.2/24}
-                +(-1.5,0) node[align=left] {\scriptsize\textit{ethernet0}\\\scriptsize62.2/24}
-            ;
-            \draw (4,0) node[draw,rounded corners,fill=white] (r3) {Router 3}
-                (r3) -- +(0,1)
-                (r3) -- +(0,-1)
-                +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.3/24}
-                +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 64.3/24}
-            ;
-            \draw (7,0) node[draw,rounded corners,fill=white] (r4) {Router 4}
-                (r4) -- +(0,1)
-                (r4) -- +(0,-1)
-                +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.4/24}
-                +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 65.4/24}
-            ;
-            \draw (-1,-1.5) node[draw,fill=white] (h0) {h0}
-                -- +(0,0.5)
-                +(0,-0.5) node {\scriptsize61.100/24}
-            ;
-            \draw (1,-1.5) node[draw,fill=white] (h1) {h1}
-                -- +(0,0.5)
-                +(0,-0.5) node {\scriptsize61.101/24}
-            ;
-            \draw (-1,1.5) node[draw,fill=white] (h2) {h2}
-                -- +(0,-0.5)
-                +(0,0.5) node {\scriptsize62.100/24}
-            ;
-            \draw (7-1,-1.5) node[draw,fill=white] (h6) {h6}
-                -- +(0,0.5)
-                +(0,-0.5) node {\scriptsize65.100/24}
-            ;
-            \draw (7+1,-1.5) node[draw,fill=white] (h7) {h7}
-                -- +(0,0.5)
-                +(0,-0.5) node {\scriptsize65.101/24}
-            ;
-            \draw (4,-1.5) node[draw,fill=white] (h5) {h5}
-                -- +(0,0.5)
-                +(0,-0.5) node {\scriptsize64.100/24}
-            ;
-            \draw (7-1,1.5) node[draw,fill=white] (h3) {h3}
-                -- +(0,-0.5)
-                +(0,0.5) node {\scriptsize63.100/24}
-            ;
-            \draw (7+1,1.5) node[draw,fill=white] (h4) {h4}
-                -- +(0,-0.5)
-                +(0,0.5) node {\scriptsize63.101/24}
-            ;
-            \draw[thick] (-1.5,-1) -- +(3,0);
-            \draw[thick] (-1.5,1) -- +(3,0);
-            \draw[thick] (4-1.5,1) -- +(6,0);
-            \draw[thick] (4-0.5,-1) -- +(1,0);
-            \draw[thick] (7-1.5,-1) -- +(3,0);
-        \end{tikzpicture}
-        \caption{The network topology for \nameref{sec:multicast-routing} (Figure~7.14)}
-        \label{fig:7.14}
-    \end{figure}
+For the rest of the exercises in this chapter, the network topology is given in \hyperref[fig:7.14]{Figure~7.14}.
+The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7.14]{Figure~7.14}.
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw (0,0) node[draw,rounded corners,fill=white] (r1) {Router 1}
+        (r1) -- +(0,1)
+        (r1) -- +(0,-1)
+        +(0,0.5) node {\scriptsize\textit{ethernet1}\quad 62.1/24}
+        +(0,-0.5) node {\scriptsize\textit{ethernet0}\quad 61.1/24}
+        ;
+        \draw (2,1.5) node[draw,rounded corners,fill=white] (r2) {Router 2}
+        (r2) -| +(1,-0.5)
+        (r2) -| +(-1,-0.5)
+        +(1.5,0) node[align=right] {\scriptsize\textit{ethernet1}\\\scriptsize63.2/24}
+        +(-1.5,0) node[align=left] {\scriptsize\textit{ethernet0}\\\scriptsize62.2/24}
+        ;
+        \draw (4,0) node[draw,rounded corners,fill=white] (r3) {Router 3}
+        (r3) -- +(0,1)
+        (r3) -- +(0,-1)
+        +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.3/24}
+        +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 64.3/24}
+        ;
+        \draw (7,0) node[draw,rounded corners,fill=white] (r4) {Router 4}
+        (r4) -- +(0,1)
+        (r4) -- +(0,-1)
+        +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.4/24}
+        +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 65.4/24}
+        ;
+        \draw (-1,-1.5) node[draw,fill=white] (h0) {h0}
+        -- +(0,0.5)
+        +(0,-0.5) node {\scriptsize61.100/24}
+        ;
+        \draw (1,-1.5) node[draw,fill=white] (h1) {h1}
+        -- +(0,0.5)
+        +(0,-0.5) node {\scriptsize61.101/24}
+        ;
+        \draw (-1,1.5) node[draw,fill=white] (h2) {h2}
+        -- +(0,-0.5)
+        +(0,0.5) node {\scriptsize62.100/24}
+        ;
+        \draw (7-1,-1.5) node[draw,fill=white] (h6) {h6}
+        -- +(0,0.5)
+        +(0,-0.5) node {\scriptsize65.100/24}
+        ;
+        \draw (7+1,-1.5) node[draw,fill=white] (h7) {h7}
+        -- +(0,0.5)
+        +(0,-0.5) node {\scriptsize65.101/24}
+        ;
+        \draw (4,-1.5) node[draw,fill=white] (h5) {h5}
+        -- +(0,0.5)
+        +(0,-0.5) node {\scriptsize64.100/24}
+        ;
+        \draw (7-1,1.5) node[draw,fill=white] (h3) {h3}
+        -- +(0,-0.5)
+        +(0,0.5) node {\scriptsize63.100/24}
+        ;
+        \draw (7+1,1.5) node[draw,fill=white] (h4) {h4}
+        -- +(0,-0.5)
+        +(0,0.5) node {\scriptsize63.101/24}
+        ;
+        \draw[thick] (-1.5,-1) -- +(3,0);
+        \draw[thick] (-1.5,1) -- +(3,0);
+        \draw[thick] (4-1.5,1) -- +(6,0);
+        \draw[thick] (4-0.5,-1) -- +(1,0);
+        \draw[thick] (7-1.5,-1) -- +(3,0);
+    \end{tikzpicture}
+    \caption{The network topology for \nameref{sec:multicast-routing} (Figure~7.14)}
+    \label{fig:7.14}
+\end{figure}
 
 \section{Multicast Multi-Hub}
-    Connect the hosts and routers as illustrated in \hyperref[fig:7.14]{Figure~7.14}.
-    Configure the IP addresses of the hosts and router interfaces as given in the figure.
+Connect the hosts and routers as illustrated in \hyperref[fig:7.14]{Figure~7.14}.
+Configure the IP addresses of the hosts and router interfaces as given in the figure.
 
-    % Note that most of the router interfaces use their default IP addresses, only the \textit{ethernet0} interface of Router4 needs to be changed to 128.238.63.4.
+% Note that most of the router interfaces use their default IP addresses, only the \textit{ethernet0} interface of Router4 needs to be changed to 128.238.63.4.
 
-    Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).
-    Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}).
-    All routers pre-configured in \textit{GN3} \hyperref[fig:7.14]{Figure~7.14}
+Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).
+Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}).
+All routers pre-configured in \textit{GN3} \hyperref[fig:7.14]{Figure~7.14}
 
-    Run \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstbash{wireshark} on all subnet (at least one host).
-    Maybe you need to restart (or reload) routers to capture all packet from start state.
+Run \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstbash{wireshark} on all subnet (at least one host).
+Maybe you need to restart (or reload) routers to capture all packet from start state.
 
-    Execute \lstbash{./netspy 224.111.111.111 1500} on the \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and the \textit{h6}.
+Execute \lstbash{./netspy 224.111.111.111 1500} on the \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and the \textit{h6}.
 
-    Execute \lstbash{./netspyd 224.111.111.111 1500 16} on the \textit{h4}.
-    
-    To generate multicast traffic, you can login (by \lstbash{telnet} or \lstbash{ssh}\footnote{Need to \lstbash{service ssh start} on remote machine}) to or logout of \textit{h4}.
-    Each time when the login user set of \textit{h4} changes, \lstbash{netspyd} on the \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
+Execute \lstbash{./netspyd 224.111.111.111 1500 16} on the \textit{h4}.
 
-    Can you see the \lstbash{netspy} messages on the 128.238.65.0 subnet in the \lstbash{tcpdump} output? 
+To generate multicast traffic, you can login (by \lstbash{telnet} or \lstbash{ssh}\footnote{Need to \lstbash{service ssh start} on remote machine}) to or logout of \textit{h4}.
+Each time when the login user set of \textit{h4} changes, \lstbash{netspyd} on the \textit{h4} will send a multicast datagram to group 224.111.111.111, to report the change in its login users.
 
-    Terminate the \lstbash{netspy} program on the \textit{h6}.
+Can you see the \lstbash{netspy} messages on the 128.238.65.0 subnet in the \lstbash{tcpdump} output?
 
-    Can you see the \lstbash{netspy} messages on the 128.238.65.0 subnet?
-    \footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
+Terminate the \lstbash{netspy} program on the \textit{h6}.
+
+Can you see the \lstbash{netspy} messages on the 128.238.65.0 subnet?
+\footnote{If IGMPv1 is used, a participant does not send a leave message when it leaves the group.
     In this case, the membership record in the router expires in 120 seconds.
-    During this interval, the router still forwards multicast datagram through the port.} 
+    During this interval, the router still forwards multicast datagram through the port.}
 
-    Save one of the PIM routing packets.
-    You may use \lstbash{tcpdump} output to analyze it.
-    What is the destination IP address used in this PIM routing packet?
-    
-    \begin{report}
-        \item Answer the above questions.
-    \end{report}
+Save one of the PIM routing packets.
+You may use \lstbash{tcpdump} output to analyze it.
+What is the destination IP address used in this PIM routing packet?
+
+\begin{report}
+    \item Answer the above questions.
+\end{report}
 
 \section{Multicast Tree}
-    In this exercise, try the \lstcisco{mstat} Cisco~IOS command to find the multicast tree from a source.
-    The \lstcisco{mstat} command is executable in the \textit{Privileged EXEC} mode.
-    You can always type \lstcisco{?}\footnote{For example: \lstcisco{mstat ?}} to get help on the syntax of the command.
+In this exercise, try the \lstcisco{mstat} Cisco~IOS command to find the multicast tree from a source.
+The \lstcisco{mstat} command is executable in the \textit{Privileged EXEC} mode.
+You can always type \lstcisco{?}\footnote{For example: \lstcisco{mstat ?}} to get help on the syntax of the command.
 
-    Generate multicast packet when execute command for the \textit{h4} (to see statistics change).
+Generate multicast packet when execute command for the \textit{h4} (to see statistics change).
 
-    \begin{report}
-        \item Report the \lstcisco{mstat}\footnote{\lstcisco[emph={x}]{mstat x.x.x.x}} output for the \textit{h4} on \textit{R1}.
-    \end{report}
+\begin{report}
+    \item Report the \lstcisco{mstat}\footnote{\lstcisco[emph={x}]{mstat x.x.x.x}} output for the \textit{h4} on \textit{R1}.
+\end{report}
 
 \section{Multicast TTL}
-    Keep \lstbash{netspy} running on all the hosts.
-    Ping the multicast group address from the \textit{h4}, using: 
-    \begin{lstlisting}[emph={n}]
+Keep \lstbash{netspy} running on all the hosts.
+Ping the multicast group address from the \textit{h4}, using:
+\begin{lstlisting}[emph={n}]
 ping 224.111.111.111 -t n
     \end{lstlisting}
 
-    The parameter \textit{n} is the TTL to be set to the multicast datagrams sent by ping.
-    Try different values of \textit{n}, e.g.\ 1, 2, 3, and 16.
-    See how far a multicast datagram can travel with different TTL values.
+The parameter \textit{n} is the TTL to be set to the multicast datagrams sent by ping.
+Try different values of \textit{n}, e.g.\ 1, 2, 3, and 16.
+See how far a multicast datagram can travel with different TTL values.
 
-    Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using: 
-    \footnote{The syntax of this command may be different for different versions of Cisco~IOS.
+Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using:
+\footnote{The syntax of this command may be different for different versions of Cisco~IOS.
     You may use \lstcisco{?} to get help.}
-    \begin{lstlisting}[language={cisco}]    
+\begin{lstlisting}[language={cisco}]    
 Router(interface)# ip multicast ttl-threshold 32
     \end{lstlisting}
 
-    Run the \lstbash{ping} command with $n = 16$ again.
-    Can you see the multicast datagrams in the 128.238.61.0 and 128.238.62.0 subnet?
-    Try $n = 33$.
-    Answer the same question.
-    
-    \begin{report}
-        \item Answer the above questions.
-        
-        \item What is the use of the TTL threshold in the router interface?
-    \end{report}
+Run the \lstbash{ping} command with $n = 16$ again.
+Can you see the multicast datagrams in the 128.238.61.0 and 128.238.62.0 subnet?
+Try $n = 33$.
+Answer the same question.
+
+\begin{report}
+    \item Answer the above questions.
+
+    \item What is the use of the TTL threshold in the router interface?
+\end{report}
 
 \part{Multicast Video Streaming Exercise}
-    This is an optional exercise on video streaming in multicast network.
-    This exercise use many resource in GNS3 simulator.
-    In the following exercise, we use \lstbash{vlc} for video streaming.
-    The routers and hosts have the same configurations as in \hyperref[fig:7.14]{Figure~7.14}.
+This is an optional exercise on video streaming in multicast network.
+This exercise use many resource in GNS3 simulator.
+In the following exercise, we use \lstbash{vlc} for video streaming.
+The routers and hosts have the same configurations as in \hyperref[fig:7.14]{Figure~7.14}.
 
 \section{**Multicast Real-Time Video}
-    Start \lstbash{vlc} on all the hosts, by using \lstbash{vlc &}.
+Start \lstbash{vlc} on all the hosts, by using \lstbash{vlc &}.
 
-    on the \textit{h0}, go to the \lstbash{vlc} menu: \textit{Media/Stream\ldots }.
-    Chose video file \path{/home/netlab/group.mp4} and press \textit{stream} button.
-    In \textit{Stream output} add \textit{RTP /MPEG Transport Stream} dialog.
-    Then click the \textit{next} button.
-    In the next window, specify the multicast group address to be {224.123.111.101}, with port number {22224} %and TTL 33.
-    Then click the \textit{Finish} button.
-    Now the \lstbash{vlc} on the \textit{h0} is transmitting the video clip using \textit{RTP/RTSP/UDP/IP} to the multicast group {224.123.111.101} on port {22224}.
+on the \textit{h0}, go to the \lstbash{vlc} menu: \textit{Media/Stream\ldots }.
+Chose video file \path{/home/netlab/group.mp4} and press \textit{stream} button.
+In \textit{Stream output} add \textit{RTP /MPEG Transport Stream} dialog.
+Then click the \textit{next} button.
+In the next window, specify the multicast group address to be {224.123.111.101}, with port number {22224} %and TTL 33.
+Then click the \textit{Finish} button.
+Now the \lstbash{vlc} on the \textit{h0} is transmitting the video clip using \textit{RTP/RTSP/UDP/IP} to the multicast group {224.123.111.101} on port {22224}.
 
-    On all other hosts, go to the \lstbash{vlc} menu: \textit{Media/Open Network Stream\ldots}.
-    In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in the \textit{h0}.%and TTL
-    Now you should see the received video is displayed on the screen.
+On all other hosts, go to the \lstbash{vlc} menu: \textit{Media/Open Network Stream\ldots}.
+In the following \textit{Open RTP Session} dialog, specify the same group address, port number as that used in the \textit{h0}.%and TTL
+Now you should see the received video is displayed on the screen.
 
-    Execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstbash{wireshark} in one console to capture the multicast datagrams.
-    In another console, execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} to monitor the capture process.
-    When you see some \texttt{RTCP} packets in the second \lstbash{tcpdump} output, terminate both \lstbash{tcpdump} programs.
+Execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstbash{wireshark} in one console to capture the multicast datagrams.
+In another console, execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} to monitor the capture process.
+When you see some \texttt{RTCP} packets in the second \lstbash{tcpdump} output, terminate both \lstbash{tcpdump} programs.
 
-    Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
+Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
 
 
 \begin{appendices}
 
-\section{Configuring a Multicast Router}
+    \section{Configuring a Multicast Router}
     The \lstcisco{no} form of this command cancels the group membership.
     \begin{subappendices}
-\subsection{Configuring IGMP}
-    \begin{lstlisting}[language={cisco}, emph={group-address, new-value-in-seconds}]
+        \subsection{Configuring IGMP}
+        \begin{lstlisting}[language={cisco}, emph={group-address, new-value-in-seconds}]
 R1(config)# ip igmp join-group group-address
 R1(config)# no ip igmp join-group group-address
 R1(config)# ip igmp query-interval new-value-in-seconds
@@ -487,8 +487,8 @@ show ip igmp interface  ! Displays multicast related information on a router int
 debug ip igmp           ! Displays IGMP packets received and transmitted.
     \end{lstlisting}
 
-\subsection{Configuring Multicast Routing}
-    \begin{lstlisting}[language={cisco}]
+        \subsection{Configuring Multicast Routing}
+        \begin{lstlisting}[language={cisco}]
 R1(config)# ip multicast-routing
 R1(config)# no ip multicast-routing
 R1(config)# ip pim [dense-mode | sparse-mode | dense-sparse-mode].
@@ -500,17 +500,17 @@ show ip pim neighbor    ! Lists PIM neighbors discovered by the router.
 show ip pim interface   ! Displays router interface configurations.
     \end{lstlisting}
 
-\subsection{Cisco~IOS Multicast Diagnostic Tools}
-\begin{lstlisting}[language={cisco}]
+        \subsection{Cisco~IOS Multicast Diagnostic Tools}
+        \begin{lstlisting}[language={cisco}]
 mtrace
 mrinfo
 mstat
 ping
 \end{lstlisting}
-    
-\end{subappendices}
 
-\section{Wikipedia}
+    \end{subappendices}
+
+    \section{Wikipedia}
     You can reed more about multicast address in \href{https://en.wikipedia.org/wiki/Multicast_address}{wikipedia}.
 
 \end{appendices}
