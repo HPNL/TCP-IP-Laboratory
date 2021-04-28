@@ -35,68 +35,68 @@
 }
 
 \newcommand{\maketitlepage}{
-    \begin{titlepage}
-        \let\footnotesize\small
-        \let\footnoterule\relax
-        \let \footnote \thanks
-        \null\vfil
-        \begin{center}
+  \begin{titlepage}
+    \let\footnotesize\small
+    \let\footnoterule\relax
+    \let \footnote \thanks
+    \null\vfil
+    \begin{center}
+      {
+        \LARGE
         {
-          \LARGE
+          \vspace{-35pt}
+          \Large\AR{\textmash{بسم \allah\  الرحمن الرحيم}}\par
+          {\normalsize\textLR{In the name of Allah}}
+          \vspace{30pt}
+          \begin{center}
+            \begin{otherlanguage}{english}
+              \begin{minipage}{0.48\textwidth}
+                \begin{flushleft}
+                  \hspace*{-20pt}
+                  \includegraphics[height=64pt]{../img/ut}
+                \end{flushleft}
+              \end{minipage}
+              \begin{minipage}{0.48\textwidth}
+                \begin{flushright}
+                  \includegraphics[height=64pt]{../img/fanni}
+                  \hspace*{-35pt}
+                \end{flushright}
+              \end{minipage}
+            \end{otherlanguage}
+          \end{center}
+          \vspace*{-70pt}
           {
-            \vspace{-35pt}
-            \Large\AR{\textmash{بسم \allah\  الرحمن الرحيم}}\par
-            {\normalsize\textLR{In the name of Allah}}
-            \vspace{30pt}
-            \begin{center}
-              \begin{otherlanguage}{english}
-                \begin{minipage}{0.48\textwidth}
-                  \begin{flushleft}
-                    \hspace*{-20pt}
-                    \includegraphics[height=64pt]{../img/ut}
-                  \end{flushleft}
-                \end{minipage}
-                \begin{minipage}{0.48\textwidth}
-                  \begin{flushright}
-                    \includegraphics[height=64pt]{../img/fanni}
-                    \hspace*{-35pt}
-                  \end{flushright}
-                \end{minipage}
-              \end{otherlanguage}
-            \end{center}
-            \vspace*{-70pt}
-            {
-                \huge\bfseries \@title \ifdefined\reference \footnote{\reference}\fi \par
-            }
-            \vspace*{5pt}
-            \LARGE\scshape {دستور آزمایشگاه}\par
-            \vspace{40pt}
+            \huge\bfseries \@title \ifdefined\reference \footnote{\reference}\fi \par
           }
-          \par
-        }
-        {
-          \large
-          \lineskip .5em
-          {\Large{دانشگاه تهران}\\}
-          {دانشکده‌ی مهندسی برق و کامپیوتر\par}
-          \vskip 1.5em
-          \textLR{\Large University of Tehran\\}
-          \textLR{\large School of Electrical and Computer Engineering}\par
-          \vskip 3em
-          \bfseries{آزمایشگاه شبکه‌های کامپیوتری\\}
-          \textLR{\Large\bfseries Computer Network Lab}\par
-          \vskip 1.5em
-          \normalfont
-          \normalsize
-          \begin{tabular}[t]{c}
-              \@author
-          \end{tabular}
+          \vspace*{5pt}
+          \LARGE\scshape {دستور آزمایشگاه}\par
+          \vspace{40pt}
         }
         \par
+      }
+      {
+        \large
+        \lineskip .5em
+          {\Large{دانشگاه تهران}\\}
+          {دانشکده‌ی مهندسی برق و کامپیوتر\par}
+        \vskip 1.5em
+        \textLR{\Large University of Tehran\\}
+        \textLR{\large School of Electrical and Computer Engineering}\par
         \vskip 3em
+        \bfseries{آزمایشگاه شبکه‌های کامپیوتری\\}
+        \textLR{\Large\bfseries Computer Network Lab}\par
+        \vskip 1.5em
+        \normalfont
+        \normalsize
+        \begin{tabular}[t]{c}
+          \@author
+        \end{tabular}
+      }
+      \par
+      \vskip 3em
         {\small \@date \par}
-        \end{center}
-      \@thanks
+    \end{center}
+    \@thanks
     \vfil\null
   \end{titlepage}
   \setcounter{footnote}{0}
