@@ -187,11 +187,11 @@ You can start capture or set some packet filter for each link.
 
 In the packet filter dialog, Yo can set some link property like:
 
-* `Drop`: set the Drop pattern
-* `Loss`: set loss rate
+* `Drop`: set the Drop pattern (drop a packet every x packets)
+* `Loss`: set loss rate (randomly drop a packet)
 * `Delay`: set packet latency and jitter
 * `Corrupt`: set corruption chance
-* `BPF`: set berkley packet filter
+* `BPF`: set Berkley packet filter
 
 #### Packet Capture
 
