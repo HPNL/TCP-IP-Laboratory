@@ -61,6 +61,16 @@ Open GPLv3 [LICENSE](LICENSE) file.
 * [ ] add network equipment and device overview
 * [ ] add api to transfer file to host
   * Can use `docker cp`
+* [ ] add routing service from [FRR](https://frrouting.org/) (based on [quagga](https://www.quagga.net/)) or [BIRD](https://bird.network.cz/)
+* [ ] Network Traffic generation lab
+  ([trex-core](https://github.com/cisco-system-traffic-generator/trex-core),
+  [trex-emu](https://github.com/cisco-system-traffic-generator/trex-emu),
+  [warp17](https://github.com/Juniper/warp17),
+  [ostinato](https://github.com/pstavirs/ostinato),
+  [nping](https://nmap.org/nping/),
+  [iperf](https://iperf.fr/),
+  [httperf](https://github.com/httperf/httperf)
+  [netperf](https://github.com/HewlettPackard/netperf))
 * [ ] update network tools
   * [ ] base linux
   * [ ] `socket` with `netcat`
@@ -70,16 +80,17 @@ Open GPLv3 [LICENSE](LICENSE) file.
 ## Useful tools
 
 * [`ifconfig` vs `ip`](https://p5r.uk/blog/2010/ifconfig-ip-comparison.html)
-* [`screen` Quick Reference](http://aperiodic.net/screen/quick_reference)
-* [How To Use Linux `screen`](https://linuxize.com/post/how-to-use-linux-screen/)
-* [_Quagga_](http://download.savannah.gnu.org/releases/quagga/) => [_frrouting_](https://frrouting.org/)
+* Terminal multiplexer: (to run multiple terminal session in one screen)
+  * `screen`: [How To Use Linux Screen](https://linuxize.com/post/how-to-use-linux-screen/)
+  * `tmux`: [Getting started with Tmux](https://linuxize.com/post/getting-started-with-tmux/)
+  * compare: [linuxhint](https://linuxhint.com/tmux_vs_screen/), [superuser](https://superuser.com/questions/236158/tmux-vs-screen)
 * [_NIST Net_](https://www-x.antd.nist.gov/nistnet/): is no longer actively maintained. Much of its functionality has been incorporated into _NetEm_ and the `iproute2` toolkit. These are almost certainly already included in your Linux distribution
 * [_DBS_](http://ns1.ai3.net/products/dbs): is no longer available. ([v1.1.5](http://www.kusa.ac.jp/~yukio-m/dbs/software1.1.5/dbs-1.1.5.tar.gz), [v1.2.0beta1](http://www.kusa.ac.jp/~yukio-m/dbs/software1.2.0beta1/dbs-1.2.0beta1.tar.gz), and [manual](http://www.kusa.ac.jp/~yukio-m/dbs/dbs_man.html))
   * [_Pbench_: a benchmarking and performance analysis framework](https://distributed-system-analysis.github.io/pbench/)
 * [`ipbench`](http://ipbench.sourceforge.net)
 * [`iputils`](https://github.com/iputils/iputils)
+* [mininet](http://mininet.org/) and [mininet-wifi](https://mininet-wifi.github.io/)
 * [containernet](https://containernet.github.io/)
-* [mininet-wifi](https://mininet-wifi.github.io/)
 
 ## Other lab
 
