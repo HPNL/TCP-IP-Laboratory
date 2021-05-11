@@ -130,19 +130,19 @@ socket -s 8888
     \end{lstlisting}
 Then, execute the following command on the \textit{h0} host,
 \begin{itemize}
-    \item add link delay in simulator\footnote{In GNS3, \lstbash{right click} on link, select \lstbash{Packet Filter} and set link \lstbash{delay} to \textit{100 ms}}
+    \item add link delay in simulator\footnote{In GNS3, \textbf{right click} on link, select \textbf{Packet Filter} and set link \textbf{delay} to \textit{100 ms}}
     \item \lstbash[emph={host}]{socket -i -n200 -p 100 host 8888}
 \end{itemize}
 While the sender is injecting data segments into the network, shutdown the network interface on the \textit{h1} host that connect the sender to the hub for about ten seconds.
-\begin{lstlisting}[emph={eth0}]
+\begin{lstlisting}[emph={eth0},morekeywords={[3]link,set,down}]
 # use one of below commands
 ip link set eth0 down
 ifconfig eth0 down
     \end{lstlisting}
 
 After observing several retransmissions, set network interface up:
-after seconds\ldots
-\begin{lstlisting}[emph={eth0}]
+after \textbf{30} seconds\ldots
+\begin{lstlisting}[emph={eth0},morekeywords={[3]link,set,up}]
 # use one of below commands
 ip link set eth0 up
 ifconfig eth0 up
