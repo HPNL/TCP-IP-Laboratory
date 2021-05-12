@@ -39,7 +39,7 @@
     \begin{center}
       {\LARGE {
       \vspace{-25pt}
-      \Large\AR{بسم \allah\  الرحمن الرحيم\par}\\
+      \Large\AR{\textmash{بِسم \allah\  الرحمن الرحيم}}\par
       {\normalsize{}In the name of Allah\\}
       \begin{center}
         % \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -59,7 +59,7 @@
       \vspace*{-50pt}
       % \horrule{0.5pt} \\[0.4cm]
       {\huge\bfseries \@title  \ifdefined\reference \footnote{\reference}\fi \par}
-      \LARGE\scshape Laboratory Manual\par
+      \LARGE\scshape Laboratory Manual \ifdefined\@labnumber \@labnumber\fi \par
       \vspace{20pt}
       % \horrule{2pt} \\[0.5cm]
       } \par}

@@ -45,7 +45,7 @@
         \LARGE
         {
           \vspace{-35pt}
-          \Large\AR{\textmash{بسم \allah\  الرحمن الرحيم}}\par
+          \Large\AR{\textmash{بِسم \allah\  الرحمن الرحيم}}\par
           {\normalsize\textLR{In the name of Allah}}
           \vspace{30pt}
           \begin{center}
@@ -69,7 +69,7 @@
             \huge\bfseries \@title \ifdefined\reference \footnote{\reference}\fi \par
           }
           \vspace*{5pt}
-          \LARGE\scshape {دستور آزمایشگاه}\par
+          \LARGE\scshape {دستور آزمایشگاه} \ifdefined\@labnumber \@labnumber\fi\par
           \vspace{40pt}
         }
         \par

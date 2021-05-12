@@ -36,6 +36,8 @@
 \definecolor{olive}{rgb}{0.5, 0.5, 0.0}
 \definecolor{darkolivegreen}{rgb}{0.30, 0.40, 0.0}
 
+\def\labnumber#1{\gdef\@labnumber{#1}}
+
 \makeatletter
 
 \AtBeginDocument{
