@@ -88,7 +88,7 @@
         status, dhcpd, routed, curl, snmpd, ls, rm, rdisc,
       },
     keywords=[2]{
-        netspy, netspyd, setsockopt, send, UDPserver, UDPclient, TCPserver, TCPclient,
+        netspy, netspyd, netspydd, setsockopt, send, UDPserver, UDPclient, TCPserver, TCPclient,
       },
     keywords=[3]{
         setsockopt, localhost, start, stop, restart
