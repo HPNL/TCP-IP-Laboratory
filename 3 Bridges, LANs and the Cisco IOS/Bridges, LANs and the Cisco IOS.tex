@@ -255,7 +255,7 @@ You can read \autoref{appendix:spanningTree} and \autoref{appendix:bpdu} to lear
 \end{figure}
 
 \section{Multi Bridge Path}
-After configuring the network in \hyperref[fig:3.8]{Figure~3.8}, login to the bridge 1.
+After configuring the network in \hyperref[fig:3.8]{Figure~3.8}, open the \textit{bridge 1} console.
 
 Get to the \textit{Privileged EXEC}\footnote{use \lstcisco{enable} command to active \textit{Privileged EXEC}} mode (is activated by default in \textbf{GNS3}).
 Type \lstcisco{show bridge} to see the entries in the bridge forwarding database.
@@ -273,7 +273,7 @@ Using \lstbash{tcpdump -ex ether multicast -vv} on all LAN segments, capture the
 
 To collect all BPDU packets from start time, you need restart (reload) all router.
 
-Login to each bridge (or open \textbf{GNS3} router console) to collect the \lstcisco{show bridge} outputs.
+Open console of each bridge to collect the \lstcisco{show bridge} outputs.
 
 \begin{report}
     \item Submit the four different BPDUs (from four network sections) you saved.
@@ -336,7 +336,7 @@ In this section we create simple network with a router and one gui host with \te
 \end{figure}
 
 You can also configure a router using the web browser UI.
-To enable the web server, login to the router and config as below  in the \textit{Global Configuration} mode.
+To enable the web server, open the router console and config as below  in the \textit{Global Configuration} mode.
 
 \begin{lstlisting}[language={cisco},emph={netlab}]
 R1# config term
