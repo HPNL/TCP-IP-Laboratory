@@ -106,14 +106,17 @@ Examine the \lstbash{ping} output to see which hosts reply.
 Ping a broadcast address using \lstbash{ping -b 128.238.66.255}.
 Examine the \lstbash{ping} output to see which hosts reply.
 
-You can see and change broadcast ping replay state by:
+You can see or change broadcast ping replay state by:
 \begin{lstlisting}[emph=eth0]
-cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts      # see the kernel parameter
-echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts # set 0 or 1 with kernel parameter
-sysctl net.ipv4.icmp_echo_ignore_broadcasts             # see with sysctl command
-sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=0        # set with sysctl command
-echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf  # set in boot time
-    \end{lstlisting}
+# kernel parameter
+cat /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts  # see (read) kernel value
+echo 0 > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts  # set (write) kernel value
+# sysctl command
+sysctl net.ipv4.icmp_echo_ignore_broadcasts  # see (read)
+sysctl -w net.ipv4.icmp_echo_ignore_broadcasts=0  # set (write)
+# add to sysctl.conf file to load configuration on boot time
+echo "net.ipv4.icmp_echo_ignore_broadcasts = 0" >> /etc/sysctl.conf
+\end{lstlisting}
 
 \begin{report}
     \item Which hosts replied when the multicast address was pinged?
@@ -146,14 +149,14 @@ Save the frames captured for the lab report.
 \end{report}
 
 \section{Simple UDP Multicast Client and Server}
-Go to \textit{code} directory for \textit{netlab} user at \path{/home/netlab/code} with \lstbash{cd} command.
+Go to \textit{code} directory for \textit{netlab} user at \path{/home/netlab/code} with \lstbash{cd} command\footnote{Previously compiled all sources}.
 You can compile source code with \lstbash[emph={$fileName, $outputName}]{gcc $fileName -o $outputName}.
 
 Start the multicast client \lstbash{netspy} on all the hosts, by executing:
 \begin{lstlisting}
 ./netspy 224.111.111.111 1500
     \end{lstlisting}
-Then, start the multicast sender \lstbash{netspyd} on the \textit{h0}, by executing:
+Then, start the multicast sender \lstbash{netspyd}\footnote{The \lstbash{netspydd} is modified version of \lstbash{netspyd} that produce multicast messages from \textbf{stdin} instead of \lstbash{ssh}/\lstbash{telnet} login event.} on the \textit{h0}, by executing:
 \begin{lstlisting}
 ./netspyd 224.111.111.111 1500 1
     \end{lstlisting}
@@ -242,11 +245,11 @@ The network topology is given in \hyperref[fig:7.13]{Figure~7.13}, and the corre
 Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}.
 Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}.
 Note that the IP addresses of the router interfaces are the same as their default IP addresses.
-Login to the router and run \lstbash{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
-Then, enable the PIM protocol on each interface, by running \lstbash{ip pim dense-mode} in the \textit{Interface Configuration} mode.
+Open the router console and run \lstcisco{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
+Then, enable the PIM protocol on each interface, by running \lstcisco{ip pim dense-mode} in the \textit{Interface Configuration} mode.
 Now the router is enabled to do multicast routing using PIM.
 
-Login to the router, execute \lstbash{show ip igmp interface} and \lstbash{show ip igmp group} in the \textit{Privileged EXEC} mode.
+Open the router console, execute \lstcisco{show ip igmp interface} and \lstcisco{show ip igmp group} in the \textit{Privileged EXEC} mode.
 Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
 
 \section{Multicast Message}
@@ -260,7 +263,7 @@ Start \lstbash{netspy} on the \textit{h1}, by using:
 ./netspyd 224.111.111.111 1500 16
     \end{lstlisting}
 
-Login to the router.
+Open the router console.
 Run \lstcisco{show ip igmp interface} and \lstcisco{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
 
 Try if you can \lstbash{ping} a host on the other side of the router.
@@ -295,7 +298,7 @@ Terminate the \lstbash{tcpdump} programs and analyze the IGMP leave message you 
 \end{report}
 
 \section{Router Join to Multicast-Group}
-Login to the router.
+Open the router console.
 See if you can make a router interface (e.g.\ \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
 \begin{lstlisting}[language={cisco}]
 Router(interface)# ip igmp join-group 224.0.0.2
@@ -436,7 +439,7 @@ The parameter \textit{n} is the TTL to be set to the multicast datagrams sent by
 Try different values of \textit{n}, e.g.\ 1, 2, 3, and 16.
 See how far a multicast datagram can travel with different TTL values.
 
-Now, login to \textit{Router2}, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using:
+Now, open the \textit{Router2} console, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using:
 \footnote{The syntax of this command may be different for different versions of Cisco~IOS.
     You may use \lstcisco{?} to get help.}
 \begin{lstlisting}[language={cisco}]    
@@ -481,7 +484,7 @@ When you see some \texttt{RTCP} packets in the second \lstbash{tcpdump} output, 
 
 Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
 
-
+\newpage
 \begin{appendices}
 
     \section{Configuring a Multicast Router}
