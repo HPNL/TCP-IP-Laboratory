@@ -69,7 +69,7 @@ Use \textit{Mozilla} to view the file.
 
 \section{HTTP \texttt{Keep-Alive}}
 By default, Apache server supports persistent connections.
-Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file \footnote{\path{/etc/apache2/apache2.conf}} to make sure it is turned on, as \lstinline[language={HTTP}]{KeepAlive On}.
+Before this exercise, the lab instructor should check the \texttt{KeepAlive} directive in the server configuration file \footnote{\path{/etc/apache2/apache2.conf}} to make sure it is turned on, as \lstconf{KeepAlive On}.
 
 Execute \lstbash[emph={gui,server,netlab},morekeywords={[3],host,and}]{tcpdump host gui.netlab and server.netlab} or run \lstbash{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
 
@@ -77,7 +77,7 @@ Execute \lstbash[emph={gui,server,netlab},morekeywords={[3],host,and}]{tcpdump h
 Enter the URL \url{http://server.netlab/try1.html}, to download the HTML file consisting a line of text, an embedded picture, and a hyperlink.
 
 
-Disable Apache server persistent connections by change value of \texttt{KeepAlive} option to \lstbash{Off} and restart \lstbash{apache2} service\footnote{\lstbash{service apache2 restart}}.
+Disable Apache server persistent connections by change value of \texttt{KeepAlive} option to \lstconf{Off} and restart \lstbash{apache2} service\footnote{\lstbash{service apache2 restart}}.
 
 
 Use \lstbash[emph={gui,server,netlab},morekeywords={[3],host,and}]{tcpdump host gui.netlab and server.netlab} or run \lstbash{wireshark} and print the HTTP requests and responses for the lab report.
@@ -379,7 +379,7 @@ Router 1 is used as the stub router, which performs address or port translation 
 Connect the hosts and Router 1 as shown in \hyperref[fig:8.7]{Figure~8.7}.
 Then set the IP address and the network mask of your host as shown in the figure.
 In addition, you need to add a default route in your host’s routing table, using the router interface on your subnet as the default router.
-One student should \lstbash{telnet} to the router and configure the router as shown in \hyperref[tab:8.5]{Table~8.5}.
+Open the router console and configure the router as shown in \hyperref[tab:8.5]{Table~8.5}.
 Note that there is a static translation that maps 10.0.0.7, or the \textit{h7}, to 128.238.61.104.
 Open the router console, execute \lstcisco{write term} to display the current router configuration.
 Execute \lstcisco{show ip nat translations} in the \textit{Privileged EXEC} mode to display the translation table.
@@ -399,11 +399,13 @@ config term
         ip address 128.238.61.1 255.255.255.0
         no shut
         ip nat outside
+        exit
 
     interface f0/1
         ip address 10.0.0.1 255.0.0.0
         no shut
         ip nat inside
+        exit
 
     access-list 8 deny host 10.0.0.7
     access-list 8 permit 10.0.0.0 0.0.0.255
@@ -417,8 +419,8 @@ Before any host in the private network send any packets out, \lstbash{ping} an i
 You may try to \lstbash{ping} \textit{10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104}.
 Can you \lstbash{ping} these IP addresses?
 
-Let an inside host send packets to an outside host, e.g.\ from the \textit{h5}, execute \lstbash{ping} 128.238.61.100.
-Can you \lstbash{ping} \textit{h5} from an outside host now? Why? Which IP address should be used in the \lstbash{ping} command in order to \lstbash{ping} \textit{h5}?
+Let an inside host send packets to an outside host, e.g.\ from the \textit{h5}, execute \lstbash{ping 128.238.61.100}.
+Can you \lstbash{ping h5.netlab} from an outside host now? Why? Which IP address should be used in the \lstbash{ping} command in order to \lstbash{ping h5.netlab}?
 
 Execute \lstcisco{show ip nat translations} in the router login window to display the translation table.
 Save the output for the lab report.
