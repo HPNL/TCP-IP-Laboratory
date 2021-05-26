@@ -142,6 +142,7 @@
     breaklines=true,
     xleftmargin  = 0.7cm,
     xrightmargin = 0.5cm,
+    rulecolor=\color{black}, % for fix multiline (string|comment) change border color
     language=bash-ext,
     alsoletter={-},
     columns=flexible,
