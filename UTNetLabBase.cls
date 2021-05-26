@@ -26,7 +26,6 @@
 \RequirePackage{array}
 \RequirePackage{kvoptions}
 \usetikzlibrary{calc,positioning}
-\usepackage{indentfirst}
 
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*
