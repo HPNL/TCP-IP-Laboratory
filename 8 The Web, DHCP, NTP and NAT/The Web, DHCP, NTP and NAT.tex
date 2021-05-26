@@ -389,6 +389,7 @@ Save both outputs for the lab report.
     \item How many entries were there in the translation table? Why?
 \end{report}
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[language={cisco}, emph={mypool}, caption={NAT Router Configuration in \hyperref[fig:8.7]{Figure~8.7} (Table~8.5)\label{tab:8.5}}]
 config term
     ip nat pool mypool 128.238.61.102 128.238.61.103 netmask 255.255.255.0
@@ -410,6 +411,7 @@ config term
     access-list 8 deny host 10.0.0.7
     access-list 8 permit 10.0.0.0 0.0.0.255
     \end{lstlisting}
+\end{minipage}
 
 \section{NAT Visibility}
 Keep the login session to the router running.
@@ -463,7 +465,7 @@ Generate traffic between the inside and outside hosts.
 Examine the \lstbash{tcpdump} output to see how PAT works.
 
 Start the Apache web server on the \textit{h7}.
-Also, run \lstbash{curl} on an outside host (e.g.\ \textit{h0}), and with the URL \url{http://128.238.61.1}.
+Also, run \lstbash{curl} on an outside host (e.g.\ \textit{h0}) with the URL \url{http://128.238.61.1}.
 Save the \lstbash{tcpdump} output.
 
 Use \lstcisco{show ip nat translations} to display and then save the translation table.
