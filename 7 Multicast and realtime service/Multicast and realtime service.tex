@@ -20,7 +20,7 @@
 \end{itemize}
 
 \part{Simple Multicast Exercises}
-For all the exercises in this section, the network topology is given in \hyperref[fig:1.3]{Figure~1.3}, where all the hosts are connected to a single network segment using their default IP addresses, i.e.\ from 128.238.66.100 to 128.238.66.107.
+For all the exercises in this section, the network topology is given in \hyperref[fig:1.3]{Figure~1.3}, where all the hosts are connected to a single network segment using their default IP addresses, i.e. from 128.238.66.100 to 128.238.66.107.
 
 \begin{minipage}{0.48\textwidth}
     \begin{flushleft}
@@ -162,7 +162,7 @@ Then, start the multicast sender \lstbash{netspyd}\footnote{The \lstbash{netspyd
     \end{lstlisting}
 Execute \lstbash{tcpdump ip multicast} or \lstbash{wireshark} on every subnet to capture multicast IP datagrams.
 
-Login to \textit{h0} from a remote machine, e.g.\ \textit{h6}, using \lstbash{telnet} or \lstbash{ssh} (need to start \textit{ssh} service with \lstbash{service ssh start}).
+Login to \textit{h0} from a remote machine, e.g. \textit{h6}, using \lstbash{telnet} or \lstbash{ssh} (need to start \textit{ssh} service with \lstbash{service ssh start}).
 
 Save the captured multicast datagram sent by \lstbash{netspyd} and exit the \lstbash{telnet} (or \lstbash{ssh}) session.
 
@@ -180,8 +180,7 @@ Save the captured multicast datagram sent by \lstbash{netspyd} and exit the \lst
 Keep the \lstbash{netspy} and the \lstbash{tcpdump} programs running.
 Execute \lstbash{ping 224.111.111.111} from the \textit{h6}.
 Examine the \lstbash{tcpdump} and \lstbash{ping} outputs to see which hosts replied.
-To avoid confusion, students should do this exercise by turns.
-Terminate the \lstbash{netspy} programs on several hosts, e.g.\ \textit{h0}, \textit{h1}, and the \textit{h5}.
+Terminate the \lstbash{netspy} programs on several hosts, e.g. \textit{h0}, \textit{h1}, and the \textit{h5}.
 Execute the \lstbash{ping} command again.
 Also, examine the \lstbash{tcpdump} and the \lstbash{ping} outputs to see which hosts replied.
 
@@ -242,7 +241,7 @@ The network topology is given in \hyperref[fig:7.13]{Figure~7.13}, and the corre
 
 \section{Configuring Router}
 \label{sec:config-router}
-Connect the hosts and the route in your group as shown in \hyperref[fig:7.13]{Figure~7.13}.
+Connect the hosts and the route as shown in \hyperref[fig:7.13]{Figure~7.13}.
 Set the IP address of your host as given in \hyperref[tab:7.2]{Table~7.2}.
 Note that the IP addresses of the router interfaces are the same as their default IP addresses.
 Open the router console and run \lstcisco{ip multicast-routing} to enable multicast routing in the \textit{Global Configuration} mode.
@@ -267,11 +266,11 @@ Open the router console.
 Run \lstcisco{show ip igmp interface} and \lstcisco{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
 
 Try if you can \lstbash{ping} a host on the other side of the router.
-Login to \textit{h1} from the \textit{h2} in your group, then logout.
+Login to \textit{h1} from the \textit{h2}, then logout.
 See if the multicast messages sent by \lstbash{netspyd} reach the other side of the router.
 
 Add \textit{route} for other subnet to your host and try \lstbash{ping} again.
-Now, login to \textit{h1} from the \textit{h2} in your group, then logout.
+Now, login to \textit{h1} from the \textit{h2}, then logout.
 
 \begin{report}
     \item Can you ping a host on the other side of the router?
@@ -281,7 +280,7 @@ Now, login to \textit{h1} from the \textit{h2} in your group, then logout.
 
 \section{IGMP Types}
 Execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast -v} or \lstbash{wireshark} in one console to capture IGMP messages.
-When you see three or more IGMP queries in the second \lstbash{tcpdump} output, terminate both \lstbash{tcpdump} programs.
+When you see \textbf{three or more IGMP queries} in the second \lstbash{tcpdump} output, terminate \lstbash{tcpdump} programs.
 % FIXME: check senario
 Analyze the IGMP messages you captured.
 Print and save two different IGMP messages.
@@ -299,7 +298,7 @@ Terminate the \lstbash{tcpdump} programs and analyze the IGMP leave message you 
 
 \section{Router Join to Multicast-Group}
 Open the router console.
-See if you can make a router interface (e.g.\ \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
+See if you can make a router interface (e.g. \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
 \begin{lstlisting}[language={cisco}]
 Router(interface)# ip igmp join-group 224.0.0.2
     \end{lstlisting}
@@ -381,14 +380,9 @@ The IP addresses of the hosts and router interfaces are given in \hyperref[fig:7
 \end{figure}
 
 \section{Multicast Multi-Hub}
-Connect the hosts and routers as illustrated in \hyperref[fig:7.14]{Figure~7.14}.
-Configure the IP addresses of the hosts and router interfaces as given in the figure.
-
-% Note that most of the router interfaces use their default IP addresses, only the \textit{ethernet0} interface of Router4 needs to be changed to 128.238.63.4.
-
 Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).
-Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}).
-All routers pre-configured in \textit{GN3} \hyperref[fig:7.14]{Figure~7.14}
+% Enable PIM multicast routing in all the routers (see \autoref{sec:config-router}).
+% All routers pre-configured in \textit{GN3} \hyperref[fig:7.14]{Figure~7.14}
 
 Run \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstbash{wireshark} on all subnet (at least one host).
 Maybe you need to restart (or reload) routers to capture all packet from start state.
@@ -436,7 +430,7 @@ ping 224.111.111.111 -t n
     \end{lstlisting}
 
 The parameter \textit{n} is the TTL to be set to the multicast datagrams sent by ping.
-Try different values of \textit{n}, e.g.\ 1, 2, 3, and 16.
+Try different values of \textit{n}, e.g. 1, 2, 3, and 16.
 See how far a multicast datagram can travel with different TTL values.
 
 Now, open the \textit{Router2} console, in the \textit{Interface Configuration} mode, set the TTL threshold of the \textit{ethernet0} interface to 32, using:
@@ -461,7 +455,6 @@ Answer the same question.
 This is an optional exercise on video streaming in multicast network.
 This exercise use many resource in GNS3 simulator.
 In the following exercise, we use \lstbash{vlc} for video streaming.
-The routers and hosts have the same configurations as in \hyperref[fig:7.14]{Figure~7.14}.
 
 \section{**Multicast Real-Time Video}
 Start \lstbash{vlc} on all the hosts, by using \lstbash{vlc &}.
@@ -480,7 +473,7 @@ Now you should see the received video is displayed on the screen.
 
 Execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} or \lstbash{wireshark} in one console to capture the multicast datagrams.
 In another console, execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast} to monitor the capture process.
-When you see some \texttt{RTCP} packets in the second \lstbash{tcpdump} output, terminate both \lstbash{tcpdump} programs.
+When you see some \texttt{RTCP} packets in the second \lstbash{tcpdump} output, terminate \lstbash{tcpdump} programs.
 
 Analyze the header format of a \texttt{RTP} data packet and a \texttt{RTCP} Sender (or Receiver) Report packet.
 

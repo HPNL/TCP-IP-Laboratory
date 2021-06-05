@@ -102,7 +102,7 @@ Execute \lstbash{wireshark} to capture packets between the \textit{gui} host and
 
 Use \textit{Mozilla} to download the \url{http://server.netlab/try2.htm} file, which is an \textit{HTML} form, from the \textit{server} host.
 
-Fill a text string, e.g.\ the name of the host being used, into the text field in the form and click the submit button in the form.
+Fill a text string, e.g. the name of the host being used, into the text field in the form and click the submit button in the form.
 
 When the server response is received, terminate \lstbash{wireshark}.
 
@@ -417,11 +417,11 @@ config term
 Keep the login session to the router running.
 Execute \lstbash{tcpdump -exn -nn} or \lstbash{wireshark} on two side of the router.
 
-Before any host in the private network send any packets out, \lstbash{ping} an inside host (e.g.\ \textit{h5}) from an outside host (e.g.\ \textit{h1}).
+Before any host in the private network send any packets out, \lstbash{ping} an inside host (e.g. \textit{h5}) from an outside host (e.g. \textit{h1}).
 You may try to \lstbash{ping} \textit{10.0.0.5, 128.238.61.102, 128.238.61.103, or 128.238.61.104}.
 Can you \lstbash{ping} these IP addresses?
 
-Let an inside host send packets to an outside host, e.g.\ from the \textit{h5}, execute \lstbash{ping 128.238.61.100}.
+Let an inside host send packets to an outside host, e.g. from the \textit{h5}, execute \lstbash{ping 128.238.61.100}.
 Can you \lstbash{ping h5.netlab} from an outside host now? Why? Which IP address should be used in the \lstbash{ping} command in order to \lstbash{ping h5.netlab}?
 
 Execute \lstcisco{show ip nat translations} in the router login window to display the translation table.
@@ -465,7 +465,7 @@ Generate traffic between the inside and outside hosts.
 Examine the \lstbash{tcpdump} output to see how PAT works.
 
 Start the Apache web server on the \textit{h7}.
-Also, run \lstbash{curl} on an outside host (e.g.\ \textit{h0}) with the URL \url{http://128.238.61.1}.
+Also, run \lstbash{curl} on an outside host (e.g. \textit{h0}) with the URL \url{http://128.238.61.1}.
 Save the \lstbash{tcpdump} output.
 
 Use \lstcisco{show ip nat translations} to display and then save the translation table.
@@ -539,7 +539,7 @@ Write a FTP client program which takes a file name as input, and upload the file
     \item First you need to set up the control connection to Port 21 of the remote machine, using a TCP socket.
     \item When the control connection is established, you need to exchange FTP commands with the remote FTP server, as given in \hyperref[tab:5.1]{Table~5.1} of reference book.
     \item You can first run \lstbash[emph={remote-host}]{telnet remote-host 21}, then type \lstbash{help} to list all the FTP commands.
-          Also, you can try the commands out in the \lstbash{telnet} window, e.g.\ use \lstbash[emph={netlab},morekeywords={[2]USER}]{USER netlab} to send the user ID and \lstbash[emph={netlab},morekeywords={[2]PASS}]{PASS netlab} to send the password to the FTP server.
+          Also, you can try the commands out in the \lstbash{telnet} window, e.g. use \lstbash[emph={netlab},morekeywords={[2]USER}]{USER netlab} to send the user ID and \lstbash[emph={netlab},morekeywords={[2]PASS}]{PASS netlab} to send the password to the FTP server.
           To terminate the \lstbash{telnet} session, type \lstbash[morekeywords={[2]QUIT}]{QUIT}.
     \item In your program, these messages should be sent to the FTP server by calling the \lstgeneric{send()} function of the local TCP socket.
     \item Also your program needs to parse the server responses (some examples are given in \hyperref[tab:5.2]{Table~5.2} of reference book) to find out the status of the previous FTP command.
