@@ -69,7 +69,7 @@ end
 
 ## R3
 
-```
+```shell
 config term
 router rip
 network 128.238.0.0
@@ -83,7 +83,8 @@ end
 ```
 
 ## R4
-```
+
+```shell
 config term
 router rip
 network 128.238.0.0

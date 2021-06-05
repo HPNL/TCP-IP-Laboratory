@@ -24,70 +24,70 @@
   \fancyfoot[R]{\footnotesize School of Electrical and Computer Engineering\\\FR{دانشکده‌ی مهندسی برق و کامپیوتر}}
   \fancyfoot[C]{\thepage}
   \fancyfoot[L]{\footnotesize University of Tehran \\ \FR{دانشگاه تهران}}
-  
+
   \selectlanguage{english}
   \maketitle
-  }
+}
 
 \newcommand{\maketitlepage}{
   \begin{titlepage}
-  \let\footnotesize\small
-  \let\footnoterule\relax
-  \let \footnote \thanks
-  \null\vfil
-  % \vskip 60\p@
-  \begin{center}
-    {\LARGE {
-    \vspace{-25pt}
-    \Large\AR{بسم \allah\  الرحمن الرحيم\par}\\
-    {\normalsize{}In the name of Allah\\}
+    \let\footnotesize\small
+    \let\footnoterule\relax
+    \let \footnote \thanks
+    \null\vfil
+    % \vskip 60\p@
     \begin{center}
-      % \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
-      \begin{minipage}{0.48\textwidth}
-        \begin{flushleft}
-          \hspace*{-20pt}
-          \includegraphics[height=64pt]{../img/ut}
-        \end{flushleft}
-      \end{minipage}
-      \begin{minipage}{0.48\textwidth}
-        \begin{flushright}
-          \includegraphics[height=64pt]{../img/fanni}
-          \hspace*{-35pt}
-        \end{flushright}
-      \end{minipage}
-    \end{center}
-    \vspace*{-50pt}
-    % \horrule{0.5pt} \\[0.4cm]
-  {\huge\bfseries \@title  \ifdefined\reference \footnote{\reference}\fi \par}
-    \LARGE\scshape Laboratory Manual\par
-    \vspace{20pt}
-    % \horrule{2pt} \\[0.5cm]
-    } \par}
-    \vskip 3em
-    {\large
-     \lineskip .75em
-        {
-          {\Large University of Tehran\\}
-          {\large School of Electrical and Computer Engineering\par}
-          \vskip 1.5em
-          {\Large\FR{دانشگاه تهران}\\}
-          \FR{دانشکده‌ی مهندسی برق و کامپیوتر\par}
-          \vskip 3em
-          {\Large\bfseries Computer Network Lab\\}
-          \bfseries\FR{آزمایشگاه شبکه‌های کامپیوتری\par}
-          \vskip 1.5em
-          \normalfont
-          \normalsize
-          \begin{tabular}[t]{c}
-          \@author
-          \end{tabular}
-        }
-      \par}
+      {\LARGE {
+      \vspace{-25pt}
+      \Large\AR{\textmash{بِسم \allah\  الرحمن الرحيم}}\par
+      {\normalsize{}In the name of Allah\\}
+      \begin{center}
+        % \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+        \begin{minipage}{0.48\textwidth}
+          \begin{flushleft}
+            \hspace*{-20pt}
+            \includegraphics[height=64pt]{../img/ut}
+          \end{flushleft}
+        \end{minipage}
+        \begin{minipage}{0.48\textwidth}
+          \begin{flushright}
+            \includegraphics[height=64pt]{../img/fanni}
+            \hspace*{-35pt}
+          \end{flushright}
+        \end{minipage}
+      \end{center}
+      \vspace*{-50pt}
+      % \horrule{0.5pt} \\[0.4cm]
+      {\huge\bfseries \@title  \ifdefined\reference \footnote{\reference}\fi \par}
+      \LARGE\scshape Laboratory Manual \ifdefined\@labnumber \@labnumber\fi \par
+      \vspace{20pt}
+      % \horrule{2pt} \\[0.5cm]
+      } \par}
       \vskip 3em
-    {\small \@date \par}
-  \end{center}\par
-  \@thanks
-  \vfil\null
+        {\large
+          \lineskip .75em
+            {
+              {\Large University of Tehran\\}
+                {\large School of Electrical and Computer Engineering\par}
+              \vskip 1.5em
+                {\Large\FR{دانشگاه تهران}\\}
+              \FR{دانشکده‌ی مهندسی برق و کامپیوتر\par}
+              \vskip 3em
+                {\Large\bfseries Computer Network Lab\\}
+              \bfseries\FR{آزمایشگاه شبکه‌های کامپیوتری\par}
+              \vskip 1.5em
+              \normalfont
+              \normalsize
+              \begin{tabular}[t]{c}
+                \@author
+              \end{tabular}
+            }
+          \par}
+      \vskip 3em
+        {\small \@date \par}
+    \end{center}\par
+    \@thanks
+    \vfil\null
   \end{titlepage}
   \setcounter{footnote}{0}
   \global\let\thanks\relax

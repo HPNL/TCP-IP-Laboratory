@@ -1,3 +1,5 @@
+% !TeX spellcheck = en_US
+
 \documentclass[aspectratio=169,15pt]{beamer}
 
 \usepackage[utf8]{inputenc}
@@ -18,9 +20,9 @@
 \institute[ECE @ UT]{
     Electrical and Computer Engineering Department\\
     Tehran University \newline
-    \url{http://ece.ut.ac.ir/portal/}
+    \url{http://ece.ut.ac.ir/}
 }
-\date{Spring 1399}
+\date{Spring 1400}
 \subject{Computer Science}
 
 % \logo{
@@ -36,6 +38,8 @@
 
 \setbeamercolor{section number projected}{bg=red,fg=white}
 \setbeamercolor*{item}{fg=red}
+
+\beamertemplatenavigationsymbolsempty
 
 \begin{document}
 
@@ -55,26 +59,19 @@
 
 \section{Teaching Staff}
 \begin{frame}
-\frametitle{Teaching Staff}
-\begin{itemize}
-    \item Instructor:
+    \frametitle{Teaching Staff}
     \begin{itemize}
-        \item Ahmad Khonsari: \alert{ak @ipm .ir}
+        \item Instructor:
+              \begin{itemize}
+                  \item Ahmad Khonsari: \alert{a\_khonsari @ut .ac .ir}
+              \end{itemize}
+        \item Chief Teaching assistants:
+              \begin{itemize}
+                  \item Amir Haji Ali Khamseh’i: \alert{khamse @ut .ac .ir}
+                  \item Reza Sharifi nia: \alert{reza.sharifnia @ut .ac .ir}
+              \end{itemize}
+        \item Contact time: Tuesday-Wednesday (netlab-softlab (Azmayeshagah Narmafzar))
     \end{itemize}
-    \item Chief Teaching assistants:
-    \begin{itemize}
-        \item Amir Haji Ali Khamseh’i: \alert{khamse @ut .ac .ir}
-        \item Reza Sharifi nia: \alert{reza.sharifnia @ut .ac .ir}
-    \end{itemize}
-    \item Teaching assistants:
-    \begin{itemize}
-        \item Mohammad Borhani: \alert{borhani.m @ut .ac .ir}
-        \item Javad Aynevand: \alert{javad.aynevand @ut .ac .ir}
-        \item Z. Fath Firooz: \alert{z\_fathfirooz @ut .ac .ir}
-        \item Ali Sharifi: \alert{alisharif7615 @gmail .com}
-    \end{itemize}
-    \item Contact time: Tuesday-Wednesday (netlab-softlab (Azmayeshagah Narmafzar))
-\end{itemize}
 
 \end{frame}
 
@@ -82,15 +79,16 @@
 \begin{frame}
     \frametitle{Course Goals}
 
+    Learn:
     \begin{itemize}
-        \item Learn how to config host and networking device
-        \item Learn how to network device work
-        \item Learn how to simulate network
-        \item Learn new network protocol (SNMP, \dots)
-        \item IPv4, IPv6, Routing, ARP, RIP, OSPF, UDP, TCP, Multicast, NAT, HTTP, DHCP, SNMP, Security, ...
+        \item How to configure hosts \& networking devices
+        \item How to connect network devices
+        \item How to simulate network
+        \item Network protocols such as: SNMP, Routing protocols, ARP, RIP, OSPF, UDP, TCP, Multicast, NAT, HTTP, DHCP, SNMP, Security, \dots
     \end{itemize}
-    \begin{alertblock}{Alert}
-        During the study you need to read extra book and documents for do your lab (has not been taught in the Network lesson)
+
+    \begin{alertblock}{Note}
+        Some materials of the lab has not been covered in your "Computer Network Course" and you need to study additional references
     \end{alertblock}
 
 \end{frame}
@@ -102,36 +100,14 @@
     \begin{itemize}
         \item Computer Net Lab is a one unit course and it is a follow up of the Computer Networks course.
         \item The materials you have learned in the computer network course is necessary but not sufficient to do Computer Net Lab.
-              You will learn at least 40\% of networking materials that you didn't see in the main course (such as IPV6, Spanning Tree, Multicast, MPLS) .
+              You will learn at least 40\% of networking materials that you didn’t see in the Computer Networks course (such as IPV6, Spanning Tree, Multicast, MPLS).
               It is necessary to learn the necessary background before attending each session.
-        \item The grading of this course is divided to 3 main parts.
-        \begin{enumerate}
-            \item Reading the background material of each lab before attending each session.
-                    There is a quiz in the beginning of each lab of the main materials of the current session.
-            \item Carrying out the lab within the time slot that assigned for each lab and prepare the report
-            \item A final exam.
-                    In the current semester due to COVID 19, we may ask students to voluntarily prepare and fulfil an extra lab instead of exam.
-        \end{enumerate}
-    \end{itemize}
-
-\end{frame}
-
-\section{Course Materials}
-\begin{frame}
-    \frametitle{Course Materials}
-
-    \begin{itemize}
-        \item Textbook: TCP/IP Essential, a lab based approach (\href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/blob/master/References/TCP-IP\%20Essentials.pdf}{link})
-        \item \url{https://github.com/UT-Network-Lab/TCP-IP-Laboratory}
-        \item GNS3 on Linux (physical or virtual machine)
-        \begin{itemize}
-            \item Installation instruction available in \href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/blob/master/README.md}{README.md}
-            \item Installation instructions \href{https://www.dropbox.com/s/bad8eongryfnylr/GNS3\%20Installation\%20Tutorial.mp4?dl=0}{video in Persian}
-        \end{itemize}
-        \item Cisco router image (\href{https://github.com/UT-Network-Lab/gns3-figures/blob/main/Cisco/c3725-adventerprisek9-mz.124-25d.image}{c3725-adventerprisek9-mz.124-25d.image})
-        \item Docker images (\href{https://hub.docker.com/r/utnetlab/term}{netlab/term}, \href{https://hub.docker.com/r/utnetlab/gui}{netlab/gui}, \href{https://github.com/orgs/UT-Network-Lab/packages?repo_name=docker-tools}{Github-Packages})
-        \item Laboratory instructions (\href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest}{Documents})
-        \item GNS3 Portable projects (\href{https://github.com/UT-Network-Lab/gns3-figures/releases/latest}{Figures})
+        \item The grading of this course is divided to 2 main parts.
+              \begin{enumerate}
+                  \item Reading the background material of each lab before attending each session.
+                        There is a quiz in the beginning of each lab of the main materials of the current session.
+                  \item Carrying out the lab within the time slot that assigned for each lab and preparing the report.
+              \end{enumerate}
     \end{itemize}
 
 \end{frame}
@@ -142,58 +118,35 @@
 
     \begin{itemize}
         \item 10 sessions
-        \item Cover the “TCP/IP essential: A lab based approach” (maybe have one new Lab)
-        \item 10 lab reports + class quizzes
-        \item Students grouping:
-        \begin{itemize}
-            \item \alert{Virtual Class} No grouping
-            \item \alert{Attendance Class} Grouping in two-member groups
-        \end{itemize}
+        \item Covers the materials presented in the book:
+              \begin{itemize}
+                  \item Shivendra S. Panwar,“TCP/IP essential a lab based approach”, Cambridge University Press, 2004
+                  \item[+] One optional new Lab
+              \end{itemize}
+        \item 10 lab reports + TA quizzes
     \end{itemize}
-    
+    \begin{alertblock}{Note:}
+        Delay is not allowed: please enter each session on time.
+    \end{alertblock}
+
 \end{frame}
 
 \section{Class Program}
 \begin{frame}
     \frametitle{Class Program}
-    
+
     \begin{enumerate}
-        \item \alert{10 min} Quiz from reference book chapter content
-        \item \alert{10 min} TA chapter description (or watch recorded videos)\footnote{May you watch it before class to save time for do lab instructions}
-        \item \alert{2:30 min} Perform laboratory instructions (with TA hint and help)
-        \item Fill and submit your lab report (while do lab instructions)
-        \begin{itemize}
-            \item We use Moodle Quiz to get your report
-        \end{itemize}
+        \item \alert{10 minutes} Quiz in the beginning of each session. You have to read the corresponding part of the book.
+        \item \alert{10 minutes} TA explanation (or watch the recorded videos)\footnote{Maybe you need to watch the video before class to save time to do lab instructions}
+        \item \alert{2 hours and 30 minutes} Fulfill the experiments according to lab instructions
+        \item Fulfill and submit your lab report
+              \begin{itemize}
+                  \item We use Moodle Quiz platform to collect your reports
+              \end{itemize}
     \end{enumerate}
-    \begin{alertblock}{Important}
-        Don’t accept delay (must submit and finish your work on time even if it is \textbf{incomplete})
-    \end{alertblock}
-
-\end{frame}
-
-\section{Grading}
-\begin{frame}
-    \frametitle{Grading}
-
-    \begin{itemize}
-        \item 10 lab with score of \alert{2} (total score sum is \alert{20})
-        \item For remote class at time of \alert{COVID-19} spreading
-        \begin{itemize}
-            \item {\color{red} 0.4} to {\color{red} 0.5} for each quiz (0.1 Additional Score)
-            \item {\color{red} 1.6} for each lab report
-        \end{itemize}
-        \item For normal attendance class
-        \begin{itemize}
-            \item {\color{red} 0.2} to {\color{red} 0.3} for each quiz (0.1 Additional Score)
-            \item {\color{red} 1.4} for finishing up the lab
-            \item {\color{red} 0.4} for each lab report (1 week)
-        \end{itemize}
-        \item Don’t submit image, except for report questions that specifically ask for an image.
-    \end{itemize}
-    \begin{alertblock}{}
-        You can only object to your grades within {\color{red} 2 days} of receiving them.
-        We do not consider objections after that.
+    \begin{alertblock}{Note:}
+        You need to submit your report  within the assigned time slot of each lab.
+        (If you didn’t finish your lab completely within the assigned time slot, you need to submit the incomplete report.)
     \end{alertblock}
 
 \end{frame}
@@ -204,16 +157,85 @@
 
     LATE ARRIVAL:
     {
-        \setbeamercolor{block body}{fg=black, bg=green!10!white}
-        \setbeamercolor{block title}{fg=white, bg=green!40!black}
-        \begin{block}{Below 15 min} Don’t worry (but you may miss quiz) \end{block}
+    \setbeamercolor{block body}{fg=black, bg=green!10!white}
+    \setbeamercolor{block title}{fg=white, bg=green!40!black}
+    \begin{block}{Below 15 minutes}
+        Don’t worry (but you may miss the quiz)
+    \end{block}
     }
     {
-        \setbeamercolor{block body}{fg=black, bg=orange!10!white}
-        \setbeamercolor{block title}{fg=white, bg=orange!50!black}
-        \begin{block}{Between 15 and 30 min} Get \alert{-0.5} penalty score for your session grade \end{block}
+    \setbeamercolor{block body}{fg=black, bg=orange!10!white}
+    \setbeamercolor{block title}{fg=white, bg=orange!50!black}
+    \begin{block}{Between 15 and 30 minutes}
+        Get \alert{-0.5} penalty score for your session grade
+    \end{block}
     }
-    \begin{alertblock}{More than 30 min} Don’t enter the class, Get \alert{0} for session grade (absence grade) \end{alertblock}
+    \begin{alertblock}{More than 30 minutes}
+        Don’t enter the class. you miss \alert{2} points of this session
+    \end{alertblock}
+
+\end{frame}
+
+\section{Grading}
+\begin{frame}
+    \frametitle{Grading}
+
+    \begin{itemize}
+        \item 10 labs: score of each lab is \alert{2} (sums up to a total of \alert{20} for 10 labs)
+        \item For remote class at time of \alert{COVID-19} outbreak
+              \begin{itemize}
+                  \item {\color{red} 0.4} to {\color{red} 0.5} for each quiz (0.1 Additional Score)
+                  \item {\color{red} 1.6} for each lab report
+              \end{itemize}
+        \item For normal class
+              \begin{itemize}
+                  \item {\color{red} 0.2} to {\color{red} 0.3} for each quiz (0.1 Additional Score)
+                  \item {\color{red} 1.4} for finishing up the lab
+                  \item {\color{red} 0.4} for each lab report (1 week)
+              \end{itemize}
+    \end{itemize}
+    \begin{alertblock}{Note:}
+        You can only object your grades within {\color{red} 2 days} of receiving them. We do not consider objections after that.
+        Please contact instructor of the course less than {\color{red} 1 day} if your objection remains unresolved within this time.
+    \end{alertblock}
+
+\end{frame}
+
+\section{Course Materials}
+\begin{frame}
+    \frametitle{Course Materials}
+
+    \begin{itemize}
+        \item Contents of the lab are available at:\\
+              \url{https://github.com/UT-Network-Lab/TCP-IP-Laboratory}
+        \item GNS3 on Linux (physical or virtual machine)
+              \begin{itemize}
+                  \item \href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/blob/master/README.md}{README.md} of Installation instructions
+                  \item \href{https://www.dropbox.com/s/bad8eongryfnylr/GNS3\%20Installation\%20Tutorial.mp4?dl=0}{Video} of Installation instructions
+              \end{itemize}
+        \item Docker images (\href{https://hub.docker.com/r/utnetlab/term}{netlab/term}, \href{https://hub.docker.com/r/utnetlab/gui}{netlab/gui}, \href{https://github.com/orgs/UT-Network-Lab/packages?repo_name=docker-tools}{Github-Packages})
+        \item Laboratory instructions (\href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/releases/latest}{Documents})
+        \item GNS3 Portable projects (\href{https://github.com/UT-Network-Lab/gns3-figures/releases/latest}{Figures})
+        \item GNS3 simple \href{https://github.com/UT-Network-Lab/TCP-IP-Laboratory/blob/master/gns3.md}{manual}
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Consider these rules in your report answers}
+
+    \begin{itemize}
+        \item Don’t submit screen shot \textbf{images}, except for report questions that specifically ask for an image.
+              \begin{itemize}
+                  \item Moodle has a bug for save and submit images (please contact TAs).
+                  \item Your answers should be short (concise and useful).
+              \end{itemize}
+        \item Provide your opinion or analysis to answer the questions, in your own word. Do not copy and paste a text or document as your answers.
+        \item Your answer should be in accordance with the resources and definitions (You need to read the resources before the session).
+        \item You need to choose the best answer in multiple choice questions.
+        \item Answer each question separately. Do not refer to answers of previous questions  (you miss the grades of incomplete answers).
+              % upload numerical results of this question in your report
+    \end{itemize}
 
 \end{frame}
 

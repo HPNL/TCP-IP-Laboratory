@@ -6,15 +6,37 @@ If you use `GNS3 VM` or need to connect a remote server, use [install remote](./
 
 ## Requirement
 
-* Linux (Ubuntu 18.04, Ubuntu 20.04, Debian 9, Debian 10 or other supported linux)
+* Linux (Ubuntu 20.04, Debian 10 or other supported linux)
 * GNS3
 * Docker
 * Cisco router image
-* Mininet
+<!-- * Mininet -->
 
 ## Install tools
 
-We prefer to use last long term support (LTS) branch of **Ubuntu** linux.
+We prefer to use pre-build **VM** from `GNS3` github.
+Also, you can use last long term support (LTS) branch of **Ubuntu** or **Debian** linux to setup `GNS3`.
+
+### Client & Server (pre-build VM)
+
+You can setup your desktop connect to remote server.
+Pre-build **VM**s can downloaded from [this](https://github.com/GNS3/gns3-gui/releases) url.
+Download local executable (`.exe` or `.dmg`) and the **VM** image according to your hypervisor and install it.
+
+> Don't need to install full `GNS3` client.
+> You can disable local server package (WebClient, VM (download manually), WinPCAP (for windows 10), NPcap (for os before windows 10), Dynamips, QEMU, VPCS, CPU-limit).
+> Also you can don't install **SolarWind** terminal package (in Windows OS) and use **putty** terminal instated.
+
+#### Setup remote server
+
+After download and boot your **remote-server**, you need setup your local `GNS3` as client of the **remote-server** (maybe you need change the **VM** network config into *bridge*).
+For do this, got into `Preferences > Server > Main server` and then disable local server.
+In the new panel, set remote **Host=***`displayed-ip`*, **Port=*80*** and disable **Auth**.
+
+After setup the **remote-server** on your client, you need download docker images in server `shell` ([Get docker images](#Get-docker-images)).
+All the other setup, can do in client `GUI` like local `GNS3` ([Setup GNS3](#Setup-GNS3)).
+
+### Ubuntu (18.04, 20.04, 20.10, 21.04)
 
 You can install all needed tools with bellow commands on Ubuntu x64 based linux:
 
@@ -26,7 +48,9 @@ sudo apt install gns3-gui gns3-server wireshark
 
 ## To install preview of gns3 webclient, uncomment this line
 # sudo apt install gns3-webclient-pack
+```
 
+```bash
 ## to install open source edition of docker use "Free"
 ## else use "CE" to install community edition of docker
 DockerType="Free" # "CE"
@@ -43,7 +67,7 @@ else
 fi
 ```
 
- verify installation:
+verify installation:
 
  ```bash
  sudo docker run hello-world
@@ -52,16 +76,69 @@ fi
  adding your user to the “docker” group:
 
  ```bash
-sudo usermod -aG ubridge $USER
-sudo usermod -aG libvirt $USER
-sudo usermod -aG kvm $USER
-sudo usermod -aG wireshark $USER
-sudo usermod -aG docker $USER
+for i in ubridge libvirt kvm docker wireshark; do
+  sudo usermod -aG $i $USER
+done
 # loading new user group config
 sudo su $USER
 ```
 
-### Distribution Upgrade
+### Debian 10
+
+```bash
+sudo apt update
+sudo apt install -y python3-pip python3-pyqt5 python3-pyqt5.qtsvg \
+python3-pyqt5.qtwebsockets \
+qemu qemu-kvm qemu-utils libvirt-clients libvirt-daemon-system virtinst \
+wireshark xtightvncviewer apt-transport-https \
+ca-certificates curl gnupg2 software-properties-common
+
+sudo pip3 install gns3-server
+sudo pip3 install gns3-gui
+# if install with user pip3, it will be installed into "$HOME/.local/bin"
+# add 'export PATH="$HOME/.local/bin:$PATH"' into end of .bashrc
+
+echo "deb http://ppa.launchpad.net/gns3/ppa/ubuntu focal main" | sudo tee /etc/apt/sources.list.d/gns3.list
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F88F6D313016330404F710FC9A2FD067A2E3EF7B
+
+sudo apt-get update
+sudo apt install dynamips ubridge
+```
+
+```bash
+## to install open source edition of docker use "Free"
+## else use "CE" to install community edition of docker
+DockerType="Free" # "CE"
+if [ $DockerType == "Free" ]; then
+  sudo apt install docker.io
+else
+  sudo apt remove docker docker-engine docker.io
+  sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+  curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+  sudo add-apt-repository \
+  "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+  sudo apt update
+  sudo apt install docker-ce
+fi
+```
+
+verify installation:
+
+ ```bash
+ sudo docker run hello-world
+ ```
+
+ adding your user to the “docker” group:
+
+ ```bash
+for i in ubridge libvirt kvm docker wireshark sudo; do
+  sudo usermod -aG $i $USER
+done
+# loading new user group config
+sudo su $USER
+```
+
+### Ubuntu Distribution Upgrade
 
 If you upgrade your ubuntu distribution, you need to remove old `GNS3` repository and add again.
 
@@ -88,11 +165,35 @@ docker pull utnetlab/gui
 Also you can pull this images from github package section. But you need to add docker tag.
 
 ```bash
-# may be need login to github
+# may be need login to github:
+# https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages
 docker pull docker.pkg.github.com/ut-network-lab/docker-tools/term:latest
 docker tag docker.pkg.github.com/ut-network-lab/docker-tools/term:latest utnetlab/term:latest
 docker pull docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest
 docker tag docker.pkg.github.com/ut-network-lab/docker-tools/gui:latest utnetlab/gui:latest
+```
+
+### Get from proxy
+
+If you need to use proxy, you can use one of the following way.
+You can replace the `dockerhub.ir` with any proxy host.
+
+#### Set in docker deamon file
+
+```bash
+echo '{
+  "registry-mirrors": ["https://dockerhub.ir"]
+}' | sudo tee /etc/docker/daemon.json
+sudo systemctl restart docker
+```
+
+#### Pull from proxy
+
+```bash
+docker pull dockerhub.ir/utnetlab/term:latest
+docker tag dockerhub.ir/utnetlab/term:latest utnetlab/term:latest
+docker pull dockerhub.ir/utnetlab/gui:latest
+docker tag dockerhub.ir/utnetlab/gui:latest utnetlab/gui:latest
 ```
 
 <!-- Also you can [download](https://github.com/orgs/UT-Network-Lab/packages?repo_name=docker-tools) and load docker images from archive file as below: -->
@@ -198,7 +299,7 @@ Set name to **c3725** for new router.
 
 ![gns3-router-name](./img/gns3-router-name.jpg)
 
-Under *Memory* section, set *Default RAM* to **160 MB** at minimum.
+Under *Memory* section, set *Default RAM* to **144 MB** at minimum (prefer set to **160/192 MB** for correct **NAT** setup).
 
 ![gns3-router-ram](./img/gns3-router-ram.jpg)
 
@@ -208,7 +309,7 @@ Skip *slots* step until get *Idle-PC* step.
 ![gns3-router-wic](./img/gns3-router-wic.jpg)
 
 Click on **Idle-PC finder** to find local idle-PC number if it was empty and then press **Finish**.
+(Default value for idle-PC is **0x602467a4**)
 
 ![gns3-router-idlepc](./img/gns3-router-idlepc.jpg)
 
-## Setup remote server

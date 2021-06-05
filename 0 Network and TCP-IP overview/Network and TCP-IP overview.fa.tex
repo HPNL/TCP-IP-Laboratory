@@ -1,30 +1,30 @@
 \documentclass{../UTNetLabFa}
 
 \title{کلیات شبکه و پشته‌ی \textLR{TCP-IP}}
-
+\labnumber{۰}
 
 \begin{document}
 
-\tableofcontents
-\listoffigures
-\listoftables
-\lstlistoflistings
+% \tableofcontents
+% \listoffigures
+% \listoftables
+% \lstlistoflistings
 %\listofcodes
 \pagebreak
 
 \part{تعاریف}
 \section{شبکه}
-    \section{اینترنت}
-    اینترنت یک سیستم جهانی است که از اتصال میلیون ها کامپیوتر در سراسر جهان ساخته شده است.
+\section{اینترنت}
+اینترنت یک سیستم جهانی است که از اتصال میلیون ها کامپیوتر در سراسر جهان ساخته شده است.
 
-    برای تنظیم کردن مسیریاب از دستورات زیر استفاده کنید:
+برای تنظیم کردن مسیریاب از دستورات زیر استفاده کنید:
 
-    \begin{figure}[h]
-    	\centering
-        {\selectlanguage{english}\includegraphics[height=64pt]{../img/fanni}}
-        \caption{\FR{تصویر دانشکده‌ی فنی - دانشگاه تهران}}
-        \label{fig:fanni}
-    \end{figure}
+\begin{figure}[h]
+	\centering
+	{\selectlanguage{english}\includegraphics[height=64pt]{../img/fanni}}
+	\caption{\FR{تصویر دانشکده‌ی فنی - دانشگاه تهران}}
+	\label{fig:fanni}
+\end{figure}
 
 \subsection{فونت‌ها}
 نمونه فونت‌های قابل استفاده:
@@ -34,11 +34,11 @@
 	\centering
 	\begin{tabular}{|l|l||R|R|}
 		\hline
-		\bfseries \LR{Font name}  & \bfseries\en{Command} & \bfseries نام & \bfseries    نمونه متن \\ \hline\hline
-		\en{Nazli}      & \en{\textbackslash{}textnazli}  &      نازلی &  \textnazli{یک متن نمونه از فونت} \\ \hline
-		\en{Nazli Bold} & \en{\textbackslash{}textnazlib} & نازلی درشت & \textnazlib{یک متن نمونه از فونت} \\ \hline
-		\en{Titr Bold}  & \en{\textbackslash{}texttitr}   &       تیتر &   \texttitr{یک متن نمونه از فونت} \\ \hline
-		\en{Homa}       & \en{\textbackslash{}texthoma}   &        هما &   \texthoma{یک متن نمونه از فونت} \\ \hline
+		\bfseries \LR{Font name} & \bfseries\en{Command}           & \bfseries نام & \bfseries    نمونه متن            \\ \hline\hline
+		\en{Nazli}               & \en{\textbackslash{}textnazli}  & نازلی         & \textnazli{یک متن نمونه از فونت}  \\ \hline
+		\en{Nazli Bold}          & \en{\textbackslash{}textnazlib} & نازلی درشت    & \textnazlib{یک متن نمونه از فونت} \\ \hline
+		\en{Titr Bold}           & \en{\textbackslash{}texttitr}   & تیتر          & \texttitr{یک متن نمونه از فونت}   \\ \hline
+		\en{Homa}                & \en{\textbackslash{}texthoma}   & هما           & \texthoma{یک متن نمونه از فونت}   \\ \hline
 	\end{tabular}
 \end{table}
 
@@ -47,9 +47,9 @@
 \begin{otherlanguage}{english}
 	\section{English Section}
 	This is a english section.%\footnote{\en{sample footnote}}
-%	\subsection{English subsection}
+	%	\subsection{English subsection}
 	Subsection text.
-%	\subsubsection{English SubSubSection}
+	%	\subsubsection{English SubSubSection}
 	Subsubsection text.
 \end{otherlanguage}
 
@@ -60,11 +60,11 @@
 انواع ارتباطات سیمی
 
 \subsection{بی سیم}
-	اتصالاتی همانند \textLR{WiFi} و \textLR{Bluetooth}.
+اتصالاتی همانند \textLR{WiFi} و \textLR{Bluetooth}.
 \subsection{نوری}
-    اتصالات فیبر نوری به علت نویز کمتر در مسیر، امکان ارسال به مسیرهای دور را با سرعت بالا و خطای کم را فراهم می‌کنند.
+اتصالات فیبر نوری به علت نویز کمتر در مسیر، امکان ارسال به مسیرهای دور را با سرعت بالا و خطای کم را فراهم می‌کنند.
 \begin{question}
-    \item متن سوال
+	\item متن سوال
 \end{question}
 
 \begin{report}
@@ -79,7 +79,7 @@
 \subsubsection{تنظیمات مسیریاب}
 {
 	\selectlanguage{english}
-\begin{lstlisting}[language=cisco,caption=\FR{تنظیمات مسیریاب}]
+	\begin{lstlisting}[language=cisco,caption=\FR{تنظیمات مسیریاب}]
 config term
 	no ip routing
 	bridge 1 protocol ieee ! for STP protocol
