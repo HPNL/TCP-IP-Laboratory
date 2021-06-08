@@ -62,6 +62,7 @@ Open GPLv3 [LICENSE](LICENSE) file.
 * [ ] add api to transfer file to host
   * Can use `docker cp`
 * [ ] add routing service from [FRR](https://frrouting.org/) (based on [quagga](https://www.quagga.net/)) or [BIRD](https://bird.network.cz/)
+* [ ] cahnge your/remote/other host in text with *h_x*
 * [ ] Network Traffic generation lab
   ([trex-core](https://github.com/cisco-system-traffic-generator/trex-core),
   [trex-emu](https://github.com/cisco-system-traffic-generator/trex-emu),
