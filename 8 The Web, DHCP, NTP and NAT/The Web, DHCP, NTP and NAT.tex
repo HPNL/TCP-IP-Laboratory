@@ -44,7 +44,7 @@ Save the output and the configuration file for the lab report.
 \section{HTTP Request}
 Execute \lstbash{wireshark} to capture packets between the \textit{gui} host and the \textit{server} host.
 
-Login to the \textit{server} host’s web server: \lstbash[emph={server,netlab}]{telnet server.netlab 80}.
+Connect to the \textit{server} host’s web server: \lstbash[emph={server,netlab}]{telnet server.netlab 80}.
 
 In the login console, type the following HTTP request line by line:
 \begin{lstlisting}[language={HTTP},morekeywords={[2]GET,From,User-Agent},escapechar={},emph={server,netlab}]
@@ -253,7 +253,7 @@ Try the following \lstbash{date} commands:
 date --date='2 days ago'
 date --date='3 months 2 days'
 date --set='+3 minutes'
-date -r $file-name
+date -r $file-name # for example: /etc/network/interfaces
     \end{lstlisting}
 You can choose any file in the current directory for the \textit{file-name} parameter.
 
@@ -277,10 +277,8 @@ Save the \lstbash{wireshark} outputs for the lab report.
 \end{report}
 
 \section{NTP Sync}
-In this exercise, we start the NTP server daemon on the \textit{h0} and use NTP to
-synchronize all the other hosts to \textit{h0}.
+In this exercise, we start the NTP server daemon on the \textit{h0} and use NTP to synchronize all the other hosts to \textit{h0}.
 Study the NTP configuration file \path{/etc/ntp.conf} in the \textit{h0} and in your host.
-If you are using another machine, you can telnet to \textit{h0} and display the \path{/etc/ntp.conf} file in the telnet window.
 Start the NTP server on the \textit{h0} by \lstbash{service ntp start}.
 To determine the status of the NTP server, use \lstbash{service ntp status}.
 Use \lstbash[emph={h0,h1,netlab},morekeywords={[3],host,and}]{tcpdump -ex -n -nn host h1.netlab and h0.netlab} or \lstbash{wireshark} to capture packets between the \textit{h1} host and the \textit{h0}.
@@ -500,7 +498,10 @@ config term
     \end{lstlisting}
 
 \part{Socket Programming Exercises}
-\section{Socket Programming}
+For the exercises in this section, the network topology is simple with two hosts are connected to a single network segment.
+You can easily use Figure~1.3.
+
+\section{** Socket Programming}
 Examine the UDP socket programs \path{/home/netlab/code/UDPserver.c} and \path{/home/netlab/code/UDPclient.c} to learn how to write a UDP socket program.
 You can compile the C programs by using \lstbash{gcc -o UDPserver UDPserver.c -lnsl} and \lstbash{gcc -o UDPclient UDPclient.c -lnsl}.
 Compile output available at \path{/usr/local/bin/} directory.
@@ -515,7 +516,7 @@ Terminate \lstbash{tcpdump}, examine its output and compare the output with the 
 
 Repeat the above experiments, but now use the \lstbash{TCPserver.c} and \lstbash{TCPclient.c}.
 
-\section{Socket Options}
+\section{** Socket Options}
 Execute \lstbash{man setsockopt} to display the various socket options and how to set them.
 
 Examine the \lstbash{netspy} and \lstbash{netspyd} source code in Appendix~C.2 of reference book to see how to create a multicast socket and how to set the TTL value for the packets.
