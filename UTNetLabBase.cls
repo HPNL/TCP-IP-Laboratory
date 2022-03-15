@@ -116,7 +116,7 @@
         grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
         tcpdump, wireshark, arp, arping, ping, iptables, xinetd, inetd, date, time, ftp, tftp, htop, ntp,
         sysctl, service, apache2, gcc, g++, sftp, make-ssl-cert, openssl, ssh, traceroute,  man, tracepath,
-        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, sock, socket, ntptrace, ntpq,
+        a2enmod, pgrep, mv, snmpwalk, snmpget, rlogin, ps, kill, pidof, sock, socket, ntptrace, ntpq,
         goaccess, webalizer, vlc, firefox, systemctl, nano, vim, docker, echo, dhclient, rdate, ntpdate,
         status, dhcpd, routed, curl, snmpd, ls, rm, rdisc,
       },

@@ -51,15 +51,15 @@ You can use \lstbash[emph={eth0},morekeywords={[3]netmask}]{ifconfig eth0 192.16
             \begin{figure}[H]
                 \centering
                 \begin{tikzpicture}
-                    \node[draw,align=center,rounded corners] (s) at (0,0){Core\\Switch};
-                    \node[draw] (h0) at (0,2){h0};
-                    \node[draw] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
-                    \node[draw] (h2) at (2,0){h2};
-                    \node[draw] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
-                    \node[draw] (h4) at (-2,0){h4};
-                    \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
-                    \node[draw] (h6) at (0,-2){h6};
-                    \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+                    \node[draw,align=center,rounded corners,fill=\colorswitch] (s) at (0,0){Core\\Switch};
+                    \node[draw,fill=\colorhost] (h0) at (0,2){h0};
+                    \node[draw,fill=\colorhost] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+                    \node[draw,fill=\colorhost] (h2) at (2,0){h2};
+                    \node[draw,fill=\colorhost] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+                    \node[draw,fill=\colorhost] (h4) at (-2,0){h4};
+                    \node[draw,fill=\colorhost] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+                    \node[draw,fill=\colorhost] (h6) at (0,-2){h6};
+                    \node[draw,fill=\colorhost] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
 
                     \draw (h0) -- (s);
                     \draw (h1) -- (s);
@@ -76,15 +76,63 @@ You can use \lstbash[emph={eth0},morekeywords={[3]netmask}]{ifconfig eth0 192.16
     \end{minipage}
 \end{center}
 
+To use prepared topology to GNS3:
+\begin{enumerate}
+    \item Open \texttt{File} menu
+    \item Select \texttt{Import }
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.5]{img/1}
+        \end{figure}
+    \item Choose the figure from \texttt{Figures} folder
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.7]{img/2}
+        \end{figure}
+    \item Enter a name for new project
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{img/3}
+        \end{figure}
+    \item Start all devices by clicking on the Start/Resume button (green triangular button)
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{img/4}
+        \end{figure}
+    \item Open console or Auxiliary console for each host (right click on host/router)
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.6]{img/5}
+        \end{figure}
+\end{enumerate}
+
 \section{Telnet Service}
 Run \lstbash{ps -e} to list the processes running in the \textit{h1}.
+
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}
+ps -e
+\end{lstlisting}
+
 After starting a new process by running \lstbash{telnet} in another command window (open new auxiliary console), execute \lstbash{ps -e} again in a third window to see if there is any change in its output.
 
+\boxbashaux{h\textsubscript{1}'s Auxiliary Console} 
+\begin{lstlisting}
+telnet
+\end{lstlisting}
+
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}
+ps -e
+\end{lstlisting}
+
 Find the process id of the \lstbash{telnet} process you started, by:
+
+\boxbash{{h\textsubscript{1}}'s Console}
 \begin{lstlisting}
 ps -e | grep telnet
-    \end{lstlisting}
-Then use \lstbash[emph={process-id-of-telnet}]{kill process-id-of-telnet} to terminate the \lstbash{telnet} process.
+\end{lstlisting}
+Then use \lstbash[emph={process-id-of-telnet}]{kill \$(pidof telnet)} to terminate the \lstbash{telnet} process.
 
 \begin{report}
     \item What is Internet Service Daemon (\lstbash{inetd})?
@@ -96,9 +144,12 @@ Then use \lstbash[emph={process-id-of-telnet}]{kill process-id-of-telnet} to ter
 
 \section{Default Network Services}
 Display the file \path{/etc/services} on the \textit{h1} screen, using:
+
+\boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
 more /etc/services
-    \end{lstlisting}
+\end{lstlisting}
+
 Then in another console (Auxiliary console), use the redirect operator to redirect the \lstbash{more} output to
 a file using \lstbash{more /etc/services > ser-more}.
 Compare the file \path{ser-more} with the original \lstbash{more} output in the other command window.
@@ -110,8 +161,21 @@ Are these two files identical?
 
 Concatenate these two files using \lstbash{cat ser-more ser-cp > ser-cat}.
 
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}
+more /etc/services > ser-more   # More
+cp /etc/services ser-cp         # Copy
+cmp ser-more ser-cp             # Compare
+cat ser-more ser-cp > ser-cat   # Concatenate
+\end{lstlisting}
+
 Display the file sizes using \lstbash{ls -l ser*}.
 Save the output.
+
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}
+ls -l ser*
+\end{lstlisting}
 
 \begin{report}
     \item What are the sizes of files \path{ser-more}, \path{ser-cp}, and \path{ser-cat}?
@@ -132,6 +196,14 @@ Read the \lstbash{man} pages for the following programs:
         \item \lstbash{iptables}
     \end{enumerate}
 \end{multicols}
+
+For example,  run the following command:
+
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}
+man arp
+\end{lstlisting}
+
 Study the different options associated with each command.
 Throughout this lab you will use these commands rather extensively.
 
@@ -147,6 +219,17 @@ In this exercise, we will use \lstbash{tcpdump} to capture a packet containing t
 First, run \lstbash{tcpdump -enx -w dump.pcap} in the \textit{h1}.
 You will not see any \lstbash{tcpdump} output, since the \lstbash{-w} option is used to write the output to the \path{dump.pcap} file.
 
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}[emph={dump,pcap}]
+tcpdump -enx -w dump.pcap   # write packet to dump.pcap file
+tcpdump -enx                # print packet
+\end{lstlisting}
+
+\boxbashaux{h\textsubscript{1}'s Auxiliary Console}
+\begin{lstlisting}
+telnet 128.238.66.102
+\end{lstlisting}
+
 Then, you may want to run \lstbash{telnet 128.238.66.102} in the \textit{h1} to generate some TCP traffic.\footnote{Remember to run \lstbash{/etc/init.d/xinetd restart} in the \textit{h2} to start telnet server on it.}
 After you login to \textit{h2} (use \textbf{netlab} for username and password), terminate the \lstbash{telnet} session and terminate the \lstbash{tcpdump} program.
 Next, you will use \lstbash{tcpdump} or \lstbash{wireshark} to open the packet trace captured by \lstbash{tcpdump} and analyze the captured packets.
@@ -154,6 +237,12 @@ To do this, use this command \lstbash{tcpdump -r dump.pcap} to see content of \p
 The \lstbash{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \lstbash{tcpdump} will be displayed.
 Select any one of the packets that contain the link, IP, and TCP headers.
 In GNS3 you can capture ans see packet with right click on wire and select \textit{Start Capture}.
+
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}[emph={dump,pcap}]
+tcpdump -enx -r dump.pcap   # read packet from dump.pcap file
+wireshark dump.pcap         # GUI application (run in GUI host's)
+\end{lstlisting}
 
 \begin{report}
     \item What is the value of the \texttt{protocol} field in the IP header of the packet you saved?
@@ -166,6 +255,11 @@ In GNS3 you can capture ans see packet with right click on wire and select \text
 This time we will run \lstbash{wireshark} to capture an ARP request and an ARP reply in real-time.
 Simply run \lstbash{wireshark} on the \textit{h1} link with right click and select \textbf{start capture} item to start capturing\footnote{On physical machine, can start capture with \lstbash{wireshark &} command.}.
 If there is no arp requests and replies in the network, generate some using \lstbash{arping 128.238.66.102} command in the \textit{h1} terminal.
+
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}
+arping 128.238.66.102
+\end{lstlisting}
 
 Now you should see several ARP replies in the \lstbash{arping} output.
 
@@ -212,9 +306,11 @@ If you are using \lstbash{wireshark} explain the following filters:
 Run \lstbash{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
 
 Execute a TCP utility, \lstbash{telnet} for example, in another command window:
+
+\boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
 telnet 128.238.66.102
-    \end{lstlisting}
+\end{lstlisting}
 
 \begin{report}
     \item What are the port numbers used by the \textit{h1} (local machine) and the \textit{h2} (remote machine)?
@@ -226,8 +322,19 @@ telnet 128.238.66.102
 Run \lstbash{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
 
 Then, \lstbash{telnet} to the \textit{h2} from a second command window (Auxiliary console) by typing \lstbash{telnet 128.238.66.102}.
+
+\boxbash{h\textsubscript{1}'s Console}
+\begin{lstlisting}
+telnet 128.238.66.102
+\end{lstlisting}
+
 Again issue the same \lstbash{telnet 128.238.66.102} command from a third command window.
 Now you are opening two \lstbash{telnet} sessions to \textit{h2} simultaneously, from two different command windows.
+
+\boxbashaux{h\textsubscript{1}'s Auxiliary Console}
+\begin{lstlisting}
+telnet 128.238.66.102
+\end{lstlisting}
 % On each telnet terminal, run \lstbash{pwd} to generate traffic.
 
 Check the port numbers being used on both sides of the two connections from the output in the \lstbash{wireshark} window.
