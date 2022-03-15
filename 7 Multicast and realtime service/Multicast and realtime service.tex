@@ -51,15 +51,15 @@ For all the exercises in this section, the network topology is given in \hyperre
         \begin{figure}[H]
             \centering
             \begin{tikzpicture}
-                \node[draw,rounded corners,align=center] (s) at (0,0) {Core\\Switch};
-                \node[draw] (h0) at (0,2){h0};
-                \node[draw] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
-                \node[draw] (h2) at (2,0){h2};
-                \node[draw] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
-                \node[draw] (h4) at (-2,0){h4};
-                \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
-                \node[draw] (h6) at (0,-2){h6};
-                \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+                \node[draw,rounded corners,align=center,fill=\colorswitch] (s) at (0,0) {Core\\Switch};
+                \node[draw,fill=\colorhost] (h0) at (0,2){h0};
+                \node[draw,fill=\colorhost] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+                \node[draw,fill=\colorhost] (h2) at (2,0){h2};
+                \node[draw,fill=\colorhost] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+                \node[draw,fill=\colorhost] (h4) at (-2,0){h4};
+                \node[draw,fill=\colorhost] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+                \node[draw,fill=\colorhost] (h6) at (0,-2){h6};
+                \node[draw,fill=\colorhost] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
 
                 \draw (h0) -- (s);
                 \draw (h1) -- (s);
@@ -111,7 +111,7 @@ To open a console, double click on a already-started machine.
 \label{sec:linux-multicast-routing}
 Execute \lstbash{netstat -rn} to display the routing table of one host (for example \textit{h0}).
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}
 netstat -rn
 \end{lstlisting}
@@ -120,7 +120,7 @@ If there is no entry for the 224.0.0.0 subnet, you need to provide a default rou
 \footnote{This command can be appended to the \path{/etc/rc.local} file, so that it will be executed automatically when the system bootstraps.
     Each time when the network interface is brought down and up again by the \lstbash{ifconfig} command, you may need to run the \lstbash{route} command to re-insert the multicast routing entry.}
 
-\fcolorbox{blue}{yellow!10}{{all hosts}}
+\boxbash{{all hosts}}
 \begin{lstlisting}[emph=eth0,morekeywords={[3]add,netmask,dev}]
 route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 \end{lstlisting}
@@ -128,7 +128,7 @@ route add -net 224.0.0.0 netmask 240.0.0.0 dev eth0
 
 Save the new routing table.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}
 netstat -rn
 \end{lstlisting}
@@ -140,7 +140,7 @@ netstat -rn
 \section{Multicast Membership}
 Execute \lstbash{netstat -g} to show the multicast group memberships for all the interfaces in your host (for example \textit{h0}).
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}
 netstat -g
 \end{lstlisting}
@@ -152,7 +152,7 @@ netstat -g
 \section{Multicast \texttt{ping}}
 Execute \lstbash{ping 224.0.0.1} on the \textit{h0}.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}
 ping 224.0.0.1
 \end{lstlisting}
@@ -160,7 +160,7 @@ Examine the \lstbash{ping} output to see which hosts reply.
 
 Ping a broadcast address using \lstbash{ping -b 128.238.66.255}.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}
 ping -b 128.238.66.255
 \end{lstlisting}
@@ -204,14 +204,14 @@ Also, to open \lstbash{wireshark}, right-click on the link between host and swit
 
 To generate an Ethernet unicast frame, run \lstbash[emph={h1,netlab}]{socket -i -u -n1 h1.netlab echo} from the \textit{h0}.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}[emph={your-host, remote-host}]
 socket -i -u -n1 230.11.111.10 2000
 \end{lstlisting}
 
 Generate another Ethernet multicast frame, but with a different group address of {232.139.111.10}, e.g.:
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}[emph={your-host, remote-host}]
 socket -i -u -n1 230.139.111.10 2000
 \end{lstlisting}
@@ -220,7 +220,7 @@ socket -i -u -n1 230.139.111.10 2000
 To generate an Ethernet broadcast frame, you may \lstbash{ping} a remote host from \textit{h0} that has no entry in the ARP table of your host, e.g.\ \textit{h5}.
 \footnote{You can see ARP table by \lstbash{arp -a} delete a cached ARP entry by \lstbash[emph={ip}]{arp -d ip}.}
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}
 ping 128.238.66.105
 \end{lstlisting}
@@ -244,14 +244,14 @@ You can compile source code with \lstbash[emph={$fileName, $outputName}]{gcc $fi
 Start the multicast client \lstbash{netspy} on hosts \textit{h0}, \textit{h2}, \textit{h4} and \textit{h6}, by executing:%
 \footnote{If you get \textit{Netspy : cannot join multicast group `224.111.111.111'}, add route for the groups as described in \autoref{sec:linux-multicast-routing}.}
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}, h\textsubscript{2}, h\textsubscript{4}, h\textsubscript{6}}}
+\boxbash{{h\textsubscript{0}, h\textsubscript{2}, h\textsubscript{4}, h\textsubscript{6}}}
 \begin{lstlisting}
 ./netspy 224.111.111.111 1500
 \end{lstlisting}
 
 Then, start the multicast sender \lstbash{netspyd}\footnote{The \lstbash{netspydd} is modified version of \lstbash{netspyd} that produce multicast messages from \textbf{stdin} instead of \lstbash{ssh}/\lstbash{telnet} login event.} on the \textit{h0}, by executing:
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}}}
+\boxbash{{h\textsubscript{0}}}
 \begin{lstlisting}
 ./netspyd 224.111.111.111 1500 1
 \end{lstlisting}
@@ -261,7 +261,7 @@ Execute \lstbash{tcpdump ip multicast} or \lstbash{wireshark} on every subnet to
 
 Login to \textit{h0} from a remote machine, e.g. \textit{h6}, using \lstbash{telnet} or \lstbash{ssh} (need to start \textit{ssh} service with \lstbash{service ssh start}).
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{6}}}
+\boxbash{{h\textsubscript{6}}}
 \begin{lstlisting}
 telnet 128.238.66.100
 \end{lstlisting}
@@ -283,7 +283,7 @@ Save the captured multicast datagram sent by \lstbash{netspyd} and exit the \lst
 Keep the \lstbash{netspy} and the \lstbash{tcpdump} programs running.
 Execute \lstbash{ping 224.111.111.111} from the \textit{h6}.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{6}}}
+\boxbash{{h\textsubscript{6}}}
 \begin{lstlisting}
 ping 224.111.111.111
 \end{lstlisting}
@@ -295,7 +295,7 @@ Also, examine the \lstbash{tcpdump} and the \lstbash{ping} outputs (on \textit{h
 
 Ping a broadcast address using:
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{6}}}
+\boxbash{{h\textsubscript{6}}}
 \begin{lstlisting}
 ping -b 128.238.66.255
 \end{lstlisting}
@@ -341,11 +341,11 @@ The network topology is given in \hyperref[fig:7.13]{Figure~7.13}, and the corre
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
-        \node[draw] (h1) at (-4,-1){h1};
-        \node[draw] (h2) at (-2,-1){h2};
-        \node[draw,rounded corners] (router) at (0,0){Router};
-        \node[draw] (h3) at (2,-1){h3};
-        \node[draw] (h4) at (4,-1){h4};
+        \node[draw,fill=\colorhost] (h1) at (-4,-1){h1};
+        \node[draw,fill=\colorhost] (h2) at (-2,-1){h2};
+        \node[draw,rounded corners,fill=\colorcisco] (router) at (0,0){Router};
+        \node[draw,fill=\colorhost] (h3) at (2,-1){h3};
+        \node[draw,fill=\colorhost] (h4) at (4,-1){h4};
 
         \draw (h1) -- (-4,0);
         \draw (h2) -- (-2,0);
@@ -371,8 +371,8 @@ Open the router console and run \lstcisco{ip multicast-routing} to enable multic
 Then, enable the PIM protocol on each interface, by running \lstcisco{ip pim dense-mode} in the \textit{Interface Configuration} mode.
 Now the router is enabled to do multicast routing using PIM.
 
-\fcolorbox{blue}{red!10}{{R\#}}
-\begin{lstlisting}[language=cisco]
+\boxcisco{{R\#}}
+\begin{lstlisting}
 configure terminal
     ip multicast-routing
     interface f0/0
@@ -387,8 +387,8 @@ configure terminal
 Open the router console, execute \lstcisco{show ip igmp interface} and \lstcisco{show ip igmp group} in the \textit{Privileged EXEC} mode.
 Examine the multicast group memberships currently recorded in the router and the configurations of the router interfaces.
 
-\fcolorbox{blue}{red!10}{{R\#}}
-\begin{lstlisting}[language=cisco]
+\boxcisco{{R\#}}
+\begin{lstlisting}
 show ip igmp interface
 show ip igmp group
 \end{lstlisting}
@@ -401,13 +401,13 @@ show ip igmp group
 Enable linux multicast routing in all the hosts (see \autoref{sec:linux-multicast-routing}).
 
 Start \lstbash{netspy} client on all the hosts, by using:
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{1}, h\textsubscript{2}, h\textsubscript{3}, h\textsubscript{4}}}
+\boxbash{{h\textsubscript{1}, h\textsubscript{2}, h\textsubscript{3}, h\textsubscript{4}}}
 \begin{lstlisting}
 ./netspy 224.111.111.111 1500
 \end{lstlisting}
 
 Start \lstbash{netspy} server on \textit{h1}, by using:
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{1}}}
+\boxbash{{h\textsubscript{1}}}
 \begin{lstlisting}
 ./netspyd 224.111.111.111 1500 16
 \end{lstlisting}
@@ -415,15 +415,15 @@ Start \lstbash{netspy} server on \textit{h1}, by using:
 Open the router console.
 Run \lstcisco{show ip igmp interface} and \lstcisco{show ip igmp group} in the \textit{Privileged EXEC} mode again to examine the current membership records.
 
-\fcolorbox{blue}{red!10}{{R\#}}
-\begin{lstlisting}[language=cisco]
+\boxcisco{{R\#}}
+\begin{lstlisting}
 show ip igmp interface
 show ip igmp group
 \end{lstlisting}
 
 Try if you can \lstbash{ping} a host on the other side of the router (e.g.\ \lstbash{ping} \textit{h4} from \textit{h1})?
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{1}}}
+\boxbash{{h\textsubscript{1}}}
 \begin{lstlisting}
 ping 128.238.64.104
 \end{lstlisting}
@@ -431,7 +431,7 @@ ping 128.238.64.104
 % Login to \textit{h1} from the \textit{h2}, then logout.
 \lstbash{telnet} from \textit{h2} to \textit{h1} in your group, then logout. (Use \texttt{netlab} as username and password.)
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{2}}}
+\boxbash{{h\textsubscript{2}}}
 \begin{lstlisting}
 telnet 128.238.63.101
 \end{lstlisting}
@@ -450,7 +450,7 @@ Now, login to \textit{h1} from the \textit{h2}, then logout.
 \section{IGMP Types}
 Execute \lstbash[morekeywords={[3]multicast}]{tcpdump ip multicast -v} or \lstbash{wireshark}\footnote{If you have trouble in getting packets using \lstbash{wireshark}, try \lstbash{tcpdump}.} in one console to capture IGMP messages.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{1}}}
+\boxbash{{h\textsubscript{1}}}
 \begin{lstlisting}[emph={eth0},morekeywords={[3]multicast}]
 tcpdump ip multicast -v
 \end{lstlisting}
@@ -475,7 +475,7 @@ Terminate the \lstbash{tcpdump} programs and analyze the IGMP leave message you 
 Open the router console.
 See if you can make a router interface (e.g. \textit{ethernet0}) join a multicast group of 224.0.0.2, using:
 
-\fcolorbox{blue}{red!10}{{R\#}}
+\boxcisco{{R\#}}
 \begin{lstlisting}[language={cisco}]
 config term ! configure terminal
     ip multicast-routing
@@ -496,59 +496,59 @@ Enable linux multicast routing in all the hosts and routers if needed.
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
-        \draw (0,0) node[draw,rounded corners,fill=white] (r1) {Router 1}
+        \draw (0,0) node[draw,rounded corners,fill=\colorcisco] (r1) {Router 1}
         (r1) -- +(0,1)
         (r1) -- +(0,-1)
-        +(0,0.5) node {\scriptsize\textit{ethernet1}\quad 62.1/24}
-        +(0,-0.5) node {\scriptsize\textit{ethernet0}\quad 61.1/24}
+        +(0,0.5) node {\scriptsize\textit{eth1}\quad 62.1/24}
+        +(0,-0.5) node {\scriptsize\textit{eth0}\quad 61.1/24}
         ;
-        \draw (2,1.5) node[draw,rounded corners,fill=white] (r2) {Router 2}
+        \draw (2,1.5) node[draw,rounded corners,fill=\colorcisco] (r2) {Router 2}
         (r2) -| +(1,-0.5)
         (r2) -| +(-1,-0.5)
-        +(1.5,0) node[align=right] {\scriptsize\textit{ethernet1}\\\scriptsize63.2/24}
-        +(-1.5,0) node[align=left] {\scriptsize\textit{ethernet0}\\\scriptsize62.2/24}
+        +(1.5,0) node[align=right] {\scriptsize\textit{eth1}\\\scriptsize63.2/24}
+        +(-1.5,0) node[align=left] {\scriptsize\textit{eth0}\\\scriptsize62.2/24}
         ;
-        \draw (4,0) node[draw,rounded corners,fill=white] (r3) {Router 3}
+        \draw (4,0) node[draw,rounded corners,fill=\colorcisco] (r3) {Router 3}
         (r3) -- +(0,1)
         (r3) -- +(0,-1)
-        +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.3/24}
-        +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 64.3/24}
+        +(0,0.5) node {\scriptsize\textit{eth0}\quad 63.3/24}
+        +(0,-0.5) node {\scriptsize\textit{eth1}\quad 64.3/24}
         ;
-        \draw (7,0) node[draw,rounded corners,fill=white] (r4) {Router 4}
+        \draw (7,0) node[draw,rounded corners,fill=\colorcisco] (r4) {Router 4}
         (r4) -- +(0,1)
         (r4) -- +(0,-1)
-        +(0,0.5) node {\scriptsize\textit{ethernet0}\quad 63.4/24}
-        +(0,-0.5) node {\scriptsize\textit{ethernet1}\quad 65.4/24}
+        +(0,0.5) node {\scriptsize\textit{eth0}\quad 63.4/24}
+        +(0,-0.5) node {\scriptsize\textit{eth1}\quad 65.4/24}
         ;
-        \draw (-1,-1.5) node[draw,fill=white] (h0) {h0}
+        \draw (-1,-1.5) node[draw,fill=\colorhost] (h0) {h0}
         -- +(0,0.5)
         +(0,-0.5) node {\scriptsize61.100/24}
         ;
-        \draw (1,-1.5) node[draw,fill=white] (h1) {h1}
+        \draw (1,-1.5) node[draw,fill=\colorhost] (h1) {h1}
         -- +(0,0.5)
         +(0,-0.5) node {\scriptsize61.101/24}
         ;
-        \draw (-1,1.5) node[draw,fill=white] (h2) {h2}
+        \draw (-1,1.5) node[draw,fill=\colorhost] (h2) {h2}
         -- +(0,-0.5)
         +(0,0.5) node {\scriptsize62.100/24}
         ;
-        \draw (7-1,-1.5) node[draw,fill=white] (h6) {h6}
+        \draw (7-1,-1.5) node[draw,fill=\colorhost] (h6) {h6}
         -- +(0,0.5)
         +(0,-0.5) node {\scriptsize65.100/24}
         ;
-        \draw (7+1,-1.5) node[draw,fill=white] (h7) {h7}
+        \draw (7+1,-1.5) node[draw,fill=\colorhost] (h7) {h7}
         -- +(0,0.5)
         +(0,-0.5) node {\scriptsize65.101/24}
         ;
-        \draw (4,-1.5) node[draw,fill=white] (h5) {h5}
+        \draw (4,-1.5) node[draw,fill=\colorhost] (h5) {h5}
         -- +(0,0.5)
         +(0,-0.5) node {\scriptsize64.100/24}
         ;
-        \draw (7-1,1.5) node[draw,fill=white] (h3) {h3}
+        \draw (7-1,1.5) node[draw,fill=\colorhost] (h3) {h3}
         -- +(0,-0.5)
         +(0,0.5) node {\scriptsize63.100/24}
         ;
-        \draw (7+1,1.5) node[draw,fill=white] (h4) {h4}
+        \draw (7+1,1.5) node[draw,fill=\colorhost] (h4) {h4}
         -- +(0,-0.5)
         +(0,0.5) node {\scriptsize63.101/24}
         ;
@@ -600,14 +600,14 @@ Maybe you need to restart (or reload) routers to capture all packet from start s
 
 Execute \lstbash{./netspy 224.111.111.111 1500} on the \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and the \textit{h6}.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{0}, h\textsubscript{2}, h\textsubscript{3}, h\textsubscript{5}, h\textsubscript{6}}}
+\boxbash{{h\textsubscript{0}, h\textsubscript{2}, h\textsubscript{3}, h\textsubscript{5}, h\textsubscript{6}}}
 \begin{lstlisting}
 /home/netlab/code/netspy 224.111.111.111 1500
 \end{lstlisting}
 
 Execute \lstbash{./netspyd 224.111.111.111 1500 16} on the \textit{h4}.
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{4}}}
+\boxbash{{h\textsubscript{4}}}
 \begin{lstlisting}
 /home/netlab/code/netspyd 224.111.111.111 1500 16
 \end{lstlisting}
@@ -615,7 +615,7 @@ Execute \lstbash{./netspyd 224.111.111.111 1500 16} on the \textit{h4}.
 To generate multicast traffic, you can login (by \lstbash{telnet} or \lstbash{ssh}\footnote{Need to \lstbash{service ssh start} on remote machine}) to or logout of \textit{h4}.
 (Use \texttt{netlab} as username and password.)
 
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{2}}}
+\boxbash{{h\textsubscript{2}}}
 \begin{lstlisting}
 telnet 128.238.63.101
 \end{lstlisting}
@@ -662,8 +662,8 @@ You can always type \lstcisco{?}\footnote{For example: \lstcisco{mstat ?}} to ge
 Keep \lstbash{netspy} running on hosts \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6} and server on \textit{h4} as described in \autoref{sec:multi-hub}.
 Try the following command in \textit{Router2}:
 
-\fcolorbox{blue}{red!10}{{R\textsubscript{2}\#}}
-\begin{lstlisting}[language={cisco}]
+\boxcisco{{R\textsubscript{2}\#}}
+\begin{lstlisting}
 mstat 128.238.61.100 128.238.65.100 224.111.111.111
 \end{lstlisting}
 
@@ -677,7 +677,7 @@ Generate multicast packet when execute command for \textit{h6} (to see statistic
 Keep \lstbash{netspy} running on hosts \textit{h0}, \textit{h2}, \textit{h3}, \textit{h5}, and \textit{h6} and server on \textit{h4} as described in \autoref{sec:multi-hub}.
 
 Ping the multicast group address from \textit{h4}, using:
-\fcolorbox{blue}{yellow!10}{{h\textsubscript{4}}}
+\boxbash{{h\textsubscript{4}}}
 \begin{lstlisting}[emph={n}]
 ping 224.111.111.111 -t n
 \end{lstlisting}
@@ -690,8 +690,8 @@ Now, open the \textit{Router2} console, in the \textit{Interface Configuration} 
 \footnote{The syntax of this command may be different for different versions of Cisco~IOS.
     You may use \lstcisco{?} to get help.}
 
-\fcolorbox{blue}{red!10}{{R\textsubscript{2}\#}}
-\begin{lstlisting}[language={cisco}]    
+\boxcisco{{R\textsubscript{2}\#}}
+\begin{lstlisting}    
 configure terminal
     interface f0/0
         ip multicast ttl-threshold 32
