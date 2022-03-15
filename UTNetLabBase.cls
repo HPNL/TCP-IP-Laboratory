@@ -39,6 +39,40 @@
 
 \makeatletter
 
+
+\newcommand{\colorhost}{green!10}
+\newcommand{\colorhostgui}{olive!10}
+\newcommand{\colorswitch}{blue!10}
+\newcommand{\colorrouter}{yellow!10}
+\newcommand{\colorbridge}{orange!10}
+
+\newcommand{\colorbash}{green!10}
+\newcommand{\colorbashaux}{lime!10}
+\newcommand{\colorcisco}{yellow!10}
+\newcommand{\colorconf}{teal!10}
+\newcommand{\colorgui}{olive!10}
+\newcommand{\colorgeneric}{magnolialight}
+
+% \xpretocmd\lstinline{\Colorbox{magnolialight}\bgroup\appto\lst@DeInit{\egroup}}{}{}
+\newcommand{\lstbash}[2][]{\Colorbox{\colorbash}{\lstinline[language=bash-ext, #1]{#2}}}
+\newcommand{\lstcisco}[2][]{\Colorbox{\colorcisco}{\lstinline[language=cisco, #1]{#2}}}
+\newcommand{\lstconf}[2][]{\Colorbox{\colorconf}{\lstinline[language=conf, #1]{#2}}}
+\newcommand{\lstgui}[2][]{\Colorbox{\colorgui}{\lstinline[language=gui, #1]{#2}}}
+\newcommand{\lstgeneric}[2][]{\Colorbox{\colorgeneric}{\lstinline[language=generic, #1]{#2}}}
+
+\newcommand{\lstsetbash}{\lstset{language=bash-ext}}
+\newcommand{\lstsetcisco}{\lstset{language=cisco}}
+\newcommand{\lstsetconf}{\lstset{language=conf}}
+\newcommand{\lstsetgui}{\lstset{language=gui}}
+\newcommand{\lstsetgeneric}{\lstset{language=generic}}
+
+\newcommand{\boxbash}[2][blue]{\fcolorbox{#1}{\colorbash}{#2}\lstsetbash}
+\newcommand{\boxbashaux}[2][red]{\fcolorbox{#1}{\colorbashaux}{#2}\lstsetbash}
+\newcommand{\boxcisco}[2][blue]{\fcolorbox{#1}{\colorcisco}{#2}\lstsetcisco}
+\newcommand{\boxconf}[2][blue]{\fcolorbox{#1}{\colorconf}{#2}\lstsetconf}
+\newcommand{\boxgui}[2][blue]{\fcolorbox{#1}{\colorgui}{#2}\lstsetgui}
+\newcommand{\boxgeneric}[2][blue]{\fcolorbox{#1}{\colorgeneric}{#2}\lstsetgeneric}
+
 \AtBeginDocument{
   \let\thetitle\@title
   \let\theauthor\@author
@@ -76,7 +110,7 @@
   \tolerance=5000
 
   \lstdefinelanguage{bash-ext}{
-    backgroundcolor = \color{green!10},
+    backgroundcolor = \color{\colorbash},
     language=bash,
     keywords=[1]{
         grep, ifconfig, telnet, netstat, ip, route, more, less, cat, screen, head, tail, cmp, cp,
@@ -94,15 +128,21 @@
       },
   }
   \lstdefinelanguage{generic}{
+    backgroundcolor = \color{\colorgeneric},
     alsoletter={-},
   }
   \lstdefinelanguage{conf}{
-    backgroundcolor = \color{red!10},
     language=generic,
+    backgroundcolor = \color{\colorconf},
+    comment=[l]{\#},
+  }
+  \lstdefinelanguage{gui}{
+    language=bash-ext,
+    backgroundcolor = \color{\colorgui},
     comment=[l]{\#},
   }
   \lstdefinelanguage{cisco}{
-    backgroundcolor = \color{yellow!10},
+    backgroundcolor = \color{\colorcisco},
     alsoletter={-,+,?},
     keywords = [0]{Ctrl-Z, Ctrl+Z, end, exit, no, clear, wr, ?},
     keywords = [1]{
@@ -135,6 +175,7 @@
     alsoother={@},
   }
   \lstset{
+    language=bash-ext,
     backgroundcolor = \color{magnolia},
     frame = single,
     frameround=tttt,
@@ -143,7 +184,6 @@
     xleftmargin  = 0.7cm,
     xrightmargin = 0.5cm,
     rulecolor=\color{black}, % for fix multiline (string|comment) change border color
-    language=bash-ext,
     alsoletter={-},
     columns=flexible,
     basicstyle=\small\ttfamily,
@@ -167,11 +207,6 @@
   }
 }
 
-% \xpretocmd\lstinline{\Colorbox{magnolialight}\bgroup\appto\lst@DeInit{\egroup}}{}{}
-\newcommand{\lstbash}[2][]{\Colorbox{green!10}{\lstinline[language=bash-ext, #1]{#2}}}
-\newcommand{\lstcisco}[2][]{\Colorbox{yellow!10}{\lstinline[language=cisco, #1]{#2}}}
-\newcommand{\lstconf}[2][]{\Colorbox{red!10}{\lstinline[language=conf, #1]{#2}}}
-\newcommand{\lstgeneric}[2][]{\Colorbox{magnolialight}{\lstinline[language=generic, #1]{#2}}}
 
 \newcommand\ol[1]{{\setul{-0.9em}{}\ul{#1}}}
 
