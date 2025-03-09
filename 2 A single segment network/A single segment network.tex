@@ -49,15 +49,15 @@ The following exercises use the single segment network topology shown in \hyperr
             \begin{figure}[H]
                 \centering
                 \begin{tikzpicture}
-                    \node[draw,align=center,rounded corners] (s) at (0,0){Core\\Switch};
-                    \node[draw] (h0) at (0,2){h0};
-                    \node[draw] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
-                    \node[draw] (h2) at (2,0){h2};
-                    \node[draw] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
-                    \node[draw] (h4) at (-2,0){h4};
-                    \node[draw] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
-                    \node[draw] (h6) at (0,-2){h6};
-                    \node[draw] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
+                    \node[draw,align=center,rounded corners,fill=\colorswitch] (s) at (0,0){Core\\Switch};
+                    \node[draw,fill=\colorhost] (h0) at (0,2){h0};
+                    \node[draw,fill=\colorhost] (h1) at ({sqrt(2)},{sqrt(2)}){h1};
+                    \node[draw,fill=\colorhost] (h2) at (2,0){h2};
+                    \node[draw,fill=\colorhost] (h3) at (-{sqrt(2)},{sqrt(2)}){h3};
+                    \node[draw,fill=\colorhost] (h4) at (-2,0){h4};
+                    \node[draw,fill=\colorhost] (h5) at (-{sqrt(2)},-{sqrt(2)}){h5};
+                    \node[draw,fill=\colorhost] (h6) at (0,-2){h6};
+                    \node[draw,fill=\colorhost] (h7) at ({sqrt(2)},-{sqrt(2)}){h7};
 
                     \draw (h0) -- (s);
                     \draw (h1) -- (s);
@@ -78,6 +78,11 @@ The following exercises use the single segment network topology shown in \hyperr
 Use the \lstbash{ifconfig -a} command to display information about the network interfaces on the \textit{h0}.
 Find the IP address and the net mask of your machine.
 
+\boxbash{h\textsubscript{0}'s Console}
+\begin{lstlisting}
+ifconfig -a
+\end{lstlisting}
+
 \begin{report}
     \item How many interfaces does the host have?
     List all the interfaces found, give their names, and explain their functions briefly.
@@ -92,6 +97,16 @@ Find the IP address and the net mask of your machine.
 \section{Local Host Dump}
 While \lstbash[emph={lo}]{tcpdump -i lo}\footnote{In old linux use \lstbash[emph={your-host}]{tcpdump host your-host}} is running in one command window, run \lstbash{ping 127.0.0.1} from another command window.
 
+\boxbash{h\textsubscript{0}'s Console}
+\begin{lstlisting}
+tcpdump -i lo
+\end{lstlisting}
+
+\boxbashaux{h\textsubscript{0}'s Auxiliary Console} 
+\begin{lstlisting}
+ping 127.0.0.1
+\end{lstlisting}
+
 \begin{report}
     \item From the \lstbash{ping} output, is the 127.0.0.1 interface on?
     Can you see any ICMP message sent from your host in the \lstbash{tcpdump} output?
@@ -105,6 +120,18 @@ Since we use the same login name and password, we can \lstbash{telnet} to other 
     After you are done with a remote host, you should exit the \lstbash{telnet} session before you \lstbash{telnet} to another remote host.
     Recursive \lstbash{telnet} will generate unnecessary data in the \lstbash{tcpdump} output and cause confusion.
 }
+
+\boxbash{{h\textsubscript{0}}'s Console }
+\begin{lstlisting}
+netstat -ie
+\end{lstlisting}
+
+\boxbashaux{{h\textsubscript{0}}'s Auxiliary Console }
+\begin{lstlisting}[emph=netlab]
+telnet 128.238.66.101 # using user: netlab and password: netlab
+# after login to h1
+netstat -ie
+\end{lstlisting}
 
 Save the \lstbash{netstat -ie} outputs.
 
@@ -233,17 +260,17 @@ Save the ARP table for your lab report.
 \begin{figure}[H]
     \centering
     \begin{tikzpicture}
-        \draw (0*2,3) node[draw,fill=white] (h0) {h0} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.100/24};
-        \draw (1*2,3) node[draw,fill=white] (h1) {h1} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.101/24};
-        \draw (2*2,3) node[draw,fill=white] (h2) {h2} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.102/24};
-        \draw (3*2,3) node[draw,fill=white] (h3) {h3} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.103/24};
-        \draw (0*2,0) node[draw,fill=white] (h4) {h4} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.104/16};
-        \draw (1*2,0) node[draw,fill=white] (h5) {h5} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.105/16};
-        \draw (2*2,0) node[draw,fill=white] (h6) {h6} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.106/16};
-        \draw (3*2,0) node[draw,fill=white] (h7) {h7} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.107/16};
-        \draw (0.5*2,1.5) node[draw,rounded corners,fill=white] (r4) {Router 4}
-        -- +(0,+0.75) +(0,+0.45) node {\scriptsize\textit{ether0}\quad 64.4/24}
-        -- +(0,-0.75) +(0,-0.45) node {\scriptsize\textit{ether1}\quad 65.4/24}
+        \draw (0*2,3) node[draw,fill=\colorhost] (h0) {h0} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.100/24};
+        \draw (1*2,3) node[draw,fill=\colorhost] (h1) {h1} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.101/24};
+        \draw (2*2,3) node[draw,fill=\colorhost] (h2) {h2} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.102/24};
+        \draw (3*2,3) node[draw,fill=\colorhost] (h3) {h3} -- +(0,-0.75) +(0,+0.5) node {\scriptsize 64.103/24};
+        \draw (0*2,0) node[draw,fill=\colorhost] (h4) {h4} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.104/16};
+        \draw (1*2,0) node[draw,fill=\colorhost] (h5) {h5} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.105/16};
+        \draw (2*2,0) node[draw,fill=\colorhost] (h6) {h6} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.106/16};
+        \draw (3*2,0) node[draw,fill=\colorhost] (h7) {h7} -- +(0,+0.75) +(0,-0.5) node {\scriptsize 65.107/16};
+        \draw (0.5*2,1.5) node[draw,rounded corners,fill=\colorcisco] (r4) {Router 4}
+        -- +(0,+0.75) +(0,+0.45) node {\scriptsize\textit{eth0}\quad 64.4/24}
+        -- +(0,-0.75) +(0,-0.45) node {\scriptsize\textit{eth1}\quad 65.4/24}
         ;
         \draw[thick] (-1,0.75) -- +({(3+1)*2},0);
         \draw[thick] (-1,2.25) -- +({(3+1)*2},0);
