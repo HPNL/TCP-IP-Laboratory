@@ -5,10 +5,102 @@
 \title{Linux and TCP/IP Networking}
 \labnumber{1}
 \newcommand\reference{
-   S. Panwar, S. Mao, J.-dong Ryoo, and Y. Li, “Linux and TCP/IP networking,” in TCP/IP Essentials: A Lab-Based Approach, Cambridge: Cambridge University Press, 2004, pp. 26–42.
+   S. Panwar, S. Mao, J.-dong Ryoo, and Y. Li, “Linux and TCP/IP networking,” in TCP/IP Essentials: A Lab-Based Approach, Cambridge: Cambridge University Press, 2004, pp. 26-42.
 }
 
 \begin{document}
+	\subsection{ Review and Guidance}
+	
+	First, launch GNS3. To use prepare topology that download from Github (figures):
+	
+	\begin{enumerate}
+		\item Open File menu
+		\item Select Import portable project
+	\end{enumerate}    
+	
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=6cm,
+			width=6cm]{img/1.png}}
+		\caption{}
+		\label{p01}
+	\end{figure}
+	3. Choose the figures (from your Figures folder address)
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=8cm,
+			width=14cm]{img/2.png}}
+		\caption{}
+		\label{p02}
+	\end{figure}
+	4. Enter a name for new project and click OK
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=7cm,
+			width=12cm]{img/3.png}}
+		\caption{}
+		\label{p03}
+	\end{figure}
+	5. Now you can see a network like Figure \ref{p04}
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=7cm,
+			width=7cm]{img/4.png}}
+		\caption{}
+		\label{p04}
+	\end{figure}
+	6. Start all devices by clicking on the Start/Resume button (green triangular button )
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=1.2cm,
+			width=15cm]{img/5.png}}
+		\caption{}
+		\label{p05}
+	\end{figure}
+	7.All devices turn on slimilar to Figure \ref{p06} .
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=7cm,
+			width=7cm]{img/6.png}}
+		\caption{}
+		\label{p06}
+	\end{figure}
+	\subsection{Attention}
+	You don't need to set IP address for each host in all figures that download from Github, because  the IP addresses set by default in all hosts. However, if you want to set IP address for a host, you can open console terminal by right-clicking on a host and selecting console and type the following command. For example, we set IP address for host \lstbash{h0}.
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=6cm,
+			width=7cm]{img/7.png}}%{pictures/pic0/7.png}}
+		\caption{}
+		\label{p07}
+	\end{figure}
+	\fcolorbox{blue}{green!10}{ {h\textsubscript{0}}'s Console }
+	\lstset{backgroundcolor=\color{green!10}}
+	\begin{lstlisting}
+		ip address add 128.238.66.100/24 dev eth0
+	\end{lstlisting}
+	\subsection{Tips}
+	
+	\fcolorbox{blue}{red!10}{h\textsubscript{0}'s Console}
+	\lstset{backgroundcolor=\color{red!10}}
+	\begin{lstlisting}
+		ifconfig -a
+	\end{lstlisting}
+	
+	This box means that, Right click on host \textit{h0} and select Console item from Pop-up menu:
+	
+	\begin{figure}[H]
+		\centering
+		{\selectlanguage{english}\includegraphics[height=6cm,
+			width=7cm]{img/8.png}}
+		\caption{}
+		\label{p11}
+	\end{figure}
+	In Console window type(run) the below command:
+	\begin{lstlisting}
+		ifconfig -a
+	\end{lstlisting}
+\newpage	
 \section*{Objectives}
 \begin{itemize}
     \item Getting acquainted with the lab environment.
@@ -20,6 +112,7 @@
     \item Understanding the client–server architecture.
 \end{itemize}
 
+%\part
 \section*{Systems Configuration}
 Launch GNS3 and make a network as below.
 You can use \lstbash[emph={eth0},morekeywords={[3]netmask}]{ifconfig eth0 192.168.0.1 netmask 255.255.255.0} to set ip.
@@ -76,61 +169,33 @@ You can use \lstbash[emph={eth0},morekeywords={[3]netmask}]{ifconfig eth0 192.16
     \end{minipage}
 \end{center}
 
-To use prepared topology to GNS3:
-\begin{enumerate}
-    \item Open \texttt{File} menu
-    \item Select \texttt{Import }
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.5]{img/1}
-        \end{figure}
-    \item Choose the figure from \texttt{Figures} folder
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.7]{img/2}
-        \end{figure}
-    \item Enter a name for new project
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.6]{img/3}
-        \end{figure}
-    \item Start all devices by clicking on the Start/Resume button (green triangular button)
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.6]{img/4}
-        \end{figure}
-    \item Open console or Auxiliary console for each host (right click on host/router)
-        \begin{figure}[H]
-            \centering
-            \includegraphics[scale=0.6]{img/5}
-        \end{figure}
-\end{enumerate}
-
 \section{Telnet Service}
 Run \lstbash{ps -e} to list the processes running in the \textit{h1}.
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-ps -e
+	ps -e
 \end{lstlisting}
 
-After starting a new process by running \lstbash{telnet} in another command window (open new auxiliary console), execute \lstbash{ps -e} again in a third window to see if there is any change in its output.
+After starting a new process by running \lstbash{telnet} in another command window (open new auxiliary console):
 
 \boxbashaux{h\textsubscript{1}'s Auxiliary Console} 
 \begin{lstlisting}
-telnet
+	telnet
 \end{lstlisting}
+
+then execute \lstbash{ps -e} again in a third window to see if there is any change in its output.
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-ps -e
+	ps -e
 \end{lstlisting}
 
 Find the process id of the \lstbash{telnet} process you started, by:
 
 \boxbash{{h\textsubscript{1}}'s Console}
 \begin{lstlisting}
-ps -e | grep telnet
+	ps -e | grep telnet
 \end{lstlisting}
 Then use \lstbash[emph={process-id-of-telnet}]{kill \$(pidof telnet)} to terminate the \lstbash{telnet} process.
 
@@ -147,17 +212,34 @@ Display the file \path{/etc/services} on the \textit{h1} screen, using:
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-more /etc/services
+	more /etc/services
 \end{lstlisting}
 
 Then in another console (Auxiliary console), use the redirect operator to redirect the \lstbash{more} output to
 a file using \lstbash{more /etc/services > ser-more}.
+
+% \boxbash{h\textsubscript{1}'s Console} 
+% \begin{lstlisting}
+% 	more /etc/services > ser-more
+% \end{lstlisting}
+
 Compare the file \path{ser-more} with the original \lstbash{more} output in the other command window.
 
 Copy \path{/etc/services} file to a local file named \path{ser-cp} in your working directory (use \lstbash{pwd} to see working directory path),
 using \lstbash{cp /etc/services ser-cp}.
+
+% \boxbash{h\textsubscript{1}'s Console}
+% \begin{lstlisting}
+% 	cp /etc/services ser-cp
+% \end{lstlisting}
+
 Compare files \path{ser-more} and \path{ser-cp}, using \lstbash{cmp ser-more ser-cp}.
 Are these two files identical?
+
+% \boxbash{h\textsubscript{1}'s Console}
+% \begin{lstlisting}
+% 	cmp ser-more ser-cp
+% \end{lstlisting}
 
 Concatenate these two files using \lstbash{cat ser-more ser-cp > ser-cat}.
 
@@ -174,7 +256,7 @@ Save the output.
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-ls -l ser*
+	ls -l ser*
 \end{lstlisting}
 
 \begin{report}
@@ -201,7 +283,7 @@ For example,  run the following command:
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-man arp
+	man arp
 \end{lstlisting}
 
 Study the different options associated with each command.
@@ -216,6 +298,8 @@ Throughout this lab you will use these commands rather extensively.
 % fixme: content
 In this exercise, we will use \lstbash{tcpdump} to capture a packet containing the link, IP, and TCP headers and use \lstbash{wireshark} to analyze this packet.
 
+\textit{Note:} In GNS3 you can capture and see packet in \lstbash{wireshark} with right click on wire between \textit{host} and \textit{switch} and select \textit{Start Capture}.
+
 First, run \lstbash{tcpdump -enx -w dump.pcap} in the \textit{h1}.
 You will not see any \lstbash{tcpdump} output, since the \lstbash{-w} option is used to write the output to the \path{dump.pcap} file.
 
@@ -225,18 +309,20 @@ tcpdump -enx -w dump.pcap   # write packet to dump.pcap file
 tcpdump -enx                # print packet
 \end{lstlisting}
 
+Then, you may want to run \lstbash{telnet 128.238.66.102} in the \textit{h1} to generate some TCP traffic.\footnote{Remember to run \lstbash{/etc/init.d/xinetd restart} in the \textit{h2} to start telnet server on it.}
+
 \boxbashaux{h\textsubscript{1}'s Auxiliary Console}
 \begin{lstlisting}
-telnet 128.238.66.102
+	telnet 128.238.66.102
 \end{lstlisting}
 
-Then, you may want to run \lstbash{telnet 128.238.66.102} in the \textit{h1} to generate some TCP traffic.\footnote{Remember to run \lstbash{/etc/init.d/xinetd restart} in the \textit{h2} to start telnet server on it.}
-After you login to \textit{h2} (use \textbf{netlab} for username and password), terminate the \lstbash{telnet} session and terminate the \lstbash{tcpdump} program.
-Next, you will use \lstbash{tcpdump} or \lstbash{wireshark} to open the packet trace captured by \lstbash{tcpdump} and analyze the captured packets.
-To do this, use this command \lstbash{tcpdump -r dump.pcap} to see content of \path{dump.pcap} or see with GUI \lstbash{wireshark dump.pcap &}\footnote{To use \lstbash{wireshark} in isolated \lstbash{docker} space, you need to copy file from  \lstbash{docker} space to your PC}.
+After you login to \textit{h2} (\textit{Note:} use \textbf{netlab} for username and password), terminate the \lstbash{telnet} session (press \textit{CTRL+D} or run \textit{kill} command) and terminate the \lstbash{tcpdump} program (press \textit{CTRL+C} in \lstbash{tcpdump} terminal window.
+
+
+Next, you will use \lstbash{tcpdump} or \lstbash{wireshark} to see the packet trace captured by \lstbash{tcpdump} or \lstbash{wireshark} and analyze the captured packets.
+
 The \lstbash{wireshark} Graphical User Interface (GUI) will pop up and the packets captured by \lstbash{tcpdump} will be displayed.
 Select any one of the packets that contain the link, IP, and TCP headers.
-In GNS3 you can capture ans see packet with right click on wire and select \textit{Start Capture}.
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}[emph={dump,pcap}]
@@ -258,7 +344,7 @@ If there is no arp requests and replies in the network, generate some using \lst
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-arping 128.238.66.102
+	arping 128.238.66.102
 \end{lstlisting}
 
 Now you should see several ARP replies in the \lstbash{arping} output.
@@ -309,7 +395,7 @@ Execute a TCP utility, \lstbash{telnet} for example, in another command window:
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-telnet 128.238.66.102
+	telnet 128.238.66.102
 \end{lstlisting}
 
 \begin{report}
@@ -321,20 +407,21 @@ telnet 128.238.66.102
 \section{Random Port}
 Run \lstbash{wireshark} on the \textit{h1} link and select an interface to capture packets between hosts.
 
-Then, \lstbash{telnet} to the \textit{h2} from a second command window (Auxiliary console) by typing \lstbash{telnet 128.238.66.102}.
+Then, \lstbash{telnet} to the \textit{h2}, from a command window by typing \lstbash{telnet 128.238.66.102}.
 
 \boxbash{h\textsubscript{1}'s Console}
 \begin{lstlisting}
-telnet 128.238.66.102
+	telnet 128.238.66.102
 \end{lstlisting}
 
-Again issue the same \lstbash{telnet 128.238.66.102} command from a third command window.
-Now you are opening two \lstbash{telnet} sessions to \textit{h2} simultaneously, from two different command windows.
+Again issue the same \lstbash{telnet 128.238.66.102} command from another  command window.
 
 \boxbashaux{h\textsubscript{1}'s Auxiliary Console}
 \begin{lstlisting}
-telnet 128.238.66.102
+	telnet 128.238.66.102
 \end{lstlisting}
+
+Now you are opening two \lstbash{telnet} sessions to \textit{h2} simultaneously, from two different command windows.
 % On each telnet terminal, run \lstbash{pwd} to generate traffic.
 
 Check the port numbers being used on both sides of the two connections from the output in the \lstbash{wireshark} window.
